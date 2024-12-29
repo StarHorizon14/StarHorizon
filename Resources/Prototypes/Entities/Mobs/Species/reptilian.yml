@@ -9,7 +9,7 @@
     species: Reptilian
     hideLayersOnEquip:
     - Snout
-    - HeadTop
+#    - HeadTop # WWDP - Because visible horns its cool
     - HeadSide
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Hunger
@@ -117,7 +117,7 @@
     species: Reptilian
     hideLayersOnEquip:
     - Snout
-    - HeadTop
+#    - HeadTop # WWDP - Because visible horns its cool
     - HeadSide
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Inventory
