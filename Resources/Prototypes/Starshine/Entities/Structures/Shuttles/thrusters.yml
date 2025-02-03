@@ -32,10 +32,9 @@
     - "0.2,0.4"
     - "-0.7,1.7"
     - "-0.3,1.7"
-    heatValue: 250
     damage:
       types:
-        Heat: 1
+        Heat: 10.5
   - type: ApcPowerReceiver
     powerLoad: 6000
   - type: Construction
@@ -121,10 +120,9 @@
     - "0.9,1.3"
     - "-0.35,3.2"
     - "0.35,3.2"
-    heatValue: 1000
     damage:
       types:
-        Heat: 1.5
+        Heat: 15
   - type: ApcPowerReceiver
     powerLoad: 15000
   - type: Construction
