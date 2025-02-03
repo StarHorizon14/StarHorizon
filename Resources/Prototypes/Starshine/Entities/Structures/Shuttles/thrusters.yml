@@ -86,6 +86,8 @@
       machine_parts:
         - CapacitorStockPart10
         - CapacitorStockPart5
+  - type: StaticPrice
+    price: 1200
 
 - type: entity
   id: ThrusterHuge
@@ -127,6 +129,7 @@
     powerLoad: 15000
   - type: Construction
     graph: ThrusterHugeGraph
+    node: hugeThruster
   - type: Destructible
     thresholds:
     - trigger:
@@ -171,6 +174,8 @@
         - CapacitorStockPart10
         - CapacitorStockPart10
         - CapacitorStockPart5
+  - type: StaticPrice
+    price: 3000
 
 - type: entity
   id: ThrusterLargeUnanchored
