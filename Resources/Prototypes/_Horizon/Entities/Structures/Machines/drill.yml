@@ -76,3 +76,66 @@
         - Ore
   - type: BindToStation
     enabled: false # should be draggable between stations
+
+- type: entity
+  id: ShipMiningDrill
+  name: Ship Mining Drill
+  description: For drilling through rocks while sitting in a chair.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 800
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: false
+    increment: 45
+  - type: Sprite
+    sprite: _Horizon/Structures/Machines/mining_drill.rsi
+    layers:
+    - state: drill
+  - type: ShipDrill
+    soundHit:
+      path: "/Audio/Items/drill_hit.ogg"
+  - type: Anchorable
+    delay: 10
+  - type: ApcPowerReceiver
+    powerLoad: 10000 # 10 kW per one
+  - type: ExtensionCableReceiver
+  - type: StaticPrice
+    price: 1000 # заребалансить надо
