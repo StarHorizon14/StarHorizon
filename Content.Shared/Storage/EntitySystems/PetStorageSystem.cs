@@ -110,7 +110,7 @@ public sealed class PetStorageSystem : EntitySystem
 
         if (_doAfter.TryStartDoAfter(args))
         {
-            _popup.PopupEntity(Loc.GetString("pet-storage-insert-start", ("item", Name(item))), uid, uid);
+            _popup.PopupClient(Loc.GetString("pet-storage-insert-start", ("item", Name(item))), uid, uid);
         }
     }
 
@@ -126,7 +126,7 @@ public sealed class PetStorageSystem : EntitySystem
 
         if (_doAfter.TryStartDoAfter(args))
         {
-            _popup.PopupEntity(Loc.GetString("pet-storage-remove-start", ("item", Name(item))), uid, uid);
+            _popup.PopupClient(Loc.GetString("pet-storage-remove-start", ("item", Name(item))), uid, uid);
         }
     }
 
@@ -144,11 +144,11 @@ public sealed class PetStorageSystem : EntitySystem
 
         if (_storage.Insert(storageEntity, args.Used.Value, out _, null, storage, playSound: true))
         {
-            _popup.PopupEntity(Loc.GetString("pet-storage-insert-success", ("item", Name(args.Used.Value))), uid, uid);
+            _popup.PopupClient(Loc.GetString("pet-storage-insert-success", ("item", Name(args.Used.Value))), uid, uid);
         }
         else
         {
-            _popup.PopupEntity(Loc.GetString("pet-storage-insert-failure", ("item", Name(args.Used.Value))), uid, uid);
+            _popup.PopupClient(Loc.GetString("pet-storage-insert-failure", ("item", Name(args.Used.Value))), uid, uid);
         }
 
         args.Handled = true;
@@ -170,7 +170,7 @@ public sealed class PetStorageSystem : EntitySystem
 
         if (!storage.Container.Contains(item))
         {
-            _popup.PopupEntity(Loc.GetString("pet-storage-remove-failure"), uid, uid);
+            _popup.PopupClient(Loc.GetString("pet-storage-remove-failure"), uid, uid);
             args.Handled = true;
             return;
         }
@@ -181,11 +181,11 @@ public sealed class PetStorageSystem : EntitySystem
             var itemTransform = Transform(item);
             itemTransform.Coordinates = transform.Coordinates;
 
-            _popup.PopupEntity(Loc.GetString("pet-storage-remove-success", ("item", Name(item))), uid, uid);
+            _popup.PopupClient(Loc.GetString("pet-storage-remove-success", ("item", Name(item))), uid, uid);
         }
         else
         {
-            _popup.PopupEntity(Loc.GetString("pet-storage-remove-failure"), uid, uid);
+            _popup.PopupClient(Loc.GetString("pet-storage-remove-failure"), uid, uid);
         }
 
         args.Handled = true;
