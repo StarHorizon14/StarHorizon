@@ -42,6 +42,10 @@
       - Cat
       - PetsNT
   - type: ShowJobIcons
+  - type: PetStorage
+    slotPriority:
+    - back
+    - belt
 
 - type: entity
   id: MobCatClarpy
@@ -95,6 +99,10 @@
       pitch: 0.7
   - type: AutoPirate
     applyFaction: false
+  - type: PetStorage
+    slotPriority:
+    - back
+    - belt
 
 - type: entity
   id: MobCatCappy
@@ -160,6 +168,10 @@
   - type: PirateBountyItem
     id: Cappy
   - type: SouthernAccent
+  - type: PetStorage
+    slotPriority:
+    - back
+    - belt
 
 - type: entity
   id: MobCatElCapo
