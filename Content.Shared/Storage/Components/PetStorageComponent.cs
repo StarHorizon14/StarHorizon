@@ -11,18 +11,10 @@ public sealed partial class PetStorageComponent : Component
 {
     /// <summary>
     /// EntityUid сумки (рюкзака) питомца, в которую он складывает предметы.
-    /// Если null, система будет искать рюкзак в слотах инвентаря по приоритету.
+    /// Если null, система будет искать ВСЕ рюкзаки во всех слотах инвентаря.
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? StorageEntity;
-
-    /// <summary>
-    /// Приоритет слотов инвентаря для поиска рюкзака.
-    /// Первый найденный слот с Storage компонентом будет использован.
-    /// По умолчанию: "back" (рюкзак), затем "belt" (пояс)
-    /// </summary>
-    [DataField]
-    public List<string> SlotPriority = new() { "back", "belt" };
 
     /// <summary>
     /// Задержка перед тем как предмет будет положен в сумку (в секундах)

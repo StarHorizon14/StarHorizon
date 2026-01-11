@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.DoAfter;
-using Content.Shared.Hands.Components;
-using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Popups;
@@ -37,33 +36,102 @@ public sealed class PetStorageSystem : EntitySystem
         if (!TryComp<PetStorageComponent>(args.User, out var petStorage))
             return;
 
-        if (!TryGetStorageEntity(args.User, petStorage, out var storageEntity, out var storage))
+        // Получаем ВСЕ надетые рюкзаки питомца
+        var storageEntities = GetAllStorageEntities(args.User, petStorage);
+
+        // Проверяем, находится ли предмет в каком-либо рюкзаке (надетом или нет)
+        // Если предмет находится в рюкзаке, который не надет на питомца, добавляем верб для извлечения
+        if (TryComp<StorageComponent>(Transform(itemUid).ParentUid, out var parentStorage))
+        {
+            var parentStorageUid = Transform(itemUid).ParentUid;
+
+            // Проверяем, что это не надетый рюкзак питомца
+            bool isEquippedStorage = storageEntities.Any(x => x.entity == parentStorageUid);
+
+            if (!isEquippedStorage)
+            {
+                // Это рюкзак на земле или в руках - добавляем верб для извлечения
+                AlternativeVerb removeFromUnequippedVerb = new()
+                {
+                    Act = () => TryRemoveItem(args.User, itemUid, petStorage, parentStorageUid),
+                    Text = Loc.GetString("pet-storage-remove-from-verb", ("storage", Name(parentStorageUid))),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/eject.svg.192dpi.png")),
+                    Priority = 2
+                };
+                args.Verbs.Add(removeFromUnequippedVerb);
+            }
+        }
+
+        // Если нет надетых рюкзаков, выходим
+        if (storageEntities.Count == 0)
             return;
 
-        bool isInPetStorage = storage.Container.Contains(itemUid);
+        int verbIndex = 1;
+        foreach (var (storageEntity, storage, storageName) in storageEntities)
+        {
+            // Проверяем, что предмет - это не сам рюкзак
+            if (itemUid == storageEntity)
+                continue;
 
-        if (isInPetStorage)
-        {
-            AlternativeVerb removeVerb = new()
+            bool isInPetStorage = storage.Container.Contains(itemUid);
+
+            if (isInPetStorage)
             {
-                Act = () => TryRemoveItem(args.User, itemUid, petStorage, storageEntity),
-                Text = Loc.GetString("pet-storage-remove-verb"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/eject.svg.192dpi.png")),
-                Priority = 2
-            };
-            args.Verbs.Add(removeVerb);
-        }
-        else
-        {
-            AlternativeVerb insertVerb = new()
+                // Верб для извлечения из конкретного надетого рюкзака
+                AlternativeVerb removeVerb = new()
+                {
+                    Act = () => TryRemoveItem(args.User, itemUid, petStorage, storageEntity),
+                    Text = Loc.GetString("pet-storage-remove-from-verb", ("storage", storageName)),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/eject.svg.192dpi.png")),
+                    Priority = 2
+                };
+                args.Verbs.Add(removeVerb);
+            }
+            else
             {
-                Act = () => TryInsertItem(args.User, itemUid, petStorage, storageEntity),
-                Text = Loc.GetString("pet-storage-insert-verb"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/open.svg.192dpi.png")),
-                Priority = 2
-            };
-            args.Verbs.Add(insertVerb);
+                // Верб для вставки в конкретный надетый рюкзак
+                AlternativeVerb insertVerb = new()
+                {
+                    Act = () => TryInsertItem(args.User, itemUid, petStorage, storageEntity),
+                    Text = Loc.GetString("pet-storage-insert-to-verb", ("storage", storageName)),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/open.svg.192dpi.png")),
+                    Priority = 2
+                };
+                args.Verbs.Add(insertVerb);
+            }
+            verbIndex++;
         }
+    }
+
+    /// <summary>
+    /// Получает все рюкзаки питомца из инвентаря
+    /// </summary>
+    private List<(EntityUid entity, StorageComponent storage, string name)> GetAllStorageEntities(EntityUid petUid, PetStorageComponent component)
+    {
+        var result = new List<(EntityUid, StorageComponent, string)>();
+
+        // Если указан конкретный StorageEntity, возвращаем только его
+        if (component.StorageEntity != null && TryComp<StorageComponent>(component.StorageEntity.Value, out var specificStorage))
+        {
+            result.Add((component.StorageEntity.Value, specificStorage, Name(component.StorageEntity.Value)));
+            return result;
+        }
+
+        // Ищем ВСЕ рюкзаки во ВСЕХ слотах инвентаря
+        if (!TryComp<InventoryComponent>(petUid, out var inventory))
+            return result;
+
+        // Получаем все слоты инвентаря
+        var enumerator = _inventory.GetSlotEnumerator((petUid, inventory));
+        while (enumerator.NextItem(out var slotEntity))
+        {
+            if (TryComp<StorageComponent>(slotEntity, out var storage))
+            {
+                result.Add((slotEntity, storage, Name(slotEntity)));
+            }
+        }
+
+        return result;
     }
 
     private bool TryGetStorageEntity(EntityUid petUid, PetStorageComponent component, out EntityUid storageEntity, [NotNullWhen(true)] out StorageComponent? storage)
@@ -81,15 +149,14 @@ public sealed class PetStorageSystem : EntitySystem
             return false;
         }
 
-        foreach (var slotName in component.SlotPriority)
+        // Ищем первый найденный рюкзак во всех слотах
+        var enumerator = _inventory.GetSlotEnumerator((petUid, inventory));
+        while (enumerator.NextItem(out var slotEntity))
         {
-            if (_inventory.TryGetSlotEntity(petUid, slotName, out var slotEntity, inventory))
+            if (TryComp<StorageComponent>(slotEntity, out storage))
             {
-                if (TryComp<StorageComponent>(slotEntity, out storage))
-                {
-                    storageEntity = slotEntity.Value;
-                    return true;
-                }
+                storageEntity = slotEntity;
+                return true;
             }
         }
 
