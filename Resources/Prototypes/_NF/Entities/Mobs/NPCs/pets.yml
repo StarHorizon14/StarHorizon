@@ -46,6 +46,9 @@
   - type: Body
     prototype: CatBody
   - type: Hands
+  - type: Paws
+    blockedTags:
+      - Trash
 
 - type: entity
   id: MobCatClarpy
