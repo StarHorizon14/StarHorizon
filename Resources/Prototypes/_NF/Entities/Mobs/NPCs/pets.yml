@@ -46,9 +46,6 @@
   - type: Body
     prototype: CatBody
   - type: Hands
-  - type: Paws
-    blacklistComponents:
-    - Gun
 
 - type: entity
   id: MobCatClarpy
@@ -106,9 +103,6 @@
   - type: Body
     prototype: CatBody
   - type: Hands
-  - type: Paws
-    blacklistComponents:
-    - Gun
 
 - type: entity
   id: MobCatCappy
@@ -178,9 +172,6 @@
   - type: Body
     prototype: CatBody
   - type: Hands
-  - type: Paws
-    blacklistComponents:
-    - Gun
 
 - type: entity
   id: MobCatElCapo
