@@ -1,12 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.DoAfter;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Storage.EntitySystems;
@@ -18,6 +20,7 @@ public sealed class PetStorageSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
@@ -26,6 +29,56 @@ public sealed class PetStorageSystem : EntitySystem
         SubscribeLocalEvent<ItemComponent, GetVerbsEvent<AlternativeVerb>>(OnItemGetAlternativeVerbs);
         SubscribeLocalEvent<PetStorageComponent, PetInsertItemDoAfterEvent>(OnInsertItemDoAfter);
         SubscribeLocalEvent<PetStorageComponent, PetRemoveItemDoAfterEvent>(OnRemoveItemDoAfter);
+        SubscribeLocalEvent<PetStorageComponent, PickupAttemptEvent>(OnPickupAttempt);
+        SubscribeLocalEvent<ItemComponent, GettingPickedUpAttemptEvent>(OnGettingPickedUp);
+    }
+
+    private void OnPickupAttempt(Entity<PetStorageComponent> ent, ref PickupAttemptEvent args)
+    {
+        // Если событие уже отменено, ничего не делаем
+        if (args.Cancelled)
+            return;
+
+        // Проверяем размер предмета
+        if (ent.Comp.MaxItemSize != null && TryComp<ItemComponent>(args.Item, out var itemComp))
+        {
+            if (_prototypeManager.TryIndex(ent.Comp.MaxItemSize.Value, out var maxSizeProto) &&
+                _prototypeManager.TryIndex(itemComp.Size, out var itemSizeProto))
+            {
+                if (itemSizeProto > maxSizeProto)
+                {
+                    args.Cancel();
+                    _popup.PopupClient("Этот предмет слишком большой для ваших лапок!", ent, ent);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void OnGettingPickedUp(Entity<ItemComponent> item, ref GettingPickedUpAttemptEvent args)
+    {
+        // Проверяем, есть ли у пользователя компонент PetStorage
+        if (!TryComp<PetStorageComponent>(args.User, out var petStorage))
+            return;
+
+        // Если событие уже отменено, ничего не делаем
+        if (args.Cancelled)
+            return;
+
+        // Проверяем размер предмета
+        if (petStorage.MaxItemSize != null)
+        {
+            if (_prototypeManager.TryIndex(petStorage.MaxItemSize.Value, out var maxSizeProto) &&
+                _prototypeManager.TryIndex(item.Comp.Size, out var itemSizeProto))
+            {
+                if (itemSizeProto > maxSizeProto)
+                {
+                    args.Cancel();
+                    _popup.PopupClient("Этот предмет слишком большой для ваших лапок!", args.User, args.User);
+                    return;
+                }
+            }
+        }
     }
 
     private void OnItemGetAlternativeVerbs(EntityUid itemUid, ItemComponent itemComp, GetVerbsEvent<AlternativeVerb> args)

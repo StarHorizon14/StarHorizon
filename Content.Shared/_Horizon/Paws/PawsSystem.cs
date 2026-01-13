@@ -1,15 +1,14 @@
 using Content.Shared.Item;
-using Content.Shared.Tag;
 
 namespace Content.Shared._Horizon.Paws;
 
 /// <summary>
-/// Система, которая блокирует поднятие предметов по тегам.
+/// Система, которая блокирует поднятие предметов для существ с лапами.
+/// По умолчанию блокирует всё, кроме предметов из WhitelistEntities.
+/// Проверку размера выполняет PetStorageSystem.
 /// </summary>
 public sealed class PawsSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -23,14 +22,23 @@ public sealed class PawsSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        // Если список заблокированных тегов пуст, ничего не блокируем
-        if (ent.Comp.BlockedTags.Count == 0)
-            return;
+        // Получаем прототип предмета
+        var protoId = MetaData(args.Item).EntityPrototype?.ID;
 
-        // Проверяем, есть ли у предмета любой из заблокированных тегов
-        if (_tagSystem.HasAnyTag(args.Item, ent.Comp.BlockedTags))
+        // Проверяем белый список энтити - если предмет в списке, разрешаем взять
+        if (protoId != null && ent.Comp.WhitelistEntities.Contains(protoId))
         {
+            // Предмет в белом списке - разрешаем взять
+            // Проверку размера сделает PetStorageSystem
+            return;
+        }
+
+        // Если включен режим "блокировать всё по умолчанию"
+        if (ent.Comp.BlockAllByDefault)
+        {
+            // Предмет НЕ в белом списке и включён BlockAllByDefault - блокируем
             args.Cancel();
+            return;
         }
     }
 }

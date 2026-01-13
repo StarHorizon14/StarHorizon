@@ -1,4 +1,5 @@
 using Content.Shared.DoAfter;
+using Content.Shared.Item;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -15,6 +16,14 @@ public sealed partial class PetStorageComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? StorageEntity;
+
+    /// <summary>
+    /// Максимальный размер предмета, который можно поднять в лапы.
+    /// Null = нет ограничения по размеру.
+    /// Примеры: "Tiny", "Small", "Normal", "Large", "Huge", "Ginormous"
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public ProtoId<ItemSizePrototype>? MaxItemSize = "Small";
 
     /// <summary>
     /// Задержка перед тем как предмет будет положен в сумку (в секундах)
