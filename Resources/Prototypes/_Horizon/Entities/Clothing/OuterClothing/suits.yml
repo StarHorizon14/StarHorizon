@@ -44,9 +44,22 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+      Webbing: !type:ContainerSlot
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
-  - type: CatWearable # Frontier
+  - type: CatWearable
+  - type: Matchbox
+  - type: ItemSlots
+    slots:
+      Webbing:
+        priority: 1
+        insertVerbText: Прикрепить сумку к скафандру
+        ejectVerbText: Открепить сумку к скафандру
+        name: Скафандр
+        swap: false
+        whitelist:
+          components:
+          - Storage
 
 - type: entity
   parent: ClothingOuterHardsuitCarp
@@ -58,6 +71,21 @@
   - type: Tag
     tags:
     - PetOnly
+  - type: ContainerContainer
+    containers:
+      Webbing: !type:ContainerSlot
+  - type: Matchbox
+  - type: ItemSlots
+    slots:
+      Webbing:
+        priority: 1
+        insertVerbText: Прикрепить сумку к скафандру
+        ejectVerbText: Открепить сумку к скафандру
+        name: Скафандр
+        swap: false
+        whitelist:
+          components:
+          - Storage
 
 - type: entity
   parent: ClothingOuterHardsuitSyndie
@@ -69,3 +97,18 @@
   - type: Tag
     tags:
     - PetOnly
+  - type: ContainerContainer
+    containers:
+      Webbing: !type:ContainerSlot
+  - type: Matchbox
+  - type: ItemSlots
+    slots:
+      Webbing:
+        priority: 1
+        insertVerbText: Прикрепить сумку к скафандру
+        ejectVerbText: Открепить сумку к скафандру
+        name: Скафандр
+        swap: false
+        whitelist:
+          components:
+          - Storage
