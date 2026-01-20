@@ -98,6 +98,66 @@
           0.1
         ]
       ]
+    },
+    {
+      "name": "off-inhand-left-cat",
+      "directions": 4
+    },
+    {
+      "name": "off-inhand-right-cat",
+      "directions": 4
+    },
+    {
+      "name": "on-inhand-left-cat",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "on-inhand-right-cat",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
     }
   ]
 }

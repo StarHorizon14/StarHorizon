@@ -4,6 +4,10 @@
   parent: NFBaseClothingBeltStorageBag # Frontier: BaseStorageItem<NFBaseClothingBeltStorageBag
   description: A bag for storing chemistry products, such as pills, pill canisters, bottles, and syringes.
   components:
+  - type: Tag
+    tags:
+    - CatBag
+  - type: CatWearable
   # Frontier: layered sprite
   - type: Sprite
     sprite: Objects/Specific/Chemistry/chem_bag.rsi

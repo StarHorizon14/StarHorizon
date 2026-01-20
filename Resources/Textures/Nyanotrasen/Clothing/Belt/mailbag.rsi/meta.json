@@ -35,6 +35,18 @@
       "directions": 4
     },
     {
+      "name": "equipped-BELT-cat",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-cat",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-cat",
+      "directions": 4
+    },
+    {
       "name": "inhand-right",
       "directions": 4
     }

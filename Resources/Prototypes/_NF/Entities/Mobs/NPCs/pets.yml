@@ -50,10 +50,10 @@
   - type: Hands
   - type: Paws
     whitelistEntities:
-      - BaseMailLarge
-      - MailLargeAdminFun
-      - BaseMail
-      - MailAdminFun
+      - NFMailBag
+      - MailBagBig
+    whitelistTags:
+      - Mail
 
 - type: entity
   id: MobCatClarpy
@@ -117,7 +117,6 @@
     whitelistEntities:
       - CombatKnife
       - SurvivalKnife
-      - ThrowingKnife
 
 - type: entity
   id: MobCatCappy
@@ -193,7 +192,7 @@
     whitelistEntities:
       - CombatKnife
       - SurvivalKnife
-      - ThrowingKnife
+      - Stunbaton
 
 - type: entity
   id: MobCatElCapo
@@ -224,6 +223,17 @@
   - type: NpcFactionMember
     factions:
     - Cat
+  - type: PetStorage
+    maxItemSize: Small
+  - type: ComplexInteraction
+  - type: Body
+    prototype: CatBody
+  - type: Hands
+  - type: Paws
+    whitelistEntities:
+      - CombatKnife
+      - SurvivalKnife
+      - ThrowingKnife
 
 - type: entity
   id: MobCatCurie
@@ -272,6 +282,22 @@
       Female: Cat
       Unsexed: Cat
   - type: RussianAccent
+  - type: PetStorage
+    maxItemSize: Small
+  - type: ComplexInteraction
+  - type: Body
+    prototype: CatBody
+  - type: Hands
+  - type: Paws
+    whitelistEntities:
+      - CrowbarPocket
+      - Wrench
+      - Screwdriver
+      - Wirecutter
+      - Welder
+      - Multitool
+    whitelistTags:
+      - CatCrowbar
 
 - type: entity
   id: MobCatClugg

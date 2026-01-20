@@ -1,63 +1,102 @@
+using Content.Client.Items.Systems;
 using Content.Shared._Horizon.Paws;
 using Content.Shared.Hands;
+using Content.Shared.Item;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Shared.GameObjects;
+using Robust.Client.ResourceManagement;
+using Robust.Shared.Serialization.TypeSerializers.Implementations;
 
 namespace Content.Client._Horizon.Paws;
 
 /// <summary>
 /// Клиентская система для отображения лап вместо предметов в руках.
-/// Использует HeldVisualsUpdatedEvent для замены спрайтов после ItemSystem.
+/// Подписывается на GetInhandVisualsEvent ПОСЛЕ ItemSystem и заменяет/добавляет спрайты с -cat постфиксом.
 /// </summary>
 public sealed class PawsSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly IResourceCache _resCache = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        // Подписываемся на событие ПОСЛЕ того, как ItemSystem добавил слои
-        // Событие вызывается на предмете, а не на владельце!
-        SubscribeLocalEvent<HeldVisualsUpdatedEvent>(OnHeldVisualsUpdated);
+        // Подписываемся ПОСЛЕ ItemSystem через SpriteComponent, чтобы можно было модифицировать или добавить слои
+        SubscribeLocalEvent<SpriteComponent, GetInhandVisualsEvent>(OnGetInhandVisuals, after: new[] { typeof(ItemSystem) });
     }
 
-    private void OnHeldVisualsUpdated(HeldVisualsUpdatedEvent args)
+    private void OnGetInhandVisuals(EntityUid uid, SpriteComponent sprite, GetInhandVisualsEvent args)
     {
-        // args.User - это владелец предмета (кот с лапами)
+        // args.User - владелец предмета (кот)
         // Проверяем, есть ли у владельца компонент лап
         if (!TryComp<PawsComponent>(args.User, out var paws))
             return;
 
-        if (!TryComp<SpriteComponent>(args.User, out var sprite))
+        if (!TryComp<ItemComponent>(uid, out var item))
             return;
 
-        // Для каждого добавленного слоя пытаемся найти вариант с лапами
-        foreach (var layerKey in args.RevealedLayers)
+        // Получаем RSI предмета
+        RSI? rsi = null;
+        if (item.RsiPath != null)
+            rsi = _resCache.GetResource<RSIResource>(SpriteSpecifierSerializer.TextureRoot / item.RsiPath).RSI;
+        else
+            rsi = sprite.BaseRSI;
+
+        if (rsi == null)
+            return;
+
+        var location = args.Location.ToString().ToLowerInvariant();
+
+        // Если ItemSystem уже добавил слои - пытаемся заменить на -cat версии
+        if (args.Layers.Count > 0)
         {
-            if (!_sprite.LayerMapTryGet((args.User, sprite), layerKey, out var layerIndex, false))
-                continue;
+            for (var i = 0; i < args.Layers.Count; i++)
+            {
+                var (key, layer) = args.Layers[i];
+                var state = layer.State;
 
-            // Получаем текущее состояние слоя
-            var currentState = _sprite.LayerGetRsiState((args.User, sprite), layerIndex);
-            if (string.IsNullOrEmpty(currentState.Name))
-                continue;
+                if (string.IsNullOrEmpty(state))
+                    continue;
 
-            // Формируем имя состояния с постфиксом -cat
-            var catStateName = $"{currentState.Name}-cat";
-            var catState = new RSI.StateId(catStateName);
+                var catState = $"{state}-cat";
 
-            // Получаем эффективный RSI для слоя
-            var rsi = _sprite.LayerGetEffectiveRsi((args.User, sprite), layerIndex);
-            if (rsi == null)
-                continue;
+                // Проверяем, есть ли -cat версия в RSI
+                if (rsi.TryGetState(catState, out _))
+                {
+                    // Заменяем слой на версию с -cat
+                    var newLayer = new PrototypeLayerData
+                    {
+                        RsiPath = layer.RsiPath,
+                        State = catState,
+                        MapKeys = layer.MapKeys
+                    };
+                    args.Layers[i] = (key, newLayer);
+                }
+            }
+        }
+        else
+        {
+            // ItemSystem не добавил слои (нет обычного inhand спрайта)
+            // Пытаемся добавить -cat версию напрямую
 
-            // Проверяем, существует ли такое состояние в RSI
+            // Формируем имя состояния с учётом HeldPrefix
+            var baseKey = $"inhand-{location}";
+            var state = (item.HeldPrefix == null)
+                ? baseKey
+                : $"{item.HeldPrefix}-{baseKey}";
+
+            var catState = $"{state}-cat";
+
+            // Проверяем, есть ли -cat версия
             if (rsi.TryGetState(catState, out _))
             {
-                // Заменяем состояние на вариант с лапами
-                _sprite.LayerSetRsiState((args.User, sprite), layerIndex, catState);
+                var layer = new PrototypeLayerData
+                {
+                    RsiPath = rsi.Path.ToString(),
+                    State = catState,
+                    MapKeys = new HashSet<string> { catState }
+                };
+                args.Layers.Add((catState, layer));
             }
         }
     }

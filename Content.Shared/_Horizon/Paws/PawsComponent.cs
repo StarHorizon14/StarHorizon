@@ -21,11 +21,24 @@ public sealed partial class PawsComponent : Component
     public bool BlockAllByDefault = true;
 
     /// <summary>
+    /// Если true, отключает блокировку и позволяет брать все предметы.
+    /// По умолчанию: false
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool BypassBlacklist = false;
+
+    /// <summary>
     /// Белый список энтити-прототипов, которые можно взять.
     /// Если BlockAllByDefault = true, можно брать ТОЛЬКО эти предметы.
     /// </summary>
     [DataField, AutoNetworkedField]
     public List<EntProtoId> WhitelistEntities = new();
+
+    /// <summary>
+    /// Белый список тегов. Предметы с любым из этих тегов можно взять.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<TagPrototype>> WhitelistTags = new();
 
     /// <summary>
     /// Путь к RSI файлу с спрайтами лап для отображения в руках.
@@ -39,4 +52,10 @@ public sealed partial class PawsComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public string? PawsStateName = null;
+
+    /// <summary>
+    /// Множитель скорости атаки. 0.5 = в 2 раза медленнее.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float MeleeAttackRateMultiplier = 0.5f;
 }

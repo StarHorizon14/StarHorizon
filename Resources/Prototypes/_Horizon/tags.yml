@@ -446,3 +446,9 @@
 
 - type: Tag
   id: RustedWall
+
+- type: Tag
+  id: CatCrowbar
+
+- type: Tag
+  id: CatBag

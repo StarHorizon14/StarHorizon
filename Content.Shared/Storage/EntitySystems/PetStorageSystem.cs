@@ -29,56 +29,6 @@ public sealed class PetStorageSystem : EntitySystem
         SubscribeLocalEvent<ItemComponent, GetVerbsEvent<AlternativeVerb>>(OnItemGetAlternativeVerbs);
         SubscribeLocalEvent<PetStorageComponent, PetInsertItemDoAfterEvent>(OnInsertItemDoAfter);
         SubscribeLocalEvent<PetStorageComponent, PetRemoveItemDoAfterEvent>(OnRemoveItemDoAfter);
-        SubscribeLocalEvent<PetStorageComponent, PickupAttemptEvent>(OnPickupAttempt);
-        SubscribeLocalEvent<ItemComponent, GettingPickedUpAttemptEvent>(OnGettingPickedUp);
-    }
-
-    private void OnPickupAttempt(Entity<PetStorageComponent> ent, ref PickupAttemptEvent args)
-    {
-        // Если событие уже отменено, ничего не делаем
-        if (args.Cancelled)
-            return;
-
-        // Проверяем размер предмета
-        if (ent.Comp.MaxItemSize != null && TryComp<ItemComponent>(args.Item, out var itemComp))
-        {
-            if (_prototypeManager.TryIndex(ent.Comp.MaxItemSize.Value, out var maxSizeProto) &&
-                _prototypeManager.TryIndex(itemComp.Size, out var itemSizeProto))
-            {
-                if (itemSizeProto > maxSizeProto)
-                {
-                    args.Cancel();
-                    _popup.PopupClient("Этот предмет слишком большой для ваших лапок!", ent, ent);
-                    return;
-                }
-            }
-        }
-    }
-
-    private void OnGettingPickedUp(Entity<ItemComponent> item, ref GettingPickedUpAttemptEvent args)
-    {
-        // Проверяем, есть ли у пользователя компонент PetStorage
-        if (!TryComp<PetStorageComponent>(args.User, out var petStorage))
-            return;
-
-        // Если событие уже отменено, ничего не делаем
-        if (args.Cancelled)
-            return;
-
-        // Проверяем размер предмета
-        if (petStorage.MaxItemSize != null)
-        {
-            if (_prototypeManager.TryIndex(petStorage.MaxItemSize.Value, out var maxSizeProto) &&
-                _prototypeManager.TryIndex(item.Comp.Size, out var itemSizeProto))
-            {
-                if (itemSizeProto > maxSizeProto)
-                {
-                    args.Cancel();
-                    _popup.PopupClient("Этот предмет слишком большой для ваших лапок!", args.User, args.User);
-                    return;
-                }
-            }
-        }
     }
 
     private void OnItemGetAlternativeVerbs(EntityUid itemUid, ItemComponent itemComp, GetVerbsEvent<AlternativeVerb> args)
@@ -220,6 +170,20 @@ public sealed class PetStorageSystem : EntitySystem
 
     private void TryInsertItem(EntityUid uid, EntityUid item, PetStorageComponent component, EntityUid storageEntity)
     {
+        // Проверяем размер предмета перед вставкой в хранилище
+        if (component.MaxItemSize != null && TryComp<ItemComponent>(item, out var itemComp))
+        {
+            if (_prototypeManager.TryIndex(component.MaxItemSize.Value, out var maxSizeProto) &&
+                _prototypeManager.TryIndex(itemComp.Size, out var itemSizeProto))
+            {
+                if (itemSizeProto > maxSizeProto)
+                {
+                    _popup.PopupClient(Loc.GetString("pet-storage-item-too-big"), uid, uid);
+                    return;
+                }
+            }
+        }
+
         var ev = new PetInsertItemDoAfterEvent { StorageEntity = GetNetEntity(storageEntity) };
         var args = new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(component.InsertDelay), ev, uid, target: item, used: item)
         {

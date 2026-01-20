@@ -47,6 +47,14 @@
     {
       "name": "handle-equipped-BELT",
       "directions": 4
+    },
+    {
+      "name": "inhand-left-cat",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-cat",
+      "directions": 4
     }
   ]
 }

@@ -8,3 +8,4 @@ pet-storage-insert-success = Вы положили { $item } в свою сум�
 pet-storage-remove-success = Вы достали { $item } из своей сумки.
 pet-storage-insert-failure = Не удалось положить { $item } в сумку!
 pet-storage-remove-failure = Не удалось достать предмет из сумки!
+pet-storage-item-too-big = Этот предмет слишком большой для вашей сумки!

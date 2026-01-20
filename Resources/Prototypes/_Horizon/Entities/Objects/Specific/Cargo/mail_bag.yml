@@ -3,7 +3,7 @@
   id: MailBagBig
   parent: NFMailBag
   description: Вмещает ОЧЕНЬ МНОГО ПОЧТЫ и так же благодоря блюспейс технологиям позволяет узнать кординаты адресанта и телепортироватся к нему в радиусе 50 метров. Только бы знать как им пользоватся...
-  suffix: кот
+  suffix: Только коты
   components:
   - type: Clothing
     sprite: Nyanotrasen/Clothing/Belt/mailbag.rsi
@@ -18,6 +18,9 @@
     - 0,0,1,1
   - type: CatWearable
   - type: Dumpable
+  - type: Tag
+    tags:
+    - PetOnly
   - type: Storage
     maxItemSize: Normal
     grid:
