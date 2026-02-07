@@ -4,7 +4,6 @@
 
 using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
-using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Crescent.ShipShields;
 using Content.Shared.Examine;
@@ -83,26 +82,32 @@ public partial class ShipShieldsSystem
 
     private void OnShieldDeflected(EntityUid uid, ShipShieldEmitterComponent component, ShieldDeflectedEvent args)
     {
+        float damage = 0f;
+
         if (TryComp<EmpOnTriggerComponent>(args.Deflected, out var emp))
         {
-            component.Damage += Math.Clamp(emp.EnergyConsumption, 0f, MAX_EMP_DAMAGE);
+            damage += Math.Clamp(emp.EnergyConsumption, 0f, MAX_EMP_DAMAGE);
             _trigger.Trigger(args.Deflected);
         }
 
         if (TryComp<ExplosiveComponent>(args.Deflected, out var exp))
         {
-            component.Damage += exp.TotalIntensity;
+            damage += exp.TotalIntensity;
         }
 
         if (TryComp<ProjectileComponent>(args.Deflected, out var proj))
         {
-            component.Damage += (float) proj.Damage.GetTotal();
+            damage += (float) proj.Damage.GetTotal();
             proj.ProjectileSpent = true;
         }
         else if (TryComp<PhysicsComponent>(args.Deflected, out var phys))
         {
-            component.Damage += phys.FixturesMass;
+            damage += phys.FixturesMass;
         }
+
+        // Subtract from shield HP and reset regen timer
+        component.CurrentHitPoints = Math.Max(component.CurrentHitPoints - damage, 0f);
+        component.TimeSinceLastDamage = 0f;
 
         QueueDel(args.Deflected);
     }
@@ -112,27 +117,23 @@ public partial class ShipShieldsSystem
         if (!args.IsInDetailsRange)
             return;
 
-        if (component.Damage == 0f)
+        if (component.OnCooldown)
         {
-            args.PushMarkup(Loc.GetString("shield-emitter-examine-undamaged"));
+            var seconds = (int) Math.Ceiling(component.CooldownAccumulator);
+            args.PushMarkup(Loc.GetString("shield-emitter-examine-cooldown", ("seconds", seconds)));
             return;
         }
 
-        var additionalLoad = (float) Math.Clamp(Math.Pow(component.Damage, component.DamageExp), 0f, component.MaxDraw);
-        var ratio = additionalLoad / component.BaseDraw;
-        ratio = (float) Math.Ceiling(ratio * 100);
+        var current = (int) Math.Ceiling(component.CurrentHitPoints);
+        var max = (int) component.MaxHitPoints;
 
-        args.PushMarkup(Loc.GetString("shield-emitter-examine-damaged", ("percent", ratio)));
-    }
-
-    private void AdjustEmitterLoad(EntityUid uid, ShipShieldEmitterComponent? emitter = null, ApcPowerReceiverComponent? receiver = null)
-    {
-        if (!Resolve(uid, ref emitter, ref receiver))
-            return;
-
-        /// Raise damage to the power of the growth exponent
-        var additionalLoad = (float) Math.Clamp(Math.Pow(emitter.Damage, emitter.DamageExp), 0f, emitter.MaxDraw);
-
-        receiver.Load = emitter.BaseDraw + additionalLoad;
+        if (component.CurrentHitPoints >= component.MaxHitPoints)
+        {
+            args.PushMarkup(Loc.GetString("shield-emitter-examine-undamaged", ("current", current), ("max", max)));
+        }
+        else
+        {
+            args.PushMarkup(Loc.GetString("shield-emitter-examine-damaged", ("current", current), ("max", max)));
+        }
     }
 }

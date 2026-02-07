@@ -48,39 +48,14 @@ public sealed partial class ShipShieldsSystem : EntitySystem
             if (emitter.Accumulator < EmitterUpdateRate)
                 continue;
 
+            emitter.Accumulator -= EmitterUpdateRate;
+
             // Detect orphaned shield reference (shield entity was deleted externally)
             if (emitter.Shield is { } shieldRef && !Exists(shieldRef))
             {
                 emitter.Shield = null;
                 emitter.Shielded = null;
             }
-
-            if ((float) Math.Pow(emitter.Damage, emitter.DamageExp) >= emitter.MaxDraw)
-                emitter.Recharging = true;
-            if (!power.Powered)
-                emitter.Recharging = true;
-
-            emitter.Accumulator -= EmitterUpdateRate;
-            if (emitter.OverloadAccumulator > 0)
-            {
-                emitter.OverloadAccumulator -= EmitterUpdateRate;
-            }
-
-            float healed = emitter.HealPerSecond * EmitterUpdateRate;
-
-            if (emitter.Recharging)
-                healed *= emitter.UnpoweredBonus;
-
-            emitter.Damage -= healed;
-
-            if (emitter.Damage < 0)
-            {
-                emitter.Damage = 0;
-                if (power.Powered)
-                    emitter.Recharging = false;
-            }
-
-            AdjustEmitterLoad(uid, emitter, power);
 
             var parent = Transform(uid).GridUid;
 
@@ -89,11 +64,73 @@ public sealed partial class ShipShieldsSystem : EntitySystem
 
             var filter = _station.GetInOwningStation(uid);
 
-            if (emitter.Damage > emitter.DamageLimit)
-                emitter.OverloadAccumulator = emitter.DamageOverloadTimePunishment;
-
-            if (!emitter.Recharging && emitter.Shield is null && emitter.OverloadAccumulator < 1)
+            // If not powered — drop the shield and do nothing else
+            if (!power.Powered)
             {
+                if (emitter.Shield is not null)
+                {
+                    UnshieldEntity(parent.Value);
+                    emitter.Shield = null;
+                    emitter.Shielded = null;
+                    _audio.PlayGlobal(emitter.PowerDownSound, filter, true, emitter.PowerDownSound.Params);
+                }
+                continue;
+            }
+
+            // Cooldown state — shield is destroyed, waiting to respawn
+            if (emitter.OnCooldown)
+            {
+                emitter.CooldownAccumulator -= EmitterUpdateRate;
+
+                if (emitter.CooldownAccumulator <= 0)
+                {
+                    emitter.OnCooldown = false;
+                    emitter.CurrentHitPoints = emitter.MaxHitPoints;
+                    emitter.TimeSinceLastDamage = 0f;
+
+                    var shield = ShieldEntity(parent.Value, source: uid);
+                    if (shield != EntityUid.Invalid)
+                    {
+                        emitter.Shield = shield;
+                        emitter.Shielded = parent.Value;
+                    }
+                    _audio.PlayGlobal(emitter.PowerUpSound, filter, true, emitter.PowerUpSound.Params);
+                }
+                continue;
+            }
+
+            // Shield is active
+            if (emitter.Shield is not null)
+            {
+                // Shield HP depleted — destroy and enter cooldown
+                if (emitter.CurrentHitPoints <= 0)
+                {
+                    UnshieldEntity(parent.Value);
+                    emitter.Shield = null;
+                    emitter.Shielded = null;
+                    emitter.OnCooldown = true;
+                    emitter.CooldownAccumulator = emitter.CooldownDuration;
+                    _audio.PlayGlobal(emitter.PowerDownSound, filter, true, emitter.PowerDownSound.Params);
+                    continue;
+                }
+
+                // Tick regen timer
+                emitter.TimeSinceLastDamage += EmitterUpdateRate;
+
+                // Regenerate HP after regen delay
+                if (emitter.TimeSinceLastDamage >= emitter.RegenDelay && emitter.CurrentHitPoints < emitter.MaxHitPoints)
+                {
+                    emitter.CurrentHitPoints = Math.Min(
+                        emitter.CurrentHitPoints + emitter.RegenPerSecond * EmitterUpdateRate,
+                        emitter.MaxHitPoints);
+                }
+            }
+            else
+            {
+                // Shield is not active, not on cooldown, powered — create shield with full HP
+                emitter.CurrentHitPoints = emitter.MaxHitPoints;
+                emitter.TimeSinceLastDamage = 0f;
+
                 var shield = ShieldEntity(parent.Value, source: uid);
                 if (shield != EntityUid.Invalid)
                 {
@@ -102,14 +139,6 @@ public sealed partial class ShipShieldsSystem : EntitySystem
                 }
                 _audio.PlayGlobal(emitter.PowerUpSound, filter, true, emitter.PowerUpSound.Params);
             }
-            else if ((emitter.Recharging || emitter.OverloadAccumulator > 0) && emitter.Shield is not null)
-            {
-                UnshieldEntity(parent.Value);
-                emitter.Shield = null;
-                emitter.Shielded = null;
-                _audio.PlayGlobal(emitter.PowerDownSound, filter, true, emitter.PowerUpSound.Params);
-            }
-
         }
     }
     public override void Initialize()

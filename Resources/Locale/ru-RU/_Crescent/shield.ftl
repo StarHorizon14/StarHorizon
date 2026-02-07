@@ -1,2 +1,3 @@
-shield-emitter-examine-undamaged = Генератор работает на полной мощности.
-shield-emitter-examine-damaged = Генератор потребляет на [color=purple]{ $percent }%[/color] больше энергии из-за повреждений.
+shield-emitter-examine-undamaged = Щит: [color=green]{ $current }/{ $max }[/color] HP
+shield-emitter-examine-damaged = Щит: [color=yellow]{ $current }/{ $max }[/color] HP
+shield-emitter-examine-cooldown = Щит на перезарядке: [color=red]{ $seconds }с[/color]
