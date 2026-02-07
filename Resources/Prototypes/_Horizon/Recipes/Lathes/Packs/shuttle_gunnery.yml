@@ -5,6 +5,7 @@
   - GunneryControlComputerCircuitboard
   - MachineShieldLightCircuitboard
   - MachineShieldMediumCircuitboard
+  - MachineShieldLargeCircuitboard
   - MachineGCSLowCircuitboard
   - MachineGCSMediumCircuitboard
   - MachineGCSHighCircuitboard

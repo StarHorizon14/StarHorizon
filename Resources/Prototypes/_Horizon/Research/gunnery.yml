@@ -12,4 +12,5 @@
   - MachineGCSHighCircuitboard
   - MachineShieldLightCircuitboard
   - MachineShieldMediumCircuitboard
+  - MachineShieldLargeCircuitboard
   position: 0, 68

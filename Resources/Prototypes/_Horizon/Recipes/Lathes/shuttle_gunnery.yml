@@ -27,3 +27,8 @@
   parent: BaseGoldCircuitboardRecipe
   id: MachineShieldMediumCircuitboard
   result: MachineShieldMediumCircuitboard
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: MachineShieldLargeCircuitboard
+  result: MachineShieldLargeCircuitboard
