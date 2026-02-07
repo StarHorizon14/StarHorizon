@@ -1262,6 +1262,12 @@
   - ChemistDuffel
 
 - type: loadoutGroup
+  id: ChemistPDA
+  name: loadout-group-chemist-id
+  loadouts:
+  - ChemistPDA
+
+- type: loadoutGroup
   id: ParamedicHead
   name: loadout-group-paramedic-head
   minLimit: 0
@@ -1282,6 +1288,12 @@
   loadouts:
   - ParamedicWindbreaker
   - ParamedicWintercoat
+
+- type: loadoutGroup
+  id: ParamedicPDA
+  name: loadout-group-paramedic-id
+  loadouts:
+  - ParamedicPDA
 
 - type: loadoutGroup
   id: ParamedicShoes

@@ -628,6 +628,7 @@
   - ChemistOuterClothing
   - MedicalShoes
   - ContractorBelt
+  - ChemistPDA
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
@@ -649,6 +650,7 @@
   - ParamedicOuterClothing
   - ParamedicShoes
   - ContractorBelt
+  - ParamedicPDA
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets

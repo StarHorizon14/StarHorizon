@@ -191,11 +191,13 @@ loadout-group-medical-intern-jumpsuit = Medical intern jumpsuit
 loadout-group-chemist-jumpsuit = Chemist jumpsuit
 loadout-group-chemist-outerclothing = Chemist outer clothing
 loadout-group-chemist-backpack = Chemist backpack
+loadout-group-chemist-id = Chemist ID
 
 loadout-group-paramedic-head = Paramedic head
 loadout-group-paramedic-jumpsuit = Paramedic jumpsuit
 loadout-group-paramedic-outerclothing = Paramedic outer clothing
 loadout-group-paramedic-shoes = Paramedic shoes
+loadout-group-paramedic-id = Paramedic ID
 
 loadout-group-medical-glasses = Medical glasses
 
