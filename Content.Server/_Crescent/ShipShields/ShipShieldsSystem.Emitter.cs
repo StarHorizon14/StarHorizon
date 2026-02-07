@@ -24,16 +24,61 @@ public partial class ShipShieldsSystem
     {
         SubscribeLocalEvent<ShipShieldEmitterComponent, ShieldDeflectedEvent>(OnShieldDeflected);
         SubscribeLocalEvent<ShipShieldEmitterComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<ShipShieldEmitterComponent, ComponentRemove>(OnRemoved);
+        SubscribeLocalEvent<ShipShieldEmitterComponent, ComponentRemove>(OnEmitterRemoved);
+        SubscribeLocalEvent<ShipShieldComponent, ComponentRemove>(OnShieldRemoved);
     }
 
-
-    private void OnRemoved(Entity<ShipShieldEmitterComponent> owner,ref ComponentRemove remove)
+    /// <summary>
+    /// Called when the shield generator (emitter) is removed/deleted.
+    /// Cleans up the shield dome entity and grid component.
+    /// </summary>
+    private void OnEmitterRemoved(Entity<ShipShieldEmitterComponent> owner, ref ComponentRemove remove)
     {
-        var parent = Transform(owner.Owner).GridUid;
-        if (parent is null)
-            return;
-        UnshieldEntity(parent.Value, null);
+        var emitter = owner.Comp;
+
+        // Clean up via direct shield reference first (most reliable)
+        if (emitter.Shield is { } shieldUid && Exists(shieldUid))
+        {
+            _pvsSys.RemoveGlobalOverride(shieldUid);
+            QueueDel(shieldUid);
+        }
+
+        // Also clean up ShipShieldedComponent on the grid
+        if (emitter.Shielded is { } shieldedUid && TryComp<ShipShieldedComponent>(shieldedUid, out _))
+        {
+            RemComp<ShipShieldedComponent>(shieldedUid);
+        }
+
+        emitter.Shield = null;
+        emitter.Shielded = null;
+    }
+
+    /// <summary>
+    /// Called when the shield dome entity itself is deleted directly.
+    /// Cleans up stale references on the grid and emitter.
+    /// </summary>
+    private void OnShieldRemoved(Entity<ShipShieldComponent> owner, ref ComponentRemove remove)
+    {
+        var shield = owner.Comp;
+        var shieldUid = owner.Owner;
+
+        _pvsSys.RemoveGlobalOverride(shieldUid);
+
+        // Clean up ShipShieldedComponent on the grid
+        if (Exists(shield.Shielded) && TryComp<ShipShieldedComponent>(shield.Shielded, out _))
+        {
+            RemComp<ShipShieldedComponent>(shield.Shielded);
+        }
+
+        // Clean up emitter's stale reference
+        if (shield.Source is { } sourceUid
+            && Exists(sourceUid)
+            && TryComp<ShipShieldEmitterComponent>(sourceUid, out var emitter)
+            && emitter.Shield == shieldUid)
+        {
+            emitter.Shield = null;
+            emitter.Shielded = null;
+        }
     }
 
     private void OnShieldDeflected(EntityUid uid, ShipShieldEmitterComponent component, ShieldDeflectedEvent args)

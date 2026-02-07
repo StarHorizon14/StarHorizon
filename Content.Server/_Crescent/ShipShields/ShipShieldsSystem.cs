@@ -48,6 +48,13 @@ public sealed partial class ShipShieldsSystem : EntitySystem
             if (emitter.Accumulator < EmitterUpdateRate)
                 continue;
 
+            // Detect orphaned shield reference (shield entity was deleted externally)
+            if (emitter.Shield is { } shieldRef && !Exists(shieldRef))
+            {
+                emitter.Shield = null;
+                emitter.Shielded = null;
+            }
+
             if ((float) Math.Pow(emitter.Damage, emitter.DamageExp) >= emitter.MaxDraw)
                 emitter.Recharging = true;
             if (!power.Powered)
@@ -78,7 +85,7 @@ public sealed partial class ShipShieldsSystem : EntitySystem
             var parent = Transform(uid).GridUid;
 
             if (parent == null)
-                return;
+                continue;
 
             var filter = _station.GetInOwningStation(uid);
 
@@ -243,7 +250,12 @@ public sealed partial class ShipShieldsSystem : EntitySystem
         if (!Resolve(uid, ref component, false))
             return false;
 
-        Del(component.Shield);
+        if (Exists(component.Shield))
+        {
+            _pvsSys.RemoveGlobalOverride(component.Shield);
+            Del(component.Shield);
+        }
+
         RemComp<ShipShieldedComponent>(uid);
         return true;
     }

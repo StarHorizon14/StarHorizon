@@ -81,7 +81,7 @@
     energy: 1.5
     color: "#3399FF"
   - type: Machine
-    board: MachineShieldMS100Circuitboard
+    board: MachineShieldLightCircuitboard
   - type: Construction
     graph: Machine
     node: machine
@@ -129,7 +129,7 @@
     energy: 1.5
     color: "#9933FF"
   - type: Machine
-    board: MachineShieldMS250Circuitboard
+    board: MachineShieldMediumCircuitboard
   - type: Construction
     graph: Machine
     node: machine
@@ -220,7 +220,7 @@
         params:
           pitch: 0.5
   - type: Machine
-    board: MachineShieldMS500Circuitboard
+    board: MachineShieldLargeCircuitboard
   - type: Construction
     graph: Machine
     node: machine
