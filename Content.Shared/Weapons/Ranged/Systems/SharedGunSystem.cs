@@ -187,14 +187,20 @@ public abstract partial class SharedGunSystem : EntitySystem
         gunComp = null;
 
         // Horizon Mech start
-        if (TryComp<MechPilotComponent>(entity, out var mechPilot) &&
-            TryComp<MechComponent>(mechPilot.Mech, out var mech) &&
-            mech.CurrentSelectedEquipment.HasValue &&
-            TryComp<GunComponent>(mech.CurrentSelectedEquipment.Value, out var mechGun))
+        // If the entity is a mech pilot, only allow mech equipment guns.
+        // Personal weapons held in hands must not be usable from inside a mech.
+        if (TryComp<MechPilotComponent>(entity, out var mechPilot))
         {
-            gunEntity = mech.CurrentSelectedEquipment.Value;
-            gunComp = mechGun;
-            return true;
+            if (TryComp<MechComponent>(mechPilot.Mech, out var mech) &&
+                mech.CurrentSelectedEquipment.HasValue &&
+                TryComp<GunComponent>(mech.CurrentSelectedEquipment.Value, out var mechGun))
+            {
+                gunEntity = mech.CurrentSelectedEquipment.Value;
+                gunComp = mechGun;
+                return true;
+            }
+
+            return false;
         }
         // Horizon Mech end
 
