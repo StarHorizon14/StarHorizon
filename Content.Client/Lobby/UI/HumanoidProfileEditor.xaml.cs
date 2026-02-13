@@ -331,17 +331,30 @@ namespace Content.Client.Lobby.UI
 
             // _Horizon End
 
-            // Horizon: Event Items Tab
+            // Horizon: Event Items Tab (only shown when player has items)
             #region EventItems
 
             _eventItemsTab = new EventItemsTab();
-            TabContainer.AddChild(_eventItemsTab);
-            TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("event-item-tab-title"));
 
             _eventItemsUISystem = _entManager.System<EventItemsUISystem>();
             _eventItemsUISystem.OnItemsReceived += items =>
             {
-                _eventItemsTab?.UpdateItems(items);
+                if (items.Count > 0)
+                {
+                    // Add tab if not already visible
+                    if (_eventItemsTab?.Parent == null)
+                    {
+                        TabContainer.AddChild(_eventItemsTab!);
+                        TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("event-item-tab-title"));
+                    }
+
+                    _eventItemsTab?.UpdateItems(items);
+                }
+                else if (_eventItemsTab?.Parent != null)
+                {
+                    // Remove tab if no items
+                    TabContainer.RemoveChild(_eventItemsTab);
+                }
             };
 
             // Request items from server
