@@ -202,7 +202,8 @@ public sealed class EventItemsSystem : EntitySystem
                 customDesc = meta.EntityDescription;
         }
 
-        _sawmill.Info($"Granting event item to player {targetPlayerUserId}: proto={protoId}, name={customName ?? "(default)"}, desc={customDesc ?? "(default)"}, cost={creditCost}, hasOverrides={overridesYaml != null}, grantedBy={grantedBy}");
+        var targetCkey = GetPlayerNameByUserId(targetPlayerUserId);
+        _sawmill.Info($"Granting event item to player {targetCkey} ({targetPlayerUserId}): proto={protoId}, name={customName ?? "(default)"}, desc={customDesc ?? "(default)"}, cost={creditCost}, hasOverrides={overridesYaml != null}, grantedBy={grantedBy}");
 
         var dbItem = new HorizonAdminLoadout
         {
@@ -220,10 +221,10 @@ public sealed class EventItemsSystem : EntitySystem
         try
         {
             await _db.AddAdminLoadoutItemAsync(dbItem);
-            _sawmill.Info($"Successfully saved event item {protoId} for player {targetPlayerUserId} to database.");
+            _sawmill.Info($"Successfully saved event item {protoId} for player {targetCkey} ({targetPlayerUserId}) to database.");
 
             // Immediately notify the target player if they're online
-            _sawmill.Debug($"Notifying player {targetPlayerUserId} about new event item.");
+            _sawmill.Debug($"Notifying player {targetCkey} ({targetPlayerUserId}) about new event item.");
             SendItemsToPlayer(targetPlayerUserId);
         }
         catch (Exception ex)

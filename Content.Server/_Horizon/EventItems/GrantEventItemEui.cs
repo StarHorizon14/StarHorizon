@@ -82,7 +82,9 @@ public sealed class GrantEventItemEui : BaseEui
         if (msg is not GrantEventItemMessage grantMsg)
             return;
 
-        _sawmill.Info($"Admin {Player.Name} confirmed grant: entity {_targetEntity} -> player {grantMsg.TargetPlayerUserId}, cost: {grantMsg.CreditCost}.");
+        var targetCkey = _playerManager.Sessions
+            .FirstOrDefault(s => s.UserId.UserId == grantMsg.TargetPlayerUserId)?.Name ?? "offline";
+        _sawmill.Info($"Admin {Player.Name} confirmed grant: entity {_targetEntity} -> player {targetCkey} ({grantMsg.TargetPlayerUserId}), cost: {grantMsg.CreditCost}.");
 
         // Validate admin permissions
         if (!_adminManager.HasAdminFlag(Player, AdminFlags.Debug))
