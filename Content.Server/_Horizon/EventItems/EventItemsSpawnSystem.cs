@@ -77,6 +77,8 @@ public sealed class EventItemsSpawnSystem : EntitySystem
         }
 
         var enabledItems = items.Where(i => i.IsEnabled).ToList();
+        _sawmill.Debug($"Player {ev.Player.Name} has {items.Count} event items total, {enabledItems.Count} enabled.");
+
         if (enabledItems.Count == 0)
             return;
 
@@ -148,8 +150,11 @@ public sealed class EventItemsSpawnSystem : EntitySystem
         // Deduct total spent from bank
         if (totalSpent > 0 && hasBankComp)
         {
+            _sawmill.Info($"Deducting {totalSpent} credits from player {ev.Player.Name}'s bank account for event items.");
             _bankSystem.TryBankWithdraw(ev.Mob, totalSpent);
         }
+
+        _sawmill.Info($"Finished spawning event items for player {ev.Player.Name}. Total cost: {totalSpent} cr.");
     }
 
     /// <summary>

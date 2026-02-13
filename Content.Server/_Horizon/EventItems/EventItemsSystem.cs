@@ -77,6 +77,8 @@ public sealed class EventItemsSystem : EntitySystem
             return null;
         }
 
+        _sawmill.Debug($"Serializing component overrides for entity {ToPrettyString(uid)} (proto: {proto.ID}).");
+
         // Build prototype component cache (serialize prototype defaults)
         // Some components contain non-serializable types (e.g. EntityUid), so we skip those.
         var protoCache = new Dictionary<string, MappingDataNode>();
@@ -156,11 +158,15 @@ public sealed class EventItemsSystem : EntitySystem
         }
 
         if (components.Count == 0)
+        {
+            _sawmill.Debug($"No component overrides found for entity {ToPrettyString(uid)}.");
             return null;
+        }
 
         // Convert to YAML string
         var sw = new StringWriter();
         components.Write(sw);
+        _sawmill.Debug($"Serialized {components.Count} component override(s) for entity {ToPrettyString(uid)}.");
         return sw.ToString();
     }
 
@@ -196,6 +202,8 @@ public sealed class EventItemsSystem : EntitySystem
                 customDesc = meta.EntityDescription;
         }
 
+        _sawmill.Info($"Granting event item to player {targetPlayerUserId}: proto={protoId}, name={customName ?? "(default)"}, desc={customDesc ?? "(default)"}, cost={creditCost}, hasOverrides={overridesYaml != null}, grantedBy={grantedBy}");
+
         var dbItem = new HorizonAdminLoadout
         {
             PlayerUserId = targetPlayerUserId,
@@ -212,9 +220,10 @@ public sealed class EventItemsSystem : EntitySystem
         try
         {
             await _db.AddAdminLoadoutItemAsync(dbItem);
-            _sawmill.Info($"Admin {grantedBy} granted event item {protoId} to player {targetPlayerUserId} (cost: {creditCost})");
+            _sawmill.Info($"Successfully saved event item {protoId} for player {targetPlayerUserId} to database.");
 
             // Immediately notify the target player if they're online
+            _sawmill.Debug($"Notifying player {targetPlayerUserId} about new event item.");
             SendItemsToPlayer(targetPlayerUserId);
         }
         catch (Exception ex)
@@ -262,18 +271,21 @@ public sealed class EventItemsSystem : EntitySystem
             var dbItems = await _db.GetAdminLoadoutItemsAsync(userId);
             var items = dbItems.Select(ConvertToData).ToList();
 
+            _sawmill.Debug($"Sending {items.Count} event items to player {session.Name} ({userId}).");
+
             var msg = new EventItemListMsg { Items = items };
             RaiseNetworkEvent(msg, session);
         }
         catch (Exception ex)
         {
-            _sawmill.Error($"Failed to send event items to player: {ex}");
+            _sawmill.Error($"Failed to send event items to player {session.Name}: {ex}");
         }
     }
 
     private void OnItemRequest(EventItemRequestMsg msg, EntitySessionEventArgs args)
     {
         var userId = args.SenderSession.UserId.UserId;
+        _sawmill.Debug($"Player {args.SenderSession.Name} ({userId}) requested event items list.");
         _ = SendItemsToSession(args.SenderSession, userId);
     }
 

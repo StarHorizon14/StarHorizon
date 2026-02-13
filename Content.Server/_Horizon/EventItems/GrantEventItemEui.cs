@@ -37,6 +37,7 @@ public sealed class GrantEventItemEui : BaseEui
     public override void Opened()
     {
         base.Opened();
+        _sawmill.Debug($"Grant Event Item EUI opened for entity {_targetEntity} by admin {Player.Name}.");
         StateDirty();
         _adminManager.OnPermsChanged += OnPermsChanged;
     }
@@ -44,6 +45,7 @@ public sealed class GrantEventItemEui : BaseEui
     public override void Closed()
     {
         base.Closed();
+        _sawmill.Debug($"Grant Event Item EUI closed by admin {Player.Name}.");
         _adminManager.OnPermsChanged -= OnPermsChanged;
     }
 
@@ -79,6 +81,8 @@ public sealed class GrantEventItemEui : BaseEui
 
         if (msg is not GrantEventItemMessage grantMsg)
             return;
+
+        _sawmill.Info($"Admin {Player.Name} confirmed grant: entity {_targetEntity} -> player {grantMsg.TargetPlayerUserId}, cost: {grantMsg.CreditCost}.");
 
         // Validate admin permissions
         if (!_adminManager.HasAdminFlag(Player, AdminFlags.Debug))

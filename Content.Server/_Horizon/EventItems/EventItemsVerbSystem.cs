@@ -5,6 +5,7 @@ using Content.Shared.Database;
 using Content.Shared.Verbs;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
+using Robust.Shared.Log;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
@@ -18,9 +19,12 @@ public sealed class EventItemsVerbSystem : EntitySystem
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly EuiManager _euiManager = default!;
 
+    private ISawmill _sawmill = default!;
+
     public override void Initialize()
     {
         base.Initialize();
+        _sawmill = Logger.GetSawmill("event-items-verb");
 
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(OnGetVerbs);
     }
@@ -47,6 +51,7 @@ public sealed class EventItemsVerbSystem : EntitySystem
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/outfit.svg.192dpi.png")),
             Act = () =>
             {
+                _sawmill.Info($"Admin {player.Name} opened Grant Event Item EUI for entity {ToPrettyString(args.Target)} (proto: {meta.EntityPrototype?.ID}).");
                 _euiManager.OpenEui(
                     new GrantEventItemEui(GetNetEntity(args.Target), args.Target),
                     player);

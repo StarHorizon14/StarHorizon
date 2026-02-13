@@ -30,6 +30,7 @@ public sealed class EventItemsUISystem : EntitySystem
     /// </summary>
     public void RequestItems()
     {
+        _sawmill.Debug("Requesting event items from server.");
         RaiseNetworkEvent(new EventItemRequestMsg());
     }
 
@@ -38,6 +39,7 @@ public sealed class EventItemsUISystem : EntitySystem
     /// </summary>
     public void ToggleItem(int itemId, bool enabled)
     {
+        _sawmill.Debug($"Toggling event item {itemId} to {(enabled ? "enabled" : "disabled")}.");
         RaiseNetworkEvent(new EventItemToggleMsg
         {
             ItemId = itemId,
