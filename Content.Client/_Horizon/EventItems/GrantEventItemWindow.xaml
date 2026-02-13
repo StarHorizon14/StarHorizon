@@ -22,6 +22,15 @@
             <SpinBox Name="CreditCostSpinBox" HorizontalExpand="True" />
         </BoxContainer>
 
+        <!-- Uses limit -->
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <CheckBox Name="PermanentCheckBox" Text="{Loc 'event-item-grant-permanent'}" />
+        </BoxContainer>
+        <BoxContainer Name="UsesContainer" Orientation="Horizontal" SeparationOverride="8">
+            <Label Text="{Loc 'event-item-grant-uses-count'}" />
+            <SpinBox Name="UsesSpinBox" HorizontalExpand="True" />
+        </BoxContainer>
+
         <!-- Confirm button -->
         <Button Name="ConfirmButton" Text="{Loc 'event-item-grant-confirm'}" HorizontalExpand="True" />
     </BoxContainer>

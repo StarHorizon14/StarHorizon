@@ -44,8 +44,26 @@ public sealed partial class EventItemControl : PanelContainer
         ItemCostLabel.Text = Loc.GetString("event-item-item-cost", ("cost", data.CreditCost));
         ItemGrantedByLabel.Text = Loc.GetString("event-item-item-granted-by", ("admin", data.GrantedBy));
 
-        ToggleButton.Pressed = data.IsEnabled;
-        UpdateToggleVisuals(data.IsEnabled);
+        // Display uses info
+        if (data.MaxUses != null)
+        {
+            ItemUsesLabel.Text = Loc.GetString("event-item-item-uses",
+                ("remaining", data.RemainingUses ?? 0),
+                ("max", data.MaxUses.Value));
+            ItemUsesLabel.Visible = true;
+        }
+        else
+        {
+            ItemUsesLabel.Text = Loc.GetString("event-item-item-uses-permanent");
+            ItemUsesLabel.Visible = true;
+        }
+
+        // Disable toggle if no remaining uses
+        var hasUses = data.RemainingUses == null || data.RemainingUses > 0;
+
+        ToggleButton.Pressed = data.IsEnabled && hasUses;
+        ToggleButton.Disabled = !hasUses;
+        UpdateToggleVisuals(data.IsEnabled && hasUses);
 
         ToggleButton.OnToggled += OnTogglePressed;
 

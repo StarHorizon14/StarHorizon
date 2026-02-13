@@ -12,17 +12,27 @@ namespace Content.Client._Horizon.EventItems;
 [GenerateTypedNameReferences]
 public sealed partial class GrantEventItemWindow : DefaultWindow
 {
-    public event Action<Guid, int>? OnConfirm;
+    /// <summary>
+    /// Fired when admin confirms: targetUserId, creditCost, maxUses (null = permanent).
+    /// </summary>
+    public event Action<Guid, int, int?>? OnConfirm;
 
     private List<EventItemPlayerInfo> _players = new();
     private EventItemPlayerInfo? _selectedPlayer;
 
     public GrantEventItemWindow()
     {
-        MinSize = SetSize = new Vector2(400, 400);
+        MinSize = SetSize = new Vector2(400, 450);
         RobustXamlLoader.Load(this);
 
         CreditCostSpinBox.Value = 0;
+        UsesSpinBox.Value = 1;
+
+        // Default: permanent (checkbox checked, uses hidden)
+        PermanentCheckBox.Pressed = true;
+        UsesContainer.Visible = false;
+
+        PermanentCheckBox.OnToggled += OnPermanentToggled;
         ConfirmButton.OnPressed += OnConfirmPressed;
         PlayerSearchBar.OnTextChanged += OnSearchChanged;
         PlayerList.OnItemSelected += OnPlayerSelected;
@@ -67,11 +77,18 @@ public sealed partial class GrantEventItemWindow : DefaultWindow
         _selectedPlayer = item.Metadata as EventItemPlayerInfo;
     }
 
+    private void OnPermanentToggled(BaseButton.ButtonToggledEventArgs args)
+    {
+        UsesContainer.Visible = !args.Pressed;
+    }
+
     private void OnConfirmPressed(BaseButton.ButtonEventArgs args)
     {
         if (_selectedPlayer == null)
             return;
 
-        OnConfirm?.Invoke(_selectedPlayer.UserId, CreditCostSpinBox.Value);
+        int? maxUses = PermanentCheckBox.Pressed ? null : Math.Max(1, UsesSpinBox.Value);
+
+        OnConfirm?.Invoke(_selectedPlayer.UserId, CreditCostSpinBox.Value, maxUses);
     }
 }

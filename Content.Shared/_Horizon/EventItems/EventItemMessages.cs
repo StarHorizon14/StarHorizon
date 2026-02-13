@@ -87,4 +87,9 @@ public sealed class GrantEventItemMessage : EuiMessageBase
 {
     public Guid TargetPlayerUserId { get; set; }
     public int CreditCost { get; set; }
+
+    /// <summary>
+    /// Maximum number of uses. Null means permanent (unlimited).
+    /// </summary>
+    public int? MaxUses { get; set; }
 }

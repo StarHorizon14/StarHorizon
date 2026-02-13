@@ -25,6 +25,7 @@
                 <Label Name="ItemDescLabel" StyleClasses="LabelSubText" ClipText="True" />
                 <BoxContainer Orientation="Horizontal" SeparationOverride="12">
                     <Label Name="ItemCostLabel" StyleClasses="LabelSubText" />
+                    <Label Name="ItemUsesLabel" StyleClasses="LabelSubText" />
                     <Label Name="ItemGrantedByLabel" StyleClasses="LabelSubText" />
                 </BoxContainer>
             </BoxContainer>

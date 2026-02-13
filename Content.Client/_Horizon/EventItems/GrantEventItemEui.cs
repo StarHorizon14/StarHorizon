@@ -41,12 +41,13 @@ public sealed class GrantEventItemEui : BaseEui
         SendMessage(new CloseEuiMessage());
     }
 
-    private void OnConfirm(Guid targetUserId, int creditCost)
+    private void OnConfirm(Guid targetUserId, int creditCost, int? maxUses)
     {
         SendMessage(new GrantEventItemMessage
         {
             TargetPlayerUserId = targetUserId,
             CreditCost = creditCost,
+            MaxUses = maxUses,
         });
     }
 }

@@ -1981,6 +1981,28 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return true;
         }
 
+        public async Task<bool> DecrementAdminLoadoutItemUsesAsync(int id)
+        {
+            await using var db = await GetDb();
+
+            var item = await db.DbContext.HorizonAdminLoadout
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (item == null)
+                return false;
+
+            // Permanent items (null) don't need decrementing
+            if (item.RemainingUses == null)
+                return true;
+
+            if (item.RemainingUses <= 0)
+                return false;
+
+            item.RemainingUses--;
+            await db.DbContext.SaveChangesAsync();
+            return true;
+        }
+
         #endregion
 
         public abstract Task SendNotification(DatabaseNotification notification);

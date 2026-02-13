@@ -107,6 +107,7 @@ public sealed class GrantEventItemEui : BaseEui
             _targetEntity,
             grantMsg.TargetPlayerUserId,
             grantMsg.CreditCost,
+            grantMsg.MaxUses,
             Player.Name);
 
         Close();

@@ -35,6 +35,16 @@ public sealed class EventItemData
     public int CreditCost { get; set; }
 
     /// <summary>
+    /// Maximum number of uses. Null means permanent (unlimited).
+    /// </summary>
+    public int? MaxUses { get; set; }
+
+    /// <summary>
+    /// Remaining uses. Null means permanent (unlimited).
+    /// </summary>
+    public int? RemainingUses { get; set; }
+
+    /// <summary>
     /// Whether the player has enabled this item for spawn.
     /// </summary>
     public bool IsEnabled { get; set; }

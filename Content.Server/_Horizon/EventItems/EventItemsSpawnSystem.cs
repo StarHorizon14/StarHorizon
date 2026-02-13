@@ -76,8 +76,11 @@ public sealed class EventItemsSpawnSystem : EntitySystem
             return;
         }
 
-        var enabledItems = items.Where(i => i.IsEnabled).ToList();
-        _sawmill.Debug($"Player {ev.Player.Name} has {items.Count} event items total, {enabledItems.Count} enabled.");
+        // Filter: enabled AND (permanent OR has remaining uses)
+        var enabledItems = items
+            .Where(i => i.IsEnabled && (i.RemainingUses == null || i.RemainingUses > 0))
+            .ToList();
+        _sawmill.Debug($"Player {ev.Player.Name} has {items.Count} event items total, {enabledItems.Count} enabled and available.");
 
         if (enabledItems.Count == 0)
             return;
@@ -138,6 +141,13 @@ public sealed class EventItemsSpawnSystem : EntitySystem
 
                 if (item.CreditCost > 0)
                     totalSpent += item.CreditCost;
+
+                // Decrement remaining uses for limited items
+                if (item.RemainingUses != null)
+                {
+                    await _db.DecrementAdminLoadoutItemUsesAsync(item.Id);
+                    _sawmill.Debug($"Decremented uses for event item {item.Id} ({item.PrototypeId}), was {item.RemainingUses}/{item.MaxUses}.");
+                }
 
                 _sawmill.Info($"Spawned event item {item.PrototypeId} for player {ev.Player.Name}");
             }

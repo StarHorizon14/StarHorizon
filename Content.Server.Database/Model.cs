@@ -1411,6 +1411,17 @@ namespace Content.Server.Database
         public int CreditCost { get; set; }
 
         /// <summary>
+        /// Maximum number of uses for this item. Null means permanent (unlimited).
+        /// </summary>
+        public int? MaxUses { get; set; }
+
+        /// <summary>
+        /// Remaining uses for this item. Null means permanent (unlimited).
+        /// Decremented on each spawn. When 0, the item is no longer spawnable.
+        /// </summary>
+        public int? RemainingUses { get; set; }
+
+        /// <summary>
         /// Whether the player has enabled this item for spawn.
         /// </summary>
         [Required]

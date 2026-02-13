@@ -177,6 +177,7 @@ public sealed class EventItemsSystem : EntitySystem
         EntityUid itemEntity,
         Guid targetPlayerUserId,
         int creditCost,
+        int? maxUses,
         string grantedBy)
     {
         var meta = MetaData(itemEntity);
@@ -202,8 +203,9 @@ public sealed class EventItemsSystem : EntitySystem
                 customDesc = meta.EntityDescription;
         }
 
+        var usesStr = maxUses.HasValue ? $"{maxUses.Value}" : "permanent";
         var targetCkey = GetPlayerNameByUserId(targetPlayerUserId);
-        _sawmill.Info($"Granting event item to player {targetCkey} ({targetPlayerUserId}): proto={protoId}, name={customName ?? "(default)"}, desc={customDesc ?? "(default)"}, cost={creditCost}, hasOverrides={overridesYaml != null}, grantedBy={grantedBy}");
+        _sawmill.Info($"Granting event item to player {targetCkey} ({targetPlayerUserId}): proto={protoId}, name={customName ?? "(default)"}, desc={customDesc ?? "(default)"}, cost={creditCost}, uses={usesStr}, hasOverrides={overridesYaml != null}, grantedBy={grantedBy}");
 
         var dbItem = new HorizonAdminLoadout
         {
@@ -213,6 +215,8 @@ public sealed class EventItemsSystem : EntitySystem
             CustomName = customName,
             CustomDescription = customDesc,
             CreditCost = creditCost,
+            MaxUses = maxUses,
+            RemainingUses = maxUses, // Initially remaining = max
             IsEnabled = true,
             GrantedBy = grantedBy,
             GrantedAt = DateTime.UtcNow,
@@ -324,6 +328,8 @@ public sealed class EventItemsSystem : EntitySystem
             CustomName = dbItem.CustomName,
             CustomDescription = dbItem.CustomDescription,
             CreditCost = dbItem.CreditCost,
+            MaxUses = dbItem.MaxUses,
+            RemainingUses = dbItem.RemainingUses,
             IsEnabled = dbItem.IsEnabled,
             GrantedBy = dbItem.GrantedBy,
             GrantedAt = dbItem.GrantedAt,

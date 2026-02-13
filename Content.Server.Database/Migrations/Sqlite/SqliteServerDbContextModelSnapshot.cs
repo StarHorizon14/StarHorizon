@@ -633,6 +633,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("is_enabled");
 
+                    b.Property<int?>("MaxUses")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("max_uses");
+
                     b.Property<Guid>("PlayerUserId")
                         .HasColumnType("TEXT")
                         .HasColumnName("player_user_id");
@@ -641,6 +645,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("prototype_id");
+
+                    b.Property<int?>("RemainingUses")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("remaining_uses");
 
                     b.HasKey("Id")
                         .HasName("PK_horizon_admin_loadout");

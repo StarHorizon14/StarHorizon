@@ -375,6 +375,7 @@ namespace Content.Server.Database
         Task<HorizonAdminLoadout> AddAdminLoadoutItemAsync(HorizonAdminLoadout item);
         Task<bool> RemoveAdminLoadoutItemAsync(int id);
         Task<bool> SetAdminLoadoutItemEnabledAsync(int id, bool enabled);
+        Task<bool> DecrementAdminLoadoutItemUsesAsync(int id);
 
         #endregion
     }
@@ -1140,6 +1141,12 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.SetAdminLoadoutItemEnabledAsync(id, enabled));
+        }
+
+        public Task<bool> DecrementAdminLoadoutItemUsesAsync(int id)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DecrementAdminLoadoutItemUsesAsync(id));
         }
 
         #endregion
