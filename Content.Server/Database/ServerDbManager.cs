@@ -367,6 +367,16 @@ namespace Content.Server.Database
         Task SendNotification(DatabaseNotification notification);
 
         #endregion
+
+        // Horizon: Admin Loadout Items
+        #region Horizon Admin Loadout
+
+        Task<List<HorizonAdminLoadout>> GetAdminLoadoutItemsAsync(Guid userId);
+        Task<HorizonAdminLoadout> AddAdminLoadoutItemAsync(HorizonAdminLoadout item);
+        Task<bool> RemoveAdminLoadoutItemAsync(int id);
+        Task<bool> SetAdminLoadoutItemEnabledAsync(int id, bool enabled);
+
+        #endregion
     }
 
     /// <summary>
@@ -1104,6 +1114,35 @@ namespace Content.Server.Database
                 }
             }
         }
+
+        // Horizon: Admin Loadout Items
+        #region Horizon Admin Loadout
+
+        public Task<List<HorizonAdminLoadout>> GetAdminLoadoutItemsAsync(Guid userId)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAdminLoadoutItemsAsync(userId));
+        }
+
+        public Task<HorizonAdminLoadout> AddAdminLoadoutItemAsync(HorizonAdminLoadout item)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddAdminLoadoutItemAsync(item));
+        }
+
+        public Task<bool> RemoveAdminLoadoutItemAsync(int id)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveAdminLoadoutItemAsync(id));
+        }
+
+        public Task<bool> SetAdminLoadoutItemEnabledAsync(int id, bool enabled)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SetAdminLoadoutItemEnabledAsync(id, enabled));
+        }
+
+        #endregion
 
         // Wrapper functions to run DB commands from the thread pool.
         // This will avoid SynchronizationContext capturing and avoid running CPU work on the main thread.

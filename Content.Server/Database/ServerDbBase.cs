@@ -1930,6 +1930,59 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         #endregion
 
+        // Horizon: Admin Loadout Items
+        #region Horizon Admin Loadout
+
+        public async Task<List<HorizonAdminLoadout>> GetAdminLoadoutItemsAsync(Guid userId)
+        {
+            await using var db = await GetDb();
+
+            return await db.DbContext.HorizonAdminLoadout
+                .Where(p => p.PlayerUserId == userId)
+                .ToListAsync();
+        }
+
+        public async Task<HorizonAdminLoadout> AddAdminLoadoutItemAsync(HorizonAdminLoadout item)
+        {
+            await using var db = await GetDb();
+
+            db.DbContext.HorizonAdminLoadout.Add(item);
+            await db.DbContext.SaveChangesAsync();
+            return item;
+        }
+
+        public async Task<bool> RemoveAdminLoadoutItemAsync(int id)
+        {
+            await using var db = await GetDb();
+
+            var item = await db.DbContext.HorizonAdminLoadout
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (item == null)
+                return false;
+
+            db.DbContext.HorizonAdminLoadout.Remove(item);
+            await db.DbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> SetAdminLoadoutItemEnabledAsync(int id, bool enabled)
+        {
+            await using var db = await GetDb();
+
+            var item = await db.DbContext.HorizonAdminLoadout
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (item == null)
+                return false;
+
+            item.IsEnabled = enabled;
+            await db.DbContext.SaveChangesAsync();
+            return true;
+        }
+
+        #endregion
+
         public abstract Task SendNotification(DatabaseNotification notification);
 
         // SQLite returns DateTime as Kind=Unspecified, Npgsql actually knows for sure it's Kind=Utc.

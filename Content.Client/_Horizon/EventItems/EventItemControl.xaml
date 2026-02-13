@@ -1,0 +1,21 @@
+<PanelContainer
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    HorizontalExpand="True"
+    Margin="2">
+    <BoxContainer Orientation="Horizontal" SeparationOverride="8" Margin="4" HorizontalExpand="True">
+        <!-- Item icon -->
+        <TextureRect Name="ItemIcon" MinSize="32 32" Stretch="KeepAspectCentered" />
+        <!-- Item info -->
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="2">
+            <Label Name="ItemNameLabel" StyleClasses="LabelHeading" />
+            <Label Name="ItemDescLabel" StyleClasses="LabelSubText" />
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <Label Name="ItemCostLabel" StyleClasses="LabelSubText" />
+                <Label Name="ItemGrantedByLabel" StyleClasses="LabelSubText" />
+            </BoxContainer>
+        </BoxContainer>
+        <!-- Toggle button -->
+        <Button Name="ToggleButton" ToggleMode="True" MinSize="80 0" VerticalAlignment="Center" />
+    </BoxContainer>
+</PanelContainer>

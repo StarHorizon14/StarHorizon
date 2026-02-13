@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using Content.Client._Horizon.EventItems;
 using Content.Client._Horizon.Lobby.UI;
 using Content.Client._Horizon.Traits;
 using Content.Client.Humanoid;
@@ -11,6 +12,7 @@ using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Shared._Horizon.EventItems;
 using Content.Shared._Horizon.CCVar;
 using Content.Shared._Horizon.FlavorText;
 using Content.Shared.CCVar;
@@ -63,6 +65,10 @@ namespace Content.Client.Lobby.UI
 
         private FlavorText.FlavorText? _flavorText;
         private TextEdit? _flavorTextEdit;
+
+        // Horizon: Event Items tab
+        private EventItemsTab? _eventItemsTab;
+        private EventItemsUISystem? _eventItemsUISystem;
 
         // One at a time.
         private LoadoutWindow? _loadoutWindow;
@@ -324,6 +330,24 @@ namespace Content.Client.Lobby.UI
             };
 
             // _Horizon End
+
+            // Horizon: Event Items Tab
+            #region EventItems
+
+            _eventItemsTab = new EventItemsTab();
+            TabContainer.AddChild(_eventItemsTab);
+            TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("event-item-tab-title"));
+
+            _eventItemsUISystem = _entManager.System<EventItemsUISystem>();
+            _eventItemsUISystem.OnItemsReceived += items =>
+            {
+                _eventItemsTab?.UpdateItems(items);
+            };
+
+            // Request items from server
+            _eventItemsTab.RequestItems();
+
+            #endregion EventItems
 
             #region Skin
 
