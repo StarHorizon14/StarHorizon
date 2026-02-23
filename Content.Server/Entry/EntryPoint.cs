@@ -1,4 +1,5 @@
 using Content.Server._Horizon;
+using Content.Server._Horizon.HorizonLink;
 using Content.Server._Horizon.SponsorManager;
 using Content.Server._NF.Auth;
 using Content.Server.Acz;
@@ -56,9 +57,20 @@ namespace Content.Server.Entry
         private IConnectionManager? _connectionManager;
         private GameShutdownController _gameShutdownController = null!;
 
+        // Horizon start
+        public override void PreInit()
+        {
+            HorizonServerLink.Instance.Scaffold();
+            HorizonServerLink.Instance.PreInitBefore();
+            base.PreInit();
+            HorizonServerLink.Instance.PreInitAfter();
+        }
+        // Horizon end
+
         /// <inheritdoc />
         public override void Init()
         {
+            HorizonServerLink.Instance.InitBefore(); // Horizon
             base.Init();
 
             var cfg = IoCManager.Resolve<IConfigurationManager>();
@@ -136,10 +148,13 @@ namespace Content.Server.Entry
             // Harmony Queue Start
             IoCManager.Resolve<IJoinQueueManager>().Initialize();
             // Harmony Queue End
+
+            HorizonServerLink.Instance.InitAfter(); // Horizon
         }
 
         public override void PostInit()
         {
+            HorizonServerLink.Instance.PostInitBefore(); // Horizon
             base.PostInit();
 
             IoCManager.Resolve<IChatSanitizationManager>().Initialize();
@@ -177,6 +192,7 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<MultiServerKickManager>().Initialize();
                 IoCManager.Resolve<CVarControlManager>().Initialize();
             }
+            HorizonServerLink.Instance.PostInitAfter(); // Horizon
         }
 
         public override void Update(ModUpdateLevel level, FrameEventArgs frameEventArgs)

@@ -40,7 +40,8 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
-using Content.Client._NF.Emp.Overlays; // Frontier
+using Content.Client._NF.Emp.Overlays;
+using Content.Client._Horizon.HorizonLink; // Frontier
 
 namespace Content.Client.Entry
 {
@@ -84,8 +85,19 @@ namespace Content.Client.Entry
         [Dependency] private readonly JoinQueueManager _joinQueue = default!;
         // Harmony Queue End
 
+        // Horizon start
+        public override void PreInit()
+        {
+            HorizonClientLink.Instance.Scaffold();
+            HorizonClientLink.Instance.PreInitBefore();
+            base.PreInit();
+            HorizonClientLink.Instance.PreInitAfter();
+        }
+        // Horizon end
+
         public override void Init()
         {
+            HorizonClientLink.Instance.InitBefore(); // Horizon
             ClientContentIoC.Register();
 
             foreach (var callback in TestingCallbacks)
@@ -156,16 +168,20 @@ namespace Content.Client.Entry
             _configManager.SetCVar("interface.resolutionAutoScaleLowerCutoffX", 520);
             _configManager.SetCVar("interface.resolutionAutoScaleLowerCutoffY", 240);
             _configManager.SetCVar("interface.resolutionAutoScaleMinimum", 0.5f);
+            HorizonClientLink.Instance.InitAfter(); // Horizon
         }
 
         public override void Shutdown()
         {
+            HorizonClientLink.Instance.ShutdownBefore(); // Horizon
             base.Shutdown();
             _titleWindowManager.Shutdown();
+            HorizonClientLink.Instance.ShutdownAfter(); // Horizon
         }
 
         public override void PostInit()
         {
+            HorizonClientLink.Instance.PostInitBefore(); // Horizon
             base.PostInit();
 
             _stylesheetManager.Initialize();
@@ -204,6 +220,7 @@ namespace Content.Client.Entry
             _userInterfaceManager.MainViewport.Visible = false;
 
             SwitchToDefaultState();
+            HorizonClientLink.Instance.PostInitAfter(); // Horizon
         }
 
         private void SwitchToDefaultState(bool disconnected = false)

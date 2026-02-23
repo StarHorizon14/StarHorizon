@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using Content.Shared._Horizon.HorizonLink;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.IoC;
 using Content.Shared.Maps;
@@ -26,22 +27,29 @@ namespace Content.Shared.Entry
 
         public override void PreInit()
         {
+            HorizonSharedLink.Instance.PreInitBefore(); // Horizon
             IoCManager.InjectDependencies(this);
             SharedContentIoC.Register();
+            HorizonSharedLink.Instance.PreInitAfter(); // Horizon
         }
 
         public override void Shutdown()
         {
+            HorizonSharedLink.Instance.ShutdownBefore(); // Horizon
             _prototypeManager.PrototypesReloaded -= PrototypeReload;
+            HorizonSharedLink.Instance.ShutdownAfter(); // Horizon
         }
 
         public override void Init()
         {
+            HorizonSharedLink.Instance.InitBefore(); // Horizon
             IgnorePrototypes();
+            HorizonSharedLink.Instance.InitAfter(); // Horizon
         }
 
         public override void PostInit()
         {
+            HorizonSharedLink.Instance.PostInitBefore(); // Horizon
             base.PostInit();
 
             InitTileDefinitions();
@@ -53,6 +61,7 @@ namespace Content.Shared.Entry
             configMan.OverrideDefault(CVars.NetFakeLoss, 0.005f);
             configMan.OverrideDefault(CVars.NetFakeDuplicates, 0.005f);
 #endif
+            HorizonSharedLink.Instance.PostInitAfter(); // Horizon
         }
 
         private void InitTileDefinitions()
