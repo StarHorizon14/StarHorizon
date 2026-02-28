@@ -24,10 +24,11 @@ using Content.Shared.Wires;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using System.Numerics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using static Content.Server.Worldgen.Tools.PoissonDiskSampler;
 
 namespace Content.Server._Horizon._Fractions.AnCo.Companions.Systems;
 
@@ -55,26 +56,15 @@ public sealed class CompanionSystem : SharedCompanionSystem
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
-    // Временный флаг, помечающий, что система не активна.
-    private bool _isActive = true;
-
     private readonly ISawmill _sawmill = Logger.GetSawmill("companions");
 
     public override void Initialize()
     {
         base.Initialize();
 
-        if (_isActive)
-        {
-            SubscribeLocalEvent<CompanionComponent, InteractUsingEvent>(OnInteractUsing);
-            SubscribeLocalEvent<HandsComponent, AfterPointedAtEvent>(OnAfterPointedAt);
-            SubscribeLocalEvent<CompanionCartridgeComponent, CartridgeUiReadyEvent>(OnUiOpen);
-            _sawmill.Info("Система компаньонов (CompanionSystem) активна!");
-        }
-        else
-        {
-            _sawmill.Info("Система компаньонов (CompanionSystem) неактивна...");
-        }
+        SubscribeLocalEvent<CompanionComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<HandsComponent, AfterPointedAtEvent>(OnAfterPointedAt);
+        SubscribeLocalEvent<CompanionCartridgeComponent, CartridgeUiReadyEvent>(OnUiOpen);
     }
 
     public override void Update(float frameTime)
@@ -138,6 +128,8 @@ public sealed class CompanionSystem : SharedCompanionSystem
         // Привязка сущности компаньона к ID-карте или через КПК.
         if (TryComp<PdaComponent>(args.Used, out var pdaComp))
         {
+            args.Handled = true;
+
             if (comp.IdCard == pdaComp.ContainedId)
             {
                 comp.IdCard = default;
@@ -170,6 +162,8 @@ public sealed class CompanionSystem : SharedCompanionSystem
         // Проверка на компонент ID карты
         if (TryComp<IdCardComponent>(args.Used, out var idCardComp))
         {
+            args.Handled = true;
+
             if (comp.IdCard == args.Used)
             {
                 comp.IdCard = default;
@@ -192,8 +186,6 @@ public sealed class CompanionSystem : SharedCompanionSystem
                 return;
             }
         }
-
-        args.Handled = true;
     }
 
     /// <summary>
@@ -211,6 +203,9 @@ public sealed class CompanionSystem : SharedCompanionSystem
         while (query.MoveNext(out var companionUid, out var compComp, out var htn))
         {
             if (!compComp.IdCard.IsValid() || !IsIdOwned(uid, compComp.IdCard, compComp))
+                continue;
+
+            if (args.Pointed == companionUid)
                 continue;
 
             ExecuteCompanionCommand(player, companionUid, compComp, htn, args.Pointed);
@@ -268,7 +263,7 @@ public sealed class CompanionSystem : SharedCompanionSystem
     /// <param name="companion"></param>
     /// <param name="htnCompanion"></param>
     /// <param name="target"></param>
-    [Obsolete("Для более продвинутой системы комманд будет создана отдельно система отдачи команд.")]
+    [Obsolete("Для более продвинутой системы команд будет создана отдельная система отдачи команд.")]
     private void ExecuteCompanionCommand(EntityUid player, EntityUid companion, CompanionComponent comp, HTNComponent htnCompanion, EntityUid target)
     {
         if (comp.FollowTask == null)
@@ -296,11 +291,27 @@ public sealed class CompanionSystem : SharedCompanionSystem
             _popup.PopupEntity("Киборг зафиксировал цель.", companion);
         }
 
-        htnCompanion.Blackboard.SetValue(comp.FollowTargetKey, Transform(target).Coordinates);
-        htnCompanion.Blackboard.SetValue(comp.FollowRangeKey, 1.8f);
-        htnCompanion.Blackboard.SetValue("FollowCloseRange", 0.85f);
+        var hasMobility = HasComp<HandsComponent>(target);
+
+        // Для мобов/игроков привязываемся к сущности динамически.
+        // Для статичных объектов берём мировые координаты и увеличиваем допустимый
+        // радиус прибытия, чтобы pathfinder мог найти доступный тайл рядом с целью
+        // (объект может стоять у стены или в углу).
+        var targetCoords = hasMobility
+            ? new EntityCoordinates(target, Vector2.Zero)
+            : Transform(target).Coordinates;
+
+        var followRange = hasMobility ? 1.8f : 2.5f;
+        var closeRange = hasMobility ? 0.85f : 1.5f;
+
+        htnCompanion.Blackboard.SetValue(comp.FollowTargetKey, targetCoords);
+        htnCompanion.Blackboard.SetValue(comp.FollowRangeKey, followRange);
+        htnCompanion.Blackboard.SetValue("FollowCloseRange", closeRange);
 
         htnCompanion.RootTask = new HTNCompoundTask { Task = comp.FollowTask.Value };
+
+        if (htnCompanion.Plan != null)
+            _htn.ShutdownPlan(htnCompanion);
 
         _htn.Replan(htnCompanion);
     }
@@ -365,7 +376,7 @@ public sealed class CompanionSystem : SharedCompanionSystem
     // Даже если id карта находится в КПК.
     private EntityUid? GetPlayerIdCard(EntityUid player)
     {
-        string[] slots = new[] { "id", "hand_right", "hand_right" };
+        string[] slots = new[] { "id", "hand_right", "hand_left" };
 
         foreach (string slot in slots)
         {

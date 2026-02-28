@@ -20,7 +20,8 @@ public sealed partial class CompanionUi : UIFragment
     public override void Setup(BoundUserInterface userInterface, EntityUid? fragmentOwner)
     {
         _fragment = new CompanionUiFragment();
-        _fragment?.UpdateLoadState();
+        _fragment.Initialize();
+        _fragment.UpdateLoadState();
     }
 
     public override void UpdateState(BoundUserInterfaceState state)
