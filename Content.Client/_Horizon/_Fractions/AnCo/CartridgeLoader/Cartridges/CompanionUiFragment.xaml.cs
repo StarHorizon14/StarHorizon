@@ -4,6 +4,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Horizon._Fractions.AnCo.CartridgeLoader.Cartridges;
@@ -20,6 +21,12 @@ public sealed partial class CompanionUiFragment : BoxContainer
         RobustXamlLoader.Load(this);
     }
 
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        List<CompanionEntry> entry = new();
+        UpdateState(entry);
+    }
+
     public void Initialize()
     {
         BorgFrame.PanelOverride = new StyleBoxFlat
@@ -28,6 +35,8 @@ public sealed partial class CompanionUiFragment : BoxContainer
             BorderColor = Color.FromHex("#5a5a5a"),
             BorderThickness = new Thickness(2)
         };
+
+        UpdateLoadState();
     }
 
     public void UpdateLoadState()
@@ -49,7 +58,7 @@ public sealed partial class CompanionUiFragment : BoxContainer
     public void UpdateState(List<CompanionEntry> borgs)
     {
         // Очистка кнопок боргов
-        BorgListContainer.DisposeAllChildren();
+        CompanionListContainer.DisposeAllChildren();
 
         foreach (CompanionEntry borg in borgs)
         {
@@ -66,8 +75,14 @@ public sealed partial class CompanionUiFragment : BoxContainer
                 UpdateSelectedDisplay();
             };
 
-            BorgListContainer.AddChild(button);
+            CompanionListContainer.AddChild(button);
         }
+
+        CommandButton.OnPressed += _ =>
+        {
+            this.RemoveAllChildren();
+            this.AddChild(new CompanionCommandUiFragment());
+        };
 
         // Выбираем борга по умолчанию
         if (_selectedBorg == null && borgs.Count > 0)

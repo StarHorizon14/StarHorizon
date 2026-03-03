@@ -6,11 +6,158 @@
                                        HorizontalExpand="True"
                                        VerticalExpand="True">
     <PanelContainer StyleClasses="BackgroundDark" />
+    <!-- Основное окно -->
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        
         <TabContainer Name="MainTabs" VerticalExpand="True">
+
+            <!-- Вкладка команд -->
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
-                <Label Text="Конфигурация логики" StyleClasses="LabelSubTitle" />
+                <!-- Описание -->
+                <BoxContainer HorizontalExpand="True">
+                    <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="1">
+                        <Label Text="Действия" StyleClasses="LabelSubTitle" Margin="4 2"/>
+                    </BoxContainer>
+
+                    <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="2">
+                        <Label Text="Ключи и заполнители" StyleClasses="LabelSubTitle" Margin="4 2"/>
+                    </BoxContainer>
+                </BoxContainer>
+
+                <BoxContainer Orientation="Horizontal" VerticalExpand="True">
+                    
+                    <ScrollContainer HorizontalExpand="True" VerticalExpand="True" SizeFlagsStretchRatio="1" >
+                        <BoxContainer Name="CommandsContainer"
+                                      Orientation="Vertical" Margin="4 0">
+                            <Button Name="PointerCommandButton"
+                                    Text="Указатель"
+                                    HorizontalAlignment="Stretch" />
+                            <Button Name="SayCommandButton"
+                                    Text="Голос"
+                                    HorizontalAlignment="Stretch" />
+                            <Button Name="GesturesButton"
+                                    Text="Жесты"
+                                    HorizontalAlignment="Stretch" />
+                            <Button Name="EmotionsButton"
+                                    Text="Эмоции"
+                                    HorizontalAlignment="Stretch" />
+                        </BoxContainer>
+                    </ScrollContainer>
+
+                    <!-- РАЗДЕЛИТЕЛЬ: Линия вне скроллов -->
+                    <PanelContainer MinHeight="2" Margin="2 4" />
+
+                    <ScrollContainer HorizontalExpand="True" VerticalExpand="True" SizeFlagsStretchRatio="2" >
+                        <!-- Пример заполнения данных компаньонов -->
+                        <BoxContainer Name="CommandActionsContainer"
+                                      Orientation="Vertical" Margin="4 0">
+
+                            <LineEdit PlaceHolder="HTN примитивная задача" />
+                            <LineEdit PlaceHolder="Ключ задачи #1" />
+                            <LineEdit PlaceHolder="Ключ задачи #2" />
+                            <LineEdit PlaceHolder="Ключ задачи #3" />
+                            <LineEdit PlaceHolder="Ключ задачи #4" />
+                            <LineEdit PlaceHolder="Ключ задачи #5" />
+
+                            <BoxContainer Orientation="Horizontal">
+                                <Button Text="-" HorizontalAlignment="Stretch" />
+                                <Button Text="+" HorizontalAlignment="Stretch" />
+                            </BoxContainer>
+
+                            <RichTextLabel Text="[color=green]Список заполнителей[/color]" StyleClasses="LabelSubTitle" Margin="4 4 4 0"/>
+                            
+                            <BoxContainer HorizontalExpand="True">
+                                <RichTextLabel Text="[color=gray]{Self}[/color]" Margin="4 0 4 0"/>
+                                <RichTextLabel Text="[color=gray]Компаньон[/color]" Margin="4 0 4 0"/>
+                            </BoxContainer>
+
+                            <BoxContainer HorizontalExpand="True">
+                                <RichTextLabel Text="[color=gray]{Owner}[/color]" Margin="4 0 4 0"/>
+                                <RichTextLabel Text="[color=gray]Владелец компаньона[/color]" Margin="4 0 4 0"/>
+                            </BoxContainer>
+
+                            <BoxContainer HorizontalExpand="True">
+                                <RichTextLabel Text="[color=gray]{Target}[/color]" Margin="4 0 4 0"/>
+                                <RichTextLabel Text="[color=gray]Цель[/color]" Margin="4 0 4 0"/>
+                            </BoxContainer>
+                        </BoxContainer>
+                    </ScrollContainer>
+                    
+                </BoxContainer>
             </BoxContainer>
+
+            <!-- Вкладка фракций -->
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" >
+                <RichTextLabel Text="[color=gray]Список фракций компаньона[/color]" Margin="4 2"/>
+                <GridContainer Name="FractionGrid" HorizontalExpand="True"
+                               Columns="4" HSeparationOverride="4" VSeparationOverride="4">
+                    <Button Text="NanoTrasen" HorizontalExpand="True" HorizontalAlignment="Center" />
+                    <Button Text="SindiCAT" HorizontalExpand="True" HorizontalAlignment="Center" />
+                    <Button Text="Wiscas" HorizontalExpand="True" HorizontalAlignment="Center" />
+                    <Button Text="AnCococo" HorizontalExpand="True" HorizontalAlignment="Center" />
+                    <Button Text="AdminTeam" HorizontalAlignment="Center" />
+                    <Button Text="Barabara bara" HorizontalAlignment="Center" />
+                    <Button Text="Ara ara" HorizontalAlignment="Center" />
+                    <Button Text="Uwu" HorizontalAlignment="Center" />
+                    <Button Text="I don't know" HorizontalAlignment="Center" />
+                    <Button Text="Amogus" HorizontalAlignment="Center" />
+                    <Button Text="Skibidi" HorizontalAlignment="Center" />
+                </GridContainer>
+            </BoxContainer>
+
+            <!-- Вкладка воздействия -->
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                <RichTextLabel Text="[color=gray]Действия при взаимодействии с компаньоном имеющим ИИ[/color]" Margin="4 2"/>
+
+                <!-- Описание -->
+                <BoxContainer HorizontalExpand="True">
+                    <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="1">
+                        <Label Text="Действия" StyleClasses="LabelSubTitle" Margin="4 2"/>
+                    </BoxContainer>
+
+                    <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="2">
+                        <Label Text="Ключи и заполнители" StyleClasses="LabelSubTitle" Margin="4 2"/>
+                    </BoxContainer>
+                </BoxContainer>
+
+                <BoxContainer Orientation="Horizontal" VerticalExpand="True">
+                    <ScrollContainer HorizontalExpand="True" VerticalExpand="True" SizeFlagsStretchRatio="1" >
+                        <BoxContainer Name="ImpactsContainer"
+                                      Orientation="Vertical" Margin="4 0">
+                            <Button Name="HitCommandButton"
+                                    Text="Нанесён удар"
+                                    HorizontalAlignment="Stretch" />
+                            <Button Name="CollisionCommandButton"
+                                    Text="Столкнут"
+                                    HorizontalAlignment="Stretch" />
+                            <Button Name="PinnedCommandButton"
+                                    Text="Закрепление"
+                                    HorizontalAlignment="Stretch" />
+                            <Button Name="BuckledUpCommandButton"
+                                    Text="Пристёгнут"
+                                    HorizontalAlignment="Stretch" />
+                        </BoxContainer>
+                    </ScrollContainer>
+
+                    <ScrollContainer HorizontalExpand="True" VerticalExpand="True" SizeFlagsStretchRatio="2" >
+                        <BoxContainer Name="ImpactActionsContainer"
+                                      Orientation="Vertical" Margin="4 0">
+                        </BoxContainer>
+                    </ScrollContainer>
+                </BoxContainer>
+            </BoxContainer>
+
+            <!-- Вкладка диагностики, для администрации -->
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" >
+                <RichTextLabel Text="[color=gray]Корневая задача:[/color] [color=red]отсутствует[/color]" StyleClasses="LabelSubTitle" Margin="4 4 4 0"/>
+                <RichTextLabel Text="[color=gray]Активная примитивная задача:[/color] [color=red]отсутствует[/color]" StyleClasses="LabelSubTitle" Margin="4 0 4 0"/>
+                <RichTextLabel Text="[color=gray]Количество ключей:[/color] [color=red]отсутствует[/color]" StyleClasses="LabelSubTitle" Margin="4 0 4 0"/>
+                <RichTextLabel Text="[color=gray]Количество фракций:[/color] [color=red]отсутствует[/color]" StyleClasses="LabelSubTitle" Margin="4 0 4 0"/>
+                <RichTextLabel Text="[color=gray]Активные фракции:[/color] [color=red]отсутствует[/color]" StyleClasses="LabelSubTitle" Margin="4 0 4 0"/>
+            </BoxContainer>
+            
         </TabContainer>
+        
     </BoxContainer>
+    
 </cartridges:CompanionCommandUiFragment>

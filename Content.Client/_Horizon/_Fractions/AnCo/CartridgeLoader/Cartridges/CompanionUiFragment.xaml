@@ -27,7 +27,7 @@
             </controls:StripeBack>
 
             <ScrollContainer HorizontalExpand="True" VerticalExpand="True" >
-                <BoxContainer Name="BorgListContainer" Orientation="Vertical" />
+                <BoxContainer Name="CompanionListContainer" Orientation="Vertical" />
             </ScrollContainer>
         </BoxContainer>
 
@@ -46,10 +46,10 @@
 
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True"
                           SizeFlagsStretchRatio="3">
-                <Button HorizontalAlignment="Stretch" Name="DeleteCompanion" Text="Отвязать" />
-                <Button HorizontalAlignment="Stretch" Name="ShutdownCompanion" Text="Отключить" />
-                <Button HorizontalAlignment="Stretch" Name="CommandCompanion" Text="Команды" />
-                <Button HorizontalAlignment="Stretch" Name="UpdateInfo" Text="Обновить" />
+                <Button HorizontalAlignment="Stretch" Name="DeleteButton" Text="Отвязать" />
+                <Button HorizontalAlignment="Stretch" Name="ShutdownButton" Text="Отключить" />
+                <Button HorizontalAlignment="Stretch" Name="CommandButton" Text="Команды" />
+                <Button HorizontalAlignment="Stretch" Name="UpdateInfoButton" Text="Обновить" />
             </BoxContainer>
 
         </BoxContainer>

@@ -21,7 +21,6 @@ public sealed partial class CompanionUi : UIFragment
     {
         _fragment = new CompanionUiFragment();
         _fragment.Initialize();
-        _fragment.UpdateLoadState();
     }
 
     public override void UpdateState(BoundUserInterfaceState state)

@@ -3,6 +3,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Horizon._Fractions.AnCo.Companions.Components;
 
+/// <summary>
+/// Описывает сущность компаньона.<br/>
+/// При выдаче компонента сущности, он преобретает возможность привязываться к ID-карте.
+/// Также может начать выполнять команды, если есть ИИ или другие компоненты для
+/// взаимодействия.
+/// </summary>
 [RegisterComponent]
 public sealed partial class CompanionComponent : Component
 {
@@ -14,7 +20,7 @@ public sealed partial class CompanionComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public string[]? MainSlots = new[] { "" };
-    
+
     [ViewVariables(VVAccess.ReadWrite)]
     public string[]? OtherSlots = new[] { "id", "pocket1", "pocket2", "belt" };
 

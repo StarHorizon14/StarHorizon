@@ -11,6 +11,11 @@ public sealed partial class CompanionCommandUiFragment : BoxContainer
     public CompanionCommandUiFragment()
     {
         RobustXamlLoader.Load(this);
+
+        MainTabs.SetTabTitle(0, "Команды ИИ");
+        MainTabs.SetTabTitle(1, "Фракции");
+        MainTabs.SetTabTitle(2, "Воздействие");
+        MainTabs.SetTabTitle(3, "Диагностика (ADM)");
     }
 
     protected override void FrameUpdate(FrameEventArgs args)

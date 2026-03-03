@@ -1,9 +1,7 @@
 using Content.Server._Horizon._Fractions.AnCo.Companions.Components;
 using Content.Server.CartridgeLoader;
-using Content.Server.Database;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
-using Content.Server.Power.Components;
 using Content.Server.PowerCell;
 using Content.Shared._Horizon._Fractions.AnCo.Companions;
 using Content.Shared.Access.Components;
@@ -21,14 +19,12 @@ using Content.Shared.Pointing;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Wires;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using System.Numerics;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace Content.Server._Horizon._Fractions.AnCo.Companions.Systems;
 
@@ -57,6 +53,7 @@ public sealed class CompanionSystem : SharedCompanionSystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("companions");
+    private float _timer = 0f;
 
     public override void Initialize()
     {
@@ -392,6 +389,10 @@ public sealed class CompanionSystem : SharedCompanionSystem
 
         return null;
     }
+
+    #endregion
+
+    #region Раздел "Другое", косметический функционал
 
     #endregion
 }
