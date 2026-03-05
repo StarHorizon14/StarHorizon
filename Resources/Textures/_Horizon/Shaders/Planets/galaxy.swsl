@@ -1,0 +1,140 @@
+light_mode unshaded;
+
+uniform highp float pixels;
+uniform highp float rotation;
+uniform highp float time_speed;
+uniform highp float dither_size;
+uniform bool should_dither;
+uniform highp int n_colors;
+
+uniform highp float size;
+uniform highp float seed;
+
+uniform highp float s_time;
+uniform highp float tilt;
+uniform highp float n_layers;
+uniform highp float layer_height;
+uniform highp float zoom;
+uniform highp float swirl;
+
+uniform lowp vec4 color0;
+uniform lowp vec4 color1;
+uniform lowp vec4 color2;
+uniform lowp vec4 color3;
+uniform lowp vec4 color4;
+uniform lowp vec4 color5;
+uniform lowp vec4 color6;
+
+highp float rand(highp vec2 coord) {
+    return fract(sin(dot(coord.xy ,vec2(12.9898,78.233))) * 15.5453 * seed);
+}
+
+highp float noise(highp vec2 coord){
+    highp vec2 i = floor(coord);
+    highp vec2 f = fract(coord);
+
+    highp float a = rand(i);
+    highp float b = rand(i + vec2(1.0, 0.0));
+    highp float c = rand(i + vec2(0.0, 1.0));
+    highp float d = rand(i + vec2(1.0, 1.0));
+
+    highp vec2 cubic = f * f * (3.0 - 2.0 * f);
+
+    return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;
+}
+
+highp float fbm(highp vec2 coord) {
+    highp float value = 0.0;
+    highp float scale = 0.5;
+
+    // Октаву надо будет возможно поменять на 1 (Dismerty)
+    for(int i = 0; i < 2 ; i++) {
+        value += noise(coord) * scale;
+        coord *= 2.0;
+        scale *= 0.5;
+    }
+    return value;
+}
+
+highp vec2 rotate(highp vec2 coord, highp float angle) {
+    // Код оригинального шейдера
+    // coord -= 0.5;
+    // coord *= mat2(vec2(cos(angle), -sin(angle)), vec2(sin(angle), cos(angle)));
+    // return coord + 0.5;
+
+    // Код в стиле RobustToolbox
+    highp float c = cos(angle);
+    highp float s = sin(angle);
+    highp mat2 m = mat2(c, s, -s, c);
+    return (m * (coord - 0.5)) + 0.5;
+}
+
+bool dither(highp vec2 uv1, highp vec2 uv2) {
+    return mod(uv1.x + uv2.y, 2.0 / pixels) <= 1.0 / pixels;
+}
+
+void fragment() {
+    highp vec2 p_uv = UV;
+    p_uv = floor(p_uv * pixels) / pixels;
+    highp bool dith = dither(p_uv, UV);
+
+    // I added a little zooming functionality so I dont have to mess with other values to get correct sizing.
+    p_uv *= zoom;
+    p_uv -= (zoom - 1.0) / 2.0;
+
+    // overall rotation of galaxy
+    p_uv = rotate(p_uv, rotation);
+    highp vec2 uv2 = p_uv; // save a copy of untranslated p_uv for later
+
+    // this p_uv is used to determine where the "layers" will be
+    p_uv.y *= tilt;
+    p_uv.y -= (tilt - 1.0) / 2.0;
+
+    highp float d_to_center = distance(p_uv, vec2(0.5, 0.5));
+    // swirl p_uv around the center, the further from the center the more rotated.
+    highp float rot = swirl * pow(d_to_center, 0.4);
+    highp vec2 rotated_uv = rotate(p_uv, rot + s_time * time_speed);
+
+    // fbm will decide where the layers are
+    highp float f1 = fbm(rotated_uv * size);
+    // quantize to a few different values, so layers don't blur through each other
+    f1 = floor(f1 * n_layers) / n_layers;
+
+    // use the unaltered second p_uv for the actual galaxy
+    // tilt so it looks like it's an angle.
+    uv2.y *= tilt;
+    uv2.y -= (tilt - 1.0) / 2.0 + f1 * layer_height;
+
+    // now do the same stuff as before, but for the actual galaxy image, not the layers
+    highp float d_to_center2 = distance(uv2, vec2(0.5, 0.5));
+    highp float rot2 = swirl * pow(d_to_center2, 0.4);
+    highp vec2 rotated_uv2 = rotate(uv2, rot2 + s_time * time_speed);
+    // I offset the second fbm by some amount so the don't all use the same noise, try it wihout and the layers are very obvious
+    highp float f2 = fbm(rotated_uv2 * size + vec2(f1) * 10.0);
+
+    // alpha
+    highp float a = step(f2 + d_to_center2, 0.7);
+
+    // some final steps to choose a nice color
+    f2 *= 2.3;
+    if(should_dither && dith) {
+        f2 *= 0.94;
+    }
+
+    // Тот самый множитель из оригинала
+    float final_idx = floor(f2 * float(n_colors));
+    final_idx = min(final_idx, float(n_colors));
+
+    int index = int(final_idx);
+
+    // 2. Выбираем цвет (имитация оригинального массива colors[int(f2)])
+    lowp vec4 col = color0;
+    if (index == 1) col = color1;
+    else if (index == 2) col = color2;
+    else if (index == 3) col = color3;
+    else if (index == 4) col = color4;
+    else if (index == 5) col = color5;
+    else if (index >= 6) col = color6;
+
+    COLOR = vec4(col.rgb, a * col.a);
+}
