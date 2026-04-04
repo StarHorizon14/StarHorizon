@@ -1,6 +1,7 @@
 # Chat window radio wrap (prefix and postfix)
+chat-radio-message-wrap = [color={ $color }]{ $channel } [bold]{ $name }[/bold] { $verb }, "[tfont="{ $fontType }" size={ $fontSize } defaultFont={ $defaultFont } defaultSize={ $defaultSize }]{ $message }[/tfont]"[/color]
 # Horizon tweak - используем свою локаль для речи и шёпота
-# chat-radio-message-wrap = [color={ $color }]{ $channel } [bold]{ $name }[/bold] { $verb }, [font={ $fontType } size={ $fontSize }]"{ $message }"[/font][/color]
+# Chat window radio wrap (prefix and postfix)
 chat-radio-message-wrap-bold = [color={ $color }]{ $channel } [bold]{ $name }[/bold] { $verb }, [font={ $fontType } size={ $fontSize }][bold]"{ $message }"[/bold][/font][/color]
 examine-headset-default-channel = Используйте { $prefix } для канала по умолчанию ([color={ $color }]{ $channel }[/color]).
 chat-radio-common = Общий

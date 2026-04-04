@@ -1,2 +1,3 @@
 ent-NFMailBag = mail bag
     .desc = Here's the mail, it never fails...
+    .suffix = Frontier

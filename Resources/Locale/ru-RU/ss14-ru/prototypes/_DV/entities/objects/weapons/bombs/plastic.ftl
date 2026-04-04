@@ -1,2 +1,2 @@
-ent-BreachingCharge = подрывной заряд
-    .desc = Подрывной заряд для офицеров безопасности, чтобы пробивать стены.
+ent-BreachingCharge = breaching charge
+    .desc = A breaching explosive for security officers to break through walls.

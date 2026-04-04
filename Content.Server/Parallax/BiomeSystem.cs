@@ -199,6 +199,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             component.Layers.Add(layer);
         }
 
+        // Horizon Dungeon
+        foreach (var marker in template.MarkerLayers)
+        {
+            component.MarkerLayers.Add(marker);
+        }
+
         if (dirty)
             Dirty(uid, component);
     }

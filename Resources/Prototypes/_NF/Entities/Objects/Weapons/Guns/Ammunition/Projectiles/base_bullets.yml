@@ -235,6 +235,27 @@
     color: "#666666FF"
     length: 1.5
 
+# Laser AP variant
+- type: entity
+  id: NFBaseBulletLaserAP
+  parent: NFBaseBulletLaser
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser_greyscale
+      shader: unshaded
+      color: "#330000"
+  - type: Projectile
+    damage:
+      types:
+        Heat: 10
+    ignoreResistances: true
+  - type: Tracer
+    color: "#666666FF"
+    length: 1.5
+
 #region AntiMateriel
 - type: entity
   id: NFBaseBulletAntiMateriel

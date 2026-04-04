@@ -6,3 +6,5 @@ ent-BannerGoblin01 = goblin banner
     .desc = A banner displaying one of goblin clan symbols.
 ent-BannerFsb = FSB banner
     .desc = A banner displaying the sigil of the Far Star Biotech corporation.
+ent-NFBannerWizard = wizard federation banner
+    .desc = A banner displaying the sigil of the Wizard Federation.

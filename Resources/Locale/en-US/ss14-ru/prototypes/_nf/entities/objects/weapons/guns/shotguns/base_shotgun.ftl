@@ -1,5 +1,5 @@
-ent-NFBaseWeaponFrameShotgun = { ent-NFBaseWeaponEncumbrancePistol }
-    .desc = { ent-NFBaseWeaponEncumbrancePistol.desc }
+ent-NFBaseWeaponFrameShotgun = { ent-NFBaseWeaponEncumbranceRifle }
+    .desc = { ent-NFBaseWeaponEncumbranceRifle.desc }
 ent-NFBaseWeaponFrameShotgunWieldable = { ent-NFBaseWeaponEncumbranceRifle }
     .desc = { ent-NFBaseWeaponEncumbranceRifle.desc }
 ent-NFBaseWeaponShotgunChamber50 = { "" }

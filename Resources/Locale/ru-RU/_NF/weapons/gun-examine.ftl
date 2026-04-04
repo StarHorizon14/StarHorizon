@@ -5,6 +5,7 @@ gun-examine-nf-min-angle = - [color={ $color }]Минимальный разбр
 gun-examine-nf-fire-rate = - [color={ $color }]Скорострельность[/color]: [color=lightblue]{ NATURALFIXED($value, 1) } выстр./сек[/color]
 gun-examine-nf-fire-rate-burst = - [color={ $color }]Скорострельность[/color]: [color=lightblue]{ NATURALFIXED($value, 1) } выстр./сек[/color] (в режиме очереди из [color=lightblue]{ $burstsize }[/color] выстрелов с [color=lightblue]{ NATURALFIXED($burstrate, 1) } выстр./сек[/color])
 gun-examine-nf-muzzle-velocity = - [color={ $color }]Начальная скорость[/color]: [color=lightblue]{ NATURALFIXED($value, 1) } м/с[/color]
+gun-examine-nf-stat-modifier = [bold]([color=lime]{ $plus }{ NATURALPERCENT($difference, 1) }[/color])[/bold]
 gun-examine-nf-class = - [color={ $color }]Класс[/color]: [color=lightblue]{ $value }[/color]
 gun-examine-nf-manufacturer = - [color={ $color }]Производитель[/color]: [color=lightblue]{ $value }[/color]
 # Калибры
@@ -62,3 +63,8 @@ weapon-details-class-shotgun = Дробовик
 weapon-details-class-sniper = Снайперская винтовка
 weapon-details-class-submachine-gun = Пистолет-пулемёт
 weapon-details-class-tool = Инструмент
+# Weapon rarity descriptions
+weapon-description-rarity-uncommon = Это [bold][color=#33FF44]необычное[/color][/bold] оружие.
+weapon-description-rarity-rare = Это [bold][color=#33CCFF]редкое[/color][/bold] оружие.
+weapon-description-rarity-epic = Это [bold][color=#CC66FF]эпическое[/color][/bold] оружие.
+weapon-description-rarity-legendary = Это [bold][color=#FFCC00]легендарное[/color][/bold] оружие.

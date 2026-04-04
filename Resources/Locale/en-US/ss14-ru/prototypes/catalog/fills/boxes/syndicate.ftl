@@ -7,5 +7,7 @@ ent-ThrowingKnivesKit = throwing knives kit
     .desc = A set of 4 syndicate branded throwing knives, perfect for embedding into the body of your victims.
 ent-BoxDeathRattleImplants = deathrattle implant box
     .desc = Six deathrattle implants for the whole squad.
+ent-BoxDeathLangImplants = языковой набор синдиката
+    .desc = Имплантер кодового языка и универсальный переводчик в комплекте
 ent-CombatBakeryKit = combat bakery kit
     .desc = A kit of clandestine baked weapons.

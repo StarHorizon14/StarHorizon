@@ -1,9 +1,11 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared._Horizon.CCVar;
 using Content.Shared.CCVar;
+using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Log;
@@ -16,7 +18,12 @@ namespace Content.Server._Horizon.SponsorManager
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IResourceManager _resourceManager = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private readonly ITaskManager _taskManager = default!;
         private ISawmill _sawmill = default!;
+
+        private FileSystemWatcher? _fileWatcher;
+        private Timer? _debounceTimer;
+        private const int DebounceDelayMs = 500;
 
         private ResPath _dsSponsorsFilePath => NormalizePath(_cfg.GetCVar(HorizonCCVars.SponsorSystemDiscordSponsorsPath));
         private ResPath _disposableFilePath => NormalizePath(_cfg.GetCVar(HorizonCCVars.SponsorSystemDisposablePath));
@@ -27,15 +34,11 @@ namespace Content.Server._Horizon.SponsorManager
             if (string.IsNullOrWhiteSpace(path))
                 throw new ArgumentException("Path cannot be null or empty", nameof(path));
 
-            // Remove all leading '/' characters to ensure path is treated as relative to UserData
-            // This prevents issues when paths are configured with absolute paths like /ss14_data/...
             var normalized = path.TrimStart('/');
 
             if (string.IsNullOrWhiteSpace(normalized))
                 throw new ArgumentException("Path cannot be only slashes", nameof(path));
 
-            // Create ResPath and ensure it's rooted (for ResPath's internal structure)
-            // This creates a ResPath like /sponsorSystem/discord_sponsors.txt which is relative to UserData root
             return new ResPath(normalized).ToRootedPath();
         }
 
@@ -107,6 +110,177 @@ namespace Content.Server._Horizon.SponsorManager
             }
         }
         #endregion Check files
+
+        #region File watching
+        public void StartWatching()
+        {
+            try
+            {
+                var rootDir = _resourceManager.UserData.RootDir;
+                if (rootDir == null)
+                {
+                    _sawmill.Warning("Cannot start file watcher: UserData.RootDir is null (virtual provider). " +
+                                     "Sponsor hot-reload will not be available.");
+                    return;
+                }
+
+                var relativePath = _dsSponsorsFilePath.ToRelativeSystemPath();
+                var fullPath = Path.GetFullPath(Path.Combine(rootDir, relativePath));
+                var directory = Path.GetDirectoryName(fullPath);
+                var fileName = Path.GetFileName(fullPath);
+
+                if (string.IsNullOrEmpty(directory) || string.IsNullOrEmpty(fileName))
+                {
+                    _sawmill.Error($"Cannot start file watcher: invalid path derived from {_dsSponsorsFilePath}");
+                    return;
+                }
+
+                if (!Directory.Exists(directory))
+                {
+                    _sawmill.Warning($"Cannot start file watcher: directory does not exist: {directory}");
+                    return;
+                }
+
+                StopWatching();
+
+                _fileWatcher = new FileSystemWatcher(directory, fileName)
+                {
+                    NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.Size,
+                    EnableRaisingEvents = true
+                };
+
+                _fileWatcher.Changed += OnFileChanged;
+                _fileWatcher.Created += OnFileChanged;
+                _fileWatcher.Deleted += OnFileChanged;
+
+                _sawmill.Info($"File watcher started for: {fullPath}");
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Error($"Failed to start file watcher: {ex}");
+            }
+        }
+
+        public void StopWatching()
+        {
+            if (_fileWatcher != null)
+            {
+                _fileWatcher.EnableRaisingEvents = false;
+                _fileWatcher.Changed -= OnFileChanged;
+                _fileWatcher.Created -= OnFileChanged;
+                _fileWatcher.Deleted -= OnFileChanged;
+                _fileWatcher.Dispose();
+                _fileWatcher = null;
+                _sawmill.Debug("File watcher stopped");
+            }
+
+            if (_debounceTimer != null)
+            {
+                _debounceTimer.Dispose();
+                _debounceTimer = null;
+            }
+        }
+
+        private void OnFileChanged(object sender, FileSystemEventArgs e)
+        {
+            _debounceTimer?.Dispose();
+            _debounceTimer = new Timer(
+                _ => _taskManager.RunOnMainThread(ResyncSponsors),
+                null,
+                DebounceDelayMs,
+                Timeout.Infinite);
+        }
+
+        /// <summary>
+        /// Additive-only resync: reads discord_sponsors.txt and adds only NEW sponsors
+        /// that are not yet in memory. Existing sponsors are never touched or removed.
+        /// Removal of sponsors only happens at round start via SyncDiscordSponsorsAtRoundStart().
+        /// Must be called on the main thread.
+        /// </summary>
+        public void ResyncSponsors()
+        {
+            try
+            {
+                _sawmill.Info("Hot-reload triggered: checking for new sponsors in file...");
+
+                var newBalances = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                var newSlots = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                var newColors = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+                // Read file and collect only sponsors NOT already in memory
+                var discordLines = SafeReadAllLines(_dsSponsorsFilePath);
+                foreach (var line in discordLines)
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                        continue;
+
+                    var parts = line.Split(',');
+                    if (parts.Length < 3)
+                        continue;
+
+                    var originalCkey = parts[1].Trim();
+                    var normalizedCkey = NormalizeUserName(originalCkey);
+                    var discordId = parts[2].Trim();
+
+                    if (string.IsNullOrWhiteSpace(normalizedCkey) || string.IsNullOrWhiteSpace(discordId))
+                        continue;
+
+                    // Skip sponsors already in memory
+                    if (_sponsors.Contains(normalizedCkey))
+                        continue;
+
+                    newSlots[normalizedCkey] = CalculateSlots(discordId);
+                    newBalances[normalizedCkey] = CalculateTokens(discordId);
+
+                    if (parts.Length > 4 && !string.IsNullOrWhiteSpace(parts[4]))
+                        newColors[normalizedCkey] = parts[4].Trim();
+                }
+
+                if (newBalances.Count == 0)
+                {
+                    _sawmill.Info("Hot-reload: no new sponsors found in file");
+                    return;
+                }
+
+                // Apply disposable.txt bonus tokens to new sponsors only
+                var disposableLines = SafeReadAllLines(_disposableFilePath);
+                foreach (var line in disposableLines)
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                        continue;
+
+                    var parts = line.Split(',');
+                    if (parts.Length < 3)
+                        continue;
+
+                    var ckey = NormalizeUserName(parts[0].Trim());
+                    if (string.IsNullOrWhiteSpace(ckey))
+                        continue;
+
+                    if (int.TryParse(parts[2], out var additionalTokens) && newBalances.ContainsKey(ckey))
+                        newBalances[ckey] += additionalTokens;
+                }
+
+                // Add new sponsors to memory
+                foreach (var (name, balance) in newBalances)
+                {
+                    _sponsors.Add(name);
+                    _sponsorsAndBalances[name] = balance;
+                    _sponsorSlots[name] = newSlots.GetValueOrDefault(name);
+
+                    if (newColors.TryGetValue(name, out var color))
+                        _sponsorColors[name] = color;
+                }
+
+                _sawmill.Info($"Hot-reload: added {newBalances.Count} new sponsor(s): {string.Join(", ", newBalances.Keys)}");
+                _sawmill.Info($"Hot-reload complete. Total sponsors in memory: {_sponsors.Count}");
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Error($"Failed to resync sponsors during hot-reload: {ex}");
+            }
+        }
+        #endregion File watching
 
         #region Discord (sync only at round start)
         /// <summary>

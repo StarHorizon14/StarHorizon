@@ -92,7 +92,7 @@ public sealed class DualWieldSystem : EntitySystem
         if (!TryComp<HandsComponent>(args.User, out var hands) || hands.Count != 2)
             return;
 
-        foreach (var heldEntity in _hands.EnumerateHeld(args.User, hands))
+        foreach (var heldEntity in _hands.EnumerateHeld((args.User, hands)))
         {
             if (heldEntity == entity.Owner || !TryComp<DualWieldComponent>(heldEntity, out var otherDualComp))
                 continue;

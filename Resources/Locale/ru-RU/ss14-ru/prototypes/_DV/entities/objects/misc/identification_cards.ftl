@@ -1,2 +1,2 @@
-ent-CourierIDCard = ID карта почтальона
+ent-CourierIDCard = mail carrier ID card
     .desc = { ent-IDCardStandard.desc }

@@ -1,5 +1,5 @@
 ent-BoxFolderStc = Папка диспетчера аванпоста
-    .desc = Папка, наполненная шаблонами документов контроля трафика судов 
+    .desc = Папка, наполненная шаблонами документов контроля трафика судов
     .suffix = Forms
 ent-PaperWrittenStcFormCitationParking = штраф за нарушение правил парковки
     .desc = { ent-Paper.desc }

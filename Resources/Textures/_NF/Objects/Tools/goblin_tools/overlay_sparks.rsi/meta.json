@@ -21,6 +21,19 @@
             ]
         },
         {
+            "name": "overlay-icon_world",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    15
+                ]
+            ]
+        },
+        {
             "name": "overlay-inhand-left",
             "directions": 4,
             "delays": [

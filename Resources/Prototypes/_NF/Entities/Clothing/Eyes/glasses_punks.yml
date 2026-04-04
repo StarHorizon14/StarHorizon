@@ -46,9 +46,8 @@
   components:
   - type: VisionCorrection
   - type: Item
-    shape:
-    - 0,0,1,0
-    storedOffset: -20,-20
+    size: Small
+    storedRotation: -90
   - type: Sprite
     sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
     layers:

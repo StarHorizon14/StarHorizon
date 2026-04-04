@@ -2,6 +2,7 @@ xenomorphs-queen-promotion-didnt-pass-whitelist = Вы можете исполь
 xenomorphs-queen-promotion-no-mind = Её разум не может выдержать повышение!
 
 ### Goobstation
+
 xenomorphs-queen-not-enough-plasma = Недостаточно плазмы. Нужно ещё: { $plasma }.
 xenomorphs-queen-promotion-invalid-target = Развить можно только другого ксеноморфа.
 xenomorphs-queen-already-praetorian = Этот ксеноморф уже Преторианец!

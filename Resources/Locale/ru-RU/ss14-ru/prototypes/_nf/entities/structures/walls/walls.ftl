@@ -653,3 +653,6 @@ ent-NFWallAndesiteCobblebrickSilverGolem = { ent-NFWallAndesiteCobblebrickSilver
 ent-NFWallAndesiteCobblebrickUraniumGolem = { ent-NFWallAndesiteCobblebrickUranium }
     .desc = { ent-NFWallAndesiteCobblebrickUranium.desc }
     .suffix = Урановый голем
+ent-WallUraniumIndestructible = урановая стена
+    .suffix = Неуничтожимая
+    .desc = { ent-BaseWall.desc }

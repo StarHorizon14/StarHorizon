@@ -1,4 +1,4 @@
-ent-BaseMail = посылка без адресата
+ent-BaseMail = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
 ent-MailAdminFun = { ent-BaseMail }
     .suffix = адмеме

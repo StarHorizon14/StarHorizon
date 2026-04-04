@@ -16,5 +16,3 @@ ent-GyroscopeUnanchored = { ent-Gyroscope }
 ent-DebugGyroscope = гироскоп
     .desc = Увеличивает потенциальное угловое вращение шаттла.
     .suffix = Дебаг
-ent-RustedThruster = ржавый двигатель
-    .desc = Неремонтируемый двигатель, сломанный из-за износа. Годится только для сдачи на металлолом.

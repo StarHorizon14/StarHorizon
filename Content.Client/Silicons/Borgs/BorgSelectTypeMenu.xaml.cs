@@ -29,7 +29,6 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
 
     public event Action<ProtoId<BorgTypePrototype>, int>? ConfirmedBorgType;    // Horizon borg skins
 
-    [ValidatePrototypeId<GuideEntryPrototype>]
     private static readonly List<ProtoId<GuideEntryPrototype>> GuidebookEntries = new() { "Cyborgs", "Robotics" };
 
     public BorgSelectTypeMenu()

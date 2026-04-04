@@ -49,6 +49,7 @@
   - type: InteractionPopup
     interactSuccessString: petting-success-mail-teleporter
     interactFailureString: petting-failure-mail-teleporter
+  - type: MailTeleporter
   - type: DeliverySpawner
     table: !type:NestedSelector
       tableId: RandomDeliveryBasic

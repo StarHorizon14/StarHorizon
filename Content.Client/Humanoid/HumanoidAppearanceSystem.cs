@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Client.DisplacementMap;
 using Content.Shared.CCVar;
 using Content.Shared.Humanoid;
@@ -38,7 +39,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
     private void OnCvarChanged(bool value)
     {
-        var humanoidQuery = EntityManager.AllEntityQueryEnumerator<HumanoidAppearanceComponent, SpriteComponent>();
+        var humanoidQuery = AllEntityQuery<HumanoidAppearanceComponent, SpriteComponent>();
         while (humanoidQuery.MoveNext(out var uid, out var humanoidComp, out var spriteComp))
         {
             UpdateSprite((uid, humanoidComp, spriteComp));
@@ -438,8 +439,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
                 var shaderProto = _prototypeManager.Index<ShaderPrototype>("HairGradient");
                 var shaderInstance = shaderProto.InstanceUnique();
-                shaderInstance.SetParameter("color1", new Robust.Shared.Maths.Vector3(layerColor.R, layerColor.G, layerColor.B));
-                shaderInstance.SetParameter("color2", new Robust.Shared.Maths.Vector3(secondaryColor.R, secondaryColor.G, secondaryColor.B));
+                shaderInstance.SetParameter("color1", new Vector3(layerColor.R, layerColor.G, layerColor.B));
+                shaderInstance.SetParameter("color2", new Vector3(secondaryColor.R, secondaryColor.G, secondaryColor.B));
                 shaderInstance.SetParameter("direction", direction);
                 sprite.LayerSetShader(layerId, shaderInstance, "HairGradient");
                 _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);

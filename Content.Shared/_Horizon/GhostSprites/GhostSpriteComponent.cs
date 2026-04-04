@@ -8,7 +8,7 @@ namespace Content.Shared._Horizon.GhostSprites;
 /// Component that stores the currently selected ghost sprite.
 /// Added to ghost entities to track their customized appearance.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class GhostSpriteComponent : Component
 {
     /// <summary>

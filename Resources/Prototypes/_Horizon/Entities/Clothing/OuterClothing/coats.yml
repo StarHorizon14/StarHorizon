@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingOuterStorageBase, ClothingUniformBase]
   id: ClothingOuterClothingBlackCoatDragon
   name: чёрное пальто из драконьей кожи
   description: Хорошо прошитое чёрное пальто из драконьей кожи.

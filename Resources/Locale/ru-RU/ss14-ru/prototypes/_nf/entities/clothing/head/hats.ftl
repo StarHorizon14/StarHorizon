@@ -45,3 +45,5 @@ ent-ClothingHeadHatBeretCommander = командирский берет
     .desc = Чёрный берет с эмблемой командирского звания.
 ent-ClothingHeadHatBrickwizard = шляпа кирпичного волшебника
     .desc = Шляпа волшебника, покрытая красной пылью.
+ent-ClothingHeadHatFakeWizard = фальшивая шляпа волшебника
+    .desc = На ней блестками написано "ВОЛШЕБНИК". Идёт с крутой бородой.

@@ -1,3 +1,38 @@
+# region ДСФБ Импульсное оружие
+
+- type: listing
+  id: UplinkDSFBPulsePistol
+  name: Импульсный пистолет ДСФБ
+  description: Компактный импульсный пистолет, поставляемый в сектор для нужд ДСФБ. На рукоятке выгравирована эмблема Департамента Специальных Федеральных Бригад.
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi, state: icon }
+  productEntity: DSFBWeaponEnergyPistolPulse
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkDSFBPulseRifle
+  name: Импульсная винтовка ДСФБ
+  description: Стандартная импульсная винтовка, адаптированная для подразделений ДСФБ. Надёжное и мощное энергетическое оружие для полевых операций.
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi, state: icon }
+  productEntity: DSFBWeaponEnergyRiflePulse
+  cost:
+    Telecrystal: 25
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkDSFBPulseCarbine
+  name: Импульсный карабин ДСФБ
+  description: Высокотехнологичный импульсный карабин, разработанный специально для штурмовых операций ДСФБ. Сочетает компактность с высокой огневой мощью.
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: icon }
+  productEntity: DSFBWeaponEnergyRifleAssaultPulseCarbine
+  cost:
+    Telecrystal: 35
+  categories:
+  - UplinkWeaponry
+
 # region Legasy
 
 - type: listing

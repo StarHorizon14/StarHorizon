@@ -36,6 +36,8 @@ deep-fried-fried-item = жареный { $entity }
 deep-fried-fried-item-examine = Обволакивает толстый слой хрустящей корочки.
 deep-fried-burned-item = подгорелый { $entity }
 deep-fried-burned-item-examine = Почернел от нагара.
+# Frontier: deep fryier upgrade status popup
+deep-fryier-component-upgrade-storage = Хранилище
 # Frontier: cauldron definitions
 deep-fried-spooky-item = spooky { $entity }
 deep-fried-spooky-item-examine = It's slick with oil and translucent.

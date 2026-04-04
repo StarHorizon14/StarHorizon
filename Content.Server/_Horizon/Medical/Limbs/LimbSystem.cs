@@ -13,6 +13,7 @@ using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Horizon.Medical.Limbs;
+
 public sealed partial class LimbSystem //: SharedLimbSystem
 {
     [Dependency] private readonly ContainerSystem _containers = null!;
@@ -124,8 +125,8 @@ public sealed partial class LimbSystem //: SharedLimbSystem
             return;
         }
 
-        _hands.AddHand(bodyId, handId, HandLocation.Middle, hands);
-        _hands.DoPickup(bodyId, hands.Hands[handId], itemId, hands);
+        _hands.AddHand(bodyId, handId, HandLocation.Middle);
+        _hands.DoPickup(bodyId, handId, itemId, hands);
         EnsureComp<UnremoveableComponent>(itemId);
     }
 
@@ -135,11 +136,11 @@ public sealed partial class LimbSystem //: SharedLimbSystem
             return;
 
         if (!TryComp<HandsComponent>(bodyId, out var hands)
-            || !_hands.TryGetHand(bodyId, handId, out var hand, hands))
+            || !_hands.TryGetHand(bodyId, handId, out var hand))
             return;
 
         RemComp<UnremoveableComponent>(itemId);
-        _hands.DoDrop(itemId, hand);
+        _hands.DoDrop(itemId, handId);
         _hands.RemoveHand(bodyId, handId);
     }
 }

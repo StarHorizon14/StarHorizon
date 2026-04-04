@@ -31,3 +31,6 @@ ent-PoweredStrobeRed = { ent-PoweredStrobeLightEmpty }
 ent-PoweredStrobeGreen = { ent-PoweredStrobeLightEmpty }
     .suffix = Green
     .desc = { ent-PoweredStrobeLightEmpty.desc }
+ent-PoweredStrobeSodiumSiren = { ent-PoweredStrobeLightEmpty }
+    .suffix = Siren, Sodium
+    .desc = { ent-PoweredStrobeLightEmpty.desc }

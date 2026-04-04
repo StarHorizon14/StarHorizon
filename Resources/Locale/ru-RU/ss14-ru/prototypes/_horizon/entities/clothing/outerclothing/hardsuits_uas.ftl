@@ -1,9 +1,0 @@
-ent-ClothingOuterHardsuitSpider = скафандр офицера Паука АнКо
-    .desc = Скафандр, созданный из продвинутых композитов и предназначенный для боевых миссий.
-    .suffix = StarHorizon, AnCo, HardSuit
-ent-ClothingOuterHardsuitTitan = cкафандр офицера Титана АнКо
-    .desc = Тяжёлый скафандр АнКо. Выбор тех, для кого защита важнее скорости.
-    .suffix = StarHorizon, AnCo, HardSuit
-ent-ClothingOuterHardsuitKnight = cкафандр офицера Рыцаря АнКо
-    .desc = Это как доспехи, только герметичные!
-    .suffix = StarHorizon, AnCo, HardSuit

@@ -1,4 +1,4 @@
 ent-BaseMobSheleg = Урист МакШелег
-.desc = { ent-BaseMobSpeciesOrganic.desc }
+    .desc = { ent-BaseMobSpeciesOrganic.desc }
 ent-MobShelegDummy = Урист МакШелег
-.desc = Манекен шелега, предназначенный для использования в настройке персонажа.
+    .desc = Манекен шелега, предназначенный для использования в настройке персонажа.

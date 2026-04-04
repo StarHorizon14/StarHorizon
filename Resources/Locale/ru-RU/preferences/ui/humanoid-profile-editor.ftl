@@ -58,7 +58,6 @@ trait-category-quirks = Квирки
 trait-category-disabilities = Инвалидности
 trait-category-speech = Черты речи
 trait-category-size = Рост
-
 # _Horizon: Hair gradient
 humanoid-profile-editor-hair-gradient-label = Градиент волос
 humanoid-profile-editor-hair-gradient-enable = Включить градиент

@@ -1,2 +1,2 @@
-ent-WeaponRifleBB = ББ ружьё
-    .desc = Классическая ББ ружьё Red Ryder. Не отстрели себе глаз.
+ent-WeaponRifleBB = BB Gun
+    .desc = The classic Red Ryder BB gun. Don't shoot your eye out.

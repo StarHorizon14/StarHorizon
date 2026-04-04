@@ -1,4 +1,4 @@
-ent-DVSmartFridge = Умный холодильник
-    .desc = Холодильное хранилище для сохранения продуктов холодными и свежими.
-ent-DVSmartFridgeMedical = Медицинский умный холодильник
-    .desc = Холодильное хранилище для сохранения жизненно важных лекарств холодными и свежими.
+ent-DVSmartFridge = SmartFridge
+    .desc = A refrigerated storage unit for keeping items cold and fresh.
+ent-DVSmartFridgeMedical = Medical SmartFridge
+    .desc = A refrigerated storage unit for keeping lifesaving medications cold and fresh.

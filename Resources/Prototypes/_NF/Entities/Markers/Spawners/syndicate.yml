@@ -19,8 +19,6 @@
         - CrateTradeContrabandSecure1
         - LandMineExplosive
         - BannerSyndicate
-        - Telecrystal5
-        - Telecrystal5
 
 - type: entity
   name: Contraband Crate Spawner
@@ -73,8 +71,6 @@
         - ToyFigurineNukieElite
         - ToyNuke
         - PlushieNuke
-        - Telecrystal5
-        - Telecrystal5
       rarePrototypes:
         - PinpointerSyndicatePOI
       rareChance: 0.1

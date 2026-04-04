@@ -5,6 +5,9 @@ lathe-category-kitchen-nf = Кухня
 lathe-category-clothes-nf = Одежда
 lathe-category-medical-nf = Медицина
 lathe-category-magazines-nf = Магазины
+lathe-category-inflatables-nf = Надувные предметы
+lathe-category-piety-nf = Благочестие
+lathe-category-candles-nf = Свечи
 # Biogen
 lathe-category-nf-animal-cubes = Кубики с животными
 lathe-category-brand = Бренд

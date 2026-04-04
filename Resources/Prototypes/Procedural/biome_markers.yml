@@ -65,3 +65,11 @@
 #- type: biomeMarkerLayer
 #  id: Experiment
 #  proto: DungeonMarkerExperiment
+
+# Horizon
+- type: biomeMarkerLayer
+  id: MineshaftDungeons
+  prototype: SpawnMineshaftDungeon
+  radius: 64 # Тест, изначально 256
+  size: 512
+  maxCount: 8 # Тест, изначально 1

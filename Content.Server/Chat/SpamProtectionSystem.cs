@@ -53,6 +53,10 @@ public sealed class SpamProtectionSystem : EntitySystem
         if (!TryComp<SpamProtectionComponent>(args.Source, out var spamComp))
             return;
 
+        // Клич в ближнем бою и прочие системные реплики — одна и та же строка много раз подряд; это не спам в чате.
+        if (args.IgnoreSpamProtection)
+            return;
+
         // Пропускаем исключенные префиксы
         if (IsExcludedMessage(args.Message, spamComp))
             return;
@@ -256,8 +260,8 @@ public sealed class SpamProtectionSystem : EntitySystem
         }
 
         // Безопасная обработка сообщения
-        var shortMessage = string.IsNullOrEmpty(message) 
-            ? "[пустое сообщение]" 
+        var shortMessage = string.IsNullOrEmpty(message)
+            ? "[пустое сообщение]"
             : (message.Length > 50 ? message[..47] + "..." : message);
 
         Logger.Info($"{playerName} поперхнулся от спама: \"{shortMessage}\"");

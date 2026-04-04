@@ -76,7 +76,7 @@ public sealed class JumpSystem : EntitySystem
         if (Transform(args.Target).Anchored)
         {
             _sawmill.Debug($"OnThrowDoHit: target anchored, paralyzing");
-            _stun.TryParalyze(uid, component.StunTime, true);
+            _stun.TryUpdateParalyzeDuration(uid, component.StunTime);
             return;
         }
 

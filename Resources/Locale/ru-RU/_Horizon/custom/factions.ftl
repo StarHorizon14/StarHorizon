@@ -1,23 +1,16 @@
 character-faction-examine = Принадлежит к фракции [color={ $color }]{ $faction }[/color].
-
 role-timer-whitelisted-factions = Ваш персонаж должен принадлежать к одной из следующих фракций:
 role-timer-blacklisted-factions = Ваш персонаж не должен принадлежать к одной из следующих фракций:
-
 faction-none-name = Фракция не указана
 faction-none-desc = Вы не принадлежите ни к какой фракции.
-
 faction-frontier-name = Аванпост Фронтира
 faction-frontier-desc = Обеспечивают работу самой главной верфи Фронтира. Ведь Фронтир это сердце.
-
 faction-nfsd-name = ДШНФ
 faction-nfsd-desc = Защитники прав и свобод Фронтира. Следят за Законом и защищают Фронтир от вторжения пиратов и синдиката.
-
 faction-pirate-name = Пираты
 faction-pirate-desc = Никто не любит пираторв и пираты никого не любят.
-
 faction-syndicate-name = Синдикат
 faction-syndicate-desc = Главные конкуренты в секторе
-
 faction-siu-name = Innovative Horizon of Progress
 faction-siu-desc =
     Корпорация специализирующаяся на исследовании аномальных явлениях и их пораждений.
@@ -28,13 +21,11 @@ faction-arcadia-desc =
     Относительно новая фракция в пределах Фронтира и в остальной части большей галактики.
     В настоящее время цели Arcadia Industries неизвестны.
     Однако они проявили большой интерес к Фронтиру и его ресурсам.
-
 faction-anco-name = AnroxComputer’s
 faction-anco-desc =
     Корпорация специализирующаяся на предоставлении различных видов услуг и товаров.
     Главная цель на фронтире, обеспечивать безопасность интересов AnroxComputer’s.
     Верность. Решительность. Эффективность.
-
 faction-med-name = Медицинский Диспансер
 faction-med-desc = Отважные Врачи и Парамедики. Спасут из любой точки Фронтира, если вы не забыли выключить датчики.
 faction-fsb-name = Far Star Biotech
@@ -45,7 +36,6 @@ faction-ccc-desc =
     Как новая межгалактическая медицинская корпорация.
     Ставит во главу угла безупречное качество и высочайшую эффективность.
     Стремятся завоевать доверие и создать лояльную клиентскую базу.
-
 faction-edison-name = Электростанция Эдисона
 faction-edison-desc = Нужно. Больше. Энергии. Могут добыть Электричество даже из воздуха.
 faction-lvhi-name = Längstad-Voigt Heavy Industries
@@ -56,5 +46,4 @@ faction-nakamura-name = Nakamura engineering
 faction-nakamura-desc =
     Компания занимающая одну из важнейших позиций на рынке.
     Производят солнечные панели, детали ДАМа, генератор сингулярности и сдерживающие щиты для неё.
-
 humanoid-profile-editor-factions-tab = Фракции

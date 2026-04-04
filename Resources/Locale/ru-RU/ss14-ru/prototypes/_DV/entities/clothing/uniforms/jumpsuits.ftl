@@ -1,4 +1,4 @@
-ent-ClothingUniformLittleGuyOveralls = комбинезон "маленький паренёк"
-    .desc = Я просто маленький паренёк!
-ent-ClothingUniformJumpsuitKilt = килт
-    .desc = Прекрасный наряд для парней и девушек.
+ent-ClothingUniformLittleGuyOveralls = little guy overalls
+    .desc = I'm just a little guy!
+ent-ClothingUniformJumpsuitKilt = kilt
+    .desc = A fine bit o' garb for the lad an' lasses.

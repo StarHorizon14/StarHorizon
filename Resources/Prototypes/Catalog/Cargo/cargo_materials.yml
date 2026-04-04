@@ -50,6 +50,7 @@
 
 - type: cargoProduct
   id: MaterialGold
+  abstract: true # Frontier
   icon:
     sprite: Objects/Materials/ingots.rsi
     state: gold_3
@@ -60,6 +61,7 @@
 
 - type: cargoProduct
   id: MaterialSilver
+  abstract: true # Frontier
   icon:
     sprite: Objects/Materials/ingots.rsi
     state: silver_3

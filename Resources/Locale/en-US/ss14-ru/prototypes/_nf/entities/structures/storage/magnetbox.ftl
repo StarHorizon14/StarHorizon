@@ -8,3 +8,5 @@ ent-NFMagnetBoxPlant = plant box
     .desc = A large storage container for holding plants and seeds.
 ent-NFMagnetBoxRubbish = dumpster
     .desc = A large storage container for holding trash. It smells like the big city.
+ent-NFMagnetBoxTreasure = treasure chest
+    .desc = A large storage container for holding treasure.

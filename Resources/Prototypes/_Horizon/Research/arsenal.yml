@@ -256,7 +256,7 @@
   - NFAmmunitionBoxShellShotgunIncendiary
   technologyPrerequisites:
   - NFBulkRifleAmmo
-  position: 5, 64
+  position: 4, 64 # Horizon
 
 - type: technology
   id: UraniumAmmunitionTechnology
@@ -273,7 +273,7 @@
   - NFAmmunitionBoxShellShotgunUranium
   technologyPrerequisites:
   - NFBulkRifleAmmo
-  position: 5, 65
+  position: 4, 65 # Horizon
 
 - type: technology
   id: PiercingAmmunitionTechnology
@@ -290,7 +290,7 @@
   - NFAmmunitionBoxShellShotgunPiercing
   technologyPrerequisites:
   - NFBulkRifleAmmo
-  position: 5, 66
+  position: 4, 66 # Horizon
 
 - type: technology
   id: PsycoreAmmunitionTechnology
@@ -307,4 +307,4 @@
   - NFAmmunitionBoxShellShotgunPsycore
   technologyPrerequisites:
   - NFBulkRifleAmmo
-  position: 5, 67
+  position: 4, 67 # Horizon

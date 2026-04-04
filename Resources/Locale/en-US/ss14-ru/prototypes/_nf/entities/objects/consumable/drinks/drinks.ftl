@@ -1,6 +1,9 @@
 ent-DrinkPumpkinSpiceLatte = { ent-DrinkGlass }
     .suffix = pumpkin spice latte
     .desc = { ent-DrinkGlass.desc }
+ent-TheMadgob = { ent-DrinkGlass }
+    .suffix = the madgob
+    .desc = { ent-DrinkGlass.desc }
 ent-DrinkGinAndSonic = { ent-DrinkGlass }
     .suffix = gin and sonic
     .desc = { ent-DrinkGlass.desc }

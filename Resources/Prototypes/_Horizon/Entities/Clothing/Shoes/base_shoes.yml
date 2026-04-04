@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesWeddingShoes
   name: свадебные туфельки
@@ -73,3 +73,35 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.97
     sprintModifier: 0.97
+
+# Pink sneakers
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesColorPink
+  name: розовые кросовки
+  description: Стильные розовые кросовки.
+  suffix: StarHorizon
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/color.rsi
+    layers:
+    - state: icon
+      color: "#FF69B4"
+    - state: soles-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#FF69B4"
+      - state: soles-inhand-left
+      right:
+      - state: inhand-right
+        color: "#FF69B4"
+      - state: soles-inhand-right
+  - type: Clothing
+    sprite: Clothing/Shoes/color.rsi
+    clothingVisuals:
+      shoes:
+      - state: equipped-FEET
+        color: "#FF69B4"
+      - state: soles-equipped-FEET

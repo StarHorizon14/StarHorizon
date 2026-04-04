@@ -15,4 +15,4 @@
     id: DFIAgentID
     state: pda-dfi
   - type: PdaBorderColor
-    borderColor: "#1a1a8c"
+    borderColor: "#9999FF"

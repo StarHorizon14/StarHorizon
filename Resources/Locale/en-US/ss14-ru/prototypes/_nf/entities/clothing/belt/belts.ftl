@@ -1,5 +1,7 @@
-ent-ClothingBeltArcadia = arcadia webbing
-    .desc = A webbing created by Arcadia Industries. Seems very capable of fitting many items.
+ent-ClothingWebbingArcadia = arcadia webbing
+    .desc = Webbing created by Arcadia Industries. Seems very capable of fitting many items.
+ent-ClothingBeltArcadia = arcadia belt
+    .desc = A belt created by Arcadia Industries. Seems very capable of fitting many items.
 ent-ClothingBeltChaplainSash = chaplain sash
     .desc = Who knew that scarves can be also tied around your waist?
 ent-ClothingBeltPilot = pilot webbing

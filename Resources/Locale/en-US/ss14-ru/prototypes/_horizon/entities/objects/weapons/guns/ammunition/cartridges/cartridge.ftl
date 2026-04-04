@@ -65,3 +65,5 @@ ent-BaseMinigunERT15Incendiary = патрон (.15 зажигательный)
     .desc = { ent-CartridgeMinigunERT15.desc }
 ent-BulletMinigunERT15Incendiary = патрон (.15 зажигательный)
     .desc = { ent-BaseBulletIncendiary.desc }
+ent-CartridgeTermobarRocket = Термобарическая ракета
+    .desc = Термобарическая ракета используемая для военных преступлений.

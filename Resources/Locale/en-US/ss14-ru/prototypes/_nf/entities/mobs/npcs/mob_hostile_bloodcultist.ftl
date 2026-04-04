@@ -22,5 +22,7 @@ ent-MobBloodCultShade = cultist shade
     .desc = A cultist's shade, brought back to reality through foul means to gather more blood.
 ent-MobBloodCultDrainedOneNanoTrasen = { ent-MobStaminaFodder }
     .desc = { ent-MobStaminaFodder.desc }
+ent-MobBloodCultShadeNanoTrasen = { ent-MobStaminaFodder }
+    .desc = { ent-MobStaminaFodder.desc }
 ent-BloodCultTurret = blood pylon
     .desc = Through blood rites, the entrapped souls of sacrificed cultists have been gathered in this pylon to defend their living members. Behaves like a sentry turret.

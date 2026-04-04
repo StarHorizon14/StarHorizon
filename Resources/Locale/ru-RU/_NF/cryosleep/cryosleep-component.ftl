@@ -9,6 +9,17 @@ accept-cryo-window-prompt-text-part = Вы решили отдохнуть в к
 accept-cryo-window-prompt-stored = Ваше тело будет сохранено на { PLAYTIME($time) }.
 accept-cryo-window-prompt-not-stored = Ваше тело не будет сохранено, но ваша должность будет открыто заново, если вы сами этого не сделали.
 accept-cryo-window-title = Капсула криогенного сна
+# Warnings
+accept-cryo-window-prompt-shuttle-bag-warning = У вас есть активный ваучер шаттла на { $deed } в вашем { $storage }!
+accept-cryo-window-prompt-shuttle-many-bag-warning = У вас есть активный ваучер шаттла на { $deed } в вашем { $storage }, и ещё ваучеры в других местах!
+accept-cryo-window-prompt-shuttle-pda-warning = У вас есть непроданный шаттл!
+accept-cryo-window-prompt-shuttle-pda-and-bag-warning = У вас есть непроданный шаттл, и активный ваучер шаттла на { $deed } в вашем { $storage }!
+accept-cryo-window-prompt-shuttle-pda-and-many-bag-warning = У вас есть непроданный шаттл, активный ваучер шаттла на { $deed } в вашем { $storage }, и ещё ваучеры в других местах!
+accept-cryo-window-prompt-one-item-warning = У вас есть { $item } в вашем { $storage }!
+accept-cryo-window-prompt-two-items-warning = У вас есть { $item1 } в вашем { $storage1 }, и { $item2 } в вашем { $storage2 }!
+accept-cryo-window-prompt-many-items-warning = У вас есть { $item1 } в вашем { $storage1 }, { $item2 } в вашем { $storage2 }, и ещё { $num-extra-items } важных предметов в других местах!
+accept-cryo-window-prompt-uplink-warning = У вас есть { $uplink } в вашем { $storage } с { $amount } { $currency }!
+accept-cryo-window-prompt-unable-to-scan = Ваш инвентарь не удалось проверить на наличие важных предметов из-за ошибки.
 cryo-wakeup-window-title = Проснуться
 cryo-wakeup-window-accept-button = Принять
 cryo-wakeup-window-deny-button = Отменить

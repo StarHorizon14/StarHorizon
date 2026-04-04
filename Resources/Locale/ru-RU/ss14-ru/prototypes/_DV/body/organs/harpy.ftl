@@ -1,3 +1,2 @@
-ent-OrganHarpyLungs = лёгкие
-    .desc = Продвинутая пара птичьих лёгких. Фильтрует кислород путём постоянного движения воздуха через воздушные мешки.
-
+ent-OrganHarpyLungs = lungs
+    .desc = An advanced pair of avian lungs. Filters oxygen by way of moving air constantly through air sacs.

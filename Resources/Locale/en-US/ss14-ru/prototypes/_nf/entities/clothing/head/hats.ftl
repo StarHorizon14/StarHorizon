@@ -45,3 +45,5 @@ ent-ClothingHeadHatBeretCommander = commander's beret
     .desc = A black beret with a commander's rank emblem.
 ent-ClothingHeadHatBrickwizard = brick wizard hat
     .desc = A wizard's hat with red dust on it.
+ent-ClothingHeadHatFakeWizard = fake wizard hat
+    .desc = It has WIZZARD written across it in sequins. Comes with a cool beard.

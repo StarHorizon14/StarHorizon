@@ -1,5 +1,5 @@
 ent-BaseStockPart = stock part
     .desc = What?
-ent-MicroManipulatorStockPart = manipulator
+ent-MicroManipulatorStockPart = basic manipulator
     .desc = A basic manipulator used in the construction of a variety of devices.
-    .suffix = Rating 1
+    .suffix = Rating 1, Single

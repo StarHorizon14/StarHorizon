@@ -21,3 +21,4 @@ player-panel-rejuvenate = Вылечить
 player-panel-false = False
 player-panel-true = True
 player-panel-follow = Следовать
+player-panel-camera = Камера

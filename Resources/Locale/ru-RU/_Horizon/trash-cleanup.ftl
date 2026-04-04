@@ -1,2 +1,2 @@
 # Trash Cleanup
-trash-cleanup-deleted = Автоочистка: удалено {$count} мусорных объектов.
+trash-cleanup-deleted = Автоочистка: удалено { $count } мусорных объектов.

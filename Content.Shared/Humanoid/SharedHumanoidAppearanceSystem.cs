@@ -45,8 +45,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly SharedLanguageSystem _language = default!;    // Horizon
 
     [ValidatePrototypeId<SpeciesPrototype>]
-    public const string DefaultSpecies = "Human";
     public const string DefaultBark = "Human1"; // _Horizon
+    public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -149,7 +150,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     public void CloneAppearance(EntityUid source, EntityUid target, HumanoidAppearanceComponent? sourceHumanoid = null,
         HumanoidAppearanceComponent? targetHumanoid = null)
     {
-        if (!Resolve(source, ref sourceHumanoid) || !Resolve(target, ref targetHumanoid))
+        if (!Resolve(source, ref sourceHumanoid, false) || !Resolve(target, ref targetHumanoid, false))
             return;
 
         targetHumanoid.Species = sourceHumanoid.Species;

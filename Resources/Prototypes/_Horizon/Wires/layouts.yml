@@ -5,3 +5,20 @@
   - !type:AiInteractWireAction
   - !type:PowerWireAction
   - !type:AccessWireAction
+
+- type: wireLayout
+  id: AnCoWeaponCaseHack
+  dummyWires: 0
+  wires:
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction

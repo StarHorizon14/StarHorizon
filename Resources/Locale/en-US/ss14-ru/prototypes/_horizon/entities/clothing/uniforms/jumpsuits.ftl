@@ -25,3 +25,6 @@ ent-ClothingUniformJumpsuitECMO = комбинезон элитного глав
 ent-ClothingUniformJumpsuitSecPilot = комбинезон пилота
     .desc = Сделанная из прочной ткани униформа, обеспечивающая защиту, герметичность и комфорт в экстремальных условиях космоса.
     .suffix = StarHorizon
+ent-ClothingUniformBritish = Комбинезон Британца
+    .desc = Желаете ли вы выпить чаю, Сэр?
+    .suffix = StarHorizon

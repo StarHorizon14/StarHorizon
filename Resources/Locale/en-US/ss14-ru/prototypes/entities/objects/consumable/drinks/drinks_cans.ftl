@@ -47,3 +47,5 @@ ent-DrinkBeerCan = beer can
     .desc = Small joy, big taste, no worries!
 ent-DrinkWineCan = wine can
     .desc = Your way to forgetting all worries and having fun!
+ent-DrinkAzJuice = Аз Сок
+    .desc = Единственный в своём роде газированный сок, приготавливаемый из маракуйи и секретных ингридиентов, загадочным образом.

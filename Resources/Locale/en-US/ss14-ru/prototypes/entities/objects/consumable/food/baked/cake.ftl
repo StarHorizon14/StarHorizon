@@ -80,3 +80,7 @@ ent-FoodCakeSuppermatter = suppermatter
     .desc = Extremely dense and powerful food.
 ent-FoodCakeSuppermatterSlice = suppermatter shard
     .desc = A single portion of power.
+ent-FoodCakeCotton = cotton cake
+    .desc = A cake with a fiber frosting and a wad of cotton on top.
+ent-FoodCakeCottonSlice = slice of cotton cake
+    .desc = A slice of cotton cake. You can just lick the frosting, it's fine.

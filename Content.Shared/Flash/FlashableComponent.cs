@@ -52,12 +52,12 @@ namespace Content.Shared.Flash
         }
     }
 
-    [Serializable, NetSerializable]
-    public enum FlashVisuals : byte
-    {
-        BaseLayer,
-        LightLayer,
-        Burnt,
-        Flashing,
-    }
+    // [Serializable, NetSerializable]
+    // public enum FlashVisuals : byte
+    // {
+    //     BaseLayer,
+    //     LightLayer,
+    //     Burnt,
+    //     Flashing,
+    // }
 }

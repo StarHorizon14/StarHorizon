@@ -6,5 +6,7 @@ ent-WeaponRifleM90GrenadeLauncher = M-90gl
     .desc = An older bullpup carbine model, with an attached underbarrel grenade launcher. Uses .20 rifle ammo. An illegal firearm often used by Syndicate agents.
 ent-WeaponRifleLecter = Lecter
     .desc = A high end military grade assault rifle. Uses .20 rifle ammo. On the receiver is a label that says 'for authorized use only.'
+ent-WeaponRifleEstoc = Estoc DMR
+    .desc = A designated marksman rifle, favored for medium-to-long range engagements. Uses .20 rifle ammo.
 ent-WeaponRifleFoam = Foam Force Astro Ace
     .desc = A premium foam rifle of the highest quality. Its plastic feels rugged, and its mechanisms sturdy.

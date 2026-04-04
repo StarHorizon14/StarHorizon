@@ -31,7 +31,7 @@ namespace Content.Shared.Mech.EntitySystems;
 /// <summary>
 /// Handles all of the interactions, UI handling, and items shennanigans for <see cref="MechComponent"/>
 /// </summary>
-public abstract partial class SharedMechSystem : EntitySystem   // Horizon Mech
+public abstract partial class SharedMechSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!; // Horizon Mech
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -69,6 +69,7 @@ public abstract partial class SharedMechSystem : EntitySystem   // Horizon Mech
 
         InitializeADT();
         // Horizon Mech end
+        InitializeRelay();
     }
 
     // Horizon Mech commented

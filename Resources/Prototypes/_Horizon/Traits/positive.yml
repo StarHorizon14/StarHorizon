@@ -20,8 +20,8 @@
   effects:
   - !type:ModifyHealth
     healthChange:
-      Critical: 5
       Dead: 5
+      Critical: 5
 
 - type: trait
   id: PryingArm

@@ -18,6 +18,8 @@ shipyard-console-no-deed = Отсутствует шаттл для продаж
 shipyard-console-deed-title-not-present = Отсутствует
 shipyard-console-sale-reqs = Весь экипаж должен покинуть пристыкованный шаттл.
 shipyard-console-sale-not-docked = Шаттл должен быть пристыкован.
+shipyard-console-no-idcard-helper-line1 = Вставьте ID карту для покупки или продажи корабля.
+shipyard-console-no-idcard-helper-line2 = Ваша ID карта находится в вашем КПК.
 shipyard-console-sale-organic-aboard = Экипаж должен покинуть шаттл. { $name } всё еще на шаттле.
 # This error message is bad, but if it happens, something awful's happened.
 shipyard-console-sale-invalid-ship = Шаттл не соответствует нормам и не может быть продан.
@@ -26,6 +28,7 @@ shipyard-console-sell-label = Продать
 shipyard-console-deed-label = Зарегистрированный шаттл:
 shipyard-console-appraisal-label = Оценочная стоимость шаттла:{ " " }
 shipyard-console-no-voucher-redemptions = Все ваучеры использованы.
+shipyard-console-cute-pets = На борту обнаружены очаровательные питомцы.
 shipyard-console-invalid-voucher-type = Этот ваучер нельзя использовать в этой консоли.
 shipyard-console-contraband-onboard = На борту корабля обнаружена контрабанда.
 shipyard-console-station-resources = На бору корабля обнаружены особо ценные предметы станции

@@ -34,3 +34,6 @@ ent-ClothingOuterCoatBomberRandomized = punk jacket
 ent-ClothingOuterCoatLettermanRandomized = punk letterman jacket
     .desc = Where is your holocrosse joystick?
     .suffix = Random visuals
+ent-ClothingOuterCoatRandomized = punk coat
+    .desc = You look like a good Joe.
+    .suffix = Random visuals

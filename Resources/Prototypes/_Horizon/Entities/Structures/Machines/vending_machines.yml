@@ -2,7 +2,7 @@
   parent: VendingMachine
   id: VendingMachineStardrop
   name: StarDrop Модомат
-  description: Брендовые коллекции прямиком из известного модного дома . 
+  description: Брендовые коллекции прямиком из известного модного дома .
   components:
   - type: VendingMachine
     pack: StardropInventory
@@ -10,8 +10,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
-  - type: Advertise
-    pack: ClothesMateAds
+  - type: DatasetVocalizer
+    dataset: ClothesMateAds
   - type: Speech
   - type: Tag
   - type: Sprite

@@ -117,7 +117,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-  - type: StaticPrice # Frontier 500<1000
+  - type: StaticPrice
     price: 1000
 # Horizon Attachments end
   - type: AttachableHolderVisuals
@@ -215,6 +215,8 @@
       rmc-aslot-underbarrel: 0.12, 0.02
       rmc-aslot-barrel: 0.80375, 0.125
   # Horizon Attachments end
+  - type: StaticPrice
+    price: 1500
 
 - type: entity
   name: mk 58

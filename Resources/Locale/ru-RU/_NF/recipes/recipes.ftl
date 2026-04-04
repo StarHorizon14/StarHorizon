@@ -4,3 +4,5 @@ recipes-uranium-secret-door-name = урановая потайная дверь
 recipes-wood-secret-door-name = деревянная потайная дверь
 recipes-computer-tabletop-name = каркас компьютера (настольный)
 recipes-computer-wallmount-name = каркас компьютера (настенный)
+recipes-glowshrooms-floor-name = светогрибы (пол)
+recipes-glowshrooms-wallmount-name = светогрибы (стена)

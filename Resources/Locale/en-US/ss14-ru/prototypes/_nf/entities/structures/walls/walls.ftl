@@ -653,3 +653,6 @@ ent-NFWallAndesiteCobblebrickSilverGolem = { ent-NFBaseSilverGolemVein }
 ent-NFWallAndesiteCobblebrickUraniumGolem = { ent-NFBaseUraniumGolemVein }
     .suffix = Uranium Golem
     .desc = { ent-NFBaseUraniumGolemVein.desc }
+ent-WallUraniumIndestructible = uranium wall
+    .suffix = indestructible
+    .desc = { ent-BaseWall.desc }

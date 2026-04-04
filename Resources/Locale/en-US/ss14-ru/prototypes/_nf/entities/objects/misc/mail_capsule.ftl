@@ -4,5 +4,5 @@ ent-MailCapsulePrimed = mail capsule
 ent-BoxMailCapsulePrimed = mail capsule box
     .desc = A box of primed mail capsules.
 ent-NFMailBagCapsulePrimed = { ent-NFMailBag }
-    .suffix = Capsules
+    .suffix = Frontier, Capsules
     .desc = { ent-NFMailBag.desc }

@@ -1,2 +1,2 @@
-ent-TapeRecorderTranscript = транскрипция записи
+ent-TapeRecorderTranscript = record transcript
     .desc = { ent-Paper.desc }

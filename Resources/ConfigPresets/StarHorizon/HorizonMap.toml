@@ -33,7 +33,7 @@ lobby_name = "Mapping Server"
 [console]
 # Указать CKey игрока, который по-умолчанию и не зависимо ни от чего
 # будет иметь НАИВЫСШИЕ права на сервере (HOST)
-login_host_user = "EvilBug"
+login_host_user = "Joulerk"
 
 [admin]
 see_own_notes = true

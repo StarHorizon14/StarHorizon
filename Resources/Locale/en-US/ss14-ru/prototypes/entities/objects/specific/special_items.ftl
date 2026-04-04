@@ -1,15 +1,3 @@
-# Tovar - Collection Items
-ent-EngieTovar = engineering tovar
-    .desc = A rare collectible item representing engineering achievements.
-ent-SciTovar = science tovar
-    .desc = A rare collectible item representing scientific discoveries.
-ent-GoldTovar = salvage tovar
-    .desc = A rare collectible item representing salvage operations.
-ent-ArmoryTovar = armory tovar
-    .desc = A rare collectible item representing armory accomplishments.
-ent-EnergoTovar = power tovar
-    .desc = A rare collectible item representing power generation achievements.
-
 # Faux Astro-Tiles
 ent-FauxTileAstroGrass = faux astro grass tile
     .desc = A decorative tile mimicking astro-environment grass.

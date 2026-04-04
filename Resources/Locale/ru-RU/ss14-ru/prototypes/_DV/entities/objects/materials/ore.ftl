@@ -1,6 +1,6 @@
-ent-BluespaceOre = блюспейс руда
-    .suffix = Полный
+ent-BluespaceOre = bluespace ore
+    .suffix = Full
     .desc = { ent-OreBase.desc }
 ent-BluespaceOre1 = { ent-BluespaceOre }
-    .suffix = Один
+    .suffix = Single
     .desc = { ent-BluespaceOre.desc }

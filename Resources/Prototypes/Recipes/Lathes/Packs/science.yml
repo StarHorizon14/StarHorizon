@@ -31,6 +31,7 @@
   # - DeviceQuantumSpinInverter # Frontier
   - DeviceDesynchronizer
   - RemoteControlDevice # Horizon
+  - NFClothingBackpackHarmpack # Frontier: use NF variant
 
 - type: latheRecipePack
   id: ScienceClothing
@@ -38,6 +39,7 @@
   - ClothingShoesBootsMagSci
   - NFClothingShoesBootsMoon # Frontier: use NF variant
   - ClothingShoesBootsSpeed
+  - ClothingShoesBootsJump
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
@@ -72,10 +74,10 @@
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
 
-# Only contains parts for making basic modular grenades, no actual explosives
 - type: latheRecipePack
   id: ScienceExplosives
   recipes:
+  - ExplosivePayload #Frontier
   - ChemicalPayload
   - FlashPayload
   - TimerTrigger

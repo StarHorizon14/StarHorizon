@@ -1,2 +1,2 @@
-ent-PlantBagOfHolding = блюспейс сумка для растений
-    .desc = Робастная сумка хранения для плодовитых ботаников, у которых больше растений, чем карманов.
+ent-PlantBagOfHolding = plant bag of holding
+    .desc = A robust bag of holding for fruitful botanists with more plants than pockets.

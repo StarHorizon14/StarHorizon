@@ -1,16 +1,16 @@
 using Content.Server.Mining.Components;
 using Content.Server.Ore;
 using Content.Shared.Examine;
-using Content.Shared.Hands.Components;
-using Robust.Shared.GameObjects;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Shared.Ore;
 
 public sealed class OreScannerSystem : EntitySystem
 {
+    [Dependency] private readonly SharedHandsSystem _handsSystem = null!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -39,7 +39,7 @@ public sealed class OreScannerSystem : EntitySystem
         var message = new StringBuilder();
         message.AppendLine("Сканер обнаружил что в жиле находится:");
 
-        var oresToShow = scannerLevel >= 5 ? sortedOres.Count : System.Math.Min(scannerLevel, sortedOres.Count);
+        var oresToShow = scannerLevel >= 5 ? sortedOres.Count : Math.Min(scannerLevel, sortedOres.Count);
 
         for (int i = 0; i < oresToShow && i < sortedOres.Count; i++)
         {
@@ -58,20 +58,11 @@ public sealed class OreScannerSystem : EntitySystem
 
     private int GetPlayerHandScannerLevel(EntityUid player)
     {
-        // Проверяет есть ли в руках сканер (выглядит костыльно, нужно улучшить)
-        if (!EntityManager.TryGetComponent<HandsComponent>(player, out var hands))
+        var item = _handsSystem.GetActiveItem(player);
+        if (item == null || !TryComp<OreScannerComponent>(item, out var scanner))
             return 0;
 
-        foreach (var hand in hands.Hands.Values)
-        {
-            if (hand.HeldEntity != null &&
-                EntityManager.TryGetComponent<OreScannerComponent>(hand.HeldEntity.Value, out var scanner))
-            {
-                return scanner.ScanLevel;
-            }
-        }
-
-        return 0;
+        return scanner.ScanLevel;
     }
 
     private string GetOreDisplayName(string oreType)

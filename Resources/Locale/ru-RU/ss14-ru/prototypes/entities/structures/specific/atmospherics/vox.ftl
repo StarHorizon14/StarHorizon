@@ -1,3 +1,6 @@
+ent-AirSensorVoxBase = { ent-AirSensorBase }
+    .suffix = Vox Atmosphere
+    .desc = { ent-AirSensorBase.desc }
 ent-AirSensorVox = { ent-AirSensor }
     .desc = { ent-AirSensor.desc }
     .suffix = Атмосфера Воксов

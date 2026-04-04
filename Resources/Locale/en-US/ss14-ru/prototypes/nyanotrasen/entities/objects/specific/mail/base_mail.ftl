@@ -1,4 +1,4 @@
-ent-BaseMail = mail-item-name-unaddressed
+ent-BaseMail = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
 ent-MailAdminFun = { ent-BaseMail }
     .suffix = adminfun

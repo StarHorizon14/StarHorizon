@@ -16,5 +16,4 @@ gases-hyper-noblium = Гипер-Ноблиум
 gases-proto-nitrate = Прото-Нитрат
 gases-zauker = Цаукер
 gases-halon = Халон
-gases-helium = Гелий
 gases-anti-noblium = Анти-Ноблиум

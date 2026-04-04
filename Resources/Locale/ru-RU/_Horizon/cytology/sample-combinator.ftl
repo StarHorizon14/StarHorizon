@@ -1,7 +1,7 @@
 cytology-console-hair = Волосы
 cytology-console-facial-hair = Бороды
 cytology-console-cell-samples = Образцы:
-cytology-console-progress = Прогресс роста: {$progress}
+cytology-console-progress = Прогресс роста: { $progress }
 cytology-console-profile-editor = Изменение профиля:
 cytology-console-creature-image = Изображение:
 cytology-console-button-profile-edit = Профиль
@@ -10,7 +10,6 @@ cytology-console-creature-parameters = Примененные параметры
 cytology-console-available-disks = Доступные диски:
 cytology-console-editor-switch-marking-label = Переключить черты внешности
 cytology-console-no-modifications = Нет модификаций
-
 cytology-console-modifier-health = Здоровье
 cytology-console-modifier-speed = Скорость передвижения
 cytology-console-modifier-damage = Урон

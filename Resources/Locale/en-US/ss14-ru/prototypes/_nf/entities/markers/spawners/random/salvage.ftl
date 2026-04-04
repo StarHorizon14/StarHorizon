@@ -79,3 +79,5 @@ ent-NFSalvageDrinkableBarrelSpawner = { ent-MarkerBase }
     .desc = { ent-MarkerBase.desc }
 ent-NFSalvageEmptyBarrelSpawner = { ent-MarkerBase }
     .desc = { ent-MarkerBase.desc }
+ent-NFJukeboxRecordSpawner = jukebox record spawner
+    .desc = { ent-MarkerBase.desc }

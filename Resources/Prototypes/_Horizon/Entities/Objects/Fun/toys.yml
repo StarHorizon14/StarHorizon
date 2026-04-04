@@ -910,3 +910,92 @@
   - type: Item
     size: Small
     sprite: _StarHorizon/Objects/Fun/plushiechel.rsi
+
+- type: entity
+  parent: BaseItem
+  id: BLAT
+  name: БЛЯТЬ
+  description: Shut the fuck up
+  components:
+  - type: Sprite
+    sprite: _Horizon/error.rsi
+    state: blat
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 26
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: Slippery
+    slipData:
+      knockdownTime: 3
+      launchForwardsMultiplier: 3
+  - type: StepTrigger
+    intersectRatio: 0.2
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        hard: false
+        layer:
+        - SlipLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        density: 30
+        mask:
+        - ItemMask
+
+
+- type: entity
+  parent: BaseItem
+  id: BBAT
+  name: БВЯТЬ
+  description: УВУ
+  components:
+  - type: Sprite
+    sprite: _Horizon/error.rsi
+    state: bbat
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 26
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: Slippery
+    slipData:
+      knockdownTime: 3
+      launchForwardsMultiplier: 3
+  - type: StepTrigger
+    intersectRatio: 0.2
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        hard: false
+        layer:
+        - SlipLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        density: 30
+        mask:
+        - ItemMask

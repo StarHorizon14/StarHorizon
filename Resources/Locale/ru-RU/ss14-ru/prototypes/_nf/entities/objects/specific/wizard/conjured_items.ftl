@@ -1,6 +1,14 @@
 ent-ConjuredObject10 = { "" }
     .desc = Магически созданный объект, который рано или поздно исчезнет.
     .suffix = Наколдованный
+ent-ConjuredObject30 = { ent-ConjuredObject10 }
+    .desc = { ent-ConjuredObject10.desc }
+ent-ConjuredObject60 = { ent-ConjuredObject10 }
+    .desc = { ent-ConjuredObject10.desc }
+ent-ConjuredObject180 = { ent-ConjuredObject10 }
+    .desc = { ent-ConjuredObject10.desc }
+ent-ConjuredObject300 = { ent-ConjuredObject10 }
+    .desc = { ent-ConjuredObject10.desc }
 ent-BluntObject = ТупойПредмет
     .desc = Если ты это видишь — ты, вероятно, уже мёртв!
 ent-SoapConjured = мыло

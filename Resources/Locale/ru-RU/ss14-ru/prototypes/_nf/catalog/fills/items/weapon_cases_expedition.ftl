@@ -1,3 +1,5 @@
+ent-RareWeaponCase = { "" }
+    .desc = { "" }
 ent-WeaponCaseShortMk58Expedition = { ent-WeaponCaseShort }
     .suffix = Экспедиция, Mk58
     .desc = { ent-WeaponCaseShort.desc }

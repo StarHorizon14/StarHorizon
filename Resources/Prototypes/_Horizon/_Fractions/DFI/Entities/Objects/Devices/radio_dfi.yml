@@ -3,7 +3,7 @@
   name: DFI
   keycode: 'в'
   frequency: 1488
-  color: "#1a1a8c"
+  color: "#9999FF"
   longRange: true
 
 - type: entity

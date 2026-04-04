@@ -17,17 +17,19 @@
     damageCoefficient: 0.2
   - type: FireProtection
     reduction: 0.8
+  - type: StaminaResistance
+    damageCoefficient: 0.8
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.6
         Slash: 0.6
-        Piercing: 0.5
+        Piercing: 0.7
         Heat: 0.2
         Cold: 0.5
         Radiation: 0.01
-        Caustic: 0.1
-        Cellular: 0.7
+        Caustic: 0.2
+        Cellular: 0.9
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 0.9
@@ -59,10 +61,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.95
+        Heat: 0.8
+        Radiation: 0.25
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
   - type: UseDelay
     delay: 4
   - type: PNV

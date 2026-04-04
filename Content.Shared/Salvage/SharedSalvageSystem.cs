@@ -23,8 +23,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
     /// <summary>
     /// Main loot table for salvage expeditions.
     /// </summary>
-    [ValidatePrototypeId<SalvageLootPrototype>]
-    public const string ExpeditionsLootProto = "NFSalvageLootModerate"; // Frontier: SalvageLoot<NFSalvageLootModerate
+    public static readonly ProtoId<SalvageLootPrototype> ExpeditionsLootProto = "NFSalvageLootModerate"; // Frontier: SalvageLoot<NFSalvageLootModerate
 
     public string GetFTLName(LocalizedDatasetPrototype dataset, int seed)
     {
@@ -42,7 +41,8 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         // - Biome
         // - Lighting
         // - Atmos
-        var biome = GetMod<SalvageBiomeModPrototype>(rand, ref modifierBudget);
+        // Frontier: filter biomes by difficulty
+        var biome = GetBiomeModForDifficulty(difficulty.ID, rand, ref modifierBudget);
         var light = GetBiomeMod<SalvageLightMod>(biome.ID, rand, ref modifierBudget);
         var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref modifierBudget);
         var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget);
@@ -79,9 +79,18 @@ public abstract partial class SharedSalvageSystem : EntitySystem
             mods.Add(Loc.GetString(light.Description));
         }
 
-        var duration = TimeSpan.FromSeconds(CfgManager.GetCVar(CCVars.SalvageExpeditionDuration));
+        TimeSpan duration;
+        if (biome.MinDuration.HasValue && biome.MaxDuration.HasValue)
+        {
+            var durationSeconds = rand.Next(biome.MinDuration.Value, biome.MaxDuration.Value + 1);
+            duration = TimeSpan.FromSeconds(durationSeconds);
+        }
+        else
+        {
+            duration = TimeSpan.FromSeconds(CfgManager.GetCVar(CCVars.SalvageExpeditionDuration));
+        }
 
-        return new SalvageMission(seed, dungeon.ID, faction.ID, biome.ID, air.ID, temp.Temperature, light.Color, duration, mods, difficulty.ID, config); // Frontier: add difficulty.ID, config
+        return new SalvageMission(seed, dungeon.ID, faction.ID, biome.ID, air.ID, temp.Temperature, light.Color, duration, mods, difficulty.ID, config);
     }
 
     public T GetBiomeMod<T>(string biome, System.Random rand, ref float rating) where T : class, IPrototype, IBiomeSpecificMod
@@ -121,6 +130,50 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
         throw new InvalidOperationException();
     }
+
+    /// <summary>
+    /// Frontier: Get biome mod filtered by difficulty.
+    /// If biome has difficulties list, only use it for those difficulties.
+    /// If biome has no difficulties list, use it for all difficulties EXCEPT those that have dedicated biomes.
+    /// </summary>
+    public SalvageBiomeModPrototype GetBiomeModForDifficulty(string difficultyId, System.Random rand, ref float rating)
+    {
+        var allBiomes = _proto.EnumeratePrototypes<SalvageBiomeModPrototype>().ToList();
+
+        // Check if any biome is specifically for this difficulty
+        var dedicatedBiomes = allBiomes
+            .Where(b => b.Difficulties != null && b.Difficulties.Contains(difficultyId))
+            .ToList();
+
+        List<SalvageBiomeModPrototype> availableBiomes;
+
+        if (dedicatedBiomes.Count > 0)
+        {
+            // Use only dedicated biomes for this difficulty
+            availableBiomes = dedicatedBiomes;
+        }
+        else
+        {
+            // Use biomes that have no difficulty restriction
+            availableBiomes = allBiomes
+                .Where(b => b.Difficulties == null || b.Difficulties.Count == 0)
+                .ToList();
+        }
+
+        availableBiomes.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
+        rand.Shuffle(availableBiomes);
+
+        foreach (var biome in availableBiomes)
+        {
+            if (biome.Cost > rating)
+                continue;
+
+            rating -= biome.Cost;
+            return biome;
+        }
+
+        throw new InvalidOperationException($"No valid biome found for difficulty {difficultyId}");
+    }
 }
 
 // Frontier: salvage mission type
@@ -141,5 +194,11 @@ public enum SalvageMissionType : byte
     /// Maximum value for random generation, should not be used directly.
     /// </summary>
     Max = Elimination,
+
+    /// <summary>
+    /// Combined mission: both destroy structures AND kill megafauna.
+    /// Used for Inferno difficulty.
+    /// </summary>
+    Combined = 2,
 }
 // End Frontier

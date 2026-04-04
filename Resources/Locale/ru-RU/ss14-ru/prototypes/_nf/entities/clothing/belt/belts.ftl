@@ -1,3 +1,5 @@
+ent-ClothingWebbingArcadia = аркадианский РПС
+    .desc = РПС, созданный Arcadia Industries. Кажется, что в него поместится много всего.
 ent-ClothingBeltArcadia = аркадианский пояс
     .desc = Пояс созданный Arcadia Industries. Кажется, что в него поместится много всего.
 ent-ClothingBeltChaplainSash = пояс священника

@@ -19,6 +19,7 @@ using Robust.Shared.Physics.Components;
 using Content.Shared.Whitelist; // Frontier
 using Content.Shared.Buckle.Components; // Frontier
 using Content.Shared.Buckle; // Frontier
+using Content.Shared.Body.Events; // Horizon Mech
 using Content.Server.Body.Systems;
 using Content.Shared.Mind.Components; // Frontier
 using Content.Server.Ghost.Roles.Components; // Frontier
@@ -251,7 +252,7 @@ public sealed class MechGrabberSystem : EntitySystem
         // Horizon Mech start
         if (component.SlowMetabolism && args.Target.HasValue)
         {
-            var metabolicEvent = new ApplyMetabolicMultiplierEvent(args.Target.Value, 0.4f, false);
+            var metabolicEvent = new ApplyMetabolicMultiplierEvent(0.4f);
             RaiseLocalEvent(args.Target.Value, ref metabolicEvent);
         }
         // Horizon Mech end
@@ -279,7 +280,7 @@ public sealed class MechGrabberSystem : EntitySystem
         // - очистка контейнера при уничтожении оборудования
         if (component.SlowMetabolism)
         {
-            var metabolicEvent = new ApplyMetabolicMultiplierEvent(args.Entity, 0.4f, true);
+            var metabolicEvent = new ApplyMetabolicMultiplierEvent(0.4f);
             RaiseLocalEvent(args.Entity, ref metabolicEvent);
         }
     }

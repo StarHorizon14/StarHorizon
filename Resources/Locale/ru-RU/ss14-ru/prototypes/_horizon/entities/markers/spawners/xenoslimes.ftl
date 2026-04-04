@@ -42,4 +42,3 @@ ent-RandomPinkSlimeMutation = случайная мутация розового
     .desc = { ent-MarkerBase.desc }
 ent-RandomCeruleanSlimeMutation = случайная мутация лазурного слайма
     .desc = { ent-MarkerBase.desc }
-

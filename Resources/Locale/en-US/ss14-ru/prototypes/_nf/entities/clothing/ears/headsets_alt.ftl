@@ -34,3 +34,5 @@ ent-ClothingHeadsetAltScienceCommon = { ent-ClothingHeadsetCommon }
     .desc = { ent-ClothingHeadsetCommon.desc }
 ent-ClothingHeadsetAltCentComCommon = { ent-ClothingHeadsetCommon }
     .desc = { ent-ClothingHeadsetCommon.desc }
+ent-ClothingHeadsetAltArcadia = arcadia over-ear headset
+    .desc = A dashing and attractive headset.

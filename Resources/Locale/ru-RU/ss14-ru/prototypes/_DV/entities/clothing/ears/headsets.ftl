@@ -1,2 +1,2 @@
-ent-ClothingHeadsetPrison = гарнитура заключённого
-    .desc = Гарнитура, используемая заключёнными. Преступно неудобная.
+ent-ClothingHeadsetPrison = prisoner headset
+    .desc = A headset used by prisoners. Criminally uncomfortable.

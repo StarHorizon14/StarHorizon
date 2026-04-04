@@ -1,4 +1,4 @@
-ent-OrganKatunianStomach = { ent-OrganAnimalStomach }
-    .desc = { ent-OrganAnimalStomach.desc }
-ent-OrganKatunianHeart = { ent-BaseArachnidOrgan }
-    .desc = { ent-BaseArachnidOrgan.desc }
+ent-OrganKatunianStomach = желудок катунианца
+    .desc = { ent-OrganHumanStomach.desc }
+ent-OrganKatunianHeart = { ent-OrganHumanHeart }
+    .desc = { ent-OrganHumanHeart.desc }

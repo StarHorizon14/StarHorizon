@@ -36,11 +36,6 @@
     factions:
     - SimpleHostile
   - type: Carriable # Carrying system from nyanotrasen.
-  - type: Advertise
-    pack: syndicatehumanoidchatter
-    minimumWait: 120
-    maximumWait: 240
-    nextAdvertisementTime: 0
   - type: FTLKnockdownImmune
   - type: Respirator
     updateInterval: 99999 # Shouldn't run often, if ever.
@@ -77,11 +72,6 @@
     rechargeCooldown: 1
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Advertise
-    pack: spacepiratehumanoidchatter
-    minimumWait: 30
-    maximumWait: 120
-    nextAdvertisementTime: 10
   - type: AutoWakeUp
 
 #region Humans
@@ -161,11 +151,6 @@
   - type: RandomHumanoidAppearance
     randomizeName: true
   - type: RandomMetadata
-  - type: Advertise
-    pack: spacepiratehumanoidchatter
-    minimumWait: 30
-    maximumWait: 120
-    nextAdvertisementTime: 10
   - type: AutoWakeUp
   - type: MeleeWeapon
     attackRate: 1.0

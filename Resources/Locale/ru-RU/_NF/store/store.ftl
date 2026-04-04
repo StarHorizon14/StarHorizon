@@ -12,7 +12,6 @@ store-category-secgunnery-ammo = Боеприпасы орудий
 store-category-secgunnery-consoles = Оборудование шаттла
 store-category-secmechas = Мехи
 store-category-secborges = Борги
-
 store-preset-name-pirate-uplink = Пиратский Аплинк
 store-category-piratehardsuits = Броня
 store-category-pirateweapons = Вооружение

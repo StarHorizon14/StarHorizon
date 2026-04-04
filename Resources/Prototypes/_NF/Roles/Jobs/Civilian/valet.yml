@@ -35,10 +35,10 @@
     id: ValetPDA
   storage:
     back:
-    - EncryptionKeyService
     - ShipVoucherFrontierValet
   encryptionKeys:
   - EncryptionKeyGreeting
+  - EncryptionKeyService
 
 - type: chameleonOutfit
   id: ValetChameleonOutfit

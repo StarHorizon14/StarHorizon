@@ -22,5 +22,3 @@ ent-FoodBurgerCottonCheese = cotton cheeseburger
     .desc = Cheese and cotton between two buns, a simple moth delight!
 ent-FoodBurgerCotton = cotton burger
     .desc = Why can't moths enjoy a good burger too?
-ent-FoodBunCotton = cotton bun
-    .desc = A burger bun made of fibrous cotton.

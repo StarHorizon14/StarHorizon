@@ -1,1 +1,1 @@
-verb-toggle-growing-vat =  переключить устройство
+verb-toggle-growing-vat = переключить устройство

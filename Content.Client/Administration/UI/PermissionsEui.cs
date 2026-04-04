@@ -214,6 +214,7 @@ namespace Content.Client.Administration.UI
                 al.AddChild(new Label { Text = name });
 
                 var titleControl = new Label { Text = admin.Title ?? Loc.GetString("permissions-eui-edit-admin-title-control-text").ToLowerInvariant() };
+                titleControl.Text = FormattedMessage.RemoveMarkupPermissive(titleControl.Text); // Horizon
                 if (admin.Title == null) // none
                 {
                     titleControl.StyleClasses.Add(StyleBase.StyleClassItalic);
@@ -236,8 +237,16 @@ namespace Content.Client.Administration.UI
                     italic = true;
                     rank = Loc.GetString("permissions-eui-edit-no-rank-text").ToLowerInvariant();
                 }
-
-                var rankControl = new Label { Text = rank };
+                // Horizon start
+                Label? rankControl = null;
+                if (rank == string.Empty)
+                {
+                    rankControl = new Label { Text = Loc.GetString("permissions-eui-edit-admin-window-no-rank-name-button") };
+                    rankControl.StyleClasses.Add(StyleBase.StyleClassItalic);
+                }
+                else
+                    rankControl = new Label { Text = FormattedMessage.RemoveMarkupPermissive(rank) };
+                // Horizon end
                 if (italic)
                 {
                     rankControl.StyleClasses.Add(StyleBase.StyleClassItalic);
@@ -270,7 +279,7 @@ namespace Content.Client.Administration.UI
             {
                 var rank = kv.Value;
                 var flagsText = string.Join(' ', AdminFlagsHelper.FlagsToNames(rank.Flags).Select(f => $"+{f}"));
-                _menu.AdminRanksList.AddChild(new Label { Text = rank.Name });
+                _menu.AdminRanksList.AddChild(new Label { Text = FormattedMessage.RemoveMarkupPermissive(rank.Name) }); // Horizon
                 _menu.AdminRanksList.AddChild(new Label
                 {
                     Text = flagsText,
@@ -394,7 +403,14 @@ namespace Content.Client.Administration.UI
                 RankButton.AddItem(Loc.GetString("permissions-eui-edit-admin-window-no-rank-button"), NoRank);
                 foreach (var (rId, rank) in ui._ranks)
                 {
-                    RankButton.AddItem(rank.Name, rId);
+                    // Horizon start
+                    if (rank.Name == string.Empty)
+                    {
+                        RankButton.AddItem(Loc.GetString("permissions-eui-edit-admin-window-no-rank-name-button"), rId);
+                    }
+                    else
+                        RankButton.AddItem(FormattedMessage.RemoveMarkupPermissive(rank.Name), rId);
+                    // Horizon end
                 }
 
                 RankButton.SelectId(data?.RankId ?? NoRank);

@@ -24,7 +24,6 @@ public abstract partial class SharedShuttleSystem : EntitySystem
     [Dependency] protected readonly SharedTransformSystem XformSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _powerReceiverSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
     public const float FTLRange = 256f;
     public const float FTLBufferRange = 8f;
@@ -211,7 +210,7 @@ public abstract partial class SharedShuttleSystem : EntitySystem
 
         // Just checks if any grids inside a buffer range at the target position.
         _grids.Clear();
-        var mapCoordinates = _transformSystem.ToMapCoordinates(coordinates);
+        var mapCoordinates = XformSystem.ToMapCoordinates(coordinates);
 
         var ourPos = Maps.GetGridPosition((shuttleUid, shuttlePhysics, shuttleXform));
 

@@ -1,4 +1,4 @@
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Shared._Horizon.Traits;
 using Content.Shared.Weapons.Melee;
@@ -21,10 +21,12 @@ public sealed partial class ModifyBloodstream : BaseTraitEffect
         if (!entMan.TryGetComponent<BloodstreamComponent>(uid, out var comp))
             return;
 
-        comp.BloodRefreshAmount *= RefreshModifier;
-        comp.BleedReductionAmount *= BleedReductionModifier;
+        var bloodstream = entMan.System<BloodstreamSystem>();
+
+        bloodstream.SetBloodRefreshAmount(uid, comp, comp.BloodRefreshAmount * RefreshModifier);
+        bloodstream.SetBleedReductionAmount(uid, comp, comp.BleedReductionAmount * BleedReductionModifier);
 
         if (BloodReagent != null)
-            entMan.System<BloodstreamSystem>().ChangeBloodReagent(uid, BloodReagent);
+            bloodstream.ChangeBloodReagent(uid, BloodReagent);
     }
 }

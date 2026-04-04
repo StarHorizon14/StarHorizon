@@ -46,8 +46,5 @@ reagent-desc-zauker = A highly toxic gas, it's production is highly regulated on
 reagent-name-halon = halon
 reagent-desc-halon = A potent fire supressant. Removes oxygen from high temperature fires and cools down the area.
 
-reagent-name-helium = helium
-reagent-desc-helium = A very inert gas produced by the fusion of hydrogen and it's derivatives.
-
 reagent-name-anti-nob = anti-noblium
 reagent-desc-anti-nob = We still don't know what it does, but it sells for a lot.

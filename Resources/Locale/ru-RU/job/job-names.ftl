@@ -57,6 +57,7 @@ job-name-syndicate = Синдикат
 job-name-unknown = Неизвестно
 job-name-virologist = Вирусолог
 job-name-zombie = Зомби
+job-name-cluwne = Клувень
 # Сервисный отдел
 job-name-bartender = Бармен
 job-name-botanist = Ботаник

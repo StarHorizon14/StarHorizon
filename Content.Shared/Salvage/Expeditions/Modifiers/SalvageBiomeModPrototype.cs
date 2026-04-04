@@ -28,4 +28,13 @@ public sealed partial class SalvageBiomeModPrototype  : IPrototype, ISalvageMod
 
     [DataField("biome", required: true, customTypeSerializer:typeof(PrototypeIdSerializer<BiomeTemplatePrototype>))]
     public string? BiomePrototype;
+
+    [DataField("difficulties")]
+    public List<string>? Difficulties { get; private set; }
+
+    [DataField("minDuration")]
+    public int? MinDuration { get; private set; }
+
+    [DataField("maxDuration")]
+    public int? MaxDuration { get; private set; }
 }

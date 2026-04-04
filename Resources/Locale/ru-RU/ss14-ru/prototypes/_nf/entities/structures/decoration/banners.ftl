@@ -6,3 +6,5 @@ ent-BannerGoblin01 = знамя Гоблинов
     .desc = Знамя со знаком одного из кланов гоблинов.
 ent-BannerFsb = знамя FSB
     .desc = Знамя с эмблемой корпорации Far Star Biotech.
+ent-NFBannerWizard = знамя Федерации Волшебников
+    .desc = Знамя с эмблемой Федерации Волшебников.
