@@ -604,6 +604,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("horizon_admin_loadout_id");
 
+                    b.Property<string>("CharacterName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("character_name");
+
                     b.Property<string>("ComponentOverridesYaml")
                         .HasColumnType("TEXT")
                         .HasColumnName("component_overrides_yaml");

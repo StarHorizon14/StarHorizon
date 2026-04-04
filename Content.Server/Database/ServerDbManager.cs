@@ -371,7 +371,7 @@ namespace Content.Server.Database
         // Horizon: Admin Loadout Items
         #region Horizon Admin Loadout
 
-        Task<List<HorizonAdminLoadout>> GetAdminLoadoutItemsAsync(Guid userId);
+        Task<List<HorizonAdminLoadout>> GetAdminLoadoutItemsAsync(Guid userId, string characterName);
         Task<HorizonAdminLoadout> AddAdminLoadoutItemAsync(HorizonAdminLoadout item);
         Task<bool> RemoveAdminLoadoutItemAsync(int id);
         Task<bool> SetAdminLoadoutItemEnabledAsync(int id, bool enabled);
@@ -1119,10 +1119,10 @@ namespace Content.Server.Database
         // Horizon: Admin Loadout Items
         #region Horizon Admin Loadout
 
-        public Task<List<HorizonAdminLoadout>> GetAdminLoadoutItemsAsync(Guid userId)
+        public Task<List<HorizonAdminLoadout>> GetAdminLoadoutItemsAsync(Guid userId, string characterName)
         {
             DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetAdminLoadoutItemsAsync(userId));
+            return RunDbCommand(() => _db.GetAdminLoadoutItemsAsync(userId, characterName));
         }
 
         public Task<HorizonAdminLoadout> AddAdminLoadoutItemAsync(HorizonAdminLoadout item)

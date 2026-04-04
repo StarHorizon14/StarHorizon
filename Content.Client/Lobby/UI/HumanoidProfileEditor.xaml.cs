@@ -356,8 +356,11 @@ namespace Content.Client.Lobby.UI
                 }
             };
 
-            // Request items from server
-            _eventItemsTab.RequestItems();
+            // Request items from server for the current character
+            var initialCharName = _preferencesManager.Preferences?.SelectedCharacter is HumanoidCharacterProfile initialProfile
+                ? initialProfile.Name
+                : string.Empty;
+            _eventItemsTab.RequestItems(initialCharName);
 
             #endregion EventItems
 
@@ -979,6 +982,9 @@ namespace Content.Client.Lobby.UI
             {
                 PreferenceUnavailableButton.SelectId((int) Profile.PreferenceUnavailable);
             }
+
+            // Horizon: Re-request event items for the new character
+            _eventItemsTab?.RequestItems(Profile?.Name ?? string.Empty);
         }
 
 

@@ -1384,6 +1384,12 @@ namespace Content.Server.Database
         public Guid PlayerUserId { get; set; }
 
         /// <summary>
+        /// The character name this item is bound to.
+        /// </summary>
+        [Required]
+        public string CharacterName { get; set; } = null!;
+
+        /// <summary>
         /// The base entity prototype ID.
         /// </summary>
         [Required]

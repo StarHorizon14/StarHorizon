@@ -176,6 +176,7 @@ public sealed class EventItemsSystem : EntitySystem
     public async void GrantItemToPlayer(
         EntityUid itemEntity,
         Guid targetPlayerUserId,
+        string characterName,
         int creditCost,
         int? maxUses,
         string grantedBy)
@@ -205,18 +206,19 @@ public sealed class EventItemsSystem : EntitySystem
 
         var usesStr = maxUses.HasValue ? $"{maxUses.Value}" : "permanent";
         var targetCkey = GetPlayerNameByUserId(targetPlayerUserId);
-        _sawmill.Info($"Granting event item to player {targetCkey} ({targetPlayerUserId}): proto={protoId}, name={customName ?? "(default)"}, desc={customDesc ?? "(default)"}, cost={creditCost}, uses={usesStr}, hasOverrides={overridesYaml != null}, grantedBy={grantedBy}");
+        _sawmill.Info($"Granting event item to player {targetCkey} ({targetPlayerUserId}), character '{characterName}': proto={protoId}, name={customName ?? "(default)"}, desc={customDesc ?? "(default)"}, cost={creditCost}, uses={usesStr}, hasOverrides={overridesYaml != null}, grantedBy={grantedBy}");
 
         var dbItem = new HorizonAdminLoadout
         {
             PlayerUserId = targetPlayerUserId,
+            CharacterName = characterName,
             PrototypeId = protoId,
             ComponentOverridesYaml = overridesYaml,
             CustomName = customName,
             CustomDescription = customDesc,
             CreditCost = creditCost,
             MaxUses = maxUses,
-            RemainingUses = maxUses, // Initially remaining = max
+            RemainingUses = maxUses,
             IsEnabled = true,
             GrantedBy = grantedBy,
             GrantedAt = DateTime.UtcNow,
@@ -225,11 +227,11 @@ public sealed class EventItemsSystem : EntitySystem
         try
         {
             await _db.AddAdminLoadoutItemAsync(dbItem);
-            _sawmill.Info($"Successfully saved event item {protoId} for player {targetCkey} ({targetPlayerUserId}) to database.");
+            _sawmill.Info($"Successfully saved event item {protoId} for player {targetCkey} ({targetPlayerUserId}), character '{characterName}' to database.");
 
             // Immediately notify the target player if they're online
-            _sawmill.Debug($"Notifying player {targetCkey} ({targetPlayerUserId}) about new event item.");
-            SendItemsToPlayer(targetPlayerUserId);
+            _sawmill.Debug($"Notifying player {targetCkey} ({targetPlayerUserId}) about new event item for character '{characterName}'.");
+            SendItemsToPlayer(targetPlayerUserId, characterName);
         }
         catch (Exception ex)
         {
@@ -240,13 +242,13 @@ public sealed class EventItemsSystem : EntitySystem
     /// <summary>
     /// Removes an event item from the database.
     /// </summary>
-    public async void RemoveItem(int itemId, Guid playerUserId)
+    public async void RemoveItem(int itemId, Guid playerUserId, string characterName)
     {
         try
         {
             await _db.RemoveAdminLoadoutItemAsync(itemId);
-            _sawmill.Info($"Removed event item {itemId}");
-            SendItemsToPlayer(playerUserId);
+            _sawmill.Info($"Removed event item {itemId} for character '{characterName}'");
+            SendItemsToPlayer(playerUserId, characterName);
         }
         catch (Exception ex)
         {
@@ -256,27 +258,28 @@ public sealed class EventItemsSystem : EntitySystem
 
     /// <summary>
     /// Sends the full list of event items to a player if they're online.
+    /// Uses the character name to filter items bound to a specific character.
     /// </summary>
-    public async void SendItemsToPlayer(Guid userId)
+    public async void SendItemsToPlayer(Guid userId, string characterName)
     {
         if (!_playerManager.TryGetSessionByUsername(
                 GetPlayerNameByUserId(userId), out var session))
             return;
 
-        await SendItemsToSession(session, userId);
+        await SendItemsToSession(session, userId, characterName);
     }
 
     /// <summary>
-    /// Sends the full list of event items to a specific session.
+    /// Sends the full list of event items for a specific character to a session.
     /// </summary>
-    public async Task SendItemsToSession(ICommonSession session, Guid userId)
+    public async Task SendItemsToSession(ICommonSession session, Guid userId, string characterName)
     {
         try
         {
-            var dbItems = await _db.GetAdminLoadoutItemsAsync(userId);
+            var dbItems = await _db.GetAdminLoadoutItemsAsync(userId, characterName);
             var items = dbItems.Select(ConvertToData).ToList();
 
-            _sawmill.Debug($"Sending {items.Count} event items to player {session.Name} ({userId}).");
+            _sawmill.Debug($"Sending {items.Count} event items to player {session.Name} ({userId}), character '{characterName}'.");
 
             var msg = new EventItemListMsg { Items = items };
             RaiseNetworkEvent(msg, session);
@@ -290,8 +293,8 @@ public sealed class EventItemsSystem : EntitySystem
     private void OnItemRequest(EventItemRequestMsg msg, EntitySessionEventArgs args)
     {
         var userId = args.SenderSession.UserId.UserId;
-        _sawmill.Debug($"Player {args.SenderSession.Name} ({userId}) requested event items list.");
-        _ = SendItemsToSession(args.SenderSession, userId);
+        _sawmill.Debug($"Player {args.SenderSession.Name} ({userId}) requested event items list for character '{msg.CharacterName}'.");
+        _ = SendItemsToSession(args.SenderSession, userId, msg.CharacterName);
     }
 
     private async void OnItemToggle(EventItemToggleMsg msg, EntitySessionEventArgs args)
@@ -325,6 +328,7 @@ public sealed class EventItemsSystem : EntitySystem
         {
             Id = dbItem.Id,
             PrototypeId = dbItem.PrototypeId,
+            CharacterName = dbItem.CharacterName,
             CustomName = dbItem.CustomName,
             CustomDescription = dbItem.CustomDescription,
             CreditCost = dbItem.CreditCost,

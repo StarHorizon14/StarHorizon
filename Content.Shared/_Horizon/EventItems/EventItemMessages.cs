@@ -8,11 +8,12 @@ namespace Content.Shared._Horizon.EventItems;
 // ---- Network events for event items tab (client <-> server) ----
 
 /// <summary>
-/// Sent by the client to request the list of event items.
+/// Sent by the client to request the list of event items for a specific character.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class EventItemRequestMsg : EntityEventArgs
 {
+    public string CharacterName { get; set; } = string.Empty;
 }
 
 /// <summary>
@@ -86,6 +87,7 @@ public sealed class EventItemPlayerInfo
 public sealed class GrantEventItemMessage : EuiMessageBase
 {
     public Guid TargetPlayerUserId { get; set; }
+    public string CharacterName { get; set; } = string.Empty;
     public int CreditCost { get; set; }
 
     /// <summary>

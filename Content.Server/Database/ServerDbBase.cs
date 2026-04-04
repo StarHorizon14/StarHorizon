@@ -1933,12 +1933,12 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         // Horizon: Admin Loadout Items
         #region Horizon Admin Loadout
 
-        public async Task<List<HorizonAdminLoadout>> GetAdminLoadoutItemsAsync(Guid userId)
+        public async Task<List<HorizonAdminLoadout>> GetAdminLoadoutItemsAsync(Guid userId, string characterName)
         {
             await using var db = await GetDb();
 
             return await db.DbContext.HorizonAdminLoadout
-                .Where(p => p.PlayerUserId == userId)
+                .Where(p => p.PlayerUserId == userId && p.CharacterName == characterName)
                 .ToListAsync();
         }
 

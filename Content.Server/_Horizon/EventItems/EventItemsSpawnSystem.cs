@@ -64,15 +64,16 @@ public sealed class EventItemsSpawnSystem : EntitySystem
     private async void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
     {
         var userId = ev.Player.UserId.UserId;
+        var characterName = ev.Profile.Name;
 
         List<HorizonAdminLoadout> items;
         try
         {
-            items = await _db.GetAdminLoadoutItemsAsync(userId);
+            items = await _db.GetAdminLoadoutItemsAsync(userId, characterName);
         }
         catch (Exception ex)
         {
-            _sawmill.Error($"Failed to load event items for player {ev.Player.Name}: {ex}");
+            _sawmill.Error($"Failed to load event items for player {ev.Player.Name}, character '{characterName}': {ex}");
             return;
         }
 

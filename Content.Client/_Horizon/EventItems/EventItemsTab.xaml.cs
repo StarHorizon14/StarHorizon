@@ -26,12 +26,12 @@ public sealed partial class EventItemsTab : BoxContainer
     }
 
     /// <summary>
-    /// Requests the server to send the event items for the current player.
+    /// Requests the server to send the event items for a specific character.
     /// </summary>
-    public void RequestItems()
+    public void RequestItems(string characterName)
     {
         var system = _entManager.System<EventItemsUISystem>();
-        system.RequestItems();
+        system.RequestItems(characterName);
     }
 
     /// <summary>

@@ -26,12 +26,12 @@ public sealed class EventItemsUISystem : EntitySystem
     }
 
     /// <summary>
-    /// Sends a request to the server for event items.
+    /// Sends a request to the server for event items for a specific character.
     /// </summary>
-    public void RequestItems()
+    public void RequestItems(string characterName)
     {
-        _sawmill.Debug("Requesting event items from server.");
-        RaiseNetworkEvent(new EventItemRequestMsg());
+        _sawmill.Debug($"Requesting event items from server for character '{characterName}'.");
+        RaiseNetworkEvent(new EventItemRequestMsg { CharacterName = characterName });
     }
 
     /// <summary>

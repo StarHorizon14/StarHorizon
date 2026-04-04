@@ -20,6 +20,11 @@ public sealed class EventItemData
     public string PrototypeId { get; set; } = string.Empty;
 
     /// <summary>
+    /// The character name this item is bound to.
+    /// </summary>
+    public string CharacterName { get; set; } = string.Empty;
+
+    /// <summary>
     /// Custom entity name if modified, otherwise null.
     /// </summary>
     public string? CustomName { get; set; }

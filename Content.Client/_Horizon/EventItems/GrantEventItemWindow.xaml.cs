@@ -13,9 +13,9 @@ namespace Content.Client._Horizon.EventItems;
 public sealed partial class GrantEventItemWindow : DefaultWindow
 {
     /// <summary>
-    /// Fired when admin confirms: targetUserId, creditCost, maxUses (null = permanent).
+    /// Fired when admin confirms: targetUserId, characterName, creditCost, maxUses (null = permanent).
     /// </summary>
-    public event Action<Guid, int, int?>? OnConfirm;
+    public event Action<Guid, string, int, int?>? OnConfirm;
 
     private List<EventItemPlayerInfo> _players = new();
     private EventItemPlayerInfo? _selectedPlayer;
@@ -89,6 +89,6 @@ public sealed partial class GrantEventItemWindow : DefaultWindow
 
         int? maxUses = PermanentCheckBox.Pressed ? null : Math.Max(1, UsesSpinBox.Value);
 
-        OnConfirm?.Invoke(_selectedPlayer.UserId, CreditCostSpinBox.Value, maxUses);
+        OnConfirm?.Invoke(_selectedPlayer.UserId, _selectedPlayer.CharacterName, CreditCostSpinBox.Value, maxUses);
     }
 }
