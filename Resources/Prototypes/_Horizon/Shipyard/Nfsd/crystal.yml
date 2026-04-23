@@ -20,6 +20,7 @@
   shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/crystal.yml
   class:
   - Science
+  - Patrol
   engine:
   - Bananium
   # Horizon start
