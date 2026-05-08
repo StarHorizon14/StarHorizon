@@ -22,3 +22,8 @@
   parent: [ BaseCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
   id: CytologySampleCombinatorComputerCircuitboard
   result: CytologySampleCombinatorComputerCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringComputerRecipeCategory ]
+  id: RemoteControllerCircuitboard
+  result: RemoteControllerCircuitboard

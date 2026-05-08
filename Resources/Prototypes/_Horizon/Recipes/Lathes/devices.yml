@@ -27,3 +27,16 @@
   materials:
     Steel: 400
     Glass: 100
+
+# Lathe recipes for RemoteControl research (IDs must match recipeUnlocks in techtree).
+- type: latheRecipe
+  id: RemoteControlDevice
+  result: RemoteControlDevice
+  categories:
+  - Tools
+  completetime: 4
+  materials:
+    Steel: 200
+    Plastic: 250
+    Glass: 200
+    Gold: 100
