@@ -577,6 +577,7 @@
     - NFSurgeryMedicalToolsStatic #Frontier
     - NFTopicalsStatic # Frontier
     - NFMedicalArchetypeStatic # Frontier
+    - CytologyEquipment # Horizon
     # dynamicPacks: # Frontier
     # - Chemistry # Frontier
   - type: Machine
