@@ -264,6 +264,14 @@ public sealed class MechGrabberSystem : EntitySystem
     // Horizon Mech start
     private void OnTerminating(EntityUid uid, MechGrabberComponent comp, ref EntityTerminatingEvent args)   // Horizon Mech
     {
+        // Если родитель (мех) тоже терминируется (например, при перезапуске раунда или удалении меха),
+        // не нужно опустошать контейнер: движок попытается перепривязать содержимое к мех-родителю,
+        // который сам в стадии Terminating, и это приведёт к ERRO от SharedContainerSystem.Insert.
+        // Дочерние сущности и так будут корректно удалены каскадным RecursiveFlagEntityTermination.
+        var xform = Transform(uid);
+        if (xform.ParentUid.IsValid() && TerminatingOrDeleted(xform.ParentUid))
+            return;
+
         _container.EmptyContainer(comp.ItemContainer, true);
     }
 
