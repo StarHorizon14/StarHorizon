@@ -218,6 +218,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     {
         if (args.SenderSession.AttachedEntity is not {} user)
             return;
+        if (!user.IsValid())
+            return;
 
         if (!TryGetWeapon(user, out var weaponUid, out var weapon) ||
             weaponUid != GetEntity(msg.Weapon))
@@ -232,6 +234,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     {
         if (args.SenderSession.AttachedEntity is not {} user)
             return;
+        if (!user.IsValid())
+            return;
 
         if (!TryGetWeapon(user, out var weaponUid, out var weapon) ||
             weaponUid != GetEntity(msg.Weapon))
@@ -245,6 +249,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     private void OnDisarmAttack(DisarmAttackEvent msg, EntitySessionEventArgs args)
     {
         if (args.SenderSession.AttachedEntity is not {} user)
+            return;
+        if (!user.IsValid())
             return;
 
         if (TryGetWeapon(user, out var weaponUid, out var weapon))
@@ -603,6 +609,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     private bool DoHeavyAttack(EntityUid user, HeavyAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session)
     {
         // TODO: This is copy-paste as fuck with DoPreciseAttack
+        if (!user.IsValid())
+            return false;
+
         if (!TryComp(user, out TransformComponent? userXform))
             return false;
 
