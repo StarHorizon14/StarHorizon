@@ -29,9 +29,18 @@ public sealed class QuirksSystem : SharedQuirksSystem
         var query = EntityQueryEnumerator<TraitPendingBodyModificationComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            var root = _body.GetRootPartOrNull(uid);
+            if (!TryComp<BodyComponent>(uid, out var bodyComp))
+            {
+                RemCompDeferred(uid, comp);
+                continue;
+            }
+
+            var root = _body.GetRootPartOrNull(uid, bodyComp);
             if (root is null)
-                return;
+            {
+                RemCompDeferred(uid, comp);
+                continue;
+            }
 
             for (var i = comp.Parts.Count - 1; i >= 0; i--)
             {
