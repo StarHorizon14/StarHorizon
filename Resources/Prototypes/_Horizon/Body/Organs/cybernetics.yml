@@ -217,6 +217,7 @@
     metabolizerTypes: [Human]
     groups:
     - id: Medicine
+    - id: Cryogenic # Frontier
     - id: Poison
     - id: Narcotic
   - type: OrganDamage
@@ -247,6 +248,7 @@
     metabolizerTypes: [Human]
     groups:
     - id: Medicine
+    - id: Cryogenic # Frontier
     - id: Poison
     - id: Narcotic
   - type: OrganDamage
@@ -277,6 +279,7 @@
     metabolizerTypes: [Arachnid]
     groups:
     - id: Medicine
+    - id: Cryogenic # Frontier
     - id: Poison
     - id: Narcotic
   - type: OrganDamage
