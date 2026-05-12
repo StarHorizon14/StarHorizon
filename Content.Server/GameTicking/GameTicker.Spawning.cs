@@ -289,8 +289,23 @@ namespace Content.Server.GameTicking
             }
 
             var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character, spawnPointType: spawnPointType, session: player); // Frontier: add session
-            DebugTools.AssertNotNull(mobMaybe);
-            var mob = mobMaybe!.Value;
+            if (mobMaybe == null)
+            {
+                Log.Warning(
+                    "Player {Player} could not be spawned for job {Job} on station {Station}: no valid spawn location (e.g. vessel left).",
+                    player.Name,
+                    jobId,
+                    Name(station));
+                QueueDel(newMind);
+                PlayerJoinLobby(player);
+                _chatManager.DispatchServerMessage(player,
+                    Loc.GetString("game-ticker-player-spawn-no-valid-location"));
+                var evNoSpawn = new NoJobsAvailableSpawningEvent(player);
+                RaiseLocalEvent(evNoSpawn);
+                return;
+            }
+
+            var mob = mobMaybe.Value;
 
             _mind.TransferTo(newMind, mob);
 

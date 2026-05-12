@@ -27,6 +27,7 @@ game-ticker-get-info-preround-text =
     >[color=yellow]{ $desc }[/color]
 game-ticker-no-map-selected = [color=red]Карта не выбрана![/color]
 game-ticker-player-no-jobs-available-when-joining = При попытке присоединиться к игре ни одной роли не было доступно.
+game-ticker-player-spawn-no-valid-location = Не удалось разместить вас на выбранной станции (возможно, её уже нет). Слот роли не был занят — выберите другую роль или дождитесь экипажа.
 # Displayed in chat to admins when a player joins
 player-join-message = Игрок { $name } подключился.
 player-first-join-message = Игрок { $name } зашёл на сервер впервые!

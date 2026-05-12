@@ -1,7 +1,9 @@
 using Content.Server.GameTicking;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Roles;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Spawners.EntitySystems;
@@ -9,6 +11,7 @@ namespace Content.Server.Spawners.EntitySystems;
 public sealed class SpawnPointSystem : EntitySystem
 {
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
@@ -50,9 +53,23 @@ public sealed class SpawnPointSystem : EntitySystem
                 }
             }
 
-            if (_gameTicker.RunLevel == GameRunLevel.InRound && spawnPoint.SpawnType == SpawnPointType.LateJoin)
+            if (_gameTicker.RunLevel == GameRunLevel.InRound)
             {
-                possiblePositions.Add(xform.Coordinates);
+                if (spawnPoint.SpawnType == SpawnPointType.LateJoin)
+                {
+                    possiblePositions.Add(xform.Coordinates);
+                }
+                // Frontier: interview / job-entity roles (e.g. hologram applicants) use Job spawn markers on the
+                // vessel, not LateJoin. Without this, an empty list triggers the global fallback and players
+                // appear on the wrong map (e.g. Frontier outpost) after the ship left.
+                else if (spawnPoint.SpawnType == SpawnPointType.Job
+                         && args.Job != null
+                         && spawnPoint.Job == args.Job
+                         && _prototypeManager.TryIndex(args.Job.Value, out JobPrototype? jobPrototype)
+                         && jobPrototype.JobEntity != null)
+                {
+                    possiblePositions.Add(xform.Coordinates);
+                }
             }
 
             if (_gameTicker.RunLevel != GameRunLevel.InRound &&
@@ -65,6 +82,17 @@ public sealed class SpawnPointSystem : EntitySystem
 
         if (possiblePositions.Count == 0)
         {
+            // Do not send players to an arbitrary station/map when they picked a specific station (e.g. vessel
+            // job slot still open but grid is gone): that produced interview holograms on Frontier.
+            if (args.Station != null)
+            {
+                Log.Warning(
+                    "No spawn points for station {0} (job: {1}); refusing unrelated-map fallback.",
+                    ToPrettyString(args.Station.Value),
+                    args.Job);
+                return;
+            }
+
             // Ok we've still not returned, but we need to put them /somewhere/.
             // TODO: Refactor gameticker spawning code so we don't have to do this!
             var points2 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
