@@ -1,8 +1,8 @@
 <Document>
   # ТРАНСПОРТИРОВОЧНЫЙ ШАТТЛ КЛАССА CHARON
   <Box>
-  <GuideEntityEmbed Entity="BannerEngineering"/>
-  <GuideEntityEmbed Entity="EngineeringTechFab"/>
+  <GuideEntityEmbed Entity="BannerCargo"/>
+  <GuideEntityEmbed Entity="CargoTechFabNF"/>
   <GuideEntityEmbed Entity="ShipyardRCD"/>
   <GuideEntityEmbed Entity="ClothingBeltUtilityEngineering"/>
   </Box>
@@ -31,27 +31,27 @@
   <GuideEntityEmbed Entity="SubstationBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
-  
+
   - Удостоверьтесь в том, чтобы СМЭС был прикреплен к полу.
   - Удостоверьтесь в том, чтобы подстанция была прикреплена к полу.
   - Удостоверьтесь в том, чтобы все ЛКП были включены.
   - Проверьте текущую нагрузку всех ЛКП* (W).
-  
+
   ## 1.2. Двигатель антиматерии
   <Box>
   <GuideEntityEmbed Entity="AmeController"/>
   <GuideEntityEmbed Entity="AmeJar"/>
   <GuideEntityEmbed Entity="ComputerPowerMonitoring"/>
   </Box>
-  
+
   - Удостоверьтесь в том, чтобы ДАМ был собран правильно.
   - Удостоверьтесь в том, чтобы контроллер ДАМ был закреплен к полу.
   - Проверьте состояние топлива в контроллере ДАМ.
   - Проверьте количество впрысков в контроллере ДАМ.
   - Начните впрыскивание.
-  
+
   ## 2. Атмосфера
-  
+
   ## 2.1. Подача газов в атмосферу (Дистра)
   <Box>
   <GuideEntityEmbed Entity="GasMixer"/>

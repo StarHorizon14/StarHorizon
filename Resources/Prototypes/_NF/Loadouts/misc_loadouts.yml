@@ -4,3 +4,5 @@
     ears: ClothingHeadsetGrey
   encryptionKeys:
   - EncryptionKeyGreeting
+  equipment:
+    pocket1: GreenhornPAI

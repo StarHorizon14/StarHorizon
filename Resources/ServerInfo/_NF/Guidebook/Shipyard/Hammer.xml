@@ -1,10 +1,13 @@
 <Document>
   # ИНЖЕНЕРНЫЙ ШАТТЛ КЛАССА HAMMER
   <Box>
-  <GuideEntityEmbed Entity="Screwdriver"/>
-  <GuideEntityEmbed Entity="Wrench"/>
-  <GuideEntityEmbed Entity="EngineeringTechFab"/>
-  <GuideEntityEmbed Entity="BannerEngineering"/>
+    <GuideEntityEmbed Entity="Screwdriver"/>
+    <GuideEntityEmbed Entity="Wrench"/>
+    <GuideEntityEmbed Entity="EngineeringTechFab"/>
+    <GuideEntityEmbed Entity="BannerEngineering"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ShuttleMapHammer" Caption=""/>
   </Box>
   [color=#a4885c]Размер корабля:[/color] Средний
 

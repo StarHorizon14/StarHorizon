@@ -1,11 +1,14 @@
 <Document>
   # УТИЛИЗАТОРСКИЙ ШАТТЛ КЛАССА BODKIN
   <Box>
-  <GuideEntityEmbed Entity="ClothingOuterHardsuitLuxury"/>
-  <GuideEntityEmbed Entity="Pickaxe"/>
-  <GuideEntityEmbed Entity="SalvageTechfabNF"/>
-  <GuideEntityEmbed Entity="OreProcessor"/>
-  <GuideEntityEmbed Entity="PosterLegitCarpMount"/>
+    <GuideEntityEmbed Entity="ClothingOuterHardsuitLuxury"/>
+    <GuideEntityEmbed Entity="Pickaxe"/>
+    <GuideEntityEmbed Entity="SalvageTechfabNF"/>
+    <GuideEntityEmbed Entity="OreProcessor"/>
+    <GuideEntityEmbed Entity="PosterLegitCarpMount"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ShuttleMapBodkin" Caption=""/>
   </Box>
   [color=#a4885c]Размер шаттла:[/color] Средний
 
