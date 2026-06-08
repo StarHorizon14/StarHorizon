@@ -1,6 +1,6 @@
 - type: entity
   parent: [ClothingBackpackDuffel, BaseCentcommContraband]
-  id: ClothingBackpackDuffelCentcom
+  id: DVClothingBackpackDuffelCentcom
   name: central command duffel
   description: A large duffel bag for holding extra central commander-y goods.
   components:

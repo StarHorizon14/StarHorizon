@@ -1,6 +1,6 @@
 - type: entity
   parent: [ClothingBackpack, BaseCentcommContraband]
-  id: ClothingBackpackCentcom
+  id: DVClothingBackpackCentcom
   name: central command backpack
   description: A special backpack for Central Commanders. The gold decorating it makes it feel heavy.
   components:
