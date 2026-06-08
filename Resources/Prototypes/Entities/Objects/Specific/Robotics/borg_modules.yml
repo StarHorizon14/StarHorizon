@@ -1598,9 +1598,9 @@
     - state: icon-syndicate-laser
   - type: ItemBorgModule
     moduleId: SyndicateLaser
-    items:
-    - NFWeaponEnergyPistolLaserAdvanced
-    - PinpointerSyndicateNuclear
+    hands:
+    - item: NFWeaponEnergyPistolLaserAdvanced
+    - item: PinpointerSyndicateNuclear
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-laser-module }
   - type: Item
@@ -1634,10 +1634,10 @@
     - state: icon-syndicate-laser2
   - type: ItemBorgModule
     moduleId: SyndicateLaserHeavy
-    items:
-    - NFWeaponEnergyPistolLaserX01Multiphase
-    - NFWeaponEnergyPistolLaserX01Multiphase
-    - PinpointerSyndicateNuclear
+    hands:
+    - item: NFWeaponEnergyPistolLaserX01Multiphase
+    - item: NFWeaponEnergyPistolLaserX01Multiphase
+    - item: PinpointerSyndicateNuclear
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-laser2-module }
   - type: Item
@@ -1671,8 +1671,8 @@
     - state: icon-syndicate-cloak
   - type: ItemBorgModule
     moduleId: SyndicateCloaking
-    items:
-    - CloakingDevice
+    hands:
+    - item: CloakingDevice
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-cloak-module }
   - type: Item
@@ -1947,9 +1947,9 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     moduleId: CombatPKA
-    items:
-    - NFWeaponPka
-    - WeaponCrusher
+    hands:
+    - item: NFWeaponPka
+    - item: WeaponCrusher
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
   - type: Item
@@ -1983,9 +1983,9 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     moduleId: CombatEchis
-    items:
-    - NFWeaponPistolEchis
-    - NFWeaponPistolEchis
+    hands:
+    - item: NFWeaponPistolEchis
+    - item: NFWeaponPistolEchis
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
   - type: Item
@@ -2019,9 +2019,9 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     moduleId: CombatLaserAdvanced
-    items:
-    - NFWeaponEnergyPistolLaserAdvanced
-    - NFWeaponEnergyPistolLaserAdvanced
+    hands:
+    - item: NFWeaponEnergyPistolLaserAdvanced
+    - item: NFWeaponEnergyPistolLaserAdvanced
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-laser-module }
   - type: Item
@@ -2055,9 +2055,9 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     moduleId: CombatPKAHeavy
-    items:
-    - NFWeaponPkaCannon
-    - WeaponCrusher
+    hands:
+    - item: NFWeaponPkaCannon
+    - item: WeaponCrusher
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
   - type: Item
@@ -2091,9 +2091,9 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     moduleId: CombatPKARailgun
-    items:
-    - WeaponProtoKineticRailgunBorg
-    - WeaponCrusher
+    hands:
+    - item: WeaponProtoKineticRailgunBorg
+    - item: WeaponCrusher
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-laser-module }
   - type: Item
@@ -2127,9 +2127,9 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     moduleId: CombatPKARepeater
-    items:
-    - WeaponProtoKineticRepeaterBorg
-    - WeaponCrusher
+    hands:
+    - item: WeaponProtoKineticRepeaterBorg
+    - item: WeaponCrusher
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
   - type: Item
@@ -2163,9 +2163,9 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     moduleId: CombatPKAShotgun
-    items:
-    - WeaponProtoKineticShotgun
-    - WeaponCrusher
+    hands:
+    - item: WeaponProtoKineticShotgun
+    - item: WeaponCrusher
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
   - type: Item
@@ -2199,8 +2199,8 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     moduleId: CombatL6C
-    items:
-    - NFWeaponLightMachineGunL6C
+    hands:
+    - item: NFWeaponLightMachineGunL6C
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
   - type: Item
@@ -2234,9 +2234,9 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     moduleId: CombatLaserHeavy
-    items:
-    - NFWeaponEnergyPistolLaserX01Multiphase
-    - NFWeaponEnergyPistolLaserX01Multiphase
+    hands:
+    - item: NFWeaponEnergyPistolLaserX01Multiphase
+    - item: NFWeaponEnergyPistolLaserX01Multiphase
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-laser2-module }
   - type: Item
@@ -2270,8 +2270,8 @@
     - state: icon-syndicate-cloak
   - type: ItemBorgModule
     moduleId: CombatCloaking
-    items:
-    - CloakingDevice
+    hands:
+    - item: CloakingDevice
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-cloak-module }
   - type: Item
@@ -2305,8 +2305,8 @@
     - state: icon-musique
   - type: ItemBorgModule
     moduleId: Translation
-    items:
-    - RareTranslator
+    hands:
+    - item: RareTranslator
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: musical-module }
 
