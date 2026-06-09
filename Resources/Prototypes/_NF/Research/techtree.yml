@@ -1560,7 +1560,7 @@
   - NFClothingShoesBootsJetpack
   technologyPrerequisites:
   - NFAdvancedPersonalPropulsion
-  position: 2, 35
+  position: 2, 75 # Horizon
 # region Salvage
 
 - type: technology
