@@ -316,6 +316,18 @@
       "directions": 4
     },
     {
+      "name": "synd_sec_derelict",
+      "directions": 4
+    },
+    {
+      "name": "synd_sec_derelict_e",
+      "directions": 4
+    },
+    {
+      "name": "synd_sec_derelict_l",
+      "directions": 4
+    },
+    {
       "name": "synd_medical",
       "directions": 4
     },
