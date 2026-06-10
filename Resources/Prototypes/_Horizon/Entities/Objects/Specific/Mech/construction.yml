@@ -64,6 +64,7 @@
       - ClarkeRArm
       - ClarkeLLeg
       - ClarkeRLeg
+      - ClarkeHead
     containerId: mech-assembly-container
   - type: Construction
     graph: Clarke
@@ -195,6 +196,7 @@
       - OdysseusRArm
       - OdysseusLLeg
       - OdysseusRLeg
+      - OdysseusHead
     containerId: mech-assembly-container
   - type: Construction
     graph: Odysseus
@@ -338,6 +340,7 @@
       - GygaxRArm
       - GygaxLLeg
       - GygaxRLeg
+      - GygaxHead
     containerId: mech-assembly-container
   - type: Construction
     graph: Gygax
@@ -481,6 +484,7 @@
       - DurandRArm
       - DurandLLeg
       - DurandRLeg
+      - DurandHead
     containerId: mech-assembly-container
   - type: Construction
     graph: Durand
@@ -624,6 +628,7 @@
       - PhazonRArm
       - PhazonLLeg
       - PhazonRLeg
+      - PhazonHead
     containerId: mech-assembly-container
   - type: Construction
     graph: Phazon
