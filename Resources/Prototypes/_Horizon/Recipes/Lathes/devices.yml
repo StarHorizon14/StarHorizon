@@ -27,3 +27,14 @@
   materials:
     Steel: 400
     Glass: 100
+
+- type: latheRecipe
+  id: RemoteControlDevice
+  result: RemoteControlDevice
+  categories:
+  - Tools
+  completetime: 5
+  materials:
+    Steel: 400
+    Gold: 500
+    Glass: 100
