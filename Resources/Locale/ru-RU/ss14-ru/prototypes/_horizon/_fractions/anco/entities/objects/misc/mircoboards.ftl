@@ -1,0 +1,14 @@
+ent-AnCoAnomalyCircuitboard = микросхема АнКо
+    .desc = Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+    .suffix = StarHorizon, AnCo
+ent-AnCoSuitCircuitboard = микросхема фабрикатора обмундирования АнКо
+    .desc = Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+    .suffix = StarHorizon, AnCo
+ent-AnCoWeaponCircuitboard = микросхема фабрикатора вооружения АнКо
+    .desc = Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+    .suffix = StarHorizon, AnCo
+ent-AnCoOtherCircuitboard = микросхема фабрикатора снаряжения АнКо
+    .desc = Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+    .suffix = StarHorizon, AnCo
+ent-CryptominerMachineCircuitboard = микросхема криптомайнера АнКо
+    .desc = Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.

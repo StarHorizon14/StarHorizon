@@ -1,0 +1,12 @@
+ent-WeaponRiflesAnCo = Шершень
+    .desc = Полу-автоматический карабин с ускорителем в стволе.
+    .suffix = StarHorizon, AnCo, Weapon
+ent-WeaponAutoRiflesAnCo = Жароплюй
+    .desc = Скорорстрельная, но не точная автоматическая винтовка.
+    .suffix = StarHorizon, AnCo, Weapon
+ent-WeaponRifles30AnCo = Стрела
+    .desc = Высокоточный полу-автоматический карабин.
+    .suffix = StarHorizon, AnCo, Weapon
+ent-WeaponMachineGun30AnCo = Шторм
+    .desc = Скорострельный пулемет на .30 калибре от АнКо.
+    .suffix = StarHorizon, AnCo, Weapon

@@ -1,0 +1,14 @@
+ent-ArdonBasaltOne = базальт ардония
+    .desc = Базальт из вросшего искусственного ардония
+    .suffix = StarHorizon, AnCo, Structure
+ent-ArdonBasaltTwo = { ent-ArdonBasaltOne }
+    .desc = { ent-ArdonBasaltOne.desc }
+ent-ArdonBasaltThree = { ent-ArdonBasaltOne }
+    .desc = { ent-ArdonBasaltOne.desc }
+ent-ArdonBasaltFour = { ent-ArdonBasaltOne }
+    .desc = { ent-ArdonBasaltOne.desc }
+ent-ArdonBasaltFive = { ent-ArdonBasaltOne }
+    .desc = { ent-ArdonBasaltOne.desc }
+ent-ArdonBasaltRandom = { ent-ArdonBasaltOne }
+    .suffix = Random
+    .desc = { ent-ArdonBasaltOne.desc }
