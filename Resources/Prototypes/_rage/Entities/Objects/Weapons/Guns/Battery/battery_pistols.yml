@@ -2,7 +2,7 @@
   categories: [ DoNotMap ]
   id: NFWeaponEnergyPistolLaserX01MultiphaseSheriff
   parent: [ BaseC2ContrabandUnredeemable, NFWeaponEnergyPistolLaserAntique ]
-    name: X-01 multiphase energy gun
+  name: X-01 multiphase energy gun
   description: |-
     This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes. On the handle is a label that says 'for authorized use only.' Unlike regular versions, it has a unique firing mode.
   components:
