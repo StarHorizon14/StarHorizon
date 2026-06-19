@@ -1,0 +1,12 @@
+ent-SyndiPDAOfficer = КПК Офицер теле-коммуникаций
+    .desc = КПК используемое агентами Синдиката.
+    .suffix = Syndicate
+ent-SyndiPDAOperative = КПК Оперативника
+    .desc = КПК используемое агентами Синдиката.
+    .suffix = Syndicate
+ent-SyndiPDAMedic = КПК Медика
+    .desc = КПК используемое агентами Синдиката.
+    .suffix = Syndicate
+ent-SyndiPDACargo = КПК Курьера
+    .desc = КПК используемое агентами Синдиката.
+    .suffix = Syndicate

@@ -1,0 +1,15 @@
+ent-ClothingBackpackInteQ = combat backpack
+    .desc = Comfortable and stylish backpack.
+    .suffix = StarHorizon, Inteq
+ent-ClothingBackpackDuffelInteQ = combat duffel bag
+    .desc = A large duffel bag for holding weapons and supplies.
+    .suffix = StarHorizon, Inteq
+ent-ClothingBackpackDuffelInteQAmmo = combat duffel bag
+    .desc = A large duffel bag for holding weapons and ammunition.
+    .suffix = StarHorizon, Inteq
+ent-ClothingBackpackDuffelInteQMedical = combat duffel bag
+    .desc = A large duffel bag for holding weapons and medical things.
+    .suffix = StarHorizon, Inteq
+ent-ClothingBackpackSatchelInteQ = combat satchel
+    .desc = The bag looks like a mail bag and has brown-yellow inserts.
+    .suffix = StarHorizon, Inteq

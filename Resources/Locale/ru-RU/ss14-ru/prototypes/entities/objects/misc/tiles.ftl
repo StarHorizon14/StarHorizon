@@ -223,6 +223,7 @@ ent-FloorTileItemXenoMaint = ксено технический пол
     .desc = { ent-FloorTileItemBase.desc }
 ent-FloorTileItemDarkSquiggly = тёмная волнистая плитка
     .desc = { ent-FloorTileItemDark.desc }
+
 # Horizon start
 
 ent-FloorTileItemSteelDarkGray = корабельная бронеплита
@@ -231,3 +232,4 @@ ent-FloorTileItemSteelPlateDarkGray = корабельная бронирова�
     .desc = бронированная плита использующаяся в особо защищенных точках.
 
 # Horizon end
+

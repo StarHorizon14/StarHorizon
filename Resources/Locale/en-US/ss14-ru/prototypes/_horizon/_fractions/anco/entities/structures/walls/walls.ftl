@@ -1,0 +1,12 @@
+ent-AnCoWallKazmie = казмиевая стена
+    .desc = Держите секреты внутри, сотрудников снаружи
+    .suffix = StarHorizon, AnCo, Structure
+ent-AnCoWallKazmieIndestructible = казмиевая стена
+    .desc = Держите секреты внутри, сотрудников снаружи.
+    .suffix = StarHorizon, AnCo, Indestructible
+ent-AnCoWindowArdon = ардониевое окно
+    .desc = Окно для любителей подглядывать секреты.
+    .suffix = StarHorizon, AnCo, Structure
+ent-AnCoWindowArdonDungeon = ардониевое окно
+    .desc = Окно для любителей подглядывать секреты.
+    .suffix = StarHorizon, AnCo, Dungeon

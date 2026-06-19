@@ -1,0 +1,9 @@
+ent-AnCoFlyDroneSmallDungeon = дрон компаньен АнКо
+    .desc = Теперь у вас есть друг по лучше этих наземных жуков. Бе!
+    .suffix = StarHorizon, AnCo, Dungeon
+ent-AnCoFlyDroneMediumDungeon = грузовой дрон АнКо
+    .desc = Как он вмещает в себя столько мусора?
+    .suffix = StarHorizon, AnCo, Dungeon
+ent-AnCoFlyDroneHugeDungeon = боевой дрон АнКо
+    .desc = Зачем давать дрону зубы если можно дать пушки?
+    .suffix = StarHorizon, AnCo, Dungeon

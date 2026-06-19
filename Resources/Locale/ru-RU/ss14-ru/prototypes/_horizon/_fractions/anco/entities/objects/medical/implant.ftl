@@ -1,0 +1,14 @@
+ent-BaseImplantOnlyImplanterAnCo = ручной имплантер АнКо
+    .desc = Имплантер для вживления нанитов в организм пользователя или их перепрограммирования.
+    .suffix = StarHorizon, AnCo
+ent-AnCoDeathAcidifierImplanter = имплантер с растворяющимися нанитами АнКо
+    .suffix = StarHorizon, AnCo
+    .desc = { ent-BaseImplantOnlyImplanterAnCo.desc }
+ent-AnCoImplanterTreker = имплантер с трекером АнКо
+    .suffix = StarHorizon, AnCo
+    .desc = { ent-BaseImplantOnlyImplanterAnCo.desc }
+ent-AnCoImplanterDrone = имплантер с дронами АнКо
+    .suffix = StarHorizon, AnCo
+    .desc = { ent-BaseImplantOnlyImplanterAnCo.desc }
+ent-AnCoImplanterCorpLang = имплантер нейро-импланта языка
+    .desc = { ent-BaseImplantOnlyImplanterAnCo.desc }

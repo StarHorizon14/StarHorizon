@@ -11,11 +11,9 @@ currency-exchange-button-exchange = Обменять
 currency-exchange-button-exchange-all = Обменять всё
 currency-exchange-no-disk = Вставьте диск с ендами для обмена
 currency-exchange-no-disk-short = Нет диска
-currency-exchange-commission-deducted = -{$amount} комиссия
-
+currency-exchange-commission-deducted = -{ $amount } комиссия
 # Entity
 ent-CurrencyExchangeTerminal = терминал обмена валют
     .desc = Терминал для обмена добытых ендов на кредиты станции. Курс обмена меняется в зависимости от рыночных условий.
-
 # Slot
 currency-exchange-slot-disk = Слот для диска
