@@ -217,6 +217,8 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 5
     fillBaseName: fill-
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
 
 # Large Glass Bottles
 
@@ -333,9 +335,6 @@
           Quantity: 100
   - type: Label
     currentLabel: reagent-name-grenadine
-  # intended use is to spike drinks so starts open
-  - type: Openable
-    opened: true
   - type: Sprite
     sprite: Objects/Consumable/Drinks/grenadinebottle.rsi
   - type: SolutionContainerVisuals
@@ -716,6 +715,10 @@
   name: water bottle
   description: Simple clean water of unknown origin. You think that maybe you dont want to know it.
   components:
+  - type: Tag
+    tags:
+    - DrinkCup
+    - DrinkBottle
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -724,9 +727,6 @@
           Quantity: 30
   - type: Sprite
     sprite: Objects/Consumable/Drinks/waterbottle.rsi
-  - type: SolutionContainerVisuals
-    inHandsMaxFillLevels: 2
-    inHandsFillBaseName: -fill-
   - type: Label
     currentLabel: reagent-name-water
   - type: Sealable
@@ -779,7 +779,7 @@
   # Frontier: haiku description
   description: |
     Spirit, clear or foggy
-    Taken hot or chilled on ice. 
+    Taken hot or chilled on ice.
     Fill a cup, drink up!
   # End Frontier
   components:

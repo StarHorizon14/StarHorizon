@@ -24,9 +24,9 @@ ent-PortableGeneratorDKJr = портативный генератор Д-К Мл
         Работает на бананиуме, рассчитан на мощность до 100 кВт.
         Довольно радиоактивен без защиты.
     .suffix = Бананиум, Рад-, 60 кВт
-ent-PortableGeneratorDKJrShuttle = { ent-BaseGeneratorShuttle }
+ent-PortableGeneratorDKJrShuttle = { ent-PortableGeneratorDKJr }
     .suffix = Бананиум, Рад-, 60 кВт, Шаттл
-    .desc = { ent-BaseGeneratorShuttle.desc }
+    .desc = { ent-PortableGeneratorDKJr.desc }
 ent-PortableGeneratorHyperPacman = Г.И.П.Е.Р.П.А.К.М.А.Н.
     .desc =
         Генератор нового поколения для питания станций.

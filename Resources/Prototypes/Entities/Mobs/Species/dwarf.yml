@@ -68,6 +68,16 @@
   - type: InnateMiningScannerViewer # Frontier
     pingSound: null # Frontier
     viewRange: 5 # Frontier
+  # Horizon: Height traits (dwarf base scale 1, 0.8 - short stature)
+  - type: TallWhitelist
+    scale: 0.9   # Taller than base Y 0.8
+    density: 140
+    cosmeticOnly: false
+  - type: ShortWhitelist
+    scale: 0.7   # Shorter than base Y 0.8
+    density: 100
+    cosmeticOnly: false
+  # Horizon end
 
 - type: entity
   parent: BaseSpeciesDummy

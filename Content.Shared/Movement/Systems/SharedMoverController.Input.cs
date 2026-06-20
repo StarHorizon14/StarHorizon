@@ -8,6 +8,7 @@ using Content.Shared.Movement.Events;
 using Robust.Shared.GameStates;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.Log;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -25,6 +26,8 @@ namespace Content.Shared.Movement.Systems
         public bool CameraRotationLocked { get; set; }
 
         public static ProtoId<AlertPrototype> WalkingAlert = "Walking";
+
+        private readonly ISawmill _sawmill = Logger.GetSawmill("lerk.checkerGridDelete"); // Horizon
 
         private void InitializeInput()
         {
@@ -131,10 +134,28 @@ namespace Content.Shared.Movement.Systems
 
         private void OnMoverGetState(Entity<InputMoverComponent> entity, ref ComponentGetState args)
         {
+            // Horizon start
+            NetEntity? relativeEntity = null;
+            if (entity.Comp.RelativeEntity != null)
+            {
+                if (Deleted(entity.Comp.RelativeEntity.Value))
+                {
+                    _sawmill.Warning($"Trying to get NetEntity for deleted entity {entity.Comp.RelativeEntity.Value} in InputMoverComponent {entity.Owner}");
+                    relativeEntity = null;
+                }
+                else
+                {
+                    relativeEntity = GetNetEntity(entity.Comp.RelativeEntity);
+                    // If GetNetEntity returns Invalid for a deleted entity, treat it as null
+                    if (relativeEntity == NetEntity.Invalid)
+                        relativeEntity = null;
+                }
+            }
+            // Horizon end
             args.State = new InputMoverComponentState()
             {
                 CanMove = entity.Comp.CanMove,
-                RelativeEntity = GetNetEntity(entity.Comp.RelativeEntity),
+                RelativeEntity = relativeEntity,
                 LerpTarget = entity.Comp.LerpTarget,
                 HeldMoveButtons = entity.Comp.HeldMoveButtons,
                 RelativeRotation = entity.Comp.RelativeRotation,

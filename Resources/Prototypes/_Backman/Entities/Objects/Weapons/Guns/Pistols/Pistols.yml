@@ -1,0 +1,433 @@
+- type: entity
+  name: ACP-14
+  parent: NFBaseWeaponFramePistol
+  id: WeaponPistolACP14
+  suffix: Backman, Пистолет
+  description: The ACP-14, produced by Earth Armories. A reliable sidearm that loads 9x19mm.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/acp14/big.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/acp14/tiny.rsi
+  - type: Gun
+    angleIncrease: 8
+    angleDecay: 10
+    cameraRecoilScalar: 1
+    maxAngle: 15
+    minAngle: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pistols/acp14_shot.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol45ACP
+        insertSound: /Audio/Weapons/Guns64/Pistols/acp14_reload.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol45ACP
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolACP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol45ACP
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: combat pistol VP-78
+  parent: NFBaseWeaponFramePistol
+  id: WeaponPistolVP78
+  suffix: Backman, Пистолет
+  description: The VP-78, produced by Markus Henday Inc. A massive, formidable automatic handgun chambered in 9x19mm rounds.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/vp78/big.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/vp78/tiny.rsi
+  - type: Gun
+    angleIncrease: 2
+    angleDecay: 10
+    cameraRecoilScalar: 0.5
+    maxAngle: 15
+    minAngle: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pistols/vp70_shot.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Pistols/vp70_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol57x28Extd
+        insertSound: /Audio/Weapons/Guns64/Pistols/vp70_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/vp70_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol57x28
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol57x28
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol57x28
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: desert eagle
+  parent: NFBaseWeaponFramePistol
+  id: WeaponPistolDEagle
+  suffix: Backman, Пистолет
+  description: A magnum chambered in .50AE that comes with a serious kick. This one is engraved, "Peace through superior firepower".
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/big.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/tiny.rsi
+  - type: Gun
+    fireRate: 3
+    angleDecay: 15
+    angleIncrease: 10
+    cameraRecoilScalar: 2
+    maxAngle: 15
+    minAngle: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pistols/deagle.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Pistols/deagle_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol50AE
+        insertSound: /Audio/Weapons/Guns64/Pistols/deagle_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/deagle_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol50AE
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol50AE
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol50AE
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-cybersun-industries
+
+- type: entity
+  name: G-22
+  parent: NFBaseWeaponFramePistol
+  id: WeaponPistolG22
+  suffix: Backman, Пистолет
+  description: A popular police firearm in the modern day. Chambered in 9x19mm.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/big.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/tiny.rsi
+  - type: Gun
+    angleDecay: 7
+    angleIncrease: 2
+    cameraRecoilScalar: 0.5
+    maxAngle: 15
+    minAngle: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pistols/beretta_shot.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Pistols/beretta_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol9x17
+        insertSound: /Audio/Weapons/Guns64/Pistols/beretta_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/beretta_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol9x17
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol9x17
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol9x17
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: HI Browning-88 M4
+  parent: NFBaseWeaponFramePistol
+  id: WeaponPistolHIB88M4
+  suffix: Backman, Пистолет
+  description: An uncommon handgun used for self-defense but it is often used by terrorist organizations.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/hi_power_br/big.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/hi_power_br/tiny.rsi
+  - type: Gun
+    angleDecay: 15
+    angleIncrease: 5
+    cameraRecoilScalar: 0.5
+    maxAngle: 15
+    minAngle: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pistols/vp70_shot.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Pistols/vp70_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol57x28
+        insertSound: /Audio/Weapons/Guns64/Pistols/vp70_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/vp70_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol57x28
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol57x28
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol57x28
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: service pistole G23
+  parent: NFBaseWeaponFramePistol
+  id: WeaponPistolG23
+  suffix: Backman, Пистолет
+  description: A popular self-defense firearm in the modern day. Chambered in 9x19mm.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/big.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/tiny.rsi
+  - type: Gun
+    angleDecay: 15
+    angleIncrease: 5
+    maxAngle: 15
+    minAngle: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pistols/colt.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol9x17
+        insertSound: /Audio/Weapons/Guns64/Pistols/colt_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/colt_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol9x17
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol9x17
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol9x17
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: M-1911
+  parent: NFBaseWeaponFramePistol
+  id: WeaponPistolM1911
+  suffix: Backman, Пистолет
+  description: A M-1911 chambered in .35 An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/m1911/big.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/m1911/tiny.rsi
+  - type: Gun
+    angleDecay: 15
+    angleIncrease: 5
+    cameraRecoilScalar: 0.5
+    maxAngle: 15
+    minAngle: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pistols/colt.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol57x28
+        insertSound: /Audio/Weapons/Guns64/Pistols/colt_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/colt_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol57x28
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol57x28
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol57x28
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: UCS
+  parent: NFBaseWeaponFramePistol
+  id: WeaponPistolUCS
+  suffix: Backman, Пистолет
+  description: UCS полу-автоматический пистолет компании "Interdyne", зарекомендовал себя как вторичное оружия наёмников, превосходит свои аналоги с Земли.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/ucs/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/ucs/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/ucs/tiny.rsi
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+    soundAutoEject: /Audio/Backmen/Misc/empty_alarm.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol57x28Extd
+        insertSound: /Audio/Weapons/Guns64/SMGs/uzi_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/SMGs/uzi_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol57x28
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol57x28
+  - type: Gun
+    fireRate: 6
+    cameraRecoilScalar: 0.5
+    soundEmpty: /Audio/Backmen/Misc/error.ogg
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/SMGs/uzi.ogg
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  parent: [WeaponPistolHIB88M4, BaseC3Contraband]
+  id: WeaponPistolInteQCommissar
+  name: Commissar
+  suffix: Backman, Пистолет
+  description: Small, easily concealable, but somewhat underpowered gun. Retrofitted with a fully automatic receiver. Uses 5.7x28 ammo. It is painted in the InteQ brand color.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Pistols/inteq_commissar.rsi
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-cybersun-industries

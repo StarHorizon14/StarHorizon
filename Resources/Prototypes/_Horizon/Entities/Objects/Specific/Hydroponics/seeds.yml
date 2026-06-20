@@ -579,3 +579,13 @@
     seedId: bluespaceTomato
   - type: Sprite
     sprite: _Horizon/Objects/Specific/Hydroponics/bluespace_tomato.rsi
+
+- type: entity
+  parent: SeedBase
+  name: пакет косточек персика
+  id: PeachSeeds
+  components:
+  - type: Seed
+    seedId: peach
+  - type: Sprite
+    sprite: _Horizon/Objects/Specific/Hydroponics/peach.rsi

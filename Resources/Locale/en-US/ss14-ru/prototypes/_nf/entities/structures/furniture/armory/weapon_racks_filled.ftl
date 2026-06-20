@@ -10,3 +10,6 @@ ent-StructurePistolRackPiratesFilled = { ent-StructurePistolRackPirates }
 ent-StructureMeleeWeaponRackBloodCultFilled = { ent-StructureMeleeWeaponRackBloodCult }
     .suffix = Blood Cult, Filled
     .desc = { ent-StructureMeleeWeaponRackBloodCult.desc }
+ent-StructureMeleeWeaponRackWallmountedWizardFilled = { ent-StructureMeleeWeaponRackWallmountedWizard }
+    .suffix = Wizard, Wallmount, Filled
+    .desc = { ent-StructureMeleeWeaponRackWallmountedWizard.desc }

@@ -4,14 +4,14 @@
   damageSets:
     Blunt:
       min: 150
-      max: 400
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 800
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Asphyxiation:
       min: 50
-      max: 200
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 400
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   baseReward: 3000 # Horizon
 
 - type: medicalBounty
@@ -19,14 +19,14 @@
   damageSets:
     Piercing:
       min: 150
-      max: 400
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 800
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Bloodloss:
       min: 50
-      max: 200
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 400
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   baseReward: 3000 # Horizon
 
 - type: medicalBounty
@@ -34,14 +34,14 @@
   damageSets:
     Slash:
       min: 150
-      max: 400
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 800
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Bloodloss:
       min: 50
-      max: 200
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 400
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   baseReward: 3000 # Horizon
 
 - type: medicalBounty
@@ -49,24 +49,24 @@
   damageSets:
     Blunt:
       min: 75
-      max: 150
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 300
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Piercing:
       min: 75
-      max: 150
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 300
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Slash:
       min: 75
-      max: 150
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 300
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Bloodloss:
       min: 75
-      max: 150
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 300
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   baseReward: 3000 # Horizon
 
 - type: medicalBounty
@@ -74,14 +74,14 @@
   damageSets:
     Asphyxiation:
       min: 150
-      max: 400
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 800
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Bloodloss:
       min: 50
-      max: 200
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 400
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   baseReward: 3000 # Horizon
 
 - type: medicalBounty
@@ -89,9 +89,9 @@
   damageSets:
     Heat:
       min: 1000
-      max: 3000
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 12000
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   baseReward: 3000 # Horizon
 
 - type: medicalBounty
@@ -99,24 +99,24 @@
   damageSets:
     Blunt:
       min: 50
-      max: 100
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 200
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Piercing:
       min: 50
-      max: 100
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 200
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Slash:
       min: 50
-      max: 100
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 200
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Cold:
       min: 600
-      max: 2000
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 8000
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   baseReward: 1500 # Horizon
 
 - type: medicalBounty
@@ -124,24 +124,24 @@
   damageSets:
     Heat:
       min: 50
-      max: 150
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 300
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Cold:
       min: 50
-      max: 150
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 300
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Shock:
       min: 50
-      max: 150
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 300
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Caustic:
       min: 50
-      max: 150
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 300
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   baseReward: 3000 # Horizon
 
 - type: medicalBounty
@@ -149,14 +149,14 @@
   damageSets:
     Heat:
       min: 200
-      max: 400
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 800
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Shock:
       min: 400
-      max: 600
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 1200
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   baseReward: 3000 # Horizon
 
 - type: medicalBounty
@@ -164,7 +164,7 @@
   damageSets:
     Caustic:
       min: 300
-      max: 500
+      max: 2000
       value: 30 # Horizon
       penalty: 30 # Horizon
   baseReward: 3000 # Horizon
@@ -174,18 +174,18 @@
   damageSets:
     Poison:
       min: 100
-      max: 200
-      value: 25 # Horizon
-      penalty: 25 # Horizon
+      max: 400
+      value: 50 # Horizon
+      penalty: 50 # Horizon
     Asphyxiation:
       min: 100
-      max: 200
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 400
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   reagents:
     Mechanotoxin:
       min: 30
-      max: 50
+      max: 100
       value: 30 # Horizon
   baseReward: 5000 # Horizon
 
@@ -194,13 +194,13 @@
   damageSets:
     Poison:
       min: 200
-      max: 400
-      value: 25 # Horizon
-      penalty: 25 # Horizon
+      max: 800
+      value: 50 # Horizon
+      penalty: 50 # Horizon
   reagents:
     Mechanotoxin:
       min: 30
-      max: 50
+      max: 100
       value: 30 # Horizon
   baseReward: 5000 # Horizon
 
@@ -209,19 +209,19 @@
   damageSets:
     Poison:
       min: 100
-      max: 200
-      value: 25 # Horizon
-      penalty: 25 # Horizon
+      max: 400
+      value: 50 # Horizon
+      penalty: 50 # Horizon
     Asphyxiation:
       min: 100
-      max: 200
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 400
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   reagents:
     Amatoxin:
       min: 30
-      max: 50
-      value: 40 # Horizon
+      max: 100
+      value: 80 # Horizon
   baseReward: 5000 # Horizon
 
 - type: medicalBounty
@@ -229,19 +229,19 @@
   damageSets:
     Radiation:
       min: 150
-      max: 800
-      value: 25 # Horizon
-      penalty: 25 # Horizon
+      max: 1600
+      value: 50 # Horizon
+      penalty: 50 # Horizon
     Cellular:
       min: 60
-      max: 140
-      value: 35 # Horizon
-      penalty: 35 # Horizon
+      max: 280
+      value: 70 # Horizon
+      penalty: 70 # Horizon
     Asphyxiation:
       min: 100
-      max: 200
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 400
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   baseReward: 2500 # Horizon
 
 - type: medicalBounty
@@ -249,14 +249,14 @@
   damageSets:
     Asphyxiation:
       min: 200
-      max: 400
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 800
+      value: 30 # Horizon
+      penalty: 30 # Horizon
     Cellular:
       min: 60
-      max: 140
-      value: 35 # Horizon
-      penalty: 35 # Horizon
+      max: 280
+      value: 70 # Horizon
+      penalty: 70 # Horizon
   baseReward: 3000 # Horizon
 
 - type: medicalBounty
@@ -264,26 +264,26 @@
   damageSets:
     Radiation:
       min: 50
-      max: 300
-      value: 25 # Horizon
-      penalty: 25 # Horizon
+      max: 600
+      value: 50 # Horizon
+      penalty: 50 # Horizon
     Cellular:
       min: 60
-      max: 100
-      value: 35 # Horizon
-      penalty: 35 # Horizon
+      max: 200
+      value: 70 # Horizon
+      penalty: 70 # Horizon
     Asphyxiation: # Value padding
       min: 100
-      max: 200
-      value: 15 # Horizon
-      penalty: 15 # Horizon
+      max: 400
+      value: 30 # Horizon
+      penalty: 30 # Horizon
   reagents:
     Uranium:
       min: 30
-      max: 50
-      value: 35 # Horizon
+      max: 100
+      value: 70 # Horizon
     Radium:
       min: 30
-      max: 50
-      value: 35 # Horizon
+      max: 100
+      value: 70 # Horizon
   baseReward: 3000 # Horizon

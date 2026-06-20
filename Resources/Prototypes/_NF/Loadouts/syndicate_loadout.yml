@@ -33,11 +33,43 @@
 # КПК
 - type: loadoutGroup
   id: SyndicatePDA
-  name: КПК Синдиката
+  name: loadout-group-syndicate-pda
   loadouts:
   - LoadoutSyndicateSyndiPDA
   fallbacks:
   - LoadoutSyndicateSyndiPDA
+
+- type: loadoutGroup
+  id: SyndicatePDAOfficer
+  name: loadout-group-syndicate-pda
+  loadouts:
+  - LoadoutSyndicateSyndiPDAOfficer
+  fallbacks:
+  - LoadoutSyndicateSyndiPDAOfficer
+
+- type: loadoutGroup
+  id: SyndicatePDAOperative
+  name: loadout-group-syndicate-pda
+  loadouts:
+  - LoadoutSyndicateSyndiPDAOperative
+  fallbacks:
+  - LoadoutSyndicateSyndiPDAOperative
+
+- type: loadoutGroup
+  id: SyndicatePDAMedic
+  name: loadout-group-syndicate-pda
+  loadouts:
+  - LoadoutSyndicateSyndiPDAMedic
+  fallbacks:
+  - LoadoutSyndicateSyndiPDAMedic
+
+- type: loadoutGroup
+  id: SyndicatePDADelivery
+  name: loadout-group-syndicate-pda
+  loadouts:
+  - LoadoutSyndicateSyndiPDADelivery
+  fallbacks:
+  - LoadoutSyndicateSyndiPDADelivery
 
 # Шапки
 - type: loadoutGroup
@@ -57,7 +89,7 @@
   name: Верхняя одежда Синдиката
   loadouts:
   - LoadoutSyndicateClothingOuterArmorBasic
-  - LoadoutSyndicateClothingOuterVestWebMercenaryBlack
+  - LoadoutSyndicateClothingOuterVestWeb
   - LoadoutSyndicateClothingOuterCoatSyndieCapArmored
   - LoadoutSyndicateClothingOuterWinterSyndieCap
   - LoadoutSyndicateClothingOuterCoatSyndieCap

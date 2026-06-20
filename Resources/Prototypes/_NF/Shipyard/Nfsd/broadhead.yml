@@ -12,12 +12,12 @@
   id: Broadhead
   parent: BaseVessel
   name: NSF Broadhead
-  description: A medium size detective ship with facilities for autopsies, interrogations and detailed investigations.
+  description: Средний детективный шаттл предназначенный для работы нескольких человек.
   price: 60000 # 52879 0.05 55522.95
   category: Medium
   group: Security
   access: Detective
-  shuttlePath: /Maps/_NF/Shuttles/Nfsd/broadhead.yml
+  shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/broadhead.yml # Horizon
   guidebookPage: Null
   class:
   - Detective
@@ -32,6 +32,9 @@
       role: "Mercenary"
       costMultiplier: 1.2
     - !type:FactionCostModifier
+      faction: "FactionNFSD"
+      costMultiplier: 0.9
+    - !type:FactionCostModifier
       faction: "FactionSIU"
       costMultiplier: 0.9
     - !type:FactionCostModifier
@@ -42,7 +45,7 @@
 - type: gameMap
   id: Broadhead
   mapName: 'NSF Broadhead'
-  mapPath: /Maps/_NF/Shuttles/Nfsd/broadhead.yml
+  mapPath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/broadhead.yml # Horizon
   minPlayers: 0
   stations:
     Broadhead:

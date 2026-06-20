@@ -1,4 +1,5 @@
 using Content.Shared._Horizon.OutpostCapture;
+using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Horizon.FlavorText;
@@ -7,6 +8,7 @@ namespace Content.Shared._Horizon.FlavorText;
 public sealed partial class CharacterFactionPrototype : IPrototype
 {
     [IdDataField]
+    [ViewVariables]
     public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
@@ -20,6 +22,9 @@ public sealed partial class CharacterFactionPrototype : IPrototype
 
     [DataField]
     public ProtoId<OutpostSpawnPrototype>? OutpostSpawnListProto = "default";
+
+    [DataField]
+    public ProtoId<RadioChannelPrototype>? RadioChannel = "Common"; // Test only
 
     [DataField]
     public bool Roundstart = true;

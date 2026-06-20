@@ -1,18 +1,86 @@
+using System.Diagnostics.CodeAnalysis;
+using Content.Server.Radio.EntitySystems;
 using Content.Shared._Horizon.FlavorText;
 using Content.Shared._Horizon.OutpostCapture;
 using Content.Shared._Horizon.OutpostCapture.Components;
+using Content.Shared.Radio;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._Horizon.OutpostCapture;
 
 public sealed class OutpostCaptureSystem : SharedOutpostCaptureSystem
 {
+    [Dependency] private readonly ServerMetaDataSystem _metaDataSystem = null!;
     [Dependency] private readonly SharedShuttleSystem _shuttleSystem = null!;
+    [Dependency] private readonly RadioSystem _radioSystem = null!;
 
-    public override void Initialize() {} // Тут ничего нет, потому, что у нас дублируются подписки при наследовании! А мне они тут не нужны!
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<OutpostConsoleComponent, CaptureStartedEvent>(SendRadioMessage);
+    }
+
+    public void SendRadioMessage(Entity<OutpostConsoleComponent> entity, ref CaptureStartedEvent ev)
+    {
+        if (!TryGetEntity(entity.Comp.LinkedOutpost, out var outpostUid) ||
+            !TryComp<OutpostCaptureComponent>(outpostUid, out var outpost))
+            return;
+
+        switch (ev.OldRadioChannel)
+        {
+            case null when ev.RadioChannel == null:
+                return; // IDK who to send capture message
+
+            case null when ev is {RadioChannel: not null, FactionName: not null}:
+                var firstMessage = Loc.GetString("outpost-first-capture-by",
+                    ("outpostName", outpost.OutpostName),
+                    ("factionName", Loc.GetString(ev.FactionName)));
+                _radioSystem.SendRadioMessage(entity, firstMessage, new ProtoId<RadioChannelPrototype>(ev.RadioChannel), entity);
+                break;
+
+             case not null when ev.RadioChannel == null && ev.OldFactionName != null:
+                var captureFall = Loc.GetString("outpost-capture-fall-controlled-by",
+                    ("outpostName", outpost.OutpostName),
+                    ("oldFactionName", Loc.GetString(ev.OldFactionName)));
+                _radioSystem.SendRadioMessage(entity, captureFall, new ProtoId<RadioChannelPrototype>(ev.OldRadioChannel), entity);
+                break;
+
+            case not null when ev is {RadioChannel: not null, FactionName: not null, OldFactionName: not null}:
+                string recapture;
+                switch (ev.State)
+                {
+                    case OutpostConsoleState.Uncaptured:
+                        return;
+
+                    case OutpostConsoleState.Capturing:
+                        recapture = Loc.GetString("outpost-intercept-by-controlled-by",
+                            ("outpostName", outpost.OutpostName),
+                            ("factionName", Loc.GetString(ev.FactionName)),
+                            ("oldFactionName", Loc.GetString(ev.OldFactionName)));
+                        break;
+
+                    case OutpostConsoleState.Captured:
+                        recapture = Loc.GetString("outpost-capture-by-controlled-by",
+                            ("outpostName", outpost.OutpostName),
+                            ("factionName", Loc.GetString(ev.FactionName)),
+                            ("oldFactionName", Loc.GetString(ev.OldFactionName)));
+                        break;
+
+                    default:
+                        return;
+                }
+
+                _radioSystem.SendRadioMessage(entity, recapture, new ProtoId<RadioChannelPrototype>(ev.OldRadioChannel), entity);
+                break;
+
+            default: // If we get a 0.000001% when ram get error.
+                return;
+        }
+    }
 
     private bool TrySetCapturedFaction(EntityUid uid, OutpostCaptureComponent outpost)
     {
@@ -63,8 +131,7 @@ public sealed class OutpostCaptureSystem : SharedOutpostCaptureSystem
         var enumerable = EntityManager.EntityQueryEnumerator<OutpostCaptureComponent>();
         while (enumerable.MoveNext(out var uid, out var outpost))
         {
-            if (outpost.SpawnLocation == null ||
-                !PrototypeManager.TryIndex(outpost.SpawnList, out var index))
+            if (outpost.SpawnLocation == null)
                 continue;
 
             UpdateOutpostConsoles(outpost, secondPast);
@@ -79,7 +146,7 @@ public sealed class OutpostCaptureSystem : SharedOutpostCaptureSystem
                 continue;
 
             outpost.NextSpawn -= secondPast;
-            if (outpost.NextSpawn > TimeSpan.Zero)
+            if (outpost.NextSpawn > TimeSpan.Zero || !PrototypeManager.TryIndex(outpost.SpawnList, out var index))
                 continue;
 
             TrySpawnItemsInList(index, outpost.SpawnLocation.Value);

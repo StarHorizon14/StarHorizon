@@ -1,4 +1,4 @@
 ent-NFWeaponLightMachineGunL6 = GSW LMG-6
-    .desc = A rather traditionally made LMG with a pleasantly lacquered wooden pistol grip. An illegal firearm often used by Syndicate agents.
-ent-NFWeaponLightMachineGunL6C = cyborg GSW LMG-6
-    .desc = A GSW LMG-6 for use by cyborgs. Creates rifle ammo on the fly from an internal ammo fabricator, which slowly self-charges. An illegal firearm often used by Syndicate agents.
+    .desc = Довольно традиционно изготовленный ручной пулемёт с приятно лакированной деревянной пистолетной рукояткой. Незаконное огнестрельное оружие, часто используемое агентами Синдиката.
+ent-NFWeaponLightMachineGunL6C = кибернетический GSW LMG-6
+    .desc = Модель GSW LMG-6 для использования киборгами. Создаёт винтовочные патроны на лету с помощью внутреннего фабрикатора боеприпасов, который медленно самонаполняется. Незаконное огнестрельное оружие, часто используемое агентами Синдиката.

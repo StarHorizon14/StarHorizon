@@ -1,5 +1,6 @@
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
+using Content.Shared.Ghost;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
@@ -47,8 +48,14 @@ public abstract partial class SharedHorizonFlavorTextSystem : EntitySystem
         if (ent.Comp.Faction == "None")
             return;
 
+        // Показывать фракцию только если осматривающий из той же фракции или призрак
+        var sameFaction = TryComp<CharacterFactionMemberComponent>(args.Examiner, out var examinerFaction)
+            && examinerFaction.Faction == ent.Comp.Faction;
+        if (!sameFaction && !HasComp<GhostComponent>(args.Examiner))
+            return;
+
         var proto = _proto.Index(ent.Comp.Faction);
-        args.PushMarkup(Loc.GetString($"character-faction-examine",
+        args.PushMarkup(Loc.GetString("character-faction-examine",
                                      ("ent", Identity.Name(ent.Owner, EntityManager)),
                                      ("faction", Loc.GetString(proto.Name)),
                                      ("color", proto.Color.ToHex())), 40);

@@ -1,8 +1,8 @@
 ent-MailCarrierIDCard = ID карта почтальона
     .desc = { ent-IDCardStandard.desc }
-ent-NFPrisonerIDCard = prisoner ID card
+ent-NFPrisonerIDCard = ID карта заключённого
     .desc = { ent-IDCardStandard.desc }
-ent-PrisonGuardIDCard = prison guard ID card
+ent-PrisonGuardIDCard = ID карта тюремщика
     .desc = { ent-IDCardStandard.desc }
 ent-GladiatorIDCard = ID карта гладиатора
     .desc = { ent-IDCardStandard.desc }

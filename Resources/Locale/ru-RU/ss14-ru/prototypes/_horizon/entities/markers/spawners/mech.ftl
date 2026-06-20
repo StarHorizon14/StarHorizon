@@ -1,8 +1,8 @@
-ent-SpawnMechGygax = Gygax Spawner
+ent-SpawnMechGygax = спавнер Гигакса
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMechDarkGygax = Dark Gygax Spawner
+ent-SpawnMechDarkGygax = спавнер Тёмного Гигакса
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMechMarauder = Marauder Spawner
+ent-SpawnMechMarauder = спавнер Мародёра
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMechMauler = Mauler Spawner
+ent-SpawnMechMauler = спавнер Маулера
     .desc = { ent-MarkerBase.desc }

@@ -245,14 +245,21 @@ public sealed class PricingSystem : EntitySystem
     /// This fires off an event to calculate the price.
     /// Calculating the price of an entity that somehow contains itself will likely hang.
     /// </remarks>
-    public double GetPrice(EntityUid uid, bool includeContents = true, Func<EntityUid, bool>? predicate = null) // Frontier - Add optional predicate
+    public double GetPrice(EntityUid uid, bool includeContents = true, Func<EntityUid, bool>? predicate = null, string? currency = null, EntityUid? user = null) // Frontier - Add optional predicate  // Horizon - добавил currency и user
     {
         if (predicate is not null && !predicate(uid)) // Frontier
             return 0.0;                               // Frontier
 
-        var ev = new PriceCalculationEvent();
+        var ev = new PriceCalculationEvent()
+        {
+            // всё вот это вот Horizon
+            Entity = uid,
+            Currency = currency,
+            User = user
+        };
+
         ev.Price = 0; // Structs doesnt initialize doubles when called by constructor.
-        RaiseLocalEvent(uid, ref ev);
+        RaiseLocalEvent(uid, ref ev, true); // Horizon - added broadcast
 
         if (ev.Handled)
             return ev.Price;
@@ -278,7 +285,7 @@ public sealed class PricingSystem : EntitySystem
             {
                 foreach (var ent in container.ContainedEntities)
                 {
-                    price += GetPrice(ent, includeContents, predicate); // Frontier - Add includeContents, predicate
+                    price += GetPrice(ent, includeContents, predicate, currency); // Frontier - Add includeContents, predicate and currency
                 }
             }
         }

@@ -67,7 +67,7 @@ public sealed class LayingSystem : EntitySystem
         if (HasComp<KnockedDownComponent>(uid) || !_mobState.IsAlive(uid))
             return;
 
-        if (_standing.IsDown(uid, standing))
+        if (_standing.IsDown(uid))
         {
             TryStandUp(uid, laying, standing);
         }
@@ -141,7 +141,7 @@ public sealed class LayingSystem : EntitySystem
         if (transform.MapID == MapId.Nullspace)
             return false;
 
-        return _gravity.IsWeightless(uid, xform: transform);
+        return _gravity.IsWeightless(uid);
     }
     public void Stand(EntityUid uid)
     {

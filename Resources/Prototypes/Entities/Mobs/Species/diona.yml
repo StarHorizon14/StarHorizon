@@ -116,6 +116,16 @@
   - type: Carriable # Carrying system from nyanotrasen.
   - type: ProtectedFromStepTriggers # Frontier
   - type: FTLKnockdownImmune # Frontier
+  # Horizon: Height traits support
+  - type: TallWhitelist
+    scale: 1.15
+    density: 340
+    cosmeticOnly: false
+  - type: ShortWhitelist
+    scale: 0.85
+    density: 260
+    cosmeticOnly: false
+  # Horizon end
 
 - type: entity
   parent: BaseSpeciesDummy

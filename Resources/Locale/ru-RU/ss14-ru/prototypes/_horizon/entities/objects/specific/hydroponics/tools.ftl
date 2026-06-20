@@ -1,2 +1,2 @@
-ent-HydroponicsToolScytheAdv = advanced scythe
-    .desc = A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow.
+ent-HydroponicsToolScytheAdv = усовершенствованная коса
+    .desc = Острый изогнутый клинок на длинной рукоятке из фиберметалла, этот инструмент позволяет легко пожинать плоды своих трудов.

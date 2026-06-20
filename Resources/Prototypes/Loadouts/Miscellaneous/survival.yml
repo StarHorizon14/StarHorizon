@@ -18,6 +18,7 @@
     - Human
     - Moth
     - Reptilian
+    - TajaranSpecies
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox
@@ -75,6 +76,7 @@
     - Dwarf
     - Human
     - Reptilian
+    - TajaranSpecies
 
 - type: loadoutEffectGroup
   id: OxygenBreatherMimeMoth

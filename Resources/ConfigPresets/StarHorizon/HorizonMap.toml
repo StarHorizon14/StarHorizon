@@ -33,7 +33,7 @@ lobby_name = "Mapping Server"
 [console]
 # Указать CKey игрока, который по-умолчанию и не зависимо ни от чего
 # будет иметь НАИВЫСШИЕ права на сервере (HOST)
-login_host_user = "EvilBug"
+login_host_user = "Joulerk"
 
 [admin]
 see_own_notes = true
@@ -87,3 +87,12 @@ quick_lottery = true
 
 [gateway]
 generator_enabled = false
+
+################################################################################
+##### Sponsor System ###########################################################
+
+[sponsor]
+# Paths to sponsor system files
+discord_sponsors_path = "sponsorSystem/warp/discord_sponsors.txt"
+disposable_path = "sponsorSystem/warp/disposable.txt"
+items_path = "sponsorSystem/sponsor_items.txt"

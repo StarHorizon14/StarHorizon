@@ -2,11 +2,13 @@ using System.Threading;
 using Content.Server._NF.Trade;
 using Content.Server.Cargo.Systems;
 using Content.Server.GameTicking;
+using Content.Shared._NF.Cargo;
 using Content.Shared._NF.Trade;
 using Content.Shared.Cargo;
 using Content.Shared.Examine;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Throwing;
+using Robust.Shared.Map;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server._NF.Cargo.Systems;
@@ -15,6 +17,12 @@ public sealed partial class NFCargoSystem
 {
     [Dependency] private LabelSystem _label = default!;
     private readonly List<EntityUid> _destinations = new();
+
+    /// <summary>
+    /// For cargo orders: all crates from one order get the same destination (one warehouse per batch).
+    /// Key: order id, Value: destination station Uid.
+    /// </summary>
+    private readonly Dictionary<int, EntityUid> _batchDestinationByOrderId = new();
 
     private void InitializeTradeCrates()
     {
@@ -134,5 +142,38 @@ public sealed partial class NFCargoSystem
     private void CleanupTradeCrateDestinations()
     {
         _destinations.Clear();
+        _batchDestinationByOrderId.Clear();
+    }
+
+    /// <summary>
+    /// If the entity is a trade crate spawned as part of an NF cargo order, assign it the batch destination
+    /// so that all crates from the same order go to the same warehouse.
+    /// </summary>
+    public void ApplyBatchDestinationIfTradeCrate(EntityUid entity, NFCargoOrderData order, EntityCoordinates spawn)
+    {
+        if (!TryComp<TradeCrateComponent>(entity, out var tradeCrate))
+            return;
+
+        if (_destinations.Count == 0)
+            return;
+
+        var owningStation = _station.GetOwningStation(entity);
+        if (!_batchDestinationByOrderId.TryGetValue(order.OrderId, out var destination))
+        {
+            var randomIndex = _random.Next(_destinations.Count);
+            if (_destinations.Count > 1 && owningStation == _destinations[randomIndex])
+                randomIndex = (randomIndex + 1 + _random.Next(_destinations.Count - 1)) % _destinations.Count;
+            destination = _destinations[randomIndex];
+            _batchDestinationByOrderId[order.OrderId] = destination;
+        }
+
+        tradeCrate.DestinationStation = destination;
+        if (TryComp<TradeCrateDestinationComponent>(destination, out var destComp))
+            _appearance.SetData(entity, TradeCrateVisuals.DestinationIcon, destComp.DestinationProto.Id);
+        if (TryComp(destination, out MetaDataComponent? metadata))
+            _label.Label(entity, metadata.EntityName);
+
+        if (order.NumDispatched >= order.OrderQuantity)
+            _batchDestinationByOrderId.Remove(order.OrderId);
     }
 }

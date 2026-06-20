@@ -38,7 +38,7 @@
       - id: ClothingEyesGlassesSunglasses
       - id: SpaceCashCounterfeit200000 # Frontier SpaceCash30000<SpaceCashCounterfeit200000
         amount: 1
-      - id: EncryptionKeySyndie
+#      - id: EncryptionKeySyndie # Horizon - big no
       - id: RubberStampTrader
       - id: PhoneInstrumentSyndicate
       - id: ClothingUniformJumpsuitTacticool

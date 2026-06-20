@@ -1,7 +1,16 @@
 - type: wireLayout
-  id: BluespaceHarvester
-  dummyWires: 12
+  id: AnCoWeaponCaseHack
+  dummyWires: 0
   wires:
-  - !type:AiInteractWireAction
-  - !type:PowerWireAction
-  - !type:AccessWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction
+  - !type:AnCoWeaponCaseHackWireAction

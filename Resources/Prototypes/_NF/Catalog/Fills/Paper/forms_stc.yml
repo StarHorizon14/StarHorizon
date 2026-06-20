@@ -45,40 +45,39 @@
   components:
     - type: Paper
       content: >+
-        [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Traffic Department Department[/bold][/color]
+        [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент трафика судов Нового Фронтира[/bold][/color]
 
         [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
 
-        [head=2]Parking Citation[/head]
+        [head=2]Штраф за нарушение правил парковки[/head]
 
 
-        [head=2]Vessel Name:[/head]
+        [head=2]Название судна:[/head]
 
-        [head=2]Vessel Callsign:[/head]
+        [head=2]Позывной судна:[/head]
 
-        [head=2]Owner (if known):[/head]
+        [head=2]Владелец (если известен):[/head]
 
-        [head=2]Infraction:[/head] Dock Loitering
+        [head=2]Нарушение:[/head] Простой у дока
 
-        [head=2]Amount of Fine:[/head] 10,000 spesos
-
-
-        [bold]Notes:[/bold]
-
-        Exceeded docking time limit
+        [head=2]Сумма штрафа:[/head] 10,000 кредитов
 
 
-        [head=2]Issuing Agent[/head]
+        [bold]Примечания:[/bold]
 
-        [bold]Authorizing Officer:[/bold]
-
-        [bold]Time of Authorization:[/bold]
+        Превышен лимит времени стоянки
 
 
-        [color=#AAAAAA]This citation is only valid when approved and signed by an agent representing the traffic control division of the corporation or by the authorized station representative. Additional fines may be issued for each 10 minutes over the maximum.  This citation is a result of a violation of Space Law Section Nine, Article Five, governing the docking rules in and around Frontier Station and the Trade Outpost.
+        [head=2]Выдавшее лицо:[/head]
+
+        [bold]Уполномочивающий офицер:[/bold]
+
+        [bold]Время авторизации:[/bold]
 
 
-        Failure to pay outstanding citations in a timely fashion will result in unpaid citations being forwarded to the New Frontier Sheriff's Department for processing as a criminal offense.[/color]
+        [color=#AAAAAA]Этот штраф действителен только при утверждении и подписании лицом, представляющим отдел управления движением корпорации, или уполномоченным представителем станции. Дополнительные штрафы могут быть выписаны за каждые 10 минут сверх максимума. Этот штраф является результатом нарушения Раздела Девятого, Статьи Пятой Космического Закона, регулирующей правила стоянки на Станции Фронтир и в Торговом Аванпосте.
+
+        Несвоевременная оплата неоплаченных штрафов приведет к передаче неоплаченных штрафов в Департамент Шерифа Нового Фронтира для обработки в качестве уголовного преступления.[/color]
 
 - type: entity # Based on form made by DmitriTheDemon (Dustin)
   id: PaperWrittenStcFormCitationTraffic
@@ -88,38 +87,37 @@
   components:
     - type: Paper
       content: >+
-        [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Traffic Department Department[/bold][/color]
+        [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент трафика судов Нового Фронтира[/bold][/color]
 
         [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
 
-        [head=2]Traffic Citation[/head]
+        [head=2]Штраф за нарушение правил трафика[/head]
 
 
-        [head=2]Time of Offense:[/head]
+        [head=2]Время нарушения:[/head]
 
-        [head=2]Vessel Name:[/head]
+        [head=2]Название судна:[/head]
 
-        [head=2]Vessel Callsign:[/head]
+        [head=2]Позывной судна:[/head]
 
-        [head=2]Infraction:[/head] Reckless Operation
+        [head=2]Нарушение:[/head] Неосторожное управление
 
-        [head=2]Amount of Fine:[/head] 2,500 spesos
-
-
-        [bold]Notes:[/bold]
-
-        Failed to announce departure
+        [head=2]Сумма штрафа:[/head] 2,500 кредитов
 
 
-        [head=2]Issuing Agent[/head]
+        [bold]Примечания:[/bold]
 
-        [bold]Authorizing Officer:[/bold]
-
-
-        [color=#AAAAAA]This citation is only valid when approved and signed by an agent representing the traffic control division of the corporation or by the authorized station representative. This citation is a result of a violation of Space Law Section Nine, Article Five, governing the docking rules in and around Frontier Station and the Trade Outpost.
+        Не объявил о вылете
 
 
-        Failure to pay outstanding citations in a timely fashion will result in unpaid citations being forwarded to the New Frontier Sheriff's Department for processing as a criminal offense.[/color]
+        [head=2]Выдавшее лицо:[/head]
+
+        [bold]Уполномочивающий офицер:[/bold]
+
+
+        [color=#AAAAAA]Этот штраф действителен только при утверждении и подписании лицом, представляющим отдел управления движением корпорации, или уполномоченным представителем станции. Этот штраф является результатом нарушения Раздела Девятого, Статьи Пятой Космического Закона, регулирующей правила стоянки на Станции Фронтир и в Торговом Аванпосте.
+
+        Несвоевременная оплата неоплаченных штрафов приведет к передаче неоплаченных штрафов в Департамент Шерифа Нового Фронтира для обработки в качестве уголовного преступления.[/color]
 
 - type: entity # Based on form made by DmitriTheDemon (Dustin)
   id: PaperWrittenStcFormProsecutionRequest
@@ -129,28 +127,28 @@
   components:
     - type: Paper
       content: >-
-        [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Traffic Department Department[/bold][/color]
+        [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент трафика судов Нового Фронтира[/bold][/color]
 
         [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
 
-        [head=2]Request for Prosecution[/head]
+        [head=2]Запрос на Возбуждение Уголовного Дела[/head]
 
 
-        The below named vessel has been issued citations which have gone unpaid or have not received a response in a timely fashion.
+        Указанному ниже судну были выписаны штрафы, которые остались неоплаченными или на которые не было своевременного ответа.
 
 
-        [head=2]Vessel Name:[/head]
+        [head=2]Название судна:[/head]
 
-        [head=2]Vessel Callsign:[/head]
+        [head=2]Номер судна:[/head]
 
-        [head=2]Captain Name: [/head]
+        [head=2]Имя капитана:[/head]
 
-        [head=2]Infraction(s):[/head]
+        [head=2]Нарушение(я):[/head]
 
-        [head=2]Amount of Fine(s):[/head]
+        [head=2]Сумма штрафа(ов):[/head]
 
 
-        [color=#AAAAAA]This citation is only valid when approved and signed by an agent representing the traffic control division of the corporation or by the authorized station representative. This request is a result of a violation of Space Law Section Nine, Article Five, governing the docking rules in and around Frontier Station and the Trade Outpost.[/color]
+        [color=#AAAAAA]Этот штраф действителен только при утверждении и подписании лицом, представляющим отдел управления движением корпорации, или уполномоченным представителем станции. Этот запрос является результатом нарушения Раздела Девятого, Статьи Пятой Космического Закона, регулирующей правила стоянки на Станции Фронтир и в Торговом Аванпосте.[/color]
 
 - type: entity # Based on form made by TakuTaco
   id: PaperWrittenStcFormTrafficLog
@@ -160,18 +158,18 @@
   components:
     - type: Paper
       content: >-
-        [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Traffic Department[/bold][/color]
+        [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент трафика судов Нового Фронтира[/bold][/color]
 
         [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
 
 
-        [head=2]Hourly Traffic Log[/head]
+        [head=2]Почасовой Журнал Движения[/head]
 
 
-        [bold]Time | Ship designator | Known crew | Note[/bold]
+        [bold]Время | Обозначение судна | Известный экипаж | Примечание[/bold]
 
 
-        [color=green]Docked[/color] | [bold][/bold] |  | [color=green][/color]
+        [color=green]Пристыкован[/color] | [bold][/bold] |  | [color=green][/color]
 
 - type: entity # Based on form made by Shock (M. Bergman)
   id: PaperWrittenStcFormWellnessCheck
@@ -181,26 +179,26 @@
   components:
     - type: Paper
       content: >+
-        [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+        [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Командование Фронтира[/bold][/color]
 
         [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
 
-        [head=2]Wellness Check[/head]
+        [head=2]Проверка Благополучия[/head]
 
 
 
-        [bold]Vessel IFF:[/bold] [color=#2200BD]WRITE HERE[/color]
+        [bold]IFF судна:[/bold] [color=#2200BD]НАПИШИТЕ ЗДЕСЬ[/color]
 
-        [bold]Shift Time:[/bold] [color=#2200BD]WRITE HERE[/color]
-
-
-
-        This constitutes a wellness check on the destionary vessel and its crew. You are required to contact the Station Traffic Controller within twenty (20) minutes of this notice being sent. If the vessel is unresponsive exceeding the time stated above, it will be declared salvage on account of Space Law §9.3.
+        [bold]Время смены:[/bold] [color=#2200BD]НАПИШИТЕ ЗДЕСЬ[/color]
 
 
+
+        Это является проверкой благополучия судна-получателя и его экипажа. Вы обязаны связаться с Диспетчером аванпоста в течение двадцати (20) минут с момента отправки этого уведомления. Если судно будет не отвечать дольше указанного выше времени, оно будет объявлено пригодным для утилизации в соответствии с Космическим Законом §9.3.
 
 
 
 
 
-        [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative)[/color]
+
+
+        [color=#AAAAAA]Форма недействительна без подписи и печати Командования Фронтира (Шерифа или Представителя Станции)[/color]

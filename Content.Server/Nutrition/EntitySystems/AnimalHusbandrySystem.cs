@@ -243,6 +243,9 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         {
             if (_timing.CurTime < infant.InfantEndTime)
                 continue;
+            // Horizon: Dead babies should not grow up
+            if (_mobState.IsDead(uid))
+                continue;
             RemCompDeferred(uid, infant);
             // Make sure the name prefix gets removed
             _nameMod.RefreshNameModifiers(uid);

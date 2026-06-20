@@ -17,6 +17,15 @@
             "name": "lantern-overlay"
         },
         {
+            "name": "lantern_world"
+        },
+        {
+            "name": "lantern-on_world"
+        },
+        {
+            "name": "lantern-overlay_world"
+        },
+        {
             "name": "inhand-left",
             "directions": 4
         },

@@ -1,8 +1,8 @@
-ent-FoodTartPearCheese = пирог с грушей и сыром
+ent-FoodTartPearCheese = тарт с грушей и сыром
     .desc = Самая великолепная пара.
-ent-FoodTartPearCheeseSlice = slice of pear and cheese tart
-    .desc = A sweet and savory slice of pear and cheese tart.
-ent-FoodPieAppleHoney = honey apple streusel pie
-    .desc = A pie full of honey-laced apples baked under a crumbly oat streusel topping.
-ent-FoodPieAppleHoneySlice = кусочек пирога с грушей и сыром
-    .desc = Ломтик яблока в медовой глазури, запеченный с рассыпчатой овсяной начинкой для штрейзеля.
+ent-FoodTartPearCheeseSlice = ломтик тарта с грушей и сыром
+    .desc = Сладкий и пикантный ломтик тарта с грушей и сыром.
+ent-FoodPieAppleHoney = яблочный пирог "Штрейзель" с мёдом
+    .desc = Пирог, полный яблок в медовой глазури, запечённых под рассыпчатой овсяной начинкой штрейзель.
+ent-FoodPieAppleHoneySlice = ломтик яблочного пирога с мёдом
+    .desc = Ломтик яблок в медовой глазури, запеченный с рассыпчатой овсяной начинкой для штрейзеля.

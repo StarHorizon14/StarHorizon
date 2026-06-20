@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
+using Content.Shared._NF.Pinpointer;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Emag.Systems;
@@ -47,6 +49,7 @@ public abstract class SharedPinpointerSystem : EntitySystem
 
         // TODO add doafter once the freeze is lifted
         // ignore can target multiple, because too hard to support
+        var previousTargets = new HashSet<EntityUid>(component.Targets);
         component.Targets.Clear();
         component.Targets.Add(target);
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(args.User):player} set target of {ToPrettyString(uid):pinpointer} to {ToPrettyString(target):target}");
@@ -54,6 +57,9 @@ public abstract class SharedPinpointerSystem : EntitySystem
             component.TargetName = Identity.Name(target, EntityManager);
 
         _popup.PopupPredicted(Loc.GetString("pinpointer-link-success"), uid, args.User);
+
+        var modifiedEv = new PinpointerTargetsModifiedEvent(previousTargets);
+        RaiseLocalEvent(uid, ref modifiedEv);
         // Goob edit end
     }
 

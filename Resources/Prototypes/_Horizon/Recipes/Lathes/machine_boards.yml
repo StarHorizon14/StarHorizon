@@ -4,6 +4,11 @@
   result: OreProcessorFuelMachineCircuitboard
 
 - type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
+  id: LumberMillMachineCircuitboard
+  result: LumberMillMachineCircuitboard
+
+- type: latheRecipe
   parent: [ BaseGoldCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
   id: CytologyGrowingVatMachineCircuitboard
   result: CytologyGrowingVatMachineCircuitboard
@@ -15,5 +20,5 @@
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
-  id: CytologySampleCombinatorMachineCircuitboard
-  result: CytologySampleCombinatorMachineCircuitboard
+  id: CytologySampleCombinatorComputerCircuitboard
+  result: CytologySampleCombinatorComputerCircuitboard

@@ -1,37 +1,37 @@
 <Document>
-  # Shelegs
+  # Шелеги
 
   <Box>
     <GuideEntityEmbed Entity="MobSheleg" Caption=""/>
   </Box>
 
-  Sheleg are a race of ice-like humanoid beings possessing blue skin and white hair, with a strong Nordic culture.
+  Шелеги — это раса ледяных гуманоидных существ с синей кожей и белыми волосами, обладающая яркой нордической культурой.
 
-  ## Diet
-  - Normal medical chemicals have no effect, however cryo chemicals work with their cold body temperature.
+  ## Питание
+  - Обычные медицинские химикаты не действуют, однако криохимикаты работают благодаря их низкой температуре тела.
 
-  ## Benefits
-  - Takes [color=#1e90ff]no Cold damage and 20% less Blunt, Slash and Piercing damage.[/color]
-  - Due to their large size they can easily carry, shove and pull any other morphotypes.
-  - They are harder to shove.
-  - Being cold has no walking and running speed reductions.
-  - As long as they are alive, they [color=#1e90ff]slowly passively heal heat damage.[/color]
+  ## Преимущества
+  - [color=#1e90ff]Не получают урона от холода и на 20% меньше урона от дробящего, режущего и колющего оружия.[/color]
+  - Благодаря крупному телосложению они могут легко переносить, толкать и тащить представителей других морфотипов.
+  - Их сложнее столкнуть.
+  - Холод не снижает их скорость ходьбы и бега.
+  - Пока они живы, они [color=#1e90ff]медленно пассивно восстанавливают урон от жары.[/color]
 
-  ## Special
-  - They have a body temperature of -172 °C. This requires them to wear an EVA suit in standard station atmospheres and they always start the shift provided with one.
-  - Cryoxadone blood.
-  - Inhale oxygen and exhale water vapor.
-  - Get hungry slower, but thirsty faster.
-  - Have no floor friction with no shoes.
-  - Bare-hand attacks deal Cold damage in addition to Blunt.
+  ## Особенности
+  - Температура их тела составляет -172 °C. Это требует ношения скафандра EVA в стандартной атмосфере станции, и он выдается им в начале смены.
+  - Криоксадоновая кровь.
+  - Вдыхают кислород и выдыхают водяной пар.
+  - Медленнее становятся голодными, но быстрее испытывают жажду.
+  - Не испытывают трения с полом без обуви.
+  - Атаки голыми руками наносят урон холодом в дополнение к дробящему.
 
-  ## Drawbacks
-  - They are harder to carry and pull.
-  - They are larger than humans, making them easier to hit.
-  - They take [color=#ffa500]65% more Heat and 25% more Shock damage.[/color]
-  - They take [color=#ffa500]high Heat damage above 0 °C body temperature.[/color]
-  - They cannot be injected with syringes, hyposprays or darts due to their hardened skin.
-  - Slow food and chemical metabolisation means that they can only process one chemical at a time.
-  - They [color=#ffa500]react violently with potassium: touching it hurts, drinking it melts them.[/color]
+  ## Недостатки
+  - Их сложнее переносить и тащить.
+  - Они крупнее людей, что делает их более легкой мишенью.
+  - Получают [color=#ffa500]на 65% больше урона от тепла и на 25% больше урона от электрошока.[/color]
+  - Получают [color=#ffa500]высокий урон от жары при температуре тела выше 0 °C.[/color]
+  - Их нельзя инъецировать шприцами, гипоспреями или дротиками из-за их закалённой кожи.
+  - Медленный метаболизм пищи и химикатов означает, что они могут обрабатывать только одно химическое вещество за раз.
+  - Они [color=#ffa500]реагируют на калий взрывным образом: прикосновение причиняет боль, употребление расплавляет их.[/color]
 
 </Document>

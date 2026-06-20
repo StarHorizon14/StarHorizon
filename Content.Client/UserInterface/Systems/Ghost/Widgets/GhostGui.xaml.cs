@@ -23,6 +23,7 @@ public sealed partial class GhostGui : UIWidget
     public event Action? ReturnToBodyPressed;
     public event Action? GhostRolesPressed;
     public event Action? GhostRespawnPressed; // Frontier
+    public event Action? ChangeSpritePressed; // Horizon
     private int _prevNumberRoles;
 
     public GhostGui()
@@ -42,6 +43,7 @@ public sealed partial class GhostGui : UIWidget
         GhostRolesButton.OnPressed += _ => GhostRolesButton.StyleClasses.Remove(StyleBase.ButtonCaution);
         GhostRespawnButton.OnPressed += _ => RulesWindow.OpenCentered(); // Frontier
         CryosleepReturnButton.OnPressed += _ => CryosleepWakeupWindow.OpenCentered(); // Frontier
+        ChangeSpriteButton.OnPressed += _ => ChangeSpritePressed?.Invoke(); // Horizon
     }
 
     public void Hide()

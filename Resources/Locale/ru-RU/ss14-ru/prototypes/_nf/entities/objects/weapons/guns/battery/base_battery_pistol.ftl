@@ -1,5 +1,5 @@
 ent-NFBaseWeaponFrameEnergyPistol = { ent-NFBaseWeaponEncumbrancePistol }
-    .suffix = Frontier
+    .suffix = Фронтир
     .desc = { ent-NFBaseWeaponEncumbrancePistol.desc }
 ent-NFBaseWeaponFrameEnergyPistolNanotrasen = { ent-NFBaseWeaponFrameEnergyPistol }
     .desc = { ent-NFBaseWeaponFrameEnergyPistol.desc }

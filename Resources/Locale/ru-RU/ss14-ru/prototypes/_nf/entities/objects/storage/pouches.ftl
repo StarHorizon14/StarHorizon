@@ -1,7 +1,7 @@
 ent-NFPouchBase = сумка
     .desc = Небольшая сумочка для хранения небольших вещей.
     .suffix = Пустая
-ent-NFPouchUtility = utility pouch
+ent-NFPouchUtility = сумка для инструментов
     .desc = { ent-NFPouchBase.desc }
 ent-NFPouchContractor = сумка авантюриста
     .desc = { ent-NFPouchBase.desc }

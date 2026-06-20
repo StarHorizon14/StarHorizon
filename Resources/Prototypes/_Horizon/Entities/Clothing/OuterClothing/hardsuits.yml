@@ -119,8 +119,8 @@
         Caustic: 0.3
   - type: HeldSpeedModifier
   - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitIndeep1
 
@@ -151,8 +151,8 @@
         Caustic: 0.3
   - type: HeldSpeedModifier
   - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    walkModifier: 0.8
+    sprintModifier: 0.8
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitIndeep2
 
@@ -191,9 +191,9 @@
 
 - type: entity
   parent: [ClothingOuterHardsuitBase]
-  id: ClothingOuterExperementalSyndy
+  id: ClothingOuterExperimentalSyndy
   name: "Рамзи"
-  description: Эксперементальный скафандр синдиката,так и не попавший на рынки.
+  description: Экспериментальный скафандр синдиката, так и не попавший на рынки.
   suffix: StarHorizon
   components:
   - type: Sprite
@@ -219,7 +219,7 @@
     sprintModifier: 0.90
   - type: HeldSpeedModifier
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitExperementalSyndy
+    clothingPrototype: ClothingHeadHelmetHardsuitExperimentalSyndy
 
 
 - type: entity
@@ -248,8 +248,8 @@
         Radiation: 0.1
         Caustic: 0.1
   - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    walkModifier: 1.0
+    sprintModifier: 1.0
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCybersunResearch

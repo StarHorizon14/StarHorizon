@@ -49,6 +49,8 @@
   - HandHeldMassScanner
   - ClothingMaskWeldingGas
   - SignallerAdvanced
+  - BluespaceAirTank # Frontier
+  - SmallBluespaceAirTank # Frontier
 
 - type: latheRecipePack
   id: SalvageSecurityBoards

@@ -5,7 +5,9 @@
   name: trait-blindness-name
   description: trait-blindness-desc
   traitGear: WhiteCane
-  category: Disabilities
+  category: HorizonNegative # Horizon tweak
+  group: TraitEyes # Horizon tweak
+  cost: -6 # Horizon tweak
   whitelist:
     components:
       - Blindable
@@ -17,19 +19,22 @@
   name: trait-poor-vision-name
   description: trait-poor-vision-desc
   traitGear: ClothingEyesGlasses
-  category: Disabilities
+  category: HorizonNegative # Horizon tweak
+  group: TraitEyes # Horizon tweak
+  cost: -1 # Horizon tweak
   whitelist:
     components:
       - Blindable
   components:
     - type: PermanentBlindness
-      blindness: 4
+      blindness: 3 # Frontier: 4->3
 
 - type: trait
   id: Narcolepsy
   name: trait-narcolepsy-name
   description: trait-narcolepsy-desc
-  category: Disabilities
+  category: HorizonNegative # Horizon tweak
+  cost: -6 # Horizon tweak
   components:
     - type: Narcolepsy
       timeBetweenIncidents: 300, 600
@@ -39,7 +44,8 @@
   id: Unrevivable
   name: trait-unrevivable-name
   description: trait-unrevivable-desc
-  category: Disabilities
+  category: HorizonNegative # Horizon tweak
+  cost: -9 # Horizon tweak
   components:
     - type: Unrevivable
       cloneable: true
@@ -48,7 +54,7 @@
   id: Monochromancy
   name: trait-monochromancy-name
   description: trait-monochromancy-desc
-  category: Disabilities
+  category: HorizonNeutral  # Horizon tweak
   components:
   - type: BlackAndWhiteOverlay
 
@@ -56,7 +62,8 @@
   id: Muted
   name: trait-muted-name
   description: trait-muted-desc
-  category: Disabilities
+  category: HorizonNegative # Horizon tweak
+  cost: -6 # Horizon tweak
   blacklist:
     components:
       - BorgChassis
@@ -67,7 +74,8 @@
   id: Paracusia
   name: trait-paracusia-name
   description: trait-paracusia-desc
-  category: Disabilities
+  category: HorizonNegative # Horizon tweak
+  cost: -1 # Horizon tweak
   components:
     - type: Paracusia
       minTimeBetweenIncidents: 0.1
@@ -80,6 +88,7 @@
   id: PainNumbness
   name: trait-painnumbness-name
   description: trait-painnumbness-desc
-  category: Disabilities
+  category: HorizonNegative # Horizon tweak
+  cost: -3 # Horizon tweak
   components:
   - type: PainNumbness

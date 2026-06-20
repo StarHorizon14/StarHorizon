@@ -11,7 +11,7 @@
 - type: pointOfInterest
   id: Edison
   parent: BasePOI
-  name: 'Edison Power Plant'
+  name: 'Электростанция Эдисона'
   minimumDistance: 3650
   maximumDistance: 5400
   minimumClearance: 1000
@@ -26,7 +26,7 @@
 
 - type: gameMap
   id: Edison
-  mapName: 'Edison Power Plant'
+  mapName: 'Электростанция Эдисона'
   mapPath: /Maps/_Horizon/POI/edison.yml #Horizon-Maps
   minPlayers: 0
   stations:
@@ -34,9 +34,9 @@
       stationProto: RecordsFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Edison Power Plant'
+          mapNameTemplate: 'Электростанция Эдисона'
         - type: ExtraStationInformation
-          iconPath: /Textures/_NF/Structures/Decoration/banner.rsi/banner_engineering.png
+          iconPath: /Textures/_NF/Interface/StationIcons/banner_engineering.png
           stationSubtext: frontier-lobby-edison-subtext
           stationDescription: frontier-lobby-edison-description
           lobbySortOrder: 5

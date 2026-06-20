@@ -94,8 +94,15 @@
         emote: Scream
         probability: 0.2
   - type: NoShoesSilentFootsteps
-  - type: TallWhitelist # Frontier
-    scale: 1 # Frontier
+  # Horizon: Height traits (felinid base scale 0.8, 0.8 - small)
+  - type: TallWhitelist
+    scale: 0.9  # Closer to human size
+    density: 160
+    cosmeticOnly: false
+  - type: ShortWhitelist
+    scale: 0.7  # Smaller than base 0.8
+    density: 120
+    cosmeticOnly: false
   - type: Inventory # Frontier
     speciesId: felinid # Frontier
 

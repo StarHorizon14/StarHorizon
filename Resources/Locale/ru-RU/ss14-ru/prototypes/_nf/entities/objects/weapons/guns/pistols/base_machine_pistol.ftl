@@ -1,4 +1,4 @@
-ent-NFBaseWeaponFrameMachinePistol = machine pistol
+ent-NFBaseWeaponFrameMachinePistol = пистолет-пулемёт
     .desc = { ent-NFBaseWeaponEncumbranceMachinePistol.desc }
 ent-NFBaseWeaponFrameMachinePistolNanotrasen = { ent-NFBaseWeaponFrameMachinePistol }
     .desc = { ent-NFBaseWeaponFrameMachinePistol.desc }

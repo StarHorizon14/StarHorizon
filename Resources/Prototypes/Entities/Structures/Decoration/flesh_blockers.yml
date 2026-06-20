@@ -37,3 +37,14 @@
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+
+# Horizon start
+
+- type: entity
+  parent: FleshBlocker
+  id: FleshBlockerHarvester
+  components:
+  - type: TimedDespawn
+    lifetime: 600
+
+# Horizon end

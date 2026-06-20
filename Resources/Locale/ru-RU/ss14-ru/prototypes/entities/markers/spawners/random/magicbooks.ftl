@@ -1,4 +1,5 @@
-ent-RandomMagicBook = random magic book spawner
+ent-RandomMagicBook = спавнер случайной магической книги
     .desc = { ent-MarkerBase.desc }
-ent-RandomMagicBookSafe = random magic book spawner [safe]
+ent-RandomMagicBookSafe = спавнер случайной магической книги
     .desc = { ent-MarkerBase.desc }
+    .suffix = Безобидные

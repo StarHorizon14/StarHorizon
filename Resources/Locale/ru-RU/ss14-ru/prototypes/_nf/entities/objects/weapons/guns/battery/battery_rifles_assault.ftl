@@ -1,4 +1,4 @@
-ent-NFWeaponEnergyRifleAssaultPulseCarbine = pulse carbine
-    .desc = A high tech energy carbine favoured by the NT-ERT operatives. On the handle is a label that says 'for authorized use only.'
-ent-NFWeaponEnergyLightMachineGunTurbo = turbo laser mk3
-    .desc = A turbo laser ripped from the guardian unit. Appears to be a rather old model. Doesn't seem to be working properly. Supposedly highly illegal.
+ent-NFWeaponEnergyRifleAssaultPulseCarbine = импульсный карабин
+    .desc = Высокотехнологичный энергетический карабин, предпочитаемый оперативниками НТ-ОБР. На рукоятке есть надпись: "только для авторизованного использования".
+ent-NFWeaponEnergyLightMachineGunTurbo = турболазер mk3
+    .desc = Турболазер, извлечённый из стражей-охранников. Похоже, довольно старая модель. Похоже, работает неправильно. Предположительно, крайне незаконен.

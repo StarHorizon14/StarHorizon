@@ -52,3 +52,6 @@ ent-ClothingBackpackSatchelSalvage = сумка утилизатора
 ent-ClothingBackpackSatchelHolding = сумка хранения
     .desc = Сумка, открывающаяся в локальный карман блюспейса.
     .suffix = { ent-ClothingBackpackSatchel.suffix }
+ent-ClothingBackpackSatchelAdmin = сумка администрирования
+    .desc = Если ты каким-то образом видишь это, нет, ты не видишь.
+    .suffix = Админ

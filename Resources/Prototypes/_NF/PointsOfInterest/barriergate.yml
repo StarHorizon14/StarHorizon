@@ -11,7 +11,7 @@
 - type: pointOfInterest
   id: BarrierGate
   parent: BasePOI
-  name: 'Barrier Gate'
+  name: 'Перевалочный пункт'
   minimumDistance: 11000
   maximumDistance: 12000
   # minimumClearance: 8000 # To make sure it doesn't pop in next to the Cove. Offline for now.
@@ -24,7 +24,7 @@
 
 - type: gameMap
   id: BarrierGate
-  mapName: 'Barrier Gate'
+  mapName: 'Перевалочный пункт'
   mapPath: /Maps/_NF/POI/barriergate.yml
   minPlayers: 0
   stations:
@@ -32,7 +32,7 @@
       stationProto: StandardFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Barrier Gate'
+          mapNameTemplate: 'Перевалочный пункт'
         - type: StationJobs
           availableJobs: {}
         - type: StationDeadDropHintExempt

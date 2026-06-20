@@ -1,2 +1,3 @@
-ent-NFMailBag = mail bag
-    .desc = Here's the mail, it never fails...
+ent-NFMailBag = сумка для почтовых капсул
+    .desc = Сумка, предназначеная для хранения почтовых капсул. Вы можете быть уверены, что в этой сумке они не потеряются
+    .suffix = Фронтир

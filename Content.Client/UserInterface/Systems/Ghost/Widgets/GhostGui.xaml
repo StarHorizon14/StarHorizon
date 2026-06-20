@@ -7,5 +7,6 @@
         <Button Name="GhostRolesButton" />
         <Button Name="GhostRespawnButton" Text="{Loc ghost-gui-respawn}" />
         <Button Name="CryosleepReturnButton" Text="{Loc ghost-gui-uncryo}" />
+        <Button Name="ChangeSpriteButton" Text="{Loc ghost-gui-change-sprite-button}" />
     </BoxContainer>
 </widgets:GhostGui>

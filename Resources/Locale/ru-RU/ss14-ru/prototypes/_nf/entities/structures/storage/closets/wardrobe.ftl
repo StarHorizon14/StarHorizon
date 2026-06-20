@@ -1,2 +1,2 @@
-ent-NFWardrobePrison = prisoner wardrobe
-    .desc = It's a storage unit for Space Law compliant prisoner garb.
+ent-NFWardrobePrison = гардероб заключённого
+    .desc = Это блок хранения для одежды заключённых, соответствующей Космическому Закону.

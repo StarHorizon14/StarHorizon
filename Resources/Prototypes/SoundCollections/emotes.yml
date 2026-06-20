@@ -140,3 +140,10 @@
   id: XenoborgPing
   files:
   - /Audio/Voice/Xenoborg/xenoborg_ping.ogg
+
+- type: soundCollection
+  id: IPCWhirrs
+  files:
+    - /Audio/Voice/IPC/whirr1.ogg
+    - /Audio/Voice/IPC/whirr2.ogg
+    - /Audio/Voice/IPC/whirr3.ogg

@@ -492,6 +492,9 @@
       ]
     },
     {
+      "name": "pda-shantyman"
+    },
+    {
       "name": "pda-qm",
       "delays": [
         [
@@ -955,6 +958,9 @@
     },
     {
       "name": "pda-pirate_world"
+    },
+    {
+      "name": "pda-shantyman_world"
     },
     {
       "name": "pda-qm_world"

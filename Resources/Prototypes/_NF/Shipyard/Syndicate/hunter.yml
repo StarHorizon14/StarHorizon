@@ -16,7 +16,7 @@
 - type: gameMap
   id: Hunter
   mapName: 'Hunter'
-  mapPath: /Maps/_NF/Shuttles/Syndicate/hunter.yml
+  mapPath: /Maps/_Horizon/Shuttles/Shipyard/Syndicate/hunter.yml
   minPlayers: 0
   stations:
     Hunter:

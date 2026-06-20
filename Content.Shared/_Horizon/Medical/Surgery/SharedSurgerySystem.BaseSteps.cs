@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Body.Part;
 using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
@@ -102,9 +102,10 @@ public abstract partial class SharedSurgerySystem
     }
     private void OnStep(Entity<SurgeryStepComponent> ent, ref SurgeryStepEvent args)
     {
-        foreach (var reg in (ent.Comp.Tools ?? []).Values)
+        foreach (var (compName, _) in (ent.Comp.Tools ?? []))
         {
-            var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
+            var requiredType = _compFactory.GetRegistration(compName).Type;
+            var tool = args.Tools.FirstOrDefault(x => HasComp(x, requiredType));
             if (tool == default)
                 return;
 
@@ -178,9 +179,10 @@ public abstract partial class SharedSurgerySystem
         if (args.Invalid != StepInvalidReason.None || ent.Comp.Tools == null)
             return;
 
-        foreach (var reg in ent.Comp.Tools.Values)
+        foreach (var (compName, reg) in ent.Comp.Tools)
         {
-            var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
+            var requiredType = _compFactory.GetRegistration(compName).Type;
+            var tool = args.Tools.FirstOrDefault(x => HasComp(x, requiredType));
             if (tool == default)
             {
                 args.Invalid = StepInvalidReason.MissingTool;

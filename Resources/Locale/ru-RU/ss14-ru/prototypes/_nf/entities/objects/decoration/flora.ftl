@@ -1,4 +1,4 @@
 ent-BaseTreePalm = { ent-BaseTree }
     .desc = { ent-BaseTree.desc }
-ent-FloraTreePalm = palm tree
+ent-FloraTreePalm = пальмовое дерево
     .desc = { ent-BaseTreePalm.desc }

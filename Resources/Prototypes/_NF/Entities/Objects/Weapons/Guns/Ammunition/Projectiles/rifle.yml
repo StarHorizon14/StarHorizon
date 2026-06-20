@@ -187,7 +187,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 15
+        Piercing: 17
 
 - type: entity
   id: NFBulletRifle30Overpressure
@@ -198,8 +198,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 17
-
+        Piercing: 19
 - type: entity
   id: NFBulletRifle30Incendiary
   name: bullet (.30 rifle, incendiary)
@@ -210,7 +209,7 @@
     damage:
       types:
         Piercing: 5
-        Heat: 10
+        Heat: 12
 
 - type: entity
   id: NFBulletRifle30Uranium
@@ -222,7 +221,7 @@
     damage:
       types:
         Piercing: 5.6
-        Radiation: 10.4
+        Radiation: 12.4
 
 - type: entity
   id: NFBulletRifle30Practice
@@ -233,7 +232,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 2
+        Piercing: 1
 
 - type: entity
   id: NFBulletRifle30Rubber
@@ -244,7 +243,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 2
+        Piercing: 1
   - type: StaminaDamageOnCollide
     damage: 20 # ~8 hits to stun sounds reasonable
 
@@ -258,7 +257,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 50
+        Piercing: 60
         Structural: 200
     penetrationThreshold: 360
     penetrationDamageTypeRequirement:

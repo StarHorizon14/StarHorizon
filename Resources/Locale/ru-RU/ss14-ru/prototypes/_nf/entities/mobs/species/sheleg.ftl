@@ -1,4 +1,4 @@
-ent-BaseMobSheleg = Urist McIce
+ent-BaseMobSheleg = Урист МакШелег
     .desc = { ent-BaseMobSpeciesOrganic.desc }
-ent-MobShelegDummy = Urist McIce
-    .desc = A dummy sheleg meant to be used in character setup.
+ent-MobShelegDummy = Урист МакШелег
+    .desc = Манекен шелега, предназначенный для использования в настройке персонажа.

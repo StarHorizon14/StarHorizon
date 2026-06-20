@@ -1446,3 +1446,33 @@
       Min: 1
       Max: 10
       PotencyDivisor: 10
+
+- type: seed
+  id: peach
+  name: seeds-peach-name
+  noun: seeds-noun-seeds
+  displayName: seeds-peach-display-name
+  plantRsi: _Horizon/Objects/Specific/Hydroponics/peach.rsi
+  packetPrototype: PeachSeeds
+  productPrototypes:
+  - FoodPeach
+  harvestRepeat: Repeat
+  lifespan: 55
+  maturation: 6
+  production: 6
+  yield: 3
+  potency: 10
+  idealLight: 8
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 20
+    Sugar:
+      Min: 1
+      Max: 7
+      PotencyDivisor: 10

@@ -1,17 +1,14 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared._Horizon.Bark;
-using Content.Shared.Chat;
 using Robust.Client.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
-using System.Threading.Tasks;
-using Content.Client.Chat;
 using Content.Shared._Horizon.CCVar;
-using Robust.Client.ResourceManagement;
-using Robust.Shared.Utility;
 using Robust.Client.Player;
+using Robust.Shared.Timing;
+using Robust.Shared.Map;
 
 namespace Content.Client._Horizon.Bark;
 
@@ -22,6 +19,13 @@ public sealed class SpeechBarksSystem : SharedSpeechBarksSystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+
+    private const float MinimalVolume = -10f;
+    private const float WhisperFade = 4f;
+    private float _volume = 0.0f;
+
+    private List<ActiveBark> _activeBarks = new();
 
     public override void Initialize()
     {
@@ -38,34 +42,17 @@ public sealed class SpeechBarksSystem : SharedSpeechBarksSystem
         _cfg.UnsubValueChanged(HorizonCCVars.BarksVolume, OnVolumeChanged);
     }
 
-    private readonly List<string> _sampleText =
-    new()
-    {
-            "Тестик сообщениЯ 1.",
-            "Тестик сообщениЯ 2!",
-            "Тестик сообщениЯ 3?",
-            "Здесь была лемя."
-    };
-
-    private const float MinimalVolume = -10f;
-    private float _volume = 0.0f;
-    private const float WhisperFade = 4f;
-
     private void OnVolumeChanged(float volume)
+        => _volume = volume;
+
+    private float AdjustVolume(string message, bool isWhisper)
     {
-        _volume = volume;
-    }
+        var volume = isWhisper ? _volume - WhisperFade : _volume;
 
-    private float AdjustVolume(bool isWhisper)
-    {
-        var volume = MinimalVolume + SharedAudioSystem.GainToVolume(_volume);
+        if (message.EndsWith("!"))
+            volume += 1.5f;
 
-        if (isWhisper)
-        {
-            volume -= SharedAudioSystem.GainToVolume(WhisperFade);
-        }
-
-        return volume;
+        return MinimalVolume + SharedAudioSystem.GainToVolume(volume);
     }
 
     private float AdjustDistance(bool isWhisper)
@@ -75,54 +62,20 @@ public sealed class SpeechBarksSystem : SharedSpeechBarksSystem
 
     private async void OnEntitySpoke(PlaySpeechBarksEvent ev)
     {
-        if (_cfg.GetCVar(HorizonCCVars.ReplaceTTSWithBarks) == false)
-            return;
-
         if (ev.Message == null)
             return;
 
-        if (ev.Source != null)
-        {
-            var audioParams = AudioParams.Default
-                .WithVolume(AdjustVolume(ev.IsWhisper))
-                .WithMaxDistance(AdjustDistance(ev.IsWhisper))
-                .WithPlayOffset(0f)
-                .WithReferenceDistance(100f);
+        if (!TryGetEntity(ev.Source, out var source) || Transform(source.Value).MapID == MapId.Nullspace)
+            return;
 
-            if (ev.Message.EndsWith('!'))
-                audioParams = audioParams.WithVolume(audioParams.Volume * 1.2f);
-
-            var audioResource = new AudioResource();
-            string str = ev.Sound;
-
-            var path = new ResPath(str);
-            audioResource.Load(IoCManager.Instance!, path);
-
-            var count = ev.Message.Length / 3f;
-
-            for (var i = 0; i < count; i++)
-            {
-                if (_player.LocalSession == null)
-                    break;
-                var entity = GetEntity(ev.Source.Value);
-                if (entity == EntityUid.Invalid || _player.LocalEntity == null)
-                    break;
-                if (Deleted(entity) || Terminating(entity))
-                    break;
-                if (!HasComp<TransformComponent>(entity) || !HasComp<TransformComponent>(_player.LocalEntity.Value))
-                    continue;
-                if (Transform(entity).Coordinates.TryDistance(EntityManager, Transform(_player.LocalEntity.Value).Coordinates, out var distance) &&
-                    distance > 10)
-                    continue;
-                if (Transform(entity).ParentUid == EntityUid.Invalid)
-                    continue;
-
-                _audio.PlayEntity(audioResource.AudioStream, entity, new ResolvedPathSpecifier(path), audioParams.WithPitchScale(_random.NextFloat(ev.Pitch - 0.1f, ev.Pitch + 0.1f)));
-
-                await Task.Delay(TimeSpan.FromSeconds(_random.NextFloat(ev.LowVar, ev.HighVar)));
-            }
-
-        }
+        var bark = new ActiveBark(source,
+                                  ev.Sound,
+                                  AdjustVolume(ev.Message, ev.IsWhisper),
+                                  ev.Pitch,
+                                  AdjustDistance(ev.IsWhisper),
+                                  (ev.LowVar, ev.HighVar),
+                                  ev.Message.Length / 3);
+        _activeBarks.Add(bark);
     }
 
     public async void PlayDataPrewiew(string protoId, float pitch, float lowVar, float highVar)
@@ -130,29 +83,92 @@ public sealed class SpeechBarksSystem : SharedSpeechBarksSystem
         if (!_proto.TryIndex<BarkPrototype>(protoId, out var proto))
             return;
 
-        var message = _random.Pick(_sampleText);
+        var bark = new ActiveBark(null,
+                                  proto.Sound,
+                                  AdjustVolume("Test message", false),
+                                  pitch,
+                                  AdjustDistance(false),
+                                  (lowVar, highVar),
+                                  9);
+        _activeBarks.Add(bark);
+    }
 
-        var audioParams = AudioParams.Default
-            .WithVolume(AdjustVolume(false));
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
 
-        var count = message.Length / 3f;
-        var audioResource = new AudioResource();
-        string str = proto.Sound;
+        if (_player.LocalSession == null)
+            return;
 
-        if (message.EndsWith('!'))
-            audioParams = audioParams.WithVolume(audioParams.Volume * 1.2f);
-
-        var path = new ResPath(str);
-        audioResource.Load(IoCManager.Instance!, path);
-
-        for (var i = 0; i < count; i++)
+        for (var i = _activeBarks.Count - 1; i >= 0; i--)
         {
-            if (_player.LocalSession == null)
-                break;
+            var item = _activeBarks[i];
 
-            _audio.PlayGlobal(str, _player.LocalSession, audioParams.WithPitchScale(_random.NextFloat(pitch - 0.1f, pitch + 0.1f)));
+            if (item.NextSound > _timing.CurTime)
+                continue;
 
-            await Task.Delay(TimeSpan.FromSeconds(_random.NextFloat(lowVar, highVar)));
+            if (item.BarksPlayed >= item.Length)
+            {
+                _activeBarks.Remove(item);
+                continue;
+            }
+
+            var pitch = _random.NextFloat(item.Pitch - 0.1f, item.Pitch + 0.1f);
+            var audioParams = AudioParams.Default.WithVolume(item.Volume).WithPitchScale(pitch);
+            item.BarksPlayed++;
+            item.NextSound = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(item.DelayVariation.Item1, item.DelayVariation.Item2));
+
+            if (item.HasSource != item.Source.HasValue)
+            {
+                _activeBarks.Remove(item);
+                continue;
+            }
+
+            if (item.Source == null)
+            {
+                _audio.PlayGlobal(_audio.ResolveSound(item.Sound), _player.LocalSession, audioParams);
+                continue;
+            }
+
+            if (_player.LocalEntity is { Valid: true } player)
+            {
+                if (item.Source == _player.LocalEntity)
+                    _audio.PlayGlobal(_audio.ResolveSound(item.Sound), player, audioParams);
+                else
+                    _audio.PlayEntity(_audio.ResolveSound(item.Sound), _player.LocalSession, item.Source.Value, audioParams);
+            }
+            else
+            {
+                _activeBarks.Remove(item);
+                continue;
+            }
+        }
+    }
+
+    private sealed class ActiveBark
+    {
+        public readonly EntityUid? Source;
+        public readonly SoundSpecifier Sound = default!;
+        public readonly float Volume = default!;
+        public readonly float Pitch = default!;
+        public readonly float Distance = default!;
+        public readonly (float, float) DelayVariation = default!;
+        public readonly int Length = default!;
+        public readonly bool HasSource;
+
+        public TimeSpan NextSound = TimeSpan.Zero;
+        public int BarksPlayed = 0;
+
+        public ActiveBark(EntityUid? source, SoundSpecifier sound, float volume, float pitch, float distance, (float, float) delay, int length)
+        {
+            Source = source;
+            HasSource = source.HasValue;
+            Sound = sound;
+            Volume = volume;
+            Pitch = pitch;
+            Distance = distance;
+            DelayVariation = delay;
+            Length = length;
         }
     }
 }

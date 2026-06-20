@@ -18,3 +18,7 @@ reagent-name-honey-iced-tea = холодный чай с медом
 reagent-desc-honey-iced-tea = Чай с капелькой меда.
 reagent-name-wassail = под парусом
 reagent-desc-wassail = Горячий глинтвейн.
+reagent-name-the-madgob = безумный гоблин
+reagent-desc-the-madgob = Пик мастерства гоблинского смешивания напитков!
+reagent-name-nanocaf = нанокаф
+reagent-desc-nanocaf = Если вы никогда не пили кофе раньше, то это будет лучший кофе из всех, что вы когда-либо пробовали.

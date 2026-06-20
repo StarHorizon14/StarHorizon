@@ -7,8 +7,8 @@
   - type: Transform
     noRot: true
   - type: TradeCrate
-    valueAtDestination: 1500
-    valueElsewhere: 400
+    valueAtDestination: 2800
+    valueElsewhere: 800
   - type: IgnoreMarketModifier
   - type: Icon
     sprite: Structures/Storage/Crates/secure.rsi
@@ -111,7 +111,7 @@
           bounds: "-0.4,-0.4,0.4,0.29"
         density: 400 # Very heavy
         mask:
-        - SmallMobMask
+        - CrateMask
         layer:
         - MachineLayer
   - type: Contraband
@@ -128,4 +128,4 @@
     id: ContrabandCrate
   - type: AdditionalPalletCurrency
     currency: Telecrystal
-    prob: 0.33
+    prob: 0.134

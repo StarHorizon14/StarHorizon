@@ -188,7 +188,7 @@
   - StcForcedOuterClothing
   - StcShoes
   - ContractorFace
-  - ContractorGlasses
+  - StcGlasses
   - ContractorBelt
   - StcEars
   - ContractorBoxSurvival
@@ -216,8 +216,8 @@
   - StationRepForcedOuterClothing
   - ContractorShoes
   - ContractorFace
-  - ContractorGlasses
-  - ContractorBelt
+  - StationRepGlasses
+  - StationRepBelt
   - StationRepEars
   - ContractorBoxSurvival
   - StationRepPDA
@@ -693,8 +693,8 @@
 - type: roleLoadout
   id: JobPrisoner
   groups:
-#  - PrisonerHead
-#  - PrisonerNeck
+  - PrisonerHead
+  - PrisonerNeck
   - PrisonerJumpsuit
   # Horizon start
   - Top
@@ -704,7 +704,9 @@
 #  - PrisonerGloves
 #  - PrisonerBackpack
   - PrisonerForcedOuterClothing
-#  - PrisonerShoes
+  - PrisonerGlasses
+  - PrisonerHandItems
+  - PrisonerShoes
   - PrisonerFace
   - PrisonerSurvival
   - PrisonerPDA
@@ -719,11 +721,12 @@
   - Socks
   - SyndicateJumpsuit
   - SyndicateBack
-  - SyndicatePDA
+  - SyndicatePDAOfficer
   - SyndicateHead
   - SyndicateOuterClothing
   - SyndicateEars
   - SyndicateBoots
+  - ContractorBoxSurvival
   - ContractorWallet
 
 - type: roleLoadout
@@ -734,11 +737,28 @@
   - Socks
   - SyndicateJumpsuit
   - SyndicateBack
-  - SyndicatePDA
+  - SyndicatePDAOperative
   - SyndicateHead
   - SyndicateOuterClothing
   - SyndicateEars
   - SyndicateBoots
+  - ContractorBoxSurvival
+  - ContractorWallet
+
+- type: roleLoadout
+  id: JobSyndicateMedic
+  groups:
+  - Top
+  - Bottom
+  - Socks
+  - SyndicateJumpsuit
+  - SyndicateBack
+  - SyndicatePDAMedic
+  - SyndicateHead
+  - SyndicateOuterClothing
+  - SyndicateEars
+  - SyndicateBoots
+  - ContractorBoxSurvival
   - ContractorWallet
 
 - type: roleLoadout
@@ -749,9 +769,10 @@
   - Socks
   - SyndicateJumpsuit
   - SyndicateBack
-  - SyndicatePDA
+  - SyndicatePDADelivery
   - SyndicateHead
   - SyndicateOuterClothing
   - SyndicateEars
   - SyndicateBoots
+  - ContractorBoxSurvival
   - ContractorWallet

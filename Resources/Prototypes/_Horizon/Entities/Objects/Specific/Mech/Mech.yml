@@ -92,6 +92,7 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_Horizon/Mecha/sound_mecha_powerloader_step.ogg
+  - type: MovementAlwaysTouching
   - type: Mech
     modifiers:
       coefficients:
@@ -1365,7 +1366,15 @@
     - map: [ "enum.MechVisualLayers.Base" ]
       state: odysseushermes
   - type: Mech
-    maxintegrity: 130
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.8
+        Shock: 0.7
+        Structural: 0.75
+        Heat: 0.7
+    maxintegrity: 150
     baseState: odysseushermes
     openState: odysseushermes-open
     brokenState: odysseushermes-broken
@@ -1400,6 +1409,15 @@
     - map: [ "enum.MechVisualLayers.Base" ]
       state: odysseusmurdy
   - type: Mech
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Shock: 0.6
+        Structural: 0.75
+        Heat: 0.7
+    maxintegrity: 140
     baseState: odysseusmurdy
     openState: odysseusmurdy-open
     brokenState: odysseusmurdy-broken

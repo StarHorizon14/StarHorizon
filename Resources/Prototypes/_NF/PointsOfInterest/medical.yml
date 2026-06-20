@@ -11,7 +11,7 @@
 - type: pointOfInterest
   id: Medical
   parent: BasePOI
-  name: 'Medical Dispatch'
+  name: 'Медицинский Диспансер'
   minimumDistance: 1650
   maximumDistance: 3400
   spawnGroup: Required
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Medical
-  mapName: 'Medical Dispatch'
+  mapName: 'Медицинский Диспансер'
   mapPath: /Maps/_Horizon/POI/medical.yml # Horizon-Maps
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: RecordsFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Medical Dispatch'
+          mapNameTemplate: 'Медицинский Диспансер'
         - type: ExtraStationInformation
           iconPath: /Textures/_Horizon/Interface/banner_med.png # Horizon
           stationSubtext: 'frontier-lobby-medical-subtext'

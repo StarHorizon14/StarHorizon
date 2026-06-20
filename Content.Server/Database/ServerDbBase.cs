@@ -284,7 +284,16 @@ namespace Content.Server.Database
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
-                    markings
+                    markings,
+                    profile.HairGradientEnabled,
+                    Color.FromHex(profile.HairGradientSecondaryColor),
+                    profile.HairGradientDirection,
+                    profile.FacialHairGradientEnabled,
+                    Color.FromHex(profile.FacialHairGradientSecondaryColor),
+                    profile.FacialHairGradientDirection,
+                    profile.AllMarkingsGradientEnabled,
+                    Color.FromHex(profile.AllMarkingsGradientSecondaryColor),
+                    profile.AllMarkingsGradientDirection
                 ),
                 spawnPriority,
                 jobs,
@@ -325,6 +334,16 @@ namespace Content.Server.Database
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
             profile.EyeColor = appearance.EyeColor.ToHex();
             profile.SkinColor = appearance.SkinColor.ToHex();
+            // _Horizon: Hair gradient
+            profile.HairGradientEnabled = appearance.HairGradientEnabled;
+            profile.HairGradientSecondaryColor = appearance.HairGradientSecondaryColor.ToHex();
+            profile.HairGradientDirection = appearance.HairGradientDirection;
+            profile.FacialHairGradientEnabled = appearance.FacialHairGradientEnabled;
+            profile.FacialHairGradientSecondaryColor = appearance.FacialHairGradientSecondaryColor.ToHex();
+            profile.FacialHairGradientDirection = appearance.FacialHairGradientDirection;
+            profile.AllMarkingsGradientEnabled = appearance.AllMarkingsGradientEnabled;
+            profile.AllMarkingsGradientSecondaryColor = appearance.AllMarkingsGradientSecondaryColor.ToHex();
+            profile.AllMarkingsGradientDirection = appearance.AllMarkingsGradientDirection;
             profile.SpawnPriority = (int) humanoid.SpawnPriority;
             profile.Markings = markings;
             profile.Slot = slot;
@@ -1905,6 +1924,81 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .Where(w => w.Time <= cutoffTime)
                 .ExecuteDeleteAsync();
 
+            await db.DbContext.SaveChangesAsync();
+            return true;
+        }
+
+        #endregion
+
+        // Horizon: Admin Loadout Items
+        #region Horizon Admin Loadout
+
+        public async Task<List<HorizonAdminLoadout>> GetAdminLoadoutItemsAsync(Guid userId)
+        {
+            await using var db = await GetDb();
+
+            return await db.DbContext.HorizonAdminLoadout
+                .Where(p => p.PlayerUserId == userId)
+                .ToListAsync();
+        }
+
+        public async Task<HorizonAdminLoadout> AddAdminLoadoutItemAsync(HorizonAdminLoadout item)
+        {
+            await using var db = await GetDb();
+
+            db.DbContext.HorizonAdminLoadout.Add(item);
+            await db.DbContext.SaveChangesAsync();
+            return item;
+        }
+
+        public async Task<bool> RemoveAdminLoadoutItemAsync(int id)
+        {
+            await using var db = await GetDb();
+
+            var item = await db.DbContext.HorizonAdminLoadout
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (item == null)
+                return false;
+
+            db.DbContext.HorizonAdminLoadout.Remove(item);
+            await db.DbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> SetAdminLoadoutItemEnabledAsync(int id, bool enabled)
+        {
+            await using var db = await GetDb();
+
+            var item = await db.DbContext.HorizonAdminLoadout
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (item == null)
+                return false;
+
+            item.IsEnabled = enabled;
+            await db.DbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> DecrementAdminLoadoutItemUsesAsync(int id)
+        {
+            await using var db = await GetDb();
+
+            var item = await db.DbContext.HorizonAdminLoadout
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (item == null)
+                return false;
+
+            // Permanent items (null) don't need decrementing
+            if (item.RemainingUses == null)
+                return true;
+
+            if (item.RemainingUses <= 0)
+                return false;
+
+            item.RemainingUses--;
             await db.DbContext.SaveChangesAsync();
             return true;
         }

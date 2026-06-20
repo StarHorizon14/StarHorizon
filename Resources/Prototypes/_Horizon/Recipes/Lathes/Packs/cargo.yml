@@ -20,3 +20,12 @@
   - ArmoryTovar
   - SciTovar
   - EnergoTovar
+
+## Платы торговых фабрикаторов
+- type: latheRecipePack
+  id: HorizonTradeFabricatorBoardsPack
+  recipes:
+  - TradeFabricatorCircuitboardRecipe
+  - TradeFabricatorMilitaryCircuitboardRecipe
+  - TradeFabricatorIndustrialCircuitboardRecipe
+  - TradeFabricatorFoodCircuitboardRecipe

@@ -33,6 +33,14 @@
     guides:
     - VoltageNetworks
     - Power
+  - type: Healing
+    delay: 0.6
+    damageContainers:
+    - Silicon
+    damage:
+      types: # these are all split across multiple types
+        Heat: -1.66
+        Shock: -1.66
 
 - type: entity
   id: CableHVStack

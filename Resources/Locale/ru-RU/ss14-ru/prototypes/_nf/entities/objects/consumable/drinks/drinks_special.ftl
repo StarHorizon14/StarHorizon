@@ -1,3 +1,3 @@
-ent-DrinkIceBucketEmpty = ice bucket
-    .desc = A special bucket that was specifically designed to hold ice.
-    .suffix = Empty
+ent-DrinkIceBucketEmpty = ведро со льдом
+    .desc = Специальное ведро, созданное специально для хранения льда.
+    .suffix = Пустое

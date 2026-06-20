@@ -4,6 +4,3 @@ ent-SpawnInhandMeleeWeaponBloodCultLow = random melee weapon
 ent-SpawnInhandMeleeWeaponBloodCultHigh = random melee weapon
     .suffix = Blood cult, High
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultistAscendedSummons = ascended cultist summons
-    .suffix = AI, Hostile
-    .desc = { ent-MarkerBase.desc }

@@ -120,7 +120,7 @@
   [color=#a4885c]Левитация[/color]: как у обычного карпа.
 
   <Box>
-    <GuideEntityEmbed Entity="MobDragon"/>
+    <GuideEntityEmbed Entity="NFMobDragonDungeon"/>
   </Box>
   - [bold][color=#a4885c]Пороги здоровья:[/color][/bold] 200 (смерть)
   - [bold][color=#a4885c]Скорость бега:[/color][/bold] 5 м/с
@@ -133,7 +133,7 @@
   # Цели миссий
   ## Уничтожение
   <Box>
-    <GuideEntityEmbed Entity="MobDragon"/>
+    <GuideEntityEmbed Entity="NFMobDragonDungeon"/>
   </Box>
   Уничтожьте крупного опасного [color=#a4885c]космического дракона[/color] в отведенное время для получения денежного вознаграждения.
 

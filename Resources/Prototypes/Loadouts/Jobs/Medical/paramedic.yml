@@ -26,6 +26,12 @@
   equipment:
     outerClothing: ClothingOuterWinterPara
 
+# ID
+- type: loadout
+  id: ParamedicPDA
+  equipment:
+    id: ParamedicPDA
+
 # Shoes
 - type: loadout
   id: BlueShoes

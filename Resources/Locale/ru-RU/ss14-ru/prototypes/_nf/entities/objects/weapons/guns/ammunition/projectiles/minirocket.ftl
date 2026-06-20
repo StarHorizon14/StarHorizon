@@ -1,8 +1,8 @@
-ent-NFBulletRocketMini = mini rocket
+ent-NFBulletRocketMini = мини ракета
     .desc = { ent-BaseBulletTrigger.desc }
-ent-NFCartridgeRocketMini = minirocket
+ent-NFCartridgeRocketMini = миниракета
     .desc = { ent-BaseItem.desc }
-ent-NFBulletSeismicCharge = seismic charge
+ent-NFBulletSeismicCharge = сейсмический заряд
     .desc = { ent-BaseBulletTrigger.desc }
-ent-NFBulletPartyNade = party 'nade
+ent-NFBulletPartyNade = пуля олега
     .desc = { ent-BaseBulletTrigger.desc }

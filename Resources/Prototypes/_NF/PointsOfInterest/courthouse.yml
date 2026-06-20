@@ -11,7 +11,7 @@
 - type: pointOfInterest
   id: Courthouse
   parent: BasePOI
-  name: "Courthouse"
+  name: "Здание Суда"
   minimumDistance: 1150
   maximumDistance: 2050
   spawnGroup: Required
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Courthouse
-  mapName: "Courthouse"
+  mapName: "Здание Суда"
   mapPath: /Maps/_NF/POI/courthouse.yml
   minPlayers: 0
   stations:
@@ -33,5 +33,5 @@
       stationProto: StandardFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: "Courthouse"
+          mapNameTemplate: "Здание Суда"
         - type: StationDeadDropHintExempt

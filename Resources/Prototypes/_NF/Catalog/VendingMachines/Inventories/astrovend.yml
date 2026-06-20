@@ -34,8 +34,9 @@
     ClothingOuterEVASuitPilot: 5
     ClothingOuterHardsuitPilot: 3
     ClothingShoesBootsPilot: 3
-    MediaPlayer: 5 # Horizon
     # Horizon start
+    FishingRod: 20
+    MediaPlayer: 5
     ArachnidTranslator: 5
     NekomimeticTranslator: 5
     DraconicTranslator: 5
@@ -68,24 +69,25 @@
     EncryptionKeyEngineering: 4294967295 # Infinite
     EncryptionKeyScience: 4294967295 # Infinite
 # Pilot drip
-    ClothingBackpackPilot: 3
-    ClothingBackpackDuffelPilot: 3
-    ClothingBackpackSatchelPilot: 3
-    ClothingBackpackMessengerPilot: 3
-    ClothingBeltPilot: 3
-    ClothingMaskPilot: 3
-    ClothingUniformJumpsuitPilot: 3
-    ClothingOuterCoatBomber: 3
-    ClothingHeadsetAltPilot: 3
-    ClothingEyesGlassesPilot: 3
-    ClothingHandsGlovesPilot: 3
-    ClothingHeadHatPilot: 3
-    ClothingNeckScarfPilot: 3
-    ClothingOuterEVASuitPilot: 5
-    ClothingOuterHardsuitPilot: 3
-    ClothingShoesBootsPilot: 3
-    MediaPlayer: 4294967295 # Infinite # Horizon
+    ClothingBackpackPilot: 4294967295 # Infinite
+    ClothingBackpackDuffelPilot: 4294967295 # Infinite
+    ClothingBackpackSatchelPilot: 4294967295 # Infinite
+    ClothingBackpackMessengerPilot: 4294967295 # Infinite
+    ClothingBeltPilot: 4294967295 # Infinite
+    ClothingMaskPilot: 4294967295 # Infinite
+    ClothingUniformJumpsuitPilot: 4294967295 # Infinite
+    ClothingOuterCoatBomber: 4294967295 # Infinite
+    ClothingHeadsetAltPilot: 4294967295 # Infinite
+    ClothingEyesGlassesPilot: 4294967295 # Infinite
+    ClothingHandsGlovesPilot: 4294967295 # Infinite
+    ClothingHeadHatPilot: 4294967295 # Infinite
+    ClothingNeckScarfPilot: 4294967295 # Infinite
+    ClothingOuterEVASuitPilot: 4294967295 # Infinite
+    ClothingOuterHardsuitPilot: 4294967295 # Infinite
+    ClothingShoesBootsPilot: 4294967295 # Infinite
     # Horizon start
+    FishingRod: 4294967295
+    MediaPlayer: 4294967295
     ArachnidTranslator: 4294967295
     NekomimeticTranslator: 4294967295
     DraconicTranslator: 4294967295

@@ -1,3 +1,3 @@
-ent-NFConcealedMineSpawner = random mine spawner
-    .suffix = Frontier
+ent-NFConcealedMineSpawner = спавнер случайной мины
+    .suffix = Фронтир
     .desc = { ent-MarkerBasePlaceFree.desc }

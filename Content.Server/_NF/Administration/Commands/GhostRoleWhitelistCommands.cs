@@ -79,7 +79,7 @@ public sealed class GhostRoleWhitelistAddCommand : LocalizedCommands
         {
             return CompletionResult.FromHintOptions(
                 _prototypes.EnumeratePrototypes<GhostRolePrototype>().Select(p => p.ID),
-                Loc.GetString("cmd-ghostrolewhitelist-hint-job"));
+                Loc.GetString("cmd-ghostrolewhitelist-hint-ghostrole"));
         }
 
         return CompletionResult.Empty;

@@ -37,7 +37,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 12
+        Piercing: 14
     ignoreResistances: true
 
 - type: entity

@@ -13,7 +13,6 @@
   - type: Hunger
   - type: Thirst
   - type: Sericulture
-    action: ActionSericulture
     productionLength: 2
     entityProduced: MaterialWebSilk1
     hungerCost: 4 # Should total to 25 total silk on full hunger
@@ -119,6 +118,16 @@
     templateId: arachnid
     speciesId: arachnid
   - type: Carriable # Frontier: Carrying system from nyanotrasen.
+  # Horizon: Height traits support
+  - type: TallWhitelist
+    scale: 1.15
+    density: 200
+    cosmeticOnly: false
+  - type: ShortWhitelist
+    scale: 0.85
+    density: 150
+    cosmeticOnly: false
+  # Horizon end
 
 
 - type: entity

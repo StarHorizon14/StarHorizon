@@ -45,8 +45,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly SharedLanguageSystem _language = default!;    // Horizon
 
     [ValidatePrototypeId<SpeciesPrototype>]
-    public const string DefaultSpecies = "Human";
     public const string DefaultBark = "Human1"; // _Horizon
+    public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -149,7 +150,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     public void CloneAppearance(EntityUid source, EntityUid target, HumanoidAppearanceComponent? sourceHumanoid = null,
         HumanoidAppearanceComponent? targetHumanoid = null)
     {
-        if (!Resolve(source, ref sourceHumanoid) || !Resolve(target, ref targetHumanoid))
+        if (!Resolve(source, ref sourceHumanoid, false) || !Resolve(target, ref targetHumanoid, false))
             return;
 
         targetHumanoid.Species = sourceHumanoid.Species;
@@ -161,6 +162,17 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
 
         targetHumanoid.Gender = sourceHumanoid.Gender;
+
+        // _Horizon: Hair gradient
+        targetHumanoid.HairGradientEnabled = sourceHumanoid.HairGradientEnabled;
+        targetHumanoid.HairGradientSecondaryColor = sourceHumanoid.HairGradientSecondaryColor;
+        targetHumanoid.HairGradientDirection = sourceHumanoid.HairGradientDirection;
+        targetHumanoid.FacialHairGradientEnabled = sourceHumanoid.FacialHairGradientEnabled;
+        targetHumanoid.FacialHairGradientSecondaryColor = sourceHumanoid.FacialHairGradientSecondaryColor;
+        targetHumanoid.FacialHairGradientDirection = sourceHumanoid.FacialHairGradientDirection;
+        targetHumanoid.AllMarkingsGradientEnabled = sourceHumanoid.AllMarkingsGradientEnabled;
+        targetHumanoid.AllMarkingsGradientSecondaryColor = sourceHumanoid.AllMarkingsGradientSecondaryColor;
+        targetHumanoid.AllMarkingsGradientDirection = sourceHumanoid.AllMarkingsGradientDirection;
 
         if (TryComp<GrammarComponent>(target, out var grammar))
             _grammarSystem.SetGender((target, grammar), sourceHumanoid.Gender);
@@ -474,6 +486,17 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.Age = profile.Age;
 
+        // _Horizon: Hair gradient
+        humanoid.HairGradientEnabled = profile.Appearance.HairGradientEnabled;
+        humanoid.HairGradientSecondaryColor = profile.Appearance.HairGradientSecondaryColor;
+        humanoid.HairGradientDirection = profile.Appearance.HairGradientDirection;
+        humanoid.FacialHairGradientEnabled = profile.Appearance.FacialHairGradientEnabled;
+        humanoid.FacialHairGradientSecondaryColor = profile.Appearance.FacialHairGradientSecondaryColor;
+        humanoid.FacialHairGradientDirection = profile.Appearance.FacialHairGradientDirection;
+        humanoid.AllMarkingsGradientEnabled = profile.Appearance.AllMarkingsGradientEnabled;
+        humanoid.AllMarkingsGradientSecondaryColor = profile.Appearance.AllMarkingsGradientSecondaryColor;
+        humanoid.AllMarkingsGradientDirection = profile.Appearance.AllMarkingsGradientDirection;
+
         Dirty(uid, humanoid);
     }
 
@@ -589,7 +612,6 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             return;
 
         comp.Data = data;
-        comp.Data.Sound = _proto.Index(comp.Data.Proto).Sound;
         humanoid.Bark = data;
     }
 

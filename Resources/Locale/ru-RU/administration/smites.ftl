@@ -57,6 +57,7 @@ admin-smite-super-bonk-lite-name = Super Bonk
 admin-smite-terminate-name = Terminate
 admin-smite-super-slip-name = Super Slip
 admin-smite-omni-accent-name = Omni-Accent
+admin-smite-crawler-name = Crawler
 
 ## Smite descriptions
 
@@ -101,6 +102,7 @@ admin-smite-super-bonk-lite-description = Заставляет цель удар
 admin-smite-terminate-description = Creates a Terminator ghost role with the sole objective of killing them.
 admin-smite-super-slip-description = Подскользнуть очень, очень сильно.
 admin-smite-omni-accent-description = Заставляет цель говорить практически на каждом доступном акценте.
+admin-smite-crawler-description = Makes the target fall down and be unable to stand up. Remove their hands too for added effect!
 
 ## Tricks descriptions
 

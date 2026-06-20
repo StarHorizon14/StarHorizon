@@ -16,5 +16,4 @@ gases-hyper-noblium = Hyper-Noblium
 gases-proto-nitrate = Proto-Nitrate
 gases-zauker = Zauker
 gases-halon = Halon
-gases-helium = Helium
 gases-anti-noblium = Anti-Noblium

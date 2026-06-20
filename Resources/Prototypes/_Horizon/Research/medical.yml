@@ -352,8 +352,8 @@
   recipeUnlocks:
   - LeftArmCyberClawRending
   - RightArmCyberClawRending
-  - LeftArmCyberClawPiersing
-  - RightArmCyberClawPiersing
+  - LeftArmCyberClawPiercing
+  - RightArmCyberClawPiercing
   - LeftArmCyberClawPoison
   - RightArmCyberClawPoison
   - LeftArmCyberLash
@@ -458,7 +458,7 @@
   recipeUnlocks:
   - CytologyGrowingVatMachineCircuitboard
   - CytologyMicroscopeMachineCircuitboard
-  - CytologySampleCombinatorMachineCircuitboard
+  - CytologySampleCombinatorComputerCircuitboard
   - CytologySwab
   - CytologyInjector
   - CytologyPetriDish

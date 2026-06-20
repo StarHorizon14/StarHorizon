@@ -1,4 +1,4 @@
-﻿using Content.Shared.Body.Part;
+using Content.Shared.Body.Part;
 using Content.Shared.Humanoid;
 using System.Linq;
 using Content.Shared._Horizon.Medical.Surgery.Components;
@@ -39,7 +39,7 @@ public abstract partial class SharedSurgerySystem
                 if (ent.Comp.Container != slotId)
                     continue;
 
-                if (!_containers.TryGetContainer(args.Part, ent.Comp.Container, out var container))
+                if (!_containers.TryGetContainer(args.Part, SharedBodySystem.GetOrganContainerId(ent.Comp.Container), out var container))
                     continue;
 
                 foreach (var containedEnt in container.ContainedEntities)

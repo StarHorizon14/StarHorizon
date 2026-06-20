@@ -47,6 +47,16 @@
         0: Alive
         80: Critical
         200: Dead
+    # Horizon: Height traits support
+    - type: TallWhitelist
+      scale: 1.15
+      density: 200
+      cosmeticOnly: false
+    - type: ShortWhitelist
+      scale: 0.85
+      density: 150
+      cosmeticOnly: false
+    # Horizon end
 
 - type: entity
   save: false

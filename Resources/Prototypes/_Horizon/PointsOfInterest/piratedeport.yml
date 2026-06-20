@@ -11,9 +11,9 @@
 - type: pointOfInterest
   id: PirateDeport
   parent: BasePOI
-  name: "Pirate Deport"
-  minimumDistance: 15000
-  maximumDistance: 20000
+  name: "Точка Продажи Пиратов"
+  minimumDistance: 12000
+  maximumDistance: 15000
   spawnGroup: Required
   gridPath: /Maps/_Horizon/POI/piratedeport.yml
   addComponents:
@@ -23,7 +23,7 @@
 
 - type: gameMap
   id: PirateDeport
-  mapName: "Pirate Deport"
+  mapName: "Точка Продажи Пиратов"
   mapPath: /Maps/_Horizon/POI/piratedeport.yml
   minPlayers: 0
   stations:
@@ -31,5 +31,8 @@
       stationProto: StandardFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: "Pirate Deport"
+          mapNameTemplate: "Точка Продажи Пиратов"
         - type: BindToStationVariationPassExemption
+        - type: NoMailStation # Horizon: Disable mail for Pirates
+        - type: HorizonStationFaction
+          faction: Pirate

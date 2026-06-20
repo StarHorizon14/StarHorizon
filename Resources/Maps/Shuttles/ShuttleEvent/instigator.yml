@@ -1519,22 +1519,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingHeadsetAltSyndicate
-  entities:
-  - uid: 133
-    components:
-    - type: Transform
-      parent: 471
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 134
-    components:
-    - type: Transform
-      parent: 471
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
   - uid: 521
     components:
     - type: Transform

@@ -116,7 +116,9 @@ public sealed partial class SalvageSystem
         }
         // End Frontier: early finish
 
-        Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", (component.EndTime - _timing.CurTime).Minutes)));
+        var isInferno = component.MissionParams.Difficulty == "Inferno";
+        var countdownMinutesKey = isInferno ? "salvage-expedition-inferno-countdown-minutes" : "salvage-expedition-announcement-countdown-minutes";
+        Announce(args.MapUid, Loc.GetString(countdownMinutesKey, ("duration", (component.EndTime - _timing.CurTime).Minutes)));
 
         var directionLocalization = ContentLocalizationManager.FormatDirection(component.DungeonLocation.GetDir()).ToLower();
 
@@ -150,6 +152,29 @@ public sealed partial class SalvageSystem
                         name = Loc.GetString("salvage-expedition-announcement-elimination-entity-fallback");
                     // Assuming all megafauna are of the same type.
                     Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-elimination", ("target", name), ("count", elimination.Megafauna.Count)));
+                }
+                break;
+            case SalvageMissionType.Combined:
+                // Announce both objectives for combined missions
+                if (TryComp<SalvageDestructionExpeditionComponent>(args.MapUid, out var combinedDestruction)
+                    && combinedDestruction.Structures.Count > 0
+                    && TryComp(combinedDestruction.Structures[0], out MetaDataComponent? combinedStructureMeta)
+                    && combinedStructureMeta.EntityPrototype != null)
+                {
+                    var structName = combinedStructureMeta.EntityPrototype.Name;
+                    if (string.IsNullOrWhiteSpace(structName))
+                        structName = Loc.GetString("salvage-expedition-announcement-destruction-entity-fallback");
+                    Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-destruction", ("structure", structName), ("count", combinedDestruction.Structures.Count)));
+                }
+                if (TryComp<SalvageEliminationExpeditionComponent>(args.MapUid, out var combinedElimination)
+                    && combinedElimination.Megafauna.Count > 0
+                    && TryComp(combinedElimination.Megafauna[0], out MetaDataComponent? combinedTargetMeta)
+                    && combinedTargetMeta.EntityPrototype != null)
+                {
+                    var targetName = combinedTargetMeta.EntityPrototype.Name;
+                    if (string.IsNullOrWhiteSpace(targetName))
+                        targetName = Loc.GetString("salvage-expedition-announcement-elimination-entity-fallback");
+                    Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-elimination", ("target", targetName), ("count", combinedElimination.Megafauna.Count)));
                 }
                 break;
             default:
@@ -195,29 +220,27 @@ public sealed partial class SalvageSystem
         {
             var remaining = comp.EndTime - _timing.CurTime;
             var audioLength = _audio.GetAudioLength(comp.SelectedSong);
+            var isInfernoMission = comp.MissionParams.Difficulty == "Inferno";
+            var countdownMinutesKey = isInfernoMission ? "salvage-expedition-inferno-countdown-minutes" : "salvage-expedition-announcement-countdown-minutes";
+            var countdownSecondsKey = isInfernoMission ? "salvage-expedition-inferno-countdown-seconds" : "salvage-expedition-announcement-countdown-seconds";
 
             if (comp.Stage < ExpeditionStage.FinalCountdown && remaining < TimeSpan.FromSeconds(45))
             {
                 comp.Stage = ExpeditionStage.FinalCountdown;
                 Dirty(uid, comp);
-                Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-seconds", ("duration", TimeSpan.FromSeconds(45).Seconds)));
+                Announce(uid, Loc.GetString(countdownSecondsKey, ("duration", TimeSpan.FromSeconds(45).Seconds)));
             }
-            else if (comp.Stage < ExpeditionStage.MusicCountdown && remaining < audioLength) // Frontier
+            else if (comp.Stage < ExpeditionStage.MusicCountdown && remaining < audioLength)
             {
-                // Frontier: handled client-side.
-                // var audio = _audio.PlayPvs(comp.Sound, uid);
-                // comp.Stream = audio?.Entity;
-                // _audio.SetMapAudio(audio);
-                // End Frontier
                 comp.Stage = ExpeditionStage.MusicCountdown;
                 Dirty(uid, comp);
-                Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", audioLength.Minutes)));
+                Announce(uid, Loc.GetString(countdownMinutesKey, ("duration", audioLength.Minutes)));
             }
-            else if (comp.Stage < ExpeditionStage.Countdown && remaining < TimeSpan.FromMinutes(5)) // Frontier: 4<5
+            else if (comp.Stage < ExpeditionStage.Countdown && remaining < TimeSpan.FromMinutes(5))
             {
                 comp.Stage = ExpeditionStage.Countdown;
                 Dirty(uid, comp);
-                Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", TimeSpan.FromMinutes(5).Minutes)));
+                Announce(uid, Loc.GetString(countdownMinutesKey, ("duration", TimeSpan.FromMinutes(5).Minutes)));
             }
             // Auto-FTL out any shuttles
             else if (remaining < TimeSpan.FromSeconds(_shuttle.DefaultStartupTime) + TimeSpan.FromSeconds(0.5))
@@ -327,8 +350,20 @@ public sealed partial class SalvageSystem
 
             if (structure.Structures.Count == 0)
             {
-                comp.Completed = true;
-                Announce(uid, Loc.GetString("salvage-expedition-completed"));
+                // For Combined missions, check if elimination is also complete
+                if (comp.MissionParams.MissionType == SalvageMissionType.Combined)
+                {
+                    if (TryComp<SalvageEliminationExpeditionComponent>(uid, out var elimination) && elimination.Megafauna.Count == 0)
+                    {
+                        comp.Completed = true;
+                        Announce(uid, Loc.GetString("salvage-expedition-completed"));
+                    }
+                }
+                else
+                {
+                    comp.Completed = true;
+                    Announce(uid, Loc.GetString("salvage-expedition-completed"));
+                }
             }
         }
 
@@ -357,8 +392,20 @@ public sealed partial class SalvageSystem
 
             if (elimination.Megafauna.Count == 0)
             {
-                comp.Completed = true;
-                Announce(uid, Loc.GetString("salvage-expedition-completed"));
+                // For Combined missions, check if destruction is also complete
+                if (comp.MissionParams.MissionType == SalvageMissionType.Combined)
+                {
+                    if (TryComp<SalvageDestructionExpeditionComponent>(uid, out var destruction) && destruction.Structures.Count == 0)
+                    {
+                        comp.Completed = true;
+                        Announce(uid, Loc.GetString("salvage-expedition-completed"));
+                    }
+                }
+                else
+                {
+                    comp.Completed = true;
+                    Announce(uid, Loc.GetString("salvage-expedition-completed"));
+                }
             }
         }
         // End Frontier: mission-specific logic

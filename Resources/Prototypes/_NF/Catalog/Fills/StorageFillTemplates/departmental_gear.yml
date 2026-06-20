@@ -37,7 +37,7 @@
     - id: BoxBottle
     - id: BoxBeaker
     - id: BoxBeaker
-
+  
 - type: entityTable
   id: NFStorageFillGearParamedic
   table: !type:AllSelector

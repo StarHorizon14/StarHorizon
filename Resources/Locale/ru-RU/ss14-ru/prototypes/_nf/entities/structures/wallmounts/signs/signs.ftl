@@ -48,3 +48,5 @@ ent-NFSignEms2 = { ent-NFSignEms1 }
     .desc = { ent-NFSignEms1.desc }
 ent-SignNfsdInterrogation = знак допроса
     .desc = { ent-NFBaseSign.desc }
+ent-WarningHelium = знак утечки гелия
+    .desc = ВНИМАНИЕ! Трубка подачи гелия. Убедитесь, что подача отключена перед работой.

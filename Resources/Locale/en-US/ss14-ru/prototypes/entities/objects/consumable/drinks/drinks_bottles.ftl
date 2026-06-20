@@ -71,7 +71,7 @@ ent-DrinkAleBottleFull = Magm-Ale bottle
 ent-DrinkSakeBottleFull = small sake bottle
     .desc =
         Spirit, clear or foggy
-        Taken hot or chilled on ice. 
+        Taken hot or chilled on ice.
         Fill a cup, drink up!
 ent-DrinkJuiceLimeCartonXL = lime juice XL
     .desc = Sweet-sour goodness.

@@ -95,6 +95,30 @@
   equipment:
     id: SyndiPDA
 
+- type: loadout
+  id: LoadoutSyndicateSyndiPDAOfficer
+  price: 0
+  equipment:
+    id: SyndiPDAOfficer
+
+- type: loadout
+  id: LoadoutSyndicateSyndiPDAOperative
+  price: 0
+  equipment:
+    id: SyndiPDAOperative
+
+- type: loadout
+  id: LoadoutSyndicateSyndiPDAMedic
+  price: 0
+  equipment:
+    id: SyndiPDAMedic
+
+- type: loadout
+  id: LoadoutSyndicateSyndiPDADelivery
+  price: 0
+  equipment:
+    id: SyndiPDACargo
+
 # Шапки
 
 - type: loadout
@@ -142,10 +166,10 @@
     outerClothing: ClothingOuterArmorBasic
 
 - type: loadout
-  id: LoadoutSyndicateClothingOuterVestWebMercenaryBlack
+  id: LoadoutSyndicateClothingOuterVestWeb
   price: 0
   equipment:
-    outerClothing: ClothingOuterVestWebMercenaryBlack
+    outerClothing: ClothingOuterVestWeb
 
 - type: loadout
   id: LoadoutSyndicateClothingOuterCoatSyndieCapArmored

@@ -6664,15 +6664,6 @@ entities:
     - type: Transform
       pos: 13.52055,5.3557405
       parent: 1
-- proto: EncryptionKeySyndie
-  entities:
-  - uid: 1634
-    components:
-    - type: Transform
-      parent: 1633
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: FoodBoxPizzaFilled
   entities:
   - uid: 1052

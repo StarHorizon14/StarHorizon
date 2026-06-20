@@ -47,24 +47,24 @@
   components:
   - type: Paper
     content: |2
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Search Warrant[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент Шерифа Нового Фронтира[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Ордер на Обыск[/head]
 
-      [head=3]Warrant Information[/head]
-      [bold]Subject (Person/Vessel IFF):[/bold]
-      [bold]Request Reason:[/bold]
-      [bold]Shift Time Granted:[/bold]
+      [head=3]Информация об Ордере[/head]
+      [bold]Объект (Лицо/IFF судна):[/bold]
+      [bold]Причина запроса:[/bold]
+      [bold]Время смены выдачи:[/bold]
 
-      [head=3]Requestor Information[/head]
-      [bold]Case #:[/bold]
-      [bold]Request Time:[/bold]
-      [bold]Requesting Officer:[/bold]
-      [bold]Officer Rank:[/bold]
+      [head=3]Информация о Запрашивающем[/head]
+      [bold]Номер дела:[/bold]
+      [bold]Время запроса:[/bold]
+      [bold]Запрашивающий офицер:[/bold]
+      [bold]Звание офицера:[/bold]
 
 
 
-      [color=#AAAAAA]This Warrant is only valid when requested by an agent of the NFSD and approved, signed, and stamped by a [italic]distinct[/italic] (unless impossible) officer ranked Bailiff or above or a Station Representative.[/color]
+      [color=#AAAAAA]Этот Ордер действителен только при запросе лицом ДШНФ и утверждении, подписании и простановке печати [italic]отдельным[/italic] (если это возможно) офицером в звании Бейлифа или выше, либо Представителем Фронтира.[/color]
 
 - type: entity # Creator: Starly (Shaw Clifflower)
   id: PaperWrittenNfsdReport
@@ -74,41 +74,41 @@
   components:
   - type: Paper
     content: |2
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]After Action Report[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент Шерифа Нового Фронтира[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Отчет по Завершении Операции[/head]
 
-      [bold]Case #:[/bold]
-      [bold]Offending Vessel:[/bold] 
+      [bold]Номер дела:[/bold]
+      [bold]Нарушившее судно:[/bold]
 
-      [bold]Suspect:[/bold] 
-      [bold]Charges (list any escalations):[/bold] 
+      [bold]Подозреваемый:[/bold]
+      [bold]Обвинения (указать все обострения):[/bold]
 
-      [bold]Suspect:[/bold] 
-      [bold]Charges (list any escalations):[/bold] 
+      [bold]Подозреваемый:[/bold]
+      [bold]Обвинения (указать все обострения):[/bold]
 
-      [bold]Responding Vessel:[/bold] 
-      [bold]Time of Incident:[/bold] 
-      [bold]Officers on Board:[/bold] 
+      [bold]Судно ДШНФ:[/bold]
+      [bold]Время инцидента:[/bold]
+      [bold]Офицеры на борту:[/bold]
 
-      [head=3]Evidence Collected[/head]
-      List all evidence collected below and the officer in possession.
-
-
-
-      [head=3]Incident Summary[/head]
+      [head=3]Собранные Доказательства[/head]
+      Перечислите все собранные доказательства ниже и офицера, у которого они находятся.
 
 
 
-      [head=3]Commendations[/head]
+      [head=3]Сводка Инцидента[/head]
 
 
 
-      [head=3]Recommendations[/head]
+      [head=3]Поощрения[/head]
 
 
 
-      [color=#AAAAAA]I, the [italic]Bailiff or Sheriff[/italic] of the NFSD, or an agent acting on their behalf, certify that everything written in this report is correct and truthful. I am aware of the penalties should anything in this report be proven incorrect, falsified, or exaggerated.[/color]
+      [head=3]Рекомендации[/head]
+
+
+
+      [color=#AAAAAA]Я, [italic]Бейлиф или Шериф[/italic] ДШНФ, или ВРИО, действующий от их имени, подтверждаю, что все написанное в этом отчете правильно и правдиво. Мне известны последствия, если что-либо в этом отчете окажется неверным, сфальсифицированным или преувеличенным.[/color]
 
 - type: entity
   id: PaperWrittenNfsdArrestWarrant
@@ -118,34 +118,34 @@
   components:
   - type: Paper
     content: |2
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Arrest Warrant[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент Шерифа Нового Фронтира[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Ордер на Арест[/head]
 
-      [head=2]Defendant(s)[/head]
-      [bold]Name:[/bold] 
-      [bold]Description:[/bold] 
+      [head=2]Обвиняемый(ые)[/head]
+      [bold]Имя:[/bold]
+      [bold]Описание:[/bold]
 
-      [bold]Name:[/bold] 
-      [bold]Description:[/bold] 
+      [bold]Имя:[/bold]
+      [bold]Описание:[/bold]
 
-      [bold]Name:[/bold] 
-      [bold]Description:[/bold] 
+      [bold]Имя:[/bold]
+      [bold]Описание:[/bold]
 
-      [head=2]Offense Details[/head]
-      [bold]Case #:[/bold] 
-      [bold]Approximate Time of Offense:[/bold] 
-      [bold]Location of Offense:[/bold] 
-      [bold]Charges:[/bold] 
+      [head=2]Детали Преступления[/head]
+      [bold]Номер дела:[/bold]
+      [bold]Примерное время преступления:[/bold]
+      [bold]Место преступления:[/bold]
+      [bold]Обвинения:[/bold]
 
-      [head=2]Requestor Information[/head]
-      [bold]Requesting Officer:[/bold] 
-      [bold]Authorizing Officer:[/bold] 
-      [bold]Time of Authorization:[/bold] 
+      [head=2]Информация о Запрашивающем[/head]
+      [bold]Запрашивающий офицер:[/bold]
+      [bold]Уполномочивающий офицер:[/bold]
+      [bold]Время авторизации:[/bold]
 
 
 
-      [color=#AAAAAA]This warrant is only valid when requested by an agent of the NFSD, and approved, signed and stamped by a distinct (unless impossible) officer ranked Bailiff or above, or a Station Representative.[/color]
+      [color=#AAAAAA]Этот ордер действителен только при запросе лицом ДШНФ и утверждении, подписании и простановке печати отдельным (если это возможно) офицером в звании Бейлиф или выше, либо Представителем Фронтира.[/color]
 
 - type: entity # Creator: Kwentov (Vica)
   id: PaperWrittenNfsdArrestReport
@@ -155,32 +155,32 @@
   components:
   - type: Paper
     content: |2
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Arrest Report[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент Шерифа Нового Фронтира[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Отчет об Аресте[/head]
 
-      [head=2]Incident Details[/head]
-      [bold]Case #:[/bold] 
-      [bold]Time of Arrest:[/bold] 
-      [bold]Location of Arrest:[/bold] 
-      [bold]Charges:[/bold] 
+      [head=2]Детали Инцидента[/head]
+      [bold]Номер дела:[/bold]
+      [bold]Время ареста:[/bold]
+      [bold]Место ареста:[/bold]
+      [bold]Обвинения:[/bold]
 
-      [head=2]Arrested Person(s)[/head]
-      [bold]Name:[/bold] 
-      [bold]Description:[/bold] 
-      [bold]Fine or Punishment:[/bold] 
+      [head=2]Арестованный(ые)[/head]
+      [bold]Имя:[/bold]
+      [bold]Описание:[/bold]
+      [bold]Штраф или наказание:[/bold]
 
-      [bold]Name:[/bold] 
-      [bold]Description:[/bold] 
-      [bold]Fine or Punishment:[/bold] 
+      [bold]Имя:[/bold]
+      [bold]Описание:[/bold]
+      [bold]Штраф или наказание:[/bold]
 
-      [head=2]Arrestor[/head]
-      [bold]Arresting Officer:[/bold] 
-      [bold]Supervisor:[/bold] 
+      [head=2]Арестовавший[/head]
+      [bold]Арестующий офицер:[/bold]
+      [bold]Начальник:[/bold]
 
 
 
-      [color=#AAAAAA]I, the undersigned, hereby swear under oath that all information on this report is accurate and correct to the best of my knowledge at the time of signing.[/color]
+      [color=#AAAAAA]Я, нижеподписавшийся, настоящим клянусь под присягой, что вся информация в этом отчете точна и верна в силу моих знаний на момент подписания.[/color]
 
 
 
@@ -192,33 +192,33 @@
   components:
   - type: Paper
     content: |2 # If editing this, edit PaperWrittenFrontierEmployeePayHistory
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Duty Log[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент Шерифа Нового Фронтира[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Журнал Дежурств[/head]
 
-      [head=2]Sheriff[/head]
-      [bold]Name:[/bold] 
-      [bold]Sign On Time:[/bold] 
-      [bold]Sign Off Time:[/bold] 
+      [head=2]Шериф[/head]
+      [bold]Имя:[/bold]
+      [bold]Время начала дежурства:[/bold]
+      [bold]Время окончания дежурства:[/bold]
 
-      [head=2]Officers[/head]
-      [bold]Name:[/bold] 
-      [bold]Position:[/bold]
-      [bold]Sign On Time:[/bold] 
-      [bold]Sign Off Time:[/bold] 
+      [head=2]Офицеры[/head]
+      [bold]Имя:[/bold]
+      [bold]Должность:[/bold]
+      [bold]Время начала дежурства:[/bold]
+      [bold]Время окончания дежурства:[/bold]
 
-      [bold]Name:[/bold] 
-      [bold]Position:[/bold]
-      [bold]Sign On Time:[/bold] 
-      [bold]Sign Off Time:[/bold] 
+      [bold]Имя:[/bold]
+      [bold]Должность:[/bold]
+      [bold]Время начала дежурства:[/bold]
+      [bold]Время окончания дежурства:[/bold]
 
-      [bold]Name:[/bold] 
-      [bold]Position:[/bold]
-      [bold]Sign On Time:[/bold] 
-      [bold]Sign Off Time:[/bold] 
+      [bold]Имя:[/bold]
+      [bold]Должность:[/bold]
+      [bold]Время начала дежурства:[/bold]
+      [bold]Время окончания дежурства:[/bold]
 
 
-      [color=#AAAAAA]This Form is considered NT Sensitive Data, Class 2, and is for internal NFSD use only.[/color]
+      [color=#AAAAAA]Эта форма считается конфиденциальными данными НТ, Класс 2, и предназначена только для внутреннего использования ДШНФ.[/color]
 
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
@@ -229,30 +229,30 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenFrontierContrabandTurnover
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Contraband Turnover Receipt[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент Шерифа Нового Фронтира[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Квитанция о Сдаче Контрабанды[/head]
 
-      [bold]Contraband Holder:[/bold] 
-      [bold]Total Contraband Value (FUC):[/bold] 
-      [bold]Payout per FUC:[/bold] [color=#ff0000]$2,000[/color]
-      [bold]Payout Total:[/bold] 
+      [bold]Владелец Контрабанды:[/bold]
+      [bold]Общая стоимость контрабанды (ТК):[/bold]
+      [bold]Выплата за один ТК:[/bold] [color=#ff0000]$2,000[/color]
+      [bold]Итоговая выплата:[/bold]
 
-      [bold]C2 Contraband:[/bold]
-          [bullet/] 
-          [bullet/] 
-          [bullet/] 
+      [bold]Контрабанда К2:[/bold]
+          [bullet/]
+          [bullet/]
+          [bullet/]
 
-      [bold]C3 Contraband:[/bold]
-          [bullet/] 
-          [bullet/] 
-          [bullet/] 
+      [bold]Контрабанда К3:[/bold]
+          [bullet/]
+          [bullet/]
+          [bullet/]
 
-      [bold]Shift Time:[/bold] 
+      [bold]Время смены:[/bold]
 
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]Форма недействительна без подписей обеих сторон и печати Командования Фронтира (Шерифа или Представителя Фронтира).[/color]
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenNfsdContrabandAmnesty
@@ -262,27 +262,27 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenFrontierContrabandAmnesty
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Contraband Amnesty Agreement[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент Шерифа Нового Фронтира[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Соглашение об Амнистии Контрабанды[/head]
 
-      [head=3]Contraband Holder[/head]
-          [bold]Name:[/bold] 
-          [bold]Species:[/bold] 
-          [bold]Vessel IFF:[/bold] 
+      [head=3]Владелец Контрабанды[/head]
+          [bold]Имя:[/bold]
+          [bold]Вид:[/bold]
+          [bold]IFF судна:[/bold]
 
-      [bold]Payout per FUC:[/bold] [color=#ff0000]$2,000[/color]
-      [bold]Shift Time:[/bold] 
+      [bold]Выплата за ЕКС:[/bold] [color=#ff0000]$2,000[/color]
+      [bold]Время смены:[/bold]
 
-      This document is a contract between the above Contraband Holder and Frontier Command.
+      Этот документ является контрактом между вышеуказанным Владельцем Контрабанды и Командованием Фронтира.
 
-      Any crimes of contraband possession for the Contraband Holder will be waived so long as all class 3 contraband items, and any class 2 contraband items not subject to a Class 2 Contraband Permit are turned in within reasonable time (subject to the clause below), and not used for malicious purposes. Noncompliance with this document results in voiding any standing Class 2 Contraband Permits.
+      Любые преступления, связанные с хранением контрабанды для Владельца Контрабанды, будут аннулированы при условии, что все предметы контрабанды класса 3 и любые предметы контрабанды класса 2, не подпадающие под Разрешение на Контрабанду Класса 2, будут сданы в разумные сроки (согласно условию ниже) и не будут использованы в злонамеренных целях. Несоблюдение данного документа приводит к аннулированию любых действующих Разрешений на Контрабанду Класса 2.
 
-      If the Contraband Holder is not paid in full at the above rate for any contraband turned in, they may remain in possession of the contraband without penalty at their discretion.
+      Если Владелец Контрабанды не получит полную оплату по указанной выше ставке за сданную контрабанду, он может по своему усмотрению оставить контрабанду у себя без штрафных санкций.
 
 
 
-      [color=#AAAAAA]This form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]Форма недействительна без подписей обеих сторон и печати Командования Фронтира (Шерифа или Представителя Фронтира).[/color]
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenNfsdContrabandPermit
@@ -292,25 +292,25 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenFrontierContrabandPermit
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Class 2 Contraband Permit[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент Шерифа Нового Фронтира[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Разрешение на Контрабанду Класса 2[/head]
 
-      [bold]Permit Holder:[/bold] 
-      [bold]Holder Crew:[/bold]
-          [bullet/] 
-          [bullet/] 
-          [bullet/] 
+      [bold]Владелец Разрешения:[/bold]
+      [bold]Экипаж Владельца:[/bold]
+          [bullet/]
+          [bullet/]
+          [bullet/]
 
-      [bold]Shift Time:[/bold] 
+      [bold]Время смены:[/bold]
 
-      This Permit allows the Holder and crew, as listed above, to possess and use class 2 contraband.
-      Non-compliance with a Contraband Amnesty agreement voids this Permit.
-      Refer to §6.1.4 of Space Law for a full definition of class 2 contraband.
+      Это Разрешение позволяет Владельцу и экипажу, указанным выше, владеть и использовать контрабанду класса 2.
+      Несоблюдение Соглашения об Амнистии за Контрабанду аннулирует это Разрешение.
+      Обратитесь к ... Космического Закона для полного определения контрабанды класса 2.
 
 
 
-      [color=#AAAAAA]This Permit is void without the signature of the Holder and the signature and stamp of the Sheriff[/color]
+      [color=#AAAAAA]Это Разрешение недействительно без подписи Владельца и подписи и печати Шерифа[/color]
 
 - type: entity # Based on form made by Starly (Shaw Clifflower)
   id: PaperWrittenNfsdAuthorization
@@ -320,32 +320,32 @@
   components:
   - type: Paper
     content: |2 # When updating this, update PaperWrittenFrontierAuthorization
-      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Authorization for Bluespace Threats[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]Департамент Шерифа Нового Фронтира[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Разрешение на работу с Блюспейс Угрозами[/head]
 
-      [bold]Vessel Captain:[/bold]
-      [bold]Vessel IFF:[/bold]
-      [bold]Shift Time:[/bold]
+      [bold]Капитан судна:[/bold]
+      [bold]IFF судна:[/bold]
+      [bold]Время смены:[/bold]
 
-      [bold]Issuing Frontier Command:[/bold]
-          [bullet]XXXXXXXX, Station Representative
-          [bullet]XXXXXXXX, Sheriff
+      [bold]Выдавшее Командование Фронтира:[/bold]
+          [bullet]XXXXXXXX, Представитель Фронтира
+          [bullet]XXXXXXXX, Шериф
 
-      This document authorizes the above vessel and its captain to assist and cooperate with the NFSD and Frontier authorities in neutralizing hostile bluespace threats to Frontier. These include, but are not limited to:
-          [bullet] Cultist vessels
-          [bullet] Syndicate vessels
-          [bullet] Wizard Federation vessels
-          [bullet] Arcadia Industries vessels
+      Настоящим документом уполномочивается вышеуказанное судно и его капитан оказывать содействие и сотрудничать с ДШНФ и властями Фронтира в нейтрализации враждебных угроз из блюспейса для Фронтира. К ним относятся, но не ограничиваются:
+          [bullet] Судна культистов
+          [bullet] Судна Синдиката
+          [bullet] Судна Федерации Волшебников
+          [bullet] Судна Arcadia Industries
 
-      This document does NOT deputize the authorized party. The authorized party is not granted special privileges to arrest, detain, and prosecute individuals associated with Nanotrasen.
+      Этот документ НЕ делает уполномоченную сторону заместителем. Уполномоченной стороне не предоставляется особых прав на арест, задержание и судебное преследование лиц, связанных с Нанотрейзен.
 
-      [bold]Any contraband seized during operations aboard hostile vessels must be surrendered, either to the NFSD or the Station Representative, for a cash bounty. Failure to surrender contraband will lead to the forfeiture of this agreement, and the authorized party may be liable for criminal charges.[/bold]
+      [bold]Любой контрабандный товар, захваченный во время операций на борту враждебных судов, должен быть сдан либо ДШНФ, либо Представителю Фронтира, за денежное вознаграждение. Несдача контрабанды приведет к расторжению данного соглашения, и уполномоченная сторона может быть привлечена к уголовной ответственности.[/bold]
 
-      The authorized party is to keep a copy of this document for inspection. The authorized party is expected to maintain contact with NFSD command and/or the Station Representative to minimize casualties.
+      Уполномоченная сторона должна хранить копию этого документа для проверки. Ожидается, что уполномоченная сторона будет поддерживать связь с командованием ДШНФ и/или Представителем Фронтира, чтобы минимизировать жертвы.
 
-      Before engaging with hostile vessels, the authorized party is expected to follow any instructions given by the NFSD for staging or other preparation prior to boarding.
+      Перед столкновением с враждебными судами уполномоченная сторона должна следовать любым инструкциям, данным ДШНФ для подготовки или иных действий перед высадкой на борт.
 
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]Форма недействительна без подписей обеих сторон и печати Командования Фронтира (Шерифа или Представителя Фронтира).[/color]

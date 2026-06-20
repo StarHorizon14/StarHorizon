@@ -128,12 +128,6 @@
 - type: Tag
   id: PhazonHead
 
-- type: Tag
-  id: PowerAnCo
-
-- type: Tag
-  id: AnCoMaterial
-
 # Ripley_mk2
 
 - type: Tag
@@ -452,3 +446,11 @@
 
 - type: Tag
   id: CatBag
+
+- type: Tag
+  id: ChubbyBomb
+
+# Airlock
+
+- type: Tag
+  id: PlanetTaxiAirlock

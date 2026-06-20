@@ -44,8 +44,17 @@
       state: patch
 
 - type: marking
-  id: arm1
+  id: arm_right
   bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [TajaranSpecies]
+  sprites:
+    - sprite: _Void/Mobs/Customization/tajaran_chest.rsi
+      state: points
+
+- type: marking
+  id: arm_together
+  bodyPart: LHand
   markingCategory: Arms
   speciesRestriction: [TajaranSpecies]
   sprites:
@@ -86,7 +95,7 @@
   speciesRestriction: [TajaranSpecies]
   sprites:
     - sprite: _Void/Mobs/Customization/tajaran_head.rsi
-      state: muzzle
+      state: muzzleinears
 
 - type: marking
   id: Head3

@@ -32,7 +32,7 @@
           bounds: "-0.4,-0.4,0.4,0.29"
         density: 150 # Heavy
         mask:
-        - SmallMobMask
+        - CrateMask
         layer:
         - MachineLayer
 
@@ -43,10 +43,10 @@
   description: An urgent crate of goods made in the Frontier sector, ready to be quickly sold at a cargo depot for higher value. MAKE SURE THE CRATE IS INTACT.
   components:
   - type: TradeCrate
-    valueAtDestination: 2500
-    valueElsewhere: 1200
+    valueAtDestination: 4500
+    valueElsewhere: 2200
     expressDeliveryDuration: 1680 # twenty-eight minutes, go go (worst distance is ~6.5 km trade-cargo A, then 12 km to cargo b, 15.4 min at 20 m/s, giving ~10 minutes in adverse conditions for cargo pickup and dropoff)
-    expressOnTimeBonus: 1500
+    expressOnTimeBonus: 2500
     expressLatePenalty: 1500 # 0/1000
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradelight.rsi
@@ -74,9 +74,9 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.29"
-        density: 400 # Very heavy
+        density: 550 # Very heavy — express crate, higher value justifies mass
         mask:
-        - SmallMobMask
+        - CrateMask
         layer:
         - MachineLayer
 

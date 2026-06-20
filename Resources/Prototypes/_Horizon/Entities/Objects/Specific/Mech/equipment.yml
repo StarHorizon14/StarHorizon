@@ -51,6 +51,8 @@
         Structural: 70
         Slash: 30
         Piercing: 30
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
   - type: Tag
     tags:
       - MechEquipmentMining
@@ -71,6 +73,8 @@
         Slash: 40
         Piercing: 30
     drillSpeedMultilire: 80
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
   - type: Tag
     tags:
       - MechEquipmentMining

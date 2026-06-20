@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 12/06/2025 19:14:14
-  entityCount: 883
+  time: 02/21/2026 19:07:35
+  entityCount: 888
 maps: []
 grids:
 - 1
@@ -788,7 +788,7 @@ entities:
       pos: 0.5,-6.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -27281.473
+      secondsUntilStateChange: -27783.78
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -800,7 +800,7 @@ entities:
       pos: 1.5,-6.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -27282.072
+      secondsUntilStateChange: -27784.379
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -898,6 +898,22 @@ entities:
     - type: Transform
       pos: 6.5,-10.5
       parent: 1
+    - type: AmeController
+      injecting: True
+    - type: ContainerContainer
+      containers:
+        fuelSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 884
+- proto: AmeJar
+  entities:
+  - uid: 884
+    components:
+    - type: Transform
+      parent: 39
+    - type: Physics
+      canCollide: False
 - proto: AmeShielding
   entities:
   - uid: 38
@@ -930,6 +946,9 @@ entities:
     - type: Transform
       pos: 7.5,-8.5
       parent: 1
+    - type: PointLight
+      radius: 2
+      enabled: True
   - uid: 45
     components:
     - type: Transform
@@ -2429,6 +2448,18 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,10.5
+      parent: 1
+- proto: ComputerWallmountWithdrawBankATM
+  entities:
+  - uid: 885
+    components:
+    - type: Transform
+      pos: -7.5,0.5
+      parent: 1
+  - uid: 886
+    components:
+    - type: Transform
+      pos: 9.5,0.5
       parent: 1
 - proto: ConveyorBelt
   entities:
@@ -6494,6 +6525,20 @@ entities:
     components:
     - type: Transform
       pos: -2.5,5.5
+      parent: 1
+- proto: WeaponCapacitorRecharger
+  entities:
+  - uid: 887
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,11.5
+      parent: 1
+  - uid: 888
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,6.5
       parent: 1
 - proto: WeldingFuelTankFull
   entities:

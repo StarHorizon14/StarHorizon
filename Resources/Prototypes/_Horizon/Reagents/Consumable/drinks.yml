@@ -214,3 +214,37 @@
       effects:
       - !type:SatiateThirst
         factor: 3
+
+- type: reagent
+  id: AzJuice
+  name: Аз Сок
+  parent: BaseSoda
+  desc: Лазурная вода с мягким вкусом маракуи и мёда.
+  physicalDesc: яркое
+  flavor: azjuice
+  color: "#00d9ff"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.5
+      effects:
+      - !type:Emote
+        emote: Weh
+        showInChat: true
+        showInGuidebook: true
+        force: true
+        probability: 0.1
+      - !type:Polymorph
+        prototype: ArtifactLizard # Does the same thing as the original YML I made for this reagent.
+        conditions:
+        # - !type:OrganType # Frontier
+        #   type: Animal # Frontier
+        #   shouldHave: false # Frontier
+        - !type:NFIsHumanoid # Frontier
+        - !type:ReagentThreshold
+          min: 50
+      - !type:AdjustReagent
+        reagent: JuiceThatMakesYouWeh
+        amount: -20
+        conditions:
+        - !type:ReagentThreshold
+          min: 50

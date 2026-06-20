@@ -919,7 +919,7 @@
   cost:
     FrontierUplinkCoin: 40
   categories:
-    - UplinkSecurityBundles
+    - UplinkSecurityWeapons
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -1172,3 +1172,500 @@
         - Bailiff
         - SeniorOfficer
         - Sheriff
+
+#Ammo
+- type: listing
+  id: UplinkSecurityMosinAmmo
+  name: uplink-mosin-ammo-name
+  description: uplink-mosin-ammo-desc
+  productEntity: MagazineBoxHeavyRifle762
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+  - UplinkSecurityAmmo
+
+- type: listing
+  id: UplinkSecurity556UEGAmmo
+  name: пакет патронов (5.56 UEG)
+  description: Картонная коробка с 60 патронов калибра 5.56 UEG, которыми пользуються автоматы серии калашникова.
+  productEntity: MagazinePacketRifle556UEG
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+  - UplinkSecurityAmmo
+
+- type: listing
+  id: UplinkSecurity308winAmmo
+  name: коробка патронов (.308 win)
+  description: Цинк с 60 патронов калибра .308 winchester, крайне эффективен против живой силы с толстой кожей.
+  productEntity: MagazineBoxHeavyRifle
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+  - UplinkSecurityAmmo
+
+- type: listing
+  id: UplinkSecurityMagazineMagnumPistol
+  name: пистолетный магазин (.50 AE)
+  description: Магазин для того самого пустынного орла.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi, state: base }
+  productEntity: MagazinePistol50AE
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+  - UplinkSecurityAmmo
+
+- type: listing
+  id: UplinkSecurityMagazine50BMGMag
+  name: магазин (.50 BMG)
+  description: Магазин калибра 50 BMG, обычно с таким патроном идут на крупный рогатый скот.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/sr127_mag.rsi, state: base }
+  productEntity: MagazineAntiMaterielRifleSR
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+  - UplinkSecurityAmmo
+
+- type: listing
+  id: UplinkSecurityMagazine9x17
+  name: магазин (9x17 mm)
+  description: Магазин калибра 9x17 для ПП.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun.rsi, state: base }
+  productEntity: MagazinePistolSubMachineGun9x17
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+  - UplinkSecurityAmmo
+
+- type: listing
+  id: UplinkSecurityMagazinePistol9x17
+  name: пистолетный магазин (9x17 mm)
+  description: Магазин калибра 9x17 для пистолетов.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag.rsi, state: base }
+  productEntity: MagazinePistol9x17
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+  - UplinkSecurityAmmo
+
+- type: listing
+  id: UplinkSecurityMagazinePistol57x28
+  name: пистолетный магазин (5,7x28)
+  description: Магазин калибра 55,7x28 для пистолетов.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag_545.rsi, state: base }
+  productEntity: MagazinePistol57x28
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+  - UplinkSecurityAmmo
+
+- type: listing
+  id: UplinkSecurityMagazineSMGVector45ACP
+  name: магазин (.45 Auto)
+  description: Магазин калибра .45 Auto для Вектора.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_vector.rsi, state: base }
+  productEntity: MagazinePistolSubMachineGunVector45ACP
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+  - UplinkSecurityAmmo
+
+#Bundles
+
+- type: listing
+  id: UplinkSecurityAR18Bundle
+  name: набор "AR 18"
+  description: Символ войны, легендарное оружие зарекомендовавшие себя как самое надежное оружие в истории. В комплетке 3 магазина.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledAR18
+  cost:
+    FrontierUplinkCoin: 9
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledAR18
+  name: набор "AR 18"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleAR18
+    - id: MagazineRifle556UEG
+    - id: MagazineRifle556UEG
+    - id: MagazineRifle556UEG
+    - id: MagazineRifle556UEG
+
+- type: listing
+  id: UplinkSecurityV31Bundle
+  name: набор "V31"
+  description: Основная винтовка вооруженных сил Сынов Марса, имеет реактивные патроны, эффективен против всего. В комплетке 3 магазина.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledV31
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledV31
+  name: набор "V31"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleV31
+    - id: MagazineRifleRocket20
+
+- type: listing
+  id: UplinkSecurityg36Bundle
+  name: набор "HK G36"
+  description: The H&K G-36 assault rifle used to be the EarthGov army standard issue rifle.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledg36
+  cost:
+    FrontierUplinkCoin: 9
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledg36
+  name: набор "HK G36"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleG36
+    - id: MagazineRifle556UEG
+    - id: MagazineRifle556UEG
+
+- type: listing
+  id: UplinkSecurityStG44Bundle
+  name: набор "StG44"
+  description: Первая "Штурмовая Винтовка" в истории, в отличии от её образца 1944 года, имеет современные внутренности, из-за особенности конструкции имеет более высокую скорострельность. В комплетке 3 магазина.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledStG44
+  cost:
+    FrontierUplinkCoin: 9
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledStG44
+  name: набор "StG44"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleSTG44
+    - id: MagazineRifleLight762x39
+    - id: MagazineRifleLight762x39
+
+- type: listing
+  id: UplinkSecurityVectorBundle
+  name: набор "Vector"
+  description: Оружие используемая спецназом, такой экзепляр стал очень быстро востребован на черном рынке, благодаря своей передовой системе глушение отдачи. В комплетке 3 магазина.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledVector
+  cost:
+    FrontierUplinkCoin: 9
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledVector
+  name: набор "Vector"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunVectorSpecial
+    - id: MagazinePistolSubMachineGunVector45ACPExt
+    - id: MagazinePistolSubMachineGunVector45ACPExt
+
+- type: listing
+  id: UplinkSecurityMP7Bundle
+  name: набор "MP7"
+  description: Модель SMG7 с архаичным дизайном, насчитывающим сотни лет, была распространена в свое время. Сегодня он находит ограниченное применение в качестве дешевых компьютерных копий или семейных реликвий, хотя каким-то образом попал в руки колониальных повстанцев. В комплетке 3 магазина.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledMP7
+  cost:
+    FrontierUplinkCoin: 7
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledMP7
+  name: набор "MP7"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunMP7
+    - id: MagazinePistolSubMachineGun57x28
+    - id: MagazinePistolSubMachineGun57x28
+
+- type: listing
+  id: UplinkSecurityMP38Bundle
+  name: набор "MP38"
+  description: Дешевая, простая пушка с открытым затвором, не нуждается в обслуживании... Скорее всего это оружие с тех самых времен... В комплетке 3 магазина.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledMP38
+  cost:
+    FrontierUplinkCoin: 7
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledMP38
+  name: набор "MP38"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunMP38
+    - id: MagazinePistolBoxSubMachineGun
+    - id: MagazinePistolBoxSubMachineGun
+
+- type: listing
+  id: UplinkSecurityM16A4Bundle
+  name: набор "M16A4"
+  description: A light, versatile assault rifle. The 4th generation in the M16 platform, this FN variant has added automatic fire selection and retains relevance among mercenaries and militias thanks to its high customizability. it is incredibly good at rapid burst fire, but must be paced correctly."
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledM16A4
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledM16A4
+  name: набор "M16A4"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleM16A4
+    - id: MagazineRifle556UEG
+    - id: MagazineRifle556UEG
+    - id: MagazineRifle556UEG
+    - id: MagazineRifle556UEG
+
+- type: listing
+  id: UplinkSecurityDEagle
+  name: Пустынный орёл
+  description: Большой, стильный, мощный дигл на базе .45 калибра, был создан для охоты на слонов, но чем СБешник не слон? Не так-ли?
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/big.rsi, state: icon }
+  productEntity: WeaponPistolDEagle
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - UplinkSecurityWeapons
+
+- type: listing
+  id: UplinkSecurityGrenadeLauncher79Bundle
+  name: набор "GL-79"
+  description: Новенький, ручной гранатомет с барабанным системой, имеет 12 гранат в комплекте
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/gl-64/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledGL79
+  cost:
+    FrontierUplinkCoin: 30
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledGL79
+  name: набор "GL-79"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponLauncherGL70
+    - id: NFGrenadeFrag
+      amount: 6
+    - id: NFGrenadeBlast
+      amount: 6
+
+- type: listing
+  id: UplinkSecurityGrenadeLauncherM81Bundle
+  name: набор "M-81"
+  description: Однозарядный армейский штатный гранатомёт, используется пехотными подраздилениями для блокирывания зон и поддержки, имеет 6 гранат в комплекте
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi, state: base }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledM81
+  cost:
+    FrontierUplinkCoin: 8
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledM81
+  name: набор "M-81"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponLauncherM81
+    - id: NFGrenadeFrag
+      amount: 3
+    - id: NFGrenadeBlast
+      amount: 3
+
+- type: listing
+  id: UplinkSecurityM-41Bundle
+  name: Набор "M-41"
+  description: The M-41 is a large man portable machine, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/v41/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledM-41
+  cost:
+    FrontierUplinkCoin: 15
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledM-41
+  name: набор "M-41"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleM41
+    - id: MagazineHeavyRifleV41
+      amount: 2
+
+- type: listing
+  id: UplinkSecurityMG42Bundle
+  name: Набор "MG42"
+  description: Очень старый общевойсковой пулемет Объеденненого Правительства Земли, все оригинальные компоненты были заменены более усовршенственными, а барабан был дополнен БлюСпейс технологией, для более бесперебойной стрельбы. Имеет 1 магазин и 2 ящика патронов.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledMG42
+  cost:
+    FrontierUplinkCoin: 30
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledMG42
+  name: набор "MG42"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponLightMachineGunMG42
+    - id: MagazineHeavyMachineGunDrum
+      amount: 2
+
+- type: listing
+  id: UplinkSecurityBR64Bundle
+  name: Набор "BR-64"
+  description: Марксменская тяжелая винтовка, имеет автодосылатель затвора, что облегчает эксплоатирование оружия (но не его чистку). Имеет 3 магазина .60 калибра.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledBR64
+  cost:
+    FrontierUplinkCoin: 30
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledBR64
+  name: набор "BR-64"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleBR64
+    - id: MagazineHeavyRifleBR64
+      amount: 2
+
+- type: listing
+  id: UplinkSecuritySVDBundle
+  name: набор "SVD"
+  description: Легендарное оружие, зарекомендовала себя за счёт платформы АК на которой он был создан. В комплетке 3 магазина.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledSVD
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledSVD
+  name: набор "SVD"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleDragunov
+    - id: MagazineRifleLightSniper
+      amount: 2
+
+- type: listing
+  id: UplinkSecuritySpas12Bundle
+  name: набор "SPAS-12"
+  description: Спас-12, великолепное оружие которое показала свою надежность и убойную силу. В комплетке 43 патрона.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelNfsdBrownFilledSPAS12
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownFilledSPAS12
+  name: набор "SPAS-12"
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgun12
+
+- type: listing
+  id: UplinkSecuritySniperSR127Bundle
+  name: uplink-sniper-bundle-name
+  description: uplink-sniper-bundle-desc
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi, state: base }
+  productEntity: ClothingBackpackDuffelNfsdBrownSniperBundleFilled
+  cost:
+    FrontierUplinkCoin: 12
+  categories:
+  - UplinkSecurityWeapons
+
+- type: entity
+  id: ClothingBackpackDuffelNfsdBrownSniperBundleFilled
+  name: коричневый чемодан
+  description: Пригодится для переноски предметов в руках.
+  parent: ClothingBackpackDuffelNfsdBrown
+  suffix: SniperBundle
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleSR127
+      - id: MagazineAntiMaterielRifleSR
+        amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdBrownAmmoBackmenFilled
+  name: набор боеприпасов
+  suffix: Backmen
+  description: "Перезаряжаюсь! Содержит магазины для большинства современного вооружения ДШНФ."
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistolDrumSubMachineGun # For PPSH
+        amount: 2
+      - id: MagazinePistolTopSubMachineGun # For P90
+        amount: 2
+      - id: MagazineLightMachineGun762x39 # For RPD
+        amount: 2
+      - id: MagazinePistolSubMachineGun57x28
+        amount: 4
+      - id: MagazinePistolSubMachineGunVector45ACPExt
+        amount: 2
+      - id: MagazineRifleLight762x39Ext # For AKMS, AKSU and STG44
+        amount: 3
+      - id: MagazineRifleLightSniper # For Dragunov
+        amount: 1
+      - id: MagazineHeavyRifleBR64 # For BR64
+        amount: 1
+      - id: MagazineShotgun # For Zauer and SPAS12
+        amount: 3

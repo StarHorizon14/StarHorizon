@@ -1,3 +1,7 @@
+marking-MothAbdomenInsectQueen = Брюшко крупного насекомого
+marking-MothAbdomenInsect = Брюшко насекомого
+marking-MothAbdomenBeeQueen = Брюшко королевы пчелы
+marking-MothAbdomenBee = Брюшко пчелы
 marking-MothAntennasDefault-default = Антенна
 marking-MothAntennasDefault = Антенны (Обычные)
 marking-MothAntennasCharred-charred = Антенна

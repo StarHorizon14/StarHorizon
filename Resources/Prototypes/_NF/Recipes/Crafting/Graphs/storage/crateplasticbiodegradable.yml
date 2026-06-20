@@ -22,4 +22,7 @@
               welded: false
           completed:
             - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 5
             - !type:DeleteEntity

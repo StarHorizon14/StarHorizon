@@ -1,4 +1,4 @@
-ent-NFBaseWeaponFrameRifleAssault = assault rifle
+ent-NFBaseWeaponFrameRifleAssault = штурмовая винтовка
     .desc = { ent-NFBaseWeaponEncumbranceRifleAssault.desc }
 ent-NFBaseWeaponFrameRifleAssaultNanotrasen = { ent-NFBaseWeaponFrameRifleAssault }
     .desc = { ent-NFBaseWeaponFrameRifleAssault.desc }

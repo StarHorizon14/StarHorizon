@@ -1,2 +1,2 @@
-ent-MechEmuCargoListing = Emu PLU
+ent-MechEmuCargoListing = Эму АСПЮ
     .desc = { "" }

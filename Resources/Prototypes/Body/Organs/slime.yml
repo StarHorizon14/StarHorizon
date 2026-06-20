@@ -96,6 +96,7 @@
     removeEmpty: true
     groups:
     - id: Medicine
+    - id: Cryogenic # Horizon: allow slime people to metabolize cryogenic reagents from cryopods
     - id: Poison
     - id: Narcotic
 

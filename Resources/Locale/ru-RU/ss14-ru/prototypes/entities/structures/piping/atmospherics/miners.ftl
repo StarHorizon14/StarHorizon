@@ -32,3 +32,5 @@ ent-GasMinerAmmonia = газодобытчик аммиака
     .desc = { ent-GasMinerBase.desc }
 ent-GasMinerNitrousOxide = газодобытчик оксида азота N2O
     .desc = { ent-GasMinerBase.desc }
+ent-GasMinerHelium = газодобытчик гелия
+    .desc = { ent-GasMinerBase.desc }

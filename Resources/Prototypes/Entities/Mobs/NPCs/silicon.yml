@@ -15,9 +15,6 @@
     bodyType: KinematicController # Same for all inheritors
   - type: StatusEffects
     allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
     - Stutter
     - Electrocution
   - type: Repairable
@@ -52,7 +49,6 @@
   - type: Emoting
   - type: ZombieImmune
   - type: ProtectedFromStepTriggers
-  - type: NoSlip
   - type: Insulated
 
 # Used for bots
@@ -159,8 +155,10 @@
     interactFailureString: petting-failure-firebot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: Advertise
-    pack: FirebotAd
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: FirebotAd
+  - type: NoSlip
 
 - type: entity
   parent: MobSiliconBase
@@ -224,6 +222,7 @@
       path: /Audio/Items/bikehorn.ogg
       params:
         variation: 0.125
+  - type: NoSlip
 
 - type: entity
   parent: MobHonkBot
@@ -265,6 +264,7 @@
     totalIntensity: 10
     intensitySlope: 5
     canCreateVacuum: false
+  - type: NoSlip
 
 - type: entity
   parent: MobSiliconBase
@@ -310,6 +310,7 @@
     interactFailureString: petting-failure-cleanbot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: NoSlip
 
 - type: entity
   parent:
@@ -355,11 +356,13 @@
     interactFailureString: petting-failure-medibot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: Advertise
-    pack: MedibotAds
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: MedibotAds
   - type: Inventory
     templateId: medibot
   - type: DoAfter
+  - type: NoSlip
 
 - type: entity
   parent:
@@ -393,6 +396,7 @@
     templateId: head
   - type: Speech # Frontier: robots have beepy speech sounds, but not the mimebot
     speechSounds: null # Frontier: robots have beepy speech sounds, but not the mimebot
+  - type: NoSlip
 
 - type: entity
   parent: MobSiliconBase
@@ -464,3 +468,4 @@
     - Supply
   - type: Puller
     needsHands: false
+  - type: NoSlip

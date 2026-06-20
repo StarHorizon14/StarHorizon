@@ -1,4 +1,4 @@
-﻿<Document>
+<Document>
   # Тесла-двигатель
   Тесла-двигатель — мощный генератор, использующий сдерживаемый шар молний для выработки энергии.
   <Box>
@@ -92,7 +92,7 @@
   Замедлители можно разработать в отделе исследований или заказать через карго.
 
   <Box>
-    <GuideEntityEmbed Entity="WeaponParticleDecelerator"/>
+    <GuideEntityEmbed Entity="NFWeaponParticleDecelerator"/>
   </Box>
 
 </Document>

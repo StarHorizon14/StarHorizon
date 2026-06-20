@@ -13,6 +13,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Timing;
 using Content.Client._Corvax.Respawn; // Frontier
+using Content.Client._Horizon.GhostSprites; // Horizon
 
 namespace Content.Client.UserInterface.Systems.Ghost;
 
@@ -25,6 +26,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
     [UISystemDependency] private readonly GhostSystem? _system = default;
     [UISystemDependency] private readonly RespawnSystem? _respawn = default;
+    [UISystemDependency] private readonly GhostSpriteSystem? _ghostSpriteSystem = default; // Horizon
 
     private GhostGui? Gui => UIManager.GetActiveUIWidgetOrNull<GhostGui>();
 
@@ -164,6 +166,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
         Gui.TargetWindow.OnGhostnadoClicked += OnGhostnadoClicked;
         Gui.GhostRespawnPressed += GuiOnGhostRespawnPressed;
+        Gui.ChangeSpritePressed += OnChangeSpritePressed; // Horizon
         UpdateGui();
     }
 
@@ -182,6 +185,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.GhostRolesPressed -= GhostRolesPressed;
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
         Gui.GhostRespawnPressed -= GuiOnGhostRespawnPressed;
+        Gui.ChangeSpritePressed -= OnChangeSpritePressed; // Horizon
 
         Gui.Hide();
     }
@@ -206,5 +210,11 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     private void RespawnPressed()
     {
         IoCManager.Resolve<IClientConsoleHost>().RemoteExecuteCommand(null, "ghostrespawn");
+    }
+
+    // Horizon: ghost sprite selection
+    private void OnChangeSpritePressed()
+    {
+        _ghostSpriteSystem?.OpenWindow();
     }
 }

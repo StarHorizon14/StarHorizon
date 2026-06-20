@@ -30,8 +30,8 @@
 - type: entity
   parent: SheetOtherBaseFar
   id: SheetTorium
-  name: torium
-  suffix: Full
+  name: торий
+  suffix: Полный
   components:
   - type: Material
   - type: PhysicalComposition
@@ -89,8 +89,8 @@
 - type: entity
   parent: SheetOtherBaseFar
   id: SheetPlutonium
-  name: plutonium
-  suffix: Full
+  name: плутоний
+  suffix: Полный
   components:
   - type: Material
   - type: PhysicalComposition
@@ -148,8 +148,8 @@
 - type: entity
   parent: SheetOtherBaseFar
   id: SheetNeptunium
-  name: neptunium
-  suffix: Full
+  name: нептуний
+  suffix: Полный
   components:
   - type: Material
   - type: PhysicalComposition

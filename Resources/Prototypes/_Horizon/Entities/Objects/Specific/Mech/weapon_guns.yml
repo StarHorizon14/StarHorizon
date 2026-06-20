@@ -533,7 +533,7 @@
     - FullAuto
     fireRate: 2
   - type: BatteryMechAmmoProvider
-    proto: NFBulletKineticShuttle
+    proto: NFBulletKineticShuttleHard
     fireCost: 5
   - type: Tag
     tags:

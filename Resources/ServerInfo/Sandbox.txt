@@ -1,16 +1,16 @@
 
-[color=#ffffff]Entity spawn panel options[/color]
-[color=#a4885c]Default[/color] spawns small entities like mugs without aligning them to anything, while aligning block entities like walls to the grid.
-[color=#a4885c]PlaceFree[/color] spawns all entities without aligning them.
-[color=#a4885c]PlaceNearby[/color] limits the spawn radius to around 2 tiles.
-[color=#a4885c]SnapgridCenter[/color] aligns the entity to the middle of the tile.
-[color=#a4885c]SnapgridBorder[/color] aligns the entity to the border of the tile.
+[color=#ffffff]Опции панели спавна объектов[/color]
+[color=#a4885c]По умолчанию (Default)[/color] спавнит маленькие объекты, такие как кружки, без привязки к чему-либо, в то время как блочные объекты, такие как стены, привязываются к сетке.
+[color=#a4885c]Свободное размещение (PlaceFree)[/color] спавнит все объекты без привязки.
+[color=#a4885c]Рядом (PlaceNearby)[/color] ограничивает радиус спавна примерно 2 тайлами.
+[color=#a4885c]К центру сетки (SnapgridCenter)[/color] привязывает объект к центру тайла.
+[color=#a4885c]К границе сетки (SnapgridBorder)[/color] привязывает объект к границе тайла.
 
-[color=#ffffff]Grid aligned options[/color]
-[color=#a4885c]AlignSimilar[/color] snaps the entity to similar entities. Currently broken.
-[color=#a4885c]AlignTileAny[/color] aligns the entity to the grid.
-[color=#a4885c]AlignTileEmpty[/color] target tile must be empty
-[color=#a4885c]AlignTileNonDense[/color] no colliders allowed in the target tile.
-[color=#a4885c]AlignTileDense[/color] colliders must be in the target tile.
-[color=#a4885c]AlignWall[/color] snaps to vertical halftiles.
-[color=#a4885c]AlignWallProper[/color] snaps the entity to the middle of the tile edges
+[color=#ffffff]Опции привязки к сетке[/color]
+[color=#a4885c]Привязать к похожим (AlignSimilar)[/color] привязывает объект к похожим объектам. В настоящее время не работает.
+[color=#a4885c]Привязать к любому тайлу (AlignTileAny)[/color] привязывает объект к сетке.
+[color=#a4885c]Привязать к пустому тайлу (AlignTileEmpty)[/color] целевой тайл должен быть пустым.
+[color=#a4885c]Привязать к неплотному тайлу (AlignTileNonDense)[/color] в целевом тайле не должно быть коллайдеров.
+[color=#a4885c]Привязать к плотному тайлу (AlignTileDense)[/color] в целевом тайле должны быть коллайдеры.
+[color=#a4885c]Привязать к стене (AlignWall)[/color] привязывает к вертикальным половинкам тайлов.
+[color=#a4885c]Привязать к стене правильно (AlignWallProper)[/color] привязывает объект к середине краёв тайлов.

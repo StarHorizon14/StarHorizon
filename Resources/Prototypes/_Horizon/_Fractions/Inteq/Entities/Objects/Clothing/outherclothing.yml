@@ -1,0 +1,98 @@
+- type: entity
+  parent: [ClothingOuterArmorBasic]
+  id: ClothingOuterArmorInteQInfiltrator
+  suffix: StarHorizon, Inteq
+  name: armored infiltrator cape
+  description: High-quality raincoat with an armored plate made of multilayer plasteel. It combines lightness and durability, has a buffer lining and fits perfectly to the body without making unnecessary sounds when worn.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/Armor/inteq_infiltrator.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/Inteq/Armor/inteq_infiltrator.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.65
+        Piercing: 0.5
+        Radiation: 0.9
+        Caustic: 0.9
+        Heat: 0.8
+
+- type: entity
+  parent: [ClothingOuterArmorRaid, ClothingOuterBaseToggleable]
+  id: ClothingOuterArmorInteQIronTombstone
+  suffix: StarHorizon, Inteq
+  name: Iron Tombstone armor suit
+  description: Ancient, but no less formidable suit of armor. It provides incredible protection from bullets and shrapnel, but it hinders movement. Or so it was before the technical department attached a passive exoskeleton to the base.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/Armor/inteq_tombstone.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/Inteq/Armor/inteq_tombstone.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetInteQIronTombstone
+  - type: PointLight
+    color: "#FF8C00"
+
+- type: entity
+  parent: [ClothingOuterArmorBasic]
+  id: ClothingOuterCoatInteQBattle
+  suffix: StarHorizon, Inteq
+  name: InteQ battle coat
+  description: InteQ armored coat is made of durable fabric, with gilded patterns.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_battle_coat.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/Inteq/inteq_battle_coat.rsi
+
+- type: entity
+  parent: [ClothingOuterCoatHoSTrench]
+  id: ClothingOuterCoatInteQHonorableBattle
+  suffix: StarHorizon, Inteq
+  name: InteQ honorable battle coat
+  description: InteQ honorable armored coat is made of durable fabric, with gilded patterns.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_honorable_battle_coat.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/Inteq/inteq_honorable_battle_coat.rsi
+
+- type: entity
+  parent: ClothingOuterCoatAMG
+  id: ClothingOuterCoatInteQMedical
+  suffix: StarHorizon, Inteq
+  name: InteQ medical coat
+  description: The version of the medical coat, with elements of a bulletproof vest, but your heart is protected.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_med_coat.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/Inteq/inteq_med_coat.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterWinterInteQ
+  suffix: StarHorizon, Inteq
+  name: InteQ winter coat
+  description: Insulated winter coat, looks like a merch.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/WinterCoats/inteq_wintercoat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/WinterCoats/inteq_wintercoat.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterHoodieInteQ
+  suffix: StarHorizon, Inteq
+  name: InteQ hoodie
+  description: Insulated hoodie, looks like a merch.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_hoodie.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/Inteq/inteq_hoodie.rsi

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Worldgen.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
@@ -19,7 +19,7 @@ public sealed class WorldControllerSystem : EntitySystem
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 
-    private const int PlayerLoadRadius = 2;
+    private const float PlayerLoadRadius = 192f; // Horizon
 
     private ISawmill _sawmill = default!;
 
@@ -144,7 +144,10 @@ public sealed class WorldControllerSystem : EntitySystem
 
             var wc = _xformSys.GetWorldPosition(xform);
             var coords = WorldGen.WorldToChunkCoords(wc);
-            var chunks = new GridPointsNearEnumerator(coords.Floored(), PlayerLoadRadius);
+            // Horizon
+            // Convert world units to chunks: 192 / 128 = 1.5 chunks, use 1 chunk (128 world units) for reduction
+            var chunks = new GridPointsNearEnumerator(coords.Floored(),
+                (int) Math.Floor(PlayerLoadRadius / (float) WorldGen.ChunkSize));
 
             var set = chunksToLoad[map];
 

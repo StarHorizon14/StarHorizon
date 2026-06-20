@@ -9,6 +9,7 @@
     noRot: true
     drawdepth: Mobs
   - type: MobCollision
+  - type: GravityAffected
   - type: Physics
     bodyType: KinematicController
   - type: Fixtures
@@ -45,6 +46,7 @@
   - type: RequireProjectileTarget
     active: False
   - type: AnimatedEmotes # goob edit - animated emotes
+  - type: StunVisuals
   - type: CanEscapeMech # Horizon Mech
   - type: CustomLimbVisualizer
     displacements:
@@ -88,7 +90,6 @@
           32:
             sprite: _Horizon/CustomLimb/displacement.rsi
             state: r_arm
-
 
 - type: entity
   save: false
@@ -152,6 +153,8 @@
     - Shock
     - Cold
     - Caustic
+    - Asphyxiation
+    - Radiation
   - type: DamageOnHighSpeedImpact
     damage:
       types:

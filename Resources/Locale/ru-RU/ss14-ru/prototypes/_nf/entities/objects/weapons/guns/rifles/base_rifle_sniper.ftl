@@ -1,5 +1,5 @@
 ent-NFBaseWeaponFrameRifleSniper = { ent-BaseC1Contraband }
-    .suffix = Frontier
+    .suffix = Фронтир
     .desc = { ent-BaseC1Contraband.desc }
 ent-NFBaseWeaponFrameRifleSniperCybersun = { ent-BaseC3SyndicateContraband }
     .desc = { ent-BaseC3SyndicateContraband.desc }

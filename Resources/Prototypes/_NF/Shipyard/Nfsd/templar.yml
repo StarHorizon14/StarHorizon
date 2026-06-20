@@ -2,12 +2,12 @@
   id: Templar
   parent: BaseVessel
   name: NSF Templar
-  description: A small security assault craft designed for combat interdiction operations.
+  description: Малый охранный шаттл предназначенный для ведения боя.
   price: 24220
   category: Small
   group: Security
   access: Security
-  shuttlePath: /Maps/_NF/Shuttles/Nfsd/templar.yml
+  shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/templar.yml # Horizon
   guidebookPage: Null
   class:
   - Pursuit
@@ -29,7 +29,7 @@
 - type: gameMap
   id: Templar
   mapName: 'NSF Templar'
-  mapPath: /Maps/_NF/Shuttles/Nfsd/templar.yml
+  mapPath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/templar.yml # Horizon
   minPlayers: 0
   stations:
     Templar:

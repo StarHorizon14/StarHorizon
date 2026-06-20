@@ -40,7 +40,7 @@ advertise = true
 tags = "lang:ru,region:eu_e,rp:med"
 server_url = "ss14://ss14.starhorizon.ru:1212"
 # Wizard's Den hub
-hub_urls = "https://hub.spacestation14.com/"
+hub_urls = "https://hub.spacestation14.com/,https://hub.playss14.com/"
 
 [server]
 rules_file = "FrontierRuleset"
@@ -69,7 +69,7 @@ admin_prefix_webhook = true
 
 [infolinks]
 discord = "https://discord.starhorizon.ru"
-#wiki = "https://wiki.starhorizon.ru/"
+wiki = "https://wiki.starhorizon.ru/"
 
 ################################################################################
 ##### In Game ##################################################################
@@ -98,7 +98,8 @@ impact.spark_energy = 2000000.0
 impact.slowdown = 8.0
 impact.min_throw_velocity = 1.0
 impact.inertia_scaling = 0.5
-mass_limit = 0
+mass_limit = 300
+cooldown = 19
 
 [rules]
 time = 90.0
@@ -121,14 +122,14 @@ enabled_admin = true
 
 [metrics]
 enabled = true
-host = "ss14"
+host = "%metrics_host%"
 port = 9001
 #runtime = false
 
 [loki]
-enabled = false
-#address = "http://127.0.0.1:3100"
-#name = "aavikko_ss14_main"
+enabled = true
+address = "%loki_address%"
+name = "%loki_name%"
 
 ################################################################################
 ##### Discord ##################################################################
@@ -137,13 +138,22 @@ enabled = false
 ahelp_webhook = "%webhook_ahelp%"
 ban_webhook = "%webhook_ban%"
 round_update_webhook = "%webhook_round_update%"
-leaderboard_webhook = "%webhook_round_update%"
-guild_id = 1348258341658562560
-token = "%bot_token%"
+leaderboard_webhook = "%webhook_leaderboard%"
+#guild_id = 1348258341658562560
+#token = "%bot_token%"
 
 ################################################################################
 ##### Relpay ###################################################################
 
 [replay]
-auto_record = true
+auto_record = false
 directory = "replays/"
+
+################################################################################
+##### Sponsor System ###########################################################
+
+[sponsor]
+# Paths to sponsor system files
+discord_sponsors_path = "sponsorSystem/warp/discord_sponsors.txt"
+disposable_path = "sponsorSystem/warp/disposable.txt"
+items_path = "sponsorSystem/sponsor_items.txt"

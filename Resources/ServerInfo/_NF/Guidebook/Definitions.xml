@@ -1,58 +1,55 @@
 <Document>
+# Определения и термины Нового Фронтира
 
-  # New Frontiers definitions and terms
+В этом разделе будут объяснены наиболее распространенные термины, используемые на сервере как от лица персонажа (IC), так и от своего лица (OOC).
 
-This section will explain most the common terminology used on the server both in character and out of character.
+## Панический бункер
+Инструмент сервера, который не пускает на сервер учетные записи с менее чем 10 часами игрового времени, если в сети нет администратора. Один из самых эффективных инструментов на сегодняшний день для защиты от постоянного потока рейдеров и гриферов.
 
-  ## Panic Bunker
-  Server tool that does not let in account with less than 10 hours of gameplay into the server if there is no admin present, one of the most effective tools up to this date to avoid the constant stream of raiders and griefers into the server.
+## Рейдер/Набегатор
+Организованная группа киберкотлет, целью которых является нарушение правил сервера, испортить ваш раунд или просто убить вашего персонажа без намерения отыгрывать роль (РП). Будьте вооружены и готовы защищаться, а также связывайтесь с администраторами через Ahelp, чтобы сообщить о них и добиться их бана. Чтобы не нарушать РП вы можете счесть их за обычных существ, которым промыли мозги, либо их киберимпланты подошли под откос.
 
-  ## Raider
-  Organized group of online people with the intention to break the server rules, ruin your round or just kill your character with no intention to RP, be armed and prepared to defend yourself and contact admins trough Ahelp to report and ban them.
+## Ahelp
+Сокращение от Admin Help (Помощь администратора). Доступно по клавише F1 для прямой связи с командой модераторов сервера, чтобы сообщить о проблемах, попросить совет или помощь.
 
-  ## Ahelp
-  Short for Admin Help, can be accessed via F1 to directly contact with the server moderation team to report issues, ask for advise or help.
+## LTAP (Уход, чтобы избежать наказания)
+От англ. Leaving To Avoid Punishment. Относится к выходу из игры в процессе рассмотрения запроса в Ahelp администраторами, во время принудительного чтения правил или постоянному выходу с сервера после ареста ДШНФ за совершение преступления. [color=red]Это приведет к бану или ужесточению наказания.[/color]
 
-  ## LTAP
-  Leaving To Avoid Punishment refers to leaving the game in the middle of an ahelp inquiry started by the admins, while being forced to read the rules or leaving the server on a constant basis after being arrested by the NFSD for commiting a crime. [color=red]Doing this will lead to a ban or make it more severe.[/color]
+## Уровни чата
+- IC (In Character, От лица персонажа): Все разговоры в мире и в игре, с учетом лора и ролевой игры других игроков.
+- OOC (Out Of Character, От своего лица): Все разговоры со знаниями вне игры и на темы, не относящиеся к игровой вселенной (отключен в середине раунда).
+- LOOC (Local Out Of Character, Локально от своего лица): То же, что и OOC, но действует только в пределах слышимости вашего персонажа.
 
-  ## Levels of chat
-  - IC (In Character): All conversation in world and in game, taking into consideration the lore and rp other players are having.
-  - OOC (Out Of Character): All conversation with knowledge outside the game and themes that do not take inside the game universe (disabled mid round).
-  - LOOC (Local Out Of Character): Same as OOC but spans the range of only your character.
+## Мета-коммуникация
+Передача внутриигровой информации через внешние средства связи, такие как голосовой чат (VC), Discord или любые другие средства, будь то с целью читерства в игре или обучения кого-либо.
 
-  ## Metacommunications
-  The sharing of ingame information trough outside communications like VC(Voice Chat), discord or any other means, be it for the means of cheating the game or to teach someone.
+## Точка интереса (POI)
+Акроним от Point Of Interest. Используется для обозначения любой станции, которая появляется в начале раунда и служит точкой встречи, к которой могут пристыковываться шаттлы. Примеры: Ресторан Тины, Аванпост Фронтира, Яма, Медицинский диспансер и так далее.
 
-  ## POI
-  Acronym for Point Of Interest, it is used for every station that spawns at the start of the round and acts as a meeting point where shuttles can dock at, examples being Tinnia's, Frontier Outpost, The Pit, Medical Dispatch and so on.
+## Безопасная зона
+Область, окружающая Аванпост Фронтира, радиусом 200 метров от центра станции. На ней запрещено разрушение, повреждение, а также иные враждебные действия относительно станции, шаттлов и игроков, включая немотивированное насилие и конфликты. Это зоны отдыха и комфорта.
 
-  ## Safezone
-  The area encircling the Frontier Outpost with a span of 200m from the center of the station, completely invulnerable and with a pacification field for anyone under 10 hours of gameplay.
+## Игра на победку (Powergaming)
+Демонстрация устойчивой модели антисоциального и неспортивного поведения, при которой игрок ставит свой игровой опыт выше опыта других, за счет рутинной "игры на победку" и злоупотребления игровыми механиками/знаниями.
 
-  ## Powergaming
-  A display of consistent pattern of antisocial and unsporting behavior in which a player prioritizes their game experience at the expense of others through routine optimization and abuse of game mechanics/knowledge.
+## Шаттл "Всё в одном"/Мусорщик (Highgrading)
+Относится к действию по покупке кораблей, снятию с них оборудования или вырезанию секций с целью объединить всё в одно судно, чтобы обойти необходимость взаимодействия с кораблями других игроков для получения ресурсов/технологий/еды, фактически пытаясь получить всё в игре в одиночку.
 
-  ## Highgrading
-  Refers to the act of buying ships, stripping its machinery or cutting out sections to merge it all together into a single vessel with the intention to bypass interacting with other player's ships to obtain resources/tech/food effectively trying to obtain everything on the game alone.
+## ССД
+IC-термин для ухода в АФК или отключения от игры. Считается, что персонаж всё ещё жив, и его следует отыгрывать как любое спящее существо.
 
-  ## SSD (Sudden Sleep Disease)
-  IC term for going AFK or disconnecting from the game, it is considered for them to still be alive and should be roleplayed as any sleeping being.
+## Департамент шерифа Нового Фронтира (ДШНФ)
+Полицейские силы сектора, которые противостоят пиратам и поддерживают порядок.
 
-  ## NFSD
-  Acronym for the New Frontiers Sheriff Department, the policing force of the sector that counters the pirates and upholds the order.
+## Космический закон
+Система правил, которым должны следовать IC персонажи в зависимости от их роли и принадлежности. Может быть нарушен с исключениями.
 
-  ## Space Law
-  The system of rules that character have to follow IC depending on their role and affiliation, can be broken with exceptions, for more information consult rules section on [textlink="Crimes" link="FrontierRule10"].
+## Запретная зона для полетов
+Термин, часто используемый ДШНФ для обозначения ограниченной воображаемой области в космосе с определенным радиусом, в которую запрещено входить без разрешения.
 
-  ## NFZ (No Fly Zone)
-  Term often used by the NFSD to impose a restricted imaginary area on space with a determined range from there it is not permitted to go into without a permission.
+## Неопознанное судно
+Корабль без опознавательных знаков, принадлежащий либо преступной, либо более опасной организации, не связанной с Nanotrasen.
 
-  ## UIV
-  Unidentified Vessel, a ship with no designation that is part of either a criminal or more dangerous organization not affiliated with Nanotrasen.
-
-  ## Centcom
-  Central command is considered the headquarters of Nanotrasen, the company that invested and has influence over the sector, often usually used to refer to the admins IC by saying "im faxing/messaging centcom".
-
-
+## Центральное командование
+Центральное командование считается штаб-квартирой Nanotrasen, компании, которая инвестировала и имеет влияние в секторе. Часто используется для обозначения администраторов IC, например, фразой "Я отправляю факс/сообщение в Центральное командование".
 </Document>

@@ -20,6 +20,12 @@ public sealed partial class SponsorShopCategoryPrototype : IPrototype
     [DataField("priority")]
     public int Priority { get; private set; } = 0;
 
+    /// <summary>
+    ///     ID родительской категории. Если указан, эта категория будет подкатегорией.
+    /// </summary>
+    [DataField("parent")]
+    public string? Parent { get; private set; }
+
     [DataField("items")]
     public List<string> Items { get; private set; } = new();
 }

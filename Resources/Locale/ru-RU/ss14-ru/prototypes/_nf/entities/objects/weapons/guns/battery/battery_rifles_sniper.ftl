@@ -1,6 +1,6 @@
-ent-NFWeaponEnergyRifleSniperCannon = laser cannon
-    .desc = A heavy duty, high powered laser sniper rifle. On the handle is a label that says 'for authorized use only.'
-    .suffix = Frontier
-ent-NFWeaponEnergyRifleSniperXrayCannon = x-ray cannon
-    .desc = An illegal and experimental weapon that uses concentrated x-ray energy against its target.
-    .suffix = Frontier
+ent-NFWeaponEnergyRifleSniperCannon = лазерная пушка
+    .desc = Тяжёлая, высокомощная лазерная снайперская винтовка. На рукоятке есть надпись: "только для авторизованного использования".
+    .suffix = Фронтир
+ent-NFWeaponEnergyRifleSniperXrayCannon = рентгеновская пушка
+    .desc = Незаконное экспериментальное оружие, использующее сконцентрированную рентгеновскую энергию против цели.
+    .suffix = Фронтир

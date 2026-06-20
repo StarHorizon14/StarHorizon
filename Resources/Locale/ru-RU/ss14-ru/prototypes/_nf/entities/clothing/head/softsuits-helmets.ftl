@@ -62,3 +62,7 @@ ent-ClothingHeadEVAHelmetArcadia = arcadia EVA helmet
     .desc = { ent-ClothingHeadEVAHelmetWithLightBase.desc }
 ent-ClothingHeadHelmetHardsuitFSB = пустотный шлем EVA "Far Star Biotech"
     .desc = Лёгкий шлем EVA костюма, который не стесняет движений головы. Он достаточно лёгкий!
+ent-ClothingHeadHelmetHardsuitFSC = пустотный шлем EVA "Far Star Commerce"
+    .desc = Лёгкий шлем EVA костюма, который не стесняет движений головы. Он имеет подсветку!
+ent-ClothingHeadHelmetHardsuitFSA = пустотный шлем EVA "Far Star Arms"
+    .desc = Лёгкий шлем EVA костюма, который не стесняет движений головы. Он имеет подсветку!

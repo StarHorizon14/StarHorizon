@@ -67,7 +67,27 @@
     contents:
       - id: DeathRattleImplanter
         amount: 6
-
+#Horizon start
+- type: entity
+  name: языковой набор синдиката
+  parent: [BoxCardboard, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  id: BoxDeathLangImplants
+  description: Имплантер кодового языка и универсальный переводчик в комплекте
+  components:
+  - type: Sprite
+    layers:
+      - state: box_of_doom
+      - state: syringe
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: StorageFill
+    contents:
+      - id: SyndicateUniversalTranslatorImplanter
+        amount: 3
+      - id: CodeSpeakTranslatorImplanter
+        amount: 3
+#Horizon end
 - type: entity
   parent: [BoxCardboard, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: CombatBakeryKit

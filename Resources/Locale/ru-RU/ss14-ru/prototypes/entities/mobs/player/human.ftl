@@ -21,3 +21,5 @@ ent-MobHumanLoneNuclearOperative = Одинокий Оперативник
     .desc = { ent-MobHuman.desc }
 ent-MobHumanWizard = Волшебник
     .desc = { ent-MobHuman.desc }
+ent-MobHumanGrown = Urist Grown Human
+    .desc = { ent-MobHuman.desc }

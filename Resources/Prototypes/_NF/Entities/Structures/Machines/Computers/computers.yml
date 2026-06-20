@@ -8,7 +8,7 @@
   - type: Computer
     board: AdvancedRadarConsoleCircuitboard
   - type: RadarConsole
-    maxRange: 512 # Horizon
+    maxRange: 256 # Horizon
     maxIffRange: 1024 # Horizon
   - type: Sprite
     layers:
@@ -506,7 +506,7 @@
   abstract: true
   components:
   - type: RadarConsole
-    maxRange: 350
+    maxRange: 256
   - type: Computer
     board: Null
   - type: Sprite

@@ -23,7 +23,7 @@ public partial class VoiceMaskSystem
             return;
 
         args.Args.Data.Pitch = Math.Clamp(component.BarkPitch, _cfg.GetCVar(HorizonCCVars.BarksMinPitch), _cfg.GetCVar(HorizonCCVars.BarksMaxPitch));
-        args.Args.Data.Sound = proto.Sound;
+        args.Args.Data.Proto = proto.ID;
     }
 
     private void OnChangeBark(EntityUid uid, VoiceMaskComponent component, VoiceMaskChangeBarkMessage message)

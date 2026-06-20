@@ -1,0 +1,23 @@
+- type: entity
+  parent: [ClothingBeltStorageBase]
+  id: ClothingBeltInteQWebbing
+  suffix: StarHorizon, Inteq
+  name: combat webbing
+  description: Unique and versatile chest mount in which you can store weapons and ammunition.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_webbing.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/Inteq/inteq_webbing.rsi
+
+- type: entity
+  parent: [ClothingBeltStorageBase]
+  id: ClothingBeltInteQDropPouch
+  suffix: StarHorizon, Inteq
+  name: combat drop pouch
+  description: Improved unloading for storing various items
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_droppouch.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/Inteq/inteq_droppouch.rsi

@@ -12,7 +12,7 @@
 #        - id: JetpackBlackFilled # Frontier
         - id: ClothingUniformJumpsuitOperative
         - id: ClothingUniformJumpskirtOperative
-        - id: ClothingHeadsetAltSyndicate
+#        - id: ClothingHeadsetAltSyndicate # Horizon big nope
 #        - id: ClothingEyesHudSyndicate # Frontier
 
 - type: entityTable

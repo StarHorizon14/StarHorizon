@@ -60,6 +60,7 @@
     - id: DrinkWaterBottleFull
     - id: DrinkWaterCup
     - id: DrinkWineCan
+    - id: DrinkAzJuice
 
 - type: entityTable
   id: RandomRareSodaTable

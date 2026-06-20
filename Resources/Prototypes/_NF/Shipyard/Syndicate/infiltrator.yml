@@ -16,7 +16,7 @@
 - type: gameMap
   id: Infiltrator
   mapName: 'Infiltrator'
-  mapPath: /Maps/_NF/Shuttles/Syndicate/infiltrator.yml
+  mapPath: /Maps/_Horizon/Shuttles/Shipyard/Syndicate/infiltrator.yml
   minPlayers: 0
   stations:
     Infiltrator:

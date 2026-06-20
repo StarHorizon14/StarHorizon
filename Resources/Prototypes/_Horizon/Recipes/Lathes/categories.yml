@@ -29,3 +29,7 @@
 - type: latheCategory
   id: Implants
   name: lathe-category-implants
+
+- type: latheCategory
+  id: ShipAmmo
+  name: lathe-category-shipammo

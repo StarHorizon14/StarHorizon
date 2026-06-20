@@ -1,5 +1,7 @@
 - type: npcFaction
   id: Dragon
+  friendly:
+  - Crawford # Horizon
   hostile:
     - NanoTrasen
     - Syndicate
@@ -24,6 +26,8 @@
 
 - type: npcFaction
   id: NanoTrasen
+  friendly:
+  - Crawford # Horizon
   hostile:
   - SimpleHostile
   - Syndicate
@@ -71,6 +75,8 @@
 
 - type: npcFaction
   id: SimpleHostile
+  friendly:
+  - Crawford # Horizon
   hostile:
   - NanoTrasen
   - Syndicate
@@ -103,6 +109,7 @@
 - type: npcFaction
   id: Syndicate
   friendly: # Frontier
+  - Crawford # Horizon
   - NFSyndicate # Frontier
   hostile:
   - NanoTrasen
@@ -128,7 +135,35 @@
   - ContrabandDetection # Frontier
 
 - type: npcFaction
+  id: Crawford
+  friendly: # Frontier
+  - NFSyndicate # Frontier
+  - NanoTrasen
+  - SimpleHostile
+  - Xeno
+  - PetsNT
+  - Zombie
+  - Dragon
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  - WizFedFaction # Frontier
+  - BloodCultNF # Frontier
+  - NFPirate # Frontier
+  - ExplorersExpeditionNF # Frontier
+  - ArtifactConstruct # Frontier
+  - StreetGangNF # Frontier
+  - DinosaursNF # Frontier
+  - MercenariesExpeditionNF # Frontier
+  - SiliconsExpeditionNF # Frontier
+  - AberrantFleshExpeditionNF # Frontier
+  - ContrabandClothing # Frontier
+  - ContrabandDetection # Frontier
+
+- type: npcFaction
   id: Xeno
+  friendly:
+  - Crawford # Horizon
   hostile:
   - NanoTrasen
   - Syndicate
@@ -156,6 +191,8 @@
 
 - type: npcFaction
   id: Zombie
+  friendly:
+  - Crawford # Horizon
   hostile:
   - NanoTrasen
   - SimpleNeutral
@@ -184,6 +221,8 @@
 
 - type: npcFaction
   id: Revolutionary
+  friendly:
+  - Crawford # Horizon
   hostile:
   - NanoTrasen
   - Zombie
@@ -207,6 +246,8 @@
 
 - type: npcFaction
   id: AllHostile # Frontier: use HostileUniversally
+  friendly:
+  - Crawford # Horizon
   hostile:
   - NanoTrasen
   - Dragon
@@ -224,6 +265,8 @@
 
 - type: npcFaction
   id: Wizard
+  friendly:
+  - Crawford # Horizon
   hostile:
   - NanoTrasen
   - Dragon
@@ -254,6 +297,8 @@
 
 - type: npcFaction
   id: Xenoborg
+  friendly:
+  - Crawford # Horizon
   hostile:
   # they have brains
   - NanoTrasen
@@ -265,7 +310,7 @@
   - Xeno # rivalry
 
   # cause they are hostile to them
-  - SimpleHostile 
+  - SimpleHostile
   - AllHostile
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier

@@ -1,2 +1,4 @@
-reagent-name-respiron = respiron
-reagent-desc-respiron = A synthetic "universal air", capable of sustaining all known respirant life forms.
+reagent-name-respiron = респирон
+reagent-desc-respiron = Синтетический "универсальный воздух", способный поддерживать все известные формы дышащей жизни.
+reagent-name-helium = гелий
+reagent-desc-helium = Бесцветный, без запаха, инертный газ. Популярен в воздушных шариках различных размеров и в высокотехнологичной промышленности.

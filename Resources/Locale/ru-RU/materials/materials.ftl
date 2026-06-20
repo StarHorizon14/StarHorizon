@@ -32,13 +32,11 @@ materials-psycore = псикорий
 materials-plutonium = плутоний
 materials-neptunium = нептуний
 materials-torium = торий
-
 # Gems
 materials-emerald = изумруд
 materials-ruby = рубин
 materials-sapphire = сапфир
 materials-topaz = топаз
-
 # Ores
 materials-raw-iron = руда железа
 materials-raw-quartz = руда кварца
@@ -58,7 +56,6 @@ materials-raw-topaz = руда топаза
 materials-raw-plutonium = руда плутония
 materials-raw-neptunium = руда нептуния
 materials-raw-torium = руда тория
-
 # Fuel Grades
 materials-fuel-grade-pure-plasma = чистое плазменное топливо
 materials-fuel-grade-unstable-plasma = нестабильное плазменное топливо

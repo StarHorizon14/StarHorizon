@@ -1,10 +1,10 @@
-ent-ClothingWalletLeatherBrown = leather wallet
-    .desc = Surprisingly thick. Careful not to lose it, and don't sit on it.
+ent-ClothingWalletLeatherBrown = кожаный кошелёк
+    .desc = Удивительно толстый. Будьте осторожны, не потеряйте его, и не садитесь на него.
 ent-ClothingWalletLeatherBlack = { ent-ClothingWalletLeatherBrown }
     .desc = { ent-ClothingWalletLeatherBrown.desc }
 ent-ClothingWalletLeatherMail = { ent-ClothingWalletLeatherBrown }
-    .desc = On the inside is an embroidered picture of a cat, a heart, and the word "CLIPPY".
+    .desc = Внутри вышитая картинка кота, сердца и слово "КЛИППИ".
 ent-ClothingWalletLeatherPirate = { ent-ClothingWalletLeatherBrown }
-    .desc = There's an old picture of a cat with a beard inside.
-ent-ClothingWalletLeatherPrisoner = prison wallet
-    .desc = Not what you expected.
+    .desc = Внутри старая фотография кота с бородой.
+ent-ClothingWalletLeatherPrisoner = тюремный кошелёк
+    .desc = Не то, что вы ожидали.

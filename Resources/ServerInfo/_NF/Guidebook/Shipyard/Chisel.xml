@@ -61,7 +61,7 @@
   - Удостоверьтесь в том, чтобы канистра с воздухом была прикреплена к соединительному порту.
   - Включите выходной насос.
 
-  ## 2.2. Waste Loop
+  ## 2.2. Вывод отходов из атмосферы
   <Box>
   <GuideEntityEmbed Entity="GasPressurePump"/>
   <GuideEntityEmbed Entity="AirAlarm"/>

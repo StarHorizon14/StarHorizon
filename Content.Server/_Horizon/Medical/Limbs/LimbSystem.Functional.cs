@@ -8,6 +8,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 
 namespace Content.Server._Horizon.Medical.Limbs;
+
 public sealed partial class LimbSystem //: SharedLimbSystem
 {
     private static readonly MethodInfo? SRaiseLocalEventRefMethod;
@@ -15,7 +16,7 @@ public sealed partial class LimbSystem //: SharedLimbSystem
     {
         SRaiseLocalEventRefMethod = typeof(LimbSystem)
             .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-            .Where(m => m is {Name: nameof(RaiseLocalEvent), IsGenericMethodDefinition: true})
+            .Where(m => m is { Name: nameof(RaiseLocalEvent), IsGenericMethodDefinition: true })
             .FirstOrDefault(m =>
             {
                 var pars = m.GetParameters();
@@ -32,7 +33,7 @@ public sealed partial class LimbSystem //: SharedLimbSystem
             });
     }
 
-    private void AddLimb(Entity<HumanoidAppearanceComponent> body, string slot, Entity<BodyPartComponent> limb)
+    private void AddLimb(EntityUid bodyId, string slot, Entity<BodyPartComponent> limb)
     {
         switch (limb.Comp.PartType)
         {
@@ -49,12 +50,12 @@ public sealed partial class LimbSystem //: SharedLimbSystem
                     {
                         if (TryComp(containedEnt, out BodyPartComponent? innerPart)
                             && innerPart.PartType == BodyPartType.Hand)
-                            _hands.AddHand(body, slotFullId, limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
+                            _hands.AddHand(bodyId, slotFullId, limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
                     }
                 }
                 break;
             case BodyPartType.Hand:
-                _hands.AddHand(body, SharedBodySystem.GetPartSlotContainerId(slot), limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
+                _hands.AddHand(bodyId, SharedBodySystem.GetPartSlotContainerId(slot), limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
                 break;
             case BodyPartType.Leg:
                 if (limb.Comp.Children.Keys.Count == 0)
@@ -80,7 +81,7 @@ public sealed partial class LimbSystem //: SharedLimbSystem
                 if (limbAttachedEvent != null)
                 {
                     var closedMethod = SRaiseLocalEventRefMethod!.MakeGenericMethod(eventType);
-                    closedMethod.Invoke(this, [body.Owner, limbAttachedEvent, false]);
+                    closedMethod.Invoke(this, [bodyId, limbAttachedEvent, false]);
                 }
             }
 
@@ -93,12 +94,12 @@ public sealed partial class LimbSystem //: SharedLimbSystem
                     continue;
 
                 var closedMethod = SRaiseLocalEventRefMethod!.MakeGenericMethod(eventType);
-                closedMethod.Invoke(this, [ body.Owner, limbAttachedEvent, false ]);
+                closedMethod.Invoke(this, [bodyId, limbAttachedEvent, false]);
             }
         }
     }
 
-    private void RemoveLimb(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
+    private void RemoveLimb(EntityUid bodyId, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
     {
         switch (limb.Comp3.PartType)
         {
@@ -111,14 +112,14 @@ public sealed partial class LimbSystem //: SharedLimbSystem
                     {
                         if (TryComp(containedEnt, out BodyPartComponent? innerPart)
                             && innerPart.PartType == BodyPartType.Hand)
-                            _hands.RemoveHand(body, SharedBodySystem.GetPartSlotContainerId(limbSlotId));
+                            _hands.RemoveHand(bodyId, SharedBodySystem.GetPartSlotContainerId(limbSlotId));
                     }
                 }
                 break;
             case BodyPartType.Hand:
                 var parentSlot = _body.GetParentPartAndSlotOrNull(limb);
                 if (parentSlot is not null)
-                    _hands.RemoveHand(body, SharedBodySystem.GetPartSlotContainerId(parentSlot.Value.Slot));
+                    _hands.RemoveHand(bodyId, SharedBodySystem.GetPartSlotContainerId(parentSlot.Value.Slot));
                 break;
             case BodyPartType.Leg:
             case BodyPartType.Foot:
@@ -140,7 +141,7 @@ public sealed partial class LimbSystem //: SharedLimbSystem
                 if (limbAttachedEvent != null)
                 {
                     var closedMethod = SRaiseLocalEventRefMethod!.MakeGenericMethod(eventType);
-                    closedMethod.Invoke(this, [body.Owner, limbAttachedEvent, false]);
+                    closedMethod.Invoke(this, [bodyId, limbAttachedEvent, false]);
                 }
             }
             foreach (var face in comp.GetType().GetInterfaces().Where(x => x.IsAssignableTo(typeof(IImplantable))))
@@ -151,7 +152,7 @@ public sealed partial class LimbSystem //: SharedLimbSystem
                     continue;
 
                 var closedMethod = SRaiseLocalEventRefMethod!.MakeGenericMethod(eventType);
-                closedMethod.Invoke(this, [body.Owner, limbAttachedEvent, false]);
+                closedMethod.Invoke(this, [bodyId, limbAttachedEvent, false]);
             }
         }
     }

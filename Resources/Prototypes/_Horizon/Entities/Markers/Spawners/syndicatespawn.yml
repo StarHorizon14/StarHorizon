@@ -1,7 +1,6 @@
 - type: entity
   id: SpawnSyndicateOfficerTeleCommunication
   parent: SpawnPointJobBase
-  name: Спавн Офицера Теле-коммуникации
   components:
   - type: SpawnPoint
     job_id: SyndicateOfficerTeleCommunication
@@ -14,7 +13,6 @@
 - type: entity
   id: SpawnSyndicateOperative
   parent: SpawnPointJobBase
-  name: Спавн Оперативника Синдиката
   components:
   - type: SpawnPoint
     job_id: SyndicateOperative
@@ -25,9 +23,20 @@
        state: SyndicateOperative
 
 - type: entity
+  id: SpawnSyndicateMedic
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: SyndicateMedic
+  - type: Sprite
+    layers:
+     - state: green
+     - sprite: _StarHorizon/Markers/Jobs/syndicate.rsi
+       state: SyndicateMedic
+
+- type: entity
   id: SpawnSyndicateCargo
   parent: SpawnPointJobBase
-  name: Спавн Курьера Синдиката
   components:
   - type: SpawnPoint
     job_id: SyndicateCargo

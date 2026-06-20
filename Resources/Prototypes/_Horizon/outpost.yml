@@ -1,6 +1,7 @@
 - type: entity
   id: DefaultOutpostConsole
-  parent: BaseComputer
+  parent: [BaseComputer,BaseStructureDisableToolUse]
+  name: Консоль аванпоста
   components:
   - type: Computer
     board: Null
@@ -18,6 +19,7 @@
   - type: OutpostConsole # Логика тут!
     canUseAsSpawnPoint: true # Будет ли использоватся в качестве точки для спавна ресурсов! Размещать такую одну на аванпост!
     captureTime: 10 # Время захвата данной консоли, если она одна - время захвата всего аванпоста!
+    idCardSlot: {whitelist: {components: IdCard}}
 
 - type: outpostSpawn # Прототип для спавна, собстна...
   id: default

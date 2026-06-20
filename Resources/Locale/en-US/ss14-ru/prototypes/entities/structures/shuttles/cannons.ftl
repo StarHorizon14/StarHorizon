@@ -12,3 +12,5 @@ ent-ShuttleGunPirateCannon = pirate ship cannon
     .desc = Kaboom!
 ent-ShuttleGunKinetic = PTK-1500e "Matter Dematerializer"
     .desc = Mining turret, effective for blasting hardened targets, but overpowered for softer rock. Gradually accumulates charges on its own.
+ent-ShuttleGunKineticOld = exomorphic dematerializer
+    .desc = An ancient ship gun, utilizing biomechanical systems to store and release energy. While unique in its design, it has been rendered obsolete due to its inferior charging and firing speed compared to mechanical constructions.

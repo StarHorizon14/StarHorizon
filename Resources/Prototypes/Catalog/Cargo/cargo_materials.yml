@@ -4,7 +4,7 @@
     sprite: Objects/Materials/Sheets/glass.rsi
     state: glass_3
   product: CrateMaterialGlass
-  cost: 5000 # Horizon
+  cost: 7500 # Horizon
   category: cargoproduct-category-name-materials
   group: market
 
@@ -14,7 +14,7 @@
     sprite: Objects/Materials/Sheets/metal.rsi
     state: steel_3
   product: CrateMaterialSteel
-  cost: 5000 # Horizon
+  cost: 7500 # Horizon
   category: cargoproduct-category-name-materials
   group: market
 
@@ -24,7 +24,7 @@
     sprite: Objects/Materials/Sheets/other.rsi
     state: plastic_3
   product: CrateMaterialPlastic
-  cost: 10000 # Horizon
+  cost: 15000 # Horizon
   category: cargoproduct-category-name-materials
   group: market
 
@@ -34,7 +34,7 @@
     sprite: Objects/Materials/Sheets/metal.rsi
     state: brass_3
   product: CrateMaterialBrass
-  cost: 10000 # Horizon
+  cost: 15000 # Horizon
   category: cargoproduct-category-name-materials
   group: market
 
@@ -44,27 +44,29 @@
     sprite: Objects/Materials/Sheets/metal.rsi
     state: plasteel_3
   product: CrateMaterialPlasteel
-  cost: 6000 # Horizon
+  cost: 15000 # Horizon
   category: cargoproduct-category-name-materials
   group: market
 
 - type: cargoProduct
   id: MaterialGold
+  abstract: true # Frontier
   icon:
     sprite: Objects/Materials/ingots.rsi
     state: gold_3
   product: CrateMaterialGold
-  cost: 6000 # Horizon
+  cost: 15000 # Horizon
   category: cargoproduct-category-name-materials
   group: market
 
 - type: cargoProduct
   id: MaterialSilver
+  abstract: true # Frontier
   icon:
     sprite: Objects/Materials/ingots.rsi
     state: silver_3
   product: CrateMaterialSilver
-  cost: 6000 # Horizon
+  cost: 15000 # Horizon
   category: cargoproduct-category-name-materials
   group: market
 
@@ -74,7 +76,7 @@
     sprite: Objects/Materials/materials.rsi
     state: cloth_3
   product: CrateMaterialTextiles
-  cost: 5000 # Horizon
+  cost: 7500 # Horizon
   category: cargoproduct-category-name-materials
   group: market
 

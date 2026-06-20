@@ -1,6 +1,6 @@
-﻿- type: reagent
+- type: reagent
   id: MilkThatMakesYouMurr
-  name: Foods
+  name: Муррргент
   # group: Drinks
   group: Special
   desc: Чистая сущность фелинидов. Заставляет вас Муррчать!
@@ -77,9 +77,9 @@
 
 - type: reagent
   id: JuiceThatMakesYouBuzz
-  name: reagent-name-buzz
+  name: молотые пчёлы
   group: Toxins
-  desc: reagent-desc-buzz
+  desc: Буквально молотые пчёлы, и чем ты этим решил добиться?
   physicalDesc: reagent-physical-desc-vibrant
   flavor: buzz
   color: "#fbec5d"

@@ -120,6 +120,16 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  # Horizon: Height traits support (goblins base scale 0.86, 0.75 - already small)
+  - type: TallWhitelist
+    scale: 0.95  # Slightly bigger than base, closer to human
+    density: 155
+    cosmeticOnly: false
+  - type: ShortWhitelist
+    scale: 0.65  # Smaller than base 0.75
+    density: 115
+    cosmeticOnly: false
+  # Horizon end
 
 - type: entity
   save: false

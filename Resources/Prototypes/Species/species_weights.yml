@@ -2,6 +2,7 @@
 - type: weightedRandomSpecies
   id: SpeciesWeights
   weights:
+
     Human: 5
     Reptilian: 4
     SlimePerson: 4
@@ -15,3 +16,5 @@
     Goblin: 2 # Frontier
 #    Sheleg: 2 # Frontier: TODO add a overwrite for suit in case there isnt one
     Harpy: 1 # Frontier
+    Akulki: 5
+    IPC: 5

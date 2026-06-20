@@ -11,9 +11,9 @@
 - type: pointOfInterest
   id: Grifty
   parent: BasePOI
-  name: "Grifty's Gas n Grub"
-  minimumDistance: 7500 # Horizon
-  maximumDistance: 13500 # Horizon
+  name: "Газ и Хавка Грифти"
+  minimumDistance: 5000 # Horizon
+  maximumDistance: 7500 # Horizon
   spawnGroup: Required # Horizon
   gridPath: /Maps/_Horizon/POI/grifty.yml #Horizon-Maps
   addComponents:
@@ -23,7 +23,7 @@
 
 - type: gameMap
   id: Grifty
-  mapName: "Grifty's Gas n Grub"
+  mapName: "Газ и Хавка Грифти"
   mapPath: /Maps/_Horizon/POI/grifty.yml #Horizon-Maps
   minPlayers: 0
   stations:
@@ -31,5 +31,5 @@
       stationProto: StandardFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: "Grifty's Gas n Grub"
+          mapNameTemplate: "Газ и Хавка Грифти"
         - type: BindToStationVariationPassExemption

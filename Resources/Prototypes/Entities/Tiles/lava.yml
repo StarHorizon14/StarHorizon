@@ -53,6 +53,25 @@
           - ItemMask
         density: 1000
         hard: false
+      # Horizon start
+      fishing:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        layer:
+        - ItemMask
+        mask:
+        - HighImpassable
+        density: 1000
+        hard: false
+      # Horizon end
   - type: Tag
     tags:
       - HideContextMenu
+  # Horizon start
+  - type: FishingSpot
+    fishList: !type:NestedSelector
+      tableId: LavaFishingLootTable
+    fishDefaultTimer: 25.0
+    fishTimerVariety: 15.0
+  # Horizon end

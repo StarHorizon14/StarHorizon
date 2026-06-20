@@ -1,8 +1,8 @@
 ent-ClothingBackpackGoldCaptain = золотой рюкзак капитана
     .desc = Выдаётся почётным и опытным членам экипажа.
     .suffix = StarHorizon
-ent-ClothingBackpackBlueshield = рюкзак офицера "Синий щит"
-    .desc = Говорят, что он пуленепробиваем.
+ent-ClothingBackpackBlueshield = рюкзак DFI
+    .desc = Почему все Spaceman'ы носят рюкзаки? Впрочем, вы не исключение.
     .suffix = StarHorizon
 ent-ClothingBackpackRoboticist = рюкзак робототехника
     .desc = Прочный рюкзак со множеством отделений для инструментов и запчастей, который сохранит их в порядке даже во время отключения гравитации!

@@ -6,6 +6,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Examine;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage.Expeditions;
+using Content.Shared.Shuttles.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
@@ -35,7 +36,7 @@ public sealed partial class SalvageSystem
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
     private const double SalvageJobTime = 0.002;
-    private readonly List<(ProtoId<SalvageDifficultyPrototype> id, int value)> _missionDifficulties = [("NFModerate", 0), ("NFHazardous", 1), ("NFExtreme", 2)]; // Frontier: mission difficulties with order
+    private readonly List<(ProtoId<SalvageDifficultyPrototype> id, int value)> _missionDifficulties = [("NFModerate", 0), ("NFHazardous", 1), ("NFExtreme", 2), ("Inferno", 3)]; // Frontier: mission difficulties with order, Anco: Inferno
 
     [Dependency] private readonly IConfigurationManager _cfgManager = default!; // Frontier
 
@@ -119,6 +120,15 @@ public sealed partial class SalvageSystem
     private void OnExpeditionShutdown(EntityUid uid, SalvageExpeditionComponent component, ComponentShutdown args)
     {
         // component.Stream = _audio.Stop(component.Stream); // Frontier: moved to client
+
+        // First wipe any disks referencing us
+        var disks = AllEntityQuery<ShuttleDestinationCoordinatesComponent>();
+        while (disks.MoveNext(out var disk, out var diskComp)
+               && diskComp.Destination == uid)
+        {
+            diskComp.Destination = null;
+            Dirty(disk, diskComp);
+        }
 
         foreach (var (job, cancelToken) in _salvageJobs.ToArray())
         {
@@ -225,10 +235,15 @@ public sealed partial class SalvageSystem
 
         for (var i = 0; i < MissionLimit; i++)
         {
+            // For Inferno difficulty, always use Combined mission type
+            var missionType = difficulties[i].id == "Inferno"
+                ? SalvageMissionType.Combined
+                : (SalvageMissionType)_random.NextByte((byte)SalvageMissionType.Max + 1);
+
             var mission = new SalvageMissionParams
             {
                 Index = component.NextIndex,
-                MissionType = (SalvageMissionType)_random.NextByte((byte)SalvageMissionType.Max + 1), // Frontier
+                MissionType = missionType, // Frontier
                 Seed = _random.Next(),
                 Difficulty = difficulties[i].id,
             };

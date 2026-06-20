@@ -50,6 +50,8 @@
     40mmGrenadeFlash: 10
     40mmGrenadeSmoke: 10
   # Horizon end
+    NFBaseClothingNeckHolsterThighNfsd: 6
+    NFBaseClothingNeckSheathThighNfsd: 6
 #    MindShieldImplanter: 5 # Frontier
   # security officers need to follow a diet regimen!
 #  contrabandInventory:

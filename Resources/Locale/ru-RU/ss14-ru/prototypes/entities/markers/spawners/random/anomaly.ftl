@@ -1,6 +1,6 @@
 ent-RandomAnomalySpawner = спавнер случайной аномалии
     .desc = { ent-MarkerBase.desc }
-ent-RandomRockAnomalySpawner = { ent-MarkerBase }
+ent-RandomRockAnomalySpawner = спавнер случайной каменной аномалий
     .desc = { ent-MarkerBase.desc }
-ent-RandomAnomalyInjectorSpawner = { ent-MarkerBase }
-    .desc = { ent-MarkerBase.desc }
+ent-RandomAnomalyInjectorSpawner = спавнер ловушки аномалий
+    .desc = Ты всегда хотел быть ходячей аномалий да?

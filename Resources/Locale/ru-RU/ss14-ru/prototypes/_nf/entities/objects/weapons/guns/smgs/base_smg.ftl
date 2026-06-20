@@ -1,4 +1,4 @@
-ent-NFBaseWeaponFrameSubMachineGun = submachine gun
+ent-NFBaseWeaponFrameSubMachineGun = пистолет пулемёт
     .desc = { ent-NFBaseWeaponEncumbranceSubMachineGun.desc }
 ent-NFBaseWeaponFrameSubMachineGunNanotrasen = { ent-NFBaseWeaponFrameSubMachineGun }
     .desc = { ent-NFBaseWeaponFrameSubMachineGun.desc }

@@ -1,11 +1,14 @@
 using Content.Server.Cargo.Components;
 using Content.Server._NF.Cargo.Components;
+using Content.Server._Horizon.MarketSaturation; // Horizon - насыщение рынка
+using Content.Shared._Horizon.MarketSaturation; // Horizon - насыщение рынка
 using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Cargo.BUI;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Events;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
+using Content.Shared.Stacks; // Horizon
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using System.Numerics;
@@ -36,7 +39,7 @@ public sealed partial class NFCargoSystem
 
     #region Console
 
-    private void UpdatePalletConsoleInterface(Entity<NFCargoPalletConsoleComponent> ent) // Frontier: EntityUid<Entity
+    private void UpdatePalletConsoleInterface(Entity<NFCargoPalletConsoleComponent> ent, EntityUid actor) // Frontier: EntityUid<Entity // Horizon - добавил поле actor
     {
         if (Transform(ent).GridUid is not EntityUid gridUid)
         {
@@ -46,7 +49,7 @@ public sealed partial class NFCargoSystem
         }
 
         // Modify prices based on modifier.
-        GetPalletGoods(ent, gridUid, out var toSell, out var amount, out var noModAmount, out Dictionary<string, double> additionalCurrency);
+        GetPalletGoods(ent, gridUid, actor, out var toSell, out var amount, out var noModAmount, out Dictionary<string, double> additionalCurrency);
         if (TryComp<MarketModifierComponent>(ent, out var priceMod))
         {
             amount *= priceMod.Mod;
@@ -59,7 +62,7 @@ public sealed partial class NFCargoSystem
 
     private void OnPalletUIOpen(Entity<NFCargoPalletConsoleComponent> ent, ref BoundUIOpenedEvent args)
     {
-        UpdatePalletConsoleInterface(ent);
+        UpdatePalletConsoleInterface(ent, args.Actor);  // Horizon - добавил поле actor
     }
 
     /// <summary>
@@ -72,7 +75,7 @@ public sealed partial class NFCargoSystem
 
     private void OnPalletAppraise(Entity<NFCargoPalletConsoleComponent> ent, ref CargoPalletAppraiseMessage args)
     {
-        UpdatePalletConsoleInterface(ent);
+        UpdatePalletConsoleInterface(ent, args.Actor);  // Horizon - добавил поле actor
     }
 
     #endregion
@@ -135,16 +138,16 @@ public sealed partial class NFCargoSystem
 
     #region Station
 
-    private bool SellPallets(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out double amount, out double noMultiplierAmount, out Dictionary<string, double> additionalCurrency) // Frontier: first arg to Entity, add noMultiplierAmount
+    private bool SellPallets(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, EntityUid actor, out double amount, out double noMultiplierAmount, out Dictionary<string, double> additionalCurrency) // Frontier: first arg to Entity, add noMultiplierAmount    // Horizon - добавил поля actor и cash
     {
-        GetPalletGoods(consoleUid, gridUid, out var toSell, out amount, out noMultiplierAmount, out additionalCurrency);
+        GetPalletGoods(consoleUid, gridUid, actor, out var toSell, out amount, out noMultiplierAmount, out additionalCurrency); // Horizon - добавил поле actor
 
         Log.Debug($"Cargo sold {toSell.Count} entities for {amount} (plus {noMultiplierAmount} without mods)");
 
         if (toSell.Count == 0)
             return false;
 
-        var ev = new NFEntitySoldEvent(toSell, gridUid);
+        var ev = new NFEntitySoldEvent(toSell, gridUid, actor); // Horizon - добавил поле actor
         RaiseLocalEvent(ref ev);
 
         foreach (var ent in toSell)
@@ -153,12 +156,51 @@ public sealed partial class NFCargoSystem
         return true;
     }
 
-    private void GetPalletGoods(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out HashSet<EntityUid> toSell, out double amount, out double noMultiplierAmount, out Dictionary<string, double> additionalCurrency) // Frontier: first arg to Entity, add noMultiplierAmount
+    private void GetPalletGoods(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, EntityUid actor, out HashSet<EntityUid> toSell, out double amount, out double noMultiplierAmount, out Dictionary<string, double> additionalCurrency) // Frontier: first arg to Entity, add noMultiplierAmount // Horizon - добавил поле actor
     {
         amount = 0;
         noMultiplierAmount = 0;
         toSell = new HashSet<EntityUid>();
         additionalCurrency = new();
+
+        // Horizon: Получаем станцию для применения насыщения рынка
+        var owningStation = _station.GetOwningStation(gridUid);
+        MarketSaturationComponent? saturationComp = null;
+        if (owningStation != null)
+            TryComp(owningStation.Value, out saturationComp);
+
+        // Horizon: Первый проход — считаем количество предметов каждого типа на паллетах,
+        // чтобы учесть насыщение от текущей продажи в цене.
+        var pendingCounts = new Dictionary<string, int>();
+        if (saturationComp != null)
+        {
+            foreach (var (palletUid, _, _) in GetCargoPallets(consoleUid, gridUid, BuySellType.Sell))
+            {
+                _setEnts.Clear();
+                _lookup.GetEntitiesIntersecting(palletUid, _setEnts, LookupFlags.Dynamic | LookupFlags.Sundries);
+
+                foreach (var ent in _setEnts)
+                {
+                    if (_xformQuery.TryGetComponent(ent, out var xf) && (xf.Anchored || !CanSell(ent, xf)))
+                        continue;
+                    if (_whitelist.IsWhitelistFail(consoleUid.Comp.Whitelist, ent))
+                        continue;
+                    if (_blacklistQuery.HasComponent(ent))
+                        continue;
+
+                    var proto = MetaData(ent).EntityPrototype?.ID;
+                    if (proto == null)
+                        continue;
+
+                    var cnt = 1;
+                    if (TryComp<StackComponent>(ent, out var stk))
+                        cnt = stk.Count;
+
+                    pendingCounts[proto] = pendingCounts.GetValueOrDefault(proto) + cnt;
+                }
+            }
+        }
+        // Horizon конец
 
         foreach (var (palletUid, _, _) in GetCargoPallets(consoleUid, gridUid, BuySellType.Sell))
         {
@@ -187,7 +229,33 @@ public sealed partial class NFCargoSystem
                 if (_blacklistQuery.HasComponent(ent))
                     continue;
 
-                var price = _pricing.GetPrice(ent);
+                var price = _pricing.GetPrice(ent, currency: consoleUid.Comp.CashType, user: actor);
+
+                // Horizon: Применяем насыщение рынка и рыночные события
+                if (saturationComp != null)
+                {
+                    var protoId = MetaData(ent).EntityPrototype?.ID;
+                    if (protoId != null)
+                    {
+                        // Насыщение рынка
+                        if (pendingCounts.TryGetValue(protoId, out var pendingCount))
+                        {
+                            var existingSold = saturationComp.SaturationData.TryGetValue(protoId, out var satData)
+                                ? satData.TotalSold
+                                : 0;
+                            var totalWithPending = existingSold + pendingCount;
+                            var multiplier = MarketSaturationSystem.GetMultiplier(totalWithPending, saturationComp);
+                            price = Math.Round(price * multiplier);
+                        }
+
+                        // Рыночные события — модификатор цены от активных событий
+                        var eventMod = MarketEventSystem.GetEventModifier(protoId, saturationComp);
+                        if (eventMod != 1.0)
+                            price = Math.Round(price * eventMod);
+                    }
+                }
+                // Horizon конец
+
                 if (price == 0)
                     continue;
                 toSell.Add(ent);
@@ -197,7 +265,7 @@ public sealed partial class NFCargoSystem
                     noMultiplierAmount += price;
                 else
                     amount += price;
-                
+
                 // Check for any additional currency payouts
                 if (TryComp(ent, out AdditionalPalletCurrencyComponent? currencyComponent))
                 {
@@ -254,7 +322,7 @@ public sealed partial class NFCargoSystem
             return;
         }
 
-        if (!SellPallets(ent, gridUid, out var price, out var noMultiplierPrice, out Dictionary<string, double> additionalCurrency))
+        if (!SellPallets(ent, gridUid, args.Actor, out var price, out var noMultiplierPrice, out Dictionary<string, double> additionalCurrency)) // Horizon - добавил поле actor
             return;
 
         // Handle market modifiers & immune objects
@@ -268,7 +336,7 @@ public sealed partial class NFCargoSystem
         var stackUid = _stack.Spawn((int)price, stackPrototype, args.Actor.ToCoordinates());
         if (!_hands.TryPickupAnyHand(args.Actor, stackUid))
             _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
-        
+
         // Iterate through additional currency payouts, putting them in hand if possible
         foreach (var (currencyId, currencyAmount) in additionalCurrency)
         {
@@ -277,7 +345,7 @@ public sealed partial class NFCargoSystem
                 _transform.SetLocalRotation(currencyUid, Angle.Zero);
         }
         _audio.PlayPvs(ApproveSound, ent);
-        UpdatePalletConsoleInterface(ent);
+        UpdatePalletConsoleInterface(ent, args.Actor);  // Horizon - добавил поле actor
     }
 
     #endregion
@@ -288,4 +356,4 @@ public sealed partial class NFCargoSystem
 /// deleted but after the price has been calculated.
 /// </summary>
 [ByRefEvent]
-public readonly record struct NFEntitySoldEvent(HashSet<EntityUid> Sold, EntityUid Grid);
+public readonly record struct NFEntitySoldEvent(HashSet<EntityUid> Sold, EntityUid Grid, EntityUid Actor); // Horizon - добавил поле Actor

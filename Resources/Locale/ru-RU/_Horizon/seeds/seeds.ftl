@@ -105,3 +105,4 @@ seeds-diamondcarrot-name = алмазная морковь
 seeds-diamondcarrot-display-name = алмазная морковь
 seeds-bluespace-tomato-name = блюспейс томат
 seeds-bluespace-tomato-display-name = блюспейс томат
+seeds-peach-display-name = персик

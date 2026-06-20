@@ -6,7 +6,32 @@
   category: Mech
   completetime: 10
 
-# Recipes
+- type: latheRecipe
+  abstract: true
+  parent: BaseMechPartRecipe
+  id: BaseRipleyLimbRecipe
+  materials:
+    Steel: 1000
+    Glass: 750
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseMechPartRecipe
+  id: BaseHonkerLimbRecipe
+  materials:
+    Steel: 2000
+    Glass: 750
+    Bananium: 250
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseMechPartRecipe
+  id: BaseHamtrLimbRecipe
+  materials:
+    Steel: 800
+    Glass: 600
+
+## Recipes
 
 # Horizon Mech start
 
@@ -20,33 +45,24 @@
     Glass: 400
 
 - type: latheRecipe
-  parent: BaseMechPartRecipe
+  parent: BaseRipleyLimbRecipe
   id: RipleyLArm
   result: RipleyLArm
-  materials:
-    Steel: 800
 
 - type: latheRecipe
-  parent: RipleyLArm
+  parent: BaseRipleyLimbRecipe
   id: RipleyLLeg
   result: RipleyLLeg
 
 - type: latheRecipe
-  parent: RipleyLLeg
+  parent: BaseRipleyLimbRecipe
   id: RipleyRLeg
   result: RipleyRLeg
 
 - type: latheRecipe
-  parent: RipleyLArm
+  parent: BaseRipleyLimbRecipe
   id: RipleyRArm
   result: RipleyRArm
-
-- type: latheRecipe
-  parent: BaseMechPartRecipe
-  id: MechEquipmentGrabber
-  result: MechEquipmentGrabber
-  materials:
-    Steel: 600
 
 # H.O.N.K.
 - type: latheRecipe
@@ -59,35 +75,24 @@
     Bananium: 600
 
 - type: latheRecipe
-  parent: BaseMechPartRecipe
+  parent: BaseHonkerLimbRecipe
   id: HonkerLArm
   result: HonkerLArm
-  materials:
-    Steel: 600
-    Bananium: 300
 
 - type: latheRecipe
-  parent: HonkerLArm
+  parent: BaseHonkerLimbRecipe
   id: HonkerLLeg
   result: HonkerLLeg
 
 - type: latheRecipe
-  parent: HonkerLLeg
+  parent: BaseHonkerLimbRecipe
   id: HonkerRLeg
   result: HonkerRLeg
 
 - type: latheRecipe
-  parent: HonkerLArm
+  parent: BaseHonkerLimbRecipe
   id: HonkerRArm
   result: HonkerRArm
-
-- type: latheRecipe
-  parent: BaseMechPartRecipe
-  id: MechEquipmentHorn
-  result: MechEquipmentHorn
-  materials:
-    Steel: 1100
-    Bananium: 600
 
 # HAMTR
 - type: latheRecipe
@@ -99,35 +104,24 @@
     Glass: 500
 
 - type: latheRecipe
-  parent: BaseMechPartRecipe
+  parent: BaseHamtrLimbRecipe
   id: HamtrLArm
   result: HamtrLArm
-  materials:
-    Steel: 400
-    Glass: 300
 
 - type: latheRecipe
-  parent: HamtrLArm
+  parent: BaseHamtrLimbRecipe
   id: HamtrLLeg
   result: HamtrLLeg
 
 - type: latheRecipe
-  parent: HamtrLLeg
+  parent: BaseHamtrLimbRecipe
   id: HamtrRLeg
   result: HamtrRLeg
 
 - type: latheRecipe
-  parent: HamtrLArm
+  parent: BaseHamtrLimbRecipe
   id: HamtrRArm
   result: HamtrRArm
-
-- type: latheRecipe
-  parent: BaseMechPartRecipe
-  id: MechEquipmentGrabberSmall
-  result: MechEquipmentGrabberSmall
-  materials:
-    Steel: 400
-    Plastic: 100
 
 # Vim
 - type: latheRecipe

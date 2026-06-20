@@ -14,8 +14,8 @@
       tableId: MajorBluespaceEventsTable
     minimumTimeUntilFirstEvent: 2700 # 45 minutes
     minMaxEventTiming:
-      min: 2700 # 45 minutes between events
-      max: 4500 # 75 minutes between events
+      min: 3600 # 60 minutes between events # Horizon
+      max: 5400 # 90 minutes between events # Horizon
 
 - type: entityTable
   id: MajorBluespaceEventsTable
@@ -38,8 +38,8 @@
       tableId: DungeonBluespaceEventsTable
     minimumTimeUntilFirstEvent: 600 # 10 minutes
     minMaxEventTiming:
-      min: 2100 # 35 minutes between events
-      max: 2400 # 40 minutes between events
+      min: 7200 # 120 minutes between events # Horizon
+      max: 10800 # 180 minutes between events # Horizon
 
 - type: entityTable
   id: DungeonBluespaceEventsTable
@@ -49,6 +49,7 @@
     - id: BluespaceDungeonChromite
     - id: BluespaceDungeonSnow
     - id: BluespaceDungeonCave
+    - id: BluespaceDungeonCaveZombie
 
 - type: entity
   id: BluespaceSalvageEventScheduler
@@ -60,7 +61,7 @@
     minimumTimeUntilFirstEvent: 420 # 7 minutes
     minMaxEventTiming:
       min: 2100 # 35 minutes between events
-      max: 2400 # 40 minutes between events
+      max: 3600 # 60 minutes between events # Horizon
 
 - type: entityTable
   id: SalvageBluespaceEventsTable
@@ -102,7 +103,7 @@
     - prefRoles: [ NFPirateCaptain ]
       max: 999
       playerRatio: -1
-      lateJoinAdditional: true
+      lateJoinAdditional: false
       allowNonHumans: true
       multiAntagSetting: All
       components: &pirateComponents
@@ -121,7 +122,7 @@
     - prefRoles: [ NFPirateFirstMate ]
       max: 999
       playerRatio: -1
-      lateJoinAdditional: true
+      lateJoinAdditional: false
       allowNonHumans: true
       multiAntagSetting: All
       components: *pirateComponents
@@ -135,7 +136,7 @@
     - prefRoles: [ NFPirate ]
       max: 999
       playerRatio: -1
-      lateJoinAdditional: true
+      lateJoinAdditional: false
       allowNonHumans: true
       multiAntagSetting: All
       components: *pirateComponents

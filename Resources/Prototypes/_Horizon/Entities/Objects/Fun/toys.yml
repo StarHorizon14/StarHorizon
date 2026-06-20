@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BasePlushie
   id: PlushieRoboMechanic
   name: плюшевый робототехник
@@ -52,6 +52,37 @@
   - type: Item
     size: Small
     sprite: _StarHorizon/Objects/Fun/plushiechemist.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieDemocracyEagle
+  name: плюшевый орлёнок
+  description: Пушистый источник яркой и великой демократий!
+  suffix: StarHorizon
+  components:
+  - type: StaticPrice
+    price: 50
+  - type: Sprite
+    sprite: _StarHorizon/Objects/Fun/plushiedemocracyeagle.rsi
+    state: eagle
+  - type: Item
+    size: Small
+    sprite: _StarHorizon/Objects/Fun/plushiedemocracyeagle.rsi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_StarHorizon/Items/Toys/WHATTHEFUCKISTHEKILOMETER.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_StarHorizon/Items/Toys/WHATTHEFUCKISTHEKILOMETER.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_StarHorizon/Items/Toys/WHATTHEFUCKISTHEKILOMETER.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_StarHorizon/Items/Toys/WHATTHEFUCKISTHEKILOMETER.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_StarHorizon/Items/Toys/WHATTHEFUCKISTHEKILOMETER.ogg
 
 - type: entity
   parent: BasePlushie
@@ -794,3 +825,177 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Effects/Footsteps/slime1.ogg
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieShadowLord
+  name: Владыка Теней
+  description: Плюшевая игрушка сшитая из дорогих материалов и частицы тьмы. Идеален для объятий и подрывов государств.
+  suffix: StarHorizon, Sponsor
+  components:
+  - type: StaticPrice
+    price: 150
+  - type: Sprite
+    sprite: _StarHorizon/Objects/Fun/plushieshadowlord.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _StarHorizon/Objects/Fun/plushieshadowlord.rsi
+  - type: PointLight
+    netsync: false
+    radius: 1.5
+    energy: 1.0
+    color: "#4B0082"
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieWisdom
+  name: Плюшевый агент
+  description: Плюшевая игрушка, агент синдиката.
+  suffix: StarHorizon, Sponsor
+  components:
+  - type: StaticPrice
+    price: 150
+  - type: Sprite
+    sprite: _StarHorizon/Objects/Fun/plushiewisdom.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _StarHorizon/Objects/Fun/plushiewisdom.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMalanisa
+  name: Плюшевая катунианка
+  description: Плюшевая игрушка, катунианка.
+  suffix: StarHorizon, Sponsor
+  components:
+  - type: StaticPrice
+    price: 150
+  - type: Sprite
+    sprite: _StarHorizon/Objects/Fun/plushiemalanisa.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _StarHorizon/Objects/Fun/plushiemalanisa.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieVulpa
+  name: Плюшевая вульпа
+  description: Плюшевая игрушка, вульпа.
+  suffix: StarHorizon, Sponsor
+  components:
+  - type: StaticPrice
+    price: 150
+  - type: Sprite
+    sprite: _StarHorizon/Objects/Fun/plushievulpa.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _StarHorizon/Objects/Fun/plushievulpa.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieChel
+  name: Плюшевый человек
+  description: Плюшевая игрушка, человек.
+  suffix: StarHorizon, Sponsor
+  components:
+  - type: StaticPrice
+    price: 150
+  - type: Sprite
+    sprite: _StarHorizon/Objects/Fun/plushiechel.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _StarHorizon/Objects/Fun/plushiechel.rsi
+
+- type: entity
+  parent: BaseItem
+  id: BLAT
+  name: БЛЯТЬ
+  description: Shut the fuck up
+  components:
+  - type: Sprite
+    sprite: _Horizon/error.rsi
+    state: blat
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 26
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: Slippery
+    slipData:
+      knockdownTime: 3
+      launchForwardsMultiplier: 3
+  - type: StepTrigger
+    intersectRatio: 0.2
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        hard: false
+        layer:
+        - SlipLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        density: 30
+        mask:
+        - ItemMask
+
+
+- type: entity
+  parent: BaseItem
+  id: BBAT
+  name: БВЯТЬ
+  description: УВУ
+  components:
+  - type: Sprite
+    sprite: _Horizon/error.rsi
+    state: bbat
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 26
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: Slippery
+    slipData:
+      knockdownTime: 3
+      launchForwardsMultiplier: 3
+  - type: StepTrigger
+    intersectRatio: 0.2
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        hard: false
+        layer:
+        - SlipLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        density: 30
+        mask:
+        - ItemMask

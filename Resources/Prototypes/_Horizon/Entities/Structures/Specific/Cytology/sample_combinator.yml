@@ -78,8 +78,8 @@
     guides:
     - Chemicals
     - Chemist
-  - type: Machine
-    board: CytologySampleCombinatorMachineCircuitboard
+  - type: Computer
+    board: CytologySampleCombinatorComputerCircuitboard
   - type: CytologySampleCombinator
   - type: ApcPowerReceiver
     powerLoad: 250

@@ -348,6 +348,7 @@ reagent-effect-guidebook-artifact-unlock =
         [1] Помогает
        *[other] помочь
     } разблокировать инопланетный артефакт.
+reagent-effect-guidebook-artifact-durability-restore = Восстанавливает { $restored } прочности в активных узлах инопланетных артефактов.
 reagent-effect-guidebook-area-reaction =
     { $chance ->
         [1] Вызывает

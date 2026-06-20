@@ -22,18 +22,9 @@ public sealed class SpeechBarksSystem : SharedSpeechBarksSystem
 
         _cfg.OnValueChanged(HorizonCCVars.BarksEnabled, v => _isEnabled = v, true);
 
-        SubscribeLocalEvent<SpeechBarksComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SpeechBarksComponent, EntitySpokeEvent>(OnEntitySpoke);
 
     }
-    private void OnMapInit(EntityUid uid, SpeechBarksComponent comp, MapInitEvent args)
-    {
-        if (comp.Data.Sound != string.Empty)
-            return;
-
-        comp.Data.Sound = _proto.Index(comp.Data.Proto).Sound;
-    }
-
     private void OnEntitySpoke(EntityUid uid, SpeechBarksComponent component, EntitySpokeEvent args)
     {
         if (!_isEnabled)
@@ -43,6 +34,7 @@ public sealed class SpeechBarksSystem : SharedSpeechBarksSystem
         RaiseLocalEvent(uid, ev);
 
         var message = args.ObfuscatedMessage ?? args.Message;
+        var sound = _proto.Index(ev.Data.Proto).Sound;
 
         foreach (var ent in _lookup.GetEntitiesInRange(Transform(uid).Coordinates, 10f))
         {
@@ -52,7 +44,7 @@ public sealed class SpeechBarksSystem : SharedSpeechBarksSystem
             RaiseNetworkEvent(new PlaySpeechBarksEvent(
                         GetNetEntity(uid),
                         message,
-                        ev.Data.Sound,
+                        sound,
                         ev.Data.Pitch,
                         ev.Data.MinVar,
                         ev.Data.MaxVar,

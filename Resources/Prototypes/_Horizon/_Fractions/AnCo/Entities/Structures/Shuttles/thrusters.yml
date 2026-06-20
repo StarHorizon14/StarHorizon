@@ -1,0 +1,30 @@
+- type: entity
+  id: AnCoThruster
+  name: двигатель АнКо
+  description: Двигатель делает брбрбрбр.
+  parent: [ Thruster, BaseAnCoContraband ]
+  components:
+  - type: Machine
+    board: EngineMachineCircuitboard
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Machines/thruster.rsi
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]

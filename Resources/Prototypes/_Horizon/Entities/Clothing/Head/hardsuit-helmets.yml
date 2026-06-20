@@ -119,9 +119,9 @@
 
 - type: entity
   parent: [ NFClothingHeadHardsuitWithLightBase ]
-  id: ClothingHeadHelmetHardsuitExperementalSyndy
-  name: эксперементальный шлем
-  description: прочный,удобный,красивый
+  id: ClothingHeadHelmetHardsuitExperimentalSyndy
+  name: экспериментальный шлем
+  description: прочный, удобный, красивый
   components:
   - type: Sprite
     sprite: _StarHorizon/Clothing/Head/Hardsuits/syndicateramzi.rsi

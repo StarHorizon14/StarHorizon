@@ -1,4 +1,5 @@
-using Content.Shared.Procedural.Loot; // Frontier
+using Content.Shared.Procedural.Loot;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Procedural;
@@ -44,11 +45,9 @@ public sealed partial class SalvageDifficultyPrototype : IPrototype
     [DataField("recommendedPlayers", required: true)]
     public int RecommendedPlayers;
 
-    // Frontier: mission types
-    /// <summary>
-    /// The number of structures to spawn on a destruction mission.
-    /// </summary>
     [DataField]
     public int DestructionStructures = 1;
-    // End Frontier: mission types
+
+    [DataField]
+    public SoundSpecifier? EndSound;
 }

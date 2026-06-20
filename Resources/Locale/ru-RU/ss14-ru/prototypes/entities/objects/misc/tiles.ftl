@@ -205,6 +205,14 @@ ent-FloorTileItemAstroAsteroidSandBorderless = астероидный астро
     .desc = Искусственный песок. К счастью, он не такой грубый, как настоящий.
 ent-FloorTileItemWoodLarge = большой деревянный пол
     .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWhiteMarble = белая мраморная плитка
+    .desc = Отточенный, отполированный квадрат лучшего космического мрамора. Лучше её не терять.
+ent-FloorTileItemDarkMarble = тёмная мраморная плитка
+    .desc = Отточенный, отполированный квадрат лучшего космического мрамора. Лучше её не терять.
+ent-FloorTileItemPlasmaMarble = плазмарморная плитка
+    .desc = Отточенный, отполированный квадрат лучшего космического мрамора. С добавлением плазмы для дополнительного... чего-то.
+ent-FloorTileItemUraniumMarble = урановая мраморная плитка
+    .desc = Отточенный, отполированный квадрат лучшего космического мрамора. С добавлением урана, чтобы сделать её экстра радовой! Каламбур намеренный!
 ent-FloorTileItemXeno = ксено пол
     .desc = { ent-FloorTileItemBase.desc }
 ent-FloorTileItemXenoSteel = ксено стальная плитка
@@ -215,3 +223,11 @@ ent-FloorTileItemXenoMaint = ксено технический пол
     .desc = { ent-FloorTileItemBase.desc }
 ent-FloorTileItemDarkSquiggly = тёмная волнистая плитка
     .desc = { ent-FloorTileItemDark.desc }
+# Horizon start
+
+ent-FloorTileItemSteelDarkGray = корабельная бронеплита
+    .desc = бронированная плита использующаяся в особо защищенных точках.
+ent-FloorTileItemSteelPlateDarkGray = корабельная бронированная моноплита
+    .desc = бронированная плита использующаяся в особо защищенных точках.
+
+# Horizon end

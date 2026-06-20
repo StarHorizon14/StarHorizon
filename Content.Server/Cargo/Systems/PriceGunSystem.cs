@@ -5,6 +5,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Timing;
 using Content.Shared.Cargo.Systems;
 using Robust.Shared.Audio.Systems;
+using Content.Server._Horizon.Expeditions;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -16,6 +17,7 @@ public sealed class PriceGunSystem : SharedPriceGunSystem
     [Dependency] private readonly CargoSystem _bountySystem = default!;
     [Dependency] private readonly SalvageJobBoardSystem _salvageJobBoard = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly ExpeditionGoalsSystem _expeditionGoals = default!;
 
     protected override bool GetPriceOrBounty(Entity<PriceGunComponent> entity, EntityUid target, EntityUid user)
     {
@@ -30,6 +32,12 @@ public sealed class PriceGunSystem : SharedPriceGunSystem
         {
             _popupSystem.PopupEntity(Loc.GetString("price-gun-salvjob-complete"), user, user);
         }
+        // Horizon start
+        else if (_expeditionGoals.IsCompleted(user, target))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("price-gun-expedition-complete"), user, user);
+        }
+        // Horizon end
         else // Otherwise appraise the price
         {
             var price = _pricingSystem.GetPrice(target);

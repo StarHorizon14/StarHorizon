@@ -1,2 +1,2 @@
-ent-NFWeaponRifleSniperHristov = Hristov
-    .desc = A portable anti-materiel rifle.
+ent-NFWeaponRifleSniperHristov = Христов
+    .desc = Переносная анти-материальная снайперская винтовка

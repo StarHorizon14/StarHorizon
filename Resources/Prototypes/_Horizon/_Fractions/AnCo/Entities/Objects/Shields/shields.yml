@@ -1,0 +1,159 @@
+- type: entity
+  id: AnCoArdonShield
+  parent: [ BaseAnCoContraband, RiotBulletShield ]
+  name: ардониевый щит
+  description: обыкновенные плотные листы ардония, можно удобно держать.
+  suffix: StarHorizon, AnCo, Weapon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Melee/shields.rsi
+    state: ardon-icon
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Melee/shields.rsi
+    heldPrefix: ardon
+  - type: Reflect
+    reflectProb: 0.6
+    reflects:
+      - Energy
+  - type: Blocking
+    passiveBlockFraction: 0.5
+    passiveBlockModifier:
+      coefficients:
+        Blunt: 1
+        Slash: 1
+        Piercing: 0.8
+        Heat: 0.5
+    activeBlockModifier:
+      coefficients:
+        Blunt: 1
+        Slash: 1
+        Piercing: 0.8
+        Heat: 0.3
+      flatReductions:
+        Heat: 10
+  - type: Destructible
+    thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                ArdonSheet1:
+                  min: 2
+                  max: 2
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+
+- type: entity
+  id: AnCoKazmieShield
+  parent: [ BaseAnCoContraband, RiotBulletShield ]
+  name: тяжелый казмиевый щит
+  description: комплексная казмиевая защита, все ровно что защищаться броней танка.
+  suffix: StarHorizon, AnCo, Weapon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Melee/shields.rsi
+    state: kazmie-icon
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Melee/shields.rsi
+    heldPrefix: kazmie
+  - type: Reflect
+    reflectProb: 0.3
+    reflects:
+      - NonEnergy
+      - Energy
+  - type: Blocking
+    passiveBlockFraction: 0.8
+    passiveBlockModifier:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.3
+        Piercing: 0.2
+        Heat: 0.2
+    activeBlockModifier:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.2
+        Piercing: 0.1
+        Heat: 0.1
+      flatReductions:
+        Blunt: 10
+        Slash: 10
+        Piercing: 15
+        Heat: 15
+  - type: Destructible
+    thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 750
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                KazmieSheet1:
+                  min: 2
+                  max: 2
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+
+- type: entity
+  id: AnCoBulletShield
+  parent: [ BaseAnCoContraband, RiotBulletShield ]
+  name: комплексный щит АнКо
+  description: серийный щит стандартной конструкции, в основном используемый ОтКБ.
+  suffix: StarHorizon, AnCo, Weapon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Melee/shields.rsi
+    state: bullet-icon
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Melee/shields.rsi
+    heldPrefix: bullet
+  - type: Reflect
+    reflectProb: 0.2
+    reflects:
+      - NonEnergy
+  - type: Blocking
+    passiveBlockFraction: 0.5
+    passiveBlockModifier:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.4
+        Heat: 0.4
+    activeBlockModifier:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.4
+        Heat: 0.4
+      flatReductions:
+        Blunt: 5
+        Slash: 5
+        Piercing: 10
+        Heat: 10
+  - type: Destructible
+    thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 250
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                KazmieSheet1:
+                  min: 2
+                  max: 2
+                ArdonSheet1:
+                  min: 2
+                  max: 2
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]

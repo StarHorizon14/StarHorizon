@@ -1,32 +1,4 @@
-# Tier 2
-
-- type: technology
-  id: Bluespace
-  name: research-technology-bluespace
-  entityIcon: MachineBLESCircuitboard
-  discipline: NFScience
-  tier: 2
-  cost: 25000
-  position: 3, 5
-  recipeUnlocks:
-  - MachineBLESCircuitboard
-  technologyPrerequisites:
-  - NFSuperParts
-
 # Tier 3
-
-- type: technology
-  id: BluespaceMining
-  name: research-technology-bluespace-mining
-  entityIcon: MachineBluespaceHarvesterCircuitboard
-  discipline: NFScience
-  tier: 3
-  cost: 30000
-  position: 4, 5
-  recipeUnlocks:
-  - MachineBluespaceHarvesterCircuitboard
-  technologyPrerequisites:
-  - Bluespace
 
 - type: technology
   id: PhazonTechnology

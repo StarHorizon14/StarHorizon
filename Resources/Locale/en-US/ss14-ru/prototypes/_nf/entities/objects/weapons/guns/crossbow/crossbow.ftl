@@ -1,7 +1,7 @@
 ent-BaseCrossbow = crossbow
-    .desc = The original rooty tooty point and shooty.
-ent-BaseCrossbowWieldable = { ent-BaseCrossbow }
-    .desc = { ent-BaseCrossbow.desc }
+    .desc = A medieval ranged weapon that shoots projectiles called bolts. Now in space!
+ent-BaseCrossbowWieldable = { ent-NFBaseGunMeleeAttackMedium }
+    .desc = { ent-NFBaseGunMeleeAttackMedium.desc }
 ent-CrossbowModern = { ent-BaseCrossbowWieldable }
     .desc = { ent-BaseCrossbowWieldable.desc }
 ent-CrossbowImprovised = impovised crossbow

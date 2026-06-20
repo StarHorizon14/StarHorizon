@@ -2,7 +2,7 @@
 #region Laser
 - type: entity
   id: NFWeaponEnergyPistolLaserSvalinn
-  parent: [ NFBaseWeaponFrameEnergyPistolNanotrasen, BaseWeaponPowerCellSmall ]
+  parent: [ NFBaseWeaponFrameEnergyPistolNanotrasenPowerCell, BaseC1Contraband ]
   name: svalinn
   description: A cheap and widely used laser pistol.
   components:

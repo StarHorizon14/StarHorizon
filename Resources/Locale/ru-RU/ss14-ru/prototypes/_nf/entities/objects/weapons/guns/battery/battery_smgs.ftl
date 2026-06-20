@@ -1,5 +1,5 @@
-ent-NFWeaponEnergySubMachineGunDeltaV = energy submachine gun
-    .desc = An advanced hybrid energy submachine gun with two settings: disable and kill. On the handle is a label that says 'for authorized use only.'
-ent-NFWeaponEnergySubMachineGunDisabler = disabler submachine gun
-    .desc = Advanced weapon that exhausts organic targets, weakening them until they collapse. On the handle is a label that says 'for authorized use only.'
-    .suffix = Frontier
+ent-NFWeaponEnergySubMachineGunDeltaV = энергетический пистолет-пулемёт
+    .desc = Продвинутый гибридный энергетический пистолет-пулемёт с двумя режимами: оглушение и убийство. На рукоятке есть надпись: "только для авторизованного использования".
+ent-NFWeaponEnergySubMachineGunDisabler = оглушающий пистолет-пулемёт
+    .desc = Продвинутое оружие, которое истощает органические цели, ослабляя их до потери сознания. На рукоятке есть надпись: "только для авторизованного использования".
+    .suffix = Фронтир

@@ -1,3 +1,3 @@
-ent-AccessConfiguratorAntag = Black market access configurator
-    .desc = A modified access configurator sold on the black market.
-    .suffix = Antag
+ent-AccessConfiguratorAntag = Конфигуратор доступа с чёрного рынка
+    .desc = модифицированный Конфигуратор доступоа с чёрного рынка.
+    .suffix = Антаг

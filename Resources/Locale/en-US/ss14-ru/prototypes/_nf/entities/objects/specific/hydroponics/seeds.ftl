@@ -1,4 +1,4 @@
-ent-SpesosTreeSeeds = packet of speso seeds
+ent-SpesosTreeSeeds = packet of gold leaf tree seeds
     .desc = These seeds seem like a miracle, but expert farmers get rich from the kitchen.
 ent-PearSeeds = packet of pear seeds
     .desc = They are peary good for you.
@@ -14,3 +14,5 @@ ent-EveryspiceSeeds = packet of everyspice seeds
     .desc = Wars were fought over less.
 ent-MonkananaSeeds = packet of monkanana seeds
     .desc = Why is it so hairy?
+ent-NFGlowshroomSeeds = packet of glowshroom spores
+    .desc = Formally known as Mycena Bregprox.

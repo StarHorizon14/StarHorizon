@@ -587,14 +587,15 @@ public sealed class AttachableHolderSystem : EntitySystem
 
     private void ToggleAttachable(EntityUid userUid, string slotId)
     {
-        if (!TryComp<HandsComponent>(userUid, out var handsComponent) ||
-            !TryComp<AttachableHolderComponent>(handsComponent.ActiveHandEntity, out var holderComponent))
+        if (!_hands.TryGetActiveItem(userUid, out var activeEnt) || // Frontier: reformat to use the hand system
+            !TryComp<AttachableHolderComponent>(activeEnt, out var holderComponent))
         {
             return;
         }
 
-        var active = handsComponent.ActiveHandEntity;
-        if (!holderComponent.Running || !_actionBlocker.CanInteract(userUid, active))
+        // var active = handsComponent.ActiveHandEntity; // Frontier: reformat to use the hand system
+        if (!_hands.TryGetActiveItem(userUid, out var active) || // Frontier: reformat to use the hand system
+            !holderComponent.Running || !_actionBlocker.CanInteract(userUid, active))
             return;
 
         if (!_container.TryGetContainer(active.Value,
@@ -616,13 +617,13 @@ public sealed class AttachableHolderSystem : EntitySystem
 
     private void FieldStripHeldItem(EntityUid userUid)
     {
-        if (!TryComp<HandsComponent>(userUid, out var handsComponent) ||
-            !TryComp<AttachableHolderComponent>(handsComponent.ActiveHandEntity, out var holderComponent))
+        if (!_hands.TryGetActiveItem(userUid, out var activeEnt) || // Frontier: reformat to use the hand system
+            !TryComp<AttachableHolderComponent>(activeEnt, out var holderComponent))
         {
             return;
         }
 
-        EntityUid holderUid = handsComponent.ActiveHandEntity.Value;
+        EntityUid holderUid = activeEnt.Value;
 
         if (!holderComponent.Running || !_actionBlocker.CanInteract(userUid, holderUid))
             return;

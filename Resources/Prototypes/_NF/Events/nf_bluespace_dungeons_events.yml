@@ -5,12 +5,14 @@
   abstract: true
   components:
   - type: StationEvent
+  # TODO: add path to  start warning and end Voiceover
     startRadioAnnouncement: station-event-bluespace-dungeon-start-announcement
     startRadioAnnouncementChannel: Supply
     warningRadioAnnouncement: station-event-bluespace-dungeon-warning-announcement
     warningRadioAnnouncementChannel: Supply
     endRadioAnnouncement: station-event-bluespace-dungeon-end-announcement
     endRadioAnnouncementChannel: Supply
+    maximumPlayers: 1 # Horizon
     weight: 5
     duration: 1800 # 30 minutes
     maxDuration: 1800 # 30 minutes
@@ -106,3 +108,18 @@
         addComponents: *dungeonComponents
         protos:
         - NFVGRoidScrap
+
+- type: entity
+  id: BluespaceDungeonCaveZombie
+  parent: BluespaceDungeonBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BluespaceErrorRule
+    groups:
+      vgroid: !type:DungeonSpawnGroup
+        nameDataset: NamesBorer
+        minimumDistance: 1500
+        maximumDistance: 2500
+        addComponents: *dungeonComponents
+        protos:
+        - NFVGRoidCaveZombie

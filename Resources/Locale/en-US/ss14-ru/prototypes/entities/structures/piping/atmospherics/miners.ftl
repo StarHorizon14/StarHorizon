@@ -32,3 +32,5 @@ ent-GasMinerAmmonia = ammonia gas miner
     .desc = { ent-GasMinerBase.desc }
 ent-GasMinerNitrousOxide = nitrous oxide gas miner
     .desc = { ent-GasMinerBase.desc }
+ent-GasMinerHelium = helium gas miner
+    .desc = { ent-GasMinerBase.desc }

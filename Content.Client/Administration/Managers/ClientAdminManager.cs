@@ -102,7 +102,10 @@ namespace Content.Client.Administration.Managers
             if (_adminData != null)
             {
                 var flagsText = string.Join("|", AdminFlagsHelper.FlagsToNames(_adminData.Flags));
-                _sawmill.Info($"Updated admin status: {_adminData.Active}/{_adminData.Title}/{flagsText}");
+                // Horizon start
+                string title = "" + _adminData.Title;
+                _sawmill.Info($"Updated admin status: {_adminData.Active}/{FormattedMessage.RemoveMarkupPermissive(title)}/{flagsText}");
+                // Horizon end
 
                 if (_adminData.Active)
                     _userInterface.DebugMonitors.SetMonitor(DebugMonitor.Coords, true);

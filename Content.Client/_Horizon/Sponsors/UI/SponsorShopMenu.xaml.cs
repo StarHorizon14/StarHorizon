@@ -47,23 +47,75 @@ public sealed partial class SponsorShopMenu : DefaultWindow
             .OrderBy(p => p.Priority)
             .ToList();
 
+        // Разделяем на родительские категории и подкатегории
+        var parentCategories = allCategories.Where(p => p.Parent == null).ToList();
+        var childCategories = allCategories.Where(p => p.Parent != null).ToList();
+
         var group = new ButtonGroup();
-        foreach (var proto in allCategories)
+        string? firstCategoryId = null;
+
+        foreach (var parentProto in parentCategories)
         {
-            var catButton = new Button
+            // Получаем подкатегории для этой родительской категории
+            var children = childCategories
+                .Where(c => c.Parent == parentProto.ID)
+                .OrderBy(c => c.Priority)
+                .ToList();
+
+            if (children.Count > 0)
             {
-                Text = Loc.GetString(proto.Name),
-                ToggleMode = true,
-                Group = group,
-                StyleClasses = { "OpenBoth" }
-            };
-            catButton.OnPressed += _ => SetCategory(proto.ID);
-            CategoryListContainer.AddChild(catButton);
+                // Создаём Collapsible с подкатегориями
+                var collapsible = new Collapsible();
+                var heading = new CollapsibleHeading(Loc.GetString(parentProto.Name));
+                var body = new CollapsibleBody();
+
+                // BoxContainer для вертикального расположения кнопок
+                var buttonsContainer = new BoxContainer
+                {
+                    Orientation = BoxContainer.LayoutOrientation.Vertical
+                };
+
+                foreach (var childProto in children)
+                {
+                    var catButton = new Button
+                    {
+                        Text = Loc.GetString(childProto.Name),
+                        ToggleMode = true,
+                        Group = group,
+                        StyleClasses = { "OpenBoth" }
+                    };
+                    catButton.OnPressed += _ => SetCategory(childProto.ID);
+                    buttonsContainer.AddChild(catButton);
+
+                    firstCategoryId ??= childProto.ID;
+                }
+
+                body.AddChild(buttonsContainer);
+                collapsible.AddChild(heading);
+                collapsible.AddChild(body);
+                CategoryListContainer.AddChild(collapsible);
+            }
+            else if (parentProto.Items.Count > 0)
+            {
+                // Категория без детей, но с предметами - показываем как обычную кнопку
+                var catButton = new Button
+                {
+                    Text = Loc.GetString(parentProto.Name),
+                    ToggleMode = true,
+                    Group = group,
+                    StyleClasses = { "OpenBoth" }
+                };
+                catButton.OnPressed += _ => SetCategory(parentProto.ID);
+                CategoryListContainer.AddChild(catButton);
+
+                firstCategoryId ??= parentProto.ID;
+            }
+            // Пустые категории-разделители без детей и без items не добавляем
         }
 
-        if (allCategories.Count > 0)
+        if (firstCategoryId != null)
         {
-            SetCategory(allCategories.First().ID);
+            SetCategory(firstCategoryId);
         }
     }
 

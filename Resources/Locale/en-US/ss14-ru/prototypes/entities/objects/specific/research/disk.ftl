@@ -12,5 +12,3 @@ ent-TechnologyDisk = technology disk
 ent-TechnologyDiskRare = { ent-TechnologyDisk }
     .suffix = rare.
     .desc = { ent-TechnologyDisk.desc }
-ent-TechnologyDiskCombatCyborgs = technology disk (combat cyborgs)
-    .desc = A disk for the R&D server containing combat cyborg technology.

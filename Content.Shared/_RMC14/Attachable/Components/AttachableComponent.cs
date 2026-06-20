@@ -12,8 +12,8 @@ public sealed partial class AttachableComponent : Component
     public float AttachDoAfter = 1.5f;
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier? AttachSound = new SoundPathSpecifier("/Audio/_RMC14/Attachments/attachment_add.ogg", AudioParams.Default.WithVolume(-6.5f));
+    public SoundSpecifier? AttachSound = new SoundPathSpecifier("/Audio/_RMC14/Attachable/attachment_add.ogg", AudioParams.Default.WithVolume(-6.5f));
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier? DetachSound = new SoundPathSpecifier("/Audio/_RMC14/Attachments/attachment_remove.ogg",  AudioParams.Default.WithVolume(-5.5f));
+    public SoundSpecifier? DetachSound = new SoundPathSpecifier("/Audio/_RMC14/Attachable/attachment_remove.ogg",  AudioParams.Default.WithVolume(-5.5f));
 }

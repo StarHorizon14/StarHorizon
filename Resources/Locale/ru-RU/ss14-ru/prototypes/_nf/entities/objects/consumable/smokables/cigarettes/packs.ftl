@@ -1,2 +1,2 @@
-ent-CigPackMcCargo = McCargo packet
-    .desc = For ages 12 and above.
+ent-CigPackMcCargo = Пачка сигарет McSmokes
+    .desc = Для возрастов от 12 лет и старше.

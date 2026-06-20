@@ -1,5 +1,5 @@
 ent-NFBaseWeaponFrameLauncher = { ent-NFBaseWeaponEncumbranceLauncher }
-    .suffix = Frontier
+    .suffix = Фронтир
     .desc = { ent-NFBaseWeaponEncumbranceLauncher.desc }
 ent-NFBaseWeaponFrameLauncherNanotrasen = { ent-NFBaseWeaponFrameLauncher }
     .desc = { ent-NFBaseWeaponFrameLauncher.desc }

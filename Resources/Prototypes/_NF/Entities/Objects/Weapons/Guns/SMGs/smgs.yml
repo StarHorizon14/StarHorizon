@@ -34,6 +34,23 @@
     magState: mag
     steps: 6
     zeroVisible: true
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-rail:
+        whitelist:
+          tags:
+          - AttachmentMagneticHarness
+          - AttachmentReflexSight
+          - AttachmentT2Miniscope
+      rmc-aslot-barrel:
+        whitelist:
+          tags:
+          - AttachmentSuppressor
+          - AttachmentAntiLyingWarrior
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-rail: -0.0325, -0.0325
+      rmc-aslot-barrel: 0.75, 0
 
 - type: entity
   id: NFWeaponSubMachineGunDrozd

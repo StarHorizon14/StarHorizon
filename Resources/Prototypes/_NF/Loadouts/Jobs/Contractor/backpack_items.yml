@@ -231,6 +231,13 @@
     back:
     - Wristwatch
 
+- type: loadout
+  id: ContractorUrnMortuary
+  price: 500
+  storage:
+    back:
+    - UrnMortuary
+
 #T1
 - type: loadout
   id: ContractorBasketball
@@ -459,6 +466,16 @@
     back:
     - CrayonMagic
 
+- type: loadout
+  id: ContractorSprayPainterMagic
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  price: 30000
+  storage:
+    back:
+    - SprayPainterMagic
+
 #bureaucracy
 #T0
 - type: loadout
@@ -555,3 +572,163 @@
   storage:
     back:
     - RubberStampEngineer
+
+  #towels
+  #T0
+- type: loadout
+  id: ContractorTowelColorDarkGreen
+  price: 500
+  storage:
+    back:
+    - TowelColorDarkGreen
+- type: loadout
+  id: ContractorTowelColorBlue
+  price: 500
+  storage:
+    back:
+    - TowelColorBlue
+- type: loadout
+  id: ContractorTowelColorDarkBlue
+  price: 500
+  storage:
+    back:
+    - TowelColorDarkBlue
+- type: loadout
+  id: ContractorTowelColorTeal
+  price: 500
+  storage:
+    back:
+    - TowelColorTeal
+- type: loadout
+  id: ContractorTowelColorWhite
+  price: 500
+  storage:
+    back:
+    - TowelColorWhite
+- type: loadout
+  id: ContractorTowelColorPurple
+  price: 500
+  storage:
+    back:
+    - TowelColorPurple
+- type: loadout
+  id: ContractorTowelColorBlack
+  price: 500
+  storage:
+    back:
+    - TowelColorBlack
+- type: loadout
+  id: ContractorTowelColorMaroon
+  price: 500
+  storage:
+    back:
+    - TowelColorMaroon
+- type: loadout
+  id: ContractorTowelColorLightBlue
+  price: 500
+  storage:
+    back:
+    - TowelColorLightBlue
+- type: loadout
+  id: ContractorTowelColorYellow
+  price: 500
+  storage:
+    back:
+    - TowelColorYellow
+- type: loadout
+  id: ContractorTowelColorGreen
+  price: 500
+  storage:
+    back:
+    - TowelColorGreen
+- type: loadout
+  id: ContractorTowelColorBrown
+  price: 500
+  storage:
+    back:
+    - TowelColorBrown
+- type: loadout
+  id: ContractorTowelColorRed
+  price: 500
+  storage:
+    back:
+    - TowelColorRed
+- type: loadout
+  id: ContractorTowelColorOrange
+  price: 500
+  storage:
+    back:
+    - TowelColorOrange
+- type: loadout
+  id: ContractorTowelColorPink
+  price: 500
+  storage:
+    back:
+    - TowelColorPink
+- type: loadout
+  id: ContractorTowelColorLightBrown
+  price: 500
+  storage:
+    back:
+    - TowelColorLightBrown
+- type: loadout
+  id: ContractorTowelColorGray
+  price: 500
+  storage:
+    back:
+    - TowelColorGray
+#T1
+- type: loadout
+  id: ContractorTowelColorMime
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 750
+  storage:
+    back:
+    - TowelColorMime
+- type: loadout
+  id: ContractorTowelColorGold
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 5000
+  storage:
+    back:
+    - TowelColorGold
+- type: loadout
+  id: ContractorTowelColorSilver
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 2500
+  storage:
+    back:
+    - TowelColorSilver
+- type: loadout
+  id: ContractorTowelColorNT
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 1500
+  storage:
+    back:
+    - TowelColorNT
+- type: loadout
+  id: ContractorTowelColorCentcom
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 10000
+  storage:
+    back:
+    - TowelColorCentcom
+- type: loadout
+  id: ContractorTowelColorSyndicate
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 0
+  storage:
+    back:
+    - TowelColorSyndicate

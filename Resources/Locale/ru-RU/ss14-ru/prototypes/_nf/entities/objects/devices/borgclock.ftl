@@ -1,2 +1,2 @@
-ent-BorgClock = digital clock
-    .desc = A rugged digital clock with 7-segment display. It's ticking for some reason.
+ent-BorgClock = цифровые часы
+    .desc = Надёжные цифровые часы с 7-сегментным дисплеем. Почему-то тикают.

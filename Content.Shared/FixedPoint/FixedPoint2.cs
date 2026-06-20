@@ -57,11 +57,19 @@ namespace Content.Shared.FixedPoint
 
         private static float ApplyFloatEpsilon(float value)
         {
+            // Обработка NaN и Infinity: возвращаем 0, чтобы избежать ArithmeticException в Math.Sign
+            if (float.IsNaN(value) || float.IsInfinity(value))
+                return 0f;
+            
             return value + FloatEpsilon * Math.Sign(value);
         }
 
         private static double ApplyFloatEpsilon(double value)
         {
+            // Обработка NaN и Infinity: возвращаем 0, чтобы избежать ArithmeticException в Math.Sign
+            if (double.IsNaN(value) || double.IsInfinity(value))
+                return 0.0;
+            
             return value + FloatEpsilon * Math.Sign(value);
         }
 
@@ -303,15 +311,7 @@ namespace Content.Shared.FixedPoint
 
         public readonly int CompareTo(FixedPoint2 other)
         {
-            if (other.Value > Value)
-            {
-                return -1;
-            }
-            if (other.Value < Value)
-            {
-                return 1;
-            }
-            return 0;
+            return Value.CompareTo(other.Value);
         }
 
     }

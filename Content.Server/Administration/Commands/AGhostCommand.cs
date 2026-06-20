@@ -10,6 +10,7 @@ using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Player;
 using Content.Server._NF.CryoSleep; // Frontier
+using Content.Server._Horizon.CustomGhost; // Horizon
 
 namespace Content.Server.Administration.Commands;
 
@@ -99,7 +100,12 @@ public sealed class AGhostCommand : LocalizedCommands
         var coordinates = player!.AttachedEntity != null
             ? _entities.GetComponent<TransformComponent>(player.AttachedEntity.Value).Coordinates
             : gameTicker.GetObserverSpawnPoint();
-        var ghost = _entities.SpawnEntity(GameTicker.AdminObserverPrototypeName, coordinates);
+
+        // Сравниваем CKey и выдаём кастомный прототип призрака Horizon Start
+        var customGhostSystem = _entities.System<CustomGhostSystem>();
+        var prototypeToSpawn = customGhostSystem.GetGhostPrototypeForPlayer(player.Name);
+
+        var ghost = _entities.SpawnEntity(prototypeToSpawn, coordinates); // Проверка на CKey Horizon End
         transformSystem.AttachToGridOrMap(ghost, _entities.GetComponent<TransformComponent>(ghost));
 
         if (canReturn)

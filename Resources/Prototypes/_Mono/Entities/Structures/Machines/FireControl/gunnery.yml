@@ -237,9 +237,9 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: RadarConsole
-    maxRange: 768
+    radius: 256
   - type: WorldLoader
-    radius: 384 # Mono
+    radius: 256
   - type: Computer
     board: GunneryControlComputerCircuitboard
   - type: PointLight

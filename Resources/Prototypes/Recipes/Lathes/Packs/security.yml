@@ -113,6 +113,7 @@
   - NFAmmunitionBoxPistol45Uranium
   - NFAmmunitionBoxShellShotgunUranium
 # Horizon Attachements end
+  - NFClothingBackpackHarmpack # Frontier: use NF prefix
 
 - type: latheRecipePack
   id: SecurityBoards

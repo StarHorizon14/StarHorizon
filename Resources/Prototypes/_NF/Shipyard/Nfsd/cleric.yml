@@ -2,13 +2,13 @@
   id: Cleric
   parent: BaseVessel
   name: NSF Cleric
-  description: Micro support vessel used for emergency rescues and first aid.
+  description: Малый вспомогающий шаттл для медицинской помощи.
   price: 11800 #Appraisal is 10500
   category: Micro
   group: Custom
   access: Security
   mapchecker_group_override: Security  # Treat this as a security vessel for mapchecker purposes
-  shuttlePath: /Maps/_NF/Shuttles/Nfsd/cleric.yml
+  shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/cleric.yml # Horizon
   guidebookPage: Null
   class:
   - Medical
@@ -30,7 +30,7 @@
 - type: gameMap
   id: Cleric
   mapName: 'NSF Cleric'
-  mapPath: /Maps/_NF/Shuttles/Nfsd/cleric.yml
+  mapPath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/cleric.yml # Horizon
   minPlayers: 0
   stations:
     Cleric:

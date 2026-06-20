@@ -34,6 +34,14 @@
       "directions": 4
     },
     {
+      "name": "off-equipped-HELMET-scurret",
+      "directions": 4
+    },
+    {
+      "name": "off-equipped-HELMET-dog",
+      "directions": 4
+    },
+    {
       "name": "on-equipped-HELMET",
       "directions": 4
     },
@@ -42,7 +50,15 @@
       "directions": 4
     },
     {
+      "name": "on-equipped-HELMET-dog",
+      "directions": 4
+    },
+    {
       "name": "HELMET-light-glow",
+      "directions": 4
+    },
+    {
+      "name": "HELMET-light-glow-dog",
       "directions": 4
     },
     {

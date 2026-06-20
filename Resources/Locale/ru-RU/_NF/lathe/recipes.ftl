@@ -29,3 +29,11 @@ lathe-recipe-DrinkKegPlastic-name = кега (пластиковая)
 # Paper
 lathe-recipe-NFSheetPaperFromWood-name = бумага (дерево)
 lathe-recipe-NFSheetPaperFromCardboard-name = бумага (картон)
+# Inflatables
+lathe-recipe-NFInflatableFloorStack1-name = надувной пол
+lathe-recipe-NFInflatableWallStack1-name = надувная стена
+lathe-recipe-NFInflatableWindowStack1-name = надувное окно
+lathe-recipe-NFInflatableDoorStack1-name = надувная дверь
+lathe-recipe-NFInflatableDoorWindowStack1-name = надувная дверь-окно
+lathe-recipe-NFInflatableDockStack1-name = надувной док
+lathe-recipe-NFInflatableCrateStack1-name = надувной ящик

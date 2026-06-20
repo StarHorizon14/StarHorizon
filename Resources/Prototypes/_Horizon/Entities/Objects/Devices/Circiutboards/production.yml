@@ -1,5 +1,19 @@
 - type: entity
   parent: BaseMachineCircuitboard
+  id: LumberMillMachineCircuitboard
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: LumberMill
+    requirements:
+      Manipulator: 2
+    stackRequirements:
+      Steel: 5
+      Glass: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
   id: OreProcessorFuelMachineCircuitboard
   name: fuel processor machine board
   components:

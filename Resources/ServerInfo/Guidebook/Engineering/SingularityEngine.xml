@@ -1,4 +1,4 @@
-﻿<Document>
+<Document>
   # Сингулярность-двигатель
   Сингулярность-двигатель — это мощный генератор, использующий удержанную сингулярность для производства энергии для станции.
 
@@ -101,7 +101,7 @@
   Замедлители можно разработать в отделе исследований или заказать через карго.
 
   <Box>
-    <GuideEntityEmbed Entity="WeaponParticleDecelerator"/>
+    <GuideEntityEmbed Entity="NFWeaponParticleDecelerator"/>
   </Box>
 
 </Document>

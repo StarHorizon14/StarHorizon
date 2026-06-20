@@ -15,12 +15,14 @@ trait-clumsy-name = Неуклюжий
 trait-clumsy-desc = Ты очень неуклюжий! Некоторые действия, такие стрельба - сложнее.
 trait-unclonable-name = Неклонируемый
 trait-unclonable-desc = Из-за административного недосмотра или аномальной генетики ваши гены не секвенированы NT, и вас нельзя клонировать.
-trait-lizard-accent-name = Reptilian accent
-trait-lizard-accent-desc = Be it through continual ekssposssure or otherwissse, you sssound like a reptile.
+trait-lizard-accent-name = Ящерный акцент
+trait-lizard-accent-desc = Будь то из-за поссстоянного воздейссствия или по другим причинам, вы шшшипите как рептилия.
 trait-moth-accent-name = Нианский акцент
 trait-moth-accent-desc = В некоторых ваших словах слышен особый зззвон.
 trait-dwarf-accent-name = Дворфский акцент
 trait-dwarf-accent-desc = Похоже, ты провёл слишком много времени с киркой в руках. Rock and stone!
+trait-russian-accent-name = Русский акцент
+trait-russian-accent-desc = Ушанка в комплект не входит.
 trait-fluffy-name = Пушистый (только Нианы)
 trait-fluffy-desc = Ты выглядишь более пушистым, чем другие нианы.
 # These traits are bound to be replaced with a slider, but they live here for now.

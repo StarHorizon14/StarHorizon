@@ -10,7 +10,7 @@ using Content.Shared._RMC14.Weapons.Ranged; // Horizon Attachments
 namespace Content.Shared.Weapons.Ranged.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
-// [Access(typeof(SharedGunSystem))] Frontier: Commenting this out because OniSystem (server) needs to access this component
+// [Access(typeof(SharedGunSystem))] Horizon
 public sealed partial class GunComponent : Component
 {
     #region Sound

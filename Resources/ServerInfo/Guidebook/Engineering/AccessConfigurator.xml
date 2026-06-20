@@ -3,7 +3,7 @@
   Конфигуратор доступа - это инструмент, позволяющий установить, кто из персонала может использовать те или иные устройства.
 
   <Box>
-	  <GuideEntityEmbed Entity="AccessConfigurator" Caption="access configurator"/>
+    <GuideEntityEmbed Entity="AccessConfigurator" Caption="Конфигуратор доступа"/>
   </Box>
 
   Настраиваемые устройства включают в себя шлюзы, защищённые ящики и шкафчики, а также аппараты с ограниченным доступом.
@@ -17,7 +17,7 @@
   - Сначала воспользуйтесь конфигуратором доступа на выбранном устройстве, чтобы связать их вместе. При этом автоматически откроется интерфейс конфигуратора.
   - Затем, вставьте ID-карту в конфигуратор доступов.
   - Установите требования к доступу подключённого устройства. Добавление или удаление доступов зависит от наличия доступов у вставленной ID-карты.
-  - Любые внесённые изменения будут применены color=#a4885c]немедленно[/color] - просто извлеките ID-карту из конфигуратора доступа и закройте пользовательский интерфейс, когда закончите.
+  - Любые внесённые изменения будут применены [color=#a4885c]немедленно[/color] - просто извлеките ID-карту из конфигуратора доступа и закройте пользовательский интерфейс, когда закончите.
 
   ## Ограничения на изменение доступа
   В качестве меры предосторожности, вставленный идентификатор должен обладать [bold]всеми[/bold] доступами, которые в настоящее время активны на подключённом устройстве, чтобы изменить его.
@@ -35,16 +35,16 @@
     <GuideEntityEmbed Entity="AccessBreaker"/>
   </Box>
 
-  To repair the damage, you'll commonly need to partially deconstruct the device and reconstruct it.
-  This will reset the access requirements to defaults, allowing you to reconfigure the device as needed.
+  Для ремонта повреждений вам обычно потребуется частично разобрать устройство и собрать его заново.
+  Это сбросит требования к доступу к значениям по умолчанию, что позволит вам перенастроить устройство по мере необходимости.
 
-  ## Repairing access-broken Airlocks
-  Airlocks can be repaired multiple ways if their access requirements have been tampered with.
+  ## Ремонт шлюзов с повреждённым доступом
+  Шлюзы можно отремонтировать несколькими способами, если их требования к доступу были нарушены.
 
-  If you have an Access Configurator, you can use a [color=#a4885c]Screwdriver[/color] to remove the airlock's maintenance panel, and then use the Access Configurator to reconfigure the airlock's access requirements.
-  No partial deconstruction is needed.
+  Если у вас есть Конфигуратор доступа, вы можете использовать [color=#a4885c]Отвёртку[/color], чтобы снять панель технического обслуживания шлюза, а затем использовать Конфигуратор доступа для перенастройки требований к доступу шлюза.
+  Частичная разборка не требуется.
 
-  If you don't have an Access Configurator, you can still fix the airlock by partially deconstructing it until you remove the door electronics, and then reconstructing it.
-  This will reset the airlock to the default access requirements it had at the start of the shift.
+  Если у вас нет Конфигуратора доступа, вы всё равно можете починить шлюз, частично разобрав его до удаления электроники двери, а затем собрав заново.
+  Это сбросит шлюз к требованиям доступа по умолчанию, которые были в начале смены.
 
 </Document>

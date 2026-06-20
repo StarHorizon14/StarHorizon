@@ -45,10 +45,11 @@
       whitelist:
         tags:
           - PirateUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - NFPirateCaptain
-        - NFPirateFirstMate
+    - !type:BuyerOutpostCondition
+      faction: Pirate
+      totalOutpostWhitelist: 0
+      namedOutpostWhitelist: 
+        - NFDev
 
 - type: listing
   id: PirateWeaponTurretTarnyxReload

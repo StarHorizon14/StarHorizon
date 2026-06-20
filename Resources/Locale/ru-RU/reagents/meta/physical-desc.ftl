@@ -96,4 +96,5 @@ reagent-physical-desc-reflective = отражающее
 reagent-physical-desc-holy = святое
 reagent-physical-desc-slimy = слизистое
 reagent-physical-desc-unidentifiable = неидентифицируемое
+reagent-physical-desc-non-newtonian = не ньютоновское
 reagent-physical-desc-neural = нейронное

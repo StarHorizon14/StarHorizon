@@ -1,4 +1,5 @@
-# Фронтир шаттлы
+# Ваучеры для тестов
+# Фронтир шаттлы 
 - type: entity
   parent: BaseShipVoucher
   id: ShipVoucherFrontierShipyard
@@ -129,3 +130,19 @@
     - state: blue
   - type: ShipyardVoucher
     consoleType: Custom
+
+# Игровые ваучеры
+- type: entity
+  parent: ShipVoucherFrontierGuard
+  id: ShipVoucherFrontierDetective
+  name: ваучер шаттла детектива
+  description: Позволяет бесплатно купить один детективный шаттл на верфи Фронтира. Уничтожается при продаже шаттла.
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - state: voucherstationguard
+  - type: ShipyardVoucher
+    consoleType: Security
+    access:
+    - Detective 

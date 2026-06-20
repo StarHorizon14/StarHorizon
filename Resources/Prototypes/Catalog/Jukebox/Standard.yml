@@ -43,12 +43,6 @@
 # Horizon start
 
 - type: jukebox
-  id: marchimp
-  name: March - Imperial
-  path:
-    path: /Audio/_Horizon/Jukebox/marchimp.ogg
-
-- type: jukebox
   id: marchmar
   name: March - Marriage
   path:

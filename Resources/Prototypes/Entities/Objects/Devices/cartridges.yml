@@ -31,9 +31,9 @@
     icon:
       sprite: Interface/Misc/program_icons.rsi
       state: nano_task
-  - type: UIFragment
-    ui: !type:NanoTaskUi
-  - type: NanoTaskCartridge
+  - type: UIFragment  # Horizon - заменил фрагмент
+    ui: !type:GoalsListUi
+  - type: GoalsListCartridge  # Horizon - заменил компач на наш
 
 - type: entity
   parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
@@ -155,6 +155,10 @@
         sprite: Objects/Specific/Medical/healthanalyzer.rsi
         state: icon
     - type: MedTekCartridge
+    # Frontier: Add MedTekCartridgePrinter
+    - type: MedTekCartridgePrinter
+      printTemplate: PaperWrittenMedicalMedtekPatientRecord
+    # End Frontier: Add MedTekCartridgePrinter
 
 - type: entity
   parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge

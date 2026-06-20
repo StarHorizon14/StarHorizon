@@ -56,7 +56,7 @@
     containers:
       key_slots:
       - EncryptionKeyTraffic
-      - EncryptionKeySyndie
+#      - EncryptionKeySyndie # Horizon
 
 - type: entity
   id: IntercomNfsd

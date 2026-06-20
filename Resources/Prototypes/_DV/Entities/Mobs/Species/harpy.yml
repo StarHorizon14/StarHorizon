@@ -140,6 +140,16 @@
     femaleDisplacements: {} # Frontier: female jumpsuit displacement
   - type: HarpyVisuals
   - type: UltraVision
+  # Horizon: Height traits (harpy base scale 0.9, 0.9 - slightly small)
+  - type: TallWhitelist
+    scale: 1.0   # Normal human size
+    density: 110
+    cosmeticOnly: false
+  - type: ShortWhitelist
+    scale: 0.8   # Smaller than base 0.9
+    density: 70
+    cosmeticOnly: false
+  # Horizon end
 #  - type: Tag # Frontier
 #    tags: # Frontier
 #    - CanPilot # Frontier

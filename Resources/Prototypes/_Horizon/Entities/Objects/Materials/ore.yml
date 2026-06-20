@@ -27,8 +27,8 @@
 - type: entity
   parent: OreBaseFar
   id: PsycoreOre
-  name: psycore ore
-  suffix: Full
+  name: псикор руда
+  suffix: Полный
   components:
   - type: Sprite
     state: psycore
@@ -72,8 +72,8 @@
 - type: entity
   parent: OreBaseFar
   id: TitanOre
-  name: titan ore
-  suffix: Full
+  name: титановая руда
+  suffix: Полный
   components:
   - type: Sprite
     state: titan
@@ -117,8 +117,8 @@
 - type: entity
   parent: OreBaseFar
   id: EmeraldOre
-  name: emerald ore
-  suffix: Full
+  name: изумрудная руда
+  suffix: Полный
   components:
   - type: Stack
     stackType: EmeraldOre
@@ -154,8 +154,8 @@
 - type: entity
   parent: OreBaseFar
   id: RubyOre
-  name: ruby ore
-  suffix: Full
+  name: рубиновая руда
+  suffix: Полный
   components:
   - type: Stack
     stackType: RubyOre
@@ -191,8 +191,8 @@
 - type: entity
   parent: OreBaseFar
   id: SapphireOre
-  name: sapphire ore
-  suffix: Full
+  name: сапфировая руда
+  suffix: Полный
   components:
   - type: Stack
     stackType: SapphireOre
@@ -228,8 +228,8 @@
 - type: entity
   parent: OreBaseFar
   id: TopazOre
-  name: topaz ore
-  suffix: Full
+  name: топазовая руда
+  suffix: Полный
   components:
   - type: Stack
     stackType: TopazOre
@@ -265,8 +265,8 @@
 - type: entity
   parent: OreBaseFar
   id: ToriumOre
-  name: torium ore
-  suffix: Full
+  name: ториевая руда
+  suffix: Полный
   components:
   - type: Stack
     stackType: ToriumOre
@@ -319,8 +319,8 @@
 - type: entity
   parent: OreBaseFar
   id: PlutoniumOre
-  name: plutonium ore
-  suffix: Full
+  name: плутоневая руда
+  suffix: Полный
   components:
   - type: Stack
     stackType: PlutoniumOre
@@ -373,8 +373,8 @@
 - type: entity
   parent: OreBaseFar
   id: NeptuniumOre
-  name: neptunium ore
-  suffix: Full
+  name: нептуновая руда
+  suffix: Полный
   components:
   - type: Stack
     stackType: NeptuniumOre

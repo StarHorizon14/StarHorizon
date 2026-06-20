@@ -110,6 +110,34 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField]
     public ProtoId<MarkingPrototype>? UndergarmentBottom = new ProtoId<MarkingPrototype>("UndergarmentBottomBoxers");
 
+    // _Horizon: Hair gradient
+    [DataField, AutoNetworkedField]
+    public bool HairGradientEnabled { get; set; }
+
+    [DataField, AutoNetworkedField]
+    public Color HairGradientSecondaryColor { get; set; } = Color.White;
+
+    [DataField, AutoNetworkedField]
+    public int HairGradientDirection { get; set; }
+
+    [DataField, AutoNetworkedField]
+    public bool FacialHairGradientEnabled { get; set; }
+
+    [DataField, AutoNetworkedField]
+    public Color FacialHairGradientSecondaryColor { get; set; } = Color.White;
+
+    [DataField, AutoNetworkedField]
+    public int FacialHairGradientDirection { get; set; }
+
+    [DataField, AutoNetworkedField]
+    public bool AllMarkingsGradientEnabled { get; set; }
+
+    [DataField, AutoNetworkedField]
+    public Color AllMarkingsGradientSecondaryColor { get; set; } = Color.White;
+
+    [DataField, AutoNetworkedField]
+    public int AllMarkingsGradientDirection { get; set; }
+
     /// <summary>
     ///     The displacement maps that will be applied to specific layers of the humanoid.
     /// </summary>

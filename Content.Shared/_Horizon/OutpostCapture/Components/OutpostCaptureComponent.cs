@@ -12,6 +12,10 @@ public sealed partial class OutpostCaptureComponent : Component
 {
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
+    public string OutpostName = "empty";
+
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public int NeedCaptured = 1;
 
     [DataField]

@@ -1,2 +1,2 @@
-ent-NFMagazineBoxFoam = ammunition box (foam)
+ent-NFMagazineBoxFoam = коробка патронов (паролон)
     .desc = { ent-NFBaseMagazineBoxRifle20.desc }

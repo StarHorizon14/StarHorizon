@@ -41,25 +41,25 @@
   components:
   - type: Paper
     content: |2
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]N[/bold]◣ [bold]Командование Фронтира[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Employment Contract[/head]
+      [head=2]Трудовой Договор[/head]
 
-      [bold]Name:[/bold]
-      [bold]Species:[/bold]
-      [bold]Position Title:[/bold]
-      [bold]Position Responsibilities:[/bold]
+      [bold]Имя:[/bold]
+      [bold]Раса:[/bold]
+      [bold]Должность:[/bold]
+      [bold]Обязанности:[/bold]
           [bullet/]
           [bullet/]
           [bullet/]
 
-      [bold]Hourly Wage:[/bold]
+      [bold]Почасовая оплата:[/bold]
 
-      [bold]Shift Time:[/bold]
+      [bold]Время смены:[/bold]
 
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]Форма недействительна без подписей обеих сторон и печати Командования Фронтира (Шерифа или Представителя Фронтира).[/color]
 
 - type: entity
   id: PaperWrittenFrontierEmployeePayHistory
@@ -69,14 +69,14 @@
   components:
   - type: Paper
     content: |2 # If editing this, edit PaperWrittenNfsdPayHistory
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]N[/bold]◣ [bold]Командование Фронтира[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Employee Pay History[/head]
+      [head=2]История Выплат Сотрудника[/head]
 
-      [bold]Name:[/bold]
-      [bold]Position Title:[/bold]
-      [bold]Hourly Wage:[/bold]
-      [bold]Pay History (Shift Time, Wage Recieved):[/bold]
+      [bold]Имя:[/bold]
+      [bold]Должность:[/bold]
+      [bold]Почасовая оплата:[/bold]
+      [bold]История выплат (Время смены, Полученная сумма):[/bold]
           [bullet/]
           [bullet/]
           [bullet/]
@@ -86,7 +86,7 @@
 
 
 
-      [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]Форма недействительна без подписи и печати Командования Фронтира (Шерифа или Представителя Фронтира).[/color]
 
 - type: entity # Based on form made by Willzile1 (Jon-Gah)
   id: PaperWrittenFrontierFundRequisition
@@ -96,18 +96,18 @@
   components:
   - type: Paper
     content: |2
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]N[/bold]◣ [bold]Командование Фронтира[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Fund Requisition[/head]
+      [head=2]Запрос на выделение средств[/head]
 
-      [bold]Name:[/bold] 
-      [bold]Amount:[/bold] 
-      [bold]Reason:[/bold] 
-      [bold]Shift Time:[/bold] 
+      [bold]Имя:[/bold]
+      [bold]Сумма:[/bold]
+      [bold]Причина:[/bold]
+      [bold]Время смены:[/bold]
 
 
 
-      [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]Форма недействительна без подписи и печати Командования Фронтира (Шерифа или Представителя Фронтира).[/color]
 
 - type: entity # Based on form made by Starly (Shaw Clifflower)
   id: PaperWrittenFrontierAuthorization
@@ -117,37 +117,37 @@
   components:
   - type: Paper
     content: |2 # When updating this, update PaperWrittenNfsdAuthorization
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]N[/bold]◣ [bold]Командование Фронтира[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Authorization for Bluespace Threats[/head]
+      [head=2]Разрешение на работу с Блюспейс Угрозами[/head]
 
-      [color=#660000]This Form may only be issued without an acting Sheriff or with the acting Sheriff's approval.[/color]
+      [color=#660000]Эта форма может быть выдана только при отсутствии действующего Шерифа или с его одобрения.[/color]
 
-      [bold]Vessel Captain:[/bold]
-      [bold]Vessel IFF:[/bold]
-      [bold]Shift Time:[/bold]
+      [bold]Капитан судна:[/bold]
+      [bold]IFF судна:[/bold]
+      [bold]Время смены:[/bold]
 
-      [bold]Issuing Frontier Command:[/bold]
-          [bullet]XXXXXXXX, Station Representative
-          [bullet]XXXXXXXX, Sheriff
+      [bold]Выдавшее Командование Фронтира:[/bold]
+          [bullet]XXXXXXXX, Представитель Фронтира
+          [bullet]XXXXXXXX, Шериф
 
-      This document authorizes the above vessel and its captain to assist and cooperate with the NFSD and Frontier authorities in neutralizing hostile bluespace threats to Frontier. These include, but are not limited to:
-          [bullet] Cultist vessels
-          [bullet] Syndicate vessels
-          [bullet] Wizard Federation vessels
-          [bullet] Arcadia Industries vessels
+      Настоящим документом уполномочивается вышеуказанное судно и его капитан оказывать содействие и сотрудничать с ДШНФ и властями Фронтира в нейтрализации блюспейс угроз для Фронтира. К ним относятся, но не ограничиваются:
+          [bullet] Судна культистов
+          [bullet] Судна Синдиката
+          [bullet] Судна Федерации Волшебников
+          [bullet] Судна Arcadia Industries
 
-      This document does NOT deputize the authorized party. The authorized party is not granted special privileges to arrest, detain, and prosecute individuals associated with Nanotrasen.
+      Этот документ НЕ делает уполномоченную сторону заместителем. Уполномоченной стороне не предоставляется особых прав на арест, задержание и судебное преследование лиц, связанных с Нанотрейзен.
 
-      [bold]Any contraband seized during operations aboard hostile vessels must be surrendered, either to the NFSD or the Station Representative, for a cash bounty. Failure to surrender contraband will lead to the forfeiture of this agreement, and the authorized party may be liable for criminal charges.[/bold]
-        
-      The authorized party is to keep a copy of this document for inspection. The authorized party is expected to maintain contact with NFSD command and/or the Station Representative to minimize casualties.
+      [bold]Любой контрабандный товар, захваченный во время операций на борту враждебных судов, должен быть сдан либо ДШНФ, либо Представителю Фронтира, за денежное вознаграждение. Несдача контрабанды приведет к расторжению данного соглашения, и уполномоченная сторона может быть привлечена к уголовной ответственности.[/bold]
 
-      Before engaging with hostile vessels, the authorized party is expected to follow any instructions given by the NFSD for staging or other preparation prior to boarding.
+      Уполномоченная сторона должна хранить копию этого документа для проверки. Ожидается, что уполномоченная сторона будет поддерживать связь с командованием ДШНФ и/или Представителем Фронтира, чтобы минимизировать жертвы.
+
+      Перед столкновением с враждебными судами уполномоченная сторона должна следовать любым инструкциям, данным ДШНФ для подготовки или иных действий перед высадкой на борт.
 
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]Форма недействительна без подписей обеих сторон и печати Командования Фронтира (Шерифа или Представителя Фронтира).[/color]
 
 - type: entity # Based on form made by Willzile1 (Jon-Gah)
   id: PaperWrittenFrontierShuttleTitleChange
@@ -157,18 +157,18 @@
   components:
   - type: Paper
     content: |2
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]N[/bold]◣ [bold]Командование Фронтира[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Shuttle Title Change[/head]
+      [head=2]Смена Названия Шаттла[/head]
 
-      [bold]Name of Captain:[/bold]
-      [bold]Old Ship Title:[/bold]
-      [bold]New Ship Title:[/bold]
-      [bold]Shift Time:[/bold]
+      [bold]Имя капитана:[/bold]
+      [bold]Старое название судна:[/bold]
+      [bold]Новое название судна:[/bold]
+      [bold]Время смены:[/bold]
 
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]Форма недействительна без подписей обеих сторон и печати Командования Фронтира (Шерифа или Представителя Фронтира).[/color]
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierShuttleDerelict
@@ -178,23 +178,23 @@
   components:
   - type: Paper
     content: |2
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]N[/bold]◣ [bold]Командование Фронтира[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Declaration of Salvage[/head]
+      [head=2]Декларация о признании судна брошенным[/head]
 
-      [bold]Vessel IFF:[/bold] [color=#2200BD][/color]
-      [bold]Time of First Hail:[/bold] [color=#2200BD][/color]
-      [bold]Shift Time:[/bold] [color=#2200BD][/color]
+      [bold]IFF судна:[/bold] [color=#2200BD][/color]
+      [bold]Время первого запроса:[/bold] [color=#2200BD][/color]
+      [bold]Время смены:[/bold] [color=#2200BD][/color]
 
-      This is a formal declaration from Frontier's Station Traffic Controller, hereby declaring the above vessel to be abandoned by its captain, and recognized as salvage. This vessel has been unresponsive on both radio and fax for over twenty (20) minutes.
+      Это официальное заявление от Станционного Контроллера Движения Фронтира, объявляющее вышеуказанное судно покинутым его капитаном и признанное пригодным для утилизации. Это судно не отвечало ни по радио, ни по факсу более двадцати (20) минут.
 
-      Pursuant to Space Law §9.3, this vessel will be moved out to three hundred (300) meters from Frontier Station by an agent representing Frontier Station or the NFSD, and will be salvageable by any other vessel operating within the sector.
+      В соответствии с Космическим Законом ..., это судно будет отбуксировано на расстояние триста (300) метров от Станции Фронтир лицом, представляющим Станцию Фронтир или ДШНФ, и может быть утилизировано любым другим судном, работающим в секторе.
 
-      Neither Frontier Station nor the Nanotrasen Corporation will reimburse any party affiliated with this vessel for losses incurred.
+      Ни Станция Фронтир, ни Корпорация Нанотрейзен не будут возмещать убытки любой стороне, связанной с этим судном.
 
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]Форма недействительна без подписей обеих сторон и печати Командования Фронтира (Шерифа или Представителя Фронтира).[/color]
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierContrabandAmnesty
@@ -204,29 +204,29 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenNfsdContrabandAmnesty
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]N[/bold]◣ [bold]Командование Фронтира[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Contraband Amnesty Agreement[/head]
+      [head=2]Соглашение об Амнистии Контрабанды[/head]
 
-      [color=#660000]This Form may only be issued without an acting Sheriff or with the acting Sheriff's approval.[/color]
+      [color=#660000]Эта форма может быть выдана только при отсутствии действующего Шерифа или с его одобрения.[/color]
 
-      [head=3]Contraband Holder[/head]
-          [bold]Name:[/bold] 
-          [bold]Species:[/bold] 
-          [bold]Vessel IFF:[/bold] 
+      [head=3]Владелец Контрабанды[/head]
+          [bold]Имя:[/bold]
+          [bold]Вид:[/bold]
+          [bold]IFF судна:[/bold]
 
-      [bold]Payout per FUC:[/bold] [color=#ff0000]$2,000[/color]
-      [bold]Shift Time:[/bold] 
+      [bold]Выплата за ЕКС:[/bold] [color=#ff0000]$2,000[/color]
+      [bold]Время смены:[/bold]
 
-      This document is a contract between the above Contraband Holder and Frontier Command.
+      Этот документ является контрактом между вышеуказанным Владельцем Контрабанды и Командованием Фронтира.
 
-      Any crimes of contraband possession for the Contraband Holder will be waived so long as all class 3 contraband items, and any class 2 contraband items not subject to a Class 2 Contraband Permit are turned in within reasonable time (subject to the clause below), and not used for malicious purposes. Noncompliance with this document results in voiding any standing Class 2 Contraband Permits.
+      Любые преступления, связанные с хранением контрабанды для Владельца Контрабанды, будут аннулированы при условии, что все предметы контрабанды класса 3 и любые предметы контрабанды класса 2, не подпадающие под Разрешение на Контрабанду Класса 2, будут сданы в разумные сроки (согласно условию ниже) и не будут использованы в злонамеренных целях. Несоблюдение данного документа приводит к аннулированию любых действующих Разрешений на Контрабанду Класса 2.
 
-      If the Contraband Holder is not paid in full at the above rate for any contraband turned in, they may remain in possession of the contraband without penalty at their discretion.
+      Если Владелец Контрабанды не получит полную оплату по указанной выше ставке за сданную контрабанду, он может по своему усмотрению оставить контрабанду у себя без штрафных санкций.
 
 
 
-      [color=#AAAAAA]This form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]Форма недействительна без подписей обеих сторон и печати Командования Фронтира (Шерифа или Представителя Фронтира).[/color]
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierContrabandTurnover
@@ -236,30 +236,30 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenNfsdContrabandTurnover
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]N[/bold]◣ [bold]Командование Фронтира[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Contraband Turnover Receipt[/head]
+      [head=2]Квитанция о Сдаче Контрабанды[/head]
 
-      [bold]Contraband Holder:[/bold] 
-      [bold]Total Contraband Value (FUC):[/bold] 
-      [bold]Payout per FUC:[/bold] [color=#ff0000]$2,000[/color]
-      [bold]Payout Total:[/bold] 
+      [bold]Владелец Контрабанды:[/bold]
+      [bold]Общая стоимость контрабанды (ТК):[/bold]
+      [bold]Выплата за один ТК:[/bold] [color=#ff0000]$2,000[/color]
+      [bold]Итоговая выплата:[/bold]
 
-      [bold]C2 Contraband:[/bold]
-          [bullet/] 
-          [bullet/] 
-          [bullet/] 
+      [bold]Контрабанда К2:[/bold]
+          [bullet/]
+          [bullet/]
+          [bullet/]
 
-      [bold]C3 Contraband:[/bold]
-          [bullet/] 
-          [bullet/] 
-          [bullet/] 
+      [bold]Контрабанда К3:[/bold]
+          [bullet/]
+          [bullet/]
+          [bullet/]
 
-      [bold]Shift Time:[/bold] 
+      [bold]Время смены:[/bold]
 
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative).[/color]
+      [color=#AAAAAA]Форма недействительна без подписей обеих сторон и печати Командования Фронтира (Шерифа или Представителя Фронтира).[/color]
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierContrabandPermit
@@ -269,24 +269,24 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenNfsdContrabandPermit
-      [color=#000f89]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#000f89]◥[bold]N[/bold]◣ [bold]Командование Фронтира[/bold][/color]
       [color=#000f89]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Class 2 Contraband Permit[/head]
+      [head=2]Разрешение на Контрабанду Класса 2[/head]
 
-      [color=#660000]This Form may only be issued without an acting Sheriff or with the acting Sheriff's approval.[/color]
+      [color=#660000]Эта форма может быть выдана только при отсутствии действующего Шерифа или с его одобрения.[/color]
 
-      [bold]Permit Holder:[/bold] 
-      [bold]Holder Crew:[/bold]
-          [bullet/] 
-          [bullet/] 
-          [bullet/] 
+      [bold]Владелец Разрешения:[/bold]
+      [bold]Экипаж Владельца:[/bold]
+          [bullet/]
+          [bullet/]
+          [bullet/]
 
-      [bold]Shift Time:[/bold] 
+      [bold]Время смены:[/bold]
 
-      This Permit allows the Holder and crew, as listed above, to possess and use class 2 contraband.
-      Non-compliance with a Contraband Amnesty agreement voids this Permit.
-      Refer to §6.1.4 of Space Law for a full definition of class 2 contraband.
+      Это Разрешение позволяет Владельцу и экипажу, указанным выше, владеть и использовать контрабанду класса 2.
+      Несоблюдение Соглашения об Амнистии за Контрабанду аннулирует это Разрешение.
+      Обратитесь к ... Космического Закона для полного определения контрабанды класса 2.
 
 
 
-      [color=#AAAAAA]This Permit is void without the signature of the Holder and the signature and stamp of the Sheriff.[/color]
+      [color=#AAAAAA]Это Разрешение недействительно без подписи Владельца и подписи и печати Шерифа.[/color]

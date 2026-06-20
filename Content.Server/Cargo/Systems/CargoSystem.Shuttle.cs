@@ -1,11 +1,14 @@
 using System.Linq;
 using Content.Server.Cargo.Components;
+using Content.Server._Horizon.MarketSaturation; // Horizon - насыщение рынка
+using Content.Shared._Horizon.MarketSaturation; // Horizon - насыщение рынка
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CCVar;
+using Content.Shared.Stacks; // Horizon
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
@@ -131,14 +134,14 @@ public sealed partial class CargoSystem
 
     #region Station
 
-    private bool SellPallets(EntityUid gridUid, EntityUid station, out HashSet<(EntityUid, OverrideSellComponent?, double)> goods)
+    private bool SellPallets(EntityUid gridUid, EntityUid station, out HashSet<(EntityUid, OverrideSellComponent?, double)> goods, EntityUid actor) // Horizon - добавил поле actor
     {
         GetPalletGoods(gridUid, out var toSell, out goods);
 
         if (toSell.Count == 0)
             return false;
 
-        var ev = new EntitySoldEvent(toSell, station);
+        var ev = new EntitySoldEvent(toSell, station, actor);   // Horizon - добавил поле actor
         RaiseLocalEvent(ref ev);
 
         foreach (var ent in toSell)
@@ -153,6 +156,42 @@ public sealed partial class CargoSystem
     {
         goods = new HashSet<(EntityUid, OverrideSellComponent?, double)>();
         toSell = new HashSet<EntityUid>();
+
+        // Horizon: Получаем станцию для применения насыщения рынка
+        var owningStation = _station.GetOwningStation(gridUid);
+        MarketSaturationComponent? saturationComp = null;
+        if (owningStation != null)
+            TryComp(owningStation.Value, out saturationComp);
+
+        // Horizon: Первый проход — считаем количество предметов каждого типа на паллетах
+        var pendingCounts = new Dictionary<string, int>();
+        if (saturationComp != null)
+        {
+            foreach (var (palletUid, _, _) in GetCargoPallets(gridUid, BuySellType.Sell))
+            {
+                _setEnts.Clear();
+                _lookup.GetEntitiesIntersecting(palletUid, _setEnts, LookupFlags.Dynamic | LookupFlags.Sundries);
+
+                foreach (var ent in _setEnts)
+                {
+                    if (_xformQuery.TryGetComponent(ent, out var xf) && (xf.Anchored || !CanSell(ent, xf)))
+                        continue;
+                    if (_blacklistQuery.HasComponent(ent))
+                        continue;
+
+                    var proto = MetaData(ent).EntityPrototype?.ID;
+                    if (proto == null)
+                        continue;
+
+                    var cnt = 1;
+                    if (TryComp<StackComponent>(ent, out var stk))
+                        cnt = stk.Count;
+
+                    pendingCounts[proto] = pendingCounts.GetValueOrDefault(proto) + cnt;
+                }
+            }
+        }
+        // Horizon конец
 
         foreach (var (palletUid, _, _) in GetCargoPallets(gridUid, BuySellType.Sell))
         {
@@ -181,6 +220,32 @@ public sealed partial class CargoSystem
                     continue;
 
                 var price = _pricing.GetPrice(ent);
+
+                // Horizon: Применяем насыщение рынка и рыночные события
+                if (saturationComp != null)
+                {
+                    var protoId = MetaData(ent).EntityPrototype?.ID;
+                    if (protoId != null)
+                    {
+                        // Насыщение рынка
+                        if (pendingCounts.TryGetValue(protoId, out var pendingCount))
+                        {
+                            var existingSold = saturationComp.SaturationData.TryGetValue(protoId, out var satData)
+                                ? satData.TotalSold
+                                : 0;
+                            var totalWithPending = existingSold + pendingCount;
+                            var multiplier = MarketSaturationSystem.GetMultiplier(totalWithPending, saturationComp);
+                            price = Math.Round(price * multiplier);
+                        }
+
+                        // Рыночные события — модификатор цены от активных событий
+                        var eventMod = MarketEventSystem.GetEventModifier(protoId, saturationComp);
+                        if (eventMod != 1.0)
+                            price = Math.Round(price * eventMod);
+                    }
+                }
+                // Horizon конец
+
                 if (price == 0)
                     continue;
                 toSell.Add(ent);
@@ -230,7 +295,7 @@ public sealed partial class CargoSystem
             return;
         }
 
-        if (!SellPallets(gridUid, station, out var goods))
+        if (!SellPallets(gridUid, station, out var goods, args.Actor))  // Horizon - добавил поле actor
             return;
 
         var baseDistribution = CreateAccountDistribution((station, bankAccount));
@@ -267,4 +332,4 @@ public sealed partial class CargoSystem
 /// deleted but after the price has been calculated.
 /// </summary>
 [ByRefEvent]
-public readonly record struct EntitySoldEvent(HashSet<EntityUid> Sold, EntityUid Station);
+public readonly record struct EntitySoldEvent(HashSet<EntityUid> Sold, EntityUid Station, EntityUid Actor); // Horizon - добавил поле Actor

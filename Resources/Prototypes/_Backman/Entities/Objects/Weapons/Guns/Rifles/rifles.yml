@@ -1,0 +1,795 @@
+- type: entity
+  name: AKMS
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponAKMSRifle
+  suffix: Backman, Штурмовая винтовка
+  description: An iconic weapon of war. Uses 7.62x39 ammo.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tiny.rsi
+  - type: Gun
+    minAngle: 2.5
+    maxAngle: 10
+    angleIncrease: 0.7
+    angleDecay: 3
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleLight762x39
+        insertSound: /Audio/Weapons/Guns64/Rifles/ak47_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/ak47_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifleLight762x39
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight762x39
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle762x39
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.3
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-cybersun-industries
+
+- type: entity
+  name: AK74-U
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponRifleAKSU
+  suffix: Backman, Штурмовая винтовка
+  description: An iconic weapon of war. Uses 7.62x39 ammo.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi
+  - type: Gun
+    minAngle: 2.5
+    maxAngle: 15
+    angleIncrease: 0.9
+    angleDecay: 3
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleLight762x39
+        insertSound: /Audio/Weapons/Guns64/Rifles/ak47_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/ak47_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifleLight762x39
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight762x39
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle762x39
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.1
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-cybersun-industries
+
+- type: entity
+  name: AR-18
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponRifleAR18
+  suffix: Backman, Штурмовая винтовка
+  description: The H&K AR-18 carbine is one of the standard rifles used by EarthGov army. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
+  - type: Gun
+    minAngle: 1.4
+    maxAngle: 12
+    angleIncrease: 0.8
+    angleDecay: 4
+    fireRate: 6.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/ar18.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Rifles/m41a_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle556UEG
+        insertSound: /Audio/Weapons/Guns64/Rifles/ar18_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/ar18_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle556UEG
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight556UEG
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle556UEG
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.3
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: G-36
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponRifleG36
+  suffix: Backman, Штурмовая винтовка
+  description: The H&K G-36 assault rifle used to be the EarthGov army standard issue rifle.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
+  - type: Gun
+    minAngle: 0.8
+    maxAngle: 6
+    angleIncrease: 0.6
+    angleDecay: 4
+    fireRate: 4
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/g36.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Rifles/m41a_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle556UEG
+        insertSound: /Audio/Weapons/Guns64/Rifles/ar18_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/ar18_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle556UEG
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight556UEG
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle556UEG
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.3
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2.5
+    pvsIncrease: 0.25
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: M-28
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponRifleM28
+  suffix: Backman, Штурмовая винтовка
+  description: The M-28 assault rifle used to be the EarthGov army standard issue rifle.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tiny.rsi
+  - type: Gun
+    minAngle: 1.2
+    maxAngle: 12
+    angleIncrease: 0.9
+    angleDecay: 5
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/m28.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Rifles/m28_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle762UEG
+        insertSound: /Audio/Weapons/Guns64/Rifles/m28_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/m28_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle762UEG
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight762UEG
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle762UEG
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.2
+  - type: Construction
+    graph: M28Tactical
+    node: start
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: STG 44
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponRifleSTG44
+  suffix: Backman, Штурмовая винтовка
+  description: A certified classic, this design was hailed as the first successful assault rifle concept, generally termed a 'storm rifle'. Has a higher than usual firerate for it's class.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/tiny.rsi
+  - type: Gun
+    minAngle: 2.2
+    maxAngle: 16
+    angleIncrease: 1
+    angleDecay: 3
+    fireRate: 6.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleLight762x39
+        insertSound: /Audio/Weapons/Guns64/Rifles/ak47_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/ak47_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifleLight762x39
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight762x39
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle762x39
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.2
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-cybersun-industries
+
+- type: entity
+  name: M16A4
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponRifleM16A4
+  suffix: Backman, Штурмовая винтовка
+  description: A light, versatile assault rifle. The 4th generation in the M16 platform, this FN variant has added automatic fire selection and retains relevance among mercenaries and militias thanks to its high customizability. it is incredibly good at rapid burst fire, but must be paced correctly."
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/tiny.rsi
+  - type: Gun
+    minAngle: 0.7
+    maxAngle: 13
+    angleIncrease: 0.8
+    angleDecay: 5
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/m16.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle556UEG
+        insertSound: /Audio/Weapons/Guns64/Rifles/m16_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/m16_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle556UEG
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight556UEG
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle556UEG
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.2
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: Famas
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponRifleFamas
+  suffix: Backman, Штурмовая винтовка
+  description: A light, versatile assault rifle."
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/tiny.rsi
+  - type: Gun
+    minAngle: 1.2
+    maxAngle: 10
+    angleIncrease: 1.8
+    angleDecay: 5
+    fireRate: 4
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/famas.ogg
+    selectedMode: Burst
+    availableModes:
+      - SemiAuto
+      - Burst
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleFamas556UEG
+        insertSound: /Audio/Weapons/Guns64/Rifles/m16_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/m16_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifleFamas556UEG
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight556UEG
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle556UEG
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.2
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2.5
+    pvsIncrease: 0.25
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: BR-64
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponRifleBR64
+  suffix: Backman, Штурмовая винтовка
+  description: The San Cristo Arms BR-64 is the Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/tiny.rsi
+  - type: Gun
+    minAngle: 4.2
+    maxAngle: 19
+    angleIncrease: 2.3
+    angleDecay: 2
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/T64.ogg
+      params:
+        volume: -7
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Rifles/m41a_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineHeavyRifleBR64
+        insertSound: /Audio/Weapons/Guns64/Rifles/m41a_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/m41a_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineHeavyRifle62
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.2
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: V-31 assault rifle
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponRifleV31
+  suffix: Backman, Штурмовая винтовка
+  description: The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. Nevertheless the V-31 continues to see common use due to it's comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. Has good handling due to its compact bullpup design, and is generally effective at all ranges.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/tiny.rsi
+  - type: Gun
+    minAngle: 3.2
+    maxAngle: 17
+    angleIncrease: 1.7
+    angleDecay: 2
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/som_rifle.ogg
+      params:
+        volume: -2
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Rifles/m41a_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleRocket20
+        insertSound: /Audio/Weapons/Guns64/Rifles/t18_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/t18_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifleRocket20
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.2
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: AUG
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponRifleAUG
+  suffix: Backman, Штурмовая винтовка
+  description: A bullpup rifle used as a reserve assault rifle for the UEG. It has a built-in handguard and sight for increased accuracy and reduced recoil. Chambered for .25 rifle cartridge.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aug/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aug/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aug/tiny.rsi
+  - type: Gun
+    minAngle: 1.2
+    maxAngle: 7
+    angleIncrease: 0.5
+    angleDecay: 3
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/famas.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle556UEG
+        insertSound: /Audio/Weapons/Guns64/Rifles/m16_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/m16_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle556UEG
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight556UEG
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle556UEG
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.2
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2.5
+    pvsIncrease: 0.25
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: SCARAB
+  parent: NFBaseWeaponFrameRifleAssault
+  id: WeaponRifleSCARAB
+  suffix: Backman, Штурмовая винтовка
+  description: The Mk.21 Superior Combat Assault Rifle is a light specialized scout rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges by being very adaptable to different situations due.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/scar/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/scar/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/scar/tiny.rsi
+  - type: Gun
+    minAngle: 1.2
+    maxAngle: 9
+    angleIncrease: 0.9
+    angleDecay: 3
+    fireRate: 5.3
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/T64.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle762UEG
+        insertSound: /Audio/Weapons/Guns64/Rifles/m4ra_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/m4ra_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle762UEG
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight762UEG
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle762UEG
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  name: UTAP Mark 1
+  parent: BaseWeaponRifle
+  id: WeaponRifleUTAPM1
+  suffix: Backman, Штурмовая винтовка
+  description: Штурмовая винтовка производства "Interdyne", облегченный вариант Марк 2, используется зачастую частными охранными организациями.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/utap-mark1/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/utap-mark1/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/utap-mark1/tiny.rsi
+  - type: Gun
+    minAngle: 1.2
+    maxAngle: 7
+    angleIncrease: 0.5
+    angleDecay: 3
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Snipers/garand.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle762UEG
+        insertSound: /Audio/Weapons/Guns64/Rifles/m4ra_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/m4ra_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle762UEG
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight762UEG
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle762UEG
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.2
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  parent: [WeaponAKMSRifle, BaseC3Contraband]
+  id: WeaponRifleInteQAKM
+  name: AKM
+  suffix: Rifle
+  description: Iconic weapon of war. Uses 7.62x39 ammo. It is painted in the InteQ brand color.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Rifles/inteq_akm.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Guns/Rifles/inteq_akm.rsi

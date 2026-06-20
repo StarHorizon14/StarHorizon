@@ -39,59 +39,59 @@
   components:
   - type: Paper
     content: |2
-      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Медицинский Диспансер[/bold][/color]
       [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Medical Patient Record[/head]
+      [head=2]Медицинская Карта Пациента[/head]
 
-      [head=3]Patient Information[/head]
-          [bold]Name:[/bold] 
-          [bold]Species:[/bold] 
-          [bold]Occupation:[/bold]
+      [head=3]Информация о Пациенте[/head]
+          [bold]Имя:[/bold]
+          [bold]Вид:[/bold]
+          [bold]Род занятий:[/bold]
 
-      [head=3]Responder Information[/head]
-          [bold]Name:[/bold] 
-          [bold]Vessel IFF:[/bold] 
-          [bold]Shift Time (upon arrival):[/bold] 
+      [head=3]Информация об Ответчике[/head]
+          [bold]Имя:[/bold]
+          [bold]IFF судна:[/bold]
+          [bold]Время смены (при прибытии):[/bold]
 
-      [head=3]Sustained Injuries[/head]
-          [bold]Brute Injuries:[/bold]
-          Blunt: 0
-          Slash: 0
-          Piercing: 0
+      [head=3]Полученные Травмы[/head]
+          [bold]Механические травмы:[/bold]
+          Ушибы: 0
+          Порезы: 0
+          Уколы: 0
 
-          [bold]Burn Injuries:[/bold]
-          Heat: 0
-          Shock: 0
-          Cold: 0
-          Caustic: 0
+          [bold]Ожоговые травмы:[/bold]
+          Термические: 0
+          Электрические: 0
+          Обморожение: 0
+          Кислотные: 0
 
-          [bold]Toxin Injuries:[/bold]
-          Poison: 0
-          Radiation: 0
+          [bold]Токсикологические травмы:[/bold]
+          Яды: 0
+          Радиация: 0
 
-          [bold]Genetic Injuries:[/bold]
-          Cellular: 0
+          [bold]Генетические травмы:[/bold]
+          Клеточные: 0
 
-          [bold]Asphyxiation Injuries:[/bold]
-          Bloodloss: 0
-          Airloss: 0
+          [bold]Асфиксические травмы:[/bold]
+          Кровопотеря: 0
+          Кислородное голодание: 0
 
-      [head=3]Administered Treatment[/head]
-          [bold]Applied Topicals:[/bold]
-          Bruise packs: 0
-          Ointment tubes: 0
-          Gauze: 0
-          Blood packs: 0
-          Sutures: 0
-          Regenerative mesh: 0
+      [head=3]Проведенное Лечение[/head]
+          [bold]Примененные средства:[/bold]
+          Набор для ушибов: 0
+          Мазь: 0
+          Марлевый бинт: 0
+          Пакет крови: 0
+          Медицинская нить: 0
+          Регенеративная сетка: 0
 
-          [bold]Injected Chemicals:[/bold]
-          [bullet/] Chemical, dosage: XX u
-          [bullet/] Chemical, dosage: XX u
+          [bold]Введенные препараты:[/bold]
+          [bullet/] Препарат, дозировка: XX ед.
+          [bullet/] Препарат, дозировка: XX ед.
 
 
 
-      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist.[/color]
+      [color=#AAAAAA]Форма недействительна без подписи и печати медицинского специалиста.[/color]
 
 - type: entity
   id: PaperWrittenMedicalFormPrescription
@@ -101,25 +101,25 @@
   components:
   - type: Paper
     content: |2
-      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Медицинский Диспансер[/bold][/color]
       [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Medical Prescription[/head]
+      [head=2]Медицинский Рецепт[/head]
 
-      [head=3]Patient Information[/head]
-          [bold]Name:[/bold] 
-          [bold]Species:[/bold] 
-          [bold]Occupation:[/bold] 
-          [bold]Vessel IFF:[/bold] 
+      [head=3]Информация о Пациенте[/head]
+          [bold]Имя:[/bold]
+          [bold]Вид:[/bold]
+          [bold]Род занятий:[/bold]
+          [bold]IFF судна:[/bold]
 
-      [head=3]Prescription[/head]
-          [bullet/] CHEMICAL, dosage: XX u
-          [bullet/] CHEMICAL, dosage: XX u
+      [head=3]Рецепт[/head]
+          [bullet/] ПРЕПАРАТ, дозировка: XX ед.
+          [bullet/] ПРЕПАРАТ, дозировка: XX ед.
 
-          [bold]WRITE ANY INSTRUCTIONS HERE.[/bold]
+          [bold]УКАЖИТЕ ЛЮБЫЕ ИНСТРУКЦИИ ЗДЕСЬ.[/bold]
 
 
 
-      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist.[/color]
+      [color=#AAAAAA]Форма недействительна без подписи и печати медицинского специалиста.[/color]
 
 - type: entity # Based on form made by Radiantflash (Lykaon Rahmer)
   id: PaperWrittenMedicalFormHealthInsurance
@@ -129,31 +129,31 @@
   components:
   - type: Paper
     content: |2
-      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Медицинский Диспансер[/bold][/color]
       [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Health Insurance Contract[/head]
+      [head=2]Договор Медицинского Страхования[/head]
 
-      [head=3]Policy Holder Information[/head]
-          [bold]Name:[/bold]
-          [bold]Species:[/bold]
-          [bold]Occupation:[/bold] 
-          [bold]Vessel IFF:[/bold] 
+      [head=3]Информация о Страхователе[/head]
+          [bold]Имя:[/bold]
+          [bold]Вид:[/bold]
+          [bold]Род занятий:[/bold]
+          [bold]IFF судна:[/bold]
 
-      [head=3]Plan Coverage[/head]
-          [bold]Medical Coverage:[/bold]
-          \[  ] Treatment: Coverage up to $5,000. ($2,000 premium)
-          \[  ] Revival: Coverage up to $10,000. ($2,000 premium)
-          \[  ] Cloning Fee: Coverage up to $25,000. ($5,000 premium)
+      [head=3]Покрытие Полиса[/head]
+          [bold]Медицинское покрытие:[/bold]
+          \[  ] Лечение: Покрытие до $5,000. ($2,000 страховой взнос)
+          \[  ] Реанимация: Покрытие до $10,000. ($2,000 страховой взнос)
+          \[  ] Клонирование: Покрытие до $25,000. ($5,000 страховой взнос)
 
-          [bold]Additional Coverage:[/bold]
-          \[  ] Towing: Coverage up to $10,000. Small shuttles only. ($2,000 premium)
-          \[  ] Towing: Coverage up to $20,000. Small and medium shuttles only. ($4,000 premium)
+          [bold]Дополнительное покрытие:[/bold]
+          \[  ] Буксировка: Покрытие до $10,000. Только малые шаттлы. ($2,000 страховой взнос)
+          \[  ] Буксировка: Покрытие до $20,000. Только малые и средние шаттлы. ($4,000 страховой взнос)
 
-      [head=3]Total Premium[/head]
+      [head=3]Общий Страховой Взнос[/head]
           [bold]$XX,XXX[/bold]
 
 
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and the stamp of a medical specialist.[/color]
+      [color=#AAAAAA]Форма недействительна без подписей обеих сторон и печати медицинского специалиста.[/color]
 
 - type: entity
   id: PaperWrittenMedicalFormServiceInvoice
@@ -163,36 +163,36 @@
   components:
   - type: Paper
     content: |2
-      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Медицинский Диспансер[/bold][/color]
       [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Medical Service Invoice[/head]
+      [head=2]Счет за Медицинские Услуги[/head]
 
-      [head=3]Patient Information[/head]
-            [bold]Name:[/bold]
-            [bold]Species:[/bold]
-            [bold]Occupation:[/bold] 
+      [head=3]Информация о Пациенте[/head]
+            [bold]Имя:[/bold]
+            [bold]Вид:[/bold]
+            [bold]Род занятий:[/bold]
 
-      [head=3]Responder Information[/head]
-            [bold]Name:[/bold] 
-            [bold]Vessel IFF:[/bold] 
-            [bold]Shift Time:[/bold] 
+      [head=3]Информация об Ответчике[/head]
+            [bold]Имя:[/bold]
+            [bold]IFF судна:[/bold]
+            [bold]Время смены:[/bold]
 
-      [head=3]Invoice[/head]
-        $XX,XXX - Treatment
-        $XX,XXX - Revival
-        $XX,XXX - Cloning
-        $XX,XXX - Towing
-      - $XX,XXX - Treatment Plan Coverage
-      - $XX,XXX - Revival Plan Coverage
-      - $XX,XXX - Cloning Plan Coverage
-      - $XX,XXX - Towing Plan Coverage
+      [head=3]Счет[/head]
+        $XX,XXX - Лечение
+        $XX,XXX - Реанимация
+        $XX,XXX - Клонирование
+        $XX,XXX - Буксировка
+      - $XX,XXX - Покрытие по полису лечения
+      - $XX,XXX - Покрытие по полису реанимации
+      - $XX,XXX - Покрытие по полису клонирования
+      - $XX,XXX - Покрытие по полису буксировки
       ____________
-      $XXX,XXX - Grand Total
+      $XXX,XXX - Итоговая сумма
 
 
 
-      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist.[/color]
-            
+      [color=#AAAAAA]Форма недействительна без подписи и печати медицинского специалиста.[/color]
+
 - type: entity
   id: PaperWrittenMedicalFormReceiptInvoice
   name: medical dispatch payment
@@ -201,26 +201,26 @@
   components:
   - type: Paper
     content: |2
-      [color=#33ccff]◥[bold]N[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
+      [color=#33ccff]◥[bold]N[/bold]◣ [bold]Бухгалтерия Менеджера медицинских операции[/bold][/color]
       [color=#33ccff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Medical Dispatch Payment[/head]
+      [head=2]Оплата Медицинского Вызова[/head]
 
-      [head=3]Contractor Information[/head]
-            [bold]Name:[/bold] 
-            [bold]Species:[/bold] 
-            [bold]Occupation:[/bold] 
+      [head=3]Информация о Подрядчике[/head]
+            [bold]Имя:[/bold]
+            [bold]Вид:[/bold]
+            [bold]Род занятий:[/bold]
 
-      [head=3]Description of Services Provided[/head]
+      [head=3]Описание Оказанных Услуг[/head]
 
-      [head=3]Service Value[/head]
-          Medical Bounty Delivery: $0
-          Material Delivery: $0
-          Medical Services: $0
-          Other: $0
-      
-      [bold]Total Value: $XXX,XXX[/bold]
-      
-      [color=#AAAAAA]This Form is void without the signature and stamp of the Director of Care. This form does not constitute a contract. Compensation for services provided is at the discretion of the Director of Care.[/color]
+      [head=3]Стоимость Услуг[/head]
+          Доставка медицинской награды: $0
+          Доставка материалов: $0
+          Медицинские услуги: $0
+          Другое: $0
+
+      [bold]Общая стоимость: $XXX,XXX[/bold]
+
+      [color=#AAAAAA]Форма недействительна без подписи и печати Менеджера медицинских операции. Эта форма не является договором. Компенсация за оказанные услуги остается на усмотрение Менеджера медицинских операции.[/color]
 
 - type: entity
   id: PaperWrittenMedicalFormRelease
@@ -230,30 +230,76 @@
   components:
   - type: Paper
     content: |2
-      [color=#33ccff]◥[bold]N[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
+      [color=#33ccff]◥[bold]N[/bold]◣ [bold]Бухгалтерия Менеджера медицинских операции[/bold][/color]
       [color=#33ccff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Medical Release Form[/head]
+      [head=2]Форма Медицинского Выписки[/head]
 
-      [head=3]Patient Information[/head]
-            [bold]Name:[/bold] 
-            [bold]Species:[/bold] 
-            [bold]Occupation:[/bold] 
+      [head=3]Информация о Пациенте[/head]
+            [bold]Имя:[/bold]
+            [bold]Вид:[/bold]
+            [bold]Род занятий:[/bold]
 
-      [head=3]Responder Information[/head]
-            [bold]Name:[/bold] 
-            [bold]Vessel IFF:[/bold] 
-            [bold]Shift Time:[/bold] 
+      [head=3]Информация об Ответчике[/head]
+            [bold]Имя:[/bold]
+            [bold]IFF судна:[/bold]
+            [bold]Время смены:[/bold]
 
-      [head=3]Services Provided[/head]
-
-
-
-      [head=3]Notes[/head]
-      
-
-
-      [head=3]I, the undersigned, agree that the services listed above are accurate and consent to release.[/head]
+      [head=3]Оказанные Услуги[/head]
 
 
 
-      [color=#AAAAAA]This Form is only acknowledged with the signature and stamp of the Director of Care. This form does not constitute a contract. Compensation for services provided is at the discretion of the Director of Care.[/color]
+      [head=3]Примечания[/head]
+
+
+      [head=3]Я, нижеподписавшийся, подтверждаю, что перечисленные выше услуги указаны верно, и даю согласие на выписку.[/head]
+
+
+
+      [color=#AAAAAA]Эта форма признается только с подписью и печатью Менеджера медицинских операции. Эта форма не является договором. Компенсация за оказанные услуги остается на усмотрение Менеджера медицинских операции.[/color]
+
+
+- type: entity
+  id: PaperWrittenMedicalMedtekPatientRecord
+  parent: Paper
+  name: Patient Record
+  categories: [ HideSpawnMenu ]
+  description: A printed medical patient record.
+  components:
+  - type: Tag
+    tags:
+    - Document
+    - Trash
+    - Paper
+  - type: StaticPrice
+    price: 0
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper_receipt
+    - state: paper_receipt_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_perforated.svg.96dpi.png"
+    headerImagePath: "/Textures/_NF/Interface/Paper/paper_heading_medtek_report.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 6.0
+    backgroundImageTile: true
+    backgroundPatchMargin: 0.0, 6.0, 0.0, 6.0
+    contentMargin: 12.0, 0.0, 12.0, 0.0
+    # This is a narrow piece of paper
+    maxWritableArea: 256.0, 0.0
+  - type: Paper
+    content: |
+      [head=3]Patient[/head]
+      [bold]Name:[/bold] {patient.name}
+      [bold]Species:[/bold] {patient.species}
+
+      [head=3]Responder[/head]
+      [bold]Name:[/bold] {responder.name}
+      [bold]Shift Time:[/bold] {roundTime}
+
+      [head=3]Injuries[/head]
+      {damageList}

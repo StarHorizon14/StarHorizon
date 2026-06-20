@@ -1,7 +1,6 @@
 erp-status-No = [color=red]Отказ от ЕРП[/color]
 erp-status-Consentual = [color=yellow]ЕРП по согласию[/color]
 erp-status-NonCon = [color=green]Полное ЕРП[/color]
-
 erp-status-No-desc =
     Полный отказ от ЕРП взаимодействий в любой форме.
     Это означает, что вы полностью отказывайтесь от ЕРП взаимодействий как по отношению к вам, так и по отношению от вас к другим.

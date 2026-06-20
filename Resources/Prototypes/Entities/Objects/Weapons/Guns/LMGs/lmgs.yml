@@ -97,6 +97,8 @@
     offsets:
       rmc-aslot-rail: -0.2275, -0.1575
 # Horizon Attachments end
+  - type: StaticPrice
+    price: 10000
 
 - type: entity
   abstract: true # Frontier: use NF variant

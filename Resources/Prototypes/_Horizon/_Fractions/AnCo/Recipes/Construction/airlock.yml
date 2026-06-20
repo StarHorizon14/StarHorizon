@@ -1,0 +1,231 @@
+- type: construction
+  id: AnCoAirlock
+  name: шлюз АнКо
+  graph: GraphAnCoAirlock
+  startNode: start
+  targetNode: NodeAnCoAirlock
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:TileNotBlocked
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: AnCoAirlockGlass
+  name: стеклянный шлюз АнКо
+  graph: GraphAnCoAirlock
+  startNode: start
+  targetNode: NodeAnCoAirlockGlass
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:TileNotBlocked
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: AnCoAirlockGlassOpen
+  name: открытый стеклянный шлюз АнКо
+  graph: GraphAnCoAirlock
+  startNode: start
+  targetNode: NodeAnCoAirlockGlassOpen
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:TileNotBlocked
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: AnCoAirlockShuttle
+  name: стыковочный шлюз АнКо
+  graph: GraphAnCoAirlock
+  startNode: start
+  targetNode: NodeAnCoAirlockShuttle
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:TileNotBlocked
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+
+- type: construction
+  id: AnCoAirlockGlassShuttle
+  name: стеклянный стыковочный шлюз АнКо
+  graph: GraphAnCoAirlock
+  startNode: start
+  targetNode: NodeAnCoAirlockGlassShuttle
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:TileNotBlocked
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+
+- type: constructionGraph
+  id: GraphAnCoAirlock
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: NodeAnCoAirlock
+          steps:
+            - material: KazmieSheetStack
+              amount: 10
+            - material: ArdonSheetStack
+              amount: 2
+              doAfter: 5
+        - to: NodeAnCoAirlockGlass
+          steps:
+            - material: KazmieSheetStack
+              amount: 5
+            - material: ArdonSheetStack
+              amount: 5
+              doAfter: 5
+        - to: NodeAnCoAirlockGlassOpen
+          steps:
+            - material: KazmieSheetStack
+              amount: 2
+            - material: ArdonSheetStack
+              amount: 10
+              doAfter: 5
+        - to: NodeAnCoAirlockShuttle
+          steps:
+            - material: KazmieSheetStack
+              amount: 20
+            - material: ArdonSheetStack
+              amount: 5
+              doAfter: 5
+        - to: NodeAnCoAirlockGlassShuttle
+          steps:
+            - material: KazmieSheetStack
+              amount: 5
+            - material: ArdonSheetStack
+              amount: 20
+              doAfter: 5
+
+    - node: NodeAnCoAirlock
+      entity: AnCoAirlock
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: ArdonSheet1
+              amount: 2
+            - !type:GivePrototype
+              prototype: KazmieSheet1
+              amount: 10
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 2
+            - tool: Anchoring
+              doAfter: 2
+            - tool: Prying
+              doAfter: 2
+            - tool: Welding
+              doAfter: 5
+
+    - node: NodeAnCoAirlockGlass
+      entity: AnCoAirlockGlass
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: ArdonSheet1
+              amount: 5
+            - !type:GivePrototype
+              prototype: KazmieSheet1
+              amount: 5
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 2
+            - tool: Anchoring
+              doAfter: 2
+            - tool: Prying
+              doAfter: 2
+            - tool: Welding
+              doAfter: 5
+
+    - node: NodeAnCoAirlockGlassOpen
+      entity: AnCoAirlockGlassOpen
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: ArdonSheet1
+              amount: 10
+            - !type:GivePrototype
+              prototype: KazmieSheet1
+              amount: 2
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 2
+            - tool: Anchoring
+              doAfter: 2
+            - tool: Prying
+              doAfter: 2
+            - tool: Welding
+              doAfter: 5
+
+    - node: NodeAnCoAirlockShuttle
+      entity: AnCoAirlockShuttle
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: ArdonSheet1
+              amount: 5
+            - !type:GivePrototype
+              prototype: KazmieSheet1
+              amount: 20
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 2
+            - tool: Anchoring
+              doAfter: 2
+            - tool: Prying
+              doAfter: 2
+            - tool: Welding
+              doAfter: 5
+
+    - node: NodeAnCoAirlockGlassShuttle
+      entity: AnCoAirlockGlassShuttle
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: ArdonSheet1
+              amount: 20
+            - !type:GivePrototype
+              prototype: KazmieSheet1
+              amount: 5
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 2
+            - tool: Anchoring
+              doAfter: 2
+            - tool: Prying
+              doAfter: 2
+            - tool: Welding
+              doAfter: 5

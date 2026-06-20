@@ -32,6 +32,7 @@
   supportedTypes:
     - Heat
     - Shock
+    - Caustic
 
 - type: damageContainer
   id: Shield

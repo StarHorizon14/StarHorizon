@@ -1,3 +1,5 @@
+using Content.Shared._Horizon.Traits;
+using Content.Shared.Preferences;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 
@@ -41,7 +43,7 @@ public sealed partial class TraitPrototype : IPrototype
     /// The components that get added to the player, when they pick this trait.
     /// </summary>
     [DataField]
-    public ComponentRegistry Components { get; private set; } = default!;
+    public ComponentRegistry? Components { get; private set; } = null;  // Horizon tweak - nullable
 
     /// <summary>
     /// Gear that is given to the player, when they pick this trait.
@@ -60,4 +62,28 @@ public sealed partial class TraitPrototype : IPrototype
     /// </summary>
     [DataField]
     public ProtoId<TraitCategoryPrototype>? Category;
+
+    // Horizon traits start
+    [DataField(serverOnly: true)]
+    public List<BaseTraitEffect> Effects = new();
+
+    [DataField]
+    public List<BaseTraitRequirment> Requirments = new();
+
+    [DataField]
+    public int Priority = 1;
+
+    [DataField]
+    public string? Group;
+
+    public bool RequirmentsMet(HumanoidCharacterProfile profile, IEntityManager entMan)
+    {
+        foreach (var requirement in Requirments)
+        {
+            if (!requirement.CanApply(profile, entMan))
+                return false;
+        }
+        return true;
+    }
+    // Horizon traits end
 }

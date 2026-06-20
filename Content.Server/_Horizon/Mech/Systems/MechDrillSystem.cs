@@ -1,15 +1,15 @@
-using Content.Server.Destructible;
-using Content.Server.Gatherable.Components;
+using Content.Server.Gatherable;
 using Content.Server.Interaction;
 using Content.Server.Mech.Systems;
+using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
 using Robust.Shared.Audio.Systems;
-using Content.Shared.Damage;
-using Content.Shared.Mobs.Components;
 using Content.Server._Horizon.Mech.Equipment.Components;
+using Content.Server.Gatherable.Components;
+using Content.Shared.Whitelist;
 
 namespace Content.Server._Horizon.Mech.Equipment.EntitySystems;
 
@@ -18,13 +18,13 @@ namespace Content.Server._Horizon.Mech.Equipment.EntitySystems;
 /// </summary>
 public sealed class MechDrillSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly MechSystem _mech = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly DestructibleSystem _destructible = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly GatherableSystem _gatherable = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -53,15 +53,13 @@ public sealed class MechDrillSystem : EntitySystem
 
         args.Handled = true;
         component.Token = new();
-        var damageRequired = _destructible.DestroyedAt(target);
-        var damageTime = (damageRequired / component.DrillSpeedMultilire).Float();
-        if (HasComp<GatherableComponent>(args.Target) || HasComp<MobStateComponent>(target))
-            damageTime = 0.5f;
+        // One tick = one hit; repeating do-after chips the target down. Do not scale delay by total structure HP
+        // (that made a single tick take minutes while still applying only one hit of damage).
+        var damageTime = 0.35f;
         var doAfter = new DoAfterArgs(EntityManager, args.User, damageTime, new MechDrillDoAfterEvent(), uid, target: target, used: uid)
         {
-            BreakOnDamage = true,
-            BreakOnMove = true,
-            MovementThreshold = 0.25f,
+            BreakOnDamage = false,
+            BreakOnMove = false,
         };
         _audio.PlayPvs(component.DrillSound, uid);
         _doAfter.TryStartDoAfter(doAfter);
@@ -76,29 +74,26 @@ public sealed class MechDrillSystem : EntitySystem
             return;
         component.Token = null;
 
-        if (HasComp<GatherableComponent>(args.Target))
-        {
-            var xform = Transform(args.Target.Value);
-            var gatherables = new HashSet<Entity<GatherableComponent>>();
-            _lookup.GetEntitiesInRange(xform.Coordinates, 1, gatherables);
-
-            foreach (var gatherable in gatherables)
-            {
-                var ent = gatherable.Owner;
-                _damageable.TryChangeDamage(ent, component.DamageToDrilled, ignoreResistances: true);
-            }
-        }
-
         if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComponent) || equipmentComponent.EquipmentOwner == null)
             return;
 
         if (!_mech.TryChangeEnergy(equipmentComponent.EquipmentOwner.Value, component.DrillEnergyDelta))
             return;
-        if (Comp<MechComponent>(equipmentComponent.EquipmentOwner.Value).Energy <= 0)
-            args.Repeat = false;
 
-        _damageable.TryChangeDamage(args.Target, component.DamageToDrilled, ignoreResistances: false);
-        _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);
-        args.Repeat = true;
+        var owner = equipmentComponent.EquipmentOwner.Value;
+
+        // Same as pickaxe / PKA: supercompacted and some asteroids only break via Gather when the tool passes whitelist.
+        if (TryComp<GatherableComponent>(target, out var gatherable)
+            && !_whitelist.IsWhitelistFailOrNull(gatherable.ToolWhitelist, uid))
+        {
+            _gatherable.Gather(target, uid, gatherable);
+            _mech.UpdateUserInterface(owner);
+            args.Repeat = Comp<MechComponent>(owner).Energy > 0;
+            return;
+        }
+
+        _damageable.TryChangeDamage(target, component.DamageToDrilled, ignoreResistances: true);
+        _mech.UpdateUserInterface(owner);
+        args.Repeat = Comp<MechComponent>(owner).Energy > 0;
     }
 }

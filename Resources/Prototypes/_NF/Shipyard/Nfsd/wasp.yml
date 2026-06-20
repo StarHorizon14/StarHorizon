@@ -2,12 +2,12 @@
   id: Wasp
   parent: BaseVessel
   name: NSF Wasp
-  description: A large expedition oriented ship for holding prisoners and making them work planetside.
+  description: Большой экспедиционный шаттл предназначенный для добычи ископаемых.
   price: 135000
   category: Large
   group: Security
   access: Bailiff
-  shuttlePath: /Maps/_NF/Shuttles/Nfsd/wasp.yml
+  shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/wasp.yml # Horizon
   guidebookPage: Null
   class:
   - Capital
@@ -31,7 +31,7 @@
 - type: gameMap
   id: Wasp
   mapName: 'NSF Wasp'
-  mapPath: /Maps/_NF/Shuttles/Nfsd/wasp.yml
+  mapPath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/wasp.yml # Horizon
   minPlayers: 0
   stations:
     Wasp:

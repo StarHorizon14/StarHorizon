@@ -1,0 +1,22 @@
+- type: entity
+  parent: [ClothingHeadset]
+  id: ClothingHeadsetInteQ
+  suffix: StarHorizon, Inteq
+  name: InteQ headset
+  description: Headset used by InteQ forces.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_headset.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/Inteq/inteq_headset.rsi
+
+- type: entity
+  parent: [ClothingHeadsetAlt]
+  id: ClothingHeadsetAltInteQ
+  suffix: StarHorizon, Inteq
+  name: InteQ over-ear headset
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_headset.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/Inteq/inteq_headset.rsi

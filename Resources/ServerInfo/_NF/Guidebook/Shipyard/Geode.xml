@@ -1,36 +1,36 @@
 <Document>
-  # GEODE-CLASS TRADE SHUTTLE
+  # ТОРГОВЫЙ ШАТТЛ КЛАССА GEODE
   <Box>
-    <GuideEntityEmbed Entity="WallRock" Caption="CERTIFIABLY"/>
-    <GuideEntityEmbed Entity="BannerGoblin01" Caption="LEGITIMATE"/>
-    <GuideEntityEmbed Entity="WallRock" Caption="UNDERTAKINGS"/>
+    <GuideEntityEmbed Entity="WallRock" Caption="СЕРТИФИЦИРОВАННЫЕ"/>
+    <GuideEntityEmbed Entity="BannerGoblin01" Caption="ЗАКОННЫЕ"/>
+    <GuideEntityEmbed Entity="WallRock" Caption="ПРЕДПРИЯТИЯ"/>
   </Box>
-  [color=#a4885c]Ship Size:[/color] Medium
+  [color=#a4885c]Размер корабля:[/color] Средний
 
-  [color=#a4885c]Recommended Crew:[/color] 1-2
+  [color=#a4885c]Рекомендуемый экипаж:[/color] 1-2
 
-  [color=#a4885c]Power Gen Type:[/color] Uranium
+  [color=#a4885c]Тип генератора питания:[/color] Урановый
 
-  [color=#a4885c]Base Power Draw:[/color] 35kw
+  [color=#a4885c]Базовое потребление энергии:[/color] 35 кВт
 
-  [color=#a4885c]Expeditions:[/color] None
+  [color=#a4885c]Экспедиции:[/color] Нет
 
-  [color=#a4885c]IFF Console:[/color] None
+  [color=#a4885c]Консоль IFF:[/color] Нет
 
-  "Built into a rock by the finest goblin engineers, this vessel has all the discrete trader needs to conduct business. When you need a place to stash your goods, ask a cousin!"
+  "Построенный в скале лучшими гоблинскими инженерами, этот корабль имеет все необходимое для дискретного торговца. Когда вам нужно место, чтобы спрятать свои товары, спросите кузена!"
 
-  # Ship Functions
+  # Функции корабля
 
   <Box>
-    <GuideEntityEmbed Entity="ButtonFrameCautionSecurity" Caption="Bolt Exterior Airlocks"/>
-    <GuideEntityEmbed Entity="ButtonFrameCaution" Caption="Open/Shut Shutters"/>
+    <GuideEntityEmbed Entity="ButtonFrameCautionSecurity" Caption="Запереть внешние шлюзы"/>
+    <GuideEntityEmbed Entity="ButtonFrameCaution" Caption="Открыть/Закрыть ставни"/>
   </Box>
-  "The bar, bridge and engineering areas feature shutter lockdown buttons, marked with the yellow frame. An extra button, up by the starboard docking port, closes the shutters over the docking port windows."
+  "В баре, на мостике и в инженерных зонах есть кнопки блокировки ставней, отмеченные желтой рамкой. Дополнительная кнопка, расположенная у правого стыковочного порта, закрывает ставни на окнах стыковочного порта."
 
-  # GETTING THE MOST OUT OF YOUR ROCK
+  # МАКСИМАЛЬНОЕ ИСПОЛЬЗОВАНИЕ ВАШЕЙ СКАЛЫ
   <Box>
     <GuideEntityEmbed Entity="Pickaxe"/>
     <GuideEntityEmbed Entity="WallRock"/>
   </Box>
-  "As the Geode-class shuttle is built into the core of an actual asteroid, users are encouraged to make the most of the available space. Using start of the art Goblinate technology, all exterior rock is supported by a layer of deck-plating, to avoid unfortunate spacing accidents."
+  "Поскольку шаттл класса Geode построен в ядре настоящего астероида, пользователям рекомендуется максимально использовать доступное пространство. Используя современную технологию Goblinate, вся внешняя порода поддерживается слоем настила, чтобы избежать неудачных аварий в космосе."
 </Document>

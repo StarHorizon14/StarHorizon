@@ -146,7 +146,7 @@
     - state: plasmashot
     scale: 0.4, 0.4
   - type: Ammo
-    muzzleFlash: MuzzleFlashEffectHeavyLaser
+    muzzleFlash: MuzzleFlashEffectPlasmaPulser
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#C92BCC"

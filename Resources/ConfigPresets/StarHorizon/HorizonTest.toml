@@ -34,7 +34,9 @@ rules_file = "FrontierRuleset"
 lobby_name = "StarHorizon"
 
 [console]
-login_host_user = "Makot"
+# Указать CKey игрока, который по-умолчанию и не зависимо ни от чего
+# будет иметь НАИВЫСШИЕ права на сервере (HOST)
+login_host_user = "Joulerk"
 
 [admin]
 see_own_notes = true
@@ -105,3 +107,12 @@ flavor_text = true
 
 [events]
 enabled = true
+
+################################################################################
+##### Sponsor System ###########################################################
+
+[sponsor]
+# Paths to sponsor system files
+discord_sponsors_path = "sponsorSystem/warp/discord_sponsors.txt"
+disposable_path = "sponsorSystem/warp/disposable.txt"
+items_path = "sponsorSystem/sponsor_items.txt"

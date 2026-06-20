@@ -13,6 +13,8 @@ ent-BorgChassisMedical = medical cyborg
     .desc = { ent-BorgChassisSelectable.desc }
 ent-BorgChassisService = service cyborg
     .desc = { ent-BorgChassisSelectable.desc }
+ent-BorgChassisSelectableCombat = { ent-BaseBorgChassisNT }
+    .desc = { ent-BaseBorgChassisNT.desc }
 ent-BorgChassisSyndicateAssault = syndicate assault cyborg
     .desc = A lean, mean killing machine with access to a variety of deadly modules.
 ent-BorgChassisSyndicateMedical = syndicate medical cyborg
@@ -21,20 +23,21 @@ ent-BorgChassisSyndicateSaboteur = syndicate saboteur cyborg
     .desc = A streamlined engineering cyborg, equipped with covert modules. Its chameleon projector lets it disguise itself as a Nanotrasen cyborg.
 ent-BorgChassisDerelict = derelict cyborg
     .desc = A man-machine hybrid that assists in station activity. This one is in a state of great disrepair.
-
-ent-BorgChassisSelectableCombat = combat cyborg
-    .desc = A combat cyborg chassis ready for type selection and specialized module installation.
-
-# Combat cyborgs
 ent-BorgChassisCombatAssassin = assassin cyborg
     .desc = A deadly stealth cyborg equipped with advanced combat modules. Silent, fast, and lethal.
+    .suffix = type picked
 ent-BorgChassisCombatScout = scout cyborg
     .desc = A lightweight reconnaissance cyborg designed for surveillance and information gathering. Fast and nimble.
+    .suffix = type picked
 ent-BorgChassisCombatCrawler = light crawler cyborg
-    .desc = A lightweight crawler with arachnid-style construction, designed for mobile combat operations.
+    .desc = A lightweight arachnid-style assault cyborg, designed for mobile combat operations.
+    .suffix = type picked
 ent-BorgChassisCombatCrawlerHeavy = heavy crawler cyborg
-    .desc = A heavily armored crawler with improved firepower and durability.
+    .desc = A heavily armored tracked assault cyborg with improved firepower and durability.
+    .suffix = type picked
 ent-BorgChassisCombatWalker = assault walker cyborg
     .desc = A two-legged assault walker designed for tactical combat with balanced speed and firepower.
+    .suffix = type picked
 ent-BorgChassisCombatWalkerHeavy = heavy strike walker cyborg
     .desc = A heavily armored two-legged walker platform carrying maximum firepower for frontline assault operations.
+    .suffix = type picked

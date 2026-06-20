@@ -73,6 +73,8 @@
 
 - type: randomHumanoidSettings
   id: MedicalBounty
+  speciesBlacklist:
+  - IPC # КПБ не будут на обломках, увы
   components:
   - type: StinkyTrait
   - type: Carriable # Carrying system from nyanotrasen.

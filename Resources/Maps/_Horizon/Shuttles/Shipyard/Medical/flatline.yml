@@ -436,7 +436,7 @@ entities:
     - type: Transform
       pos: -0.5,1.5
       parent: 2
-- proto: AirlockEngineeringLocked
+- proto: AirlockMedicalLocked
   entities:
   - uid: 7
     components:

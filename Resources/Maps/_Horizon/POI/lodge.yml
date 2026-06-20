@@ -16321,7 +16321,7 @@ entities:
     - type: Transform
       pos: -2.5,10.5
       parent: 1
-- proto: LessLethalVendingMachine
+- proto: LessLethalVendingMachinePOI
   entities:
   - uid: 690
     components:
@@ -16492,7 +16492,7 @@ entities:
     - type: Transform
       pos: -11.784824,10.4612255
       parent: 1
-- proto: NonLethalVendingMachine
+- proto: NonLethalVendingMachinePOI
   entities:
   - uid: 400
     components:
@@ -20422,28 +20422,28 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 17.5,17.5
       parent: 1
-- proto: VendingMachineAmmo
+- proto: VendingMachineAmmoPOI
   entities:
   - uid: 2575
     components:
     - type: Transform
       pos: 10.5,10.5
       parent: 1
-- proto: VendingMachineAstroVend
+- proto: VendingMachineAstroVendPOI
   entities:
   - uid: 1724
     components:
     - type: Transform
       pos: -4.5,-1.5
       parent: 1
-- proto: VendingMachineAutoTuneVend
+- proto: VendingMachineAutoTuneVendPOI
   entities:
   - uid: 503
     components:
     - type: Transform
       pos: -18.5,20.5
       parent: 1
-- proto: VendingMachineBooze
+- proto: VendingMachineBoozePOI
   entities:
   - uid: 205
     components:
@@ -20464,14 +20464,14 @@ entities:
     - type: Transform
       pos: -9.5,18.5
       parent: 1
-- proto: VendingMachineCuddlyCritterVend
+- proto: VendingMachineCuddlyCritterVendPOI
   entities:
   - uid: 1476
     components:
     - type: Transform
       pos: -17.5,20.5
       parent: 1
-- proto: VendingMachineEngivend
+- proto: VendingMachineEngivendPOI
   entities:
   - uid: 2122
     components:
@@ -20499,7 +20499,7 @@ entities:
     - type: Transform
       pos: 4.5,-1.5
       parent: 1
-- proto: VendingMachineGames
+- proto: VendingMachineGamesPOI
   entities:
   - uid: 1477
     components:
@@ -20513,14 +20513,14 @@ entities:
     - type: Transform
       pos: 16.5,18.5
       parent: 1
-- proto: VendingMachinePickNPack
+- proto: VendingMachinePickNPackPOI
   entities:
   - uid: 2381
     components:
     - type: Transform
       pos: 10.5,11.5
       parent: 1
-- proto: VendingMachineSalvage
+- proto: VendingMachineSalvagePOI
   entities:
   - uid: 414
     components:
@@ -20546,7 +20546,7 @@ entities:
     - type: Transform
       pos: 19.5,20.5
       parent: 1
-- proto: VendingMachineTankDispenserEVA
+- proto: VendingMachineTankDispenserEVAPOI
   entities:
   - uid: 407
     components:
@@ -20560,7 +20560,7 @@ entities:
     - type: Transform
       pos: -19.5,20.5
       parent: 1
-- proto: VendingMachineYouTool
+- proto: VendingMachineYouToolPOI
   entities:
   - uid: 2524
     components:

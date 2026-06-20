@@ -3,6 +3,15 @@
   name: reinforced plasma window
   parent: WindowRCDResistant
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
   - type: Sprite
     drawdepth: WallTops
     sprite: _NF/Structures/Windows/reinforced_plasma_window.rsi # Frontier
@@ -60,17 +69,6 @@
     scalingPower: 0.0001
   - type: StaticPrice
     price: 65 # Frontier: 132<65
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
-        density: 2000
 
 - type: entity
   id: PlasmaReinforcedWindowDirectional

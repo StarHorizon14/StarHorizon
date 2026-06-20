@@ -1,7 +1,9 @@
 # The universal language, assumed if the entity has a UniversalLanguageSpeakerComponent.
 # Do not use otherwise. Try to use the respective component instead of this language.
+# Parent BaseVocalLanguage ensures CanSpeak is checked (e.g. dead/crit NPCs won't speak via Advertise).
 - type: language
   id: Universal
+  parent: BaseVocalLanguage
   speech: !type:Generic
     replacement:
     - "*incomprehensible*"

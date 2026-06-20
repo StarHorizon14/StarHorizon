@@ -5,6 +5,7 @@ using Content.Shared._Horizon.Cytology.Prototypes;
 using Robust.Shared.Prototypes;
 using Content.Shared.Verbs;
 using System.Linq;
+using System.Numerics;
 
 namespace Content.Shared._Horizon.Cytology.Systems;
 

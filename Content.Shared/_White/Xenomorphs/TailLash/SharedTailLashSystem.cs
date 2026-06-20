@@ -10,6 +10,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Log;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
@@ -18,6 +19,7 @@ namespace Content.Shared._White.Xenomorphs.TailLash;
 
 public sealed class SharedTailLashSystem : EntitySystem
 {
+    private readonly ISawmill _sawmill = Logger.GetSawmill("TEST.sharedtaillash");
     [Dependency] private readonly IGameTiming _timing = default!;
 
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
@@ -34,19 +36,27 @@ public sealed class SharedTailLashSystem : EntitySystem
     {
         base.Initialize();
 
+        _sawmill.Debug("SharedTailLashSystem initialized");
         SubscribeLocalEvent<TailLashComponent, MapInitEvent>(OnTailLashMapInit);
         SubscribeLocalEvent<TailLashComponent, ComponentShutdown>(OnTailLashShutdown);
         SubscribeLocalEvent<TailLashComponent, TailLashActionEvent>(OnTailLashActionEvent);
     }
 
-    private void OnTailLashMapInit(EntityUid uid, TailLashComponent component, MapInitEvent args) =>
+    private void OnTailLashMapInit(EntityUid uid, TailLashComponent component, MapInitEvent args)
+    {
+        _sawmill.Debug($"OnTailLashMapInit: uid={uid}");
         _actions.AddAction(uid, ref component.TailLashAction, component.TailLashActionId);
+    }
 
-    private void OnTailLashShutdown(EntityUid uid, TailLashComponent component, ComponentShutdown args) =>
+    private void OnTailLashShutdown(EntityUid uid, TailLashComponent component, ComponentShutdown args)
+    {
+        _sawmill.Debug($"OnTailLashShutdown: uid={uid}");
         _actions.RemoveAction(uid, component.TailLashAction);
+    }
 
     private void OnTailLashActionEvent(EntityUid uid, TailLashComponent component, ref TailLashActionEvent args)
     {
+        _sawmill.Debug($"OnTailLashActionEvent: uid={uid}, target={args.Target}, handled={args.Handled}");
         if (args.Handled || !_actionBlocker.CanAttack(uid) || !TryComp(uid, out TransformComponent? transform))
             return;
 
@@ -87,6 +97,7 @@ public sealed class SharedTailLashSystem : EntitySystem
         _interaction.DoContactInteraction(uid, uid);
 
         var hitEntities = results.Where(result => _interaction.InRangeUnobstructed(uid, result, range: range)).ToList();
+        _sawmill.Debug($"OnTailLashActionEvent: found {hitEntities.Count} hit entities");
         var hitEvent = new MeleeHitEvent(hitEntities, uid, uid, component.TailDamage, null);
         RaiseLocalEvent(uid, hitEvent);
 
@@ -99,12 +110,16 @@ public sealed class SharedTailLashSystem : EntitySystem
 
             var modifiedDamage = DamageSpecifier.ApplyModifierSets(component.TailDamage + hitEvent.BonusDamage + attackedEv.BonusDamage, hitEvent.ModifiersList);
             _damageable.TryChangeDamage(hit, modifiedDamage, origin:uid);
+            _sawmill.Debug($"OnTailLashActionEvent: applied damage to hit={hit}");
 
             if (component.Inject == null || !_solutionContainer.TryGetInjectableSolution(hit, out var solutionEnt, out _))
                 continue;
 
             foreach (var (reagent, amount) in component.Inject)
+            {
                 _solutionContainer.TryAddReagent(solutionEnt.Value, reagent, amount);
+                _sawmill.Debug($"OnTailLashActionEvent: injected {amount} of {reagent} to hit={hit}");
+            }
         }
 
         var localPos = transform.LocalRotation.RotateVec(matrix);
@@ -115,5 +130,6 @@ public sealed class SharedTailLashSystem : EntitySystem
         RaiseLocalEvent(uid, ref attackEv);
 
         args.Handled = true;
+        _sawmill.Debug($"OnTailLashActionEvent: tail lash completed");
     }
 }

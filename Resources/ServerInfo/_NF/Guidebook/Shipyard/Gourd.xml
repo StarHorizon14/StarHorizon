@@ -1,7 +1,7 @@
 <Document>
   # ИНЖЕНЕРНЫЙ ШАТТЛ КЛАССА GOURD
   <Box>
-  <GuideEntityEmbed Entity="VariedXenoArtifactItem"/>
+  <GuideEntityEmbed Entity="ComplexXenoArtifact"/>
   <GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
   <GuideEntityEmbed Entity="ComputerTabletopAnalysisConsole"/>
   <GuideEntityEmbed Entity="ResearchAndDevelopmentServer"/>

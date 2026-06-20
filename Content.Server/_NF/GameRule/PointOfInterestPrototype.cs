@@ -100,4 +100,26 @@ public sealed partial class PointOfInterestPrototype : IPrototype, IInheritingPr
     /// </summary>
     [DataField(required: true)]
     public ResPath GridPath { get; private set; } = default!;
+
+    // StarHorizon-Start
+    /// <summary>
+    /// If true, spawns this POI on a separate map instead of the main sector map.
+    /// </summary>
+    [DataField]
+    public bool AnotherMap { get; private set; } = false;
+
+    /// <summary>
+    /// The name of the map when AnotherMap is true.
+    /// If not specified, uses the Name field.
+    /// </summary>
+    [DataField]
+    public string? MapName { get; private set; }
+
+    /// <summary>
+    /// Components to be added to the map entity when AnotherMap is true.
+    /// </summary>
+    [DataField]
+    [AlwaysPushInheritance]
+    public ComponentRegistry AddMapComponents { get; set; } = new();
+    // StarHorizon-End
 }

@@ -1,2 +1,3 @@
-ent-RMCBinoculars = binoculars
-    .desc = A military-issued pair of binoculars.
+ent-RMCBinoculars = бинокль
+    .desc = Армейский экземпляр бинокля.
+    .suffix = Сломан, НЕ МАППИТЬ

@@ -140,7 +140,6 @@ ent-BorgModuleSyndicateCloakingDevice = модуль устройства нев
     .desc = Интегрированное устройство невидимости для скрытных операций. Делает невидимым на продолжительное время.
 ent-BorgModuleTranslation = модуль переводчика киборга
     .desc = Модуль, оснащённый универсальной технологией перевода для общения на разных языках.
-
 # Combat modules
 ent-BaseBorgModuleCombat = { ent-BaseBorgModule }
     .desc = { ent-BaseBorgModule.desc }

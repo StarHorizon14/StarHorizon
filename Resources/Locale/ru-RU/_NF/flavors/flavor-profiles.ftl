@@ -19,3 +19,6 @@ flavor-complex-hairy = волосистый и резкий
 flavor-complex-licorice = как лакрица
 flavor-complex-blueraspberry = как голубой
 flavor-complex-silence = как тишина
+flavor-complex-creative = как безумное творчество
+flavor-complex-texas = как техасская изобретательность
+flavor-complex-nanocaf = как горький кофе

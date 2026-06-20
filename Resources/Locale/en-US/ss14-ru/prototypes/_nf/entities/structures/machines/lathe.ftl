@@ -1,5 +1,7 @@
 ent-NFBlueprintReceiverBase = { "" }
     .desc = { "" }
+ent-CargoTechFabNF = cargo techfab
+    .desc = Prints equipment for cargonians.
 ent-ServiceTechFab = service techfab
     .desc = Prints equipment for service staff.
 ent-McServiceTechFab = mcservice techfab
@@ -27,3 +29,7 @@ ent-UniformPrinterStaff = staff uniform printer
     .desc = Prints new or replacement uniforms for staff.
 ent-PirateStitcher = pirate stitcher
     .desc = This brand new uniform printer has been "found" and repurposed to print only the highest couture.
+ent-OreProcessorCivilian = civilian ore processor
+    .desc = A stand alone ore processor designed to operate independently of shuttle infrastructure. Time to live off the grid!
+ent-PirateTechFab = pirate techfab
+    .desc = You can hear it humming with the anticipation of being fed liberated blueprints.

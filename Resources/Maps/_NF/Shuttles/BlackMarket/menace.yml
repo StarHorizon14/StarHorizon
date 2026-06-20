@@ -826,7 +826,7 @@ entities:
     - type: Transform
       pos: 1.5,1.5
       parent: 1
-- proto: ComputerTabletopShuttleAntag
+- proto: ComputerTabletopShuttleAntagPirate
   entities:
   - uid: 83
     components:

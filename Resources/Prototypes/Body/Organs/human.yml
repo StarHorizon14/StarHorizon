@@ -51,10 +51,12 @@
   - type: InputMover
   - type: Examiner
   - type: BlockMovement
+    blockInteraction: false # allow interaction with machines (kitchen appliances) while still blocking movement
   - type: BadFood
   - type: Tag
     tags:
       - Meat
+      - Brain
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -73,6 +75,13 @@
     entries:
       Burger: Brain
       Taco: Brain
+  # required for cooking in KitchenElectricRange
+  - type: AtmosExposed
+  - type: Temperature
+    currentTemperature: 290
+  - type: InternalTemperature
+    thickness: 0.02
+    area: 0.02 # arbitrary number that sounds right for a brain
   - type: Item
     size: Small
     heldPrefix: brain

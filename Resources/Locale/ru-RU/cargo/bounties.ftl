@@ -145,5 +145,5 @@ bounty-description-cotton-boll = Огромный рой таракамолей 
 bounty-description-microwave-machine-board = Мистер Гигглз решил, что будет забавно воткнуть вилки во все кухонные микроволновки. Помогите нам заменить их, пока повара не начали готовить клоунские бургеры.
 bounty-description-lasergun = Караван Утилизаторов просит доставить большую партию лазерного оружия, чтобы уничтожить улей ксеноморфов.
 bounty-description-flashes = ПРИВЕТСТВИЕ \[Станция] НАМ ТРЕБУЕТСЯ 6 ВСПЫШЕК В СВЯЗИ С НОРМАЛЬНЫМИ \[Учениеми] С СБ. ВСЕ \[Нормально].
-bounty-description-ring = On this EXTRAORDINARY day there will be a wedding between the Gelts, but Mr. Gelt has lost the rings, send a pair of rings.
+bounty-description-ring = В этот ВЕЛИКОЛЕПНЫЙ день состоится свадьба между Гелтами, но мистер Гельт потерял кольца, отправьте пару колец.
 bounty-description-food = После нашествия крысиного короля соседняя станция Унати осталась без еды. Необходима большая партия мясной пищи.

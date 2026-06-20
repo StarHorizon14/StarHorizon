@@ -1,5 +1,5 @@
-ent-ClothingBackpackDuffelBlueshield = вещмешок офицера "Синий щит"
-    .desc = Подходит для того, чтобы спрятать в нём труп.
+ent-ClothingBackpackDuffelBlueshield = вещмешок DFI
+    .desc = Если вам внезапно нужно перенести половину ваших улик! Или труп, мистер Морган.
     .suffix = StarHorizon
 ent-ClothingBackpackDuffelRoboticist = вещмешок робототехника
     .desc = Компактный, насколько это возможно, вещмешок с отделениями для хранения основных гаджетов, инструментов и виски.

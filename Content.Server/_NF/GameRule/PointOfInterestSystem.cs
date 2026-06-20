@@ -13,6 +13,7 @@ using Robust.Shared.Random;
 using Content.Server._NF.Station.Systems;
 using Content.Shared._Horizon.OutpostCapture;
 using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server._NF.GameRule;
 
@@ -27,6 +28,7 @@ public sealed class PointOfInterestSystem : EntitySystem
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
     [Dependency] private readonly StationSystem _station = default!;
 
@@ -78,7 +80,8 @@ public sealed class PointOfInterestSystem : EntitySystem
             rotationOffset += rotation;
             // Append letter to depot name.
 
-            string overrideName = proto.Name;
+            var baseName = ResolvePoiDisplayName(proto.Name);
+            string overrideName = baseName;
             if (i < 26)
                 overrideName += $" {(char)('A' + i)}"; // " A" ... " Z"
             else
@@ -242,21 +245,54 @@ public sealed class PointOfInterestSystem : EntitySystem
     private bool TrySpawnPoiGrid(MapId mapUid, PointOfInterestPrototype proto, Vector2 offset, out EntityUid? gridUid, string? overrideName = null)
     {
         gridUid = null;
-        if (!_map.TryLoadGrid(mapUid, proto.GridPath, out var loadedGrid, offset: offset, rot: _random.NextAngle()))
-            return false;
-        gridUid = loadedGrid.Value;
-        List<EntityUid> gridList = [loadedGrid.Value];
+        EntityUid loadedGrid;
 
-        string stationName = string.IsNullOrEmpty(overrideName) ? proto.Name : overrideName;
+        // StarHorizon-Start
+        // If AnotherMap is true, spawn on a new separate map
+        if (proto.AnotherMap)
+        {
+            // Create a new map for this POI
+            var newMapUid = _mapSystem.CreateMap(out var newMapId);
+
+            // Set map name - use MapName if specified, otherwise use Name
+            string mapName = ResolvePoiDisplayName(proto.MapName ?? proto.Name);
+            if (!string.IsNullOrEmpty(overrideName))
+                mapName = overrideName;
+            _meta.SetEntityName(newMapUid, mapName);
+
+            // Add map components if specified
+            EntityManager.AddComponents(newMapUid, proto.AddMapComponents);
+
+            // Load the grid onto the new map
+            if (!_map.TryLoadGrid(newMapId, proto.GridPath, out var grid))
+            {
+                Del(newMapUid);
+                return false;
+            }
+
+            loadedGrid = grid.Value;
+        }
+        // StarHorizon-End
+        else
+        {
+            if (!_map.TryLoadGrid(mapUid, proto.GridPath, out var grid, offset: offset, rot: _random.NextAngle()))
+                return false;
+            loadedGrid = grid.Value;
+        }
+
+        gridUid = loadedGrid;
+        List<EntityUid> gridList = [loadedGrid];
+
+        string stationName = string.IsNullOrEmpty(overrideName) ? ResolvePoiDisplayName(proto.Name) : overrideName;
 
         EntityUid? stationUid = null;
         if (_proto.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
             stationUid = _station.InitializeNewStation(stationProto.Stations[proto.ID], gridList, stationName);
 
-        var meta = EnsureComp<MetaDataComponent>(loadedGrid.Value);
-        _meta.SetEntityName(loadedGrid.Value, stationName, meta);
+        var meta = EnsureComp<MetaDataComponent>(loadedGrid);
+        _meta.SetEntityName(loadedGrid, stationName, meta);
 
-        EntityManager.AddComponents(loadedGrid.Value, proto.AddComponents);
+        EntityManager.AddComponents(loadedGrid, proto.AddComponents);
 
         // Rename warp points after set up if needed
         if (proto.NameWarp)
@@ -269,6 +305,14 @@ public sealed class PointOfInterestSystem : EntitySystem
         }
 
         return true;
+    }
+
+    /// <summary>
+    /// Fluent message id if the string exists in the bundle; otherwise the raw prototype value (legacy POIs).
+    /// </summary>
+    private string ResolvePoiDisplayName(string value)
+    {
+        return Loc.TryGetString(value, out var localized) ? localized : value;
     }
 
     private Vector2 GetRandomPOICoord(float unscaledMinRange, float unscaledMaxRange, float clearance)

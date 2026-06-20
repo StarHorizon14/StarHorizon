@@ -229,7 +229,7 @@ namespace Content.Server.Administration.Managers
                     }
                 }
 
-                if (player.ContentData()!.Stealthed)
+                if (player.ContentData()?.Stealthed == true)
                 {
                     aData.Stealth = true;
                 }
@@ -390,7 +390,7 @@ namespace Content.Server.Administration.Managers
 
             _admins.Add(session, reg);
 
-            if (session.ContentData()!.Stealthed)
+            if (session.ContentData()?.Stealthed == true)
                 reg.Data.Stealth = true;
 
             if (reg.Data.Active)

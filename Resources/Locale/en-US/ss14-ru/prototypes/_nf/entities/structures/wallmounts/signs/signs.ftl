@@ -48,3 +48,5 @@ ent-NFSignEms2 = emergency medical service sign
     .desc = A sign that indicates emergency medical services.
 ent-SignNfsdInterrogation = interrogation sign
     .desc = { ent-NFBaseSign.desc }
+ent-WarningHelium = helium waste sign
+    .desc = WARNING! Helium flow tube. Ensure the flow is disengaged before working.

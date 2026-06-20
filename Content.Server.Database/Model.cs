@@ -46,6 +46,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<HorizonAdminLoadout> HorizonAdminLoadout { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -371,6 +372,10 @@ namespace Content.Server.Database
                 .OwnsOne(p => p.HWId)
                 .Property(p => p.Type)
                 .HasDefaultValue(HwidType.Legacy);
+
+            // Horizon: Admin Loadout
+            modelBuilder.Entity<HorizonAdminLoadout>()
+                .HasIndex(p => p.PlayerUserId);
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -418,6 +423,19 @@ namespace Content.Server.Database
         public string FacialHairColor { get; set; } = null!;
         public string EyeColor { get; set; } = null!;
         public string SkinColor { get; set; } = null!;
+
+        // _Horizon: Hair gradient start
+        public bool HairGradientEnabled { get; set; }
+        public string HairGradientSecondaryColor { get; set; } = "#FFFFFF";
+        public int HairGradientDirection { get; set; }
+        public bool FacialHairGradientEnabled { get; set; }
+        public string FacialHairGradientSecondaryColor { get; set; } = "#FFFFFF";
+        public int FacialHairGradientDirection { get; set; }
+        public bool AllMarkingsGradientEnabled { get; set; }
+        public string AllMarkingsGradientSecondaryColor { get; set; } = "#FFFFFF";
+        public int AllMarkingsGradientDirection { get; set; }
+        // _Horizon: Hair gradient end
+
         public int SpawnPriority { get; set; } = 0;
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();
@@ -1350,5 +1368,75 @@ namespace Content.Server.Database
         /// The score IPIntel returned
         /// </summary>
         public float Score { get; set; }
+    }
+
+    // Horizon: Admin-granted loadout items
+    [Table("horizon_admin_loadout")]
+    public class HorizonAdminLoadout
+    {
+        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        /// <summary>
+        /// The target player's UserId.
+        /// </summary>
+        [Required]
+        public Guid PlayerUserId { get; set; }
+
+        /// <summary>
+        /// The base entity prototype ID.
+        /// </summary>
+        [Required]
+        public string PrototypeId { get; set; } = null!;
+
+        /// <summary>
+        /// Serialized YAML of component diffs from the prototype.
+        /// </summary>
+        public string? ComponentOverridesYaml { get; set; }
+
+        /// <summary>
+        /// Custom entity name (from MetaData), if modified.
+        /// </summary>
+        public string? CustomName { get; set; }
+
+        /// <summary>
+        /// Custom entity description, if modified.
+        /// </summary>
+        public string? CustomDescription { get; set; }
+
+        /// <summary>
+        /// Credit cost for this item, set by admin.
+        /// </summary>
+        [Required]
+        public int CreditCost { get; set; }
+
+        /// <summary>
+        /// Maximum number of uses for this item. Null means permanent (unlimited).
+        /// </summary>
+        public int? MaxUses { get; set; }
+
+        /// <summary>
+        /// Remaining uses for this item. Null means permanent (unlimited).
+        /// Decremented on each spawn. When 0, the item is no longer spawnable.
+        /// </summary>
+        public int? RemainingUses { get; set; }
+
+        /// <summary>
+        /// Whether the player has enabled this item for spawn.
+        /// </summary>
+        [Required]
+        public bool IsEnabled { get; set; } = true;
+
+        /// <summary>
+        /// Admin username who granted this item.
+        /// </summary>
+        [Required]
+        public string GrantedBy { get; set; } = null!;
+
+        /// <summary>
+        /// When this item was granted.
+        /// </summary>
+        [Required]
+        public DateTime GrantedAt { get; set; }
     }
 }

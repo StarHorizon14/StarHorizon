@@ -118,6 +118,12 @@
     ClothingUnderwearSocksYellow: 3
     ClothingUnderwearSocksKneeYellow: 3
     ClothingUnderwearSocksThighYellow: 3
+    ClothingShoesBlackWindings: 5
+    ClothingShoesLongBlackWindings: 5
+    ClothingShoesWhiteWindings: 5
+    ClothingShoesLongWhiteWindings: 5
+    ClothingShoesBrownWindings: 5
+    ClothingShoesLongBrownWindings: 5
 # Horizon end
     # ClothingHeadHatBeret: 4
     # ClothingHeadBandBlack: 2
@@ -187,6 +193,7 @@
     # ClothingHeadHatCorpsoft: 2
     # ClothingHeadFishCap: 2
     # ClothingHeadRastaHat: 2
+    # ClothingHeadPropellerHat: 2
     # ClothingBeltStorageWaistbag: 3
     # ClothingEyesGlasses: 6
     # ClothingHandsGlovesColorBlack: 4
@@ -209,4 +216,5 @@
     ToyFigurineGreytider: 1
     # ClothingBackpackSatchelSmugglerUnanchored: 1 # Frontier
     ClothingHeadHatSolidHeadband: 2
+    ClothingHeadPropellerHat: 2 # Frontier
   # DO NOT ADD MORE, USE UNIFORM DYING

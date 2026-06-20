@@ -14,9 +14,12 @@
   - BaseStationDeadDropHintExempt # No hints
   - BaseStationRenameWarpPoints
   - BaseStationBusDepot # All the buses
+  - NFBaseStationCargo # Horizon
+  - BaseStationCargoMarket # Horizon
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
+  - type: MarketSaturation # Horizon: насыщение рынка
 
 # region Dev
 - type: entity
@@ -38,6 +41,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
+  - type: MarketSaturation # Horizon: насыщение рынка
 
 - type: entity
   id: DeadDropFrontierOutpost
@@ -124,6 +128,7 @@
   - type: Transform
   - type: ExtraShuttleInformation
     hiddenWithoutOpenJobs: true
+  - type: NoMailStation # Horizon: Disable mail for players on antagonist vessels
 
 - type: entity
   id: StandardFrontierSecurityVessel

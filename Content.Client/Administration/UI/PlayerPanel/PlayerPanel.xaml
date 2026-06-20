@@ -10,7 +10,7 @@
         </BoxContainer>
        <BoxContainer Orientation="Horizontal">
            <Label Name="Whitelisted"/>
-           <controls:ConfirmButton Name="WhitelistToggle" Text="{Loc 'player-panel-false'}" Visible="False"></controls:ConfirmButton>
+           <Button Name="WhitelistToggle" Text="{Loc 'player-panel-false'}" Visible="False"/>
        </BoxContainer>
        <Label Name="Playtime"/>
        <Label Name="Notes"/>
@@ -31,6 +31,7 @@
             <Button Name="FreezeAndMuteToggleButton" Text="{Loc player-panel-freeze-and-mute}" Disabled="True"/>
             <Button Name="BanButton" Text="{Loc player-panel-ban}" Disabled="True"/>
             <controls:ConfirmButton Name="RejuvenateButton" Text="{Loc player-panel-rejuvenate}" Disabled="True"/>
+            <Button Name="CameraButton" Text="{Loc player-panel-camera}" Disabled="True"/>
            </GridContainer>
            <Button Name="JobWhitelistsButton" Text="{Loc player-panel-job-whitelists}" SetWidth="136" SetHeight="27" Disabled="True"/> <!-- DeltaV: Job whitelists -->
        </BoxContainer>

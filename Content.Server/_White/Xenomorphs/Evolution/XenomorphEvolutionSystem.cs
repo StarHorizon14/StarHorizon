@@ -14,6 +14,7 @@ using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
+using Robust.Shared.Log;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -22,6 +23,7 @@ namespace Content.Server._White.Xenomorphs.Evolution;
 
 public sealed class XenomorphEvolutionSystem : EntitySystem
 {
+    private readonly ISawmill _sawmill = Logger.GetSawmill("TEST.xenomorphonevolution");
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -40,6 +42,7 @@ public sealed class XenomorphEvolutionSystem : EntitySystem
     {
         base.Initialize();
 
+        _sawmill.Debug("XenomorphEvolutionSystem initialized");
         SubscribeLocalEvent<XenomorphEvolutionComponent, MapInitEvent>(OnXenomorphEvolutionMapInit);
         SubscribeLocalEvent<XenomorphEvolutionComponent, ComponentShutdown>(OnXenomorphEvolutionShutdown);
         SubscribeLocalEvent<XenomorphEvolutionComponent, EvolutionsActionEvent>(OnEvolutionsAction);
@@ -47,14 +50,21 @@ public sealed class XenomorphEvolutionSystem : EntitySystem
         SubscribeLocalEvent<XenomorphEvolutionComponent, XenomorphEvolutionDoAfterEvent>(OnXenomorphEvolutionDoAfter);
     }
 
-    private void OnXenomorphEvolutionMapInit(EntityUid uid, XenomorphEvolutionComponent component, MapInitEvent args) =>
+    private void OnXenomorphEvolutionMapInit(EntityUid uid, XenomorphEvolutionComponent component, MapInitEvent args)
+    {
+        _sawmill.Debug($"OnXenomorphEvolutionMapInit: uid={uid}");
         _actions.AddAction(uid, ref component.EvolutionAction, component.EvolutionActionId);
+    }
 
-    private void OnXenomorphEvolutionShutdown(EntityUid uid, XenomorphEvolutionComponent component, ComponentShutdown args) =>
+    private void OnXenomorphEvolutionShutdown(EntityUid uid, XenomorphEvolutionComponent component, ComponentShutdown args)
+    {
+        _sawmill.Debug($"OnXenomorphEvolutionShutdown: uid={uid}");
         _actions.RemoveAction(uid, component.EvolutionAction);
+    }
 
     private void OnEvolutionsAction(EntityUid uid, XenomorphEvolutionComponent component, ref EvolutionsActionEvent args)
     {
+        _sawmill.Debug($"OnEvolutionsAction: uid={uid}, handled={args.Handled}, evolvesToCount={component.EvolvesTo.Count}, points={component.Points}/{component.Max}");
         if (args.Handled)
             return;
 
@@ -62,14 +72,17 @@ public sealed class XenomorphEvolutionSystem : EntitySystem
         {
             if (component.Points < component.Max)
             {
+                _sawmill.Debug($"OnEvolutionsAction: not enough points, points={component.Points}, max={component.Max}");
                 _popup.PopupEntity(Loc.GetString("xenomorphs-evolution-not-enough-points", ("seconds", (component.Max - component.Points) / component.PointsPerSecond)), uid, uid);
                 return;
             }
 
+            _sawmill.Debug($"OnEvolutionsAction: evolving to {component.EvolvesTo.First().Prototype}");
             args.Handled = Evolve(uid, component.EvolvesTo.First().Prototype, component.EvolutionDelay);
             return;
         }
 
+        _sawmill.Debug($"OnEvolutionsAction: opening radial selector UI");
         _ui.TryToggleUi(uid, RadialSelectorUiKey.Key, uid);
         _ui.SetUiState(uid, RadialSelectorUiKey.Key, new TrackedRadialSelectorState(component.EvolvesTo));
 
@@ -78,37 +91,52 @@ public sealed class XenomorphEvolutionSystem : EntitySystem
 
     private void OnEvolutionRecieved(EntityUid uid, XenomorphEvolutionComponent component, RadialSelectorSelectedMessage args)
     {
+        _sawmill.Debug($"OnEvolutionRecieved: uid={uid}, selectedItem={args.SelectedItem}, points={component.Points}/{component.Max}");
         if (component.Points < component.Max)
         {
+            _sawmill.Debug($"OnEvolutionRecieved: not enough points");
             _popup.PopupEntity(Loc.GetString("xenomorphs-evolution-not-enough-points", ("seconds", (component.Max - component.Points) / component.PointsPerSecond)), uid, uid);
             return;
         }
 
         if (Evolve(uid, args.SelectedItem, component.EvolutionDelay))
+        {
+            _sawmill.Debug($"OnEvolutionRecieved: evolution started");
             return;
+        }
 
+        _sawmill.Debug($"OnEvolutionRecieved: evolution failed, closing UI");
         var actor = args.Actor;
         _ui.CloseUi(uid, RadialSelectorUiKey.Key, actor);
     }
 
     private void OnXenomorphEvolutionDoAfter(EntityUid uid, XenomorphEvolutionComponent component, ref XenomorphEvolutionDoAfterEvent args)
     {
+        _sawmill.Debug($"OnXenomorphEvolutionDoAfter: uid={uid}, handled={args.Handled}, cancelled={args.Cancelled}, choice={args.Choice}, caste={args.Caste}");
         if (args.Handled || args.Cancelled || !_mind.TryGetMind(uid, out var mindUid, out var mind))
+        {
+            _sawmill.Debug($"OnXenomorphEvolutionDoAfter: early return, handled={args.Handled}, cancelled={args.Cancelled}");
             return;
+        }
 
         var ev = new BeforeXenomorphEvolutionEvent(args.Caste);
         RaiseLocalEvent(uid, ev);
 
         if (ev.Cancelled)
+        {
+            _sawmill.Debug($"OnXenomorphEvolutionDoAfter: evolution cancelled");
             return;
+        }
 
         args.Handled = true;
 
         var coordinates = _transform.GetMoverCoordinates(uid);
         var newXeno = Spawn(args.Choice, coordinates);
+        _sawmill.Debug($"OnXenomorphEvolutionDoAfter: spawned new xeno={newXeno} at coordinates={coordinates}");
 
         _mind.TransferTo(mindUid, newXeno, mind:mind);
         _mind.UnVisit(mindUid, mind);
+        _sawmill.Debug($"OnXenomorphEvolutionDoAfter: mind transferred from {uid} to {newXeno}");
 
         var dropHandItemsEvent = new DropHandItemsEvent();
         RaiseLocalEvent(uid, ref dropHandItemsEvent);
@@ -117,6 +145,7 @@ public sealed class XenomorphEvolutionSystem : EntitySystem
         _adminLog.Add(LogType.Mind, $"{ToPrettyString(uid)} evolved into {ToPrettyString(newXeno)}");
 
         Del(uid);
+        _sawmill.Debug($"OnXenomorphEvolutionDoAfter: deleted old entity={uid}");
 
         _popup.PopupEntity(Loc.GetString("xenomorphs-evolution-end"), newXeno, newXeno);
     }
@@ -128,40 +157,57 @@ public sealed class XenomorphEvolutionSystem : EntitySystem
         var time = _timing.CurTime;
 
         var query = EntityQueryEnumerator<XenomorphEvolutionComponent>();
+        var count = 0;
         while (query.MoveNext(out var uid, out var alienEvolution))
         {
+            count++;
             if (alienEvolution.Points == alienEvolution.Max || time < alienEvolution.NextPointsAt || _container.IsEntityInContainer(uid))
                 continue;
 
             alienEvolution.NextPointsAt = time + TimeSpan.FromSeconds(1);
             alienEvolution.Points += alienEvolution.PointsPerSecond;
+            _sawmill.Debug($"Update: updated points for uid={uid}, points={alienEvolution.Points}/{alienEvolution.Max}");
 
             if (alienEvolution.Points != alienEvolution.Max)
                 continue;
 
+            _sawmill.Debug($"Update: evolution ready for uid={uid}");
             _popup.PopupEntity(Loc.GetString("xenomorphs-evolution-ready"), uid, uid, PopupType.Large);
         }
+        if (count > 0)
+            _sawmill.Debug($"Update: processed {count} evolution components");
     }
 
     public bool Evolve(EntityUid uid, string? evolveTo, TimeSpan evolutionDelay, bool checkNeedCasteDeath = true)
     {
+        _sawmill.Debug($"Evolve: uid={uid}, evolveTo={evolveTo}, delay={evolutionDelay}");
         if (evolveTo == null
             || !_protoManager.TryIndex(evolveTo, out var xenomorphPrototype)
             || !xenomorphPrototype.TryGetComponent<XenomorphComponent>(out var xenomorph, _componentFactory)) // Goobstation
+        {
+            _sawmill.Debug($"Evolve: invalid prototype or component, returning false");
             return false;
+        }
 
         var ev = new BeforeXenomorphEvolutionEvent(xenomorph.Caste, checkNeedCasteDeath);
         RaiseLocalEvent(uid, ev);
 
         if (ev.Cancelled)
+        {
+            _sawmill.Debug($"Evolve: evolution cancelled by event");
             return false;
+        }
 
         var doAfterEvent = new XenomorphEvolutionDoAfterEvent(evolveTo, xenomorph.Caste, checkNeedCasteDeath);
         var doAfter = new DoAfterArgs(EntityManager, uid, evolutionDelay, doAfterEvent, uid);
 
         if (!_doAfter.TryStartDoAfter(doAfter))
+        {
+            _sawmill.Debug($"Evolve: failed to start doAfter");
             return false;
+        }
 
+        _sawmill.Debug($"Evolve: doAfter started successfully");
         _jitter.DoJitter(uid, evolutionDelay, true, 80, 8, true);
 
         var popupOthers = Loc.GetString("xenomorphs-evolution-start-others", ("uid", uid));

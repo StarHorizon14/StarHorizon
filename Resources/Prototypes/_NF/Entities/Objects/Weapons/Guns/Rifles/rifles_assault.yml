@@ -773,7 +773,7 @@
     maxAngle: 11
     angleIncrease: 0.6
     angleDecay: 3
-    fireRate: 9
+    fireRate: 7
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/xm40.rsi
   - type: Sprite

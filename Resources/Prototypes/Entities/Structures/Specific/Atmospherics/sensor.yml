@@ -36,7 +36,7 @@
       ProtoNitrate: danger
       Zauker: danger
       Halon: danger
-      Helium: unwanted
+      Helium: stationHe # Frontier
       AntiNoblium: danger
 # Horizon end
   - type: Tag

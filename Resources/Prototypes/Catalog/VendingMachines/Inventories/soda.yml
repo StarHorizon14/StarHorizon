@@ -11,6 +11,7 @@
     DrinkFourteenLokoCan: 3
   contrabandInventory:
     DrinkColaBottleFull: 2
+    DrinkChangelingStingCan: 3
+    DrinkAzJuice: 2
   emaggedInventory:
-    DrinkNukieCan: 2
-    DrinkChangelingStingCan: 2
+    DrinkNukieCan: 3

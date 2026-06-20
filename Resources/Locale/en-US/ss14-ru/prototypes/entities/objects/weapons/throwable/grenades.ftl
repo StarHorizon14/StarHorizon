@@ -36,3 +36,5 @@ ent-GrenadeDummy = trick grenade
     .desc = All the grenade without any of the boom.
 ent-SyndieTrickyBomb = syndicate trickybomb
     .desc = A syndicate-manufactured explosive used to make an excellent distraction.
+ent-BurnGrenade = выжигательная граната
+    .desc = содержит смертельно опасную смесь трития и плазмы для создания ада на земле.

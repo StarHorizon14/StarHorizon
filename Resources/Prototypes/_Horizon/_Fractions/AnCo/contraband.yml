@@ -1,0 +1,15 @@
+- type: contrabandSeverity
+  id: AnCoItem
+  examineText: AnCo-contraband-examine-text
+
+- type: entity
+  id: BaseAnCoContraband
+  parent: BaseC3ExpeditionContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: AnCoItem
+    turnInValues:
+      FrontierUplinkCoin: 0
+      Doubloon: 0
+    allowedDepartments: [ ]

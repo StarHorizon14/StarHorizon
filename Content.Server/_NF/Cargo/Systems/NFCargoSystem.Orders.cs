@@ -310,6 +310,9 @@ public sealed partial class NFCargoSystem
         // Create the item itself
         var item = Spawn(order.ProductId, spawn);
 
+        // All crates from the same order go to the same warehouse (batch destination)
+        ApplyBatchDestinationIfTradeCrate(item, order, spawn);
+
         // Ensure the item doesn't start anchored
         _transform.Unanchor(item, Transform(item));
 

@@ -546,6 +546,46 @@
   shader: unshaded
 
 - type: marking
+  id: MothAbdomenBee
+  bodyPart: Tail
+  markingCategory: Overlay
+  speciesRestriction: [Moth]
+  sprites:
+  - sprite: Mobs/Customization/Moth/moth_abdomen.rsi
+    state: bee-tail
+  - sprite: Mobs/Customization/Moth/moth_abdomen.rsi
+    state: bee-tail-alt
+
+- type: marking
+  id: MothAbdomenBeeQueen
+  bodyPart: Tail
+  markingCategory: Overlay
+  speciesRestriction: [Moth]
+  sprites:
+  - sprite: Mobs/Customization/Moth/moth_abdomen.rsi
+    state: bee-queen
+  - sprite: Mobs/Customization/Moth/moth_abdomen.rsi
+    state: bee-queen-alt
+
+- type: marking
+  id: MothAbdomenInsect
+  bodyPart: Tail
+  markingCategory: Overlay
+  speciesRestriction: [Moth]
+  sprites:
+  - sprite: Mobs/Customization/Moth/moth_abdomen.rsi
+    state: insect
+
+- type: marking
+  id: MothAbdomenInsectQueen
+  bodyPart: Tail
+  markingCategory: Overlay
+  speciesRestriction: [Moth]
+  sprites:
+  - sprite: Mobs/Customization/Moth/moth_abdomen.rsi
+    state: insect-queen
+
+- type: marking
   id: MothFireflyOverlay
   bodyPart: Tail
   markingCategory: Overlay

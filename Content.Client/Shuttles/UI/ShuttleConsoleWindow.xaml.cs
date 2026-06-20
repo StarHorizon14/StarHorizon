@@ -158,7 +158,7 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         MapContainer.SetConsole(owner);
 
         NavContainer.UpdateState(cState.NavState);
-        // MapContainer.UpdateState(cState.MapState);
+        MapContainer.UpdateState(cState.MapState);
         DockContainer.UpdateState(coordinates?.EntityId, cState.DockState);
         // Horizon start
         if (cState.Broken)

@@ -7,7 +7,7 @@
   name: trait-accentless-name
   description: trait-accentless-desc
   category: SpeechTraits
-  cost: 2
+#  cost: 2 # Frontier
   components:
   - type: Accentless
     removes:
@@ -74,7 +74,8 @@
   category: SpeechTraits
   cost: 1
   components:
-  - type: FrenchAccent
+  - type: ReplacementAccent #Horizon
+    accent: french
 
 - type: trait
   id: SpanishAccent

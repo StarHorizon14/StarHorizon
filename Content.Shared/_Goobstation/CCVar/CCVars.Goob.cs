@@ -5,13 +5,11 @@ namespace Content.Shared._Goobstation.CCVar;
 [CVarDefs]
 public sealed partial class GoobCVars
 {
-    #region Mechs
 
     /// <summary>
-    ///     Whether or not players can use mech guns outside of mechs.
+    ///     Goobstation: The amount of time between NPC Silicons draining their battery in seconds.
     /// </summary>
-    public static readonly CVarDef<bool> MechGunOutsideMech =
-        CVarDef.Create("mech.gun_outside_mech", true, CVar.SERVER | CVar.REPLICATED);
+    public static readonly CVarDef<float> SiliconNpcUpdateTime =
+        CVarDef.Create("silicon.npcupdatetime", 1.5f, CVar.SERVERONLY);
 
-    #endregion
 }

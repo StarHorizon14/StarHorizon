@@ -1,6 +1,6 @@
 <Document>
   <Box>
-    <GuideEntityEmbed Entity="BannerMedical" Caption="Director of Care"/>
+    <GuideEntityEmbed Entity="BannerMedical" Caption="Менеджер Медицинских Операций"/>
   </Box>
   # Менеджер Медицинских Операций
 

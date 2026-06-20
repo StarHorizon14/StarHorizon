@@ -1597,3 +1597,42 @@
     tags:
     - Fruit
     - Vegetable
+
+- type: entity
+  name: peach
+  parent: FoodProduceBase
+  id: FoodPeach
+  description: Perfect with cream.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - funny
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Sprite
+    sprite: _Horizon/Objects/Specific/Hydroponics/peach.rsi
+  - type: Item
+    heldPrefix: produce
+  - type: Produce
+    seedId: peach
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: AzJuice
+        Quantity: 10
+  # Horizon Bothany start
+  - type: Fermentation
+    fermentate: FruitWineNormal
+  # Horizon Bothany end
+  - type: Tag
+    tags:
+    - Fruit

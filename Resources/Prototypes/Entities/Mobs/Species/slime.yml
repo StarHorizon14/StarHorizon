@@ -121,6 +121,16 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  # Horizon: Height traits support
+  - type: TallWhitelist
+    scale: 1.15
+    density: 200
+    cosmeticOnly: false
+  - type: ShortWhitelist
+    scale: 0.85
+    density: 150
+    cosmeticOnly: false
+  # Horizon end
 
 - type: entity
   parent: MobHumanDummy

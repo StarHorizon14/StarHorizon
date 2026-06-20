@@ -1,0 +1,20 @@
+- type: entity
+  id: ShellShotgunMagnum12
+  name: shell (.12 gauge magnum)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunMagnum12Spread
+    soundEject:
+      collection: ShellEject
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShellLand
+      params:
+        volume: 1
+

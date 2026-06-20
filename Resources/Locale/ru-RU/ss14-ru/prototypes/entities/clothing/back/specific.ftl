@@ -6,5 +6,7 @@ ent-ClothingBackpackWaterTank = ранцевый водяной резервуа
     .suffix = { ent-Clothing.suffix }
 ent-ClothingBagPet = сумка для животных
     .desc = Небольшая сумка, предназначенная для домашних и мелких животных.
+ent-ClothingBackpackHarmpack = В.Р.Е.Д.З.А.К.
+    .desc = Теперь вы можете перезаряжать, бить и перекусывать - одновременно.
 ent-NFClothingBackpackElectropack = электрорюкзак
     .desc = Специализированный рюкзак, оборудованный электрическими системами для продвинутых целей.

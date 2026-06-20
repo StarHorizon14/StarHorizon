@@ -1778,7 +1778,7 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 1
-- proto: ComputerTabletopShuttleAntag
+- proto: ComputerTabletopShuttleAntagPirate
   entities:
   - uid: 44
     components:

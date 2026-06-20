@@ -50,6 +50,7 @@ using Content.Shared.SSDIndicator; // Frontier
 using Content.Server.Power.EntitySystems; // Frontier
 using Content.Server._NF.Mail.Components; // Frontier
 using Robust.Server.Player; // Frontier
+using Content.Server._Horizon.Mail.Components; // Horizon: NoMailStation
 
 namespace Content.Server._DV.Mail.EntitySystems
 {
@@ -132,6 +133,14 @@ namespace Content.Server._DV.Mail.EntitySystems
 
             //if (!HasComp<StationMailRouterComponent>(station)) // Frontier - We dont need to test this.
             //    return;
+
+            // Horizon: Check if station has NoMailStationComponent - if so, disable mail for this player
+            if (args.Station != null && HasComp<NoMailStationComponent>(args.Station.Value))
+            {
+                EnsureComp<MailDisabledComponent>(args.SpawnResult.Value);
+                return;
+            }
+            // End Horizon
 
             EnsureComp<MailReceiverComponent>(args.SpawnResult.Value);
         }
@@ -543,12 +552,13 @@ namespace Content.Server._DV.Mail.EntitySystems
                 Loc.GetString(mailEntityStrings.NameAddressed, // Frontier: move constant to MailEntityString
                 ("recipient", recipient.Name)));
 
-            var accessReader = EnsureComp<AccessReaderComponent>(uid);
-            // Frontier: TODO - should this be removed for Frontier?
-            foreach (var access in recipient.AccessTags)
-            {
-                accessReader.AccessLists.Add([access]);
-            }
+            // Frontier: - remove access reader checks
+            // var accessReader = EnsureComp<AccessReaderComponent>(uid);
+            // foreach (var access in recipient.AccessTags)
+            // {
+            //     accessReader.AccessLists.Add([access]);
+            // }
+            // End Frontier
         }
 
         /// <summary>

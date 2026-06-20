@@ -1,0 +1,223 @@
+- type: entity
+  id: AnCoAnomalyCircuitboard
+  parent: [BaseItem, BaseAnCoContraband]
+  name: микросхема АнКо
+  suffix: StarHorizon, AnCo
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+    - type: Sprite
+      sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+      state: boardproto
+    - type: Item
+      storedRotation: -90
+    - type: StaticPrice
+      price: 100
+    - type: MachineBoard
+      prototype: AnCoFabricator
+      stackRequirements:
+        ArdonSheetStack: 5
+        KazmieSheetStack: 20
+      requirements:
+        MatterBin: 3
+        Manipulator: 3
+
+- type: entity
+  id: AnCoSuitCircuitboard
+  parent: [BaseItem, BaseAnCoContraband]
+  name: микросхема фабрикатора обмундирования АнКо
+  suffix: StarHorizon, AnCo
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+    - type: Sprite
+      sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+      state: boardsuit
+    - type: Item
+      storedRotation: -90
+    - type: StaticPrice
+      price: 100
+    - type: MachineBoard
+      prototype: AnCoSuitFabricator
+      stackRequirements:
+        ArdonSheetStack: 15
+        KazmieSheetStack: 30
+      requirements:
+        MatterBin: 3
+        Manipulator: 3
+
+- type: entity
+  id: AnCoWeaponCircuitboard
+  parent: [BaseItem, BaseAnCoContraband]
+  name: микросхема фабрикатора вооружения АнКо
+  suffix: StarHorizon, AnCo
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+    - type: Sprite
+      sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+      state: boardweapon
+    - type: Item
+      storedRotation: -90
+    - type: StaticPrice
+      price: 100
+    - type: MachineBoard
+      prototype: AnCoWeaponFabricator
+      stackRequirements:
+        ArdonSheetStack: 10
+        KazmieSheetStack: 20
+      requirements:
+        MatterBin: 3
+        Manipulator: 3
+
+- type: entity
+  id: AnCoOtherCircuitboard
+  parent: [BaseItem, BaseAnCoContraband]
+  name: микросхема фабрикатора снаряжения АнКо
+  suffix: StarHorizon, AnCo
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+    - type: Sprite
+      sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+      state: boardother
+    - type: Item
+      storedRotation: -90
+    - type: StaticPrice
+      price: 100
+    - type: MachineBoard
+      prototype: AnCoOtherFabricator
+      stackRequirements:
+        ArdonSheetStack: 5
+        KazmieSheetStack: 15
+      requirements:
+        MatterBin: 3
+        Manipulator: 3
+
+- type: entity
+  id: CryptominerMachineCircuitboard
+  parent: [BaseItem, BaseAnCoContraband]
+  name: микросхема криптомайнера АнКо
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+    state: boardcrypto
+  - type: Item
+    storedRotation: -90
+  - type: StaticPrice
+    price: 100
+  - type: MachineBoard
+    prototype: Cryptominer
+    stackRequirements:
+      ArdonSheetStack: 40
+      KazmieSheetStack: 60
+    requirements:
+      MatterBin: 2
+      Capacitor: 4
+
+- type: entity
+  id: EngineMachineCircuitboard
+  parent: [BaseItem, BaseAnCoContraband]
+  name: микросхема двигателя
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+    state: boardengine
+  - type: Item
+    storedRotation: -90
+  - type: StaticPrice
+    price: 100
+  - type: MachineBoard
+    prototype: AnCoThruster
+    stackRequirements:
+      ArdonSheetStack: 5
+      KazmieSheetStack: 5
+    requirements:
+      Capacitor: 2
+
+- type: entity
+  id: IdAnCoComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseAnCoContraband]
+  name: микросхема консоли ID
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+    state: boardconsole
+  - type: Item
+    storedRotation: -90
+  - type: StaticPrice
+    price: 100
+  - type: ComputerBoard
+    prototype: ComputerIdAnCo
+  - type: ComputerTabletopBoard
+    prototype: ComputerIdTableAnCo
+  - type: PhysicalComposition
+    materialComposition:
+      Ardon: 100
+      Kazmie: 10
+
+- type: entity
+  id: IFFFullAnCoComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseAnCoContraband]
+  name: микросхема консоли маскировки
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+    state: boardconsole
+  - type: Item
+    storedRotation: -90
+  - type: StaticPrice
+    price: 100
+  - type: ComputerBoard
+    prototype: ComputerIFFFullAnCo
+  - type: ComputerTabletopBoard
+    prototype: ComputerIFFFullTableAnCo
+  - type: PhysicalComposition
+    materialComposition:
+      Ardon: 100
+      Kazmie: 10
+
+- type: entity
+  id: IFFAnCoComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseAnCoContraband]
+  name: микросхема консоли опознования
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+    state: boardconsole
+  - type: Item
+    storedRotation: -90
+  - type: StaticPrice
+    price: 100
+  - type: ComputerBoard
+    prototype: ComputerIFFAnCo
+  - type: ComputerTabletopBoard
+    prototype: ComputerIFFTableAnCo
+  - type: PhysicalComposition
+    materialComposition:
+      Ardon: 100
+      Kazmie: 10
+
+- type: entity
+  id: AnCoShuttleComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseAnCoContraband]
+  name: микросхема консоли управления
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+    state: boardconsole
+  - type: Item
+    storedRotation: -90
+  - type: StaticPrice
+    price: 100
+  - type: ComputerBoard
+    prototype: AnCoComputerShuttle
+  - type: ComputerTabletopBoard
+    prototype: AnCoComputerShuttleTable
+  - type: PhysicalComposition
+    materialComposition:
+      Ardon: 100
+      Kazmie: 10
+

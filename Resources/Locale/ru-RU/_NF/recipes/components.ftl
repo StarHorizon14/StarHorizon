@@ -24,3 +24,4 @@ construction-graph-component-computer-wallmount-board = любая настен�
 construction-graph-component-computer-tabletop-board = любая настольная компьютерная плата
 construction-graph-component-nf-pirate-toolbox = пиратский ремонтный ящик
 construction-graph-component-nf-weapon-charger-circuitboard = плата зарядной станции
+construction-graph-component-nf-glowshroom-spores = споры светогриба

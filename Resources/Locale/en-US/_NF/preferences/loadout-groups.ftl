@@ -19,3 +19,6 @@ loadout-group-contractor-survival-box = survival box
 loadout-group-contractor-cartridge = PDA cartridges
 loadout-group-contractor-wallet = wallet
 loadout-group-contractor-implanter = implanters
+
+# Syndicate (Horizon)
+loadout-group-syndicate-pda = Syndicate PDA

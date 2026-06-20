@@ -1,6 +1,14 @@
 ent-ConjuredObject10 = { "" }
     .desc = A magically created entity, that'll vanish from existence eventually.
     .suffix = Conjured
+ent-ConjuredObject30 = { ent-ConjuredObject10 }
+    .desc = { ent-ConjuredObject10.desc }
+ent-ConjuredObject60 = { ent-ConjuredObject10 }
+    .desc = { ent-ConjuredObject10.desc }
+ent-ConjuredObject180 = { ent-ConjuredObject10 }
+    .desc = { ent-ConjuredObject10.desc }
+ent-ConjuredObject300 = { ent-ConjuredObject10 }
+    .desc = { ent-ConjuredObject10.desc }
 ent-BluntObject = BluntObject
     .desc = If you can see this you're probably dead!
 ent-SoapConjured = soap

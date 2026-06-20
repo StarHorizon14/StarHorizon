@@ -1,4 +1,5 @@
 using Content.Shared.Parallax.Biomes.Layers;
+using Content.Shared.Parallax.Biomes.Markers;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Parallax.Biomes;
@@ -13,4 +14,8 @@ public sealed partial class BiomeTemplatePrototype : IPrototype
 
     [DataField("layers")]
     public List<IBiomeLayer> Layers = new();
+
+    /// Horizon dungeon
+    [DataField("markerLayers")]
+    public HashSet<ProtoId<BiomeMarkerLayerPrototype>> MarkerLayers = new();
 }

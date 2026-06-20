@@ -1,7 +1,7 @@
 ent-CrateEngineeringSmallThruster = small thruster crate
-    .desc = { ent-CrateEngineering.desc }
+    .desc = Contains a small thruster flatpack.
 ent-CrateEngineeringSmallGyroscope = small gyroscope crate
-    .desc = { ent-CrateEngineering.desc }
+    .desc = Contains a small gyroscope flatpack.
 ent-CrateEngineeringEmitterBulk = bulk emitter crate
     .desc = A collection of eight emitters for singularity or tesla containment.
 ent-CrateEngineeringTeslaCoilBulk = bulk tesla coil crate

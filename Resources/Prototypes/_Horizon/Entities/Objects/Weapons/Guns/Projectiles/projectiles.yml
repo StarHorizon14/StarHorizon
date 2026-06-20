@@ -160,6 +160,8 @@
       shader: unshaded
   - type: GatheringProjectile
     amount: 30
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
   - type: Projectile
     deleteOnCollide: false
     damage:
@@ -167,7 +169,7 @@
         Heat: 20
         Structural: 20
   - type: TimedDespawn
-    lifetime: 0.1
+    lifetime: 0.75
 
 - type: entity
   id: BulletKineticRailgun
@@ -280,3 +282,46 @@
         Piercing: 0.5
     soundHit:
       path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+
+- type: entity
+  id: ChubbyBomb
+  name: ядерный заряд
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Horizon/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: chubbybomb 
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Radioactive
+    totalIntensity: 20000 # ~15 tile radius.
+    intensitySlope: 5
+    maxIntensity: 50
+  - type: PointLight
+    radius: 3.5
+    color: "#00D607"
+    energy: 0.5
+
+- type: entity
+  id: TermobaricRocket
+  name: rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: frag
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Termobar
+    maxIntensity: 30
+    intensitySlope: 6
+    totalIntensity: 1000
+    maxTileBreak: 1
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5

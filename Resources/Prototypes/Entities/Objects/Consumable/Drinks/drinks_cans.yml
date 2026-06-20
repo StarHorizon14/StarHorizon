@@ -726,3 +726,28 @@
   - type: Tag
     tags:
     - Wine
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkAzJuice
+  name: Аз Сок
+  description: Единственный в своём роде газированный сок, приготавливаемый из маракуйи и секретных ингридиентов, загадочным образом.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: AzJuice
+          Quantity: 30
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Horizon/Objects/Consumable/Drinks/azjuice.rsi
+  - type: Item
+    sprite: _Horizon/Objects/Consumable/Drinks/azjuice.rsi

@@ -1,3 +1,3 @@
-ent-NFSpawnMobWyvern = wyvern spawner
-    .suffix = AI, Hostile, Random
+ent-NFSpawnMobWyvern = спавнер виверны
+    .suffix = ИИ, Враждебный, Случайно
     .desc = { ent-MarkerBase.desc }

@@ -597,6 +597,67 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("connection_log", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.HorizonAdminLoadout", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("horizon_admin_loadout_id");
+
+                    b.Property<string>("ComponentOverridesYaml")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("component_overrides_yaml");
+
+                    b.Property<int>("CreditCost")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("credit_cost");
+
+                    b.Property<string>("CustomDescription")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("custom_description");
+
+                    b.Property<string>("CustomName")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("custom_name");
+
+                    b.Property<DateTime>("GrantedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("granted_at");
+
+                    b.Property<string>("GrantedBy")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("granted_by");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_enabled");
+
+                    b.Property<int?>("MaxUses")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("max_uses");
+
+                    b.Property<Guid>("PlayerUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_user_id");
+
+                    b.Property<string>("PrototypeId")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("prototype_id");
+
+                    b.Property<int?>("RemainingUses")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("remaining_uses");
+
+                    b.HasKey("Id")
+                        .HasName("PK_horizon_admin_loadout");
+
+                    b.HasIndex("PlayerUserId");
+
+                    b.ToTable("horizon_admin_loadout", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
                 {
                     b.Property<int>("Id")
@@ -806,6 +867,19 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("age");
 
+                    b.Property<int>("AllMarkingsGradientDirection")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("all_markings_gradient_direction");
+
+                    b.Property<bool>("AllMarkingsGradientEnabled")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("all_markings_gradient_enabled");
+
+                    b.Property<string>("AllMarkingsGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("all_markings_gradient_secondary_color");
+
                     b.Property<int>("BankBalance")
                         .HasColumnType("INTEGER")
                         .HasColumnName("bank_balance");
@@ -838,6 +912,19 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("facial_hair_color");
 
+                    b.Property<int>("FacialHairGradientDirection")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("facial_hair_gradient_direction");
+
+                    b.Property<bool>("FacialHairGradientEnabled")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("facial_hair_gradient_enabled");
+
+                    b.Property<string>("FacialHairGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("facial_hair_gradient_secondary_color");
+
                     b.Property<string>("FacialHairName")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -862,6 +949,19 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("hair_color");
+
+                    b.Property<int>("HairGradientDirection")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("hair_gradient_direction");
+
+                    b.Property<bool>("HairGradientEnabled")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("hair_gradient_enabled");
+
+                    b.Property<string>("HairGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("hair_gradient_secondary_color");
 
                     b.Property<string>("HairName")
                         .IsRequired()

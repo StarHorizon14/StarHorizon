@@ -1,2 +1,2 @@
-ent-SpawnMechEMU = Emu PLU Spawner
+ent-SpawnMechEMU = спавнер Эму АСПЮ
     .desc = { ent-MarkerBase.desc }

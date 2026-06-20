@@ -5,20 +5,24 @@ using Content.Shared.Access.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Storage;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
+// ReSharper disable BadListLineBreaks
 
 namespace Content.Shared._Horizon.OutpostCapture;
 
 public class SharedOutpostCaptureSystem : EntitySystem
 {
+    [Dependency] protected readonly INetManager NetMan = null!;
     [Dependency] protected readonly IRobustRandom Random = null!;
     [Dependency] protected readonly ItemSlotsSystem ItemSlotsSystem = null!;
     [Dependency] protected readonly IPrototypeManager PrototypeManager = null!;
     [Dependency] protected readonly SharedUserInterfaceSystem UiSystem = null!;
     [Dependency] protected readonly SharedContainerSystem ContainerSystem = null!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = null!;
+
     protected ISawmill Sawmill = null!;
 
     public override void Initialize()
@@ -65,12 +69,13 @@ public class SharedOutpostCaptureSystem : EntitySystem
 
     private void OnConsoleRemove(Entity<OutpostConsoleComponent> console, ref ComponentRemove args)
     {
-        if (TryGetOutpost(console, out var outpost, out _))
+        if (TryGetOutpost(console, out var outpost, out _) || !TryGetNetEntity(console, out var netConsole))
             return;
 
         console.Comp.LinkedOutpost = null;
-        outpost.LinkedConsoles.Remove(GetNetEntity(console));
-        outpost.CapturedConsoles.Remove(GetNetEntity(console));
+        outpost.LinkedConsoles.Remove(netConsole.Value);
+        outpost.CapturingConsoles.Remove(netConsole.Value);
+        outpost.CapturedConsoles.Remove(netConsole.Value);
         ItemSlotsSystem.RemoveItemSlot(console, console.Comp.IdCardSlot);
     }
 
@@ -91,6 +96,9 @@ public class SharedOutpostCaptureSystem : EntitySystem
             RemComp<OutpostCaptureComponent>(outpost);
             return;
         }
+
+        if (outpost.Comp.OutpostName == "empty")
+            outpost.Comp.OutpostName = MetaData(outpost).EntityName;
 
         outpost.Comp.NextSpawn = outpost.Comp.SpawnCooldown;
     }
@@ -159,10 +167,10 @@ public class SharedOutpostCaptureSystem : EntitySystem
                 return $"{Loc.GetString("faction-uncaptured-state")}";
 
             case OutpostConsoleState.Capturing:
-                return $"{Loc.GetString("faction-capturing-state-by")}, {Loc.GetString(console.Comp.CapturedFactionName ?? "faction-none")}!";
+                return $"{Loc.GetString("faction-capturing-state-by")} {Loc.GetString("faction-unknown")}!";
 
             case OutpostConsoleState.Captured:
-                return $"{Loc.GetString("faction-captured-state-by")}, {Loc.GetString(console.Comp.CapturedFactionName ?? "faction-none")}!";
+                return $"{Loc.GetString("faction-captured-state-by")} {Loc.GetString("faction-unknown")}!";
 
             default:
                 Sawmill.Error($"Unknown {console.Comp.State} state!");
@@ -194,45 +202,68 @@ public class SharedOutpostCaptureSystem : EntitySystem
 
         var oldFaction = console.Comp.CapturedFaction;
         console.Comp.CapturedFaction = faction.ID;
-        console.Comp.CapturedFactionName = faction.Name;
         switch (console.Comp.State)
         {
             case OutpostConsoleState.Uncaptured:
-                Sawmill.Info($"Faction {faction}, start capturing console id - {console.Owner}");
+                Sawmill.Info($"Faction {faction.ID}, start capturing console id - {console.Owner}");
                 break;
 
             case OutpostConsoleState.Capturing:
-                Sawmill.Info($"Faction {faction}, intercepts capturing console faction, {oldFaction} on id - {console.Owner}");
+                Sawmill.Info($"Faction {faction.ID}, intercepts capturing console faction, {oldFaction} on id - {console.Owner}");
                 break;
 
             case OutpostConsoleState.Captured:
-                Sawmill.Info($"Faction {faction}, start recapturing console of faction, {oldFaction} on id - {console.Owner}");
+                Sawmill.Info($"Faction {faction.ID}, start recapturing console of faction, {oldFaction} on id - {console.Owner}");
                 break;
 
             default:
                 Sawmill.Error("Don't know how to change default capture state!");
                 return;
         }
+        string? oldFactionChannel = null;
+        string? oldFactionName = null;
+        if (oldFaction != null &&
+            PrototypeManager.TryIndex<CharacterFactionPrototype>(oldFaction, out var oldFactionProto))
+        {
+            oldFactionChannel = oldFactionProto.RadioChannel;
+            oldFactionName = oldFactionProto.Name;
+        }
 
+        StartCapture(console,
+        faction.RadioChannel,
+        oldFactionChannel,
+        faction.ID,
+        faction.Name,
+        oldFactionName,
+        console.Comp.State
+        );
         console.Comp.State = OutpostConsoleState.Capturing;
-        StartCapture(GetNetEntity(console), console.Comp);
+        console.Comp.CapturedFactionName = faction.Name;
         Dirty(console);
     }
 
-    private void StartCapture(NetEntity netConsole, OutpostConsoleComponent console)
+    private void StartCapture(Entity<OutpostConsoleComponent> console, string? newChannel, string? oldChannel,
+        string? faction, string? factionName, string? oldFactionName, OutpostConsoleState state)
     {
-        if (!TryGetEntity(console.LinkedOutpost, out var outpost) ||
-            !TryComp<OutpostCaptureComponent>(outpost, out var outpostCapture))
+        if (!TryGetEntity(console.Comp.LinkedOutpost, out var outpost) ||
+        !TryComp<OutpostCaptureComponent>(outpost, out var outpostCapture) ||
+        !TryGetNetEntity(console, out var netConsole))
+        return;
+
+        console.Comp.CapturingTime = console.Comp.CaptureTime;
+        if (outpostCapture.CapturedConsoles.Contains(netConsole.Value))
+            outpostCapture.CapturedConsoles.Remove(netConsole.Value);
+
+        if (NetMan.IsServer)
+        {
+            var ev = new CaptureStartedEvent(newChannel, oldChannel, faction, factionName, oldFactionName, state);
+            RaiseLocalEvent(console, ev);
+        }
+
+        if (outpostCapture.CapturingConsoles.Contains(netConsole.Value))
             return;
 
-        console.CapturingTime = console.CaptureTime;
-        if (outpostCapture.CapturedConsoles.Contains(netConsole))
-            outpostCapture.CapturedConsoles.Remove(netConsole);
-
-        if (outpostCapture.CapturingConsoles.Contains(netConsole))
-            return;
-
-        outpostCapture.CapturingConsoles.Add(netConsole);
+        outpostCapture.CapturingConsoles.Add(netConsole.Value);
     }
 
     private CharacterFactionPrototype? TryGetFactionInSlot(Entity<OutpostConsoleComponent> console, out ContainerSlot slot)
@@ -306,6 +337,23 @@ public sealed class OutpostCaptureButtonPressed : BoundUserInterfaceMessage;
 public sealed class ProgressBarUpdate(float? value) : BoundUserInterfaceMessage
 {
     public float? Value = value;
+}
+
+[Serializable, NetSerializable]
+public sealed class CaptureStartedEvent(
+    string? radioChannel,
+    string? oldRadioChannel,
+    string? faction,
+    string? factionName,
+    string? oldFactionName,
+    OutpostConsoleState state) : EntityEventArgs
+{
+    public string? RadioChannel => radioChannel;
+    public string? OldRadioChannel => oldRadioChannel;
+    public string? Faction => faction;
+    public string? FactionName => factionName;
+    public string? OldFactionName => oldFactionName;
+    public OutpostConsoleState State => state;
 }
 
 [Serializable, NetSerializable]

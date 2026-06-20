@@ -1,15 +1,12 @@
 {
   "version": 1,
-  "license": "CLA with hosting restrictions",
-  "copyright": "Sprites by Malanisa",
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/commit/b459ea3fdee965bdc3e93e7983ad7fa610d05c12, Growth stages, harvest, dead, and produce created by Chaoticaa (GitHub), inhands by mubururu_ (github), inhands modified by Prole0 (GitHub)",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
-    {
-      "name": "produce"
-    },
     {
       "name": "dead"
     },
@@ -17,16 +14,16 @@
       "name": "harvest"
     },
     {
-        "name": "seed"
+      "name": "produce"
     },
     {
-        "name": "stage-1"
+      "name": "seed"
     },
     {
-        "name": "stage-2"
+      "name": "stage-1"
     },
     {
-        "name": "stage-3"
+      "name": "stage-2"
     },
     {
       "name": "produce-inhand-left",

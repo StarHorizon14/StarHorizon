@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BaseCartridgeBarrettM8270
   parent: BaseItem
   abstract: true
@@ -57,12 +57,14 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 40
-        Structural: 30
+        Piercing: 70
+  - type: Tracer
+    color: "#ddddddFF"
+    length: 5
 
 - type: entity
   id: CartridgeSniperBarrettM82AR
-  name: патрон (.70 бронированный)
+  name: патрон (.70 бронебойный)
   suffix: Horizon
   parent: CartridgeBarrettM8270
   components:
@@ -71,7 +73,7 @@
 
 - type: entity
   id: BulletSniperBarrettM82AR
-  name: патрон (.70 бронированный)
+  name: патрон (.70 бронебойный)
   suffix: Horizon
   parent: BaseBullet
   noSpawn: true
@@ -79,12 +81,18 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 24
-        Slash: 17
+        Slash: 16
         Piercing: 24
-        Structural: 50
+        Structural: 300
+    ignoreResistances: true
+    penetrationThreshold: 360
+    penetrationDamageTypeRequirement:
+    - Structural
   - type: StaminaDamageOnCollide
     damage: 30
+  - type: Tracer
+    color: "#ddddddFF"
+    length: 5
 
 - type: entity
   id: CartridgeSniperBarrettM82HighVelocity
@@ -105,8 +113,14 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 48
-        Structural: 40
+        Piercing: 50
+        Structural: 200
+    penetrationThreshold: 360
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: Tracer
+    color: "#ddddddFF"
+    length: 2
 
 - type: entity
   id: BaseCartridge9x18mm
@@ -319,3 +333,23 @@
         Heat: 2
   - type: IgnitionSource
     ignited: true
+
+- type: entity
+  id: CartridgeTermobarRocket
+  name: Термобарическая ракета
+  parent: [BaseItem]
+  description: Термобарическая ракета используемая для военных преступлений.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeTermobarRocket
+  - type: Item
+    size: Small
+  - type: CartridgeAmmo
+    proto: TermobaricRocket
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rpg
+  - type: StaticPrice
+    price: 20

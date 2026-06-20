@@ -11,9 +11,9 @@
 - type: pointOfInterest
   id: NTDeport
   parent: BasePOI
-  name: "NT Deport"
-  minimumDistance: 15000
-  maximumDistance: 20000
+  name: "Склад NT"
+  minimumDistance: 12000
+  maximumDistance: 15000
   spawnGroup: Required
   gridPath: /Maps/_Horizon/POI/nanotrasendeport.yml
   addComponents:
@@ -23,7 +23,7 @@
 
 - type: gameMap
   id: NTDeport
-  mapName: "NT Deport"
+  mapName: "Склад NT"
   mapPath: /Maps/_Horizon/POI/nanotrasendeport.yml
   minPlayers: 0
   stations:
@@ -31,5 +31,7 @@
       stationProto: StandardFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: "NT Deport"
+          mapNameTemplate: "Склад NT"
         - type: BindToStationVariationPassExemption
+        - type: HorizonStationFaction
+          faction: NanoTrasen

@@ -19,62 +19,62 @@
   </Box>
   - [bold][color=#a4885c]Пороговые значения здоровья:[/color][/bold] 15 (смерть)
   - [bold][color=#a4885c]Скорость бега:[/color][/bold] 3 м/с [bold][color=#a4885c]*[/color][/bold]
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 3 [color=red]Режущие[/color]
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] отсутствует
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 3 [color=red]Режущие[/color]
+  - [bold][color=#a4885c]Устойчивость к урону:[/color][/bold] отсутствует
   - [bold][color=#a4885c]Особые способности:[/color][/bold] отсутствует
-  
+
   [bold][color=#a4885c]*[/color][/bold] - [italic]среднестатистический человек может бежать со скоростью 4,5 м/с и идти со скоростью 2,5 м/с.[/italic]
-  
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
+
   # "Сквитер"
-  
+
   Вторая стадия жизненного цикла морфотипа «Сталкер». Будучи ещё маленькими, эти существа предпочитают путешествовать небольшими группами для безопасности.
-  
+
   <Box>
   <GuideEntityEmbed Entity="MobArgocyteSkitterExpeditions"/>
   </Box>
   - [bold][color=#a4885c]Пороговые значения здоровья:Пороговые значения здоровья:[/color][/bold] 30 (смерть)
   - [bold][color=#a4885c]Скорость бега:[/color][/bold] 3.5 м/с
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 6 [color=red]Режущие[/color]
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] отсутствует
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 6 [color=red]Режущие[/color]
+  - [bold][color=#a4885c]Устойчивость к урону:[/color][/bold] отсутствует
   - [bold][color=#a4885c]Особые способности:[/color][/bold] отсутствует
-  
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
+
   # "Свипер»
-  
+
   Третья стадия жизненного цикла морфотипа «Сталкер». Бродячие падальщики, обычно отправляющиеся на разведку или за материалами.
   <Box>
   <GuideEntityEmbed Entity="MobArgocyteSwiperExpeditions"/>
   </Box>
   - [bold][color=#a4885c]Пороговые значения здоровья:[/color][/bold] 40 (смерть)
   - [bold][color=#a4885c]Скорость бега:[/color][/bold] 3.5 м/с
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 8 [color=red]Режущие[/color]
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] отсутствует
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 8 [color=red]Режущие[/color]
+  - [bold][color=#a4885c]Устойчивость к урону:[/color][/bold] отсутствует
   - [bold][color=#a4885c]Особые способности:[/color][/bold] отсутствует
-  
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
+
   # "Планер"
-  
+
   Четвёртая стадия жизненного цикла морфотипа «Сталкер». Рождённые и воспитанные охотниками, они выслеживают и охотятся на более мелких представителей дикой природы
-  
+
   <Box>
   <GuideEntityEmbed Entity="MobArgocyteGliderExpeditions"/>
   </Box>
   - [bold][color=#a4885c]Пороговые значения здоровья:[/color][/bold] 50 (смерть)
   - [bold][color=#a4885c]Скорость бега:[/color][/bold] 4.5 м/с
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 10 [color=red]Режущие[/color]
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] отсутствует
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 10 [color=red]Режущие[/color]
+  - [bold][color=#a4885c]Устойчивость к урону:[/color][/bold] отсутствует
   - [bold][color=#a4885c]Особые способности:[/color][/bold] отсутствует
-  
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
+
   # "Краулер"
-  
+
   Пятая стадия жизненного цикла морфотипа «Сталкер». Эти смертоносные стайные животные устраивают засады и нападают на ничего не подозревающих путников.
-  
+
   <Box>
   <GuideEntityEmbed Entity="MobArgocyteCrawlerExpeditions"/>
   </Box>

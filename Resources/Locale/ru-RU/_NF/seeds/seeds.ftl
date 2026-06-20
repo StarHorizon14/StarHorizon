@@ -16,6 +16,8 @@ seeds-everyspice-name = пряности
 seeds-everyspice-display-name = пряные растения
 seeds-monkanana-name = обезьянан
 seeds-monkanana-display-name = обезьянановые деревья
+seeds-glowshroom-nf-name = светогриб
+seeds-glowshroom-nf-display-name = светогриб
 # Should be in seed-component
 botany-seed-jar-name = банка { $seedName } { $seedNoun }
 # Missing upstream definitions

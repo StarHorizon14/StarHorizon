@@ -1,5 +1,5 @@
-ent-LightTubeUltraviolet = ultraviolet light tube
-    .desc = A high power high energy bulb which has a small colored crystal inside.
+ent-LightTubeUltraviolet = ультрафиолетовая световая трубка
+    .desc = Высокомощная высокоэнергетическая лампа с маленьким цветным кристаллом внутри.
 ent-SodiumLightBulb = натриевая лампочка
     .desc = Резкий свет, который одновременно тревожит и угнетает.
 ent-ExteriorLightBulb = экстерьерная лампочка

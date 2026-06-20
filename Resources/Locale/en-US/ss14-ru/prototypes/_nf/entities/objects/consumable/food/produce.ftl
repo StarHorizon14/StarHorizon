@@ -1,7 +1,5 @@
 ent-FoodPear = pear
     .desc = It's peary good.
-ent-FoodCoffee = coffee berries
-    .desc = Red berries encasing coffee beans.
 ent-FoodAvocado = avocado
     .desc = Like delicious buttery grass.
 ent-FoodAvocadoSlice = avocado slice

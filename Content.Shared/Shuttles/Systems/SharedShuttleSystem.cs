@@ -24,7 +24,6 @@ public abstract partial class SharedShuttleSystem : EntitySystem
     [Dependency] protected readonly SharedTransformSystem XformSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _powerReceiverSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
     public const float FTLRange = 256f;
     public const float FTLBufferRange = 8f;
@@ -112,6 +111,41 @@ public abstract partial class SharedShuttleSystem : EntitySystem
             return false;
 
         return _whitelistSystem.IsWhitelistPassOrNull(destination.Whitelist, shuttleUid);
+    }
+
+    /// <summary>
+    /// If the console has a coordinate disk with <see cref="ShuttleDestinationCoordinatesComponent.Destination"/> set,
+    /// returns the map that destination entity is on. Used to limit hyperspace map list to that destination (plus current map).
+    /// </summary>
+    public bool TryGetInsertedCoordinateDiskMap(EntityUid consoleUid, out MapId destinationMap)
+    {
+        destinationMap = default;
+
+        if (!TryComp<ItemSlotsComponent>(consoleUid, out var slotComp))
+            return false;
+
+        if (!_itemSlots.TryGetSlot(consoleUid,
+                SharedShuttleConsoleComponent.DiskSlotName,
+                out var itemSlot,
+                component: slotComp) || !itemSlot.HasItem)
+        {
+            return false;
+        }
+
+        if (itemSlot.Item is not { Valid: true } disk)
+            return false;
+
+        if (!TryComp<ShuttleDestinationCoordinatesComponent>(disk, out var diskCoords) ||
+            diskCoords.Destination is not { } destEnt)
+        {
+            return false;
+        }
+
+        if (!_xformQuery.TryGetComponent(destEnt, out var destXform))
+            return false;
+
+        destinationMap = destXform.MapID;
+        return true;
     }
 
     /// <summary>
@@ -211,7 +245,7 @@ public abstract partial class SharedShuttleSystem : EntitySystem
 
         // Just checks if any grids inside a buffer range at the target position.
         _grids.Clear();
-        var mapCoordinates = _transformSystem.ToMapCoordinates(coordinates);
+        var mapCoordinates = XformSystem.ToMapCoordinates(coordinates);
 
         var ourPos = Maps.GetGridPosition((shuttleUid, shuttlePhysics, shuttleXform));
 

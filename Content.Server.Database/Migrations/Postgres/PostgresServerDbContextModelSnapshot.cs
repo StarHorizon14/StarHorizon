@@ -634,6 +634,69 @@ namespace Content.Server.Database.Migrations.Postgres
                         });
                 });
 
+            modelBuilder.Entity("Content.Server.Database.HorizonAdminLoadout", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("horizon_admin_loadout_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ComponentOverridesYaml")
+                        .HasColumnType("text")
+                        .HasColumnName("component_overrides_yaml");
+
+                    b.Property<int>("CreditCost")
+                        .HasColumnType("integer")
+                        .HasColumnName("credit_cost");
+
+                    b.Property<string>("CustomDescription")
+                        .HasColumnType("text")
+                        .HasColumnName("custom_description");
+
+                    b.Property<string>("CustomName")
+                        .HasColumnType("text")
+                        .HasColumnName("custom_name");
+
+                    b.Property<DateTime>("GrantedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("granted_at");
+
+                    b.Property<string>("GrantedBy")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("granted_by");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_enabled");
+
+                    b.Property<int?>("MaxUses")
+                        .HasColumnType("integer")
+                        .HasColumnName("max_uses");
+
+                    b.Property<Guid>("PlayerUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("player_user_id");
+
+                    b.Property<string>("PrototypeId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("prototype_id");
+
+                    b.Property<int?>("RemainingUses")
+                        .HasColumnType("integer")
+                        .HasColumnName("remaining_uses");
+
+                    b.HasKey("Id")
+                        .HasName("PK_horizon_admin_loadout");
+
+                    b.HasIndex("PlayerUserId");
+
+                    b.ToTable("horizon_admin_loadout", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
                 {
                     b.Property<int>("Id")
@@ -857,6 +920,19 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("integer")
                         .HasColumnName("age");
 
+                    b.Property<int>("AllMarkingsGradientDirection")
+                        .HasColumnType("integer")
+                        .HasColumnName("all_markings_gradient_direction");
+
+                    b.Property<bool>("AllMarkingsGradientEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("all_markings_gradient_enabled");
+
+                    b.Property<string>("AllMarkingsGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("all_markings_gradient_secondary_color");
+
                     b.Property<int>("BankBalance")
                         .HasColumnType("integer")
                         .HasColumnName("bank_balance");
@@ -889,6 +965,19 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("facial_hair_color");
 
+                    b.Property<int>("FacialHairGradientDirection")
+                        .HasColumnType("integer")
+                        .HasColumnName("facial_hair_gradient_direction");
+
+                    b.Property<bool>("FacialHairGradientEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("facial_hair_gradient_enabled");
+
+                    b.Property<string>("FacialHairGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("facial_hair_gradient_secondary_color");
+
                     b.Property<string>("FacialHairName")
                         .IsRequired()
                         .HasColumnType("text")
@@ -913,6 +1002,19 @@ namespace Content.Server.Database.Migrations.Postgres
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("hair_color");
+
+                    b.Property<int>("HairGradientDirection")
+                        .HasColumnType("integer")
+                        .HasColumnName("hair_gradient_direction");
+
+                    b.Property<bool>("HairGradientEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("hair_gradient_enabled");
+
+                    b.Property<string>("HairGradientSecondaryColor")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("hair_gradient_secondary_color");
 
                     b.Property<string>("HairName")
                         .IsRequired()

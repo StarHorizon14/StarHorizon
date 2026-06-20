@@ -1,5 +1,3 @@
-ent-BaseWallmount = { ent-BaseStructureUnanchorable }
-    .desc = { ent-BaseStructureUnanchorable.desc }
 ent-NFBaseLockerGridInvWallColor = { ent-ShelfBaseReinforced }
     .suffix = Фронтир
     .desc = { ent-ShelfBaseReinforced.desc }
