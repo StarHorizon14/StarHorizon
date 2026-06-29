@@ -25,7 +25,11 @@
     - proto: AnCoMechMushInferno
       cost: 10
       prob: 0.3
+    - proto: AnCoEvilLarryInferno
+      cost: 30
+      prob: 0.1
   configs:
     DefenseStructure: AnCoMines
     Megafauna: AnCoMechCyclopInferno
     Difficulties: Inferno
+

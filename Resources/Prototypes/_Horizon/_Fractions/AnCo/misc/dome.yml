@@ -6,7 +6,7 @@
   - type: Sprite
     drawdepth: Effects
     noRot: true
-    sprite: Backmen/Effects/EnergyDome/ancodome/energydome_small.rsi
+    sprite: _Horizon/_Fractions/AnCo/Effects/Dome/energydome_small.rsi
     layers:
     - state: small
   - type: PointLight
@@ -36,7 +36,7 @@
     damageContainer: Inorganic
     damageModifierSet: SyndieHardLightBarrier
   - type: Sprite
-    sprite: Backmen/Effects/EnergyDome/ancodome/energydome_medium.rsi
+    sprite: _Horizon/_Fractions/AnCo/Effects/Dome/energydome_medium.rsi
     layers:
     - state: medium
   - type: PointLight
@@ -63,7 +63,7 @@
         - BulletImpassable
         - Opaque
   - type: Sprite
-    sprite: Backmen/Effects/EnergyDome/ancodome/energydome_big.rsi
+    sprite: _Horizon/_Fractions/AnCo/Effects/Dome/energydome_big.rsi
     layers:
     - state: big
   - type: PointLight

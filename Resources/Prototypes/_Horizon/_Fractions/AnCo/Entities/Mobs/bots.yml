@@ -2,8 +2,14 @@
   id: BaseAnCoMob
   suffix: StarHorizon, AnCo
   abstract: true
+  parent: [NFBaseMobRestrictions, MobHumanoidHostileBase]
   categories: [ HideSpawnMenu ]
   components:
+  - type: ProtectedFromStepTriggers
+  - type: MovementAlwaysTouching
+  - type: Carriable
+  - type: MovementIgnoreGravity
+  - type: CanMoveInAir
   - type: NpcFactionMember
     factions:
       - HostileUniversally
