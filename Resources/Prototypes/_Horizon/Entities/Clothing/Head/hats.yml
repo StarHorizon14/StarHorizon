@@ -80,3 +80,29 @@
     sprite: _StarHorizon/Clothing/Head/Hats/inspectorcap.rsi
   - type: Clothing
     sprite: _StarHorizon/Clothing/Head/Hats/inspectorcap.rsi
+
+# Прототипы сделаны Cvartet ^~^
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBunnyEarsCvartet
+  name: Ушки девочки-зайки
+  description: "Милые ушки того самого хорни-образа девочки зайки! Надев их, ты можешь сполна ощутить себя ей!"
+  suffix: Cvartet
+  components:
+  - type: Sprite
+    sprite: _Horizon/Clothing/Head/Misc/cvartet_bunny_ears.rsi
+  - type: Clothing
+    sprite: _Horizon/Clothing/Head/Misc/cvartet_bunny_ears.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMaidCap
+  name: Чепчик горничной
+  description: "Идеальный элемент одежды, чтобы все считали вас милой горничной!"
+  suffix: Cvartet
+  components:
+  - type: Sprite
+    sprite: _Horizon/Clothing/Head/Misc/cvartet_maid_cap.rsi
+  - type: Clothing
+    sprite: _Horizon/Clothing/Head/Misc/cvartet_maid_cap.rsi
+# А дальше уже не Cvartet @_@

@@ -1,0 +1,66 @@
+- type: entity
+  id: CrateFunHornySuit_1
+  parent: CrateGenericSteel
+  name: "Набор одежды от техно-группы C.V.A.R.T.E.T. #1"
+  description: "Набор одежды от техно-группы C.V.A.R.T.E.T.! Набор представляет из себя женское бикини в 9-ти цветах."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingUnderwearTopYellowBikini
+      - id: ClothingUnderwearTopTurquoiseBikini
+      - id: ClothingUnderwearTopPurpleBikini
+      - id: ClothingUnderwearTopPinkBikini
+      - id: ClothingUnderwearTopBlueBikini
+      - id: ClothingUnderwearTopWhiteBikini
+      - id: ClothingUnderwearTopGreenBikini
+      - id: ClothingUnderwearTopBlackBikini
+      - id: ClothingUnderwearTopRedBikini
+      - id: ClothingUnderwearBottomBlackBikiniPanties
+      - id: ClothingUnderwearBottomTurquoiseBikiniPanties
+      - id: ClothingUnderwearBottomYellowBikiniPanties
+      - id: ClothingUnderwearBottomPurpleBikiniPanties
+      - id: ClothingUnderwearBottomBlueBikiniPanties
+      - id: ClothingUnderwearBottomPinkBikiniPanties
+      - id: ClothingUnderwearBottomWhiteBikiniPanties
+      - id: ClothingUnderwearBottomGreenBikiniPanties
+      - id: ClothingUnderwearBottomRedBikiniPanties
+
+- type: entity
+  id: CrateFunHornySuit_2
+  parent: CrateGenericSteel
+  name: "Набор одежды от техно-группы C.V.A.R.T.E.T. #2"
+  description: "Набор одежды от техно-группы C.V.A.R.T.E.T.! Набор представляет из себя разных 2 наряды горничных."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingUnderwearBottomMaidThong
+      - id: ClothingUnderwearSocksMaidStockings
+      - id: ClothingUnderwearTopBraMaidBra
+      - id: ClothingHandsMaidSleeves
+      - id: ClothingHeadHatMaidCap
+      - id: ClothingNeckMaidArmlet
+      - id: ClothingShoesMaidSandals
+      - id: ClothingOuterCoatMaidDress
+      - id: ClothingOuterCoatMaidApron
+
+- type: entity
+  id: CrateFunHornySuit_3
+  parent: CrateGenericSteel
+  name: "Набор одежды от техно-группы C.V.A.R.T.E.T. #3"
+  description: "Набор одежды от техно-группы C.V.A.R.T.E.T.! Набор представляет из себя костюм девочки-зайки и кожаный наряд."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHandsBlackBracelet
+      - id: ClothingHeadHatBunnyEarsCvartet
+      - id: ClothingNeckHarness
+      - id: ClothingOuterCoatLatexJacket
+      - id: ClothingOuterCoatLeatherJacket
+      - id: ClothingShoesDarkShoesBunnyGirl
+      - id: ClothingShoesAnkleBoots
+      - id: ClothingUnderwearBottomLatexPanties
+      - id: ClothingUnderwearTopBraLatexBra
+      - id: ClothingUniformHornyPants
+      - id: ClothingUniformTightPants
+      - id: ClothingHandsGlovesFingerless
+      - id: ClothingUnderwearTopLatexTop

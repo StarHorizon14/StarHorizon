@@ -73,19 +73,17 @@
   - type: Clothing
     sprite: _Horizon/_Fractions/Inteq/inteq_med_coat.rsi
 
-# - type: entity
-#   parent: ClothingOuterWinterCoat
-#   id: ClothingOuterWinterInteQ
-#   suffix: StarHorizon, Inteq
-#   name: InteQ winter coat
-#   description: Insulated winter coat, looks like a merch.
-#   components:
-#   - type: Sprite
-#     sprite: Backmen/Clothing/OuterClothing/WinterCoats/inteq_wintercoat.rsi
-#   - type: Clothing
-#     sprite: Backmen/Clothing/OuterClothing/WinterCoats/inteq_wintercoat.rsi
-
-# добавь хотя бы папку для спрайтов, умоляю
+#- type: entity
+#  parent: ClothingOuterWinterCoat
+#  id: ClothingOuterWinterInteQ
+#  suffix: StarHorizon, Inteq
+#  name: InteQ winter coat
+#  description: Insulated winter coat, looks like a merch.
+#  components:
+#  - type: Sprite
+#    sprite: Backmen/Clothing/OuterClothing/WinterCoats/inteq_wintercoat.rsi
+#  - type: Clothing
+#    sprite: Backmen/Clothing/OuterClothing/WinterCoats/inteq_wintercoat.rsi
 
 - type: entity
   parent: ClothingOuterWinterCoat

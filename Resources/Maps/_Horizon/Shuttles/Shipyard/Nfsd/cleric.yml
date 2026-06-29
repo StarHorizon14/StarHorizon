@@ -32,6 +32,8 @@ entities:
       parent: invalid
     - type: BecomesStation
       id: Cleric
+    - type: IFF
+      color: "#6B8E23FF"
     - type: MapGrid
       chunks:
         0,0:

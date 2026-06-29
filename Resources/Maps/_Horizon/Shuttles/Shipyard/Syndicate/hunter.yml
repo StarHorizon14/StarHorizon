@@ -27,6 +27,8 @@ entities:
     components:
     - type: MetaData
       name: Hunter
+    - type: IFF
+      color: "#800000FF"
     - type: Transform
       pos: -1.6250114,-0.453125
       parent: invalid

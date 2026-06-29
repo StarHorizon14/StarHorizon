@@ -1,0 +1,12 @@
+ent-SyndicateIDCardOfficer = { ent-SyndicateIDCard }
+    .suffix = Syndicate
+    .desc = { ent-SyndicateIDCard.desc }
+ent-SyndicateIDCardOperative = { ent-SyndicateIDCard }
+    .suffix = Syndicate
+    .desc = { ent-SyndicateIDCard.desc }
+ent-SyndicateIDCardMedic = { ent-SyndicateIDCard }
+    .suffix = Syndicate
+    .desc = { ent-SyndicateIDCard.desc }
+ent-SyndicateIDCardDelivery = { ent-SyndicateIDCard }
+    .suffix = Syndicate
+    .desc = { ent-SyndicateIDCard.desc }

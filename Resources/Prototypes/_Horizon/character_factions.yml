@@ -121,3 +121,11 @@
   color: "#b51414"
   roundstart: false
   outpostSpawnListProto: FactionSyndicate
+
+# region PMC
+
+- type: characterFaction
+  id: FactionInteQ
+  name: faction-inteq-name
+  desc: faction-inteq-desc
+  color: "#FF8C00"

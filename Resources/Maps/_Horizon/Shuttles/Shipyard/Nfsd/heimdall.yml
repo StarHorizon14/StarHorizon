@@ -52,6 +52,8 @@ entities:
     - type: Transform
       pos: -45.453125,-0.453125
       parent: invalid
+    - type: IFF
+      color: "#6B8E23FF"
     - type: MapGrid
       chunks:
         0,0:

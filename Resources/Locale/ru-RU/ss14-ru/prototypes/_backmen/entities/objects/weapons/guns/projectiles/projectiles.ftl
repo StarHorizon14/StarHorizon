@@ -1,0 +1,12 @@
+ent-BulletMagnum345 = 345 magnum bullet
+    .desc = { ent-BaseBullet.desc }
+ent-PelletShotgunSoulbreaker = pellet (.50 soulbreaker)
+    .desc = { ent-BaseBulletPractice.desc }
+ent-PelletShotgunRocket = bullet (бронебойно-разрывной)
+    .desc = { ent-BaseBulletTrigger.desc }
+ent-BulletHeavy62 = bullet (.62 rifle)
+    .desc = { ent-BaseBullet.desc }
+ent-BulletRocket20 = bullet (рельсотрон)
+    .desc = { ent-BaseBulletTrigger.desc }
+ent-BulletGrenadeTearGas = tear gas grenade
+    .desc = { ent-BaseBulletTrigger.desc }

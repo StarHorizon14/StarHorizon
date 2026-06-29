@@ -1,0 +1,10 @@
+ent-BaseMeleeWeaponPlasma = { ent-BaseMeleeWeaponEnergy }
+    .desc = { ent-BaseMeleeWeaponEnergy.desc }
+ent-PlasmaSword = Plasma sword
+    .desc = BRRRRRRRR.
+    .suffix = StarHorizon, Inteq
+ent-PlasmaSwordAlt = Plasma palash
+    .desc = BJBJBJBRRRRR.
+ent-PlasmaScythe = Comander plasma scythe
+    .desc = The blade is crafted from pure plasma, heated to between two and nine thousand degrees Celsius, depending on the wielder's preference. A power module, shaped like the handle, heats the gas and maintains its shape using a strong magnetic field. It seems blades like this haven't been produced since the invention of lightsabers.
+    .suffix = StarHorizon, Inteq

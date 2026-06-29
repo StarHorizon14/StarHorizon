@@ -572,16 +572,16 @@
   - UplinkAmmo
 
 # For the mosin
-# - type: listing
-#   abstract: true # Frontier: moved to _NF uplink catalog
-#   id: UplinkMosinAmmo
-#   name: uplink-mosin-ammo-name
-#   description: uplink-mosin-ammo-desc
-#   # productEntity: MagazineBoxLightRifle # Frontier
-#   cost:
-#     Telecrystal: 1
-#   categories:
-#   - UplinkAmmo это пизда а не вишдом
+#- type: listing
+#  abstract: true # Frontier: moved to _NF uplink catalog
+#  id: UplinkMosinAmmo
+#  name: uplink-mosin-ammo-name
+#  description: uplink-mosin-ammo-desc
+#  # productEntity: MagazineBoxLightRifle # Frontier
+#  cost:
+#    Telecrystal: 1
+#  categories:
+#  - UplinkAmmo
 
 # For the Estoc
 - type: listing

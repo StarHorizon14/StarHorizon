@@ -30,10 +30,12 @@ entities:
     components:
     - type: MetaData
       name: F117 Nighthawk
+    - type: IFF
+      color: "#800000FF"
     - type: Transform
       parent: invalid
     - type: BecomesStation
-      id: Nighthawk
+      id: F117 Nighthawk
     - type: MapGrid
       chunks:
         -1,-2:

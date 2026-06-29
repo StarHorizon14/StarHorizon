@@ -164,4 +164,28 @@
     - type: Clothing
       sprite: _StarHorizon/Clothing/Uniforms/Jumpsuit/blackwhitestripesportsuit.rsi
 
+# Прототипы сделаны Cvartet's ^~^
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformHornyPants
+  name: Хорни-штаны
+  description: Штаны с вырезом на пикантных местах. Интересно... зачем это?
+  suffix: Cvartet
+  components:
+  - type: Sprite
+    sprite: _Horizon/Clothing/Uniforms/Jumpsuit/cvartet_horny_pants.rsi
+  - type: Clothing
+    sprite: _Horizon/Clothing/Uniforms/Jumpsuit/cvartet_horny_pants.rsi
 
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTightPants
+  name: Обтягивающие джинсы
+  description: Черные обтягивающие джинсы, они отлично подчеркивают ваш роскошный зад.
+  suffix: Cvartet
+  components:
+  - type: Sprite
+    sprite: _Horizon/Clothing/Uniforms/Jumpsuit/cvartet_tight_pants.rsi
+  - type: Clothing
+    sprite: _Horizon/Clothing/Uniforms/Jumpsuit/cvartet_tight_pants.rsi
+# А дальше уже не Cvartet @_@

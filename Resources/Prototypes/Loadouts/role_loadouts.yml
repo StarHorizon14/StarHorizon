@@ -8,7 +8,9 @@
   - CaptainBackpack
   - CaptainOuterClothing
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -27,7 +29,9 @@
   - HoPOuterClothing
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -60,7 +64,9 @@
   - PassengerShoes
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -78,7 +84,9 @@
   - BartenderOuterClothing
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -94,7 +102,9 @@
   - CommonBackpack
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -113,7 +123,9 @@
   - ChefOuterClothing
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -129,7 +141,9 @@
   - CommonBackpack
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -146,7 +160,9 @@
   - CommonBackpack
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -167,7 +183,9 @@
   - ChaplainBible
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -186,7 +204,9 @@
   - JanitorOuterClothing
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - JanitorPlunger
   - GroupSpeciesBreathTool
   # Horizon start
@@ -205,7 +225,9 @@
   - BotanistOuterClothing
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -225,7 +247,9 @@
   - ClownShoes
   - Glasses
   - SurvivalClown
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   # Horizon start
   - Top
   - Bottom
@@ -245,7 +269,9 @@
   - MimeBelt
   - Glasses
   - SurvivalMime
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   # Horizon start
   - Top
   - Bottom
@@ -261,7 +287,9 @@
   - MusicianOuterClothing
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - Instruments
   - GroupSpeciesBreathTool
   # Horizon start
@@ -283,7 +311,9 @@
   - QuartermasterShoes
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -302,7 +332,9 @@
   - CargoTechnicianShoes
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -319,7 +351,9 @@
   - SalvageSpecialistShoes
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -339,7 +373,9 @@
   - ChiefEngineerOuterClothing
   - ChiefEngineerShoes
   - SurvivalExtended
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -354,7 +390,9 @@
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
   - SurvivalExtended
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -373,7 +411,9 @@
   - StationEngineerShoes
   - StationEngineerID
   - SurvivalExtended
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -390,7 +430,9 @@
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
   - SurvivalExtended
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -412,7 +454,9 @@
   - ResearchDirectorShoes
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -434,7 +478,9 @@
   - ScientistPDA
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -450,7 +496,9 @@
   - ScientistBackpack
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -470,7 +518,9 @@
   - HeadofSecurityOuterClothing
   - SecurityShoes
   - SurvivalSecurity
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - SecurityStar
   - GroupSpeciesBreathToolSecurity
   # Horizon start
@@ -489,7 +539,9 @@
   - WardenOuterClothing
   - SecurityShoes
   - SurvivalSecurity
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - SecurityStar
   - GroupSpeciesBreathToolSecurity
   # Horizon start
@@ -509,7 +561,9 @@
   - SecurityPDA
   - SecurityBelt
   - SurvivalSecurity
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - SecurityStar
   - GroupSpeciesBreathToolSecurity
   # Horizon start
@@ -528,7 +582,9 @@
   - DetectiveOuterClothing
   - SecurityShoes
   - SurvivalSecurity
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - SecurityStar
   - GroupSpeciesBreathToolSecurity
   # Horizon start
@@ -543,7 +599,9 @@
   - SecurityCadetJumpsuit
   - SecurityBackpack
   - SurvivalSecurity
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathToolSecurity
   # Horizon start
   - Top
@@ -572,7 +630,9 @@
   - ChiefMedicalOfficerShoes
   - MedicalEyewear
   - SurvivalMedical
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
@@ -594,7 +654,9 @@
   - MedicalDoctorPDA
   - MedicalEyewear
   - SurvivalMedical
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathToolMedical
   # Horizon end
   - ContractorCartridge
@@ -616,7 +678,9 @@
   - MedicalBackpack
   - MedicalEyewear
   - SurvivalMedical
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
@@ -636,7 +700,9 @@
   - ContractorBelt
   - ChemistPDA
   - SurvivalMedical
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathToolMedical
   # Horizon end
   - ContractorCartridge
@@ -664,7 +730,9 @@
   - ParamedicPDA
   - MedicalEyewear
   - SurvivalMedical
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathToolMedical
   - ContractorCartridge
   - ContractorWallet
@@ -681,7 +749,9 @@
   - CommonBackpack
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -697,7 +767,9 @@
   - CommonBackpack
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -713,7 +785,9 @@
   - MedicalBackpack
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top
@@ -730,7 +804,9 @@
   - CommonBackpack
   - Glasses
   - Survival
-  - Trinkets
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
   - GroupSpeciesBreathTool
   # Horizon start
   - Top

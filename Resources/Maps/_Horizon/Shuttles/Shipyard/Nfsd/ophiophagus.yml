@@ -38,6 +38,8 @@ entities:
     - type: Transform
       pos: 1.740258,0.68619037
       parent: invalid
+    - type: IFF
+      color: "#6B8E23FF"
     - type: MapGrid
       chunks:
         0,0:

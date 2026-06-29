@@ -1,5 +1,5 @@
 - type: entity
-  name: Пухляш
+  name: Толстяк
   parent: BaseWeaponLauncher
   id: WeaponLauncherChubby
   description: Мощный гранатомёт, который пуляется ядерными зарядами.

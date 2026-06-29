@@ -210,7 +210,6 @@
     pocket1: SyndicateEncryptionKeyMaster
     pocket2: BaseUplinkRadio40TC
     eyes: ClothingEyesHudSyndicate
-    outerClothing: ClothingOuterHardsuitSyndieCommander
 
 - type: startingGear
   id: BaseSyndicateMedicGear
@@ -218,4 +217,3 @@
     pocket1: SyndiHypo
     pocket2: BaseUplinkRadio40TC
     eyes: ClothingEyesHudSyndicateAgent
-    outerClothing: ClothingOuterHardsuitSyndieMedic

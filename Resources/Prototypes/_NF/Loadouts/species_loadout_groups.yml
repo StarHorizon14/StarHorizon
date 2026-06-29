@@ -151,6 +151,17 @@
   - ContractorForcedClothingOuterEVASuitContractor
 
 - type: loadoutGroup
+  id: SyndicateForcedOuterClothing
+  name: loadout-group-contractor-outerclothing
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - SyndicateForcedClothingOuterEVASuitContractor
+  fallbacks:
+  - SyndicateForcedClothingOuterEVASuitContractor
+
+- type: loadoutGroup
   id: PilotForcedOuterClothing
   name: loadout-group-contractor-outerclothing
   minLimit: 1

@@ -38,6 +38,8 @@
   - BaseStationJobsSpawning
   - BaseStationSiliconLawFrontierShips
   - BaseStationDampening
+  - NFBaseStationCargo # Horizon
+  - BaseStationCargoMarket # Horizon
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform

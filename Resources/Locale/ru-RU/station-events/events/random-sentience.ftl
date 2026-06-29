@@ -11,7 +11,7 @@ random-sentience-event-data-6 = [УДАЛЕНО]
 
 random-sentience-event-strength-1 = человека
 random-sentience-event-strength-2 = обезьяны
-random-sentience-event-strength-3 = ПенПена
+random-sentience-event-strength-3 = ПунПуна
 random-sentience-event-strength-4 = службы безопасности
 random-sentience-event-strength-5 = командования
 random-sentience-event-strength-6 = клоуна

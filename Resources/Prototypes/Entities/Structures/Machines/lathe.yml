@@ -546,7 +546,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    #- TopicalsStatic # Frontier
+    - TopicalsStatic # StarHorizon
     #- ChemistryStatic # Frontier
     #- MedicalStatic # Frontier
     #- RollerBedsStatic # Frontier

@@ -255,3 +255,121 @@
     useRate: 0
   - type: UseDelay
     delay: 10.0
+
+- type: entity
+  name: olive green personal shield generator
+  description: A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
+  id: EnergyDomeGeneratorPersonalNSFD
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Sprite
+    sprite: Backmen/Objects/Tools/EnergyDome/nfsd.rsi
+    layers:
+      - state: icon
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallGreen
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  name: olive green backpack shield generator
+  description: A backpack shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
+  id: EnergyDomeGeneratorBackpackNSFD
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: Sprite
+    sprite: Backmen/Objects/Tools/EnergyDome/nfsd.rsi
+    layers:
+      - state: icon
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeMediumGreen
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  name: IHP personal shield generator
+  description: A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
+  id: EnergyDomeGeneratorPersonalIHP
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Sprite
+    sprite: Backmen/Objects/Tools/EnergyDome/ihp.rsi
+    layers:
+      - state: icon
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallPurple
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0

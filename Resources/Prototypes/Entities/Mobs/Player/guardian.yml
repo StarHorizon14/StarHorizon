@@ -112,6 +112,8 @@
       tags:
         - CannotSuicide
     - type: AnimatedEmotes # goob edit - animated emotes
+    - type: LanguageSpeaker
+      currentLanguage: universal
 
 # From the uplink injector
 - type: entity

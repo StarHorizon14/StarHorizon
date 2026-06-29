@@ -208,3 +208,15 @@
   components:
   - type: Sprite
     sprite: _StarHorizon/Clothing/Neck/Cloaks/spriter.rsi
+
+# Прототип сделан Cvartet ^~^
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMaidArmlet
+  name: Нарукавники горничной с наплечниками
+  description: Почему они отдельно?
+  suffix: Cvartet
+  components:
+  - type: Sprite
+    sprite: _Horizon/Clothing/Neck/Cloak/cvartet_maid_armlet.rsi
+# А дальше уже не Cvartet @_@

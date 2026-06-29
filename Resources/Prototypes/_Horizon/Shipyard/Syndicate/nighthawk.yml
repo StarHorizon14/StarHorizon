@@ -11,8 +11,8 @@
 - type: vessel
   id: Nighthawk
   parent: BaseVesselAntag
-  name: Nighthawk
-  description: штурмовой шаттл синдиката.
+  name: F117 Nighthawk
+  description: стелс-бомбардировщик на основе легендарного самолета.
   price: 50000
   category: Large
   group: Syndicate

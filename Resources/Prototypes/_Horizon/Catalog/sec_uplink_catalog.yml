@@ -1669,3 +1669,35 @@
         amount: 1
       - id: MagazineShotgun # For Zauer and SPAS12
         amount: 3
+
+- type: listing
+  id: UplinkSecurityEnergyDomeGeneratorPersonalNSFD
+  name: Энергетический барьер
+  description: Барьер для защиты
+  productEntity: EnergyDomeGeneratorPersonalNSFD
+  icon: { sprite: Backmen/Objects/Tools/EnergyDome/nfsd.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 6
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityEnergyDomeGeneratorBackpackNSFD
+  name: Большой энергетический барьер
+  description: Барьер для защиты
+  productEntity: EnergyDomeGeneratorBackpackNSFD
+  icon: { sprite: Backmen/Objects/Tools/EnergyDome/nfsd.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 12
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink

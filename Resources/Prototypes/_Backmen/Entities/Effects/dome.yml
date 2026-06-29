@@ -84,6 +84,9 @@
         layer:
         - BulletImpassable
         - Opaque
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: SyndieHardLightBarrier
   - type: Sprite
     sprite: Backmen/Effects/EnergyDome/energydome_medium.rsi
     layers:
@@ -107,6 +110,9 @@
     layers:
     - state: small
       color: "#b00000"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: SyndieHardLightBarrier
   - type: PointLight
     enabled: true
     radius: 5
@@ -174,3 +180,76 @@
       types:
         Slash: -1.5
         Piercing: -1.5
+
+- type: entity
+  id: EnergyDomeSmallGreen
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    sprite: Backmen/Effects/EnergyDome/energydome_small.rsi
+    layers:
+    - state: small
+      color: "#6B8E23"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: NSFDHardLightBarrier
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 2
+    color: "#6B8E23"
+
+- type: entity
+  id: EnergyDomeMediumGreen
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1.8
+        density: 0
+        mask:
+        - None
+        layer:
+        - BulletImpassable
+        - Opaque
+  - type: Sprite
+    sprite: Backmen/Effects/EnergyDome/energydome_medium.rsi
+    layers:
+    - state: medium
+      color: "#6B8E23"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: NSFDHardLightBarrier
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 10
+    color: "#6B8E23"
+
+- type: entity
+  id: EnergyDomeSmallPurple
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    sprite: Backmen/Effects/EnergyDome/energydome_small.rsi
+    layers:
+    - state: small
+      color: "#9370DB"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: IHPHardLightBarrier
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 2
+    color: "#9370DB"

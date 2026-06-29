@@ -40,7 +40,10 @@ advertise = true
 tags = "lang:ru,region:eu_e,rp:med"
 server_url = "ss14://ss14.starhorizon.ru:1212"
 # Wizard's Den hub
-hub_urls = "https://hub.spacestation14.com/"
+hub_urls = "https://hub.spacestation14.com/,https://hub.playss14.com/"
+
+#[auth]
+#server="https://auth.playss14.com/"
 
 [server]
 rules_file = "FrontierRuleset"
@@ -80,6 +83,9 @@ monstermos_rip_tiles = true
 mmos_spacing_speed = 0.95
 mmos_max_wind = 1000.0
 
+[nf14.atmos]
+allow_map_gas_extraction = true
+
 [biomass]
 easy_mode = false
 
@@ -89,7 +95,7 @@ map_enabled = true
 restart_not_allowed_when_admin_online = false
 
 [shuttle]
-auto_call_time = 1440
+auto_call_time = 4320 # 72 hours
 emergency_authorize_time = 30
 impact.enabled = true
 impact.tile_break_energy = 3000.0
@@ -139,8 +145,8 @@ ahelp_webhook = "%webhook_ahelp%"
 ban_webhook = "%webhook_ban%"
 round_update_webhook = "%webhook_round_update%"
 leaderboard_webhook = "%webhook_leaderboard%"
-#guild_id = 1348258341658562560
-#token = "%bot_token%"
+guild_id = 1348258341658562560
+token = "%bot_token%"
 
 ################################################################################
 ##### Relpay ###################################################################

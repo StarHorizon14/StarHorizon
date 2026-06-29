@@ -373,6 +373,9 @@
   # Horizon start
     - !type:GroupSelector
       children:
+      - id: BackmanAmmoBlueprint
+      - id: BackmanWeaponBlueprint
+      - id: BackmanAmmoAdvBlueprint
       - id: WeaponProtoKineticPistol
       - id: WeaponProtoKineticRepeater
       - id: WeaponProtoKineticRailgun

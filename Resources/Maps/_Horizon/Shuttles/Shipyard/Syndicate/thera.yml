@@ -25,7 +25,9 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Thera
+    - type: IFF
+      color: "#800000FF"
     - type: Transform
       pos: -0.515625,-0.53125
       parent: invalid

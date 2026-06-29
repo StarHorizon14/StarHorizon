@@ -60,6 +60,8 @@ entities:
     - type: Transform
       pos: -20,0
       parent: invalid
+    - type: IFF
+      color: "#6B8E23FF"
     - type: BecomesStation
       id: Broadhead
     - type: MapGrid
