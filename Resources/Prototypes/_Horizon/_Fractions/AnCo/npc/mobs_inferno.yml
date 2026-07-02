@@ -231,3 +231,23 @@
         20
       AggroVisionRadius: !type:Single
         20
+
+- type: entity
+  parent: [AnCoEvilLarry, BaseAnCoIfterno]
+  id: AnCoEvilLarryInferno
+  suffix: Inferno
+  components:
+  - type: HTN
+    rootTask:
+       task: InfernoSimpleRangedHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      VisionRadius: !type:Single
+        100
+      AggroVisionRadius: !type:Single
+        100
