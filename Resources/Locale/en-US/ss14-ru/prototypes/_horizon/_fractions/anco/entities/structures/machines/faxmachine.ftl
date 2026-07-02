@@ -1,0 +1,9 @@
+ent-AnCoFaxMachineShip = факс дальнего действия АнКо
+    .desc = Напугай случайного человека, давай, сделай это!
+    .suffix = StarHorizon, Structure, AnCo
+ent-AnCoFaxMachineZone = факс дальнего действия оператора зоны АнКо
+    .desc = Напугай случайного человека, давай, сделай это!
+    .suffix = StarHorizon, Structure, AnCo, Zone
+ent-AnCoFaxMachineZonePing = факс дальнего действия оператора зоны АнКо
+    .suffix = StarHorizon, AnCo, Structure, Zone, Ping
+    .desc = { ent-AnCoFaxMachineZone.desc }

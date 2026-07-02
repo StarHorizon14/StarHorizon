@@ -28,7 +28,7 @@ chat-manager-entity-looc-wrap-message = LOOC: [bold]{ $entityName }:[/bold] { $m
 chat-manager-entity-erp-wrap-message = [italic]{ $entityName } { $message }[/italic]
 chat-manager-entity-do-wrap-message = [italic]{ $message }[/italic] ({ $entityName })
 chat-manager-send-ooc-wrap-message = OOC: [bold]{ $playerName }:[/bold] { $message }
-chat-manager-send-ooc-rank-message = OOC: {$prefix} [bold]{ $playerName }:[/bold] { $message }
+chat-manager-send-ooc-rank-message = OOC: { $prefix } [bold]{ $playerName }:[/bold] { $message }
 chat-manager-send-ooc-patron-wrap-message = OOC: [bold][color={ $patronColor }]{ $playerName }[/color]:[/bold] { $message }
 chat-manager-send-dead-chat-wrap-message = { $deadChannelName }: [bold][BubbleHeader]{ $playerName }[/BubbleHeader]:[/bold] [BubbleContent]{ $message }[/BubbleContent]
 chat-manager-send-admin-dead-chat-wrap-message = { $adminChannelName }: [bold]([BubbleHeader]{ $userName }[/BubbleHeader]):[/bold] [BubbleContent]{ $message }[/BubbleContent]

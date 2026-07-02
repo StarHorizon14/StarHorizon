@@ -7007,3 +7007,12 @@
   priority: 24
   state: rndmajordisk
   prototypeId: TechnologyDiscCombatCyborgs
+
+- type: sponsorShopListing
+  id: SponsorShopDisk15
+  name: диск технологий [энергетические барьеры]
+  description: Диск, содержащий технологию производства энергетических барьеров.
+  cost: 15
+  priority: 24
+  state: rndmajordisk
+  prototypeId: TechnologyDiscArsenalDome

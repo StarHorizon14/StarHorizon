@@ -5,8 +5,21 @@
 
 - type: latheRecipe
   parent: BaseCircuitboardRecipe
+  id: RemoteControllerCircuitboard
+  result: RemoteControllerCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
   id: BotanicDNADisk
   result: BotanicDNADisk
+  materials:
+    Steel: 100
+    Glass: 100
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: RemoteControlDevice
+  result: RemoteControlDevice
   materials:
     Steel: 100
     Glass: 100

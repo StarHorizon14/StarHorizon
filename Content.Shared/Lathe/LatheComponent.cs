@@ -66,6 +66,20 @@ namespace Content.Shared.Lathe
         [ViewVariables]
         public ProtoId<LatheRecipePrototype>? CurrentRecipe;
 
+        /// <summary>
+        /// Horizon. Флаг бесконечного производства - станок будет повторять последний рецепт пока есть материалы.
+        /// </summary>
+        [DataField, AutoNetworkedField]
+        public bool InfiniteProduction;
+
+        /// <summary>
+        /// Horizon. Рецепт, ожидающий ресурсов при бесконечном производстве.
+        /// </summary>
+        [DataField]
+        public ProtoId<LatheRecipePrototype>? PendingInfiniteRecipe;
+
+        public bool ProcessingInfiniteProduction;
+
         #region MachineUpgrading
         /// <summary>
         /// A modifier that changes how long it takes to print a recipe

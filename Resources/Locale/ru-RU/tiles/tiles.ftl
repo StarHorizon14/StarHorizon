@@ -146,10 +146,12 @@ tiles-dark-marble = тёмный мраморный пол
 tiles-plasma-marble = плазменный мраморный пол
 tiles-uranium-marble = урановый мраморный пол
 tiles-dark-squiggly = тёмный волнистый пол
+
 # Horizon start
 
-tiles-turret-place = корабельная орудийная разметка 
+tiles-turret-place = корабельная орудийная разметка
 tiles-steel-floor-darkgray = корабельная бронеплита
 tiles-steelplate-floor-darkgray = корабельная бронированная моноплита
 
 # Horizon end
+

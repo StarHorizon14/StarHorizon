@@ -32,3 +32,4 @@ lathe-menu-silo-linked-message = Хранилище подключено
 lathe-menu-fabricating-message = Производится...
 lathe-menu-materials-title = Материалы
 lathe-menu-queue-title = Очередь производства
+lathe-menu-infinite-production-tooltip = Бесконечное производство
