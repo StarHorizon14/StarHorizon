@@ -1,6 +1,9 @@
 - type: entity
   parent: [ ClothingHeadBase, BaseAnCoContraband ]
   id: ClothingAnCoHeadCombatHelmet
+  suffix: StarHorizon, AnCo
+  name: бронешлем АнКо
+  description: В нем вы ощущаете себя расходным материалом.
   components:
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Helmets/helmet.rsi
@@ -17,6 +20,9 @@
 - type: entity
   parent: [ ClothingHeadBase, BaseAnCoContraband ]
   id: ClothingAnCoHeadArmorHelmet
+  suffix: StarHorizon, AnCo
+  name: укрепленный шлем АнКо
+  description: Идеальный шлем что бы начать подавлять мятежи.
   components:
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Helmets/helmet_armor.rsi

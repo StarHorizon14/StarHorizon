@@ -1,6 +1,8 @@
 - type: entity
   id: ClothingBeltAnCo
+  name: много-функциональный пояс АнКо
   parent: [ NFClothingBeltStorageBase, BaseAnCoContraband ]
+  description: Тот самый пояс который спасет вас в трудную секунду.
   components:
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Clothing/Belt/belt.rsi
@@ -9,7 +11,9 @@
 
 - type: entity
   id: ClothingBeltWebbingAnCo
+  name: боевой РПС АнКо
   parent: [ NFClothingBeltStorageBase, BaseAnCoContraband ]
+  description: Что ты положешь в меня? Магазины? Медицину? О боже инструменты.
   components:
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Clothing/Belt/belt_webbing.rsi
