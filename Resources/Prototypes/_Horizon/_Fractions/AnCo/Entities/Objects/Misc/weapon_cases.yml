@@ -551,6 +551,16 @@
         amount: 120
 
 - type: entity
+  id: AnCoWeaponHeavyCaseDome
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoPersonalDome
+
+- type: entity
   id: AnCoWeaponHeavyCaseSpider
   parent: AnCoWeaponCaseHeavy
   suffix: StarHorizon, AnCo, Case
