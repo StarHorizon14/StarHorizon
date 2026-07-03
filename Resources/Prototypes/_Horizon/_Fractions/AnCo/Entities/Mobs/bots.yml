@@ -2,10 +2,9 @@
   id: BaseAnCoMob
   suffix: StarHorizon, AnCo
   abstract: true
-  parent: [NFBaseMobRestrictions, MobRogueSiliconBase]
+  parent: [NFBaseMobRestrictions]
   categories: [ HideSpawnMenu ]
   components:
-  - type: ProtectedFromStepTriggers
   - type: MovementAlwaysTouching
   - type: Carriable
   - type: MovementIgnoreGravity
