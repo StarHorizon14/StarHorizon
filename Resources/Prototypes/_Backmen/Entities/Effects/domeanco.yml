@@ -1,0 +1,81 @@
+- type: entity
+  id: EnergyDomeSmallAnCo
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    sprite: Backmen/Effects/EnergyDome/ancodome/energydome_small.rsi
+    layers:
+    - state: small
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 2
+    color: "#f05a5a"
+
+- type: entity
+  id: EnergyDomeMediumAnCo
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1.8
+        density: 0
+        mask:
+        - None
+        layer:
+        - BulletImpassable
+        - Opaque
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: SyndieHardLightBarrier
+  - type: Sprite
+    sprite: Backmen/Effects/EnergyDome/ancodome/energydome_medium.rsi
+    layers:
+    - state: medium
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 10
+    color: "#f05a5a"
+
+- type: entity
+  id: EnergyDomeBigAnCo
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 2.8
+        density: 0
+        mask:
+        - None
+        layer:
+        - BulletImpassable
+        - Opaque
+  - type: Sprite
+    sprite: Backmen/Effects/EnergyDome/ancodome/energydome_big.rsi
+    layers:
+    - state: big
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 30
+    color: "#f05a5a"
+  - type: DamageContacts
+    damage:
+      types:
+        Slash: -1.5
+        Piercing: -1.5
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: SyndieHardLightBarrier

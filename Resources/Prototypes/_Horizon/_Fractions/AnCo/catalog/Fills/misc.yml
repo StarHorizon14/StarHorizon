@@ -123,6 +123,9 @@
       - id: ClothingBeltAnCo
         weight: 1
       - id: ClothingBeltWebbingAnCo
+        weight: 1
+      - id: AnCoClothingBeltSwordSheath
+        weight: 1
 
 - type: entityTable
   id: AnCoShieldTable
