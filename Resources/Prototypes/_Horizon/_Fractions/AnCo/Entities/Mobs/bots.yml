@@ -2,6 +2,7 @@
   id: BaseAnCoMob
   suffix: StarHorizon, AnCo
   abstract: true
+  parent: [NFBaseMobRestrictions, MobRogueSiliconBase]
   parent: [NFBaseMobRestrictions]
   categories: [ HideSpawnMenu ]
   components:
@@ -52,7 +53,6 @@
   - type: InputMover
   - type: MobMover
   - type: ZombieImmune
-  - type: ProtectedFromStepTriggers
   - type: CombatMode
   - type: EmitSoundOnActivate
     sound:

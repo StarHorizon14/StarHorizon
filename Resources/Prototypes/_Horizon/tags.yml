@@ -349,6 +349,9 @@
   id: MagazineBarrettM8270
 
 - type: Tag
+  id: CartridgeRifleLight762
+
+- type: Tag
   id: Cartridge70
 
 - type: Tag

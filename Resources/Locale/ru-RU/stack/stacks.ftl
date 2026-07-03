@@ -276,9 +276,11 @@ stack-uranium-marble-floor = урановый мраморный пол
 stack-large-wood-floor = крупный деревянный пол
 stack-red-circuit-floor = красная схема на полу
 stack-asteroid-astro-sand-floor = астероидный астро-песок
+
 # Horizon start
 
 stack-darkgray-floor = корабельная бронеплита
 stack-darkgray-plate-floor = корабельная бронированная моноплита
 
 # Horizon end
+

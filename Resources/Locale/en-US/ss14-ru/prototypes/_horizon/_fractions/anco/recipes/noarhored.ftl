@@ -1,0 +1,15 @@
+ent-AnCoFabricatorDisableToolUse = { ent-AnCoFabricator }
+    .suffix = StarHorizon, AnCo, Dungeon
+    .desc = { ent-AnCoFabricator.desc }
+ent-AnCoEmergencyFabricatorDisableToolUse = { ent-AnCoEmergencyFabricator }
+    .suffix = StarHorizon, AnCo, Dungeon
+    .desc = { ent-AnCoEmergencyFabricator.desc }
+ent-AnCoWeaponFabricatorDisableToolUse = { ent-AnCoWeaponFabricator }
+    .suffix = StarHorizon, AnCo, Dungeon
+    .desc = { ent-AnCoWeaponFabricator.desc }
+ent-AnCoSuitFabricatorDisableToolUse = { ent-AnCoSuitFabricator }
+    .suffix = StarHorizon, AnCo, Dungeon
+    .desc = { ent-AnCoSuitFabricator.desc }
+ent-AnCoOtherFabricatorDisableToolUse = { ent-AnCoOtherFabricator }
+    .suffix = StarHorizon, AnCo, Dungeon
+    .desc = { ent-AnCoOtherFabricator.desc }

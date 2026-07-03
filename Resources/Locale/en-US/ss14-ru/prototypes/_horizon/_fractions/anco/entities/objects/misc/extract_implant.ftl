@@ -1,0 +1,12 @@
+ent-AnCoExtractImplanter = имплантер аварийной эвакуации
+    .desc = { ent-BaseImplantOnlyImplanterAnCo.desc }
+ent-AnCoExtractImplanterCrystall = имплантер аварийной кристаллизации
+    .desc = { ent-BaseImplantOnlyImplanterAnCo.desc }
+ent-AnCoExtractImplant = Аварийная капсула
+    .desc = Имплант который кристаллизирует носителя после его смерти для спасения.
+ent-AnCoExtractImplantCrystall = Аварийная кристаллизация
+    .desc = Имплант который кристаллизирует носителя после его смерти для спасения.
+ent-AnCoActionActivateExtractImplant = Аварийная кристаллизация
+    .desc = Кристаллизирует вас для экстренного спасения.
+ent-AnCoActionActivateExtractImplantCrystall = Аварийная кристаллизация
+    .desc = Кристаллизирует вас для экстренного спасения.

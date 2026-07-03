@@ -9,4 +9,6 @@
   - EnergyDomeDirectionalTurtle
   technologyPrerequisites:
   - NFBulkRifleAmmo
-  position: 10, 85 # Horizon
+  position: 5, 68 # Horizon
+  researchTargets:
+  - TechnologyDiscArsenalDome

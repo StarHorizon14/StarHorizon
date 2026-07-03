@@ -1,4 +1,4 @@
-ent-WeaponLauncherChubby = Пухляш
+ent-WeaponLauncherChubby = Толстяк
     .desc = Мощный гранатомёт, который пуляется ядерными зарядами.
     .suffix = Адмем
 ent-WeaponLauncherSunfire = Солнцепёк

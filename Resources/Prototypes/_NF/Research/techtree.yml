@@ -1841,6 +1841,7 @@
   - NFMagazineRifle20Empty
   - NFMagazineRifle30Empty
   - NFMagazineDrumRifle20Empty
+  - NFMagazineShotgunDrumEmpty
   - MagazineAsmgtUniversalEmpty
   - ArmoryTovar
   technologyPrerequisites:

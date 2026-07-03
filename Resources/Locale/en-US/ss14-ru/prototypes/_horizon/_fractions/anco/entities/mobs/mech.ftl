@@ -1,0 +1,12 @@
+ent-AnCoMechCyclopDungeon = АМЕ Циклоп
+    .desc = боевой тип тяжелого АВС АМЕ Циклоп. Момент когда прогресс победил.
+    .suffix = StarHorizon, AnCo, Dungeon
+ent-AnCoMechMushDungeon = АМЕ Муш
+    .desc = Что это такое? Это ошибка вселенной? почему оно существует?
+    .suffix = StarHorizon, AnCo, Dungeon
+ent-AnCoMechTitanDungeon = АМЕ Титан
+    .desc = Это не офицер Титан, но бояться его нужно не меньше.
+    .suffix = StarHorizon, AnCo, Dungeon
+ent-AnCoMechBegemothDungeon = АМЕ Бегемот
+    .desc = Большой, толстый, неповоротливый, его название говорит само за себя.
+    .suffix = StarHorizon, AnCo, Dungeon

@@ -109,3 +109,7 @@ ent-PlushieVulpa = Плюшевая вульпа
 ent-PlushieChel = Плюшевый человек
     .desc = Плюшевая игрушка, человек.
     .suffix = StarHorizon, Sponsor
+ent-BLAT = БЛЯТЬ
+    .desc = Shut the fuck up
+ent-BBAT = БВЯТЬ
+    .desc = УВУ

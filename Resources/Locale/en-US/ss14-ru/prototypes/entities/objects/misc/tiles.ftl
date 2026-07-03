@@ -223,3 +223,7 @@ ent-FloorTileItemXenoMaint = xeno techmaint floor
     .desc = { ent-FloorTileItemBase.desc }
 ent-FloorTileItemDarkSquiggly = dark steel squiggly tile
     .desc = { ent-FloorTileItemDark.desc }
+ent-FloorTileItemSteelDarkGray = steel dark gray tile
+    .desc = { ent-FloorTileItemSteel.desc }
+ent-FloorTileItemSteelPlateDarkGray = steel dark gray plate
+    .desc = { ent-FloorTileItemSteel.desc }

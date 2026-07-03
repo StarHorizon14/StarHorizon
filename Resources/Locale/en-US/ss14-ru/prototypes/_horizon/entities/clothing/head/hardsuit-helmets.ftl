@@ -38,5 +38,5 @@ ent-TraumaTeamHelmetSur = EVA шлем реаниматора траумы
 ent-TraumaTeamHelmetPilot = EVA шлем реаниматора траумы
     .desc = Лёгкий шлем пилота TTI, оборудованный встроенным интерфейсом для управления кораблём и продвинутой системой подачи кислорода.
     .suffix = TraumaTeam
-ent-ClothingHeadHelmetHardsuitIanchik = Ianchik "Strazh" hardsuit helmet
-    .desc = A void helmet with Y-shaped tinted visor, armored cheek pads and subtle tactical network glow.
+ent-ClothingHeadHelmetHardsuitLostSpacesuitWar = шлем утерянного скафандра войны
+    .desc = Кажется эти рога способны проткнуть саму реальность.
