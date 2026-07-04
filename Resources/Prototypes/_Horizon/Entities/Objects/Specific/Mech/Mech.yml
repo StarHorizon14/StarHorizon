@@ -150,7 +150,7 @@
 
 - type: entity
   id: MechDurand
-  parent: [BaseMech, BaseC3Contraband]
+  parent: [BaseMech, BaseC2Contraband]
   name: Durand
   description: Slow and heavy armored combat mech.
   components:
