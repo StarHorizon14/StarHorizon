@@ -1,3 +1,12 @@
+- type: loadout
+  id: SyndicateForcedClothingOuterEVASuitContractor
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NFOuterSuitRequired
+  price: 0
+  equipment:
+    outerClothing: ClothingOuterEVASuitSyndicate
+    head: ClothingHeadHelmetSyndicate
 
 # Униформа
 - type: loadoutGroup

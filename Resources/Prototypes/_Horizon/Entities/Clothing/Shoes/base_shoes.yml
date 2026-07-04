@@ -105,3 +105,42 @@
       - state: equipped-FEET
         color: "#FF69B4"
       - state: soles-equipped-FEET
+
+# Прототипы сделаны Cvartet's ^~^
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesDarkShoesBunnyGirl
+  name: Тёмные туфли
+  description: "Тёмные туфли девочки зайки, они престижно смотрятся на ваших ножках!"
+  suffix: Cvartet
+  components:
+  - type: Sprite
+    sprite: _Horizon/Clothing/Shoes/Boots/cvartet_darkshoesbunnygirl.rsi
+  - type: Clothing
+    sprite: _Horizon/Clothing/Shoes/Boots/cvartet_darkshoesbunnygirl.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesMaidSandals
+  name: Сандалии горничной
+  description: Аккуратные и милые сандальки для послушной горничной. Ты же хочешь прислуживать хозяину?
+  suffix: Cvartet
+  components:
+  - type: Sprite
+    sprite: _Horizon/Clothing/Shoes/Boots/cvartet_maid_sandals.rsi
+  - type: Clothing
+    sprite: _Horizon/Clothing/Shoes/Boots/cvartet_maid_sandals.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesAnkleBoots
+  name: Черные берцы
+  description: Мощная боевая обувь, что она забыла в этом наборе?
+  suffix: Cvartet
+  components:
+  - type: Sprite
+    sprite: _Horizon/Clothing/Shoes/Boots/cvartet_ankle_boots.rsi
+  - type: Clothing
+    sprite: _Horizon/Clothing/Shoes/Boots/cvartet_ankle_boots.rsi
+  - type: Matchbox
+  # А дальше уже не Cvartet @_@

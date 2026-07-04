@@ -194,22 +194,24 @@
   result: TradeGoodUnionWeapon
   completetime: 2
   materials:
-    Steel: 400
+    Ardon: 400
+    Kazmie: 800
 
 - type: latheRecipe
   id: TradeGoodAnCoArmorRecipe
   result: TradeGoodUnionArmor
   completetime: 2
   materials:
-    Steel: 400
+    Ardon: 200
+    Kazmie: 1000
 
 - type: latheRecipe
   id: TradeGoodAnCoBallisticRecipe
   result: TradeGoodUnionBallistic
   completetime: 3
   materials:
-    Steel: 600
-    Uranium: 300
+    Ardon: 600
+    Kazmie: 600
 
 # === Пиратские товары ===
 

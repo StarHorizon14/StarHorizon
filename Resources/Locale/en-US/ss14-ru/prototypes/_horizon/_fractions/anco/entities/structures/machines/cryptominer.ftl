@@ -1,0 +1,9 @@
+ent-Cryptominer = cryptominer
+    .desc = A cryptocurrency mining device. Consumes power and generates heat. Earned credits are automatically transferred to the station's bank account.
+    .suffix = StarHorizon, AnCo, Structure
+ent-AnCoMines = сервер АнКо
+    .desc = Древний сервер для анализа метаданных блюспейса.
+    .suffix = StarHorizon, AnCo, Dungeon
+ent-SpawnAnCominerDrop = спавнер лута с майнера АнКо
+    .suffix = StarHorizon, AnCo, Dungeon
+    .desc = { ent-MarkerBase.desc }

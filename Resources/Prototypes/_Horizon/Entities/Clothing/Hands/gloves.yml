@@ -32,3 +32,34 @@
     fiberColor: fibers-white
   - type: FingerprintMask
 
+# Прототипы сделаны Cvartet ^~^
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsMaidSleeves
+  name: Нарукавники горничной
+  description: Оу... это выглядит интересно. Их можно использовать по-разному.
+  suffix: Cvartet
+  components:
+  - type: Sprite
+    sprite: _Horizon/Clothing/Hands/Misc/cvartet_maid_sleeves.rsi
+  - type: Clothing
+    sprite: _Horizon/Clothing/Hands/Misc/cvartet_maid_sleeves.rsi
+  - type: Fiber
+    fiberMaterial: fibers-synthetic
+    fiberColor: fibers-black
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsBlackBracelet
+  name: Черный браслет
+  description: Черный резиновый браслетик, которого почти не видно.
+  suffix: Cvartet
+  components:
+  - type: Sprite
+    sprite: _Horizon/Clothing/Hands/Misc/cvartet_black_bracelet.rsi
+  - type: Clothing
+    sprite: _Horizon/Clothing/Hands/Misc/cvartet_black_bracelet.rsi
+  - type: Fiber
+    fiberMaterial: fibers-synthetic
+    fiberColor: fibers-black
+# А дальше уже не Cvartet @_@

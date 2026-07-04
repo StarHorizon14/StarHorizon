@@ -123,6 +123,15 @@
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.90
+        Radiation: 0.85
+        Caustic: 0.90
 
 - type: entity
   parent: [ClothingHeadEVAHelmetBase, BaseAnCoContraband]
@@ -142,3 +151,47 @@
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.90
+        Radiation: 0.85
+        Caustic: 0.90
+
+- type: entity
+  parent: [NFClothingHeadHardsuitWithLightBase, BaseAnCoContraband]
+  id: ClothingHeadHardsuitClifs
+  categories: [ HideSpawnMenu ]
+  name: шлем скафандра Скала
+  description: Изолирующий от температур шлем, спасет вас от жары.
+  suffix: StarHorizon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/clifs.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/clifs.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.2
+  - type: PressureProtection
+    highPressureMultiplier: 0.25
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.90
+        Radiation: 0.85
+        Caustic: 0.90
+  - type: PointLight
+    color: "#F05A5A"

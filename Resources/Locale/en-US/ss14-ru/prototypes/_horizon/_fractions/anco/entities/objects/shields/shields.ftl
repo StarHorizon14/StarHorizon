@@ -1,0 +1,9 @@
+ent-AnCoArdonShield = ардониевый щит
+    .desc = обыкновенные плотные листы ардония, можно удобно держать.
+    .suffix = StarHorizon, AnCo, Weapon
+ent-AnCoKazmieShield = тяжелый казмиевый щит
+    .desc = комплексная казмиевая защита, все ровно что защищаться броней танка.
+    .suffix = StarHorizon, AnCo, Weapon
+ent-AnCoBulletShield = комплексный щит АнКо
+    .desc = серийный щит стандартной конструкции, в основном используемый ОтКБ.
+    .suffix = StarHorizon, AnCo, Weapon

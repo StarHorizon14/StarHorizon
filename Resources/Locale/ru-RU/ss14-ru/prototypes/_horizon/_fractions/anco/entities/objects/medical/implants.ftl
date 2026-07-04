@@ -1,0 +1,8 @@
+ent-AnCoAcidifierImplant = имплант с растворяющими нанитами
+    .desc = Имплант с растворяющим типом нанитов.
+ent-AnCoTrakerImplant = имплант с транслирующим чипом
+    .desc = Имплант для трансляции местоположения пользователя.
+ent-AnCoDroneImplant = имплант с дронами
+    .desc = Имплант, содержащий дронов внутри.
+ent-AnCoImplantCorpLang = нейро-имплант
+    .desc = { ent-BaseTranslatorImplant.desc }

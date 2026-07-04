@@ -11,4 +11,3 @@ id-card-access-level-dfi-CIC = CIC
 id-card-access-level-dfi-Armory = Арсенал
 id-card-access-level-dfi-TRC = TRC
 id-card-access-level-dfi-APS = APS
-

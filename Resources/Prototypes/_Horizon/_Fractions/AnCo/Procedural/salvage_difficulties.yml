@@ -9,5 +9,3 @@
   destructionStructures: 18
   endSound:
     collection: AnCoInfernoEnd
-    params:
-      volume: -5

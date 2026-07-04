@@ -156,7 +156,7 @@
   id: ClothingOuterHardsuitGranite
   suffix: StarHorizon, AnCo, HardSuit
   name: Гранит
-  description: продвинутый E.V.A. для работ в космическом пространстве
+  description: Тяжелый боевой скафандр класса ВО, используется для подавления противника.
   components:
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/granite.rsi
@@ -190,7 +190,7 @@
   id: ClothingOuterHardsuitDusk
   suffix: StarHorizon, AnCo, HardSuit
   name: Сумрак
-  description: продвинутый E.V.A. для работ в космическом пространстве
+  description: Скафандр класса СО, используется в опасных средах для организма.
   components:
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/dusk.rsi
@@ -231,3 +231,41 @@
   - type: CatWearable
   - type: AnCoFactionAccess
     allowedFactions: []
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseAnCoContraband]
+  id: ClothingOuterHardsuitClifs
+  suffix: StarHorizon, AnCo, HardSuit
+  name: Скала
+  description: Скафандр прендазначенный для работы в условиях высокого давления и температур.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/clifs.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/clifs.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.05
+  - type: FireProtection
+    reduction: 0.8 # atmos firesuit offers best protection, hardsuits are a little vulnerable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Heat: 0.2
+        Cold: 0.2
+        Radiation: 0.5
+        Caustic: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitClifs

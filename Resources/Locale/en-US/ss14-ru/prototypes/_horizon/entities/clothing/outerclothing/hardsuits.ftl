@@ -45,5 +45,3 @@ ent-ClothingOuterHardsuitTraumaTeamSur = EVA реаниматора траумы
     .desc = Стандартный образец герметичного комплекта брони Trauma Team Interstellar, усилен более крепким материалом для работы в безвоздушном пространстве.
 ent-ClothingOuterHardsuitTraumaTeamPilot = EVA пилота траумы
     .desc = Стандартный образец герметичного комплекта брони Trauma Team Interstellar, усилен более крепким материалом для работы в безвоздушном пространстве.
-ent-ClothingOuterHardsuitIanchik = Ianchik "Strazh" hardsuit
-    .desc = A multi-layered anthracite-gray armored jumpsuit with ceramo-metallic plates, weld marks and patches of radiation protection. Worn white bomber jacket with embedded plates for additional protection.

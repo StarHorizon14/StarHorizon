@@ -344,7 +344,6 @@ uplink-fake-mindshield-name = Фальшивая защита разума
 uplink-fake-mindshield-desc = Переключаемый имплант, способный имитировать те же сигналы, что и настоящий имплант защиты разума, обманывая соответствующие дисплеи и заставляя их думать, что у вас есть защита разума (имплантер бренда Нанотрейзен не предоставляется).
 uplink-mauler-name = Боевой мех маулер
 uplink-mauler-desc = Украденный и перекрашенный Синдикатом Мародёр в комплекте с 3 орудиями.
-
 # StarHorizon — syn_uplink_catalog
 uplink-magazine-sniper-barrett-m82-ar-name = магазин Barrett M82 (.70 бронебойные)
 uplink-magazine-sniper-barrett-m82-ar-desc = магазин Barrett M82 (.70 бронебойные)

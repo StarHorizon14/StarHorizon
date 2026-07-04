@@ -29,6 +29,9 @@ advertise = false
 ## Wizard's Den hub
 #hub_urls = "https://hub.spacestation14.com/"
 
+#[auth]
+#server="https://auth.playss14.com/"
+
 [server]
 rules_file = "FrontierRuleset"
 lobby_name = "StarHorizon"

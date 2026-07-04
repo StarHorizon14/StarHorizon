@@ -1,0 +1,29 @@
+- type: cargoProduct
+  id: FunHornySuit_1
+  icon:
+    sprite: _Horizon/Clothing/Underwear/Bottom/cvartet_turquoise_bikini_panties.rsi
+    state: icon
+  product: CrateFunHornySuit_1
+  cost: 10000
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: FunHornySuit_2
+  icon:
+    sprite: _Horizon/Clothing/OuterClothing/Coats/cvartet_maid_dress.rsi
+    state: icon
+  product: CrateFunHornySuit_2
+  cost: 10000
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: FunHornySuit_3
+  icon:
+    sprite: _Horizon/Clothing/OuterClothing/Coats/cvartet_leather_jacket.rsi
+    state: icon
+  product: CrateFunHornySuit_3
+  cost: 10000
+  category: cargoproduct-category-name-fun
+  group: market

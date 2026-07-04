@@ -723,6 +723,7 @@
   - SyndicateJumpsuit
   - SyndicateBack
   - SyndicatePDAOfficer
+  - SyndicateForcedOuterClothing
   - SyndicateHead
   - SyndicateOuterClothing
   - SyndicateEars
@@ -746,6 +747,7 @@
   - SyndicateJumpsuit
   - SyndicateBack
   - SyndicatePDAOperative
+  - SyndicateForcedOuterClothing
   - SyndicateHead
   - SyndicateOuterClothing
   - SyndicateEars
@@ -769,6 +771,7 @@
   - SyndicateJumpsuit
   - SyndicateBack
   - SyndicatePDAMedic
+  - SyndicateForcedOuterClothing
   - SyndicateHead
   - SyndicateOuterClothing
   - SyndicateEars
@@ -792,6 +795,7 @@
   - SyndicateJumpsuit
   - SyndicateBack
   - SyndicatePDADelivery
+  - SyndicateForcedOuterClothing
   - SyndicateHead
   - SyndicateOuterClothing
   - SyndicateEars

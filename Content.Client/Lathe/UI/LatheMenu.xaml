@@ -82,7 +82,20 @@
                         Mode="Press">
                     </Button>
                 </BoxContainer>
-                <Label Text="{Loc 'lathe-menu-queue-title'}" Margin="5 5 5 5" HorizontalAlignment="Center"/>
+                <!-- Horizon: заголовок очереди с кнопкой бесконечного производства -->
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <Control HorizontalExpand="True"/>
+                    <Label Text="{Loc 'lathe-menu-queue-title'}" Margin="5 5 5 5" HorizontalAlignment="Center"/>
+                    <Control HorizontalExpand="True"/>
+                    <Button
+                        Name="InfiniteButton"
+                        SetSize="32 26"
+                        Text="∞"
+                        ToggleMode="True"
+                        ToolTip="{Loc 'lathe-menu-infinite-production-tooltip'}"
+                        Margin="0 0 5 0"
+                    />
+                </BoxContainer>
                 <BoxContainer
                     Name="FabricatingContainer"
                     Orientation="Horizontal"

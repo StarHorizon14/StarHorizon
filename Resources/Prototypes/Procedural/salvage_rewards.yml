@@ -36,6 +36,7 @@
     TechnologyDiscPhazonTechnology: 0.05
     TechnologyDiscArsenalAmmoModules: 0.05
     TechnologyDiscArsenalAmmunition: 0.05
+    TechnologyDiscArsenalDome: 0.05
     TechnologyDiscHydroponicsDNAManip: 0.05
     TechnologyDiscUniversalTranslator: 0.05
     TechnologyDiscCombatCybernetics: 0.05
@@ -88,6 +89,7 @@
     TechnologyDiscPhazonTechnology: 0.1
     TechnologyDiscArsenalAmmoModules: 0.1
     TechnologyDiscArsenalAmmunition: 0.1
+    TechnologyDiscArsenalDome: 0.1
     TechnologyDiscHydroponicsDNAManip: 0.1
     TechnologyDiscUniversalTranslator: 0.1
     TechnologyDiscCombatCybernetics: 0.1

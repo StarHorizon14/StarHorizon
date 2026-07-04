@@ -21,7 +21,6 @@
       - state: base
         map: [ "enum.CryptominerVisualLayers.Base" ]
       - state: base-unshaded
-        map: [ "enum.CryptominerVisualLayers.Base" ]
         shader: unshaded
       - state: level-1
         map: [ "enum.CryptominerVisualLayers.Level" ]

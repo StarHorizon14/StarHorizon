@@ -32,7 +32,7 @@ public sealed partial class RareWeaponSpawnerCaseComponent : Component
     /// Modifier that can be applied to the gun's projectile speed.
     /// </summary>
     [DataField]
-    public StatModifier ProjectileSpeedModifier = new(0.15f, 0.35f, 1.075f); // less extreme scaling to prevent tunneling issues
+    public StatModifier ProjectileSpeedModifier = new(0.075f, 0.15f, 1.075f); // less extreme scaling to prevent tunneling issues
 
     /// <summary>
     /// Modifier that can be applied to the gun's fire rate.
