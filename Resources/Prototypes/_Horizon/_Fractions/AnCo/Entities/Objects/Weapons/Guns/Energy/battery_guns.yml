@@ -262,6 +262,8 @@
   - type: Item
     size: Huge
   - type: Wieldable
+  - type: AnCoWeaponWeight
+    weight: 3
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Battery/ripsoidcannon.rsi
     layers:

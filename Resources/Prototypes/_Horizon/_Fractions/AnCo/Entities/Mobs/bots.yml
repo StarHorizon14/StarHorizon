@@ -2,8 +2,13 @@
   id: BaseAnCoMob
   suffix: StarHorizon, AnCo
   abstract: true
+  parent: [NFBaseMobRestrictions]
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementAlwaysTouching
+  - type: Carriable
+  - type: MovementIgnoreGravity
+  - type: CanMoveInAir
   - type: NpcFactionMember
     factions:
       - HostileUniversally
@@ -47,7 +52,6 @@
   - type: InputMover
   - type: MobMover
   - type: ZombieImmune
-  - type: ProtectedFromStepTriggers
   - type: CombatMode
   - type: EmitSoundOnActivate
     sound:

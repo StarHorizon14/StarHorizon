@@ -31,3 +31,6 @@
   - type: AnCoSabre
   - type: StaticPrice
     price: 6000
+  - type: Tag
+    tags:
+      - AnCoSheathable

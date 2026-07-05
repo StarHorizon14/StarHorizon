@@ -59,15 +59,3 @@
   - type: Sprite
     sprite: _StarHorizon/Clothing/Back/Backpacks/oldcentcom.rsi
 
-- type: entity
-  parent: ClothingBackpack
-  id: TraumaBackPack
-  name: ранец "Траумы"
-  description: Рюкзак повышенной ёмкости, имеет многочисленные боковые и внутренние крепления для разного оборудования и снаряжения. Хорошо изолирован.
-  suffix: TraumaTeam
-  components:
-  - type: Sprite
-    sprite: _StarHorizon/Clothing/Back/Backpacks/trauma.rsi
-  - type: Storage
-    grid:
-    - 0,0,8,5

@@ -18,10 +18,18 @@
         true
       NavPry: !type:Bool
         true
+      NavSmash: !type:Bool
+        true
       VisionRadius: !type:Single
         20
       AggroVisionRadius: !type:Single
         20
+      FollowRange: !type:Single
+        20
+      MinimumIdleTime: !type:Single
+        0.5
+      MaximumIdleTime: !type:Single
+        3.0
   - type: Tool
     speedModifier: 5.0
     qualities:
@@ -40,19 +48,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
-    rootTask:
-       task: InfernoSimpleMeleeHostileCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      VisionRadius: !type:Single
-        20
-      AggroVisionRadius: !type:Single
-        20
+      MeleeMissChance: !type:Single
+        0
 
 - type: entity
   parent: [AnCoDroneCombatDungeon, BaseAnCoIfterno]
@@ -62,19 +60,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
-    rootTask:
-       task: InfernoSimpleMeleeHostileCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      VisionRadius: !type:Single
-        20
-      AggroVisionRadius: !type:Single
-        20
+      MeleeMissChance: !type:Single
+        0
 
 - type: entity
   parent: [AnCoDroneMineDungeon, BaseAnCoIfterno]
@@ -84,19 +72,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
-    rootTask:
-       task: InfernoSimpleMeleeHostileCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      NavInteract: !type:Bool
-        true
-      VisionRadius: !type:Single
-        20
-      AggroVisionRadius: !type:Single
-        20
+      MeleeMissChance: !type:Single
+        0
 
 - type: entity
   parent: [AnCoFlyDroneSmallDungeon, BaseAnCoIfterno]
@@ -106,19 +84,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
-    rootTask:
-       task: InfernoSimpleMeleeHostileCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      VisionRadius: !type:Single
-        20
-      AggroVisionRadius: !type:Single
-        20
+      MeleeMissChance: !type:Single
+        0
 
 - type: entity
   parent: [AnCoFlyDroneHugeDungeon, BaseAnCoIfterno]
@@ -130,17 +98,6 @@
   - type: HTN
     rootTask:
        task: InfernoSimpleRangedHostileCompound
-    blackboard:
-      NavClimb: !type:Bool
-        true
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      VisionRadius: !type:Single
-        20
-      AggroVisionRadius: !type:Single
-        20
   - type: CombatMode
   - type: Gun
     fireRate: 4
@@ -154,20 +111,19 @@
   suffix: Inferno
   categories: [ HideSpawnMenu ]
   components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 30
+        Structural: 100
   - type: HTN
     rootTask:
        task: InfernoSimpleRangedHostileCompound
     blackboard:
-      NavClimb: !type:Bool
+      NavSmash: !type:Bool
         true
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      VisionRadius: !type:Single
-        20
-      AggroVisionRadius: !type:Single
-        20
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/_Horizon/_Fractions/AnCo/pidoras.ogg
 
 - type: entity
   parent: [AnCoMechCyclopDungeon, BaseAnCoIfterno]
@@ -179,16 +135,8 @@
     rootTask:
        task: InfernoSimpleRangedHostileCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      VisionRadius: !type:Single
-        20
-      AggroVisionRadius: !type:Single
-        20
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/_Horizon/_Fractions/AnCo/pidoras.ogg
 
 - type: entity
   parent: [AnCoMechBegemothDungeon, BaseAnCoIfterno]
@@ -199,23 +147,21 @@
   - type: HTN
     rootTask:
        task: InfernoSimpleRangedHostileCompound
-    blackboard:
-      NavClimb: !type:Bool
-        true
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      VisionRadius: !type:Single
-        20
-      AggroVisionRadius: !type:Single
-        20
 
 - type: entity
   parent: [AnCoMechMushDungeon, BaseAnCoIfterno]
   id: AnCoMechMushInferno
   suffix: Inferno
   categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: InfernoSimpleRangedHostileCompound
+
+- type: entity
+  parent: [AnCoEvilLarry, BaseAnCoIfterno]
+  id: AnCoEvilLarryInferno
+  suffix: Inferno
   components:
   - type: HTN
     rootTask:
@@ -228,6 +174,6 @@
       NavPry: !type:Bool
         true
       VisionRadius: !type:Single
-        20
+        30
       AggroVisionRadius: !type:Single
-        20
+        30
