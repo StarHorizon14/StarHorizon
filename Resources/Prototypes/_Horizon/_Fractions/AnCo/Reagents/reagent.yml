@@ -24,6 +24,10 @@
           Piercing: -10
           Heat: -10
 # создание репликантов наниты находят себя же в организме и реплицируют себя
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
       - !type:AdjustReagent
         conditions:
         - !type:ReagentThreshold
@@ -44,3 +48,162 @@
           min: 70
         prototype: AnCoNanitAcidPoly
 
+- type: reagent
+  id: AnCoCompoundSpeed
+  name: сыворотка скорости
+  group: Medicine
+  desc: Вам возможно не стоит пить это
+  physicalDesc: Пульсирующее
+  flavor: medicine
+  color: "#f03c3c"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+# создание репликантов наниты находят себя же в организме и реплицируют себя
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          min: 3
+        reagent: AnCoCompoundSpeed
+        amount: 1.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        reagent: AnCoCompoundSpeed
+        amount: -1.5
+# "ускорение"
+#  1 уровень
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.3
+        sprintSpeedModifier: 1.3
+#  2 уровень
+      - !type:MovespeedModifier
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        walkSpeedModifier: 2
+        sprintSpeedModifier: 2
+#  3 уровень
+      - !type:MovespeedModifier
+        conditions:
+        - !type:ReagentThreshold
+          min: 50
+        walkSpeedModifier: 4
+        sprintSpeedModifier: 4
+
+- type: reagent
+  id: AnCoCompoundRegeneration
+  name: сыворотка восстановления
+  group: Medicine
+  desc: Вам возможно не стоит пить это
+  physicalDesc: Пульсирующее
+  flavor: medicine
+  color: "#f03c3c"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+# создание репликантов наниты находят себя же в организме и реплицируют себя
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          min: 3
+        reagent: AnCoCompoundRegeneration
+        amount: 1.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        reagent: AnCoCompoundRegeneration
+        amount: -1.5
+# "восстановление"
+#  1 уровень
+      - !type:ModifyBleedAmount
+        amount: -1
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -2.5
+            Toxin: -2.5
+            Airloss: -2.5
+            Brute: -2.5
+          types:
+          Piercing: -2.5
+          Heat: -2.5
+#  2 уровень
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        damage:
+          groups:
+            Burn: -3.5
+            Toxin: -3.5
+            Airloss: -3.5
+            Brute: -3.5
+          types:
+          Piercing: -3.5
+          Heat: -3.5
+#  3 уровень
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 50
+        damage:
+          groups:
+            Burn: -5
+            Toxin: -5
+            Airloss: -5
+            Brute: -5
+          types:
+          Piercing: -5
+          Heat: -5
+
+
+- type: reagent
+  id: AnCoCompoundTitans
+  name: сыворотка Титанов
+  group: Medicine
+  desc: Вам возможно не стоит пить это
+  physicalDesc: Пульсирующее
+  flavor: medicine
+  color: "#f03c3c"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+# создание репликантов наниты находят себя же в организме и реплицируют себя
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          min: 3
+        reagent: AnCoCompoundTitans
+        amount: 1.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        reagent: AnCoCompoundTitans
+        amount: -1.5
+# "Титан"
+#  1 уровень
+      - !type:ModifyBleedAmount
+        amount: -20
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -20
+            Toxin: -20
+            Airloss: -20
+            Brute: -20
+          types:
+          Piercing: -20
+          Heat: -20
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1
+        sprintSpeedModifier: 2

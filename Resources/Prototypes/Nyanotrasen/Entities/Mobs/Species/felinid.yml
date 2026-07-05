@@ -96,7 +96,7 @@
   - type: NoShoesSilentFootsteps
   # Horizon: Height traits (felinid base scale 0.8, 0.8 - small)
   - type: TallWhitelist
-    scale: 0.9  # Closer to human size
+    scale: 1  # Closer to human size
     density: 160
     cosmeticOnly: false
   - type: ShortWhitelist

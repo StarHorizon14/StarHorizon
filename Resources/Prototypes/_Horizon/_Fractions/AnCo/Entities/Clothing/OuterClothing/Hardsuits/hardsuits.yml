@@ -47,6 +47,8 @@
   name: cкафандр офицера Титана АнКо
   description: Тяжёлый скафандр АнКо. Выбор тех, для кого защита важнее скорости.
   components:
+  - type: AnCoLiftStrength
+    liftStrength: 5
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/titan.rsi
   - type: Clothing
