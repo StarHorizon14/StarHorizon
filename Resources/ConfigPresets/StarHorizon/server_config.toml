@@ -163,3 +163,13 @@ directory = "replays/"
 discord_sponsors_path = "sponsorSystem/warp/discord_sponsors.txt"
 disposable_path = "sponsorSystem/warp/disposable.txt"
 items_path = "sponsorSystem/sponsor_items.txt"
+
+################################################################################
+##### Shutdown Controller ######################################################
+
+[shutdown]
+enabled = true
+time = "12:00"          # Время рестарта по МСК (формат HH:mm)
+interval_days = 3       # Интервал в днях
+interval_hours = 0
+shuttle_time = 10
