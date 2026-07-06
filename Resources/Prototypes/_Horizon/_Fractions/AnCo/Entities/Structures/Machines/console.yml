@@ -256,6 +256,46 @@
               min: 3
               max: 5
 
+- type: entity
+  id: AnCoComputerGunneryConsole
+  parent: [ComputerGunneryConsole, BaseAnCoContraband]
+  name: консоль контроля орудиями
+  description: терминал для контроля системами УБТ.
+  suffix: StarHorizon, AnCo, Structure
+  components:
+  - type: Computer
+    board: AnCoComputerGunneryConsoleCircuitboard
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Machines/Computers/computer.rsi
+    layers:
+    - state: monitor
+    - state: base
+    - map: ["computerLayerKeyboard"]
+      state: key
+    - map: ["computerLayerScreen"]
+      state: control_screen
+    - map: ["computerLayerKeys"]
+      state: key
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            KazmieSheet1:
+              min: 1
+              max: 5
+            ArdonSheet1:
+              min: 3
+              max: 5
+
 # - type: entity
 #   parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase ]
 #   id: AnCoShipyardConsole
@@ -367,6 +407,24 @@
       state: key
     - map: ["computerLayerScreen"]
       state: pilot_screen
+    - map: ["computerLayerKeys"]
+      state: key
+
+- type: entity
+  id: AnCoComputerGunneryConsoleTable
+  parent: [BaseStructureComputerTabletop, AnCoComputerGunneryConsole]
+  suffix: StarHorizon, AnCo, Structure
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _Horizon/_Fractions/AnCo/Structures/Machines/Computers/computer.rsi
+    layers:
+    - state: monitor
+    - state: base_table
+    - map: ["computerLayerKeyboard"]
+      state: key
+    - map: ["computerLayerScreen"]
+      state: control_screen
     - map: ["computerLayerKeys"]
       state: key
 

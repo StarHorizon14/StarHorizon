@@ -56,3 +56,8 @@
 
 - type: Tag
   id: AnCoSheathable
+
+# turret
+
+- type: Tag
+  id: MagazineAsmgtAnCo

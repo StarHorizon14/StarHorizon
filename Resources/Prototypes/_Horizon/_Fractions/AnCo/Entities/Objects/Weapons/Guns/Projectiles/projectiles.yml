@@ -93,6 +93,28 @@
 
 - type: entity
   name: AnCo Bullet
+  id: StandartBallisticAnCoSuperPower
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Projectiles/proj.rsi
+    layers:
+    - state: BallisticShotGun
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 90
+        Piercing: 60
+        Structural: 250
+    ignoreResistances: true
+  - type: Tracer
+    color: "#f05a5a"
+    length: 5
+
+- type: entity
+  name: AnCo Bullet
   id: StandartLaserAnCo
   parent: EmitterBolt
   categories: [ HideSpawnMenu ]
