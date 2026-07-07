@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 05/03/2026 22:24:51
-  entityCount: 2626
+  time: 07/07/2026 16:58:40
+  entityCount: 2619
 maps:
 - 1653
 grids:
@@ -6319,74 +6319,6 @@ entities:
     - type: Transform
       pos: 35.49373,14.669839
       parent: 1653
-- proto: AnCoWeaponCaseHeavy
-  entities:
-  - uid: 35
-    components:
-    - type: Transform
-      pos: 30.5,22.5
-      parent: 1653
-    - type: Storage
-      storedItems:
-        782:
-          position: 1,1
-          _rotation: South
-        783:
-          position: 5,3
-          _rotation: South
-        1308:
-          position: 3,3
-          _rotation: South
-        1396:
-          position: 6,1
-          _rotation: South
-        1397:
-          position: 1,4
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 782
-          - 783
-          - 1308
-          - 1396
-          - 1397
-  - uid: 36
-    components:
-    - type: Transform
-      pos: 30.5,18.5
-      parent: 1653
-    - type: Storage
-      storedItems:
-        1426:
-          position: 6,2
-          _rotation: South
-        1427:
-          position: 4,1
-          _rotation: South
-        1476:
-          position: 1,2
-          _rotation: South
-        1495:
-          position: 2,4
-          _rotation: South
-        1508:
-          position: 4,3
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1427
-          - 1495
-          - 1476
-          - 1508
-          - 1426
 - proto: AnCoWeaponCasePistol
   entities:
   - uid: 2549
@@ -11176,71 +11108,11 @@ entities:
     - type: Transform
       pos: 41.650818,38.431118
       parent: 1653
-  - uid: 782
-    components:
-    - type: Transform
-      parent: 35
-    - type: Physics
-      canCollide: False
-  - uid: 783
-    components:
-    - type: Transform
-      parent: 35
-    - type: Physics
-      canCollide: False
   - uid: 1150
     components:
     - type: Transform
       pos: 48.268814,4.4387217
       parent: 1653
-  - uid: 1308
-    components:
-    - type: Transform
-      parent: 35
-    - type: Physics
-      canCollide: False
-  - uid: 1396
-    components:
-    - type: Transform
-      parent: 35
-    - type: Physics
-      canCollide: False
-  - uid: 1397
-    components:
-    - type: Transform
-      parent: 35
-    - type: Physics
-      canCollide: False
-  - uid: 1426
-    components:
-    - type: Transform
-      parent: 36
-    - type: Physics
-      canCollide: False
-  - uid: 1427
-    components:
-    - type: Transform
-      parent: 36
-    - type: Physics
-      canCollide: False
-  - uid: 1476
-    components:
-    - type: Transform
-      parent: 36
-    - type: Physics
-      canCollide: False
-  - uid: 1495
-    components:
-    - type: Transform
-      parent: 36
-    - type: Physics
-      canCollide: False
-  - uid: 1508
-    components:
-    - type: Transform
-      parent: 36
-    - type: Physics
-      canCollide: False
   - uid: 1583
     components:
     - type: Transform
@@ -16622,10 +16494,35 @@ entities:
       - AnCoWeaponCaseAmmo35
 - proto: SpawnAnCoWeaponHeavyCrateRandom
   entities:
+  - uid: 35
+    components:
+    - type: Transform
+      pos: 30.5,18.5
+      parent: 1653
+  - uid: 36
+    components:
+    - type: Transform
+      pos: 30.5,22.5
+      parent: 1653
   - uid: 703
     components:
     - type: Transform
       pos: 2.5,40.5
+      parent: 1653
+  - uid: 782
+    components:
+    - type: Transform
+      pos: 19.5,44.5
+      parent: 1653
+  - uid: 783
+    components:
+    - type: Transform
+      pos: 31.5,2.5
+      parent: 1653
+  - uid: 1308
+    components:
+    - type: Transform
+      pos: 21.5,2.5
       parent: 1653
   - uid: 1879
     components:
