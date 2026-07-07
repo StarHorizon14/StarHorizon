@@ -20,6 +20,7 @@
   desc: faction-nfsd-desc
   color: "#369926"
   roundstart: false
+  outpostSpawnListProto: FactionNFSD
 
 - type: characterFaction
   id: FactionDFI
