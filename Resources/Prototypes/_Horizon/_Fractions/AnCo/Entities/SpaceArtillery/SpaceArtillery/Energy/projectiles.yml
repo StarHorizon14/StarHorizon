@@ -92,3 +92,36 @@
     totalIntensity: 500
     intensitySlope: 5
     maxIntensity: 100
+
+- type: entity
+  id: ShipAnCoRocketEMP
+  name: AnCo Rocket EMP
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 500
+        Heat: 250
+        Piercing: 100
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Projectiles/proj.rsi
+    layers:
+      - state: Rocket
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectTempHeat
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#b30e0e"
+    scale: 2
+    requireNoGrid: true
+    shape: circle
+  - type: TimedDespawn
+    lifetime: 20
+  - type: PointLight
+    color: "#F05A5A"
+  - type: EmpOnTrigger
+    range: 15
+    energyConsumption: 2700000
+    disableDuration: 10

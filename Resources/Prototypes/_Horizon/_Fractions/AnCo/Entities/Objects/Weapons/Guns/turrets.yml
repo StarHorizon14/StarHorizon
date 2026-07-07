@@ -67,19 +67,64 @@
     graph: AnCoWeaponTurretGuardianPackingGraph
     node: AnCoWeaponTurretGuardianPacked
 
+- type: entity # deployed turret
+  id: AnCoWeaponTurretGuardianFill30
+  name: АЗТ Страж
+  description: Автономная Защитная Турель корпорации АнКо, защищает даже когда все мертвы.
+  suffix: StarHorizon, AnCo
+  parent:
+  - BaseAnCoContraband
+  - BaseWeaponTurretMagazineFed
+  components:
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: NpcFactionMember
+    factions:
+    - AnCoSecurBot
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/magazinefed.rsi
+    drawdepth: Mobs
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: AnCoMagazineAsmgtUniversal30
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineAsmgtAnCo
+  - type: Construction
+    deconstructionTarget: null
+    graph: AnCoWeaponTurretGuardianPackingGraph
+    node: AnCoWeaponTurretGuardianPacked
+
 - type: entity
-  parent: BaseMagazinePistolHighCapacity
+  parent: [BaseMagazinePistolHighCapacity, BaseAnCoContraband]
   id: AnCoMagazineAsmgtUniversalEmpty
   name: универсальный короб боеприпасов
   description: Универсальный короб для боеприпасов, способных хранить боеприпасы АнКо
-  suffix: empty
+  suffix: StarHorizon, AnCo, empty
   components:
   - type: Tag
     tags:
       - MagazineAsmgtAnCo
   - type: Item
     size: Normal
-    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/box_mag.rsi
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/box_mag_universal.rsi
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -94,7 +139,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/box_mag.rsi
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/box_mag_universal.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -105,3 +150,33 @@
     steps: 11
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  parent: [AnCoMagazineAsmgtUniversalEmpty, BaseAnCoContraband]
+  id: AnCoMagazineAsmgtUniversal35
+  name: универсальный короб боеприпасов
+  description: Универсальный короб для боеприпасов, способных хранить боеприпасы АнКо
+  suffix: StarHorizon, AnCo, 35
+  components:
+  - type: BallisticAmmoProvider
+    proto: BaseCartridgePistolAnCo
+
+- type: entity
+  parent: AnCoMagazineAsmgtUniversalEmpty
+  id: AnCoMagazineAsmgtUniversal20
+  name: универсальный короб боеприпасов
+  description: Универсальный короб для боеприпасов, способных хранить боеприпасы АнКо
+  suffix: StarHorizon, AnCo, 20
+  components:
+  - type: BallisticAmmoProvider
+    proto: BaseCartridgeRifleAnCo
+
+- type: entity
+  parent: AnCoMagazineAsmgtUniversalEmpty
+  id: AnCoMagazineAsmgtUniversal30
+  name: универсальный короб боеприпасов
+  description: Универсальный короб для боеприпасов, способных хранить боеприпасы АнКо
+  suffix: StarHorizon, AnCo, 30
+  components:
+  - type: BallisticAmmoProvider
+    proto: BaseCartridgeRifleAnCoBuff

@@ -1,7 +1,7 @@
 - type: entity
   id: AnCoTurretFlash
   name: УБТ Вспышка
-  parent: BallisticArtillery
+  parent: [BallisticArtillery, BaseAnCoContraband]
   suffix: StarHorizon, AnCo
   description: Управляемая Боевая Турель, способная выплескивать энергетический заряд способный перегрузить электорнику противника.
   components:
@@ -60,7 +60,7 @@
 - type: entity
   id: AnCoTurretJumper
   name: УБТ Попрыгунчик
-  parent: BallisticArtillery
+  parent: [BallisticArtillery, BaseAnCoContraband]
   suffix: StarHorizon, AnCo
   description: Управляемая Боевая Турель, скорострельная и мощная, то что нужно для быстрых шаттлов.
   components:
@@ -119,7 +119,7 @@
 - type: entity
   id: AnCoTurretGargantua
   name: УБТ Гаргантюа
-  parent: BallisticArtillery
+  parent: [BallisticArtillery, BaseAnCoContraband]
   suffix: StarHorizon, AnCo
   description: Управляемая Боевая Турель, медленная но смертоносная.
   components:
@@ -173,4 +173,63 @@
   - type: ShipGunType
     shipType: Energy
   - type: ShipGunClass
-    shipClass: Medium
+    shipClass: Heavy
+
+- type: entity
+  id: AnCoTurretLightbolt
+  name: УБТ Молния
+  parent: [BallisticArtillery, BaseAnCoContraband]
+  suffix: StarHorizon, AnCo
+  description: Управляемая Боевая Турель, удар молнии и перегрузка.
+  components:
+  - type: StaticPrice
+    price: 3500
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/ShuttleWeapon/lightbolt.rsi
+    layers:
+    - state: space_artillery
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 40000
+    startingCharge: 40000
+  - type: ExaminableBattery
+  - type: FireControlRotate
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: Gun
+    fireRate: 0.1
+    projectileSpeed: 90
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 350
+  - type: SpaceArtillery
+    powerChargeRate: 350
+    powerUsePassive: 1250
+    powerUseActive: 0
+  - type: Actions
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShipAnCoRocketEMP
+    fireCost: 20000
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 24000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: RadarBlip
+    radarColor: "#b30e0e"
+    scale: 2
+  - type: ShipGunType
+    shipType: Energy
+  - type: ShipGunClass
+    shipClass: Heavy
