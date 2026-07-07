@@ -48,13 +48,6 @@ public sealed partial class NPCRangedCombatComponent : Component
     public bool UseOpaqueForLOSChecks = false;
 
     /// <summary>
-    /// If true, completely ignore line of sight checks (wallhack mode).
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    // ReSharper disable once InconsistentNaming
-    public bool IgnoreLOS = false;
-
-    /// <summary>
     /// Delay after target is in LOS before we start shooting.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
