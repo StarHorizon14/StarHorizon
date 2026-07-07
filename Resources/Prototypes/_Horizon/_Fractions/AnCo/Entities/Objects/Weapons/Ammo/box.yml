@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMagazinePistolHighCapacity, BaseAnCoContraband]
+  parent: [BaseItem, BaseAnCoContraband]
   id: AnCoMagazineBoxBase
   name: короб боеприпасов
   categories: [ HideSpawnMenu ]
@@ -35,7 +35,7 @@
   - type: Appearance
 
 - type: entity
-  parent: AnCoMagazineBoxBase
+  parent: [AnCoMagazineBoxBase, BaseAnCoContraband]
   id: AnCoMagazineBox35
   name: короб боеприпасов .35
   description: короб боеприпасов АнКо, .35 калибр.
@@ -57,7 +57,7 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  parent: AnCoMagazineBoxBase
+  parent: [AnCoMagazineBoxBase, BaseAnCoContraband]
   id: AnCoMagazineBox20
   name: короб боеприпасов .20
   description: короб боеприпасов АнКо, .20 калибр.
@@ -79,7 +79,7 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  parent: AnCoMagazineBoxBase
+  parent: [AnCoMagazineBoxBase, BaseAnCoContraband]
   id: AnCoMagazineBox30
   name: короб боеприпасов .30
   description: короб боеприпасов АнКо, .30 калибр.
@@ -101,7 +101,7 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  parent: AnCoMagazineBoxBase
+  parent: [AnCoMagazineBoxBase, BaseAnCoContraband]
   id: AnCoMagazineBox50
   name: короб боеприпасов .50
   description: короб боеприпасов АнКо, .50 калибр.
@@ -123,7 +123,7 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  parent: AnCoMagazineBoxBase
+  parent: [AnCoMagazineBoxBase, BaseAnCoContraband]
   id: AnCoMagazineBox
   name: короб боеприпасов .70
   description: короб боеприпасов АнКо, .70 калибр.
