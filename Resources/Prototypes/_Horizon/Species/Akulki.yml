@@ -107,9 +107,9 @@
   # Horizon end
 
   - type: Temperature
-    heatDamageThreshold: 380
-    coldDamageThreshold: 301
-    currentTemperature: 310.15
+    heatDamageThreshold: 325
+    coldDamageThreshold: 238
+    currentTemperature: 301
     specificHeat: 42
     coldDamage:
       types:
