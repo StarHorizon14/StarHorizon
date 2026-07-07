@@ -1,0 +1,127 @@
+- type: entity
+  id: ShipAnCoLaser
+  name: AnCo Bullet
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 37
+        Heat: 57
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Projectiles/proj.rsi
+    layers:
+      - state: StanLas
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectTempHeat
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#b30e0e"
+    scale: 2
+    requireNoGrid: true
+    shape: circle
+  - type: TimedDespawn
+    lifetime: 10
+  - type: PointLight
+    color: "#F05A5A"
+
+- type: entity
+  id: ShipAnCoEMP
+  name: AnCo EMP Bullet
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 75
+        Heat: 100
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Projectiles/proj.rsi
+    layers:
+      - state: StanLasBoom
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectTempHeat
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#b30e0e"
+    scale: 2
+    requireNoGrid: true
+    shape: circle
+  - type: TimedDespawn
+    lifetime: 10
+  - type: PointLight
+    color: "#F05A5A"
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 2700000
+    disableDuration: 10
+
+- type: entity
+  id: ShipAnCoRocket
+  name: AnCo Rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 500
+        Heat: 250
+        Piercing: 100
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Projectiles/proj.rsi
+    layers:
+      - state: Rocket
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectTempHeat
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#b30e0e"
+    scale: 2
+    requireNoGrid: true
+    shape: circle
+  - type: TimedDespawn
+    lifetime: 20
+  - type: PointLight
+    color: "#F05A5A"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: AnCoExplodes
+    totalIntensity: 500
+    intensitySlope: 5
+    maxIntensity: 100
+
+- type: entity
+  id: ShipAnCoRocketEMP
+  name: AnCo Rocket EMP
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 500
+        Heat: 250
+        Piercing: 100
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Projectiles/proj.rsi
+    layers:
+      - state: Rocket
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectTempHeat
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#b30e0e"
+    scale: 2
+    requireNoGrid: true
+    shape: circle
+  - type: TimedDespawn
+    lifetime: 20
+  - type: PointLight
+    color: "#F05A5A"
+  - type: EmpOnTrigger
+    range: 15
+    energyConsumption: 2700000
+    disableDuration: 10

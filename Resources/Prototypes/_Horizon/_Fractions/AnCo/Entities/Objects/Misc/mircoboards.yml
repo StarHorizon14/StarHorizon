@@ -221,3 +221,46 @@
       Ardon: 100
       Kazmie: 10
 
+- type: entity
+  id: AnCoComputerGunneryConsoleCircuitboard
+  parent: [BaseComputerCircuitboard, BaseAnCoContraband]
+  name: микросхема консоли контроля орудиями
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+    state: boardconsole
+  - type: Item
+    storedRotation: -90
+  - type: StaticPrice
+    price: 100
+  - type: ComputerBoard
+    prototype: AnCoComputerGunneryConsole
+  - type: ComputerTabletopBoard
+    prototype: AnCoComputerGunneryConsoleTable
+  - type: PhysicalComposition
+    materialComposition:
+      Ardon: 100
+      Kazmie: 10
+
+- type: entity
+  id: AnCoMachineGCSHighCircuitboard
+  parent: [BaseItem, BaseAnCoContraband]
+  name: микросхема сервера контроля орудий АнКо
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+    state: boardconsole
+  - type: Item
+    storedRotation: -90
+  - type: StaticPrice
+    price: 100
+  - type: MachineBoard
+    prototype: AnCoGunneryServerHigh
+    stackRequirements:
+      ArdonSheetStack: 60
+      KazmieSheetStack: 30
+    requirements:
+      MatterBin: 2
+      Capacitor: 10

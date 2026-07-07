@@ -1,0 +1,17 @@
+- type: constructionGraph # deconstruction graph
+  id: AnCoWeaponTurretGuardianPackingGraph
+  start: AnCoWeaponTurretGuardianPacked
+  graph:
+  - node: AnCoWeaponTurretGuardianPacked
+    entity: AnCoWeaponTurretGuardian
+    edges:
+    - to: AnCoWeaponTurretGuardianPacked
+      completed:
+      - !type:SpawnPrototype
+            prototype: AnCoWeaponTurretGuardianPacked
+            amount: 1
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity {}
+      steps:
+        - tool: Screwing
+          doAfter: 14
