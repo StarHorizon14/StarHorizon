@@ -1,8 +1,8 @@
-ent-BaseCartridgeCaselessRifle = cartridge (.25 caseless)
+ent-BaseCartridgeCaselessRifle = патрон (.25 безгильзовый)
     .desc = { ent-BaseCartridge.desc }
-ent-CartridgeCaselessRifle = cartridge (.25 caseless)
-    .desc = A small caliber utilizing caseless technology, omitting conventional brass casing in favor of hardened propellant. Standard kinetic ammunition is common and useful in most situations.
-ent-CartridgeCaselessRiflePractice = cartridge (.25 caseless practice)
-    .desc = A small caliber utilizing caseless technology, omitting conventional brass casing in favor of hardened propellant. Practice ammunition fires a chalk projectile that stings a little, but otherwise causes no lasting damage.
-ent-CartridgeHeavyMinigun = cartridge (.15 rifle)
+ent-CartridgeCaselessRifle = патрон (.25 безгильзовый)
+    .desc = Малокалиберное оружие, использующее безгильзовую технологию, в которой вместо традиционной латунной гильзы используется закаленный порох. Стандартные кинетические боеприпасы широко распространены и эффективны в большинстве ситуаций.
+ent-CartridgeCaselessRiflePractice = патрон (.25 безгильзовый practice)
+    .desc = Малокалиберное оружие, использующее безгильзовую технологию, в которой вместо традиционной латунной гильзы используется закаленный порох. Учебные патроны стреляют меловым снарядом, который слегка покалывает, но не причиняет никакого существенного вреда.
+ent-CartridgeHeavyMinigun = патрон (.15 rifle)
     .desc = { ent-BaseCartridgeHeavyRifle.desc }
