@@ -1,0 +1,24 @@
+- type: entity
+  id: AnCoGunneryServerHigh
+  parent: GunneryServerBase
+  name: сервер высокой АВС продуктивности
+  suffix: StarHorizon, AnCo
+  description: Сервер оптимизирующий работу множеств устройств. Контролирует УБТ.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Machines/server.rsi
+    layers:
+      - state: icon
+  - type: Machine
+    board: AnCoMachineGCSHighCircuitboard
+  - type: FireControlServer
+    processingPower: 80
+  - type: Battery
+    maxCharge: 500
+    startingCharge: 500
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ApcPowerReceiverBattery
+    idleLoad: 30
+    batteryRechargeRate: 1200
+    batteryRechargeEfficiency: 0.95

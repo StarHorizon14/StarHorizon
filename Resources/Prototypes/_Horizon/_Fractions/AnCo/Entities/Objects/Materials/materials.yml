@@ -201,7 +201,7 @@
 
 - type: stack
   id: KazmieSheetStack
-  name: ардониевый листы
+  name: казмиевые листы
   icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Materials/material.rsi, state: kazmie_3 }
   spawn: KazmieSheet1
   maxCount: 30

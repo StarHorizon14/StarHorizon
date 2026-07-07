@@ -296,3 +296,75 @@
               doAfter: 1
             - tool: Anchoring
               doAfter: 1
+
+- type: constructionGraph
+  id: ClosetAnCo
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: closetwall
+          steps:
+            - material: KazmieSheetStack
+              amount: 3
+            - material: ArdonSheetStack
+              amount: 1
+              doAfter: 2
+        - to: closet
+          steps:
+            - material: KazmieSheetStack
+              amount: 5
+              doAfter: 2
+    - node: closet
+      entity: ClosetBaseAnCo
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: KazmieSheet1
+              amount: 5
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Screwing
+              doAfter: 5
+    - node: closetwall
+      entity: AnCoClosetWall
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: KazmieSheet1
+              amount: 3
+            - !type:GivePrototype
+              prototype: ArdonSheet1
+              amount: 1
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Screwing
+              doAfter: 5
+
+- type: construction
+  id: AnCoClosetWall
+  graph: ClosetAnCo
+  startNode: start
+  targetNode: closetwall
+  category: construction-category-storage
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  id: ClosetBaseAnCo
+  graph: ClosetAnCo
+  startNode: start
+  targetNode: closet
+  category: construction-category-storage
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+

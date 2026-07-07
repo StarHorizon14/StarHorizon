@@ -547,27 +547,29 @@
     runningState: icon
     staticPacks:
     - TopicalsStatic # StarHorizon
-    #- ChemistryStatic # Frontier
-    #- MedicalStatic # Frontier
-    #- RollerBedsStatic # Frontier
-    #- MedicalClothingStatic # Frontier
-    #- EmptyMedkitsStatic # Frontier
-    #- SurgeryStatic # Frontier
-    - NFLightsStatic # Frontier
-    - NFBasicToolsStatic # Frontier
-    - NFBasicStorageStatic # Frontier
-    - NFBasicPartsStatic # Frontier
-    - NFBasicElectronicsStatic # Frontier
-    - NFBasicEvaStatic # Frontier
-    - NFBasicEVAToolsStatic # Frontier
-    - ReportingStatic # DeltaV
-    - NFPaperAndPaperAccessories # Frontier
+    - ChemistryStatic # Frontier
+    - MedicalStatic # Frontier
+    - RollerBedsStatic # Frontier
+    - MedicalClothingStatic # Frontier
+    - EmptyMedkitsStatic # Frontier
+    - SurgeryStatic # Frontier
+    #- NFLightsStatic # Frontier
+    #- NFBasicToolsStatic # Frontier
+    #- NFBasicStorageStatic # Frontier
+    #- NFBasicPartsStatic # Frontier
+    #- NFBasicElectronicsStatic # Frontier
+    #- NFBasicEvaStatic # Frontier
+    #- NFBasicEVAToolsStatic # Frontier
+    #- ReportingStatic # DeltaV
+    #- NFPaperAndPaperAccessories # Frontier
     - NFMedicalStatic # Frontier
     dynamicPacks:
     - StarlightSurgeryTools # Starlight
     - StarlightSurgeryOrgans # Starlight
     - StarlightSurgeryLimbs # Starlight
     - StarlightSurgeryImplants # Starlight
+    - CytologyEquipment
+    - CytologyBoards
     - SyringeGuns # DeltaV
     - NFMedicalClothingStatic # Frontier
     - NFChemistryBasicStatic # Frontier

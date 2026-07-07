@@ -63,7 +63,7 @@
 
 - type: entity
   id: BaseCartridgeSniperAnCo
-  name: высоко-кабилерный патрон .70
+  name: сверх заряженный патрон .70
   parent: [ BaseCartridge, BaseAnCoContraband ]
   suffix: StarHorizon, AnCo, Ammo
   components:
@@ -72,7 +72,7 @@
       - Cartridge
       - AnCoBulletSniper70
   - type: CartridgeAmmo
-    proto: BulletPistol
+    proto: StandartBallisticAnCoSuperPower
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Bullet/70_sniper.rsi
     layers:

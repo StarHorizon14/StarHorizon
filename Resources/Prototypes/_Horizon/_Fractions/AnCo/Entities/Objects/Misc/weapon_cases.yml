@@ -540,6 +540,17 @@
         amount: 120
 
 - type: entity
+  id: AnCoWeaponHeavyCaseGuardian
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoWeaponTurretGuardianPacked
+      - id: AnCoMagazineAsmgtUniversalEmpty
+        amount: 4
+- type: entity
   id: AnCoWeaponHeavyCaseKazmie
   parent: AnCoWeaponCaseHeavy
   suffix: StarHorizon, AnCo, Case

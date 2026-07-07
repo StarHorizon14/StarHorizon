@@ -111,11 +111,6 @@
   suffix: Inferno
   categories: [ HideSpawnMenu ]
   components:
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 30
-        Structural: 100
   - type: HTN
     rootTask:
        task: InfernoSimpleRangedHostileCompound

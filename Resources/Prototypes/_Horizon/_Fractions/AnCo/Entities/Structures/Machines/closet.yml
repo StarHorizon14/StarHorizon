@@ -74,6 +74,9 @@
     stateDoorClosed: ancocloset_door
   - type: StaticPrice
     price: 75
+  - type: Construction
+    graph: ClosetAnCo
+    node: closet
 
 - type: entity
   id: ClosetOfficer
@@ -119,3 +122,47 @@
     - id: AnCoBoots
     - id: AnCosatchelKnight
     - id: AnCoGlovesIsolate
+
+- type: entity
+  id: AnCoClosetWall
+  name: настенный шкаф АнКо
+  parent: BaseWallCloset
+  description: Шкафчик с прозначным стеклом. А стоп...
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Storage/Closets/closetwall.rsi
+    layers:
+    - state: ancocloset
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: ancocloset_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: ancocloset
+    stateDoorOpen: ancocloset_open
+    stateDoorClosed: ancocloset_door
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:SpawnEntitiesBehavior
+            spawn:
+              KazmieSheet1:
+                min: 1
+                max: 5
+              ArdonSheet1:
+                min: 0
+                max: 2
+  - type: Construction
+    graph: ClosetAnCo
+    node: closetwall
