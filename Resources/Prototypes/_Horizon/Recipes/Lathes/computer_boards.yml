@@ -2,8 +2,3 @@
   parent: [ BaseCircuitboardRecipe, BaseSupplyComputerRecipeCategory ]
   id: AdvancedRadarConsoleCircuitboard
   result: AdvancedRadarConsoleCircuitboard
-
-- type: latheRecipe
-  parent: [ BaseGoldCircuitboardRecipe, BaseServiceComputerRecipeCategory ]
-  id: RemoteControllerCircuitboard
-  result: RemoteControllerCircuitboard
