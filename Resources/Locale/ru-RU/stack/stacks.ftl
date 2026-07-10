@@ -269,6 +269,7 @@ stack-xeno-steel = стальная плитка ксено
 stack-xeno-steel-corner = угловая стальная плитка ксено
 stack-xeno-maint = технический пол ксено
 stack-dark-squiggly = тёмный волнистый пол
+stack-xenoborg = пол ксеноборгов
 stack-white-marble-floor = белый мраморный пол
 stack-dark-marble-floor = тёмный мраморный пол
 stack-plasma-marble-floor = плазменный мраморный пол
@@ -276,9 +277,11 @@ stack-uranium-marble-floor = урановый мраморный пол
 stack-large-wood-floor = крупный деревянный пол
 stack-red-circuit-floor = красная схема на полу
 stack-asteroid-astro-sand-floor = астероидный астро-песок
+
 # Horizon start
 
 stack-darkgray-floor = корабельная бронеплита
 stack-darkgray-plate-floor = корабельная бронированная моноплита
 
 # Horizon end
+

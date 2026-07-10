@@ -56,3 +56,10 @@ salvage-expedition-megafauna-remaining =
     }
 salvage-expedition-type-Destruction = Уничтожение
 salvage-expedition-type-Elimination = Устранение
+# Restored the lines, removed from Resources\Locale\en-US\procedural\expeditions.ftl
+salvage-expedition-structure-examine = Это задача на [color=#B02E26]уничтожение[/color]
+salvage-expedition-structure-remaining =
+    { $count ->
+        [one] { $count } структура осталась.
+       *[other] { $count } структур осталось.
+    }

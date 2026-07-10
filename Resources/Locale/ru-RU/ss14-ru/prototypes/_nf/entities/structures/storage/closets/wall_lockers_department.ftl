@@ -31,3 +31,5 @@ ent-LockerWallColorGenericBlue = { ent-LockerWallColorBase }
 ent-LockerWallColorGenericGreen = { ent-LockerWallColorBase }
     .desc = { ent-LockerWallColorBase.desc }
     .suffix = Фронтир, Зеленый
+ent-LockerWallColorPilot = настенный шкаф пилота
+    .desc = { ent-NFBaseLockerGridInvWallColor.desc }

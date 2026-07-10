@@ -58,6 +58,7 @@ nf-research-technology-bluespace-chemistry = Блюспейс-химия
 nf-research-technology-bluespace-storage = Блюспейс-хранилище
 nf-research-technology-bluespace-time-manipulation = Блюспейс манипуляция временем
 nf-research-technology-bluespace-gas-tanks = Блюспейс газовые баллоны
+nf-research-technology-boot-based-propulsion = Ракетные сапоги
 nf-research-technology-bounty-hunting = Основы правоохранения
 nf-research-technology-clowning-utilities = Клоунские пренадлежности
 nf-research-technology-combat-propulsion = Боевые персональные двигатели

@@ -1,0 +1,12 @@
+ent-NFMaterialChitinXeno = хитин ксеноморфа
+    .desc = Плотный биоорганический экзоскелет, состоящий из слоистых смолистых материалов. Прочный и кислотостойкий.
+    .suffix = Полный
+ent-NFMaterialChitinXeno1 = { ent-NFMaterialChitinXeno }
+    .suffix = 1
+    .desc = { ent-NFMaterialChitinXeno.desc }
+ent-NFMaterialChitinArgocyte = хитин аргоцита
+    .suffix = Полный
+    .desc = { ent-MaterialBase.desc }
+ent-NFMaterialChitinArgocyte1 = { ent-NFMaterialChitinArgocyte }
+    .suffix = 1
+    .desc = { ent-NFMaterialChitinArgocyte.desc }

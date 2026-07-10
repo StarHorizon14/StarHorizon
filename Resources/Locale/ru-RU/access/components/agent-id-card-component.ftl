@@ -8,5 +8,6 @@ agent-id-new =
     }.
 agent-id-card-current-name = Имя:
 agent-id-card-current-job = Должность:
+agent-id-open-ui-verb = Изменить настройки
 agent-id-card-job-icon-label = Иконка профессии:
 agent-id-menu-title = ID карта Агента

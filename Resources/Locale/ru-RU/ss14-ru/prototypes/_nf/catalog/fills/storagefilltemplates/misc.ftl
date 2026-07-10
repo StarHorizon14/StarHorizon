@@ -4,3 +4,5 @@ ent-StorageFillT3Parts = { "" }
     .desc = { "" }
 ent-StorageFillT4Parts = { "" }
     .desc = { "" }
+ent-StorageFillGenericTrashItems = { "" }
+    .desc = { "" }
