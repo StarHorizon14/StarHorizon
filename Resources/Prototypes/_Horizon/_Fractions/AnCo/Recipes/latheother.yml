@@ -6,6 +6,7 @@
   description: Как вы его собрали?
   suffix: StarHorizon, AnCo, Structure
   components:
+  - type: OreSiloClient
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Structures/Machines/fabricatorother.rsi
     snapCardinals: true
@@ -34,6 +35,9 @@
 - type: latheRecipePack
   id: AnCoOtherCraft
   recipes:
+  - IFFAnCoComputerCircuitboard
+  - AnCoShuttleComputerCircuitboard
+  - EngineMachineCircuitboard
   - ArdonSheet1
   - KazmieSheet1
   - MagazinePistol35
@@ -143,3 +147,27 @@
   materials:
     Ardon: 10000
     Kazmie: 10000
+
+- type: latheRecipe
+  id: EngineMachineCircuitboard
+  result: EngineMachineCircuitboard
+  completetime: 10
+  materials:
+    Ardon: 500
+    Kazmie: 200
+
+- type: latheRecipe
+  id: AnCoShuttleComputerCircuitboard
+  result: AnCoShuttleComputerCircuitboard
+  completetime: 10
+  materials:
+    Ardon: 1500
+    Kazmie: 1000
+
+- type: latheRecipe
+  id: IFFAnCoComputerCircuitboard
+  result: IFFAnCoComputerCircuitboard
+  completetime: 10
+  materials:
+    Ardon: 1500
+    Kazmie: 1000

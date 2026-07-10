@@ -137,6 +137,92 @@
 
 #  товары
 
+# Боеприпасы
+
+- type: listing
+  id: AnCoPlasticExplodeStore
+  name: Ардониевый заряд
+  description: Заряд, содержащая в себе кристалл Ардония для прорыва стен, обладает крутым дисплеем.
+  productEntity: AnCoPlasticExplode
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Grenades/c4.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 5
+  categories:
+  - AnCoUplinkAmmo
+
+- type: listing
+  id: AnCoGranadeStore
+  name: Ардониевая граната
+  description: Граната, содержащая в себе кристалл Ардония.
+  productEntity: AnCoGranade
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Grenades/grenade.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 5
+  categories:
+  - AnCoUplinkAmmo
+
+- type: listing
+  id: MagazineAnCoShotgun50Store
+  name: магазин для дробовика .50
+  description: 12 патрон калибром .50 для дробовика.
+  productEntity: MagazineAnCoShotgun50
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/50_shotgun_mag.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 4
+  categories:
+  - AnCoUplinkAmmo
+
+- type: listing
+  id: MagazineRifle30Store
+  name: магазин для винтовки .30
+  description: 100 патрон калибром .30 для винтовок.
+  productEntity: MagazineRifle30
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/30_rifle_mag.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 6
+  categories:
+  - AnCoUplinkAmmo
+
+- type: listing
+  id: MagazineRifle20Store
+  name: магазин для винтовки .20
+  description: 45 патрон калибром .20 для винтовок.
+  productEntity: MagazineRifle20
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/20_rifle_mag.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 2
+  categories:
+  - AnCoUplinkAmmo
+
+- type: listing
+  id: MagazinePistol35Store
+  name: магазин для пистолета .35
+  description: 20 патрон калибром .35 для пистолета.
+  productEntity: MagazinePistol35
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/35_pistol_mag.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 1
+  categories:
+  - AnCoUplinkAmmo
+
 # безделушки
 
 - type: listing
@@ -170,6 +256,146 @@
 # вооружение
 
 - type: listing
+  id: AnCoBoxAxeStore
+  name: Ардониевый топор
+  description: Топор который не удержат ни стены, ни шлюзы, ни противник.
+  productEntity: AnCoBoxAxe
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Melee/axe.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 15
+  categories:
+  - AnCoUplinkWeaponry
+
+- type: listing
+  id: AnCoBoxSabreStore
+  name: Ардониевая сабля
+  description: Верная обладателю сабля, ее преданность не остановят даже стены.
+  productEntity: AnCoBoxSabre
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Melee/sabre.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 5
+  categories:
+  - AnCoUplinkWeaponry
+
+- type: listing
+  id: AnCoBoxWeaponMachineGun30Store
+  name: Пулемет "Шторм"
+  description: скорострельный пулемет, прорывает позиции как по маслу.
+  productEntity: AnCoBoxWeaponMachineGun30
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/machinegun-rifle30.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 15
+  categories:
+  - AnCoUplinkWeaponry
+
+- type: listing
+  id: AnCoBoxWeaponRifles30Store
+  name: Карабин "Стрела"
+  description: Надульный ускоритель и стабилизатор, все что нужно для точной стрельбы.
+  productEntity: AnCoBoxWeaponRifles30
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/semiauto-rifle30.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 10
+  categories:
+  - AnCoUplinkWeaponry
+
+- type: listing
+  id: AnCoBoxWeaponShotgunSpeedStore
+  name: Дробовик "Звездочет"
+  description: Дробовик созданный для прорыва обороны противника.
+  productEntity: AnCoBoxWeaponShotgunSpeed
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/shotgun-plus.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 10
+  categories:
+  - AnCoUplinkWeaponry
+
+- type: listing
+  id: AnCoBoxWeaponShotgunStore
+  name: Дробовик "Метеор"
+  description: Дробовик для эффективного удержания позиций.
+  productEntity: AnCoBoxWeaponShotgun
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/shotgun.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 5
+  categories:
+  - AnCoUplinkWeaponry
+
+- type: listing
+  id: AnCoBoxWeaponAutoRiflesStore
+  name: Автоматическая винтовка "Жароплюй"
+  description: Штурмовая винтовка спроектированная для штурма.
+  productEntity: AnCoBoxWeaponAutoRifles
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/fullauto-rifle.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 10
+  categories:
+  - AnCoUplinkWeaponry
+
+- type: listing
+  id: AnCoBoxWeaponRiflesStore
+  name: Карабин "Шершень"
+  description: Карабин для точечного уничтожения противника.
+  productEntity: AnCoBoxWeaponRifles
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/semiauto-rifle.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 5
+  categories:
+  - AnCoUplinkWeaponry
+
+- type: listing
+  id: AnCoBoxWeaponAutoPistolStore
+  name: Автоматический пистолет "Роевик"
+  description: Скорострельный аналог пистолета Иглы.
+  productEntity: AnCoBoxWeaponAutoPistol
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/fullauto-pistol.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 5
+  categories:
+  - AnCoUplinkWeaponry
+
+- type: listing
+  id: AnCoBoxWeaponPistolStore
+  name: Полу-автоматический пистолет "Игла"
+  description: Стандартное вооружение для самозащиты.
+  productEntity: AnCoBoxWeaponPistol
+  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/semiauto-pistol.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 5
+  categories:
+  - AnCoUplinkWeaponry
+#
+- type: listing
   id: AnCoBoxStoreLasGun
   name: Набор с модифицированным ПП
   description: Ящик, содержащий модифицированный ПП АнКо.
@@ -179,7 +405,7 @@
   discountDownTo:
     CitadelCoin: 0
   cost:
-    CitadelCoin: 5
+    CitadelCoin: 15
   categories:
   - AnCoUplinkWeaponry
 
@@ -193,7 +419,7 @@
   discountDownTo:
     CitadelCoin: 0
   cost:
-    CitadelCoin: 5
+    CitadelCoin: 30
   categories:
   - AnCoUplinkWeaponry
 
@@ -201,43 +427,47 @@
   id: AnCoBoxStoreAnCoSword
   name: Энергетический Ардониевый меч
   description: Сегментированный меч, созданный чтобы нарезать врагов на такие же сегменты.
-  productEntity: AnCoSword
+  productEntity: AnCoBoxSword
   icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Melee/sword.rsi, state: icon }
   discountCategory: rareDiscounts
   discountDownTo:
     CitadelCoin: 0
   cost:
-    CitadelCoin: 15
+    CitadelCoin: 25
   categories:
   - AnCoUplinkWeaponry
 
-- type: listing
-  id: AnCoBoxStoreWeaponLaserMinigunAnCo
-  name: Энергетический пулемет
-  description: Энергетический пулемет с огромным боевым потенциалом.
-  productEntity: WeaponLaserMinigunAnCo
-  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Battery/minigun.rsi, state: icon }
-  discountCategory: rareDiscounts
-  discountDownTo:
-    CitadelCoin: 0
-  cost:
-    CitadelCoin: 30
-  categories:
-  - AnCoUplinkWeaponry
+# -----------
 
-- type: listing
-  id: AnCoBoxStoreWeaponLaserGranadeAnCo
-  name: Энергетический гранатомет
-  description: Энергетический гранатомет с огромным боевым потенциалом.
-  productEntity: WeaponLaserGranadeAnCo
-  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Battery/granadegun.rsi, state: icon }
-  discountCategory: rareDiscounts
-  discountDownTo:
-    CitadelCoin: 0
-  cost:
-    CitadelCoin: 30
-  categories:
-  - AnCoUplinkWeaponry
+# -----------
+
+# - type: listing
+#   id: AnCoBoxStoreWeaponLaserMinigunAnCo
+#   name: Энергетический пулемет
+#   description: Энергетический пулемет с огромным боевым потенциалом.
+#   productEntity: WeaponLaserMinigunAnCo
+#   icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Battery/minigun.rsi, state: icon }
+#   discountCategory: rareDiscounts
+#   discountDownTo:
+#     CitadelCoin: 0
+#   cost:
+#     CitadelCoin: 30
+#   categories:
+#   - AnCoUplinkWeaponry
+
+# - type: listing
+#   id: AnCoBoxStoreWeaponLaserGranadeAnCo
+#   name: Энергетический гранатомет
+#   description: Энергетический гранатомет с огромным боевым потенциалом.
+#   productEntity: WeaponLaserGranadeAnCo
+#   icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Battery/granadegun.rsi, state: icon }
+#   discountCategory: rareDiscounts
+#   discountDownTo:
+#     CitadelCoin: 0
+#   cost:
+#     CitadelCoin: 30
+#   categories:
+#   - AnCoUplinkWeaponry
 
 # саботаж
 
@@ -269,19 +499,19 @@
   categories:
   - AnCoUplinkDisruption
 
-- type: listing
-  id: AnCoBoxStoreStun
-  name: Набор c нелетальным снаряжением
-  description: Ящик, содержащий набор c нелетальным снаряжением.
-  productEntity: AnCoBoxStoreStun
-  icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Misc/handcuffs.rsi, state: handcuff }
-  discountCategory: rareDiscounts
-  discountDownTo:
-    CitadelCoin: 0
-  cost:
-    CitadelCoin: 10
-  categories:
-  - AnCoUplinkDisruption
+# - type: listing
+#   id: AnCoBoxStoreStun
+#   name: Набор c нелетальным снаряжением
+#   description: Ящик, содержащий набор c нелетальным снаряжением.
+#   productEntity: AnCoBoxStoreStun
+#   icon: { sprite: _Horizon/_Fractions/AnCo/Objects/Misc/handcuffs.rsi, state: handcuff }
+#   discountCategory: rareDiscounts
+#   discountDownTo:
+#     CitadelCoin: 0
+#   cost:
+#     CitadelCoin: 10
+#   categories:
+#   - AnCoUplinkDisruption
 
 # наборы
 
@@ -387,19 +617,19 @@
   categories:
   - AnCoUplinkWearables
 
-- type: listing
-  id: AnCoStoreClothingHeadsetAnCo
-  name: Гарнитура АнКо
-  description: Гарнитура с каналол связи АнКо.
-  productEntity: ClothingHeadsetAnCo
-  icon: { sprite: _Horizon/_Fractions/AnCo/Clothing/Headset/ears.rsi, state: icon }
-  discountCategory: rareDiscounts
-  discountDownTo:
-    CitadelCoin: 0
-  cost:
-    CitadelCoin: 15
-  categories:
-  - AnCoUplinkWearables
+# - type: listing
+#   id: AnCoStoreClothingHeadsetAnCo
+#   name: Гарнитура АнКо
+#   description: Гарнитура с каналол связи АнКо.
+#   productEntity: ClothingHeadsetAnCo
+#   icon: { sprite: _Horizon/_Fractions/AnCo/Clothing/Headset/ears.rsi, state: icon }
+#   discountCategory: rareDiscounts
+#   discountDownTo:
+#     CitadelCoin: 0
+#   cost:
+#     CitadelCoin: 15
+#   categories:
+#   - AnCoUplinkWearables
 
 - type: listing
   id: AnCoStoreAnCoClothingShoesBootsMag
@@ -430,6 +660,76 @@
   - AnCoUplinkWearables
 
 - type: listing
+  id: AnCoStoreClothingAnCoHeadCombatHelmet
+  name: Бронешлем АнКо
+  description: В нём вы будете ощущать себя расходным материалом.
+  productEntity: ClothingAnCoHeadCombatHelmet
+  icon: { sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Helmets/helmet.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 6
+  categories:
+  - AnCoUplinkWearables
+
+- type: listing
+  id: AnCoStoreClothingAnCoHeadArmorHelmet
+  name: Укреплённый шлем АнКо
+  description: Идеальный шлем, чтобы начать подавлять мятежи.
+  productEntity: ClothingAnCoHeadArmorHelmet
+  icon: { sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Helmets/helmet_armor.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 7
+  categories:
+  - AnCoUplinkWearables
+
+- type: listing
+  id: AnCoStoreClothingOuterHardsuitPetal
+  name: Скафандр "Лепесток"
+  description: Продвинутый E.V.A. для работ в космическом пространстве.
+  productEntity: ClothingOuterHardsuitPetal
+  icon: { sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/petal.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 10
+  categories:
+  - AnCoUplinkWearables
+
+- type: listing
+  id: AnCoStoreClothingOuterHardsuitDusk
+  name: Скафандр "Сумрак"
+  description: Легкий скафандр С-Оболочки.
+  productEntity: ClothingOuterHardsuitDusk
+  icon: { sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/dusk.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 15
+  categories:
+  - AnCoUplinkWearables
+
+- type: listing
+  id: AnCoStoreClothingOuterHardsuitGranite
+  name: Скафандр "Гранит"
+  description: Тяжелый скафандр В-Оболочки.
+  productEntity: ClothingOuterHardsuitGranite
+  icon: { sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/granite.rsi, state: icon }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    CitadelCoin: 0
+  cost:
+    CitadelCoin: 20
+  categories:
+  - AnCoUplinkWearables
+
+- type: listing
   id: AnCoStoreClothingOuterHardsuitSpider
   name: Скафандр Паука
   description: Скафандр, созданный из продвинутых композитов и предназначенный для боевых миссий.
@@ -439,7 +739,7 @@
   discountDownTo:
     CitadelCoin: 0
   cost:
-    CitadelCoin: 00
+    CitadelCoin: 30
   categories:
   - AnCoUplinkWearables
 

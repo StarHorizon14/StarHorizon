@@ -1,0 +1,38 @@
+- type: entity
+  name: персональный щит АнКо
+  description: Персональный щит АнКо, создает ардониевый купол Шредингера
+  id: AnCoPersonalDome
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - neck
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Neck/small_dome.rsi
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Neck/small_dome.rsi
+    layers:
+      - state: icon
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: AnCoEnergyCore
+        whitelist:
+          tags:
+            - PowerAnCo
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallAnCo
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0

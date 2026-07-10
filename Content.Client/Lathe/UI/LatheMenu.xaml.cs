@@ -31,6 +31,7 @@ public sealed partial class LatheMenu : DefaultWindow
     public event Action<int>? QueueMoveUpAction;
     public event Action<int>? QueueMoveDownAction;
     public event Action? DeleteFabricatingAction;
+    public event Action<bool>? InfiniteProductionToggled; // Horizon
 
     public List<ProtoId<LatheRecipePrototype>> Recipes = new();
 
@@ -70,6 +71,7 @@ public sealed partial class LatheMenu : DefaultWindow
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
         DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke();
+        InfiniteButton.OnToggled += args => InfiniteProductionToggled?.Invoke(args.Pressed); // Horizon
     }
 
     public void SetEntity(EntityUid uid)
@@ -308,5 +310,11 @@ public sealed partial class LatheMenu : DefaultWindow
             CurrentCategory = Categories?[obj.Id];
         }
         PopulateRecipes();
+    }
+
+    // Horizon: синхронизация состояния кнопки бесконечного производства
+    public void SetInfiniteProduction(bool enabled)
+    {
+        InfiniteButton.Pressed = enabled;
     }
 }

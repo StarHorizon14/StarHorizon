@@ -20,6 +20,7 @@
   desc: faction-nfsd-desc
   color: "#369926"
   roundstart: false
+  outpostSpawnListProto: FactionNFSD
 
 - type: characterFaction
   id: FactionDFI
@@ -121,3 +122,11 @@
   color: "#b51414"
   roundstart: false
   outpostSpawnListProto: FactionSyndicate
+
+# region PMC
+
+- type: characterFaction
+  id: FactionInteQ
+  name: faction-inteq-name
+  desc: faction-inteq-desc
+  color: "#FF8C00"

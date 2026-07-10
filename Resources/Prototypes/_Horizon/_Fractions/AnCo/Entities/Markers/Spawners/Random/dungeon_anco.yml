@@ -129,6 +129,7 @@
     - AnCoDeathAcidifierImplanter
     - AnCoImplanterTreker
     - AnCoNanitsCapsule
+    - AnCoExtractImplanterCrystall
     chance: 0.5
     offset: 0.0
     rarePrototypes:
@@ -191,6 +192,35 @@
     offset: 0.0
 
 - type: entity
+  name: спавнер тяжелых кейсов АнКо
+  id: SpawnAnCoWeaponHeavyCrateRandom
+  parent: MarkerBasePlaceFree
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _Horizon/_Fractions/AnCo/Objects/Storage/Cases/guncaseheavy.rsi
+        state: icon
+  - type: RandomSpawner
+    prototypes:
+    - AnCoWeaponCaseHeavy
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - AnCoWeaponHeavyCaseHelp
+    - AnCoWeaponHeavyCaseCircuitboard
+    - AnCoWeaponHeavyCaseSpider
+    - AnCoWeaponHeavyCaseKnight
+    - AnCoWeaponHeavyCaseKazmie
+    - AnCoWeaponHeavyCaseArdon
+    - AnCoWeaponHeavyCaseDome
+    - AnCoWeaponHeavyCaseGuardian
+    rareChance: 0.33
+
+
+- type: entity
   name: спавнер кейсов с оружием АнКо
   id: SpawnAnCoWeaponCrateRandom
   parent: MarkerBasePlaceFree
@@ -204,13 +234,14 @@
         state: icon
   - type: RandomSpawner
     prototypes:
+    - AnCoWeaponCasePlasticExplode
     - AnCoWeaponCasePistol
     - AnCoWeaponCaseAutoPistol
     - AnCoWeaponCaseRifle
     - AnCoWeaponCaseAutoRifle
     - AnCoWeaponCaseLaserGun
     - AnCoWeaponCasePMLaserGun
-    - AnCoWeaponCaseDisablerSMG
+    # - AnCoWeaponCaseDisablerSMG
     - AnCoWeaponCaseHeater
     - AnCoWeaponCaseSabre
     - AnCoWeaponCaseMeleeLine
@@ -221,6 +252,10 @@
     - AnCoWeaponCaseCarabine
     - AnCoWeaponCaseShotGun
     - AnCoWeaponCaseAutoShotGun
+    - AnCoWeaponCaseAmmo50
+    - AnCoWeaponCaseAmmo30
+    - AnCoWeaponCaseAmmo20
+    - AnCoWeaponCaseAmmo35
 #    - AnCoWeaponCaseMeleeSword
 #    - AnCoWeaponCaseCounselorGun
 #    - AnCoWeaponCaseRipsoidCannon

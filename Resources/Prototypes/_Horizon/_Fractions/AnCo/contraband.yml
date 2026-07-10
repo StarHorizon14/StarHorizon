@@ -9,5 +9,7 @@
   components:
   - type: Contraband
     severity: AnCoItem
-    # no one should be carrying this around visibly!
+    turnInValues:
+      FrontierUplinkCoin: 0
+      Doubloon: 0
     allowedDepartments: [ ]

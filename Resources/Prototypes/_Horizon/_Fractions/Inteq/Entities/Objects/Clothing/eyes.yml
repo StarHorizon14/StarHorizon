@@ -1,0 +1,14 @@
+- type: entity
+  parent: [ClothingEyesBase]
+  id: ClothingEyesGogglessInteQ
+  suffix: StarHorizon, Inteq
+  name: yellow goggles
+  description: Used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_goggles.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/Inteq/inteq_goggles.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowJobIcons

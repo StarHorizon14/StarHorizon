@@ -1,0 +1,56 @@
+#- type: accessLevel
+#  id: InteQVanguard
+#  name: Vanguard
+#
+#- type: accessLevel
+#  id: InteQVanguardLeader
+#  name: Vanguard Leader
+#
+#- type: entity
+#  parent: IDCardStandard
+#  id: InteQVanguardLeaderIDCard
+#  name: InteQ ID card
+#  components:
+#  - type: Sprite
+#    sprite: _Horizon/_Fractions/Inteq/id_cards.rsi
+#    layers:
+#    - state: card_brown
+#    - state: sub_department
+#      color: "#9c4300"
+#    - state: frame_default
+#      color: "#9c4300"
+#    - state: assigned_inteq
+#    - state: idcaptain
+#  - type: IdCard
+#    jobTitle: InteQ Vanguard Leader
+#    jobIcon: JobIconInteQ
+#  - type: Access
+#    tags:
+#    - InteQVanguardLeader
+#    - InteQVanguard
+#    - External
+#    - Maintenance
+#
+#- type: entity
+#  parent: IDCardStandard
+#  id: InteQVanguardIDCard
+#  name: InteQ ID card
+#  components:
+#  - type: Sprite
+#    sprite: _Horizon/_Fractions/Inteq/id_cards.rsi
+#    layers:
+#    - state: card_brown
+#    - state: sub_department
+#      color: "#9c4300"
+#    - state: frame_default
+#      color: "#9c4300"
+#    - state: assigned_inteq
+#    - state: iddeathcommando
+#  - type: IdCard
+#    jobTitle: InteQ Vanguard
+#    jobIcon: JobIconInteQ
+#  - type: Access
+#    tags:
+#    - InteQVanguard
+#    - External
+#    - Maintenance

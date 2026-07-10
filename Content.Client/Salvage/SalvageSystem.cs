@@ -50,9 +50,12 @@ public sealed class SalvageSystem : SharedSalvageSystem
             && component.Stream == null)
         {
             var volume = ConvertSliderValueToVolume(_cfg.GetCVar(NFCCVars.SalvageExpeditionMusicVolume));
-            var audioParams = AudioParams.Default.WithVolume(volume);
-            var audio = _audioSystem.PlayEntity(component.SelectedSong, Filter.Local(), uid, false, audioParams);
-            _audioSystem.SetMapAudio(audio);
+            var audioParams = AudioParams.Default.WithVolume(volume).WithMaxDistance(float.MaxValue);
+            var audio = _audioSystem.PlayGlobal(component.SelectedSong, Filter.Local(), false, audioParams);
+
+            // Bind to the expedition map so audio stops when leaving
+            if (audio != null)
+                Transform(audio.Value.Entity).Coordinates = Transform(uid).Coordinates;
 
             component.Stream = audio?.Entity;
         }

@@ -2,8 +2,13 @@
   id: BaseAnCoMob
   suffix: StarHorizon, AnCo
   abstract: true
+  parent: [NFBaseMobRestrictions]
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementAlwaysTouching
+  - type: Carriable
+  - type: MovementIgnoreGravity
+  - type: CanMoveInAir
   - type: NpcFactionMember
     factions:
       - HostileUniversally
@@ -53,6 +58,7 @@
     sound:
       path: /Audio/Machines/button.ogg
   - type: DoAfter
+  - type: Insulated
 
 - type: entity
   id: AnCoDroneDungeon

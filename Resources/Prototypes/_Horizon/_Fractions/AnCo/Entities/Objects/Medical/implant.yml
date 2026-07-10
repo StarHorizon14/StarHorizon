@@ -56,3 +56,12 @@
   components:
   - type: Implanter
     implant: AnCoDroneImplant
+
+- type: entity
+  id: AnCoImplanterCorpLang
+  name: имплантер нейро-импланта языка
+  parent: BaseImplantOnlyImplanterAnCo
+  components:
+  - type: Implanter
+    implant: AnCoImplantCorpLang
+

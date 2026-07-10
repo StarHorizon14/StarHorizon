@@ -37,6 +37,8 @@ entities:
       parent: invalid
     - type: BecomesStation
       id: Camper
+    - type: IFF
+      color: "#800000FF"
     - type: MapGrid
       chunks:
         0,0:
@@ -1010,7 +1012,7 @@ entities:
     - type: Transform
       pos: -0.4744836,-4.4702096
       parent: 1
-- proto: ComputerTabletopIFFSyndicate
+- proto: ComputerIFF
   entities:
   - uid: 71
     components:

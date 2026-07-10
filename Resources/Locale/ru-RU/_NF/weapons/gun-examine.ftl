@@ -55,6 +55,7 @@ weapon-details-manufacturer-steelbolt-tool-forge = Steelbolt Tool Forge
 weapon-details-class-assault-rifle = Штурмовая винтовка
 weapon-details-class-launcher = Гранатомёт
 weapon-details-class-light-machine-gun = Лёгкий пулемёт
+weapon-details-class-heavy-machine-gun = Тяжелый пулемёт
 weapon-details-class-machine-pistol = Пистолет-пулемёт
 weapon-details-class-pistol = Пистолет
 weapon-details-class-revolver = Револьвер

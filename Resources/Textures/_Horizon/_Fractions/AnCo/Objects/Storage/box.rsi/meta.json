@@ -12,6 +12,12 @@
     },
     {
         "name": "ancoboxopen"
+    },
+    {
+        "name": "ancoboxlong"
+    },
+    {
+        "name": "ancoboxlongopen"
     }
   ]
 }

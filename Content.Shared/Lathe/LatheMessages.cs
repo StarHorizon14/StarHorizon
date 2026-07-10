@@ -14,11 +14,14 @@ public sealed class LatheUpdateState : BoundUserInterfaceState
 
     public ProtoId<LatheRecipePrototype>? CurrentlyProducing;
 
-    public LatheUpdateState(List<ProtoId<LatheRecipePrototype>> recipes, LatheRecipeBatch[] queue, ProtoId<LatheRecipePrototype>? currentlyProducing = null)
+    public bool InfiniteProduction; // Horizon
+
+    public LatheUpdateState(List<ProtoId<LatheRecipePrototype>> recipes, LatheRecipeBatch[] queue, ProtoId<LatheRecipePrototype>? currentlyProducing = null, bool infiniteProduction = false) // Frontier: change queue type, Horizon: add infiniteProduction
     {
         Recipes = recipes;
         Queue = queue;
         CurrentlyProducing = currentlyProducing;
+        InfiniteProduction = infiniteProduction; // Horizon
     }
 }
 
@@ -71,6 +74,18 @@ public sealed class LatheMoveRequestMessage(int index, int change) : BoundUserIn
 [Serializable, NetSerializable]
 public sealed class LatheAbortFabricationMessage() : BoundUserInterfaceMessage
 {
+}
+
+// Horizon: сообщение для переключения бесконечного производства
+[Serializable, NetSerializable]
+public sealed class LatheToggleInfiniteProductionMessage : BoundUserInterfaceMessage
+{
+    public readonly bool Enabled;
+
+    public LatheToggleInfiniteProductionMessage(bool enabled)
+    {
+        Enabled = enabled;
+    }
 }
 
 [NetSerializable, Serializable]

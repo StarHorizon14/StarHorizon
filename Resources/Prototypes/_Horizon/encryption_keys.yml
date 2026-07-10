@@ -1,17 +1,15 @@
 - type: entity
-  parent: EncryptionKey
-  id: EncryptionKeyTrauma
-  name: ключ шифрования Траумы
-  categories: [ DoNotMap ]
-  description: Ключ шифрования для канала экипажей Траумы.
+  parent: [EncryptionKey, BaseC2Contraband]
+  id: EncryptionKeyInteQ
+  name: InteQ encryption key
+  description: An encryption key used by InteQ.
   components:
-  - type: EncryptionKey
-    channels:
-    - Trauma
-    defaultChannel: Trauma
-  - type: Item
-    sprite: _StarHorizon/Objects/Devices/traumaencryptionkey.rsi
-  - type: Sprite
-    sprite: _StarHorizon/Objects/Devices/traumaencryptionkey.rsi
-    layers:
-    - state: crypto-base
+    - type: EncryptionKey
+      channels:
+      - InteQ
+      defaultChannel: InteQ
+    - type: Sprite
+      sprite: _Horizon/_Fractions/Inteq/encryption_keys.rsi
+      layers:
+      - state: crypt_brown
+      - state: inteq_label

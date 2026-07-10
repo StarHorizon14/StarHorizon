@@ -31,3 +31,6 @@
     - Slicing
   - type: StaticPrice
     price: 5000
+  - type: Tag
+    tags:
+      - AnCoSheathable

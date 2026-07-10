@@ -53,3 +53,11 @@
 
 - type: Tag
   id: AnCoComplex
+
+- type: Tag
+  id: AnCoSheathable
+
+# turret
+
+- type: Tag
+  id: MagazineAsmgtAnCo

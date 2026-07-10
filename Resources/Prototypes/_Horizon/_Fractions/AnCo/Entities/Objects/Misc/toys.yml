@@ -20,7 +20,7 @@
     sound:
       collection: ToySqueak
   - type: StaticPrice
-    price: 5000
+    price: 500
 
 - type: entity
   parent: BaseItem
@@ -44,7 +44,7 @@
     sound:
       collection: ToySqueak
   - type: StaticPrice
-    price: 5000
+    price: 500
 
 - type: entity
   parent: BaseItem
@@ -68,7 +68,7 @@
     sound:
       collection: ToySqueak
   - type: StaticPrice
-    price: 5000
+    price: 500
 
 - type: entity
   parent: BaseItem
@@ -92,7 +92,7 @@
     sound:
       collection: ToySqueak
   - type: StaticPrice
-    price: 5000
+    price: 500
 
 - type: entity
   parent: BaseItem
@@ -116,7 +116,7 @@
     sound:
       collection: ToySqueak
   - type: StaticPrice
-    price: 5000
+    price: 500
 
 - type: entity
   parent: BaseItem
@@ -140,4 +140,4 @@
     sound:
       collection: ToySqueak
   - type: StaticPrice
-    price: 5000
+    price: 500

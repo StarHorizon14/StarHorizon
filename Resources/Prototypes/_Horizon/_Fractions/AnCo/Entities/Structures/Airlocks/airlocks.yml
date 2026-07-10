@@ -55,6 +55,9 @@
             ArdonSheet1:
               min: 3
               max: 5
+  - type: Construction
+    graph: GraphAnCoAirlock
+    node: NodeAnCoAirlockGlassOpen
 
 - type: entity
   id: AnCoAirlockGlassDungeon
@@ -93,6 +96,9 @@
             ArdonSheet1:
               min: 3
               max: 5
+  - type: Construction
+    graph: GraphAnCoAirlock
+    node: NodeAnCoAirlockGlass
 
 - type: entity
   id: AnCoAirlock
@@ -122,6 +128,9 @@
             ArdonSheet1:
               min: 3
               max: 5
+  - type: Construction
+    graph: GraphAnCoAirlock
+    node: NodeAnCoAirlock
 
 # для шаттлов йоу
 
@@ -154,6 +163,9 @@
           collection: MetalSlam
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Construction
+    graph: GraphAnCoAirlock
+    node: NodeAnCoAirlockGlassShuttle
 
 - type: entity
   id: AnCoAirlockShuttle
@@ -184,4 +196,7 @@
           collection: MetalSlam
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Construction
+    graph: GraphAnCoAirlock
+    node: NodeAnCoAirlockShuttle
 # прочность казмиевой стены

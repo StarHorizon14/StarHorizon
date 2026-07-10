@@ -1,0 +1,44 @@
+{
+    "version": 1,
+    "license": "CLA with hosting restrictions",
+    "copyright": "Sprited by Xigovir DS:623559319543349268",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "kazmie-icon"
+        },
+        {
+            "name": "kazmie-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "kazmie-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "ardon-icon"
+        },
+        {
+            "name": "ardon-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "ardon-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "bullet-icon"
+        },
+        {
+            "name": "bullet-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "bullet-inhand-left",
+            "directions": 4
+        }
+    ]
+}

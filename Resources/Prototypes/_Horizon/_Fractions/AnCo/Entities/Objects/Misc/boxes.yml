@@ -32,6 +32,155 @@
     state: ancoboxopen
     size: Huge
 
+#
+- type: entity
+  parent: BaseItem
+  id: AnCoopenboxLong
+  name: вскрытый ящик АнКо
+  description: Длинный вскрытый ящик с логотипом корпорации.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Storage/box.rsi
+    state: ancoboxlongopen
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Objects/Storage/box.rsi
+    state: ancoboxlongopen
+    size: Huge
+
+- type: entity
+  name: ящик АнКо
+  parent: BaseItem
+  id: AnCoBoxLong
+  suffix: StarHorizon, AnCo
+  categories: [ HideSpawnMenu ]
+  description: Закрытый ящик с логотипом корпорации.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Storage/box.rsi
+    state: ancoboxlong
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Objects/Storage/box.rsi
+    state: ancoboxlong
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+    - id: AnCoopenboxLong
+
+#
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AnCoBoxLong
+  id: AnCoBoxSword
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: AnCoSword
+    - id: AnCoopenboxLong
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AnCoBoxLong
+  id: AnCoBoxAxe
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: AnCoAxe
+    - id: AnCoopenboxLong
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AnCoBoxLong
+  id: AnCoBoxSabre
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: AnCoSabre
+    - id: AnCoopenboxLong
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AnCoBoxLong
+  id: AnCoBoxWeaponMachineGun30
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponMachineGun30AnCo
+    - id: AnCoopenboxLong
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AnCoBoxLong
+  id: AnCoBoxWeaponRifles30
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponRifles30AnCo
+    - id: AnCoopenboxLong
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AnCoBoxLong
+  id: AnCoBoxWeaponShotgunSpeed
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponShotgunSpeedAnCo
+    - id: AnCoopenboxLong
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AnCoBoxLong
+  id: AnCoBoxWeaponShotgun
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponShotgunAnCo
+    - id: AnCoopenboxLong
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AnCoBoxLong
+  id: AnCoBoxWeaponAutoRifles
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponAutoRiflesAnCo
+    - id: AnCoopenboxLong
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AnCoBoxLong
+  id: AnCoBoxWeaponRifles
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponRiflesAnCo
+    - id: AnCoopenboxLong
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AnCoBox
+  id: AnCoBoxWeaponAutoPistol
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponAutoPistolAnCo
+    - id: AnCoopenbox
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AnCoBox
+  id: AnCoBoxWeaponPistol
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponPistolAnCo
+    - id: AnCoopenbox
+
+
+
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: AnCoBox
@@ -73,7 +222,7 @@
     - id: LumaPlushina
     - id: AnCoopenbox
   - type: StaticPrice
-    price: 200000
+    price: 5000
 
 - type: entity
   categories: [ HideSpawnMenu ]

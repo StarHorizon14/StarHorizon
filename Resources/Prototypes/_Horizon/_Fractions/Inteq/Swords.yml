@@ -1,0 +1,132 @@
+- type: entity
+  parent: BaseMeleeWeaponEnergy
+  id: BaseMeleeWeaponPlasma
+  abstract: true
+  components:
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/Guns64/plasma/plasma_on.ogg
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/Weapons/Guns64/plasma/plasma_off.ogg
+      params:
+        volume: 3
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Weapons/Guns64/plasma/plasma_hit.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Weapons/punchmiss.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/Guns64/plasma/plasma_swing.ogg
+      params:
+        variation: 0.125
+    activatedDamage:
+      types:
+        Slash: 10
+        Heat: 10
+        Structural: 40
+    ignoreResistances: true
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 4.5
+    ignoreResistances: true
+  - type: Welder
+    fuelSolutionName: plasma
+    fuelReagent: Plasma
+    fuelLitCost: 2
+  - type: RefillableSolution
+    solution: plasma
+  - type: SolutionContainerManager
+    solutions:
+      plasma:
+        reagents:
+        - ReagentId: Plasma
+          Quantity: 250
+        maxVol: 250
+  - type: SolutionRegeneration
+    solution: plasma
+    generated:
+      reagents:
+      - ReagentId: Plasma
+        Quantity: 0.05
+  - type: ComponentToggler
+    components:
+    - type: Cautery # Shitmed
+      speed: 1.25
+    - type: SurgeryTool # Shitmed
+      startSound:
+        collection: Welder
+      endSound:
+        collection: WelderOff
+    - type: Execution
+      doAfterDuration: 4.0
+
+- type: entity
+  parent: BaseMeleeWeaponPlasma
+  id: PlasmaSword
+  suffix: StarHorizon, Inteq
+  name: Plasma sword
+  description: BRRRRRRRR.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Melee/plasma_sword.rsi
+    layers:
+    - state: icon
+    - state: icon-on
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Melee/plasma_sword-inhands.rsi
+  - type: EnergySword
+    colorOptions:
+      - "#FF8C00"
+    blockHacking: true
+
+- type: entity
+  parent: PlasmaSword
+  id: PlasmaSwordAlt
+  name: Plasma palash
+  description: BJBJBJBRRRRR.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Melee/plasma_sword_alt.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Melee/plasma_sword_alt-inhands.rsi
+  - type: EnergySword
+    colorOptions:
+      - "#FF8C00"
+    blockHacking: true
+
+- type: entity
+  parent: [BaseMeleeWeaponPlasma, EnergySwordDouble]
+  id: PlasmaScythe
+  suffix: StarHorizon, Inteq
+  name: Comander plasma scythe
+  description: The blade is crafted from pure plasma, heated to between two and nine thousand degrees Celsius, depending on the wielder's preference. A power module, shaped like the handle, heats the gas and maintains its shape using a strong magnetic field. It seems blades like this haven't been produced since the invention of lightsabers.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Melee/e_sword_double.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Melee/e_sword_double-inhands.rsi
+  - type: SolutionContainerManager
+    solutions:
+      plasma:
+        reagents:
+        - ReagentId: Plasma
+          Quantity: 300
+        maxVol: 300
+  - type: EnergySword
+    colorOptions:
+      - "#FF8C00"
+    blockHacking: true

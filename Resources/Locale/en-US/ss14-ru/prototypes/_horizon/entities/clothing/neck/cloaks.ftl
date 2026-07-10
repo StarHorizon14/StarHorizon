@@ -60,3 +60,6 @@ ent-ClothingNeckCloakBlueshield = плащ офицера "Синий щит"
 ent-ClothingNeckCloakSpriter = плащ спрайтера
     .desc = Был сплетён и покрашен самым ловким хвостом.
     .suffix = StarHorizon
+ent-ClothingNeckMaidArmlet = Нарукавники горничной с наплечниками
+    .desc = Почему они отдельно?
+    .suffix = Cvartet

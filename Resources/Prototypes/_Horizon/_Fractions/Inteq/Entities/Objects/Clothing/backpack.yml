@@ -1,0 +1,49 @@
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackInteQ
+  suffix: StarHorizon, Inteq
+  name: combat backpack
+  description: Comfortable and stylish backpack.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_backpack.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelInteQ
+  suffix: StarHorizon, Inteq
+  name: combat duffel bag
+  description: A large duffel bag for holding weapons and supplies.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_duffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelInteQ
+  id: ClothingBackpackDuffelInteQAmmo
+  suffix: StarHorizon, Inteq
+  name: combat duffel bag
+  description: A large duffel bag for holding weapons and ammunition.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_duffel_ammo.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelInteQ
+  id: ClothingBackpackDuffelInteQMedical
+  suffix: StarHorizon, Inteq
+  name: combat duffel bag
+  description: A large duffel bag for holding weapons and medical things.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_duffel_med.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelInteQ
+  suffix: StarHorizon, Inteq
+  name: combat satchel
+  description: The bag looks like a mail bag and has brown-yellow inserts.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/Inteq/inteq_satchel.rsi

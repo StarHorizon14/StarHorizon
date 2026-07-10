@@ -1,0 +1,25 @@
+- type: entity
+  parent: ClothingBeltBase
+  id: AnCoClothingBeltSwordSheath
+  name: универсальные ножны
+  description: Особые ножны для хранения различных типов горячего оружия.
+  suffix: Horizon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Belt/sheath.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Belt/sheath.rsi
+  - type: ItemSlots
+    slots:
+      item:
+        name: Лезвие
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - Sheathable
+          - AnCoSheathable
+  - type: Appearance

@@ -1,0 +1,119 @@
+- type: entity
+  parent: [BaseItem]
+  id: BaseAnCoFlatpack
+  name: базовый плоскоблок АнКо
+  description: Вершина инженерной мысли, само-конструкционный блок, совместим с системами активации НТ.
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/flatpack.rsi
+    layers:
+    - state: flatpack
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+  - type: Rotatable # Frontier
+  - type: BindToStation # Horizon
+    enabled: false # Horizon - should be draggable between stations
+
+- type: entity
+  parent: BaseAnCoFlatpack
+  id: AnCoThrusterFlatpack
+  suffix: StarHorizon, Anco
+  name: плоскоблок двигателя
+  components:
+  - type: Flatpack
+    entity: AnCoThruster
+
+- type: entity
+  parent: BaseAnCoFlatpack
+  id: AnCoMiningDrillFlatpack
+  suffix: StarHorizon, Anco
+  name: плоскоблок бура
+  components:
+  - type: Flatpack
+    entity: AnCoMiningDrill
+
+- type: entity
+  parent: BaseAnCoFlatpack
+  id: CryptominerFlatpack
+  suffix: StarHorizon, Anco
+  name: плоскоблок криптомайнера
+  components:
+  - type: Flatpack
+    entity: Cryptominer
+
+- type: entity
+  parent: BaseAnCoFlatpack
+  id: AnCoComputerShuttleFlatpack
+  suffix: StarHorizon, Anco
+  name: плоскоблок консоли управления
+  components:
+  - type: Flatpack
+    entity: AnCoComputerShuttle
+
+- type: entity
+  parent: BaseAnCoFlatpack
+  id: ComputerIdAnCoFlatpack
+  suffix: StarHorizon, Anco
+  name: плоскоблок консоли ID
+  components:
+  - type: Flatpack
+    entity: ComputerIdAnCo
+
+- type: entity
+  parent: BaseAnCoFlatpack
+  id: ComputerIFFFullAnCoFlatpack
+  suffix: StarHorizon, Anco
+  name: плоскоблок консоли маскировки
+  components:
+  - type: Flatpack
+    entity: ComputerIFFFullAnCo
+
+- type: entity
+  parent: BaseAnCoFlatpack
+  id: ComputerIFFAnCoFlatpack
+  suffix: StarHorizon, Anco
+  name: плоскоблок консоли опознания
+  components:
+  - type: Flatpack
+    entity: ComputerIFFAnCo
+
+- type: entity
+  parent: BaseAnCoFlatpack
+  id: AnCoOtherFabricatorFlatpack
+  suffix: StarHorizon, Anco
+  name: плоскоблок фабрикатора снаряжения
+  components:
+  - type: Flatpack
+    entity: AnCoOtherFabricator
+
+- type: entity
+  parent: BaseAnCoFlatpack
+  id: AnCoSuitFabricatorFlatpack
+  suffix: StarHorizon, Anco
+  name: плоскоблок фабрикатор обмундирования
+  components:
+  - type: Flatpack
+    entity: AnCoSuitFabricator
+
+- type: entity
+  parent: BaseAnCoFlatpack
+  id: AnCoWeaponFabricatorFlatpack
+  suffix: StarHorizon, Anco
+  name: плоскоблок фабрикатор вооружения
+  components:
+  - type: Flatpack
+    entity: AnCoWeaponFabricator
+
+- type: entity
+  parent: BaseAnCoFlatpack
+  id: AnCoFabricatorFlatpack
+  suffix: StarHorizon, Anco
+  name: плоскоблок шаблонного фабрикатора
+  components:
+  - type: Flatpack
+    entity: AnCoFabricator

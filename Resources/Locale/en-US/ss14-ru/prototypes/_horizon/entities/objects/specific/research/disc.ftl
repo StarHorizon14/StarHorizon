@@ -28,3 +28,5 @@ ent-TechnologyDiscCombatCybernetics = technology disc [Combat Cybernetics]
     .desc = A disk containing data about Combat Cybernetics systems.
 ent-TechnologyDiscCombatCyborgs = technology disc [Combat Cyborgs]
     .desc = A disk containing data about Combat Cyborg technology.
+ent-TechnologyDiscCombatDome = technology disc [Energy dome]
+    .desc = A disk containing data about Energy dome.

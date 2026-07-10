@@ -1,0 +1,12 @@
+ent-SpeedLoader38Special = спидлоудер (.38 Special)
+    .desc = Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold general-purpose kinetic ammunition.
+ent-SpeedLoader38SpecialAP = спидлоудер (.38 Special ББ)
+    .desc = Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
+ent-SpeedLoader44Magnum = спидлоудер (.44 Magnum)
+    .desc = Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
+ent-SpeedLoader44MagnumAP = спидлоудер (.44 Magnum ББ)
+    .desc = Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
+ent-SpeedLoader357Magnum = спидлоудер (.357 Magnum)
+    .desc = Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.
+ent-SpeedLoader357MagnumAP = спидлоудер (.357 Magnum ББ)
+    .desc = Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold self-igniting incendiary ammunition.

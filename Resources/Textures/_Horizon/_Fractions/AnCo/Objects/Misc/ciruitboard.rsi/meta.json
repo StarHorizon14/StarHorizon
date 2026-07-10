@@ -23,6 +23,12 @@
         "name": "boarddrill"
       },
       {
+        "name": "boardconsole"
+      },
+      {
+        "name": "boardengine"
+      },
+      {
         "name": "boardcrypto"
       }
     ]

@@ -94,6 +94,7 @@ namespace Content.Server.Lathe
             SubscribeLocalEvent<TechnologyDatabaseComponent, LatheGetRecipesEvent>(OnGetRecipes);
             SubscribeLocalEvent<EmagLatheRecipesComponent, LatheGetRecipesEvent>(GetEmagLatheRecipes);
             SubscribeLocalEvent<LatheHeatProducingComponent, LatheStartPrintingEvent>(OnHeatStartPrinting);
+            SubscribeLocalEvent<LatheComponent, LatheToggleInfiniteProductionMessage>(OnLatheToggleInfiniteProduction); // Horizon
 
             //Frontier: upgradeable parts
             SubscribeLocalEvent<LatheComponent, RefreshPartsEvent>(OnPartsRefresh);
@@ -249,6 +250,17 @@ namespace Content.Server.Lathe
             return true;
         }
 
+        private void OnLatheToggleInfiniteProduction(EntityUid uid, LatheComponent component, LatheToggleInfiniteProductionMessage args)
+        {
+            component.InfiniteProduction = args.Enabled;
+
+            // Horizon: сбрасываем ожидающий рецепт при выключении
+            if (!args.Enabled)
+                component.PendingInfiniteRecipe = null;
+
+            Dirty(uid, component);
+        }
+
         public void FinishProducing(EntityUid uid, LatheComponent? comp = null, LatheProducingComponent? prodComp = null)
         {
             if (!Resolve(uid, ref comp, ref prodComp, false))
@@ -292,6 +304,16 @@ namespace Content.Server.Lathe
                         _puddle.TrySpillAt(uid, toAdd, out _);
                     }
                 }
+
+                // Horizon: бесконечное производство - добавляем рецепт обратно в очередь
+                if (comp.InfiniteProduction)
+                {
+                    if (!TryAddToQueue(uid, currentRecipe, 1, comp))
+                    {
+                        // Не хватает ресурсов - сохраняем рецепт для ожидания
+                        comp.PendingInfiniteRecipe = currentRecipe.ID;
+                    }
+                }
             }
 
             comp.CurrentRecipe = null;
@@ -314,7 +336,7 @@ namespace Content.Server.Lathe
             if (producing == null && component.Queue.First is { } node)
                 producing = node.Value.Recipe;
 
-            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue.ToArray(), producing);
+            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue.ToArray(), producing, component.InfiniteProduction); // Horizon: add InfiniteProduction
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 
@@ -362,6 +384,29 @@ namespace Content.Server.Lathe
         private void OnMaterialAmountChanged(EntityUid uid, LatheComponent component, ref MaterialAmountChangedEvent args)
         {
             UpdateUserInterfaceState(uid, component);
+
+            // Horizon: проверяем ожидающий рецепт бесконечного производства
+            if (component.InfiniteProduction &&
+                component.PendingInfiniteRecipe != null &&
+                !component.ProcessingInfiniteProduction &&
+                component.CurrentRecipe == null &&
+                component.Queue.Count == 0 &&
+                _proto.TryIndex(component.PendingInfiniteRecipe.Value, out LatheRecipePrototype? recipe))
+            {
+                component.ProcessingInfiniteProduction = true;
+                component.PendingInfiniteRecipe = null;
+
+                if (TryAddToQueue(uid, recipe, 1, component))
+                {
+                    TryStartProducing(uid, component);
+                }
+                else
+                {
+                    component.PendingInfiniteRecipe = recipe.ID;
+                }
+
+                component.ProcessingInfiniteProduction = false;
+            }
         }
 
         /// <summary>

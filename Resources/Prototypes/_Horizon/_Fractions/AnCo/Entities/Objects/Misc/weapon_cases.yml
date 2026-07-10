@@ -1,6 +1,45 @@
+
 - type: entity
   name: оружейный кейс АнКо
-  parent: [WeaponCaseLong, BaseAnCoContraband]
+  parent: BaseStorageItem
+  id: AnCoWeaponCaseBase
+  categories: [ HideSpawnMenu ]
+  description: Прочный ящик для безопасности вашего оружия, а не вас.
+  suffix: StarHorizon, AnCo
+  components:
+  - type: Item
+    size: Large # Frontier: Ginormous<Large
+    shape: # Frontier
+    - 0,0,6,3 # Frontier
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,3
+    storageOpenSound: /Audio/Items/toolbox_open.ogg
+    storageCloseSound: /Audio/Items/toolbox_close.ogg
+    storageInsertSound: /Audio/Items/toolbox_insert.ogg
+    storageRemoveSound: /Audio/Items/toolbox_remove.ogg
+  - type: Appearance
+  - type: Sprite
+    layers:
+    - map: [ base ]
+      state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: icon-open }
+          False: { state: icon }
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/toolbox_drop.ogg
+
+
+- type: entity
+  name: оружейный кейс АнКо
+  parent: [AnCoWeaponCaseBase, BaseAnCoContraband]
   id: AnCoWeaponCaseLong
   description: Прочный ящик для безопасности вашего оружия, а не вас.
   suffix: StarHorizon, AnCo, Long
@@ -31,7 +70,7 @@
 
 - type: entity
   name: оружейный кейс АнКо
-  parent: [WeaponCaseShort, BaseAnCoContraband]
+  parent: [AnCoWeaponCaseBase, BaseAnCoContraband]
   id: AnCoWeaponCaseShort
   description: Прочный кейс для пистолетов и аксессуаров.
   suffix: StarHorizon, AnCo, Short
@@ -62,7 +101,7 @@
 
 - type: entity
   name: кейс для патронов АнКо
-  parent: [WeaponCaseShortAmmo, BaseAnCoContraband]
+  parent: [AnCoWeaponCaseBase, BaseAnCoContraband]
   id: AnCoWeaponCaseAmmo
   description: Прочный кейс для хранения боеприпасов.
   suffix: StarHorizon, AnCo, Ammo
@@ -90,10 +129,14 @@
         type: StorageBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,1
 
 - type: entity
   name: кейс для взрывчатки АнКо
-  parent: [WeaponCaseShortExplosives, BaseAnCoContraband]
+  parent: [AnCoWeaponCaseBase, BaseAnCoContraband]
   id: AnCoWeaponCaseExplosives
   description: Усиленный кейс для хранения взрывчатки.
   suffix: StarHorizon, AnCo, Explosives
@@ -121,10 +164,16 @@
         type: StorageBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,1
 
 - type: entity
   name: тяжёлый кейс АнКо
-  parent: [WeaponCaseHeavy, BaseAnCoContraband]
+  parent: [AnCoWeaponCaseBase, BaseAnCoContraband]
   id: AnCoWeaponCaseHeavy
   description: Массивный кейс АнКо.
   suffix: StarHorizon, AnCo, Big
@@ -162,7 +211,7 @@
 
 - type: entity
   name: оружейный кейс холодного оружия АнКо
-  parent: [WeaponCaseLong, BaseAnCoContraband]
+  parent: [AnCoWeaponCaseBase, BaseAnCoContraband]
   id: AnCoWeaponCaselongmelee
   description: Массивный кейс для тяжёлого вооружения.
   suffix: StarHorizon, AnCo, Long
@@ -197,7 +246,7 @@
   id: AnCoWeaponCasePistol
   parent: AnCoWeaponCaseShort
   suffix: StarHorizon, AnCo, Pistol
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -210,7 +259,7 @@
   id: AnCoWeaponCaseAutoPistol
   parent: AnCoWeaponCaseShort
   suffix: StarHorizon, AnCo, AutoPistol
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -223,7 +272,7 @@
   id: AnCoWeaponCaseRifle
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, Rifle
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -236,7 +285,7 @@
   id: AnCoWeaponCaseAutoRifle
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, AutoRifle
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -249,7 +298,7 @@
   id: AnCoWeaponCaseLaserGun
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, LaserGun
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -262,7 +311,7 @@
   id: AnCoWeaponCasePMLaserGun
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, PMLaserGun
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -275,7 +324,7 @@
   id: AnCoWeaponCaseDisablerSMG
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, DisablerSMG
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -286,7 +335,7 @@
   id: AnCoWeaponCaseDisablerSniper
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, DisablerSniper
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -297,7 +346,7 @@
   id: AnCoWeaponCaseCounselorGun
   parent: AnCoWeaponCaseShort
   suffix: StarHorizon, AnCo, CounselorGun
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -308,7 +357,7 @@
   id: AnCoWeaponCaseRipsoidCannon
   parent: AnCoWeaponCaseShort
   suffix: StarHorizon, AnCo, RipsoidCannon
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -341,7 +390,7 @@
   id: AnCoWeaponCaseHeater
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, Heater
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -352,7 +401,7 @@
   id: AnCoWeaponCaseSabre
   parent: AnCoWeaponCaseShort
   suffix: StarHorizon, AnCo, Sabre
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -363,7 +412,7 @@
   id: AnCoWeaponCaseMeleeLine
   parent: AnCoWeaponCaseShort
   suffix: StarHorizon, AnCo, Line
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -374,7 +423,7 @@
   id: AnCoWeaponCaseMeleeSword
   parent: AnCoWeaponCaseShort
   suffix: StarHorizon, AnCo, Sword
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -385,7 +434,7 @@
   id: AnCoWeaponCaseMeleeSplah
   parent: AnCoWeaponCaseShort
   suffix: StarHorizon, AnCo, Splah
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -396,7 +445,7 @@
   id: AnCoWeaponCaseMeleeKnife
   parent: AnCoWeaponCaseShort
   suffix: StarHorizon, AnCo, Knife
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -407,7 +456,7 @@
   id: AnCoWeaponCaseGrenade
   parent: AnCoWeaponCaseExplosives
   suffix: StarHorizon, AnCo, Grenade
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -415,10 +464,21 @@
         amount: 4
 
 - type: entity
+  id: AnCoWeaponCasePlasticExplode
+  parent: AnCoWeaponCaseExplosives
+  suffix: StarHorizon, AnCo, Grenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoPlasticExplode
+        amount: 4
+
+- type: entity
   id: AnCoWeaponCaseMachineGun
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, MachineGun
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -431,7 +491,7 @@
   id: AnCoWeaponCaseCarabine
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, MachineGun
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -444,7 +504,7 @@
   id: AnCoWeaponCaseShotGun
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, MachineGun
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -457,7 +517,7 @@
   id: AnCoWeaponCaseAutoShotGun
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, MachineGun
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -465,3 +525,163 @@
         amount: 1
       - id: MagazineAnCoShotgun50
         amount: 2
+
+# тяжелоые
+
+- type: entity
+  id: AnCoWeaponHeavyCaseArdon
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: ArdonSheet1
+        amount: 120
+
+- type: entity
+  id: AnCoWeaponHeavyCaseGuardian
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoWeaponTurretGuardianPacked
+      - id: AnCoMagazineAsmgtUniversalEmpty
+        amount: 4
+- type: entity
+  id: AnCoWeaponHeavyCaseKazmie
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: KazmieSheet1
+        amount: 120
+
+- type: entity
+  id: AnCoWeaponHeavyCaseDome
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoPersonalDome
+
+- type: entity
+  id: AnCoWeaponHeavyCaseSpider
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitSpider
+        amount: 1
+      - id: GasTankAnCo
+        amount: 1
+      - id: AnCoClothingShoesBootsMag
+        amount: 1
+
+- type: entity
+  id: AnCoWeaponHeavyCaseKnight
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitKnight
+        amount: 1
+      - id: GasTankAnCo
+        amount: 1
+      - id: AnCoClothingShoesBootsMag
+        amount: 1
+
+
+- type: entity
+  id: AnCoWeaponHeavyCaseCircuitboard
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoAnomalyCircuitboard
+        amount: 1
+      - id: AnCoOtherCircuitboard
+        amount: 1
+      - id: AnCoSuitCircuitboard
+        amount: 1
+      - id: AnCoWeaponCircuitboard
+        amount: 1
+      - id: ArdonSheet1
+        amount: 60
+      - id: KazmieSheet1
+        amount: 60
+
+- type: entity
+  id: AnCoWeaponHeavyCaseHelp
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxRationAnCo
+        amount: 4
+      - id: AnCoExtractImplanterCrystall
+        amount: 2
+      - id: AnCoNanitsCapsule
+        amount: 4
+      - id: AnCohypocapsule
+        amount: 1
+
+# патроны
+
+- type: entity
+  id: AnCoWeaponCaseAmmo35
+  parent: AnCoWeaponCaseAmmo
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistol35
+        amount: 4
+
+- type: entity
+  id: AnCoWeaponCaseAmmo20
+  parent: AnCoWeaponCaseAmmo
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineRifle20
+        amount: 4
+
+- type: entity
+  id: AnCoWeaponCaseAmmo30
+  parent: AnCoWeaponCaseAmmo
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineRifle30
+        amount: 4
+
+- type: entity
+  id: AnCoWeaponCaseAmmo50
+  parent: AnCoWeaponCaseAmmo
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineAnCoShotgun50
+        amount: 4

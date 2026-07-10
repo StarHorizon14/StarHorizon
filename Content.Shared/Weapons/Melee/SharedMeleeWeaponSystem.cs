@@ -25,6 +25,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
+using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
@@ -65,6 +66,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] protected readonly SharedPopupSystem PopupSystem = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] private   readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private   readonly TagSystem _tagSystem = default!; // cats-shield
 
 	/*
     //Goob - Shove
@@ -619,6 +621,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         var resistanceBypass = GetResistanceBypass(meleeUid, user, component);
         var entities = GetEntityList(ev.Entities);
 
+        entities = entities.Where(e => !_tagSystem.HasTag(e, "IgnoreMelee")).ToList(); // cats-shield
+
         if (entities.Count == 0)
         {
             if (meleeUid == user)
@@ -675,6 +679,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             if (entity == user ||
                 !damageQuery.HasComponent(entity))
                 continue;
+
+            //cats-shield start
+            if (_tagSystem.HasTag(entity, "IgnoreMelee"))
+                continue;
+            //cats-shield end
 
             targets.Add(entity);
         }

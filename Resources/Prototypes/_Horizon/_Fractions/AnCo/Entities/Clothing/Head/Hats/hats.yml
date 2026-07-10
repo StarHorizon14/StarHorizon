@@ -13,7 +13,7 @@
     tags:
     - HamsterWearable
   - type: StaticPrice
-    price: 5000
+    price: 500
 
 - type: entity
   parent: [ClothingHeadBase, BaseAnCoContraband]
@@ -30,4 +30,4 @@
     tags:
     - HamsterWearable
   - type: StaticPrice
-    price: 5000
+    price: 500

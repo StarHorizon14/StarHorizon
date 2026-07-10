@@ -150,7 +150,7 @@
 
 - type: entity
   id: MechDurand
-  parent: BaseMech
+  parent: [BaseMech, BaseC2Contraband]
   name: Durand
   description: Slow and heavy armored combat mech.
   components:
@@ -508,7 +508,7 @@
 
 - type: entity
   id: MechDarkGygax
-  parent: MechGygax
+  parent: [MechGygax, BaseC3Contraband]
   name: dark gygax
   description: Fast and light armored combat mech.
   components:

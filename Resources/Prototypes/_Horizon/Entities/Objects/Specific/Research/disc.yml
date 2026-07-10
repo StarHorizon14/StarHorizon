@@ -97,6 +97,12 @@
 
 - type: entity
   parent: TechnologyDiscBase
+  id: TechnologyDiscArsenalDome
+  name: technology disc [Energy dome]
+  description: A disk containing data about Energy dome.
+
+- type: entity
+  parent: TechnologyDiscBase
   id: TechnologyDiscHydroponicsDNAManip
   name: technology disc [DNA Manipulator]
   description: A disk containing data about Botannical DNA Manipulator.

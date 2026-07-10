@@ -713,6 +713,7 @@
   - PrisonerWallet
   - NFSpeciesSpecific
 
+  # Horizon start
 - type: roleLoadout
   id: JobSyndicateOfficerTeleCommunication
   groups:
@@ -722,12 +723,20 @@
   - SyndicateJumpsuit
   - SyndicateBack
   - SyndicatePDAOfficer
+  - SyndicateForcedOuterClothing
   - SyndicateHead
   - SyndicateOuterClothing
   - SyndicateEars
   - SyndicateBoots
+  - SyndicateImplanter
+  # Contractor
   - ContractorBoxSurvival
   - ContractorWallet
+  - ContractorGloves
+  - ContractorBelt
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - ContractorCartridge
 
 - type: roleLoadout
   id: JobSyndicateOperative
@@ -738,12 +747,20 @@
   - SyndicateJumpsuit
   - SyndicateBack
   - SyndicatePDAOperative
+  - SyndicateForcedOuterClothing
   - SyndicateHead
   - SyndicateOuterClothing
   - SyndicateEars
   - SyndicateBoots
+  - SyndicateImplanter
+  # Contractor
   - ContractorBoxSurvival
   - ContractorWallet
+  - ContractorGloves
+  - ContractorBelt
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - ContractorCartridge
 
 - type: roleLoadout
   id: JobSyndicateMedic
@@ -754,12 +771,20 @@
   - SyndicateJumpsuit
   - SyndicateBack
   - SyndicatePDAMedic
+  - SyndicateForcedOuterClothing
   - SyndicateHead
   - SyndicateOuterClothing
   - SyndicateEars
   - SyndicateBoots
+  - SyndicateImplanter
+  # Contractor
   - ContractorBoxSurvival
   - ContractorWallet
+  - ContractorGloves
+  - ContractorBelt
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - ContractorCartridge
 
 - type: roleLoadout
   id: JobSyndicateCargo
@@ -770,9 +795,18 @@
   - SyndicateJumpsuit
   - SyndicateBack
   - SyndicatePDADelivery
+  - SyndicateForcedOuterClothing
   - SyndicateHead
   - SyndicateOuterClothing
   - SyndicateEars
   - SyndicateBoots
+  - SyndicateImplanter
+  # Contractor
   - ContractorBoxSurvival
   - ContractorWallet
+  - ContractorGloves
+  - ContractorBelt
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - ContractorCartridge
+  # Horizon end

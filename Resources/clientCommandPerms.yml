@@ -91,3 +91,4 @@
 - Flags: ADMINCHAT
   Commands:
     - achatwindow
+    - achatwindowpopout

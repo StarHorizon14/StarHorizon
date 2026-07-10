@@ -14,7 +14,7 @@
   - type: Clothing
     sprite:  _Horizon/_Fractions/AnCo/Clothing/Uniforms/uniform.rsi
   - type: StaticPrice
-    price: 5000
+    price: 500
 
 - type: entity
   suffix: StarHorizon, AnCo

@@ -1,0 +1,16 @@
+ent-BoxGrenadeNonLetal = grenade box
+    .desc = { ent-BoxCardboard.desc }
+ent-BoxGrenadeTearGas = grenade box
+    .desc = { ent-BoxCardboard.desc }
+ent-FirethrowerGun = ручной огнемет М6
+    .desc = Реактивный огнемёт Номадова — удивительная вещь, на оружии выгравирована надпись: «Смерть врагам человечества!»
+    .suffix = Backman, Огнемёт
+ent-FuelTankFirethrower = топливный бак для огнемёта
+    .desc = Удивительная горючая реактивная смесь, которая вспыхивает ярко голубым пламенем.
+ent-FireThrowerBall = реактивная смесь
+    .desc = { ent-FoodInjectableBase.desc }
+ent-ParticlesFireNRF = струя реактивного пламени
+    .desc = Очень горячо!
+ent-ParticlesFireNRFHELL = струя реактивного пламени
+    .desc = Очень горячо!
+    .suffix = АДское пламе

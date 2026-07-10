@@ -6,6 +6,7 @@
   description: Как вы его собрали?
   suffix: StarHorizon, AnCo, Structure
   components:
+  - type: OreSiloClient
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Structures/Machines/fabricatorsuit.rsi
     snapCardinals: true

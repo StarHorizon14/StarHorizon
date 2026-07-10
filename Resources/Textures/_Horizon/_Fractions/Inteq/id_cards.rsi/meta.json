@@ -1,0 +1,59 @@
+{
+    "version": 1,
+    "license": "CLA with hosting restrictions",
+    "copyright": "UEEEEE",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "assigned_inteq"
+      },
+      {
+        "name": "card_brown"
+      },
+      {
+        "name": "default-inhand-left"
+      },
+      {
+        "name": "default-inhand-right"
+      },
+      {
+        "name": "frame_default"
+      },
+      {
+        "name": "frame_head"
+      },
+      {
+        "name": "idcaptain"
+      },
+      {
+        "name": "iddeathcommando"
+      },
+      {
+        "name": "sub_department"
+      },
+      {
+        "name": "assigned_inteq_world"
+      },
+      {
+        "name": "idcaptain_world"
+      },
+      {
+        "name": "frame_default_world"
+      },
+      {
+        "name": "frame_head_world"
+      },
+      {
+        "name": "iddeathcommando_world"
+      },
+      {
+        "name": "sub_department_world"
+      },
+      {
+        "name": "card_brown_world"
+      }
+    ]
+  }

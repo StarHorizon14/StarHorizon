@@ -1,0 +1,16 @@
+ent-MagazinePistolSubMachineGun9x17 = магазин (9x17 mm)
+    .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
+ent-MagazinePistolSubMachineGun57x28 = магазин MP7 (5,7x28)
+    .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
+ent-MagazinePistolSubMachineGunVector45ACP = магазин KRISS Vector (.45 ACP)
+    .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
+ent-MagazinePistolSubMachineGunVector45ACPExt = расширенный магазин KRISS Vector (.45 ACP)
+    .desc = { ent-MagazinePistolSubMachineGunVector45ACP.desc }
+ent-MagazinePistolSubMachineGunScorpion9x17 = магазин Scorpion (9x17 mm)
+    .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
+ent-MagazinePistolBoxSubMachineGun = короб ПП (9x17 mm)
+    .desc = { ent-BaseItem.desc }
+ent-MagazinePistolDrumSubMachineGun = барабан ПП (9x17 mm)
+    .desc = { ent-BaseItem.desc }
+ent-MagazinePistolTopSubMachineGun = магазин верхней подачи ПП (9x17 mm)
+    .desc = { ent-BaseItem.desc }

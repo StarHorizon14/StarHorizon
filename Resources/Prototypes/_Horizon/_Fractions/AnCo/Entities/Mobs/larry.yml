@@ -1,0 +1,41 @@
+- type: entity
+  id: AnCoEvilLarry
+  parent: BaseAnCoMob
+  name: Злой Ларри
+  description: Ларри родился у Ларри Отца, ученого, который испытывал злые таблетки на многих подопытных, одним из них был Страшный Человек. Позже Ларри научился драться, так что он дрался со многими людьми, включая его единственное поражение — Рональда. После смерти отца он стал злым.
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
+    state: evil-larry
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/_Horizon/_Fractions/AnCo/bonk.ogg
+    damage:
+      types:
+        Blunt: 5
+        Structural: 1000
+  - type: StaminaDamageOnHit
+    damage: 1000
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Item
+    size: Ginormous
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
+  - type: AmbientSound
+    range: 25
+    sound:
+      path: /Audio/_Horizon/_Fractions/AnCo/Living-in-the-Dark.ogg
+    volume: 1

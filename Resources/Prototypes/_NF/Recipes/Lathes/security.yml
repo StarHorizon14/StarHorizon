@@ -499,6 +499,13 @@
   materials:
     Steel: 200
 
+- type: latheRecipe
+  parent: BaseEmptyMagazineRecipe
+  id: NFMagazineShotgunDrumEmpty
+  result: NFMagazineShotgunDrumEmpty
+  materials:
+    Steel: 40
+
 #region Weapons
 - type: latheRecipe
   parent: BaseWeaponRecipe

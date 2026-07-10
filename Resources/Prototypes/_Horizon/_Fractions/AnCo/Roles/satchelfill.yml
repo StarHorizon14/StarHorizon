@@ -146,8 +146,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: AnCoSword
-    - id: WeaponDisablerSniperAnCo
+    - id: AnCoLine
     - id: AnCoEnergyCore
     - id: AnCoHandcuffs
     - id: CombatMedipenAnCo

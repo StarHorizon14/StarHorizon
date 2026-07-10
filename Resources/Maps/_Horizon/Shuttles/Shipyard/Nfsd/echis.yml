@@ -29,6 +29,8 @@ entities:
       name: Echis
     - type: Transform
       parent: invalid
+    - type: IFF
+      color: "#6B8E23FF"
     - type: MapGrid
       chunks:
         0,0:

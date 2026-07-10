@@ -1,0 +1,17 @@
+ent-WeaponRifleDragunov = Dragunov
+    .desc = A semiautomatic sniper rifle, famed for it's marksmanship, and is built from the ground up for it.
+    .suffix = Backman, Снайперская винтовка
+ent-WeaponRifleSR127 = SR-127 Bauer bolt action rifle
+    .desc = The Bauer SR-127 is the standard issue bolt action rifle used by the United Earth Gov. Known for its long range accuracy and use by marksmen despite its age and lack of IFF. It has an irremoveable scope. Uses .60 anti-material magazines."
+    .suffix = Backman, Снайперская винтовка
+ent-WeaponSniperMosinNew = Kardashev-Mosin
+    .desc = A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
+    .suffix = Backman, Снайперская винтовка
+ent-WeaponSniperGarand = M1 Garand
+    .desc = The Carlford-1 is a remastered classic made by Carlford Armories, made to fit in the modern day. Most of the noticeable differences are minor rail modifications, other than that. It is a faithful recreation with the trademark ping sound and all.
+    .suffix = Backman, Снайперская винтовка
+ent-WeaponSniperPtrd-m = PTRD-M
+    .desc = Dragunov portable anti-tank rifle. It fires analog armor-piercing projectiles of 14.5 mm caliber. Uses anti-tank ammunition
+ent-WeaponSniperRemington700 = Remington 700
+    .desc = Remington 700 охотничая винтовка под калибр 308 винчестер, был сделан по реплике чертежей Earth Armories сторонними компаниями, каркас винтовки исполнен из пластика.
+    .suffix = Backman, Снайперская винтовка

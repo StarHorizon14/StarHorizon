@@ -38,3 +38,4 @@ lathe-menu-move-up-tooltip = Переместить эту партию впер
 lathe-menu-move-down-tooltip = Переместить эту партию назад в очереди.
 lathe-menu-item-single = { $index }. { $name }
 lathe-menu-item-batch = { $index }. { $name } ({ $printed }/{ $total })
+lathe-menu-infinite-production-tooltip = Бесконечное производство

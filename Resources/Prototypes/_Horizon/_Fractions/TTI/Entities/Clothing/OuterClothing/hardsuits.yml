@@ -1,0 +1,117 @@
+#region Trauma
+#Trauma team EVA
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTraumaTeam
+  suffix: TraumaTeam
+  name: EVA парамедика траумы
+  description: Стандартный образец герметичного комплекта брони Trauma Team Interstellar, усилен более крепким материалом для работы в безвоздушном пространстве.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/TTI/Clothing/OuterClothing/Hardsuits/traumateam.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/TTI/Clothing/OuterClothing/Hardsuits/traumateam.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: TraumaTeamHelmet
+
+#Trauma team EVAR
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTraumaTeamRed
+  name: EVA техника траумы
+  description: Стандартный образец герметичного комплекта брони Trauma Team Interstellar, усилен более крепким материалом для работы в безвоздушном пространстве.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/TTI/Clothing/OuterClothing/Hardsuits/traumateamred.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/TTI/Clothing/OuterClothing/Hardsuits/traumateamred.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.8
+        Piercing: 0.4
+        Blast: 0.5
+        Heat: 0.5
+        Cold: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: TraumaTeamHelmetRed
+
+#Trauma team EVAS
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTraumaTeamSur
+  name: EVA реаниматора траумы
+  description: Стандартный образец герметичного комплекта брони Trauma Team Interstellar, усилен более крепким материалом для работы в безвоздушном пространстве.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/TTI/Clothing/OuterClothing/Hardsuits/traumateamsur.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/TTI/Clothing/OuterClothing/Hardsuits/traumateamsur.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.5
+        Cold: 0.5
+        Shock: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: TraumaTeamHelmetSur
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTraumaTeamPilot
+  name: EVA пилота траумы
+  description: Стандартный образец герметичного комплекта брони Trauma Team Interstellar, усилен более крепким материалом для работы в безвоздушном пространстве.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/TTI/Clothing/OuterClothing/Hardsuits/traumateampilot.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/TTI/Clothing/OuterClothing/Hardsuits/traumateampilot.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.5
+        Cold: 0.5
+        Shock: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: TraumaTeamHelmetPilot

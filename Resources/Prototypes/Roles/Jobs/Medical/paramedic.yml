@@ -26,7 +26,7 @@
   id: ParamedicGear
   equipment:
     # id: ParamedicPDA # Horizon
-    # ears: ClothingHeadsetMedical # Horizon
+    ears: ClothingHeadsetMedical # Horizon
     belt: ClothingBeltMedicalEMTFilled
   storage:
     back:

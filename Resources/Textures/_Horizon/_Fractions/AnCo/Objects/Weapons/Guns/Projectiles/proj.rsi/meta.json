@@ -38,6 +38,18 @@
       ]
         },
         {
+            "name": "Rocket",
+            "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+        },
+        {
             "name": "BallisticRifle"
         },
         {

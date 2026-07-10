@@ -10,3 +10,5 @@ ent-AnCoImplanterTreker = имплантер с трекером АнКо
 ent-AnCoImplanterDrone = имплантер с дронами АнКо
     .suffix = StarHorizon, AnCo
     .desc = { ent-BaseImplantOnlyImplanterAnCo.desc }
+ent-AnCoImplanterCorpLang = имплантер нейро-импланта языка
+    .desc = { ent-BaseImplantOnlyImplanterAnCo.desc }

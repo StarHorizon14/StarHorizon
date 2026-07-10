@@ -26,8 +26,10 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      desc: Evacuation pod
-      name: Evacuation pod
+      desc: Varion
+      name: Varion
+    - type: IFF
+      color: "#800000FF"
     - type: Transform
       parent: invalid
     - type: MapGrid

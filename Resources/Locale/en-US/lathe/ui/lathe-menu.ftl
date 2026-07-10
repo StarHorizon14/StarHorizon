@@ -35,3 +35,4 @@ lathe-menu-move-up-tooltip = Move this batch ahead in the queue.
 lathe-menu-move-down-tooltip = Move this batch back in the queue.
 lathe-menu-item-single = {$index}. {$name}
 lathe-menu-item-batch = {$index}. {$name} ({$printed}/{$total})
+lathe-menu-infinite-production-tooltip = Infinite production

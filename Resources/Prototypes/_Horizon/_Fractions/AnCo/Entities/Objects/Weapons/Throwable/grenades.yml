@@ -21,3 +21,36 @@
         volume: 5
     initialBeepDelay: 0
     beepInterval: 1
+
+- type: entity
+  name: Ардониевый заряд
+  description: Заряд, содержащая в себе кристалл Ардония для прорыва стен, обладает крутым дисплеем.
+  suffix: StarHorizon, AnCo
+  parent: [BasePlasticExplosive, BaseAnCoContraband]
+  id: AnCoPlasticExplode
+  components:
+  - type: StaticPrice
+    price: 625
+  - type: OnUseTimerTrigger
+    delay: 5
+    initialBeepDelay: 0
+    beepSound: /Audio/Machines/Nuke/general_beep.ogg
+    startOnStick: true
+    canToggleStartOnStick: true
+  - type: TimerStartOnSignal
+  - type: DeviceLinkSink
+    ports:
+    - Timer
+  - type: Explosive # Powerful explosion in a very small radius. Doesn't break underplating.
+    explosionType: AnCoExplodes
+    totalIntensity: 60
+    intensitySlope: 5
+    maxIntensity: 30
+    canCreateVacuum: false
+  - type: ExplodeOnTrigger
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Grenades/c4.rsi
+    state: icon
+    layers:
+    - state: icon
+      map: ["base"]
