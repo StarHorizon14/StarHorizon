@@ -1,3 +1,0 @@
-ent-AnCoAnomaly = аномалия
-    .desc = От аномалии исходит отчётливый скрежет металла...
-    .suffix = StarHorizon, AnCo, Anomaly
