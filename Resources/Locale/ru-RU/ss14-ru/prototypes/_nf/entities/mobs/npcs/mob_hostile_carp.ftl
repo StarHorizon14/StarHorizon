@@ -1,5 +1,6 @@
 ent-NFMobCarpBase = { ent-MobStaminaFodder }
     .desc = { ent-MobStaminaFodder.desc }
+    .suffix = Фронтир
 ent-NFMobCarp = { ent-NFMobCarpBase }
     .suffix = Фронтир
     .desc = { ent-NFMobCarpBase.desc }

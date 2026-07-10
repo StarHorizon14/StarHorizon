@@ -1,10 +1,10 @@
-ent-CultistMessengerGiftBox = blood cultist's bundle
+ent-CultistMessengerGiftBox = набор кровавого культиста
     .desc = { ent-NFBaseNpcLootBackpack.desc }
-ent-NFBaseNpcLootWalletCult = blood cultist's wallet
+ent-NFBaseNpcLootWalletCult = кошелек кровавого культиста
     .desc = { ent-NFBaseNpcLootWallet.desc }
 ent-ClothingWalletCultT1 = { ent-NFBaseNpcLootWalletCult }
     .desc = { ent-NFBaseNpcLootWalletCult.desc }
-ent-ClothingBackpackBloodCultZealotLootA = cultist gear bundle
+ent-ClothingBackpackBloodCultZealotLootA = набор снаряжения кровавого культиста
     .desc = { ent-CultistMessengerGiftBox.desc }
 ent-ClothingBackpackBloodCultZealotLootC = { ent-ClothingBackpackBloodCultZealotLootA }
     .desc = { ent-ClothingBackpackBloodCultZealotLootA.desc }
