@@ -1,2 +1,2 @@
 ent-ClothingNeckMantleCentcom = мантия ЦентКома
-    .desc = A comfortable and elite green mantle with a nice gold trim, tailored specifically for to the Central Commander. There's a shiny red gemstone holding it together in the middle. Комфортная элитная зелёная мантия с красивой золотой отделкой, специально сшитая для Центрального Командования. По центре её скрепляет блестящий красный драгоценный камень.
+    .desc = Комфортная элитная зелёная мантия с красивой золотой отделкой, специально сшитая для Центрального Командования. По центре её скрепляет блестящий красный драгоценный камень.
