@@ -19,11 +19,6 @@ cryptominer-state-critical = Критический
 cryptominer-state-no-atmosphere = Нет атмосферы
 cryptominer-state-no-disks = Нет дисков
 cryptominer-state-unknown = Неизвестно
-# Entity
-ent-Cryptominer = криптомайнер
-    .desc = Устройство для майнинга криптовалюты. Потребляет энергию и выделяет тепло. Добытые енды записываются на диски.
-ent-CryptominerMachineCircuitboard = плата криптомайнера
-    .desc = Печатная плата для криптомайнера.
 # Disk slots
 cryptominer-slot-disk-1 = Слот диска 1
 cryptominer-slot-disk-2 = Слот диска 2
