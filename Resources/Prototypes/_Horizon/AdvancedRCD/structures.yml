@@ -1,0 +1,164 @@
+# Advanced RCD Structure Prototypes
+# Each prototype defines a structure that can be built with material costs
+
+# Walls category
+- type: advancedRcd
+  id: AdvRcdWallSolid
+  name: advanced-rcd-wall-solid
+  category: Walls
+  prototype: WallSolid
+  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
+  delay: 2
+  priority: 0
+  materialCost:
+    Steel: 2
+
+- type: advancedRcd
+  id: AdvRcdWallReinforced
+  name: advanced-rcd-wall-reinforced
+  category: Walls
+  prototype: WallReinforced
+  sprite: /Textures/Interface/Radial/RCD/reinforced_wall.png
+  delay: 3
+  priority: 1
+  materialCost:
+    Steel: 2
+    Plasteel: 2
+
+- type: advancedRcd
+  id: AdvRcdWallPlastic
+  name: advanced-rcd-wall-plastic
+  category: Walls
+  prototype: WallPlastic
+  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
+  delay: 2
+  priority: 2
+  materialCost:
+    Plastic: 2
+
+- type: advancedRcd
+  id: AdvRcdWallWood
+  name: advanced-rcd-wall-wood
+  category: Walls
+  prototype: WallWood
+  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
+  delay: 2
+  priority: 3
+  materialCost:
+    Wood: 2
+
+# Windows category
+- type: advancedRcd
+  id: AdvRcdGrille
+  name: advanced-rcd-grille
+  category: Windows
+  prototype: Grille
+  sprite: /Textures/Interface/Radial/RCD/grille.png
+  delay: 1
+  priority: 0
+  materialCost:
+    Steel: 1
+
+- type: advancedRcd
+  id: AdvRcdWindow
+  name: advanced-rcd-window
+  category: Windows
+  prototype: Window
+  sprite: /Textures/Interface/Radial/RCD/window.png
+  delay: 2
+  priority: 1
+  materialCost:
+    Glass: 2
+
+- type: advancedRcd
+  id: AdvRcdWindowDirectional
+  name: advanced-rcd-window-directional
+  category: Windows
+  prototype: WindowDirectional
+  sprite: /Textures/Interface/Radial/RCD/directional.png
+  delay: 2
+  priority: 2
+  materialCost:
+    Glass: 1
+
+- type: advancedRcd
+  id: AdvRcdReinforcedWindowDirectional
+  name: advanced-rcd-window-reinforced-directional
+  category: Windows
+  prototype: ReinforcedWindowDirectional
+  sprite: /Textures/Interface/Radial/RCD/directional_reinforced.png
+  delay: 2
+  priority: 3
+  materialCost:
+    Glass: 1
+    Plasteel: 1
+
+# Airlocks category
+- type: advancedRcd
+  id: AdvRcdAirlock
+  name: advanced-rcd-airlock
+  category: Airlocks
+  prototype: Airlock
+  sprite: /Textures/Interface/Radial/RCD/airlock.png
+  delay: 3
+  priority: 0
+  materialCost:
+    Steel: 4
+
+- type: advancedRcd
+  id: AdvRcdAirlockGlass
+  name: advanced-rcd-airlock-glass
+  category: Airlocks
+  prototype: AirlockGlass
+  sprite: /Textures/Interface/Radial/RCD/glass_airlock.png
+  delay: 3
+  priority: 1
+  materialCost:
+    Steel: 2
+    Glass: 2
+
+# Electrical category
+- type: advancedRcd
+  id: AdvRcdCableApcExtension
+  name: advanced-rcd-cable
+  category: Electrical
+  prototype: CableApcExtension
+  sprite: /Textures/Interface/Radial/RCD/lv_coil.png
+  delay: 1
+  priority: 0
+  materialCost:
+    Steel: 1
+
+# Lighting category
+- type: advancedRcd
+  id: AdvRcdPoweredlightLED
+  name: advanced-rcd-light-led
+  category: Lighting
+  prototype: PoweredlightLED
+  sprite: /Textures/Interface/Radial/RCD/tube_light.png
+  delay: 2
+  priority: 0
+  materialCost:
+    Steel: 1
+    Glass: 1
+
+- type: advancedRcd
+  id: AdvRcdPoweredSmallLight
+  name: advanced-rcd-light-small
+  category: Lighting
+  prototype: PoweredSmallLight
+  sprite: /Textures/Interface/Radial/RCD/bulb_light.png
+  delay: 2
+  priority: 1
+  materialCost:
+    Steel: 1
+
+# Deconstruct mode
+- type: advancedRcd
+  id: AdvRcdDeconstruct
+  name: advanced-rcd-deconstruct
+  category: Main
+  isDeconstruct: true
+  delay: 3
+  priority: 100
+  sprite: /Textures/Interface/Radial/RCD/deconstruct.png

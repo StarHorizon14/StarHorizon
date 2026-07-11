@@ -1,0 +1,79 @@
+# Advanced RCD Device Prototypes
+
+- type: entity
+  id: AdvancedRCD
+  parent: BaseItem
+  name: advanced RCD
+  description: An advanced rapid construction device with built-in material storage. Load it with materials and build structures directly.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Tools/rcd.rsi
+      state: icon
+    - type: Item
+      size: Normal
+      sprite: _NF/Objects/Tools/rcd.rsi
+    - type: AdvancedRCD
+      availablePrototypes:
+        - AdvRcdWallSolid
+        - AdvRcdWallReinforced
+        - AdvRcdWallPlastic
+        - AdvRcdWallWood
+        - AdvRcdGrille
+        - AdvRcdWindow
+        - AdvRcdWindowDirectional
+        - AdvRcdReinforcedWindowDirectional
+        - AdvRcdAirlock
+        - AdvRcdAirlockGlass
+        - AdvRcdCableApcExtension
+        - AdvRcdPoweredlightLED
+        - AdvRcdPoweredSmallLight
+        - AdvRcdDeconstruct
+      materialLimit: 60
+      range: 5
+    - type: MaterialStorage
+      insertOnInteract: true
+      dropOnDeconstruct: true
+      materialWhiteList:
+        - Steel
+        - Glass
+        - Plasteel
+        - Plastic
+        - Wood
+        - Uranium
+        - Silver
+        - Gold
+    - type: OreSiloClient
+    - type: UserInterface
+      interfaces:
+        enum.AdvancedRCDUiKey.Key:
+          type: AdvancedRCDMenuBoundUserInterface
+    - type: ActivatableUI
+      key: enum.AdvancedRCDUiKey.Key
+
+- type: entity
+  id: AdvancedRCDUnlimited
+  parent: AdvancedRCD
+  name: advanced RCD (unlimited)
+  suffix: Admin, Unlimited
+  description: An advanced rapid construction device with no material limits.
+  components:
+    - type: AdvancedRCD
+      availablePrototypes:
+        - AdvRcdWallSolid
+        - AdvRcdWallReinforced
+        - AdvRcdWallPlastic
+        - AdvRcdWallWood
+        - AdvRcdGrille
+        - AdvRcdWindow
+        - AdvRcdWindowDirectional
+        - AdvRcdReinforcedWindowDirectional
+        - AdvRcdAirlock
+        - AdvRcdAirlockGlass
+        - AdvRcdCableApcExtension
+        - AdvRcdPoweredlightLED
+        - AdvRcdPoweredSmallLight
+        - AdvRcdDeconstruct
+      materialLimit: null
+      range: 10
+    - type: MaterialStorage
+      storageLimit: null
