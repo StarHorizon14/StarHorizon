@@ -1,0 +1,8 @@
+- type: entity
+  id: ConveyorSplitter
+  parent: ConveyorSplitter
+  name: конвейерный разветвитель
+  description: Быстро переключает направление движения.
+  components:
+  - type: ConveyorSplitter
+    switchInterval: 0.5
