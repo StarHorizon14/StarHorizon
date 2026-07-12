@@ -99,7 +99,7 @@ namespace Content.Shared._Horizon.CCVar
         /// Включение/отключение автоматического удаления брошенных шаттлов.
         /// </summary>
         public static readonly CVarDef<bool> AutoDeleteEnabled =
-            CVarDef.Create("shuttle.autodelete_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE,
+            CVarDef.Create("shuttle.autodelete_enabled", false, CVar.SERVERONLY | CVar.ARCHIVE,
                 "Отключить или включить автоудаление шаттлов.");
         /*
          * Планетки
