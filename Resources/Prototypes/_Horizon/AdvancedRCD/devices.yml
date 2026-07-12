@@ -1,10 +1,8 @@
-# Advanced RCD Device Prototypes
-
 - type: entity
   id: AdvancedRCD
   parent: BaseItem
-  name: advanced RCD
-  description: An advanced rapid construction device with built-in material storage. Load it with materials and build structures directly.
+  name: Строительный пистолет
+  description: Строительный пистолет - многофункциональный инструмент, использующийся Первопроходцами. Он используется для строительства и демонтажа построек.
   components:
     - type: Sprite
       sprite: _NF/Objects/Tools/rcd.rsi
@@ -53,9 +51,9 @@
 - type: entity
   id: AdvancedRCDUnlimited
   parent: AdvancedRCD
-  name: advanced RCD (unlimited)
-  suffix: Admin, Unlimited
-  description: An advanced rapid construction device with no material limits.
+  name: Строительный пистолет
+  suffix: Unlimited
+  description: Строительный пистолет - многофункциональный инструмент, использующийся Первопроходцами. Он используется для строительства и демонтажа построек.
   components:
     - type: AdvancedRCD
       availablePrototypes:
