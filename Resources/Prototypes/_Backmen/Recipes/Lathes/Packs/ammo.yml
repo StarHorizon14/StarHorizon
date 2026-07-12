@@ -1,11 +1,6 @@
-- type: technology
-  id: BackmenAmmunition
-  name: research-technology-backmen-ammunition
-  entityIcon: MagazinePacketRifle556UEG
-  discipline: NFArsenalNfsd
-  tier: 2
-  cost: 8000
-  recipeUnlocks:
+- type: latheRecipePack
+  id: BackmenAmmo
+  recipes:
   - MagazineBoxRifle762x39
   - MagazinePacketRifle762x39
   - MagazinePacketRifle762x39Incendiary
@@ -37,21 +32,3 @@
   - MagazinePacketRevolver44MagnumAP
   - MagazinePacketRevolver357Magnum
   - MagazinePacketRevolver357MagnumAP
-  technologyPrerequisites:
-  - NFBulkRifleAmmo
-  position: 4, 68
-
-- type: technology
-  id: EnergyBarriers
-  name: research-technology-energy_barriers
-  entityIcon: EnergyDomeDirectionalTurtle
-  discipline: NFArsenalNfsd
-  tier: 2
-  cost: 6000
-  recipeUnlocks:
-  - EnergyDomeDirectionalTurtle
-  technologyPrerequisites:
-  - BackmenAmmunition
-  position: 5, 68
-  researchTargets:
-  - TechnologyDiscArsenalDome

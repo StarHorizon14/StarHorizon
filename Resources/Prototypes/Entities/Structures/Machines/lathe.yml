@@ -509,6 +509,7 @@
       - HRZNAmmo # Horizon
       - ShipgunAmmo # Horizon
       - NFMercenaryMagazineStatic
+      - BackmenAmmo # Backmen
     - type: MaterialStorage
       whitelist:
         tags:
