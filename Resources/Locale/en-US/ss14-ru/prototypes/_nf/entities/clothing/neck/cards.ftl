@@ -5,4 +5,4 @@ ent-NFClothingNeckCardReporter = reporter card
 ent-NFClothingNeckCardMedic = medic card
     .desc = An identification card for medical personnel.
 ent-NFClothingNeckCardNfsdWrit = nfsd permit card
-    .desc = A permit card issued by the NFSD. Includes a slot for inserting official paperwork. Property of the NFSD; contents are not to be tampered with by the holder..
+    .desc = A permit card issued by the NFSD. Includes a slot for inserting official paperwork. Property of the NFSD; contents are not to be tampered with by the holder.

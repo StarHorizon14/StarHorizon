@@ -1,7 +1,7 @@
 ent-ClothingOuterArmorSrCarapace = station representative's carapace
     .desc = A premium armored chestpiece that provides above average protection for its size. It offers maximum mobility and flexibility thanks to the premium composite materials. Issued only to the station representative.
 ent-ClothingOuterBioArmoredMercenary = mercenary bio suit
-    .desc = Favorite protective gear of any syndicate chemical warfare enjoyers.
+    .desc = The choice of armor for any mercenaries battling bio-hazards in atmosphere.
 ent-ClothingOuterBioArmoredSyndicate = bio suit
     .desc = Favorite protective gear of any syndicate chemical warfare enjoyers.
     .suffix = Syndicate

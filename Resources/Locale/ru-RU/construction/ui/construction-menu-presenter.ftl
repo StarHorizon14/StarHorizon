@@ -4,4 +4,5 @@ construction-presenter-step-wrapper = { $step-number }. { $text }
 construction-presenter-tool-step = Используйте { LOC($tool) }.
 construction-presenter-material-step = Добавьте { $amount }ед { LOC($material) }.
 construction-presenter-arbitrary-step = Добавьте { LOC($name) }.
+construction-presenter-machine-part-step = Добавьте { $amount }ед { LOC($part) }.
 construction-presenter-temperature-step = Нагрейте до { $temperature }.

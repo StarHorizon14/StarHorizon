@@ -11,7 +11,7 @@
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
-  - type: TriggerImplantAction
+  - type: TriggerOnActivateImplant
   - type: GibOnTrigger
     deleteItems: true
   - type: SpawnOnTrigger
@@ -43,8 +43,9 @@
     - type: TriggerOnMobstateChange
       mobState:
       - Critical
-    - type: Rattle
-      radioChannel: "AnCoRadio"
+    - type: RattleOnTrigger
+      targetUser: true
+      radioChannel: AnCoRadio
 
 # из за того что спавнер привязан к хуману это уээээээ
 - type: entity
@@ -57,7 +58,7 @@
   - type: SubdermalImplant
     permanent: true
     implantAction: AnCoCreateDrone
-  - type: TriggerImplantAction
+  - type: TriggerOnActivateImplant
   - type: SpawnOnTrigger
     proto: AnCoDroneOff
 

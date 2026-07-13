@@ -39,7 +39,7 @@
       payloadSlot:
         whitelist:
           components:
-          - OnUseTimerTrigger
+          - TimerTrigger
         insertSound:
           path: /Audio/Weapons/Guns/Empty/empty.ogg
         ejectSound:
@@ -78,7 +78,7 @@
       payloadSlot:
         whitelist:
           components:
-          - OnUseTimerTrigger
+          - TimerTrigger
         insertSound:
           path: /Audio/Weapons/Guns/Empty/empty.ogg
         ejectSound:
@@ -87,5 +87,5 @@
         disableEject: true
   - type: Food
     trash:
-    - FoodPlateSmall       
+    - FoodPlateSmall
 

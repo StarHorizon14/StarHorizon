@@ -1,10 +1,13 @@
 <Document>
   # НАУЧНЫЙ ШАТТЛ КЛАССА LYRAE
   <Box>
-  <GuideEntityEmbed Entity="ResearchAndDevelopmentServer"/>
-  <GuideEntityEmbed Entity="Protolathe"/>
-  <GuideEntityEmbed Entity="CircuitImprinter"/>
-  <GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
+    <GuideEntityEmbed Entity="ResearchAndDevelopmentServer"/>
+    <GuideEntityEmbed Entity="Protolathe"/>
+    <GuideEntityEmbed Entity="CircuitImprinter"/>
+    <GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ShuttleMapLyrae" Caption=""/>
   </Box>
   [color=#a4885c]Размер корабля:[/color] Средний
 

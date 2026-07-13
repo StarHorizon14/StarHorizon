@@ -1,2 +1,4 @@
-ent-ActionActivateDissonantWhispersImplant = Dissonant Whispers
-    .desc = Utter unharmonious and disquieting whispers giving form to eldritch horrors.
+ent-ActionActivateDissonantWhispersImplant = Диссонирующий шёпот
+    .desc = Произнести дисгармоничный и тревожащий шёпот, придающий форму потусторонним ужасам.
+ent-ActionActivateWehImplant = Вэх
+    .desc = Активирует ваш имплант "вэх", который издаёт характерный звук зелёной ящерицы.

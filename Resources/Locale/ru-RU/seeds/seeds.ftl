@@ -138,4 +138,6 @@ seeds-capfruit-display-name = капфруктовоу дерево
 seeds-cherry-name = вишня
 seeds-cherry-display-name = вишнёвое дерево
 seeds-anomaly-berry-name = аномальные ягоды
+seeds-bloonion-name = шарилук
+seeds-bloonion-display-name = луковицы шарилука
 seeds-anomaly-berry-display-name = куст аномальных ягод

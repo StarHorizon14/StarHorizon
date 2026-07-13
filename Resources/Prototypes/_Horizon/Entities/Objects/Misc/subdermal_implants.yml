@@ -10,5 +10,6 @@
       mobState:
       - Critical
       - Dead
-    - type: Rattle
-      radioChannel: "Trauma"
+    - type: RattleOnTrigger
+      targetUser: true
+      radioChannel: Trauma

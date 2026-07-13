@@ -1,0 +1,12 @@
+ent-NFMaterialChitinXeno = xeno chitin
+    .desc = A piece of dense, bio-organic exoskeleton composed of layered, resinous material. Durable and acid resistant.
+    .suffix = Full
+ent-NFMaterialChitinXeno1 = { ent-NFMaterialChitinXeno }
+    .suffix = 1
+    .desc = { ent-NFMaterialChitinXeno.desc }
+ent-NFMaterialChitinArgocyte = argocyte chitin
+    .suffix = Full
+    .desc = { ent-MaterialBase.desc }
+ent-NFMaterialChitinArgocyte1 = { ent-NFMaterialChitinArgocyte }
+    .suffix = 1
+    .desc = { ent-NFMaterialChitinArgocyte.desc }

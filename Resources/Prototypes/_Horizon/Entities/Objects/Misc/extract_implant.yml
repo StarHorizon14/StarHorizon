@@ -19,7 +19,7 @@
   components:
   - type: SubdermalImplant
     implantAction: ActionActivateExtractImplant
-  - type: TriggerImplantAction
+  - type: TriggerOnActivateImplant
   - type: TriggerOnMobstateChange
     mobState:
     - Dead

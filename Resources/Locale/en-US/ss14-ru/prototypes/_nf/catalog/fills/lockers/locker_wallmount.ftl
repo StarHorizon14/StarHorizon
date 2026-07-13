@@ -190,3 +190,6 @@ ent-LockerWallColorHydroponicsEmpty = botanist wall locker
 ent-LockerWallColorHydroponicsFilled = { ent-LockerWallColorHydroponicsEmpty }
     .suffix = Filled, Frontier
     .desc = { ent-LockerWallColorHydroponicsEmpty.desc }
+ent-LockerWallColorPilotFilled = { ent-LockerWallColorPilot }
+    .suffix = Filled, Frontier
+    .desc = { ent-LockerWallColorPilot.desc }

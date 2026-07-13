@@ -16,3 +16,7 @@ ent-MonkananaSeeds = пакет семян обезьянана
     .desc = Почему он такой волосатый?
 ent-NFGlowshroomSeeds = пакет семян светогриба
     .desc = Формально известен как Mycena Bregprox.
+ent-PomegranateSeeds = пакет семян помегранта
+    .desc = { ent-SeedBase.desc }
+ent-GranatapfelSeeds = пакет семян гранатапфеля
+    .desc = { ent-SeedBase.desc }

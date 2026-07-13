@@ -29,5 +29,6 @@
   recipes:
   - OreProcessorIndustrialMachineCircuitboard
   - OreProcessorFuelMachineCircuitboard # Horizon
+  - OreProcessorMachineCircuitboard # Frontier
   # - CargoTelepadMachineCircuitboard # Frontier
   # - ShuttleGunKineticCircuitboard # Frontier
