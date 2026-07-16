@@ -3,5 +3,5 @@
   id: ExGrenadeNfsd
 
 - type: entity
-  parent: [BaseC2ContrabandUnredeemable, EmpGrenade]
+  parent: [BaseC2Contraband, EmpGrenade]
   id: EmpGrenadeNfsd
