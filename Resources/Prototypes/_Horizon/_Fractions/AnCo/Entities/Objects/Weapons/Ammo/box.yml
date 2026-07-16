@@ -1,0 +1,145 @@
+- type: entity
+  parent: [BaseItem, BaseAnCoContraband]
+  id: AnCoMagazineBoxBase
+  name: короб боеприпасов
+  categories: [ HideSpawnMenu ]
+  suffix: StarHorizon, AnCo
+  components:
+  - type: Item
+    size: Normal
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/box_mag.rsi
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - AnCoBulletShotgun50
+        - AnCoBulletPistol35
+        - AnCoBulletRifle20
+        - AnCoBulletRifle30
+        - AnCoBulletSniper70
+    capacity: 120
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/box_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 11
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: [AnCoMagazineBoxBase, BaseAnCoContraband]
+  id: AnCoMagazineBox35
+  name: короб боеприпасов .35
+  description: короб боеприпасов АнКо, .35 калибр.
+  suffix: StarHorizon, AnCo, 35
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - AnCoBulletPistol35
+    proto: BaseCartridgePistolAnCo
+    capacity: 200
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/box_mag.rsi
+    layers:
+    - state: base-35
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: [AnCoMagazineBoxBase, BaseAnCoContraband]
+  id: AnCoMagazineBox20
+  name: короб боеприпасов .20
+  description: короб боеприпасов АнКо, .20 калибр.
+  suffix: StarHorizon, AnCo, 20
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - AnCoBulletRifle20
+    proto: BaseCartridgeRifleAnCo
+    capacity: 150
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/box_mag.rsi
+    layers:
+    - state: base-20
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: [AnCoMagazineBoxBase, BaseAnCoContraband]
+  id: AnCoMagazineBox30
+  name: короб боеприпасов .30
+  description: короб боеприпасов АнКо, .30 калибр.
+  suffix: StarHorizon, AnCo, 30
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - AnCoBulletRifle30
+    proto: BaseCartridgeRifleAnCoBuff
+    capacity: 150
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/box_mag.rsi
+    layers:
+    - state: base-30
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: [AnCoMagazineBoxBase, BaseAnCoContraband]
+  id: AnCoMagazineBox50
+  name: короб боеприпасов .50
+  description: короб боеприпасов АнКо, .50 калибр.
+  suffix: StarHorizon, AnCo, 50
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - AnCoBulletShotgun50
+    proto: BaseCartridgeShotgunAnCo
+    capacity: 75
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/box_mag.rsi
+    layers:
+    - state: base-50
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: [AnCoMagazineBoxBase, BaseAnCoContraband]
+  id: AnCoMagazineBox
+  name: короб боеприпасов .70
+  description: короб боеприпасов АнКо, .70 калибр.
+  suffix: StarHorizon, AnCo, 70
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - AnCoBulletSniper70
+    proto: BaseCartridgeSniperAnCo
+    capacity: 75
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Ammo/Magazine/box_mag.rsi
+    layers:
+    - state: base-70
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

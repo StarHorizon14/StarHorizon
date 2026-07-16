@@ -1,5 +1,5 @@
 ent-StructurePistolRackWallmountedMercenaryFilled = { ent-StructurePistolRackWallmountedMercenary }
-    .suffix = Dunegeon, Mercenary, Filled, Wallmount
+    .suffix = Dungeon, Mercenary, Filled, Wallmount
     .desc = { ent-StructurePistolRackWallmountedMercenary.desc }
 ent-StructureMeleeWeaponRackWallmountedSalvageFilled = { ent-StructureMeleeWeaponRackWallmountedSalvage }
     .suffix = Salvage, Filled, Wallmount

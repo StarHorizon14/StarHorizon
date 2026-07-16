@@ -2,8 +2,13 @@
   id: BaseAnCoMob
   suffix: StarHorizon, AnCo
   abstract: true
+  parent: [NFBaseMobRestrictions]
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementAlwaysTouching
+  - type: Carriable
+  - type: MovementIgnoreGravity
+  - type: CanMoveInAir
   - type: NpcFactionMember
     factions:
       - HostileUniversally
@@ -249,7 +254,7 @@
   parent: BaseItem
   components:
   - type: DeleteOnTrigger
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 3.5
   - type: SpawnOnTrigger
     proto: AnCoDrone
@@ -270,7 +275,7 @@
   parent: BaseItem
   components:
   - type: DeleteOnTrigger
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 3.5
   - type: SpawnOnTrigger
     proto: AnCoDroneCombat
@@ -291,7 +296,7 @@
   parent: BaseItem
   components:
   - type: DeleteOnTrigger
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 3.5
   - type: SpawnOnTrigger
     proto: AnCoDroneMine

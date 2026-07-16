@@ -1,4 +1,4 @@
-﻿using Content.Server.Explosion.EntitySystems;
+﻿using Content.Shared.Trigger.Systems;
 using Content.Shared._RMC14.Weapons.Ranged;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Ranged.Events;
@@ -21,7 +21,7 @@ public sealed class RMCTriggerSystem : EntitySystem
     {
         foreach (var projectile in args.FiredProjectiles)
         {
-            _trigger.HandleTimerTrigger(projectile, null, ent.Comp.Delay, ent.Comp.BeepInterval, ent.Comp.InitialBeepDelay, ent.Comp.BeepSound);
+            _trigger.ActivateTimerTrigger(projectile);
         }
     }
 

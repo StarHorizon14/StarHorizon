@@ -20,3 +20,6 @@
   - type: Item
     size: Normal
     sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Melee/sword.rsi
+  - type: Tag
+    tags:
+      - AnCoSheathable

@@ -215,6 +215,8 @@
     - AnCoWeaponHeavyCaseKnight
     - AnCoWeaponHeavyCaseKazmie
     - AnCoWeaponHeavyCaseArdon
+    - AnCoWeaponHeavyCaseDome
+    - AnCoWeaponHeavyCaseGuardian
     rareChance: 0.33
 
 

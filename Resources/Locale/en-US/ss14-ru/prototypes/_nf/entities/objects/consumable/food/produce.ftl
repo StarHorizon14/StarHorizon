@@ -24,3 +24,7 @@ ent-FoodOnionRingsBattered = battered onion rings
     .desc = Onion rings dredged in a gloopy flour and egg mixture.
 ent-FoodMonkanana = monkanana
     .desc = Looks like a monkeyfied banana.
+ent-FoodPomegranate = pomegranate
+    .desc = Fruit filled with juicy seeds.
+ent-FoodGranatapfel = granatapfel
+    .desc = Granatapfel Fruit, Fragile. Explodes on impact sending it's seeds with high velocity. Used for biofuel.

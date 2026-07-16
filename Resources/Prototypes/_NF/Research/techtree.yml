@@ -585,6 +585,8 @@
   recipeUnlocks:
   - MedicalAssemblerMachineCircuitboard
   - HotplateMachineCircuitboard
+  - ElectrolysisUnitMachineCircuitboard
+  - CentrifugeMachineCircuitboard
   - DefibrillatorCompact
   technologyPrerequisites:
   - NFBasicMedicine
@@ -1054,6 +1056,7 @@
   cost: 2500
   recipeUnlocks:
   - PlantAnalyzer
+  - NFCookingBag
   position: 0, 45 # Horizon
 
 - type: technology
@@ -1246,6 +1249,7 @@
   recipeUnlocks:
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
+  - SolarAssemblyFlatpack
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedPowercells
@@ -1299,6 +1303,7 @@
   cost: 2500
   recipeUnlocks:
   - PortableGeneratorPacmanMachineCircuitboard
+  - PowerComputerCircuitboard
   technologyPrerequisites:
   - NFTrashPowerGeneration
   position: 2, 49 # Horizon
@@ -1426,6 +1431,8 @@
   cost: 7500
   recipeUnlocks:
   - HolofanProjector
+  - AlertsComputerCircuitboard
+  - AtmosMonitoringComputerCircuitboard
 #  - FireExtinguisherBluespace # DeltaV
   - FanTinyElectronics # Horizon
   technologyPrerequisites:
@@ -1528,19 +1535,6 @@
   position: 1, 74 # Horizon
 
 - type: technology
-  id: NFArsenalNfsdPropulsion
-  name: nf-research-technology-security-personal-propulsion
-  entityIcon: JetpackNfsd
-  discipline: NFArsenalNfsd
-  tier: 1
-  cost: 1000
-  recipeUnlocks:
-  - JetpackNfsd
-  technologyPrerequisites:
-  - NFArsenalMercenaryPropulsion
-  position: 1, 75 # Horizon
-
-- type: technology
   id: NFAdvancedPersonalPropulsion
   name: nf-research-technology-advanced-personal-propulsion
   entityIcon: JetpackVoid
@@ -1554,6 +1548,19 @@
   - NFPersonalPropulsion
   position: 2, 74 # Horizon
 
+- type: technology
+  id: NFBootBasedPropulsion
+  name: nf-research-technology-boot-based-propulsion
+  entityIcon: NFClothingShoesBootsJetpack
+  discipline: NFSalvage
+  secondaryDiscipline: NFEngineering
+  tier: 2
+  cost: 2500
+  recipeUnlocks:
+  - NFClothingShoesBootsJetpack
+  technologyPrerequisites:
+  - NFAdvancedPersonalPropulsion
+  position: 2, 75 # Horizon
 # region Salvage
 
 - type: technology
@@ -1883,7 +1890,7 @@
   id: NFSpecialMeans
   name: nf-research-technology-special-means
   entityIcon: ClothingBackpackElectropack
-  discipline: NFArsenalNfsd
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -1915,7 +1922,7 @@
   id: NFBasicShuttleArmament
   name: nf-research-technology-basic-shuttle-armament
   entityIcon: PowerCageRecharger
-  discipline: NFArsenalNfsd
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 10000
   recipeUnlocks:

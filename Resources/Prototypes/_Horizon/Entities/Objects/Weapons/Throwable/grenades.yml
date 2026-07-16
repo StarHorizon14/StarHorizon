@@ -1,0 +1,38 @@
+- type: entity
+  parent: GrenadeBase
+  id: BurnGrenade
+  name: выжигательная граната
+  description: содержит смертельно опасную смесь трития и плазмы для создания ада на земле.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/airboom.rsi
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: /Audio/Items/smoke_grenade_smoke.ogg
+    positional: true
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: TimerTrigger
+    delay: 3
+  - type: ReleaseGasOnTrigger
+    removeFraction: 0.25
+    air:
+      volume: 1000
+      moles:
+      - 2463 # oxygen
+      - 0 # nitrogen
+      - 0 # CO2
+      - 327 # plasma
+      - 327 # tritium
+      temperature: 693.15
+  - type: StaticPrice
+    price: 350
+  - type: GenericVisualizer
+    visuals:
+      enum.ReleaseGasOnTriggerVisuals.Key:
+        enabled:
+          True: { state: active }
+          False: { state: spent }

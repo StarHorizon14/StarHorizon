@@ -10,3 +10,6 @@ ent-NFSpawnerRandomPosterGoblin = { ent-NFSpawnerRandomPosterFrontier }
 ent-NFSpawnerRandomPosterFsb = { ent-NFSpawnerRandomPosterFrontier }
     .suffix = Frontier, FSB
     .desc = { ent-NFSpawnerRandomPosterFrontier.desc }
+ent-NFSpawnerRandomPosterDbi = { ent-NFSpawnerRandomPosterFrontier }
+    .suffix = Frontier, DBI
+    .desc = { ent-NFSpawnerRandomPosterFrontier.desc }

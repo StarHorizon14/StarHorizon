@@ -1,7 +1,7 @@
 - type: entity
-  name:
-  description: A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
-  id: персональный щит АнКо
+  name: персональный щит АнКо
+  description: Персональный щит АнКо, создает ардониевый купол Шредингера
+  id: AnCoPersonalDome
   parent: BaseItem
   components:
   - type: Item
@@ -10,8 +10,9 @@
     quickEquip: false
     slots:
     - neck
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Neck/small_dome.rsi
   - type: Sprite
-    sprite: Backmen/Objects/Tools/EnergyDome/syndie.rsi
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Neck/small_dome.rsi
     layers:
       - state: icon
   - type: ContainerContainer
@@ -23,14 +24,13 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
+        startingItem: AnCoEnergyCore
         whitelist:
           tags:
-            - PowerCell
-            - PowerCellSmall
+            - PowerAnCo
   - type: EnergyDomeGenerator
     damageEnergyDraw: 5
-    domePrototype: EnergyDomeSmallRed
+    domePrototype: EnergyDomeSmallAnCo
   - type: PowerCellDraw
     drawRate: 0
     useRate: 0

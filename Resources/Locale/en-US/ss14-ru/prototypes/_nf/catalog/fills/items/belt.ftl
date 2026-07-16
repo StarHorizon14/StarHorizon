@@ -24,3 +24,6 @@ ent-ClothingBeltSheathFilledHilt = { ent-ClothingBeltSheath }
 ent-ClothingBeltChiefEngineerFilledBasic = { ent-ClothingBeltChiefEngineer }
     .suffix = Filled, Basic
     .desc = { ent-ClothingBeltChiefEngineer.desc }
+ent-NFTrashBagBlueFilledTrash = { ent-TrashBagBlue }
+    .suffix = Filled, Trash
+    .desc = { ent-TrashBagBlue.desc }

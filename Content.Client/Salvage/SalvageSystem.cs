@@ -50,9 +50,12 @@ public sealed class SalvageSystem : SharedSalvageSystem
             && component.Stream == null)
         {
             var volume = ConvertSliderValueToVolume(_cfg.GetCVar(NFCCVars.SalvageExpeditionMusicVolume));
-            var audioParams = AudioParams.Default.WithVolume(volume);
+            var audioParams = AudioParams.Default.WithVolume(volume).WithMaxDistance(float.MaxValue);
             var audio = _audioSystem.PlayGlobal(component.SelectedSong, Filter.Local(), false, audioParams);
-            _audioSystem.SetMapAudio(audio);
+
+            // Bind to the expedition map so audio stops when leaving
+            if (audio != null)
+                Transform(audio.Value.Entity).Coordinates = Transform(uid).Coordinates;
 
             component.Stream = audio?.Entity;
         }
@@ -106,4 +109,16 @@ public sealed class SalvageSystem : SharedSalvageSystem
         return ret;
     }
     // End Frontier: stop stream when destroying the expedition
+
+    // Frontier: resolve expedition comp
+    public override bool ResolveExpedition(EntityUid? uid, ref SharedSalvageExpeditionComponent? component)
+    {
+        if (component is not null)
+            return true;
+
+        TryComp<SalvageExpeditionComponent>(uid, out var localComp);
+        component = localComp;
+        return component != null;
+    }
+    // End Frontier
 }
