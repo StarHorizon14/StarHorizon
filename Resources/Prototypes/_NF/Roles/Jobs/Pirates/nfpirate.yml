@@ -11,7 +11,7 @@
       department: Security
       time: 10800 # 3 hrs
   startingGear: NFPirateGear
-  whitelisted: true
+  whitelisted: false
   alwaysUseSpawner: true
   hideConsoleVisibility: true
   canBeAntag: true
