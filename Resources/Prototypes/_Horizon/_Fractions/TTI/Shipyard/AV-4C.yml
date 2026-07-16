@@ -9,7 +9,7 @@
   price: 10000
   category: Small
   group: Custom
-  shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Factions/TTI.yml
+  shuttlePath: /Maps/_Horizon/_Fraction/TTI/TTI.yml
   class:
   - Medical
   engine:
@@ -18,7 +18,7 @@
 - type: gameMap
   id: TraumaAV4C
   mapName: 'TTI AV-4C'
-  mapPath: /Maps/_Horizon/Shuttles/Shipyard/Factions/TTI.yml
+  mapPath: /Maps/_Horizon/_Fraction/TTI/TTI.yml
   minPlayers: 0
   stations:
     TraumaAV4C:
