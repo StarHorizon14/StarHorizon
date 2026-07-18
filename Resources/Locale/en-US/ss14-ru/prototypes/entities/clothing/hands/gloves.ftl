@@ -61,3 +61,4 @@ ent-ClothingHandsKnuckleDustersStun = stun knuckle dusters
     .desc = A pair of knuckle dusters combined with the tech of a stun baton. This makes beating tiders a whole lot easier.
 ent-ClothingHandsKnuckleBoneCrushers = bone crushers
     .desc = Blessed by the Gods to break all those who don't obey.
+    .suffix = Admeme

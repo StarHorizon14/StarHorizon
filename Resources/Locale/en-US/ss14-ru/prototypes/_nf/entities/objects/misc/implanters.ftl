@@ -1,5 +1,7 @@
 ent-MedicalTrackingImplanter = medical tracking implanter
     .desc = { ent-BaseImplantOnlyImplanter.desc }
+ent-WehImplanter = weh implanter
+    .desc = { ent-BaseImplantOnlyImplanter.desc }
 ent-FreelanceTrackingImplanter = freelance tracking implanter
     .desc = { ent-BaseImplantOnlyImplanterSyndi.desc }
 ent-DeathAcidifierImplanterNF = death acidifier implanter

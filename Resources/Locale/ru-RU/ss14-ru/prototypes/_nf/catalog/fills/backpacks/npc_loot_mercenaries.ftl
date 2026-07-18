@@ -1,8 +1,8 @@
-ent-MercenaryDuffelGiftBox = набор наёмника
-    .desc = Лутбоксы? Тут?
+ent-MercenaryDuffelGiftBox = набор снаряжения наемника
+    .desc = Лут боксы? Тут?
     .suffix = Лут НПС
-ent-MercenaryWebbingBox = набор боеприпасов наёмника
-    .desc = Лутбоксы? Тут?
+ent-MercenaryWebbingBox = набор боеприпасов наемника
+    .desc = Лут боксы? Тут?
     .suffix = Лут НПС
 ent-ClothingBackpackDuffelMecranaryTier1Pistol = { ent-MercenaryDuffelGiftBox }
     .desc = { ent-MercenaryDuffelGiftBox.desc }

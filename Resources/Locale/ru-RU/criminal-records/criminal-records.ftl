@@ -55,3 +55,9 @@ criminal-records-species-filter = Раса
 
 criminal-records-console-auto-history = АРЕСТОВАН: { $reason }
 criminal-records-console-unspecified-reason = <причина не указана>
+criminal-records-console-permitted-reason = Тип разрешения
+criminal-records-status-permitted = Авторизировано
+criminal-records-console-permitted = { $officer } установил(а) тип(ы) разрешений "{ $reason }" для { $name } ({ $job })
+criminal-records-console-broke-permit = { $officer } лишил(а) { $name } ({ $job }) разрешений из-за нарушенных условий: { $reason }
+criminal-records-console-withdrew-permit = { $officer } отозвал(а) разрешения { $name } ({ $job })
+criminal-records-console-lost-permit = Разрешения { $name } ({ $job }) были аннулированы при невыясненных обстоятельствах

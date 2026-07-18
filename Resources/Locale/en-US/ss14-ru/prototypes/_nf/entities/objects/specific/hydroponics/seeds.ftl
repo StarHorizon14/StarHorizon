@@ -16,3 +16,7 @@ ent-MonkananaSeeds = packet of monkanana seeds
     .desc = Why is it so hairy?
 ent-NFGlowshroomSeeds = packet of glowshroom spores
     .desc = Formally known as Mycena Bregprox.
+ent-PomegranateSeeds = packet of pomegranate seeds
+    .desc = { ent-SeedBase.desc }
+ent-GranatapfelSeeds = packet of granatapfel seeds
+    .desc = { ent-SeedBase.desc }

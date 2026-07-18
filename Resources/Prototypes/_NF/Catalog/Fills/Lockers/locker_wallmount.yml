@@ -374,7 +374,7 @@
   suffix: Empty, Frontier
   parent: [LockerWallColorHydroponics, BaseStructureWallmount]
   name: botanist wall locker
-  components: 
+  components:
   - type: EntityStorageVisuals
     stateBaseClosed: base
     stateDoorOpen: open
@@ -389,5 +389,15 @@
     containers:
       storagebase: !type:NestedSelector
         tableId: FillLockerBotanist
+
+- type: entity
+  parent: LockerWallColorPilot
+  id: LockerWallColorPilotFilled
+  suffix: Filled, Frontier
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: NFStorageFillGearPilot
 
 # endregion

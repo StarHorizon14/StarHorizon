@@ -6,3 +6,5 @@ ent-NFPelletClusterIncendiary = { ent-PelletClusterIncendiary }
     .desc = { ent-PelletClusterIncendiary.desc }
 ent-NFPelletClusterLessLethal = { ent-PelletClusterLessLethal }
     .desc = { ent-PelletClusterLessLethal.desc }
+ent-SeedsGranatapfel = семечко (осколочная, химическая)
+    .desc = { ent-NFPelletClusterLessLethal.desc }

@@ -1,0 +1,11 @@
+ent-NFBaseStructureWallTrophy = { "" }
+    .desc = A wall-mounted frame for showcasing the achievements of your parents' favorite child.
+    .suffix = Frontier
+ent-NFStructureWallTrophyFrameWood = wooden trophy mount
+    .desc = { ent-NFBaseStructureWallTrophy.desc }
+ent-NFStructureWallTrophyFrameBrass = brass trophy mount
+    .desc = { ent-NFBaseStructureWallTrophy.desc }
+ent-NFStructureWallTrophyFrameSilver = silver trophy mount
+    .desc = { ent-NFBaseStructureWallTrophy.desc }
+ent-NFStructureWallTrophyFrameGold = golden trophy mount
+    .desc = { ent-NFBaseStructureWallTrophy.desc }
