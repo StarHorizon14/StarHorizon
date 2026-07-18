@@ -254,7 +254,7 @@
   parent: BaseItem
   components:
   - type: DeleteOnTrigger
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 3.5
   - type: SpawnOnTrigger
     proto: AnCoDrone
@@ -275,7 +275,7 @@
   parent: BaseItem
   components:
   - type: DeleteOnTrigger
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 3.5
   - type: SpawnOnTrigger
     proto: AnCoDroneCombat
@@ -296,7 +296,7 @@
   parent: BaseItem
   components:
   - type: DeleteOnTrigger
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     delay: 3.5
   - type: SpawnOnTrigger
     proto: AnCoDroneMine

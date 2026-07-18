@@ -67,9 +67,7 @@ public sealed class JumpSystem : EntitySystem
 
     private void OnThrowDoHit(EntityUid uid, JumpComponent component, ThrowDoHitEvent args)
     {
-        _sawmill.Debug($"OnThrowDoHit: uid={uid}, target={args.Target}, handled={args.Handled}");
-        if (args.Handled)
-            return;
+        _sawmill.Debug($"OnThrowDoHit: uid={uid}, target={args.Target}");
 
         _throwingItem.StopThrow(uid, args.Component);
 
@@ -82,8 +80,6 @@ public sealed class JumpSystem : EntitySystem
 
         _sawmill.Debug($"OnThrowDoHit: knocking down target");
         _stun.TryKnockdown(args.Target, component.StunTime, true);
-
-        args.Handled = true;
     }
 }
 

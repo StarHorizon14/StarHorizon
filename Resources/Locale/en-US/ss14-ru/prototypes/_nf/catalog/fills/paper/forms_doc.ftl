@@ -1,0 +1,9 @@
+ent-BoxFolderDoc = director of care form folder
+    .desc = A folder filled with paperwork templates for the Director of Care.
+    .suffix = Forms
+ent-PaperWrittenDoCNarcoticRestrictedChemLicense = narcotic & restricted chemical license
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenDoCResponderContract = MD responder contract
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenDoCStaffContract = MD staff contract
+    .desc = { ent-Paper.desc }

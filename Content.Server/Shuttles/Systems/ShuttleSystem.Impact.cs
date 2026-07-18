@@ -10,6 +10,7 @@ using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Projectiles;
 using Content.Shared.Slippery;
+using Content.Shared.Tiles;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -203,6 +204,22 @@ public sealed partial class ShuttleSystem
     {
         // for readability to not have .Comp1 .Comp2 for everything
         var (_, grid, xform, body) = ent;
+
+        // Frontier: Check for impact damage protection
+        if (TryComp<ProtectedGridComponent>(ent, out var protectedGrid) && protectedGrid.PreventImpactDamage)
+        {
+            // Still apply velocity slowdown (physics still works, just no damage)
+            var protectedPostImpactVelocity = Vector2.Lerp(velocity, inelasticVelocity, MathF.Min(1f, _impactSlowdown * tiles * fix.Density / body.FixturesMass));
+            var protectedDeltaV = -velocity + protectedPostImpactVelocity;
+            _physics.ApplyLinearImpulse(ent, protectedDeltaV * body.FixturesMass, body: body);
+
+            // Still throw entities on the grid (they feel the impact)
+            if (protectedDeltaV.Length() > _minImpulseVelocity)
+                ThrowEntitiesOnGrid(ent, xform, -protectedDeltaV);
+
+            return; // Skip all damage processing
+        }
+        // End Frontier
 
         // radius in which to actually do things so we don't hurt person 4 tiles away on slow bump
         var radius = Math.Min(_impactRadius, MathF.Sqrt(energy / _tileBreakEnergyMultiplier / _platingMass));

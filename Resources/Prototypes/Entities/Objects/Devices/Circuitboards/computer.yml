@@ -22,6 +22,7 @@
         Silicon: 20
     - type: BindToStation # Horizon
       enabled: false # Horizon - should be draggable between stations
+    - type: Circuitboard
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -239,8 +240,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: SalvageExpeditionsComputerCircuitboard
-  name: expedition console board # Frontier: "salvage expeditions computer" < "expedition console"
-  description: A computer printed circuit board for an expedition console. # Frontier: "salvage expeditions computer" < "expedition console"
+  name: salvage expeditions computer board
+  description: A computer printed circuit board for a salvage expeditions computer.
   components:
     - type: Sprite
       state: cpu_supply
@@ -294,6 +295,17 @@
     prototype: ComputerSurveillanceWirelessCameraMonitor
   - type: ComputerTabletopBoard # Frontier
     prototype: ComputerTabletopSurveillanceWirelessCameraMonitor # Frontier
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: XenoborgCameraMonitorCircuitboard
+  name: xenoborg camera monitor board
+  description: A computer printed circuit board for a xenoborg camera monitor.
+  components:
+  - type: Sprite
+    state: cpu_science
+  - type: ComputerBoard
+    prototype: ComputerSurveillanceWirelessXenoborgCameraMonitor
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -621,6 +633,17 @@
       state: cpu_science
     - type: ComputerBoard
       prototype: ComputerRoboticsControl
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerXenoborgsControlCircuitboard
+  name: xenoborg control console board
+  description: A computer printed circuit board for a xenoborg control console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerXenoborgsControl
 
 - type: entity
   parent: BaseComputerCircuitboard

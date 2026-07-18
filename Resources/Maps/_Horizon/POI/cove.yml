@@ -119,6 +119,17 @@ entities:
     - type: GridPathfinding
     - type: BecomesStation
       id: Cove
+    - type: ProtectedGrid
+      hostileMobKillSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/holy.ogg
+      killHostileMobs: True
+      preventArtifactTriggers: True
+      preventExplosions: True
+      preventEmpEvents: True
+      preventRCDUse: True
+      preventFloorPlacement: True
+      preventFloorRemoval: True
+      preventImpactDamage: true
     - type: DecalGrid
       chunkCollection:
         version: 2

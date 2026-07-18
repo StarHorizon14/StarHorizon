@@ -357,6 +357,9 @@
   id: ComputerTelevisionCircuitboard
 
 - type: Tag
+  id: ConstructionMaterial
+
+- type: Tag
   id: ConveyorAssembly
 
 - type: Tag
@@ -808,6 +811,9 @@
   id: Ingot
 
 - type: Tag
+  id: Inflatable
+
+- type: Tag
   id: InstantDoAfters
 
 - type: Tag
@@ -933,6 +939,9 @@
 
 - type: Tag
   id: Medkit
+
+- type: Tag
+  id: MessyDrinkerImmune
 
 - type: Tag
   id: Metal
@@ -1207,6 +1216,9 @@
 
 - type: Tag
   id: RollingPin
+
+- type: Tag
+  id: Ruminant
 
 - type: Tag
   id: SaltShaker

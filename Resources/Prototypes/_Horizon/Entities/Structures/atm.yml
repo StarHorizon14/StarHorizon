@@ -1,8 +1,0 @@
-- type: entity
-  parent: BaseStationAdminBankATM
-  id: StationAdminBankATMTrauma
-  description: Используется для доступа к банковскому счету Trauma Team.
-  suffix: TraumaTeam
-  components:
-    - type: StationBankATM
-      account: Trauma

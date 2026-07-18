@@ -18,8 +18,12 @@
   - type: Item
     sprite: _Horizon/Objects/Devices/communication.rsi
     heldPrefix: radio-strike
-  - type: SoundOnTrigger
-    sound: /Audio/_StarHorizon/SoundCollection/ERTJuggernautSpeech/ExosuitSpech4.ogg
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: /Audio/_StarHorizon/SoundCollection/ERTJuggernautSpeech/ExosuitSpech4.ogg
+    positional: true
   - type: SpawnAfterInteract
     prototype: BSAStrike
     doAfter: 40

@@ -98,13 +98,6 @@
   id: RadarConsoleCircuitboard
   result: RadarConsoleCircuitboard
 
-# Horizon start
-- type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseSupplyComputerRecipeCategory ]
-  id: AdvancedRadarConsoleCircuitboard
-  result: AdvancedRadarConsoleCircuitboard
-# Horizon end
-
 # Civilian
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseGeneralComputerRecipeCategory ]

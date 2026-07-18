@@ -1,0 +1,14 @@
+ent-SpawnDungeonLootNpcPunksSubstances = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcPunksBooze = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcPunksSmokes = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcPunksOuterClothes = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcPunksArmor = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcPunksFluffItems = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcPunksBlueprints = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }

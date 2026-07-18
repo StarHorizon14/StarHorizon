@@ -18,6 +18,10 @@ seeds-monkanana-name = обезьянан
 seeds-monkanana-display-name = обезьянановые деревья
 seeds-glowshroom-nf-name = светогриб
 seeds-glowshroom-nf-display-name = светогриб
+seeds-pomegranate-name = помегранат
+seeds-pomegranate-display-name = помегранатовое дерево
+seeds-granatapfel-name = гранатапфель
+seeds-granatapfel-display-name = гранатапфельное дерево
 # Should be in seed-component
 botany-seed-jar-name = банка { $seedName } { $seedNoun }
 # Missing upstream definitions

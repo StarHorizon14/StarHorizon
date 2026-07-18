@@ -38,7 +38,7 @@ public sealed partial class ReagentExpeditionGoal : ExpeditionGoal
         IncreaseFromStack(sellEntity, ref count, entMan);
 
         var entStorage = entMan.System<SharedEntityStorageSystem>();
-        SharedEntityStorageComponent? storage = null;
+        EntityStorageComponent? storage = null;
         entStorage.ResolveStorage(sellEntity, ref storage);
 
         if (storage != null)
