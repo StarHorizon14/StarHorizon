@@ -8,7 +8,7 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 72000 # 20 hrs
-  whitelisted: true
+  whitelisted: false
   startingGear: SrGear
   alwaysUseSpawner: true
   icon: "JobIconHeadOfPersonnel"

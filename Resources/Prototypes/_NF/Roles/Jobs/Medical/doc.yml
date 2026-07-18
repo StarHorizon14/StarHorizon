@@ -11,7 +11,7 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 36000 # 10 hrs
-  whitelisted: true
+  whitelisted: false
   startingGear: DocGear
   alwaysUseSpawner: true
   icon: "JobIconDoc"
