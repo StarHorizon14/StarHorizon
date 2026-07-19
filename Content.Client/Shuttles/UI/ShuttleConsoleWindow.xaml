@@ -3,8 +3,8 @@
                       xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
                       xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                       Title="{Loc 'shuttle-console-window-title'}"
-                      SetSize="1000 800"
-                      MinSize="1000 800">
+                      SetSize="1150 800"
+                      MinSize="1150 800">
     <BoxContainer Orientation="Vertical" HorizontalAlignment="Stretch" HorizontalExpand="True">
         <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="0 8 0 2">
             <PanelContainer.PanelOverride>
