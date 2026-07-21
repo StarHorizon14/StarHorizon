@@ -194,8 +194,8 @@ public sealed class AiFaxStatusCommand : IConsoleCommand
         }
 
         shell.WriteLine($"=== AI Fax Status: {uid} ===");
-        shell.WriteLine($"Провайдер: {(comp.Provider != null ? comp.Provider.ToString() : "не настроен")}");
-        shell.WriteLine($"Модель: {comp.Model ?? "не настроена"}");
+        shell.WriteLine($"Провайдер: {comp.Provider}");
+        shell.WriteLine($"Модель: {comp.Model}");
         shell.WriteLine($"Ключевое слово: {comp.TriggerKeyword} (требуется: {comp.RequireTriggerKeyword})");
         shell.WriteLine($"Имя отправителя: {comp.ResponseSenderName}");
         shell.WriteLine($"Макс. длина ответа: {comp.MaxResponseLength}");

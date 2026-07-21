@@ -51,10 +51,6 @@ public sealed class AiFaxSystem : EntitySystem
 
     private void OnPacketReceived(EntityUid uid, AiFaxComponent aiComp, DeviceNetworkPacketEvent args)
     {
-        // Ignore incoming faxes if not configured
-        if (aiComp.Provider == null || aiComp.Model == null)
-            return;
-
         // Check if this is a fax print command
         if (!args.Data.TryGetValue(DeviceNetworkConstants.Command, out string? command) ||
             command != FaxConstants.FaxPrintCommand)
@@ -203,35 +199,35 @@ public sealed class AiFaxSystem : EntitySystem
             {
                 AiFaxProvider.DeepSeek => _deepSeekApi.GenerateContentAsync(
                     aiComp.ApiKey,
-                    aiComp.Model!,
+                    aiComp.Model,
                     fullSystemPrompt,
                     message,
                     history,
                     aiComp.RequestTimeoutSeconds),
                 AiFaxProvider.Groq => _groqApi.GenerateContentAsync(
                     aiComp.ApiKey,
-                    aiComp.Model!,
+                    aiComp.Model,
                     fullSystemPrompt,
                     message,
                     history,
                     aiComp.RequestTimeoutSeconds),
                 AiFaxProvider.OpenRouter => _openRouterApi.GenerateContentAsync(
                     aiComp.ApiKey,
-                    aiComp.Model!,
+                    aiComp.Model,
                     fullSystemPrompt,
                     message,
                     history,
                     aiComp.RequestTimeoutSeconds),
                 AiFaxProvider.Grok => _grokApi.GenerateContentAsync(
                     aiComp.ApiKey,
-                    aiComp.Model!,
+                    aiComp.Model,
                     fullSystemPrompt,
                     message,
                     history,
                     aiComp.RequestTimeoutSeconds),
                 _ => _geminiApi.GenerateContentAsync(
                     aiComp.ApiKey,
-                    aiComp.Model!,
+                    aiComp.Model,
                     fullSystemPrompt,
                     message,
                     history,

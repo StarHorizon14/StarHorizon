@@ -11,10 +11,9 @@ public sealed partial class AiFaxComponent : Component
 {
     /// <summary>
     /// Which AI provider to use for generating responses.
-    /// If null, the AI fax is not configured and incoming faxes are ignored.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public AiFaxProvider? Provider { get; set; }
+    public AiFaxProvider Provider { get; set; } = AiFaxProvider.Gemini;
 
     /// <summary>
     /// API key for authentication with the selected provider.
@@ -43,10 +42,9 @@ public sealed partial class AiFaxComponent : Component
     /// <summary>
     /// Model to use for the selected provider (e.g. gemini-3.1-flash-lite for Gemini,
     /// deepseek-chat/deepseek-reasoner for DeepSeek).
-    /// If null, the AI fax is not configured and incoming faxes are ignored.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public string? Model { get; set; }
+    public string Model { get; set; } = "gemini-3.1-flash-lite";
 
     /// <summary>
     /// Maximum response length (will be truncated to fit fax limits).
