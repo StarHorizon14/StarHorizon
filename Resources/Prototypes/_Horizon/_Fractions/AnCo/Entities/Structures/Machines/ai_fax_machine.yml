@@ -11,10 +11,11 @@
     name: "Автоответчик"
     responsePings: true
   - type: AiFax
+    provider: null
     apiKey: "API KEY"
     #triggerKeyword: "slyunyavykot"
     #requireTriggerKeyword: false
-    model: "gemini-3.1-flash-lite"
+    model: null
     maxResponseLength: 9000
     responseSenderName: "Автоответчик"
     requestTimeoutSeconds: 30
