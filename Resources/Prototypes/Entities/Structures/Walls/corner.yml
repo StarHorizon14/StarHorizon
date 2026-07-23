@@ -58,7 +58,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
-    node: railing
+    node: WoodenRailing
 
 - type: entity
   parent: HorizonBaseRailing
@@ -115,7 +115,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
-    node: railingCorner
+    node: WoodenRailingCorner
 
 - type: entity
   parent: HorizonBaseRailing
@@ -163,7 +163,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
-    node: railingCornerSmall
+    node: WoodenRailingCornerSmall
 
 - type: entity
   parent: HorizonBaseRailing
@@ -229,4 +229,4 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
-    node: railingRound
+    node: WoodenRailingRound
