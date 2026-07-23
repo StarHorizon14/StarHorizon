@@ -751,6 +751,57 @@
   conditions:
   - !type:TileNotBlocked
 
+  - type: construction
+  id: WoodenRailing
+  graph: WoodenRailing
+  startNode: start
+  targetNode: WoodenRailing
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: WoodenRailingCorner
+  name: WoodenRailingCorner
+  graph: Railing
+  startNode: start
+  targetNode: WoodenRailingCorner
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: WoodenRailingCornerSmall
+  name: WoodenRailingCornerSmall
+  graph: Railing
+  startNode: start
+  targetNode: WoodenRailingCornerSmall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: WoodenRailingRound
+  name: WoodenRailingRound
+  graph: Railing
+  startNode: start
+  targetNode: WoodenRailingRound
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
 # Chain link fencing
 - type: construction
   id: FenceMetal
