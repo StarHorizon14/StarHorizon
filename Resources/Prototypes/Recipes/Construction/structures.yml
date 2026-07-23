@@ -766,7 +766,7 @@
 - type: construction
   id: WoodenRailingCorner
   name: WoodenRailingCorner
-  graph: Railing
+  graph: WoodenRailing
   startNode: start
   targetNode: WoodenRailingCorner
   category: construction-category-structures
@@ -779,7 +779,7 @@
 - type: construction
   id: WoodenRailingCornerSmall
   name: WoodenRailingCornerSmall
-  graph: Railing
+  graph: WoodenRailing
   startNode: start
   targetNode: WoodenRailingCornerSmall
   category: construction-category-structures
@@ -792,7 +792,7 @@
 - type: construction
   id: WoodenRailingRound
   name: WoodenRailingRound
-  graph: Railing
+  graph: WoodenRailing
   startNode: start
   targetNode: WoodenRailingRound
   category: construction-category-structures
