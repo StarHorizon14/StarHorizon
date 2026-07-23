@@ -47,3 +47,5 @@ faction-nakamura-desc =
     Компания занимающая одну из важнейших позиций на рынке.
     Производят солнечные панели, детали ДАМа, генератор сингулярности и сдерживающие щиты для неё.
 humanoid-profile-editor-factions-tab = Фракции
+faction-inteq-name = InteQ
+faction-inteq-desc = Contracts… and a little clandestine service, right?
