@@ -751,7 +751,7 @@
   conditions:
   - !type:TileNotBlocked
 
-  - type: construction
+- type: construction
   id: WoodenRailing
   graph: WoodenRailing
   startNode: start
