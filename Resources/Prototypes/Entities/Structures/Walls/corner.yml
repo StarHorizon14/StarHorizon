@@ -2,8 +2,8 @@
   parent: BaseRailing
   id: HorizonBaseRailing
   abstract: true
-  name: WoodenRailing
-  description: Basic wooden railing meant to protect idiots like you from falling.
+  name: деревянные перила
+  description: Простые деревянные перила, предназначенные для защиты таких идиотов как вы от падения.
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -47,17 +47,18 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          collection: MetalBreak
+          collection: WoodDestroy
           params:
             volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
-          PartRodMetal1:
+          MaterialWoodPlank1:
             min: 0
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
+    graph: WoodenRailing
     node: WoodenRailing
 
 - type: entity
@@ -104,17 +105,18 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          collection: MetalBreak
+          collection: WoodDestroy
           params:
             volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
-          PartRodMetal1:
+          MaterialWoodPlank1:
             min: 0
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
+    graph: WoodenRailing
     node: WoodenRailingCorner
 
 - type: entity
@@ -152,17 +154,18 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          collection: MetalBreak
+          collection: WoodDestroy
           params:
             volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
-          PartRodMetal1:
+          MaterialWoodPlank1:
             min: 0
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
+    graph: WoodenRailing
     node: WoodenRailingCornerSmall
 
 - type: entity
@@ -218,15 +221,16 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          collection: MetalBreak
+          collection: WoodDestroy
           params:
             volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
-          PartRodMetal1:
+          MaterialWoodPlank1:
             min: 0
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
+    graph: WoodenRailing
     node: WoodenRailingRound

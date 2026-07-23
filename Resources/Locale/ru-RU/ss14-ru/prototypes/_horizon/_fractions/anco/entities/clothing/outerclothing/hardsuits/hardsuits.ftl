@@ -19,3 +19,6 @@ ent-ClothingOuterHardsuitDusk = Сумрак
 ent-ClothingOuterHardsuitKnightCat = Котовый скафандр Рыцаря
     .suffix = StarHorizon, AnCo, HardSuit, Cat
     .desc = { ent-ClothingOuterHardsuitKnight.desc }
+ent-ClothingOuterHardsuitClifs = Скала
+    .desc = Скафандр прендазначенный для работы в условиях высокого давления и температур.
+    .suffix = StarHorizon, AnCo, HardSuit
