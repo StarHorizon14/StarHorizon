@@ -114,7 +114,7 @@
   - NFAmmunitionBoxShellShotgunUranium
 # Horizon Attachements end
   - NFClothingBackpackHarmpack # Frontier: use NF prefix
-  - EnergyDomeDirectionalTurtle # cats-shield energy_barrier
+  # - EnergyDomeDirectionalTurtle # cats-shield energy_barrier
 
 - type: latheRecipePack
   id: SecurityBoards

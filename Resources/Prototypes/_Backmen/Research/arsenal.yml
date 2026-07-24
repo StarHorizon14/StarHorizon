@@ -1,14 +1,14 @@
-- type: technology
-  id: EnergyBarriers
-  name: research-technology-energy_barriers
-  entityIcon: EnergyDomeDirectionalTurtle
-  discipline: NFArsenalNfsd
-  tier: 2
-  cost: 6000
-  recipeUnlocks:
-  - EnergyDomeDirectionalTurtle
-  technologyPrerequisites:
-  - NFBulkRifleAmmo
-  position: 5, 68 # Horizon
-  researchTargets:
-  - TechnologyDiscArsenalDome
+# - type: technology
+#   id: EnergyBarriers
+#   name: research-technology-energy_barriers
+#   entityIcon: EnergyDomeDirectionalTurtle
+#   discipline: NFArsenalNfsd
+#   tier: 2
+#   cost: 6000
+#   recipeUnlocks:
+#   - EnergyDomeDirectionalTurtle
+#   technologyPrerequisites:
+#   - NFBulkRifleAmmo
+#   position: 5, 68 # Horizon
+#   researchTargets:
+#   - TechnologyDiscArsenalDome
