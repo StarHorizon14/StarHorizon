@@ -6,6 +6,7 @@
   price: 50000
   category: Small
   group: Syndicate
+  access: SyndicateAgent
   shuttlePath: /Maps/_NF/Shuttles/Syndicate/hunter.yml
   guidebookPage: Null
   class:
