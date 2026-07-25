@@ -9,8 +9,6 @@
     factions:
       - SimpleHostile
   - type: HTN
-    rootTask:
-       task: InfernoSimpleMeleeHostileCompound
     blackboard:
       NavClimb: !type:Bool
         true
@@ -95,9 +93,6 @@
   suffix: Inferno
   categories: [ HideSpawnMenu ]
   components:
-  - type: HTN
-    rootTask:
-       task: InfernoSimpleRangedHostileCompound
   - type: CombatMode
   - type: Gun
     fireRate: 4
@@ -112,8 +107,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
-    rootTask:
-       task: InfernoSimpleRangedHostileCompound
     blackboard:
       NavSmash: !type:Bool
         true
@@ -127,8 +120,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
-    rootTask:
-       task: InfernoSimpleRangedHostileCompound
     blackboard:
       SoundTargetInLOS: !type:SoundPathSpecifier
         path: /Audio/_Horizon/_Fractions/AnCo/pidoras.ogg
@@ -138,20 +129,12 @@
   id: AnCoMechBegemothInferno
   suffix: Inferno
   categories: [ HideSpawnMenu ]
-  components:
-  - type: HTN
-    rootTask:
-       task: InfernoSimpleRangedHostileCompound
 
 - type: entity
   parent: [AnCoMechMushDungeon, BaseAnCoIfterno]
   id: AnCoMechMushInferno
   suffix: Inferno
   categories: [ HideSpawnMenu ]
-  components:
-  - type: HTN
-    rootTask:
-       task: InfernoSimpleRangedHostileCompound
 
 - type: entity
   parent: [AnCoEvilLarry, BaseAnCoIfterno]
@@ -159,8 +142,6 @@
   suffix: Inferno
   components:
   - type: HTN
-    rootTask:
-       task: InfernoSimpleRangedHostileCompound
     blackboard:
       NavClimb: !type:Bool
         true
