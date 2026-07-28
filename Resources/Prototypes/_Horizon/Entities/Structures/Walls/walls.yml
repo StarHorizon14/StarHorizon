@@ -204,3 +204,66 @@
     - state: rock_torium
       sprite: Structures/Walls/rock.rsi
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  parent: BaseWall
+  id: WallShuttleIndestructible
+  name: стена шаттла
+  description: Удерживает воздух внутри, а ассистентов снаружи.
+  suffix: indestructible
+  components:
+    - type: Sprite
+      sprite: Structures/Walls/shuttle.rsi
+    - type: Icon
+      sprite: Structures/Walls/shuttle.rsi
+      state: full
+    - type: IconSmooth
+      key: walls
+      base: state
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          mask:
+          - FullTileMask
+          layer:
+          - WallLayer
+          density: 4000
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: StructuralMetallicStrong
+    - type: RadiationBlocker
+      resistance: 5
+
+- type: entity
+  parent: BaseWall
+  id: WallShuttleInteriorIndestructible
+  name: стена шаттла
+  description: Удерживает воздух внутри, а ассистентов снаружи.
+  suffix: indestructible, Interior
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Walls/shuttleinterior.rsi
+    - type: Icon
+      sprite: _NF/Structures/Walls/shuttleinterior.rsi
+    - type: IconSmooth
+      key: walls
+      base: state
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          mask:
+          - FullTileMask
+          layer:
+          - WallLayer
+          density: 4000
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: StructuralMetallicStrong
+    - type: RadiationBlocker
+      resistance: 5

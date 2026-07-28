@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseWall
+  id: PocketAirlockShuttle
+  name: Шлюз
+  components:
+  - type: Sprite
+    sprite: _Horizon/Structures/Doors/pocket-shuttle.rsi
+    snapCardinals: false
+    layers:
+    - state: closed
+  - type: Icon
+    sprite: _Horizon/Structures/Doors/pocket-shuttle.rsi
+    snapCardinals: false
