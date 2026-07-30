@@ -41,7 +41,7 @@
 - type: entity
   parent: WallDiagonalBase
   id: AnCoKazmieWallDiagonalIndestructible
-  name: казмиевая стена
+  name: дюразмиевая стена
   suffix: StarHorizon, AnCo, Indestructible
   description: Держите секреты внутри, сотрудников снаружи
   components:
