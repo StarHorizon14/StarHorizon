@@ -310,6 +310,13 @@
             - material: ArdonSheetStack
               amount: 1
               doAfter: 2
+        - to: closetsmall
+          steps:
+            - material: KazmieSheetStack
+              amount: 5
+            - material: ArdonSheetStack
+              amount: 1
+              doAfter: 2
         - to: closet
           steps:
             - material: KazmieSheetStack
@@ -319,6 +326,9 @@
       entity: ClosetBaseAnCo
       edges:
         - to: start
+          conditions:
+          - !type:StorageWelded
+            welded: false
           completed:
             - !type:GivePrototype
               prototype: KazmieSheet1
@@ -327,10 +337,33 @@
           steps:
             - tool: Screwing
               doAfter: 5
+    - node: closetsmall
+      entity: ClosetSmallAnCo
+      edges:
+        - to: start
+          conditions:
+          - !type:StorageWelded
+            welded: false
+          completed:
+            - !type:GivePrototype
+              prototype: KazmieSheet1
+              amount: 5
+            - !type:GivePrototype
+              prototype: ArdonSheet1
+              amount: 1
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Screwing
+              doAfter: 5
     - node: closetwall
       entity: AnCoClosetWall
       edges:
         - to: start
+          conditions:
+          - !type:StorageWelded
+            welded: false
+          - !type:Locked
+            locked: false
           completed:
             - !type:GivePrototype
               prototype: KazmieSheet1
@@ -361,6 +394,18 @@
   graph: ClosetAnCo
   startNode: start
   targetNode: closet
+  category: construction-category-storage
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ClosetSmallAnCo
+  graph: ClosetAnCo
+  startNode: start
+  targetNode: closetsmall
   category: construction-category-storage
   objectType: Structure
   placementMode: SnapgridCenter

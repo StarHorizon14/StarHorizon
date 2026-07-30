@@ -166,3 +166,36 @@
   - type: Construction
     graph: ClosetAnCo
     node: closetwall
+
+- type: entity
+  id: ClosetSmallAnCo
+  parent: ClosetBaseAnCo
+  name: шкаф АнКо
+  description: Стандартное хранилище корпорации АнКо
+  suffix: StarHorizon, AnCo, Structure
+  components:
+  - type: Icon
+    sprite: _Horizon/_Fractions/AnCo/Structures/Storage/Closets/closetsmall.rsi
+    state: icon
+  - type: Sprite
+    noRot: true
+    sprite: _Horizon/_Fractions/AnCo/Structures/Storage/Closets/closetsmall.rsi
+    layers:
+    - state: ancocloset
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: ancocloset_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: AccessReader
+  - type: Lock
+  - type: Appearance
+  - type: LockVisuals
+  - type: Construction
+    graph: ClosetAnCo
+    node: closetsmall
+

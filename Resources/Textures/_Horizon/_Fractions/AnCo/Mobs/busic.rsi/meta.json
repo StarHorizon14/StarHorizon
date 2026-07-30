@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "license": "CLA with hosting restrictions",
+  "copyright": "Sprited by Xigovir DS:623559319543349268",
+  "size": {
+    "x": 64,
+    "y": 64
+   },
+   "states" : [
+    {
+      "name": "base",
+      "directions": 4
+    },
+    {
+      "name": "close",
+      "directions": 4
+    },
+    {
+      "name": "open",
+      "directions": 4
+    },
+    {
+      "name": "welded",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,571 @@
+- type: entity
+  id: BaseBusik
+  name: 'ГЛТ "Корова"'
+  description: Грузовой Летательный Транспорт корпорации AnroxComputers. Обычно служащий для поимки клаустрафобов для последующего подписания контракта.
+  components:
+  - type: Transform
+    noRot: false
+  - type: Clickable
+  - type: HandheldGPS
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.7,-0.7,0.7,0.7"
+        density: 100
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+        hard: true
+  - type: Pullable
+  - type: RadarBlip
+    scale: 4
+    shape: Square
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    radarColor: "#F05A5AFF"
+    highlightedRadarColor: "#FF4500FF"
+  - type: RadiationBlockingContainer
+    radResistance: 4
+  - type: Reflect
+    reflects:
+    - Energy
+    reflectProb: 0.2
+    spread: 90
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
+    netsync: false
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 8
+    baseWalkSpeed: 4
+    baseAcceleration: 2
+    baseFriction: 0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 700
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 800 # Пластитановая стена
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+          spawn:
+            KazmieSheet:
+              min: 1
+              max: 10
+            ArdonSheet:
+              min: 1
+              max: 5
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 30
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Mobs/busic.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: close
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: base
+    stateDoorOpen: open
+    stateDoorClosed: close
+  - type: RadarConsole
+    maxRange: 256
+    maxIffRange: null
+    followEntity: true
+    hideCoords: false
+  - type: CrewMonitoringConsole
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+      enum.CrewMonitoringUIKey.Key:
+        toggleAction: ActionAGhostShowCrewMonitoring
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+  - type: InputMover
+  # - type: CanMoveInAir
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: InteractionOutline
+  - type: NoSlip
+  - type: ComplexInteraction
+  - type: Examiner
+  - type: Puller
+    needsHands: false
+  - type: DamageOnHighSpeedImpact
+    damageCooldown: 2
+    minimumSpeed: 8
+    damage:
+      types:
+        Blunt: 50
+    soundHit:
+      collection: MetalThud
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 30
+  - type: EntityStorage
+    isCollidableWhenOpen: false
+    openOnMove: false
+    airtight: true
+    capacity: 6
+  - type: Tag
+    tags:
+      - DoorBumpOpener
+
+- type: entity
+  id: RemoteBusik
+  parent: BaseBusik
+  name: 'ГЛТ "Корова"'
+  suffix: AnroxComputer, встроеная удалёнка
+  description: Грузовой Летательный Транспорт корпорации AnroxComputers. Обычно служащий для поимки клаустрафобов для последующего подписания контракта.
+  components:
+  - type: EntityStorage
+    isCollidableWhenOpen: false
+    openOnMove: false
+    airtight: true
+    capacity: 8
+  - type: JumpAbility
+    jumpDistance: 150
+    jumpThrowSpeed: 30
+    jumpSound: /Audio/Effects/stealthoff.ogg
+    canCollide: true
+  - type: ActionGrant
+    actions:
+      # - ActionHorn
+      # - ActionActivateEmpImplant
+      # - ActionGravityJump
+      # - ActionToggleJetpack
+      - ActionEMPStandartExplodesAnCo
+      - ActionSmoke
+  - type: CanBeTakenUnderControl
+  - type: RemoteControlMonitor
+    isPowered: true
+
+- type: entity
+  id: StorageBusik
+  parent: BaseBusik
+  name: 'ГЛТ "Корова"'
+  suffix: AnroxComputer, встроеное хранилище
+  description: Грузовой Летательный Транспорт корпорации AnroxComputers. Обычно служащий для поимки клаустрафобов для последующего подписания контракта.
+  components:
+  - type: EntityStorage
+    isCollidableWhenOpen: false
+    openOnMove: false
+    airtight: true
+    capacity: 6
+  - type: JumpAbility
+    jumpDistance: 150
+    jumpThrowSpeed: 30
+    canCollide: true
+  - type: ActionGrant
+    actions:
+      # - ActionGravityJump
+      - ActionEMPStandartExplodesAnCo
+      - ActionSmoke
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+      Shuttle: !type:ContainerSlot
+      Shuttle2: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      Shuttle:
+        priority: 1
+        insertVerbText: Прикрепить к креплению челнока
+        ejectVerbText: Открепить с крепления шаттла
+        name: крепление
+        swap: false
+        insertOnInteract: false
+        whitelist:
+          components:
+          - Item
+      Shuttle2:
+        priority: 2
+        insertVerbText: Прикрепить к креплению челнока
+        ejectVerbText: Открепить с крепления шаттла
+        name: Крепление
+        swap: false
+        insertOnInteract: false
+        whitelist:
+          components:
+          - Item
+  - type: CanBeTakenUnderControl
+  - type: Storage
+    clickInsert: false
+    openOnActivate: false
+    grid:
+    - 0,0,38,25
+    maxItemSize: Ginormous
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+
+- type: entity
+  id: CardboardBusik
+  parent: BaseBusik
+  name: 'ГЛТ "Корова"'
+  suffix: AnroxComputer, картоная коробка
+  description: Грузовой Летательный Транспорт корпорации AnroxComputers. Обычно служащий для поимки клаустрафобов для последующего подписания контракта.
+  components:
+  - type: CardboardBox
+    effectSound: /Audio/Effects/chime.ogg
+    quiet: true
+  - type: EntityStorage
+    isCollidableWhenOpen: false
+    openOnMove: false
+    airtight: true
+    capacity: 8
+
+- type: entity
+  id: StorageCanisterBusik
+  parent: StorageBusik
+  name: 'ГЛТ "Корова"'
+  suffix: AnroxComputer, хранилище, кислород
+  description: Грузовой Летательный Транспорт корпорации AnroxComputers. Обычно служащий для поимки клаустрафобов для последующего подписания контракта.
+  components:
+  - type: EntityStorage
+    isCollidableWhenOpen: false
+    openOnMove: false
+    airtight: true
+    capacity: 4
+  - type: ActivatableUI
+    key: enum.GasCanisterUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.GasCanisterUiKey.Key:
+        type: GasCanisterBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      tank_slot: !type:ContainerSlot
+      entity_storage: !type:Container
+      Shuttle: !type:ContainerSlot
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+      moles:
+      - 2769.36 # oxygen
+      temperature: 293.15
+    gasTankSlot:
+      name: comp-gas-canister-slot-name-gas-tank
+      ejectOnBreak: true
+      whitelist:
+        components:
+          - GasTank
+  - type: NodeContainer
+    nodes:
+      port:
+        !type:PortablePipeNode
+        nodeGroupID: Pipe
+        rotationsEnabled: false
+        volume: 1
+  - type: AtmosDevice
+    requireAnchored: false
+    joinSystem: true
+  - type: ItemSlots
+    slots:
+      Shuttle:
+        priority: 1
+        insertVerbText: Прикрепить к креплению челнока
+        ejectVerbText: Открепить с крепления шаттла
+        name: крепление
+        swap: false
+        insertOnInteract: false
+        whitelist:
+          components:
+          - Item
+
+- type: entity
+  id: StorageCanisterV2Busik
+  parent: StorageBusik
+  name: 'ГЛТ "Корова"'
+  suffix: AnroxComputer, хранилище, кислород V2
+  description: Грузовой Летательный Транспорт корпорации AnroxComputers. Обычно служащий для поимки клаустрафобов для последующего подписания контракта.
+  components:
+  - type: EntityStorage
+    isCollidableWhenOpen: false
+    openOnMove: false
+    airtight: true
+    capacity: 4
+  - type: ContainerFill
+    containers:
+      storagebase:
+      - ItemWizardGasCanisterBottomlessOxygen
+
+- type: entity
+  id: StorageCanisterV2BusikLock
+  parent: StorageCanisterV2Busik
+  name: 'ГЛТ "Корова"'
+  suffix: AnroxComputer, хранилище, кислород V2, закрыт
+  description: Грузовой Летательный Транспорт корпорации AnroxComputers. Обычно служащий для поимки клаустрафобов для последующего подписания контракта.
+  components:
+  - type: Lock
+    locked: true
+  - type: LockedStorage
+  - type: AccessReader
+    access: [[ "AccessAnCoWelcome" ]]
+
+- type: entity
+  id: MechBusik
+  parent: StorageCanisterV2Busik
+  name: 'ГЛТ "Корова"'
+  suffix: AnroxComputer, кислород V2, хранилище, мех
+  description: Грузовой Летательный Транспорт корпорации AnroxComputers. Обычно служащий для поимки клаустрафобов для последующего подписания контракта.
+  components:
+  - type: EntityStorage
+    isCollidableWhenOpen: false
+    openOnMove: false
+    airtight: true
+    capacity: 3
+  - type: CanBeTakenUnderControl
+    remotePilot: MobRemotePilot
+  - type: Mech
+    airtight: true
+    maxEquipmentAmount: 2
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.6
+        Radiation: 0
+        Caustic: 0.9
+        Structural: 0.5
+    equipmentWhitelist:
+      tags:
+      - MechEquipmentGeneral
+      - MechEquipmentClown
+      - MechEquipmentMed
+      - MechEquipmentSecCC
+      - MechEquipmentSecProt
+      - MechEquipmentSecMissile
+      - MechEquipmentSecLKinetic
+      - MechEquipmentSecHKinetic
+      - MechEquipmentSecLLazer
+      - MechEquipmentSecHLazer
+      - MechEquipmentSecExperim
+      - MechEquipmentMining
+    mechToPilotDamageMultiplier: 0.2
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MechAir
+  - type: AirFilter
+    gases:
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - WaterVapor
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+    overflowGases:
+    - Nitrogen
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - WaterVapor
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+  - type: AirIntake
+  - type: AtmosDevice
+    requireAnchored: false
+    joinSystem: true
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+      enum.MechUiKey.Key:
+        type: MechBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+      Shuttle: !type:ContainerSlot
+      Shuttle2: !type:ContainerSlot
+      mech-pilot-slot: !type:ContainerSlot
+      mech-equipment-container: !type:Container
+      mech-battery-slot: !type:ContainerSlot
+      storagebase: !type:Container
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+      storagebase:
+      - ItemWizardGasCanisterBottomlessOxygen
+
+
+- type: entity
+  id: VehicleKeyAnCo
+  parent: BaseItem
+  suffix: StarHorizon, AnCo
+  name: 'ключ транспорта "Корова" AnCo'
+  description: Имея при себе эту штуку, вы либо везунчик либо самоубийца
+  components:
+  - type: Item
+    size: Tiny
+    sprite: _Horizon/_Fractions/AnCo/Objects/Devices/encryptionkeys.rsi
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Devices/encryptionkeys.rsi
+    state: crypto-base
+  - type: Access
+    tags:
+    - AccessAnCoWelcome
+
+# - type: entity
+#   parent: ClothingHandsBase
+#   id: ClothingHandsGlovesPowergloveOn
+#   name: силовые перчатки
+#   suffix: Включеные
+#   description: Жаль что они выключены... Погодите, они же включены!
+#   components:
+#   - type: Sprite
+#     sprite: Clothing/Hands/Gloves/powerglove.rsi
+#   - type: Clothing
+#     sprite: Clothing/Hands/Gloves/powerglove.rsi
+#   - type: Fiber
+#     fiberMaterial: fibers-nanomachines
+#   - type: FingerprintMask
+#   - type: AnCoLiftStrength
+#     liftStrength: 3
+
+- type: entity
+  parent: [ GasCanister, BaseC3WizardContraband ]
+  id: ItemWizardGasCanisterBottomlessOxygen
+  name: Бедонная канистра
+  suffix: Полная, кислород, item
+  description: 'Баллон, который может вмещать больше газа, чем предполагает его размер. С любовью изготовлен для коммерческого использования брендом "Бездонный".'
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/Wizard/canister.rsi
+    layers:
+      - state: oxygen
+        shader: unshaded
+      - state: canister
+  - type: GasCanister
+    gasMixture:
+      volume: 15000 # 1500[base canister volume] * 10
+      moles: # List of gasses for easy reference
+        - 18717.1051 # oxygen
+        - 0 # nitrogen
+        - 0 # CO2
+        - 0 # Plasma
+        - 0 # Tritium
+        - 0 # Water vapor
+        - 0 # Ammonia
+        - 0 # N2O
+        - 0 # Frezon
+      temperature: 293.15
+  - type: StaticPrice
+    price: 1250
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,12,12
+  - type: AnCoWeaponWeight
+    weight: 3
+
+- type: entity
+  parent: [BaseItem, RecyclableItemDeviceSmall]
+  id: HandheldRemoteControllerMonitor
+  name: монитор удаленного управления
+  description: Позволяет установить связь с подключенным существом.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/tablets.rsi
+    layers:
+      - state: tablet
+      - sprite: _NF/Objects/Devices/tablets.rsi
+        state: cameras
+        shader: unshaded
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+  - type: RemoteControlMonitor
+    isPowered: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionEMPStandartExplodesAnCo
+  name: Ракета
+  description: Выпускает взрывную ЕМП ракету по клику
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    icon:
+      sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Projectiles/proj.rsi
+      state: Rocket
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: EMPStandartExplodesAnCo
