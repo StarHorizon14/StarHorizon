@@ -1,11 +1,14 @@
 <Document>
   # СЕРВИСНЫЙ ШАТТЛ КЛАССА BOOKWORM
   <Box>
-  <GuideEntityEmbed Entity="ToyFigurineLibrarian"/>
-  <GuideEntityEmbed Entity="Bookshelf"/>
-  <GuideEntityEmbed Entity="BookBase"/>
-  <GuideEntityEmbed Entity="MagicDiceBag"/>
-  <GuideEntityEmbed Entity="LuxuryPen"/>
+    <GuideEntityEmbed Entity="ToyFigurineLibrarian"/>
+    <GuideEntityEmbed Entity="Bookshelf"/>
+    <GuideEntityEmbed Entity="BookBase"/>
+    <GuideEntityEmbed Entity="MagicDiceBag"/>
+    <GuideEntityEmbed Entity="LuxuryPen"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ShuttleMapBookworm" Caption=""/>
   </Box>
   [color=#a4885c]Размер шаттла:[/color] Средний
 

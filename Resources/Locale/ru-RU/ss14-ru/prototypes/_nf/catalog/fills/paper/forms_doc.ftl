@@ -1,0 +1,9 @@
+ent-BoxFolderDoc = папка форм менеджера медицинских операций
+    .desc = Папка, заполненная шаблонами документов для менеджера медицинских операций.
+    .suffix = Формы
+ent-PaperWrittenDoCNarcoticRestrictedChemLicense = лицензия на наркотические и химические вещества ограниченного доступа
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenDoCResponderContract = контракт врача-специалиста
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenDoCStaffContract = контракт медицинского персонала
+    .desc = { ent-Paper.desc }

@@ -32,6 +32,9 @@
             "name": "icon-cables"
         },
         {
+            "name": "icon-inflatable"
+        },
+        {
             "name": "icon-chemist"
         },
         {
@@ -39,6 +42,9 @@
         },
         {
             "name": "icon-clown"
+        },
+        {
+            "name": "icon-clown-adv"
         },
         {
             "name": "icon-construction"
@@ -117,6 +123,9 @@
         },
         {
             "name": "icon-xenoborg-cloak"
+        },
+        {
+            "name": "icon-xenoborg-cloak2"
         },
         {
             "name": "icon-xenoborg-fire-extinguisher"
@@ -235,4 +244,5 @@
             "directions": 4
         }
     ]
+
 }

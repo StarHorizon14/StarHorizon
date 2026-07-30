@@ -1,0 +1,11 @@
+ent-WeaponEnergyTurretStationControlPanelElectronicsBase = панель управления охранной турелью (машинная плата)
+    .desc = Машинная плата для панели управления охранной турелью.
+ent-WeaponEnergyTurretSecurityControlPanelElectronics = { ent-WeaponEnergyTurretStationControlPanelElectronicsBase }
+    .suffix = Безопасность
+    .desc = { ent-WeaponEnergyTurretStationControlPanelElectronicsBase.desc }
+ent-WeaponEnergyTurretAIControlPanelElectronics = { ent-WeaponEnergyTurretStationControlPanelElectronicsBase }
+    .suffix = ИИ, Киборг
+    .desc = { ent-WeaponEnergyTurretStationControlPanelElectronicsBase.desc }
+ent-WeaponEnergyTurretCommandControlPanelElectronics = { ent-WeaponEnergyTurretStationControlPanelElectronicsBase }
+    .suffix = Командование
+    .desc = { ent-WeaponEnergyTurretStationControlPanelElectronicsBase.desc }

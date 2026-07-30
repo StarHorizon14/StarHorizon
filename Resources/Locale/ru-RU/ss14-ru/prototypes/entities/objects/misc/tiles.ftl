@@ -221,6 +221,8 @@ ent-FloorTileItemXenoSteelCorner = ксено стальная плитка с �
     .desc = { ent-FloorTileItemBase.desc }
 ent-FloorTileItemXenoMaint = ксено технический пол
     .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemXenoborg = плитка ксеноборгов
+    .desc = { ent-FloorTileItemBase.desc }
 ent-FloorTileItemDarkSquiggly = тёмная волнистая плитка
     .desc = { ent-FloorTileItemDark.desc }
 

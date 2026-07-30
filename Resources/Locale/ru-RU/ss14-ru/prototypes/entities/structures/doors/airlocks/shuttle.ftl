@@ -13,3 +13,6 @@ ent-AirlockGlassShuttleSyndicate = стыковочный шлюз
 ent-AirlockShuttleSyndicate = стыковочный шлюз
     .desc = Необходим для соединения двух космических шаттлов вместе.
     .suffix = Стыковочный
+ent-AirlockShuttleXenoborg = внешний шлюз
+    .desc = Необходим для соединения двух космических шаттлов вместе.
+    .suffix = Внешний, Стыковочный

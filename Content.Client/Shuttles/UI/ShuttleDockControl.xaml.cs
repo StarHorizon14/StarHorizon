@@ -40,6 +40,8 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
     private readonly HashSet<DockingPortState> _drawnDocks = new();
     private readonly Dictionary<DockingPortState, Button> _dockButtons = new();
 
+    private readonly Color _fallbackHighlightedColor = Color.Magenta;
+
     /// <summary>
     /// Store buttons for every other dock
     /// </summary>
@@ -62,7 +64,8 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         _dockSystem = EntManager.System<DockingSystem>();
         _shuttles = EntManager.System<SharedShuttleSystem>();
         _xformSystem = EntManager.System<SharedTransformSystem>();
-        MinSize = new Vector2(SizeFull, SizeFull);
+        // let the map range grow/shrink with the control size instead of scaling up to match the range
+        RescaleMap = false;
     }
 
     public void SetViewedDock(DockingPortState? dockState)
@@ -112,10 +115,14 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         var selectedDockToOurGrid = Matrix3Helpers.CreateTransform(_coordinates.Value.Position, Angle.Zero);
         var selectedDockToWorld = Matrix3x2.Multiply(selectedDockToOurGrid, ourGridToWorld);
 
-        Box2 viewBoundsWorld = Matrix3Helpers.TransformBox(selectedDockToWorld, new Box2(-WorldRangeVector, WorldRangeVector));
+        // Frontier: use ScaledWorldRange since we allow the world range to change with RescaleMap
+        Box2 viewBoundsWorld = Matrix3Helpers.TransformBox(selectedDockToWorld, new Box2(-ScaledWorldRange, ScaledWorldRange));
+        // End Frontier
 
         Matrix3x2.Invert(selectedDockToWorld, out var worldToSelectedDock);
-        var selectedDockToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
+        // Frontier: MidpointVector<Midpoint
+        var selectedDockToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPoint);
+        // End Frontier
 
         // Draw nearby grids
         var controlBounds = PixelSizeBox;
@@ -123,7 +130,9 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         _mapManager.FindGridsIntersecting(gridXform.MapID, viewBoundsWorld, ref _grids);
 
         // offset the dotted-line position to the bounds.
-        Vector2? viewedDockPos = _viewedState != null ? MidPointVector : null;
+        // Frontier: MidpointVector<Midpoint
+        Vector2? viewedDockPos = _viewedState != null ? MidPoint : null;
+        // End Frontier
 
         if (viewedDockPos != null)
         {
@@ -190,6 +199,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                 };
 
                 var collisionCenter = verts[0] + verts[1] + verts[3] + verts[5];
+                Color otherDockColor = Color.ToSrgb(dock.Color);
 
                 var otherDockConnection = Color.ToSrgb(Color.Pink);
                 handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, otherDockConnection.WithAlpha(0.2f));
@@ -213,17 +223,13 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                     dockBL
                 };
 
-                Color otherDockColor;
-
                 if (HighlightedDock == dock.Entity)
                 {
-                    //otherDockColor = Color.ToSrgb(Color.Magenta); // Frontier
-                    otherDockColor = Color.ToSrgb(dock.HighlightedRadarColor); // Frontier
+                    otherDockColor = Color.ToSrgb(dock.HighlightedColor);
                 }
                 else
                 {
-                    // otherDockColor = Color.ToSrgb(Color.Purple); // Frontier
-                    otherDockColor = Color.ToSrgb(dock.RadarColor); // Frontier
+                    otherDockColor = Color.ToSrgb(dock.Color);
                 }
 
                 /*
@@ -325,7 +331,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
             ScalePosition(Vector2.Transform(new Vector2(-0.5f, 0.5f), rotation)),
             ScalePosition(Vector2.Transform(new Vector2(0.5f, -0.5f), rotation)));
 
-        var dockColor = _viewedState?.HighlightedRadarColor ?? Color.Magenta; // Frontier - use ViewedState
+        var dockColor = _viewedState?.HighlightedColor ?? _fallbackHighlightedColor;
         var connectionColor = Color.Pink;
 
         handle.DrawRect(ourDockConnection, connectionColor.WithAlpha(0.2f));

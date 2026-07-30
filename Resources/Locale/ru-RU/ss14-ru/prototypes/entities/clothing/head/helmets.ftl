@@ -77,5 +77,7 @@ ent-ClothingHeadHelmetJustice = шлем правосудия
 ent-ClothingHeadHelmetJusticeEmpty = { ent-ClothingHeadHelmetJustice }
     .suffix = Пустой
     .desc = { ent-ClothingHeadHelmetJustice.desc }
+ent-CardHelmet = картонный шлем
+    .desc = Средневековый шлем, сделанный из картона.
 ent-ActionToggleJusticeHelm = Переключить шлем правосудия
     .desc = Включает и выключает шлем правосудия.

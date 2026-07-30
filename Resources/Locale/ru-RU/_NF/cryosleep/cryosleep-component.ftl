@@ -20,6 +20,7 @@ accept-cryo-window-prompt-two-items-warning = У вас есть { $item1 } в �
 accept-cryo-window-prompt-many-items-warning = У вас есть { $item1 } в вашем { $storage1 }, { $item2 } в вашем { $storage2 }, и ещё { $num-extra-items } важных предметов в других местах!
 accept-cryo-window-prompt-uplink-warning = У вас есть { $uplink } в вашем { $storage } с { $amount } { $currency }!
 accept-cryo-window-prompt-unable-to-scan = Ваш инвентарь не удалось проверить на наличие важных предметов из-за ошибки.
+accept-cryo-window-prompt-hand-slot-name = рука
 cryo-wakeup-window-title = Проснуться
 cryo-wakeup-window-accept-button = Принять
 cryo-wakeup-window-deny-button = Отменить

@@ -8,13 +8,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
-  - type: ProjectileHitEffect
-    gunshots: 4
-    push: true
-    effectDuration: 1
-    effectCooldown: 6
-    bulletId: shotgunBullet
+        Piercing: 5
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -25,7 +19,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 11
+        Piercing: 6.25
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -36,8 +30,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 5
-        Heat: 5
+        Blunt: 3
+        Heat: 2
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -59,8 +53,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 5
-        Radiation: 5
+        Piercing: 4.4
+        Radiation: 4.4
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -79,8 +73,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 5
-        Slash: 5
+        Piercing: 2.5
+        Slash: 2.5
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -91,7 +85,7 @@
   - type: Projectile
     damage:
       types:
-        Slash: 10
+        Slash: 4.4
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -102,8 +96,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8
-        Structural: 15
+        Piercing: 5
+        Structural: 6.25
 
 #region PelletsSpread
 - type: entity
@@ -188,8 +182,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 30
-        Blunt: 10
+        Piercing: 25
+        Blunt: 6.25
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -200,7 +194,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 10
+        Blunt: 12.5
   - type: StaminaDamageOnCollide
     damage: 30 # 4 hits to stun
 

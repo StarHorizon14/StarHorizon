@@ -20,8 +20,6 @@ public sealed class SwapTeleportOnThrowSystem : EntitySystem
 
     private void OnThrowHit(Entity<SwapTeleportOnThrowComponent> ent, ref ThrowDoHitEvent args)
     {
-        if (args.Handled)
-            return;
 
         var thrower = args.Component.Thrower;
         var target = args.Target;
@@ -43,6 +41,5 @@ public sealed class SwapTeleportOnThrowSystem : EntitySystem
         _audio.PlayPvs(ent.Comp.TargetSound, targetPos);
 
         PredictedQueueDel(ent.Owner);
-        args.Handled = true;
     }
 }

@@ -74,3 +74,5 @@ ent-NFPosterContrabandEms = Общество экстренной медицин
     .desc = Ваше здоровье, наше процветание.
 ent-NFPosterContrabandSsfLogo = Логотип SSF
     .desc = Settler's Spacecraft Firm: Пионеры Звёзд.
+ent-NFPosterContrabandDbiLogo = Логотип DBI
+    .desc = Dung Beetle Incorporated: Мы продвигаем инновации вперёд, какой бы крутой ни была дорога и каким бы тяжёлым ни было прошлое!

@@ -43,7 +43,7 @@
 </Box>
 <Box>
   <GuideEntityEmbed Entity="RandomHumanoidVisitorSalvageSpecialist" Caption=""/>
-  <GuideEntityEmbed Entity="SignSalvage" Caption=""/>
+  <GuideEntityEmbed Entity="SignCargo" Caption=""/>
   <GuideEntityEmbed Entity="RandomHumanoidVisitorCargoTechnician" Caption=""/>
 </Box>
 <Box>

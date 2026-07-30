@@ -112,6 +112,7 @@ construction-graph-tag-wallmount-generator-circuit-board = плата насте
 construction-graph-tag-wallmount-apu-circuit-board = плата настенного ВСУ
 construction-graph-tag-wallmount-substation-circuit-board = плата настенной подстанции
 construction-graph-tag-surveillance-camera-monitor-board = плата монитора камеры наблюдения
+construction-graph-tag-turret-control-electronics = плата контроля охранной турели
 construction-graph-tag-television-board = плата телевизора
 construction-graph-tag-freezer-electronics = электроника морозильника
 # кристаллы

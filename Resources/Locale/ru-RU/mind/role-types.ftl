@@ -30,3 +30,4 @@ role-subtype-survivor = Выживший
 role-subtype-subverted = Подчинённый
 role-subtype-paradox-clone = Парадокс
 role-subtype-wizard = Волшебник
+role-subtype-changeling = Генокрад

@@ -54,6 +54,8 @@ anomaly-sync-examine-connected = Он [color=darkgreen]прикреплён[/col
 anomaly-sync-examine-not-connected = Он [color=darkred]не прикреплён[/color] к аномалии.
 anomaly-sync-connect-verb-text = Прикрепить аномалию
 anomaly-sync-connect-verb-message = Прикрепить ближайшую аномалию к { $machine }.
+anomaly-sync-disconnect-verb-text = Открепить аномалию
+anomaly-sync-disconnect-verb-message = Открепить подключенную аномалию от { $machine }.
 anomaly-generator-ui-title = Генератор аномалий
 anomaly-generator-fuel-display = Топливо:
 anomaly-generator-cooldown = Перезарядка: [color=gray]{ $time }[/color]

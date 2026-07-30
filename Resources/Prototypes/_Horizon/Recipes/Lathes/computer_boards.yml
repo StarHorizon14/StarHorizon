@@ -1,0 +1,4 @@
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseSupplyComputerRecipeCategory ]
+  id: AdvancedRadarConsoleCircuitboard
+  result: AdvancedRadarConsoleCircuitboard

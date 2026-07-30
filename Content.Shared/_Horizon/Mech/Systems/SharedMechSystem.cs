@@ -88,6 +88,10 @@ public abstract partial class SharedMechSystem
 
     private void ReceiveEquipmentUiMesssages<T>(EntityUid uid, MechComponent component, T args) where T : MechEquipmentUiMessage
     {
+        // Frontier: snails and other simple mobs shouldn't manipulate mech equipment
+        if (!_actionBlocker.CanComplexInteract(args.Actor))
+            return;
+        // End Frontier
         var ev = new MechEquipmentUiMessageRelayEvent<T>(args, GetNetEntity(component.PilotSlot.ContainedEntity));
         var allEquipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
         var argEquip = GetEntity(args.Equipment);

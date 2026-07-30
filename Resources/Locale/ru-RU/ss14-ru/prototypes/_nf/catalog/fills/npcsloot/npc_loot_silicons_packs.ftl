@@ -1,0 +1,12 @@
+ent-RogueSiliconGiftBox = rogue unit's bundle
+    .desc = { ent-NFBaseNpcLootBackpack.desc }
+ent-ClothingBackpackRogueSiliconT0 = { ent-RogueSiliconGiftBox }
+    .desc = { ent-RogueSiliconGiftBox.desc }
+ent-ClothingBackpackRogueSiliconT1 = { ent-RogueSiliconGiftBox }
+    .desc = { ent-RogueSiliconGiftBox.desc }
+ent-ClothingBackpackRogueSiliconT2 = { ent-RogueSiliconGiftBox }
+    .desc = { ent-RogueSiliconGiftBox.desc }
+ent-ClothingBackpackRogueSiliconT3 = { ent-RogueSiliconGiftBox }
+    .desc = { ent-RogueSiliconGiftBox.desc }
+ent-ClothingBackpackRogueSiliconT4 = { ent-RogueSiliconGiftBox }
+    .desc = { ent-RogueSiliconGiftBox.desc }

@@ -1,0 +1,28 @@
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineAI
+  name: Автоответчик
+  suffix: Факс, AI, автоответчик
+  description: Великая разрабокта НТ! с премесью технологий анко... Факс с ИИ! Достаточно установит и настроить и он даже заменит ОЦК! НТ не несёт отвественость есть ИИ решит вызвать эпсилон с эскадроном смерти. Удачного использования!
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Machines/fax_machine.rsi
+  - type: FaxMachine
+    name: "Автоответчик"
+    responsePings: true
+  - type: AiFax
+    provider: Gemini
+    apiKey: "API KEY"
+    #triggerKeyword: "slyunyavykot"
+    #requireTriggerKeyword: false
+    model: "gemini-3.1-flash-lite"
+    maxResponseLength: 9000
+    responseSenderName: "Автоответчик"
+    requestTimeoutSeconds: 30
+    maxHistoryLength: 10
+    autoSendResponse: true
+    copyResponseToSelf: true
+    #contextFolders:
+    #  - "/Prototypes/_Horizon/_Fractions/AnCo/AnroxComputers"
+    # contextFiles:
+    #   - "/Prototypes/_Horizon/_Fractions/AnCo/Reagents/reagent.yml"

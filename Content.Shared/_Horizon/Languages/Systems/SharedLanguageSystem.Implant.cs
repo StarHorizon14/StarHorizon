@@ -27,10 +27,7 @@ public abstract partial class SharedLanguageSystem
 
     private void OnImplanted(EntityUid uid, TranslatorImplantComponent comp, ref ImplantImplantedEvent args)
     {
-        if (!args.Implanted.HasValue)
-            return;
-
-        UpdateUi(args.Implanted.Value);
+        UpdateUi(args.Implanted);
         comp.ImplantedEntity = args.Implanted;
     }
 

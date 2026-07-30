@@ -304,7 +304,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var ourEntMatrix = Matrix3Helpers.CreateTransform(_transform.GetWorldPosition(xform), ourEntRot);
         var shuttleToWorld = Matrix3x2.Multiply(posMatrix, ourEntMatrix);
         Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
-        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
+        // Frontier: MidpointVector<Midpoint
+        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPoint);
+        // End Frontier
 
         // Draw shields
         DrawShields(handle, xform, worldToShuttle);
@@ -339,7 +341,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
 
-        var viewBounds = new Box2Rotated(new Box2(-WorldRange, -WorldRange, WorldRange, WorldRange).Translated(mapPos.Position), rot, mapPos.Position);
+        // Frontier: Use ScaledWorldRange for culling. WorldRange doesnt account for the viewport resizing
+        var viewBounds = new Box2Rotated(new Box2(-ScaledWorldRange.X, -ScaledWorldRange.Y, ScaledWorldRange.X, ScaledWorldRange.Y).Translated(mapPos.Position), rot, mapPos.Position);
+        // End Frontier
         var viewAABB = viewBounds.CalcBoundingBox();
 
         _grids.Clear();
@@ -491,9 +495,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     var lines = labelText.Split('\n');
                     var mainLabel = lines[0];
 
-                    var circleShader = handle.GetShader(); // StarHorizon
-                    handle.UseShader(null); // StarHorizon
-
                     // Draw main ship label with company color if available
                     handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, mainLabel, UIScale * 0.9f, displayColor);
 
@@ -510,7 +511,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                         handle.DrawString(Font, (uiPosition + coordOffset) * UIScale, coordsText, 0.7f * UIScale, displayColor);
                     }
 
-                    handle.UseShader(circleShader); // StarHorizon
                 }
 
                 NfAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor, gUid); // Frontier code
@@ -815,8 +815,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     continue;
                 }
 
-                //var color = Color.ToSrgb(Color.Magenta); // Frontier
-                var color = Color.ToSrgb(state.HighlightedRadarColor); // Frontier
+                var color = Color.ToSrgb(state.HighlightedColor);
 
                 var verts = new[]
                 {
@@ -853,7 +852,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     private Vector2 InverseScalePosition(Vector2 value)
     {
-        return (value - MidPointVector) / MinimapScale;
+        // Frontier: MidpointVector<Midpoint
+        return (value - MidPoint) / MinimapScale;
+        // End Frontier
     }
 
     public class BlipData

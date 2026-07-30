@@ -22226,7 +22226,7 @@ entities:
     - type: Transform
       pos: 13.5,-12.5
       parent: 1
-- proto: StationAdminBankATMTrauma
+- proto: ComputerBankATM
   entities:
   - uid: 527
     components:

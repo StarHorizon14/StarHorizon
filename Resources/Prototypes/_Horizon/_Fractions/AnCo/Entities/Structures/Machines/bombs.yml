@@ -71,7 +71,7 @@
       totalIntensity: 1
       intensitySlope: 1
       maxIntensity: 1
-    - type: OnUseTimerTrigger
+    - type: TimerTrigger
       delay: 5
       delayOptions: [5, 10, 15, 20]
 

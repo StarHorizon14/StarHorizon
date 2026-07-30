@@ -1161,6 +1161,7 @@ entities:
       preventRCDUse: True
       preventFloorPlacement: True
       preventFloorRemoval: True
+      PreventImpactDamage: true
 - proto: AirlockExternalGlass
   entities:
   - uid: 1291

@@ -46099,13 +46099,6 @@ entities:
     - type: Transform
       pos: 133.5,197.5
       parent: 1
-- proto: CableHVStackLingering10
-  entities:
-  - uid: 3147
-    components:
-    - type: Transform
-      pos: 127.52887,162.68935
-      parent: 1
 - proto: CableMV
   entities:
   - uid: 480
@@ -97273,14 +97266,6 @@ entities:
     components:
     - type: Transform
       pos: 111.44293,168.43904
-      parent: 1
-- proto: GygaxChassis
-  entities:
-  - uid: 2285
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 111.49436,167.55432
       parent: 1
 - proto: GygaxPeripheralsElectronics
   entities:

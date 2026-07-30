@@ -20,4 +20,5 @@
         Silicon: 20
     - type: BindToStation # Horizon
       enabled: false # Horizon - should be draggable between stations
+    - type: Circuitboard
 

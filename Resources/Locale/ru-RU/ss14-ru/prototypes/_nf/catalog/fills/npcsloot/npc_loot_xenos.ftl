@@ -1,0 +1,12 @@
+ent-SpawnDungeonLootNpcXenoBurrower = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcXenoDrone = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcXenoPraetorian = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcXenoQueen = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcXenoRavager = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcXenoSpitter = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }

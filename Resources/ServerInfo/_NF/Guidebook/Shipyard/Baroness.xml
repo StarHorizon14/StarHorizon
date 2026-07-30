@@ -1,9 +1,12 @@
 <Document>
   # ДОСУГОВЫЙ ШАТТЛ КЛАССА BARONESS
   <Box>
-  <GuideEntityEmbed Entity="ChairPilotSeat"/>
-  <GuideEntityEmbed Entity="DrinkBeerBottleFull" Caption="вкусный напиток"/>
-  <GuideEntityEmbed Entity="Jukebox"/>
+    <GuideEntityEmbed Entity="ChairPilotSeat"/>
+    <GuideEntityEmbed Entity="DrinkBeerBottleFull" Caption="вкусный напиток"/>
+    <GuideEntityEmbed Entity="Jukebox"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ShuttleMapBaroness" Caption=""/>
   </Box>
   [color=#a4885c]Размер корабля:[/color] Средний
 
@@ -18,4 +21,8 @@
   "Небольшой роскошный круизер для одного или двух человек, с лаунжем, отдельной спальней и потрясающим видом из кабины."
 
   [italic]Предоставлено BlueBird Starship Design & Construction.[/italic]
+
+  # NOTICE TO CAPTAINS
+
+  [bold]Baroness создана для отдыха и исследований.[/bold] На нем нет оборудования, традиционно ассоциирующегося с получением прибыли.
 </Document>

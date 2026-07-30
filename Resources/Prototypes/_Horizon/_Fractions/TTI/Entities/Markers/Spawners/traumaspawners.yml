@@ -6,7 +6,7 @@
     - type: SpawnPoint
       job_id: TraumaParamedic
     - type: Sprite
-      sprite: _StarHorizon/Markers/Jobs/traumamarkers.rsi
+      sprite: _Horizon/_Fractions/TTI/Markers/Jobs/traumamarkers.rsi
       layers:
         - state: green
         - state: medic
@@ -19,7 +19,7 @@
     - type: SpawnPoint
       job_id: TraumaMedTech
     - type: Sprite
-      sprite: _StarHorizon/Markers/Jobs/traumamarkers.rsi
+      sprite: _Horizon/_Fractions/TTI/Markers/Jobs/traumamarkers.rsi
       layers:
         - state: green
         - state: medic
@@ -32,7 +32,7 @@
     - type: SpawnPoint
       job_id: TraumaRessurector
     - type: Sprite
-      sprite: _StarHorizon/Markers/Jobs/traumamarkers.rsi
+      sprite: _Horizon/_Fractions/TTI/Markers/Jobs/traumamarkers.rsi
       layers:
         - state: green
         - state: medic
@@ -45,7 +45,7 @@
     - type: SpawnPoint
       job_id: TraumaRepresentative
     - type: Sprite
-      sprite: _StarHorizon/Markers/Jobs/traumamarkers.rsi
+      sprite: _Horizon/_Fractions/TTI/Markers/Jobs/traumamarkers.rsi
       layers:
         - state: green
         - state: medic

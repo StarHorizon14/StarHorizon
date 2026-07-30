@@ -18,7 +18,7 @@
   Это происходит из-за затенения станцией — не стоит беспокоиться.
   На большинстве станций солнечные массивы размещены со всех сторон, поэтому энергия вырабатывается постоянно.
 
-  При прямом освещении без препятствий стандартные панели вырабатывают до [color=orange][protodata="SolarPanel" comp="SolarPanel" member="MaxSupply" format="N0"] Вт[/color].
+  При прямом освещении без препятствий стандартные панели вырабатывают до [color=orange][protodata="SolarPanel" comp="NFSolarPanel" member="MaxSupply" format="N0"] Вт[/color].
 
   Солнечные панели производят [color=orange]HV-энергию[/color] и требуют подключения к сети через [color=orange]HV-кабель[/color].
 
@@ -102,6 +102,6 @@
 
   Для этого замените стеклянные листы на плазменные или урановые.
 
-  Улучшенные панели вырабатывают [color=orange][protodata="SolarPanelPlasma" comp="SolarPanel" member="MaxSupply" format="N0"] Вт[/color] и [color=orange][protodata="SolarPanelUranium" comp="SolarPanel" member="MaxSupply" format="N0"] Вт[/color] соответственно.
+  Улучшенные панели вырабатывают [color=orange][protodata="SolarPanelPlasma" comp="NFSolarPanel" member="MaxSupply" format="N0"] Вт[/color] и [color=orange][protodata="SolarPanelUranium" comp="NFSolarPanel" member="MaxSupply" format="N0"] Вт[/color] соответственно.
   Они также более прочные.
 </Document>

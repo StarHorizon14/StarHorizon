@@ -54,7 +54,7 @@
 
 - type: entity
   id: NFWeaponSubMachineGunDrozd
-  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunNanotrasen, BaseAttachableHolder ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunNanotrasen ]
   name: Drozd
   description: A fully automatic SMG.
   components: &drozdComponents
@@ -89,11 +89,11 @@
       rmc-aslot-underbarrel: 0.28, -0.1250
       rmc-aslot-rail: -0.0325, -0.0625
       rmc-aslot-barrel: 0.90625, 0
-  # Horizon Attachment start
+  # Horizon Attachment end
 
 - type: entity
   id: NFWeaponSubMachineGunDrozdLessLethal # Frontier-specific rubber variant
-  parent: [ NFBaseWeaponSubMachineGunChamber35Rubber, NFBaseWeaponFrameSubMachineGunNanotrasen ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponSubMachineGunChamber35Rubber, NFBaseWeaponFrameSubMachineGunNanotrasen ]
   name: Drozd
   description: A fully automatic SMG.
   suffix: Frontier, Less-Lethal
@@ -196,7 +196,7 @@
       rmc-aslot-underbarrel: 0.28, -0.1250
       rmc-aslot-rail: -0.0325, -0.0625
       rmc-aslot-barrel: 0.90625, 0
-  # Horizon Attachment start
+  # Horizon Attachment end
 
 - type: entity
   id: NFWeaponSubMachineGunType19
@@ -235,6 +235,7 @@
       rmc-aslot-underbarrel: 0.28, -0.1250
       rmc-aslot-rail: -0.0325, -0.0625
       rmc-aslot-barrel: 0.90625, 0
+  # Horizon Attachments end
 
 - type: entity
   id: NFWeaponSubMachineGunP90
@@ -304,3 +305,4 @@
       rmc-aslot-underbarrel: 0.28, -0.1250
       rmc-aslot-rail: -0.0325, -0.0625
       rmc-aslot-barrel: 0.90625, 0
+  # Horizon Attachments end

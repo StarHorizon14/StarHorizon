@@ -261,3 +261,8 @@
   license: "CC-BY-SA-4.0"
   copyright: "Added by RavenAzala for StarHorizon. Original source should be preserved from import pack."
   source: "https://github.com/space-wizards/space-station-14/pull/27205"
+
+- files: [card_drag.ogg]
+  copyright: 'created by Tao7891; perryprog (GitHub) downmixed to mono'
+  license: CC0-1.0
+  source: https://github.com/space-wizards/space-station-14/pull/37363

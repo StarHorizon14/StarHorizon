@@ -1,7 +1,7 @@
 ent-BaseGeneratorShuttle = { "" }
     .desc = { "" }
 ent-PortableGeneratorPacmanShuttle = { ent-BaseGeneratorShuttle }
-    .suffix = Plasma, 15 kW, Ship
+    .suffix = Plasma, 20 kW, Ship
     .desc = { ent-BaseGeneratorShuttle.desc }
 ent-PortableGeneratorSuperPacmanShuttle = { ent-BaseGeneratorShuttle }
     .suffix = Uranium, 30 kW, Ship
