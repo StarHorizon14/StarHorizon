@@ -55,6 +55,7 @@
     explosionPrototype: AnCoExplodes
   - type: Lock
     locked: true
+  - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoOfficer" ]]
   - type: WiresPanel
@@ -86,6 +87,7 @@
     explosionPrototype: AnCoExplodes
   - type: Lock
     locked: true
+  - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoCadet" ]]
   - type: WiresPanel
@@ -117,6 +119,7 @@
     explosionPrototype: AnCoExplodes
   - type: Lock
     locked: true
+  - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoCadet" ]]
   - type: WiresPanel
@@ -152,6 +155,7 @@
     explosionPrototype: AnCoExplodes
   - type: Lock
     locked: true
+  - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoOfficer" ]]
   - type: WiresPanel
@@ -189,6 +193,7 @@
     explosionPrototype: AnCoExplodes
   - type: Lock
     locked: true
+  - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoKnight" ]]
   - type: WiresPanel
@@ -227,6 +232,7 @@
     explosionPrototype: AnCoExplodes
   - type: Lock
     locked: true
+  - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoOfficer" ]]
   - type: WiresPanel

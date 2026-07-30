@@ -16,6 +16,7 @@
   price: 75000
   category: Small
   group: Syndicate
+  access: SyndicateAgent
   shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Syndicate/ister.yml
   class:
   - Syndicate

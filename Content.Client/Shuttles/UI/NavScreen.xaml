@@ -10,7 +10,7 @@
                           VerticalAlignment="Stretch"
                           VerticalExpand="True"
                           HorizontalExpand="True"
-                          MinSize="500 500"
+                          MinSize="550 550"
                           Margin="5 4 10 5"/>
     <!-- Nav controls -->
     <controls:PanelContainer VerticalExpand="True"

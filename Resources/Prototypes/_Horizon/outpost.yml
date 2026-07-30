@@ -1,6 +1,6 @@
 - type: entity
   id: DefaultOutpostConsole
-  parent: [BaseComputer,BaseStructureDisableToolUse,BaseStructureIndestructible]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   name: Консоль аванпоста
   components:
   - type: Computer

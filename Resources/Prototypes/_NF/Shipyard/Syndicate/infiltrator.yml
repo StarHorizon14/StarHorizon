@@ -6,6 +6,7 @@
   price: 85000
   category: Medium
   group: Syndicate
+  access: SyndicateAgent
   shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Syndicate/investigator.yml
   guidebookPage: Null
   class:
