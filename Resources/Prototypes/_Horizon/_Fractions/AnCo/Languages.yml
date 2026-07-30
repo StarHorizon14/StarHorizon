@@ -3,6 +3,7 @@
   roundstart: false
   priority: 2
   parent: BaseVocalLanguage
+  uiColor: "#f05a5a"
   speech: !type:Generic
     obfuscateSyllables: true
     color: "#f05a5a"

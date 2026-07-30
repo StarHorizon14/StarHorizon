@@ -46,9 +46,19 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
     blackboard:
-      MeleeMissChance: !type:Single
-        0
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
 
 - type: entity
   parent: [AnCoDroneCombatDungeon, BaseAnCoIfterno]
@@ -58,9 +68,19 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
     blackboard:
-      MeleeMissChance: !type:Single
-        0
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
 
 - type: entity
   parent: [AnCoDroneMineDungeon, BaseAnCoIfterno]
@@ -70,9 +90,19 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
     blackboard:
-      MeleeMissChance: !type:Single
-        0
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
 
 - type: entity
   parent: [AnCoFlyDroneSmallDungeon, BaseAnCoIfterno]
@@ -82,9 +112,19 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
     blackboard:
-      MeleeMissChance: !type:Single
-        0
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
 
 - type: entity
   parent: [AnCoFlyDroneHugeDungeon, BaseAnCoIfterno]
@@ -93,12 +133,21 @@
   suffix: Inferno
   categories: [ HideSpawnMenu ]
   components:
-  - type: CombatMode
-  - type: Gun
-    fireRate: 4
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
+  - type: HTN
+    rootTask:
+       task: SimpleRangedHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
 
 - type: entity
   parent: [AnCoMechTitanDungeon, BaseAnCoIfterno]
@@ -107,11 +156,20 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
+    rootTask:
+       task: SimpleRangedHostileCompound
     blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
       NavSmash: !type:Bool
         true
       SoundTargetInLOS: !type:SoundPathSpecifier
-        path: /Audio/_Horizon/_Fractions/AnCo/pidoras.ogg
+        path: /Audio/Effects/double_beep.ogg
+
 
 - type: entity
   parent: [AnCoMechCyclopDungeon, BaseAnCoIfterno]
@@ -120,21 +178,63 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
+    rootTask:
+       task: SimpleRangedHostileCompound
     blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
       SoundTargetInLOS: !type:SoundPathSpecifier
-        path: /Audio/_Horizon/_Fractions/AnCo/pidoras.ogg
+        path: /Audio/Effects/double_beep.ogg
 
 - type: entity
   parent: [AnCoMechBegemothDungeon, BaseAnCoIfterno]
   id: AnCoMechBegemothInferno
   suffix: Inferno
   categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleRangedHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
 
 - type: entity
   parent: [AnCoMechMushDungeon, BaseAnCoIfterno]
   id: AnCoMechMushInferno
   suffix: Inferno
   categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleRangedHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
 
 - type: entity
   parent: [AnCoEvilLarry, BaseAnCoIfterno]
