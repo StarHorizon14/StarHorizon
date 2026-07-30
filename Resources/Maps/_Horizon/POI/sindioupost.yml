@@ -299,6 +299,8 @@ entities:
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
+    - type: BecomesStation
+      id: SindiOutpost
     - type: DecalGrid
       chunkCollection:
         version: 2
