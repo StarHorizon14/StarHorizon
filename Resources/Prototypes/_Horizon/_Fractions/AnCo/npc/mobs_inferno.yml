@@ -9,8 +9,6 @@
     factions:
       - SimpleHostile
   - type: HTN
-    rootTask:
-       task: InfernoSimpleMeleeHostileCompound
     blackboard:
       NavClimb: !type:Bool
         true
@@ -244,8 +242,6 @@
   suffix: Inferno
   components:
   - type: HTN
-    rootTask:
-       task: InfernoSimpleRangedHostileCompound
     blackboard:
       NavClimb: !type:Bool
         true
