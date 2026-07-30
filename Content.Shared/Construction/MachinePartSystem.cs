@@ -120,7 +120,7 @@ namespace Content.Shared.Construction
                 }
             }
 
-            var genericPartInfo = comp.ComponentRequirements.Values.Concat(comp.ComponentRequirements.Values);
+            var genericPartInfo = comp.ComponentRequirements.Values.Concat(comp.TagRequirements.Values);
             foreach (var info in genericPartInfo)
             {
                 var amount = info.Amount;
@@ -148,6 +148,36 @@ namespace Content.Shared.Construction
                     }
                 }
             }
+
+            // Frontier: handle machine part requirements
+            foreach (var (partType, amount) in comp.Requirements)
+            {
+                var partProto = _prototype.Index(partType);
+                var defaultProtoId = partProto.StockPartPrototype;
+
+                if (_lathe.TryGetRecipesFromEntity(defaultProtoId, out var recipes))
+                {
+                    var partRecipe = recipes[0];
+                    if (recipes.Count > 1)
+                        partRecipe = recipes.MinBy(p => p.Materials.Values.Sum());
+
+                    foreach (var (mat, matAmount) in partRecipe!.Materials)
+                    {
+                        materials.TryAdd(mat, 0);
+                        materials[mat] += matAmount * amount * coefficient;
+                    }
+                }
+                else if (_prototype.TryIndex(defaultProtoId, out var defaultProto) &&
+                         defaultProto.TryGetComponent<PhysicalCompositionComponent>(out var physComp, EntityManager.ComponentFactory))
+                {
+                    foreach (var (mat, matAmount) in physComp.MaterialComposition)
+                    {
+                        materials.TryAdd(mat, 0);
+                        materials[mat] += matAmount * amount * coefficient;
+                    }
+                }
+            }
+            // End Frontier
 
             return materials;
         }

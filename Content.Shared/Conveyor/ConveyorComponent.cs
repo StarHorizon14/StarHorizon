@@ -26,9 +26,11 @@ public sealed partial class ConveyorComponent : Component
     ///     The current state of this conveyor
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [DataField]
     public ConveyorState State;
 
     [ViewVariables, AutoNetworkedField]
+    [DataField]
     public bool Powered;
 
     [DataField]
