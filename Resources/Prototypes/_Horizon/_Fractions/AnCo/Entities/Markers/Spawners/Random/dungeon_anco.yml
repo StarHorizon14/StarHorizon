@@ -215,7 +215,7 @@
     - AnCoWeaponHeavyCaseKnight
     - AnCoWeaponHeavyCaseKazmie
     - AnCoWeaponHeavyCaseArdon
-    - AnCoWeaponHeavyCaseDome
+#    - AnCoWeaponHeavyCaseDome не оправдали себя.
     - AnCoWeaponHeavyCaseGuardian
     rareChance: 0.33
 
