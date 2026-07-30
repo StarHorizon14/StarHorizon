@@ -22,17 +22,6 @@
           lobbySortOrder: 1
         - type: HorizonStationFaction
           faction: Frontier
-        - type: ProtectedGrid
-          hostileMobKillSound: !type:SoundPathSpecifier
-            path: /Audio/Effects/holy.ogg
-          killHostileMobs: True
-          preventArtifactTriggers: True
-          preventExplosions: True
-          preventEmpEvents: True
-          preventRCDUse: True
-          preventFloorPlacement: True
-          preventFloorRemoval: True
-          preventImpactDamage: true
         - type: StationJobs
           availableJobs:
             Contractor: [ -1, -1 ]
