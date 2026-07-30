@@ -310,25 +310,6 @@
         - NFPirateCaptain
         - NFPirateFirstMate
 
-- type: listing
-  id: PirateShuttleEquipmentStealthConsole
-  name: Стелс консоль IFF
-  description: Позволяет управлять системой идентификации "свой-чужой" и стелс-характеристиками корабля.
-  productEntity: ComputerIFFSyndicateCircuitboard
-  cost:
-    Doubloon: 200
-  categories:
-    - UplinkPirateGunneryConsoles
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - PirateUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - NFPirateCaptain
-        - NFPirateFirstMate
-
 # region Kinetic Ammunition
 # Легкие кинетические боеприпасы (доступны всем пиратам)
 - type: listing
