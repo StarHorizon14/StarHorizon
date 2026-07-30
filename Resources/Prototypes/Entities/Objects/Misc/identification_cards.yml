@@ -107,7 +107,7 @@
     - state: idintern-service
 
 - type: entity
-  parent: [IDCardStandard, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [IDCardStandard] # Frontier: Removed BaseSecurityCommandContraband
   id: CaptainIDCard
   name: captain ID card
   components:
@@ -589,7 +589,7 @@
 
 - type: entity
   name: contractor ID card # Frontier: passenger<contractor
-  parent: [IDCardStandard, BaseC3SyndicateContraband]
+  parent: [IDCardStandard, BaseChameleon, BaseC3SyndicateContraband] # Frontier: Add BaseC3SyndicateContraband
   id: AgentIDCard
   suffix: Agent
   components:
@@ -605,9 +605,11 @@
     - state: idcontractor # Frontier: idpassenger<idcontractor
       sprite: _NF/Objects/Misc/id_cards.rsi # Frontier
   - type: AgentIDCard
+  - type: UIRequiresLock
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
+    verbText: agent-id-open-ui-verb
   - type: Tag
     tags:
     - DoorBumpOpener

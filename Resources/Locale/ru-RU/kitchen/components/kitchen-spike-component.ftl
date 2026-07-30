@@ -1,5 +1,27 @@
 comp-kitchen-spike-deny-collect = На { CAPITALIZE($this) } уже что-то есть, закончите сначала собирать мясо!
+comp-kitchen-spike-begin-hook-self-other = { CAPITALIZE($victim) } начинает затаскивать { REFLEXIVE($victim) } на { $hook }!
+comp-kitchen-spike-begin-hook-other-self = Вы начинаете затаскивать { CAPITALIZE($victim) } на { $hook }!
+comp-kitchen-spike-begin-hook-other = { CAPITALIZE($user) } начинает затаскивать { CAPITALIZE($victim) } на { $hook }!
+comp-kitchen-spike-hook-self = Вы насадили себя на { $hook }!
+comp-kitchen-spike-hook-self-other = { CAPITALIZE($victim) } насаживает { REFLEXIVE($victim) } на { $hook }!
+comp-kitchen-spike-hook-other-self = Вы насадили { CAPITALIZE($victim) } на { $hook }!
+comp-kitchen-spike-hook-other = { CAPITALIZE($user) } насадил { CAPITALIZE($victim) } на { $hook }!
+comp-kitchen-spike-begin-unhook-self = Вы начинаете снимать себя с { $hook }!
+comp-kitchen-spike-begin-unhook-self-other = { CAPITALIZE($victim) } начинает снимать { REFLEXIVE($victim) } с { $hook }!
+comp-kitchen-spike-begin-unhook-other-self = Вы начинаете снимать { CAPITALIZE($victim) } с { $hook }!
+comp-kitchen-spike-begin-unhook-other = { CAPITALIZE($user) } начинает снимать { CAPITALIZE($victim) } с { $hook }!
+comp-kitchen-spike-unhook-self = Вы сняли себя с { $hook }!
+comp-kitchen-spike-unhook-self-other = { CAPITALIZE($victim) } снял { REFLEXIVE($victim) } с { $hook }!
+comp-kitchen-spike-unhook-other-self = Вы сняли { CAPITALIZE($victim) } с { $hook }!
+comp-kitchen-spike-unhook-other = { CAPITALIZE($user) } снял { CAPITALIZE($victim) } с { $hook }!
+comp-kitchen-spike-begin-butcher-self = Вы начинаете разделывать { $victim }!
+comp-kitchen-spike-begin-butcher = { CAPITALIZE($user) } начинает разделывать { $victim }!
+comp-kitchen-spike-butcher-self = Вы разделать { $victim }!
+comp-kitchen-spike-butcher = { CAPITALIZE($user) } разделывает { $victim }!
+comp-kitchen-spike-unhook-verb = Снять с крюка
+comp-kitchen-spike-hooked = [color=red]{ CAPITALIZE($victim) } висит на этом крюке![/color]
 comp-kitchen-spike-deny-butcher = { CAPITALIZE($victim) } не может быть разделан на { $this }.
+comp-kitchen-spike-victim-examine = [color=orange]{ CAPITALIZE(SUBJECT($target)) } выглядит довольно тощим.[/color]
 comp-kitchen-spike-deny-butcher-knife = { CAPITALIZE($victim) } не может быть разделан на { $this }, вам нужно разделать это, используя нож.
 comp-kitchen-spike-deny-not-dead = { CAPITALIZE($victim) } не может быть разделан. { CAPITALIZE(SUBJECT($victim)) } { $victim } не умер!
 comp-kitchen-spike-begin-hook-victim = { $user } начинает насаживать вас на { $this }!

@@ -1,5 +1,7 @@
 ent-MedicalTrackingImplanter = медицинский имплантер отслеживания
     .desc = { ent-BaseImplantOnlyImplanter.desc }
+ent-WehImplanter = имплантер вех
+    .desc = { ent-BaseImplantOnlyImplanter.desc }
 ent-FreelanceTrackingImplanter = фриланс имплантер отслеживания
     .suffix = Фриланс
     .desc = { ent-BaseImplantOnlyImplanterSyndi.desc }
@@ -9,7 +11,7 @@ ent-DeathAcidifierImplanterNF = имплант посмертный раство
 ent-GibAcidifierImplanterNF = имплант посмертный растворитель
     .suffix = Все
     .desc = { ent-BaseImplantOnlyImplanterSyndi.desc }
-ent-BibleUserImplanter = Имплантер веры
+ent-BibleUserImplanter = имплантер веры
     .suffix = Вера
     .desc = { ent-BaseImplantOnlyImplanter.desc }
 ent-LightImplanterLabeled = { ent-MedicalTrackingImplanter }

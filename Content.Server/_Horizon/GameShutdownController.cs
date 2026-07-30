@@ -1,172 +1,163 @@
-using System.IO;
-using System.Threading.Tasks;
-using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
 using Robust.Server;
-using Robust.Shared.ContentPack;
 using Content.Shared._Horizon.CCVar;
-using Content.Shared.Chat;
 using Robust.Shared.Configuration;
-using Robust.Shared.Serialization.Markdown;
-using Robust.Shared.Serialization.Markdown.Mapping;
-using Robust.Shared.Serialization.Markdown.Sequence;
-using Robust.Shared.Serialization.Markdown.Value;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Server._Horizon;
 
 public sealed class GameShutdownController
 {
     [Dependency] private readonly IEntityManager _entityManager = null!;
-    [Dependency] private readonly IResourceManager _resManager = null!;
     [Dependency] private readonly IConfigurationManager _cfg = null!;
-    [Dependency] private readonly IGameTiming _gameTiming = null!;
-    [Dependency] private readonly IChatManager _chatManager = null!;
     [Dependency] private readonly IBaseServer _server = null!;
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("ShutdownController");
-    private Dictionary<string, ShutdownData> _shutdownTime = [];
-    private TimeSpan _sendCooldown;
-    private TimeSpan? _startTime;
-    private bool _shutdown;
+    private DateTime? _nextRestartTimeMsk;
+    private bool _shuttleCalled;
+    private bool _enabled;
+
+    // Московское время (UTC+3)
+    private static readonly TimeZoneInfo MskTimeZone = TimeZoneInfo.CreateCustomTimeZone(
+        "MSK", TimeSpan.FromHours(3), "Moscow Standard Time", "MSK");
 
     public void Init()
     {
-        _startTime = TimeSpan.Parse(DateTime.Now.ToString("HH:mm:ss"));
-        _shutdown = _cfg.GetCVar(HorizonCCVars.ShutdownEnabled);
-        if (_shutdown == false)
+        _enabled = _cfg.GetCVar(HorizonCCVars.ShutdownEnabled);
+        if (!_enabled)
             return;
-        
-        TryFoundShutdownTimers();
+
+        CalculateNextRestartTime();
     }
 
-    private async void TryFoundShutdownTimers()
+    /// <summary>
+    /// Получает текущее время по МСК (UTC+3).
+    /// </summary>
+    private static DateTime GetCurrentMskTime()
     {
-        try
-        {
-            _shutdownTime = await CollectTimers();
-            if (_shutdownTime.Count == 0)
-                throw new Exception("No shutdown times found.");
-        }
-        catch (Exception e)
-        {
-            _sawmill.Error($"{e.Message}");
-        }
+        return TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, MskTimeZone);
     }
 
-    private Task<Dictionary<string, ShutdownData>> CollectTimers()
+    /// <summary>
+    /// Рассчитывает время следующего рестарта по МСК на основе CVars.
+    /// </summary>
+    private void CalculateNextRestartTime()
     {
-        return Task.Run(() =>
+        var timeStr = _cfg.GetCVar(HorizonCCVars.ShutdownTime);
+        var intervalDays = _cfg.GetCVar(HorizonCCVars.ShutdownIntervalDays);
+        var intervalHours = _cfg.GetCVar(HorizonCCVars.ShutdownIntervalHours);
+
+        if (!TimeSpan.TryParse(timeStr, out var timeOfDay))
         {
-            var stream = new ResPath(Path.Combine(_resManager.UserData.RootDir!,
-                _cfg.GetCVar(HorizonCCVars.ShutdownTimersPath))).ToRootedPath();
-            var timeSpan = new Dictionary<string, ShutdownData>();
-            if (!_resManager.ContentFileExists(stream))
-            {
-                _shutdown = false;
-                _sawmill.Error($"{stream} does not exist. Create or Add exist stream in CCVar");
-                return timeSpan;
-            }
+            _sawmill.Error($"Invalid shutdown.time format: '{timeStr}'. Expected 'HH:mm' (e.g. '12:00')");
+            _enabled = false;
+            return;
+        }
 
-            try
-            {
-                var yamlStream = _resManager.ContentFileReadYaml(stream);
+        var nowMsk = GetCurrentMskTime();
+        var totalInterval = TimeSpan.FromDays(intervalDays) + TimeSpan.FromHours(intervalHours);
 
-                if (yamlStream.Documents[0].RootNode.ToDataNode() is not SequenceDataNode sequence)
-                    throw new Exception("Attributions file is not a list of attributions.");
+        // Если интервал не задан, используем 24 часа
+        if (totalInterval <= TimeSpan.Zero)
+            totalInterval = TimeSpan.FromDays(1);
 
-                foreach (var attribution in sequence.Sequence)
-                {
-                    var message = string.Empty;
-                    var restart = false;
-                    var restartAlways = false;
-                    var beforeShutdownTime = TimeSpan.Zero;
-                    var minServerPlay = TimeSpan.Zero;
-                    if (attribution is not MappingDataNode map)
-                        throw new Exception("Attribution is not a mapping.");
+        // Находим базовое время сегодня
+        var todayAtTime = nowMsk.Date + timeOfDay;
 
-                    if (!map.TryGet("timer", out var name))
-                        throw new Exception("Attempted to get timers from a non-map.");
+        // Если это время уже прошло сегодня, добавляем интервал
+        if (todayAtTime <= nowMsk)
+            todayAtTime += totalInterval;
 
-                    if (!map.TryGet("shutdownTime", out var time) ||
-                        !TimeSpan.TryParse(time.ToString(), out var timeSpanParsed))
-                        throw new Exception("Attempted to get shutdown time.");
+        _nextRestartTimeMsk = todayAtTime;
+        _shuttleCalled = false;
 
-                    if (map.TryGet("serverMessage", out var serverMessage))
-                        message = serverMessage.ToString();
+        _sawmill.Info($"Следующий рестарт запланирован на {todayAtTime:dd.MM.yyyy HH:mm:ss} МСК " +
+                      $"(интервал: {intervalDays}д {intervalHours}ч)");
+    }
 
-                    if (map.TryGet<ValueDataNode>("restartRound", out var restartNode))
-                        restart = restartNode.AsBool();
+    /// <summary>
+    /// Получает информацию о текущем состоянии таймера рестарта.
+    /// </summary>
+    public ShutdownStatus GetStatus()
+    {
+        if (!_enabled || _nextRestartTimeMsk == null)
+            return new ShutdownStatus(false, null, null, null, false);
 
-                    if (map.TryGet<ValueDataNode>("restartRoundAlways", out var restartAlwaysNode))
-                        restartAlways = restartAlwaysNode.AsBool();
+        var nowMsk = GetCurrentMskTime();
+        var shuttleTime = TimeSpan.FromMinutes(_cfg.GetCVar(HorizonCCVars.ShutdownShuttleTime));
+        var shuttleCallTime = _nextRestartTimeMsk.Value - shuttleTime;
 
-                    if (map.TryGet("beforeShutdown", out var beforeShutdown) &&
-                        TimeSpan.TryParse(beforeShutdown.ToString(), out var beforeShutdownParsed))
-                        beforeShutdownTime = beforeShutdownParsed;
+        return new ShutdownStatus(
+            true,
+            nowMsk,
+            _nextRestartTimeMsk.Value,
+            shuttleCallTime,
+            _shuttleCalled);
+    }
 
-                    if (_startTime.HasValue && timeSpanParsed <= _startTime.Value)
-                        timeSpanParsed += TimeSpan.FromHours(24); // Flip to next day if we passed that point
+    public record ShutdownStatus(
+        bool Enabled,
+        DateTime? CurrentTimeMsk,
+        DateTime? RestartTimeMsk,
+        DateTime? ShuttleCallTimeMsk,
+        bool ShuttleCalled);
 
-                    var data = new ShutdownData(timeSpanParsed, message, restart, restartAlways, beforeShutdownTime);
-                    timeSpan.Add(name.ToString(), data);
-                }
+    /// <summary>
+    /// Включает таймер рестарта.
+    /// </summary>
+    public void Enable()
+    {
+        _enabled = true;
+        CalculateNextRestartTime();
+        _sawmill.Info("Таймер рестарта включен.");
+    }
 
-                return timeSpan;
-            }
-            catch (Exception e)
-            {
-                _sawmill.Error($"{stream.ToString()}\n{e}");
-                return timeSpan;
-            }
-        });
+    /// <summary>
+    /// Выключает таймер рестарта.
+    /// </summary>
+    public void Disable()
+    {
+        _enabled = false;
+        _nextRestartTimeMsk = null;
+        _shuttleCalled = false;
+        _sawmill.Info("Таймер рестарта выключен.");
     }
 
     public void Update()
     {
-        if (!_shutdown || _shutdownTime.Count == 0 || _startTime == null)
+        if (!_enabled || _nextRestartTimeMsk == null)
             return;
 
-        foreach (var (name, data) in _shutdownTime)
+        var nowMsk = GetCurrentMskTime();
+        var timeUntilRestart = _nextRestartTimeMsk.Value - nowMsk;
+        var shuttleTime = TimeSpan.FromMinutes(_cfg.GetCVar(HorizonCCVars.ShutdownShuttleTime));
+
+        // Вызываем шаттл эвакуации за shuttleTime до рестарта
+        if (timeUntilRestart <= shuttleTime &&
+            timeUntilRestart > TimeSpan.Zero &&
+            !_shuttleCalled)
         {
-            var actualTime = _startTime.Value + _gameTiming.RealTime;
-            if (actualTime >= data.ShutdownTime - data.BeforeShutdownTime && _sendCooldown <= _gameTiming.RealTime)
-                SendServerMessage(data.Message);
-
-            if (actualTime < data.ShutdownTime)
-                continue;
-
-            if (data.Restart)
+            if (_entityManager.EntitySysManager.TryGetEntitySystem(out RoundEndSystem? roundEndSystem))
             {
-                if (data.RestartAlways)
-                {
-                    if (_entityManager.EntitySysManager.TryGetEntitySystem(out GameTicker? gameTicker))
-                        gameTicker.RestartRound();
-                }
-                else if (_entityManager.EntitySysManager.TryGetEntitySystem(out RoundEndSystem? roundEndSystem))
-                    roundEndSystem.EndRound();
+                roundEndSystem.RequestRoundEnd(timeUntilRestart, null, false,
+                    "shutdown-shuttle-called-announcement",
+                    "shutdown-shuttle-sender");
 
-                var newData = data;
-                newData.ShutdownTime += TimeSpan.FromHours(24);
-                _shutdownTime[name] = newData;
-            }
-            else
-            {
-                _server.Shutdown($"GameShutdown controller start shutdown in {actualTime}");
-                _shutdownTime.Clear();
-                break;
+                _shuttleCalled = true;
+                _sawmill.Info($"Шаттл эвакуации вызван. Рестарт в {_nextRestartTimeMsk.Value:HH:mm:ss} МСК");
             }
         }
-    }
 
-    private void SendServerMessage(string message)
-    {
-        var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
-        _chatManager.ChatMessageToAll(ChatChannel.Server, message, wrappedMessage, default, false, true);
-        _sendCooldown += TimeSpan.FromMinutes(5) + _gameTiming.RealTime;
-    }
+        // Если время рестарта наступило
+        if (nowMsk >= _nextRestartTimeMsk.Value)
+        {
+            if (_entityManager.EntitySysManager.TryGetEntitySystem(out RoundEndSystem? roundEndSystem))
+                roundEndSystem.EndRound();
 
-    private record struct ShutdownData(TimeSpan ShutdownTime, string Message, bool Restart, bool RestartAlways, TimeSpan BeforeShutdownTime);
+            _sawmill.Info($"Рестарт выполнен в {nowMsk:HH:mm:ss} МСК");
+
+            // Рассчитываем следующий рестарт
+            CalculateNextRestartTime();
+        }
+    }
 }

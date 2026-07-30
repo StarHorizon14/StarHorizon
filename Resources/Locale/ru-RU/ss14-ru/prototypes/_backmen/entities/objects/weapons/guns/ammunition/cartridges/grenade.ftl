@@ -1,4 +1,4 @@
-ent-GrenadeTearGas = tear gas grenade
+ent-GrenadeTearGas = граната слезоточивого газа
     .desc = { ent-BaseGrenade.desc }
-ent-GrenadeNonletal = non letal grenade
+ent-GrenadeNonletal = нелетальная граната
     .desc = { ent-BaseGrenade.desc }

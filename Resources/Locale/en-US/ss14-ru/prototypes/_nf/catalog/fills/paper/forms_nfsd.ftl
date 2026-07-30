@@ -24,3 +24,5 @@ ent-PaperWrittenNfsdContrabandPermit = class 2 contraband permit
     .desc = { ent-Paper.desc }
 ent-PaperWrittenNfsdAuthorization = authorization for bluespace threats
     .desc = { ent-Paper.desc }
+ent-PaperWrittenNFSDWritOfTheFrontier = writ of the frontier
+    .desc = { ent-Paper.desc }

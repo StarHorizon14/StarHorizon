@@ -48,3 +48,5 @@ ent-CigarPlatinumSpent = { ent-CigarPlatinum }
     .desc = { ent-CigarPlatinum.desc }
 ent-WeaponVulpCannon = lil vulp cannon
     .desc = With a widened barrel, this friend launcher can huck your little buddies further than you ever could.
+ent-WeaponPlushieCannon = plushie cannon
+    .desc = Embossed on the barrel are the words "FRONT TOWARD FRIEND".

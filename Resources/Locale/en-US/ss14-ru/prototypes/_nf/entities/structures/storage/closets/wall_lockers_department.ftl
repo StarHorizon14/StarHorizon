@@ -31,3 +31,5 @@ ent-LockerWallColorGenericGreen = wall locker
 ent-LockerWallColorGenericBlack = wall locker
     .suffix = Frontier, Black
     .desc = { ent-NFBaseLockerGridInvWallColor.desc }
+ent-LockerWallColorPilot = pilot wall locker
+    .desc = { ent-NFBaseLockerGridInvWallColor.desc }

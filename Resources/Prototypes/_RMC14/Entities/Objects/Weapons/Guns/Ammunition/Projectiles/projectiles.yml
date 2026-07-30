@@ -114,8 +114,12 @@
   - type: SmokeOnTrigger
     duration: 30
     spreadAmount: 40
-  - type: SoundOnTrigger
-    sound: /Audio/Items/smoke_grenade_smoke.ogg
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: /Audio/Items/smoke_grenade_smoke.ogg
+    positional: true
 
 - type: entity
   id: BulletFragRocket

@@ -1,0 +1,12 @@
+ent-SpawnDungeonLootNpcMercenariesPistols = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcMercenariesShotguns = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcMercenariesRifles = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcMercenariesEnergy = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcMercenariesFluff = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootNpcMercenariesBlueprints = { ent-MarkerBasePlaceFree }
+    .desc = { ent-MarkerBasePlaceFree.desc }

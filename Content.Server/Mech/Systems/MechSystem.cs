@@ -243,6 +243,11 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         // End Frontier: mechs with fixed equipment
 
+        // Frontier: snails and other simple mobs shouldn't manipulate mech equipment
+        if (!_actionBlocker.CanComplexInteract(args.Actor))
+            return;
+        // End Frontier
+
         var equip = GetEntity(args.Equipment);
 
         if (!Exists(equip) || Deleted(equip))
@@ -287,13 +292,19 @@ public sealed partial class MechSystem : SharedMechSystem
                     _doAfter.TryStartDoAfter(doAfterEventArgs);
                 }
             };
-            var openUiVerb = new AlternativeVerb //can't hijack someone else's mech
-            {
-                Act = () => ToggleMechUi(uid, component, args.User),
-                Text = Loc.GetString("mech-ui-open-verb")
-            };
             args.Verbs.Add(enterVerb);
-            args.Verbs.Add(openUiVerb);
+
+            // Frontier: snails and other simple mobs shouldn't access mech UI
+            if (args.CanComplexInteract)
+            {
+                var openUiVerb = new AlternativeVerb //can't hijack someone else's mech
+                {
+                    Act = () => ToggleMechUi(uid, component, args.User),
+                    Text = Loc.GetString("mech-ui-open-verb")
+                };
+                args.Verbs.Add(openUiVerb);
+            }
+            // End Frontier
         }
         else if (!IsEmpty(component))
         {

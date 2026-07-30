@@ -51,17 +51,24 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: ClarkeChassis
-    requiredParts:
-      ClarkeLArm: false
-      ClarkeRArm: false
-      ClarkeLTread: false
-      ClarkeRTread: false
-      ClarkeHead: false
+      battery-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: clarke
   - type: Sprite
     state: clarke_harness+o
     noRot: true
+  - type: PartAssembly
+    parts:
+      Clarke:
+      - ClarkeLArm
+      - ClarkeRArm
+      - ClarkeLLeg
+      - ClarkeRLeg
+      - ClarkeHead
+    containerId: mech-assembly-container
+  - type: Construction
+    graph: Clarke
+    node: start
 
 - type: entity
   parent: BaseClarkePartItem
@@ -123,26 +130,6 @@
     tags:
     - ClarkeHead
 
-- type: entity
-  id: ClarkeChassis
-  parent: BaseClarkePart
-  name: clarke chassis
-  description: An in-progress construction of the clarke mech.
-  components:
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      battery-container: !type:Container
-  - type: MechAssemblyVisuals
-    statePrefix: clarke
-  - type: Sprite
-    noRot: true
-    state: clarke_chassis
-  - type: Construction
-    graph: Clarke
-    node: start
-    defaultTarget: clarke
-
 # Odysseus construction
 
 - type: entity
@@ -196,17 +183,24 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: OdysseusChassis
-    requiredParts:
-      OdysseusLArm: false
-      OdysseusRArm: false
-      OdysseusLLeg: false
-      OdysseusRLeg: false
-      OdysseusHead: false
+      battery-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: odysseus
   - type: Sprite
     state: odysseus_torso+o
     noRot: true
+  - type: PartAssembly
+    parts:
+      Odysseus:
+      - OdysseusLArm
+      - OdysseusRArm
+      - OdysseusLLeg
+      - OdysseusRLeg
+      - OdysseusHead
+    containerId: mech-assembly-container
+  - type: Construction
+    graph: Odysseus
+    node: start
 
 - type: entity
   parent: BaseOdysseusPartItem
@@ -280,26 +274,6 @@
     tags:
     - OdysseusHead
 
-- type: entity
-  id: OdysseusChassis
-  parent: BaseOdysseusPart
-  name: odysseus chassis
-  description: An in-progress construction of the odysseus mech.
-  components:
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      battery-container: !type:Container
-  - type: MechAssemblyVisuals
-    statePrefix: odysseus
-  - type: Sprite
-    noRot: true
-    state: odysseus0
-  - type: Construction
-    graph: Odysseus
-    node: start
-    defaultTarget: odysseus
-
 # Gygax construction
 
 - type: entity
@@ -353,17 +327,24 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: GygaxChassis
-    requiredParts:
-      GygaxLArm: false
-      GygaxRArm: false
-      GygaxLLeg: false
-      GygaxRLeg: false
-      GygaxHead: false
+      battery-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: gygax
   - type: Sprite
     state: gygax_harness+o
     noRot: true
+  - type: PartAssembly
+    parts:
+      Gygax:
+      - GygaxLArm
+      - GygaxRArm
+      - GygaxLLeg
+      - GygaxRLeg
+      - GygaxHead
+    containerId: mech-assembly-container
+  - type: Construction
+    graph: Gygax
+    node: start
 
 - type: entity
   parent: BaseGygaxPartItem
@@ -437,26 +418,6 @@
     tags:
     - GygaxHead
 
-- type: entity
-  id: GygaxChassis
-  parent: BaseGygaxPart
-  name: gygax chassis
-  description: An in-progress construction of the gygax mech.
-  components:
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      battery-container: !type:Container
-  - type: MechAssemblyVisuals
-    statePrefix: gygax
-  - type: Sprite
-    noRot: true
-    state: gygax0
-  - type: Construction
-    graph: Gygax
-    node: start
-    defaultTarget: gygax
-
 # Durand construction
 
 - type: entity
@@ -510,17 +471,24 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: DurandChassis
-    requiredParts:
-      DurandLArm: false
-      DurandRArm: false
-      DurandLLeg: false
-      DurandRLeg: false
-      DurandHead: false
+      battery-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: durand
   - type: Sprite
     state: durand_harness+o
     noRot: true
+  - type: PartAssembly
+    parts:
+      Durand:
+      - DurandLArm
+      - DurandRArm
+      - DurandLLeg
+      - DurandRLeg
+      - DurandHead
+    containerId: mech-assembly-container
+  - type: Construction
+    graph: Durand
+    node: start
 
 - type: entity
   parent: BaseDurandPartItem
@@ -594,26 +562,6 @@
     tags:
     - DurandHead
 
-- type: entity
-  id: DurandChassis
-  parent: BaseDurandPart
-  name: durand chassis
-  description: An in-progress construction of the durand mech.
-  components:
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      battery-container: !type:Container
-  - type: MechAssemblyVisuals
-    statePrefix: durand
-  - type: Sprite
-    noRot: true
-    state: durand0
-  - type: Construction
-    graph: Durand
-    node: start
-    defaultTarget: durand
-
 # Phazon construction
 
 - type: entity
@@ -667,17 +615,24 @@
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: PhazonChassis
-    requiredParts:
-      PhazonLArm: false
-      PhazonRArm: false
-      PhazonLLeg: false
-      PhazonRLeg: false
-      PhazonHead: false
+      battery-container: !type:Container
+  - type: MechAssemblyVisuals
+    statePrefix: phazon
   - type: Sprite
     state: phazon_harness+o
     noRot: true
+  - type: PartAssembly
+    parts:
+      Phazon:
+      - PhazonLArm
+      - PhazonRArm
+      - PhazonLLeg
+      - PhazonRLeg
+      - PhazonHead
+    containerId: mech-assembly-container
+  - type: Construction
+    graph: Phazon
+    node: start
 
 - type: entity
   parent: BasePhazonPartItem
@@ -750,26 +705,6 @@
   - type: Tag
     tags:
     - PhazonHead
-
-- type: entity
-  id: PhazonChassis
-  parent: BasePhazonPart
-  name: phazon chassis
-  description: An in-progress construction of the phazon mech.
-  components:
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      battery-container: !type:Container
-  - type: MechAssemblyVisuals
-    statePrefix: phazon
-  - type: Sprite
-    noRot: true
-    state: phazon0
-  - type: Construction
-    graph: Phazon
-    node: start
-    defaultTarget: phazon
 
 # Ripley upgrades
 

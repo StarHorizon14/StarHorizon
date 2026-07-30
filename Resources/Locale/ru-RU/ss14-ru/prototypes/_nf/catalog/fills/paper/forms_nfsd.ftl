@@ -24,3 +24,5 @@ ent-PaperWrittenNfsdContrabandPermit = разрешение на контраб�
     .desc = { ent-Paper.desc }
 ent-PaperWrittenNfsdAuthorization = разрешение на работу с блюспейс угрозами
     .desc = { ent-Paper.desc }
+ent-PaperWrittenNFSDWritOfTheFrontier = судебный приказ фронтира
+    .desc = { ent-Paper.desc }

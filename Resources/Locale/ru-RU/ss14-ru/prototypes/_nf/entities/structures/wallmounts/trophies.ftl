@@ -1,0 +1,11 @@
+ent-NFBaseStructureWallTrophy = { "" }
+    .desc = Настенная рамка для демонстрации достижений любимого ребёнка ваших родителей.
+    .suffix = Фронтир
+ent-NFStructureWallTrophyFrameWood = деревянное трофейное крепление
+    .desc = { ent-NFBaseStructureWallTrophy.desc }
+ent-NFStructureWallTrophyFrameBrass = латунное трофейное крепление
+    .desc = { ent-NFBaseStructureWallTrophy.desc }
+ent-NFStructureWallTrophyFrameSilver = серебряное трофейное крепление
+    .desc = { ent-NFBaseStructureWallTrophy.desc }
+ent-NFStructureWallTrophyFrameGold = золотое трофейное крепление
+    .desc = { ent-NFBaseStructureWallTrophy.desc }

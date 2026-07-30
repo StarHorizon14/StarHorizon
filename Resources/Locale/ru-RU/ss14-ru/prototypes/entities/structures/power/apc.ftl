@@ -17,3 +17,6 @@ ent-APCSuperCapacity = { ent-BaseAPC }
 ent-APCHyperCapacity = { ent-BaseAPC }
     .suffix = Гипер ёмкость, 200кВт
     .desc = { ent-BaseAPC.desc }
+ent-APCXenoborg = { ent-BaseAPC }
+    .suffix = Базовый, 50кВт, Ксеноборг
+    .desc = { ent-BaseAPC.desc }

@@ -27,7 +27,7 @@
   components:
   - type: SubdermalImplant
     implantAction: AnCoActionActivateExtractImplant
-  - type: TriggerImplantAction
+  - type: TriggerOnActivateImplant
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
@@ -47,7 +47,7 @@
   components:
   - type: SubdermalImplant
     implantAction: AnCoActionActivateExtractImplantCrystall
-  - type: TriggerImplantAction
+  - type: TriggerOnActivateImplant
   - type: TriggerOnMobstateChange
     mobState:
     - Dead

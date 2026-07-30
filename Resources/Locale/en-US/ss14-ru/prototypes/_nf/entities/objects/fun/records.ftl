@@ -20,3 +20,5 @@ ent-SyndieRecord = blood-red record
     .desc = For storing analogue data, everyone knows that circles are unparalleled. This one smells metallic.
 ent-WizardRecord = magic record
     .desc = For storing analogue data, everyone knows that circles are unparalleled. This one smells ethereal.
+ent-NanotrasenRecord = classics record
+    .desc = For storing analogue data, everyone knows that circles are unparalleled. Contains all of the classics. Not for resale.

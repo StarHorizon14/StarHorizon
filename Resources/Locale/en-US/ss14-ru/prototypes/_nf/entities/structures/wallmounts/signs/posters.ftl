@@ -74,3 +74,5 @@ ent-NFPosterContrabandEms = Emergency Medical Society
     .desc = Your health, our prosperity.
 ent-NFPosterContrabandSsfLogo = SSF Logo
     .desc = Settler's Spacecraft Firm: Pioneers of the Stars.
+ent-NFPosterContrabandDbiLogo = DBI Logo
+    .desc = Dung Beetle Incorporated: Pushing forward inovation no matter how steep the path, or heavy the past!

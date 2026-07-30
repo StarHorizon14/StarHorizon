@@ -2,14 +2,14 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Server.Emp;
-using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Crescent.ShipShields;
 using Content.Shared.Examine;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Projectiles;
+using Content.Shared.Trigger.Components.Effects; // StarHorizon fix
+using Content.Shared.Trigger.Systems; // StarHorizon fix
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Components;
 

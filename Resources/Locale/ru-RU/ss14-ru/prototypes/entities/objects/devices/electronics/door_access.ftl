@@ -115,3 +115,6 @@ ent-DoorElectronicsMaintenance = { ent-DoorElectronics }
 ent-DoorElectronicsVault = { ent-DoorElectronics }
     .suffix = Хранилище, Закрыт
     .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsXenoborg = { ent-DoorElectronics }
+    .suffix = Ксеноборг, Закрыт
+    .desc = { ent-DoorElectronics.desc }

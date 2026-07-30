@@ -6,7 +6,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Stacks;
-using Content.Server.Explosion.EntitySystems; // StarHorizon
+using Content.Shared.Trigger.Systems; // StarHorizon
 using JetBrains.Annotations;
 using Robust.Shared.Map.Components;
 

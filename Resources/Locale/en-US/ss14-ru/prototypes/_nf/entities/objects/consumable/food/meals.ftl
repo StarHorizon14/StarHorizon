@@ -43,3 +43,5 @@ ent-FoodMeatSausage = cooked sausage
     .desc = A simple sausage. Who knows what's in this thing?
 ent-FoodMealHotdog = hotdog
     .desc = Hot diggity dog!
+ent-FoodMealPoutine = poutine
+    .desc = The ultimate hangover cure with fries, gravy and cheese curds. Oh, Canada!

@@ -3,7 +3,7 @@
   id: NFRedLightLaser
   damage:
     types:
-      Heat: 11
+      Heat: 10
   muzzleFlash: &lightMuzzleFlash
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_laser
@@ -37,7 +37,7 @@
   id: NFRedHeavyLaser
   damage:
     types:
-      Heat: 18
+      Heat: 17.5
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_beam_heavy
@@ -71,8 +71,8 @@
   id: NFXrayLaser
   damage:
     types:
-      Heat: 10
-      Radiation: 10
+      Heat: 12.5
+      Radiation: 12.5
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_xray
@@ -89,7 +89,7 @@
   id: NFPulse
   damage:
     types:
-      Heat: 20
+      Heat: 22.5
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_blue
@@ -120,7 +120,7 @@
   maxLength: 60
   damage:
     types:
-      Heat: 30
+      Heat: 37.5
       Structural: 10
   muzzleFlash: *specialMuzzleFlash
   travelFlash: *specialTravelFlash

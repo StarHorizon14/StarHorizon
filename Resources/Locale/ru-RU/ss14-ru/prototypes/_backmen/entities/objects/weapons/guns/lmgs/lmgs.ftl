@@ -1,9 +1,9 @@
-ent-WeaponLightMachineGunRPD = RPD
-    .desc = A cheap and robust machinegun, sometimes better known as an 'RPD'. Despite lacking attachment points beyond its underbarrel, remains a popular product on the black market with its cheap cost, high capacity and higher than usual caliber rounds.
+ent-WeaponLightMachineGunRPD = РПД
+    .desc = Дешевый и надежный пулемет, иногда более известный как «РПД». Несмотря на отсутствие точек крепления, кроме подствольного, он остается популярным товаром на черном рынке благодаря своей низкой стоимости, большой емкости магазина и патронам большего, чем обычно, калибра.
     .suffix = Пулемёт
 ent-WeaponLightMachineGunMG60 = MG-60
-    .desc = The Raummetall MG-60 general purpose machinegun is the EarthGov Army's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire.
+    .desc = Универсальный пулемет Raummetall MG-60 является текущим стандартным пулеметом армии Земного правительства. Хотя обычно его можно увидеть установленным на технике, иногда его используют пехотинцы для удержания узких мест или подавления противника, а в редких случаях — для ведения огня во время движения.
     .suffix = Пулемёт
 ent-WeaponRifleM41 = M-41
-    .desc = The M-41 is a large man portable machine, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited.
+    .desc = M-41 — это крупная переносная машина, позволяющая вести продолжительный и точный подавляющий огонь за счет мобильности и удобства в обращении. Часто используется там, где предпочтительная тактика быстрой и мобильной агрессии оказывается неэффективной.
     .suffix = Пулемёт

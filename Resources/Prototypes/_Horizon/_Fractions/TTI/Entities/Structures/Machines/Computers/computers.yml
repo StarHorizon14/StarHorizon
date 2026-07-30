@@ -1,0 +1,18 @@
+# - type: entity
+#   parent: BaseComputerTabletopStationAdminBankATM
+#   id: ComputerTabletopStationAdminBankATMTrauma
+#   description: Используется для доступа к банковскому счету Trauma Team.
+#   suffix: TraumaTeam, Настольный
+#   components:
+#     - type: StationBankATM
+#       account: Trauma
+
+- type: entity
+  id: TraumaShipyardConsole
+  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase ]
+  name: консоль аренды шаттлов траумы
+  suffix: TraumaTeam
+  components:
+  - type: ShipyardListing
+    shuttles:
+    - TraumaAV4C

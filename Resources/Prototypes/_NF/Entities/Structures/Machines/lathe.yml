@@ -307,6 +307,7 @@
     - NfsdToolsStatic
     - NfsdTargetsStatic
     - NfsdBoardsStatic
+    - NfsdReportingStatic
     dynamicPacks:
     - NightVisionSecPack # Horizon
     - WeaponModulesPack # Horizon

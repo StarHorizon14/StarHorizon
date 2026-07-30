@@ -1,2 +1,2 @@
-ent-SpawnMineshaftDungeon = Dungeon Spawner
+ent-SpawnMineshaftDungeon = Спавнер Подземелья
     .desc = { ent-MarkerBase.desc }

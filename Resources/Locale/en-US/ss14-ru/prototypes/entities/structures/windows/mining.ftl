@@ -1,5 +1,5 @@
 ent-MiningWindow = mining window
-    .desc = { ent-WindowRCDResistant.desc }
-ent-MiningWindowDiagonal = { ent-ShuttleWindow }
+    .desc = { ent-Window.desc }
+ent-MiningWindowDiagonal = mining window
     .suffix = diagonal
     .desc = { ent-ShuttleWindow.desc }
