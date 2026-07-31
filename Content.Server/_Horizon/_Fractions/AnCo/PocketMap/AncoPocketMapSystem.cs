@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Shared._Horizon._Fractions.AnCo.PocketMap;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
@@ -7,6 +7,7 @@ using Content.Shared.Teleportation.Components;
 using Content.Shared.Teleportation.Systems;
 using Content.Shared.Verbs;
 using Robust.Server.Audio;
+using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 
@@ -32,6 +33,7 @@ public sealed class AncoPocketMapSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<AncoPocketMapComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<AncoPocketMapComponent, ComponentRemove>(OnRemoved);
         SubscribeLocalEvent<AncoPocketMapComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
         SubscribeLocalEvent<AncoPocketMapComponent, AncoPocketMapEnterDoAfterEvent>(OnEnterDoAfter);
@@ -39,6 +41,12 @@ public sealed class AncoPocketMapSystem : EntitySystem
         SubscribeLocalEvent<AncoPocketMapExitComponent, AncoPocketMapExitDoAfterEvent>(OnExitDoAfter);
 
         _sawmill = Logger.GetSawmill("anco_pocket_map");
+    }
+
+    private void OnStartup(EntityUid uid, AncoPocketMapComponent component, ComponentStartup args)
+    {
+        if (Deleted(component.PocketMap))
+            TryCreatePocketMap(uid, component);
     }
 
     private void OnRemoved(EntityUid uid, AncoPocketMapComponent component, ComponentRemove args)
@@ -188,7 +196,13 @@ public sealed class AncoPocketMapSystem : EntitySystem
 
     private bool TryCreatePocketMap(EntityUid uid, AncoPocketMapComponent component)
     {
-        if (!_mapLoader.TryLoadMap(component.MapPath, out var map, out var grids))
+        var options = DeserializationOptions.Default with
+        {
+            InitializeMaps = true,
+            PauseMaps = false,
+        };
+
+        if (!_mapLoader.TryLoadMap(component.MapPath, out var map, out var grids, options))
         {
             _sawmill.Error($"Failed to load pocket map {component.MapPath}");
             return false;
