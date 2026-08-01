@@ -82,6 +82,18 @@
     - FactionDFI
     - FactionTTI
     - FactionSIU
+  - type: TitanSuitInjector
+    cartridgeSlotId: titan_capsule
+  - type: ContainerContainer
+    containers:
+      titan_capsule: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      titan_capsule:
+        name: Капсула с реагентами
+        whitelist:
+          tags:
+          - TitanCapsule
 
 # рыцарь
 - type: entity
