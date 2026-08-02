@@ -113,6 +113,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
+        if (component.ParkingConsole)
+        {
+            HandleParkingPurchase(shipyardConsoleUid, component, player, targetId);
+            return;
+        }
+
         if (!_prototypeManager.TryIndex<VesselPrototype>(args.Vessel, out var vessel))
         {
             ConsolePopup(player, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
@@ -359,6 +365,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
+        if (component.ParkingConsole)
+        {
+            HandleParkingSell(uid, component, player, targetId);
+            return;
+        }
+
         if (!TryComp<ShuttleDeedComponent>(targetId, out var deed) || deed.ShuttleUid is not { Valid: true } shuttleUid)
         {
             ConsolePopup(player, Loc.GetString("shipyard-console-no-deed"));
@@ -507,6 +519,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
 
+        if (component.ParkingConsole)
+        {
+            RefreshParkingState(uid, deed != null ? GetFullName(deed) : null, targetId);
+            return;
+        }
+
         int sellValue = 0;
         if (deed?.ShuttleUid != null)
         {
@@ -603,6 +621,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
 
             var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
+
+            if (component.ParkingConsole)
+            {
+                RefreshParkingState(uid, deed != null ? GetFullName(deed) : null, targetId);
+                continue;
+            }
 
             int sellValue = 0;
             if (deed?.ShuttleUid != null)
@@ -706,6 +730,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var available = new List<string>();
         var unavailable = new List<string>();
 
+        if (TryGetAvailableParkingShuttles(uid, targetId, out available, out unavailable))
+            return (available, unavailable);
+
         if (key == null && TryComp<UserInterfaceComponent>(uid, out var ui))
         {
             // Try to find a ui key that is an instance of the shipyard console ui key
@@ -806,8 +833,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             freeListings,
             CalculateSellRate(uid));
 
-        _ui.SetUiState(uid, uiKey, newState);
+        BoundUserInterfaceState state = newState;
+        ExtendUiStateLua(uid, ref state);
+        _ui.SetUiState(uid, uiKey, state);
     }
+
+    // Lua: allow extensions to shipyard UI state without modifying NF state type.
+    partial void ExtendUiStateLua(EntityUid uid, ref BoundUserInterfaceState state);
 
     #region Deed Assignment
     void AssignShuttleDeedProperties(Entity<ShuttleDeedComponent> deed, EntityUid? shuttleUid, string? shuttleName, string? shuttleOwner, bool purchasedWithVoucher)

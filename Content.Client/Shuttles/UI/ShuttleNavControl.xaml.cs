@@ -52,7 +52,7 @@ using Robust.Shared.Physics.Collision.Shapes;
 namespace Content.Client.Shuttles.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class ShuttleNavControl : BaseShuttleControl
+public partial class ShuttleNavControl : BaseShuttleControl
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
@@ -64,14 +64,14 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     /// <summary>
     /// Used to transform all of the radar objects. Typically is a shuttle console parented to a grid.
     /// </summary>
-    private EntityCoordinates? _coordinates;
+    protected EntityCoordinates? _coordinates;
 
     /// <summary>
     /// Entity of controlling console
     /// </summary>
     private EntityUid? _consoleEntity;
 
-    private Angle? _rotation;
+    protected Angle? _rotation;
 
     private Dictionary<NetEntity, List<DockingPortState>> _docks = new();
 
@@ -79,6 +79,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public bool ShowIFFShuttles { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
     public bool RotateWithEntity { get; set; } = true;
+
+    protected virtual bool ShowRadarPositionMarker => true;
+
+    public NetEntity? HighlightDockPort { get; set; }
+    private const float HighlightDockScale = 1f;
 
     public float MaximumIFFDistance { get; set; } = -1f; // Frontier
     public bool HideCoords { get; set; } = false; // Frontier
@@ -330,16 +335,19 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         }
 
         // Draw radar position on the station
-        const float radarVertRadius = 2f;
-        var radarPosVerts = new Vector2[]
+        if (ShowRadarPositionMarker)
         {
-            ScalePosition(new Vector2(0f, -radarVertRadius)),
-            ScalePosition(new Vector2(radarVertRadius / 2f, 0f)),
-            ScalePosition(new Vector2(0f, radarVertRadius)),
-            ScalePosition(new Vector2(radarVertRadius / -2f, 0f)),
-        };
+            const float radarVertRadius = 2f;
+            var radarPosVerts = new Vector2[]
+            {
+                ScalePosition(new Vector2(0f, -radarVertRadius)),
+                ScalePosition(new Vector2(radarVertRadius / 2f, 0f)),
+                ScalePosition(new Vector2(0f, radarVertRadius)),
+                ScalePosition(new Vector2(radarVertRadius / -2f, 0f)),
+            };
 
-        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
+        }
 
         // Frontier: Use ScaledWorldRange for culling. WorldRange doesnt account for the viewport resizing
         var viewBounds = new Box2Rotated(new Box2(-ScaledWorldRange.X, -ScaledWorldRange.Y, ScaledWorldRange.X, ScaledWorldRange.Y).Translated(mapPos.Position), rot, mapPos.Position);
@@ -800,7 +808,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var nent = EntManager.GetNetEntity(uid);
 
         const float sqrt2 = 1.41421356f;
-        const float dockRadius = DockScale * sqrt2;
+        const float dockRadius = HighlightDockScale > DockScale ? HighlightDockScale * sqrt2 : DockScale * sqrt2;
         // Worst-case bounds used to cull a dock:
         Box2 viewBounds = new Box2(-dockRadius, -dockRadius, PixelSize.X + dockRadius, PixelSize.Y + dockRadius); // Frontier: Size<PixelSize
         if (_docks.TryGetValue(nent, out var docks))
@@ -816,13 +824,16 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 }
 
                 var color = Color.ToSrgb(state.HighlightedColor);
+                var scale = HighlightDockPort.HasValue && state.Entity == HighlightDockPort.Value
+                    ? HighlightDockScale
+                    : DockScale;
 
                 var verts = new[]
                 {
-                    Vector2.Transform(position + new Vector2(-DockScale, -DockScale), gridToView),
-                    Vector2.Transform(position + new Vector2(DockScale, -DockScale), gridToView),
-                    Vector2.Transform(position + new Vector2(DockScale, DockScale), gridToView),
-                    Vector2.Transform(position + new Vector2(-DockScale, DockScale), gridToView),
+                    Vector2.Transform(position + new Vector2(-scale, -scale), gridToView),
+                    Vector2.Transform(position + new Vector2(scale, -scale), gridToView),
+                    Vector2.Transform(position + new Vector2(scale, scale), gridToView),
+                    Vector2.Transform(position + new Vector2(-scale, scale), gridToView),
                 };
 
                 handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, color.WithAlpha(0.8f));

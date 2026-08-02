@@ -59,6 +59,9 @@ public partial class BaseShuttleControl : MapGridControl
         }
     }
 
+    protected virtual Color RadarEquatorialLineColor => Color.LightGray;
+    protected virtual Color RadarRadialLineColor => Color.MediumSpringGreen;
+
     protected void DrawData(DrawingHandleScreen handle, string text)
     {
         var coordsDimensions = handle.GetDimensions(Font, text, 1f);
@@ -73,7 +76,7 @@ public partial class BaseShuttleControl : MapGridControl
     protected void DrawCircles(DrawingHandleScreen handle)
     {
         // Equatorial lines
-        var gridLines = Color.LightGray.WithAlpha(0.01f);
+        var gridLines = RadarEquatorialLineColor.WithAlpha(0.01f);
 
         // Each circle is this x distance of the last one.
         const float EquatorialMultiplier = 2f;
@@ -111,7 +114,7 @@ public partial class BaseShuttleControl : MapGridControl
             // Frontier
             var aExtent = angle.ToVec() * PixelSize.Length;
             // End Frontier
-            var lineColor = Color.MediumSpringGreen.WithAlpha(0.02f);
+            var lineColor = RadarRadialLineColor.WithAlpha(0.02f);
             handle.DrawLine(origin - aExtent, origin + aExtent, lineColor);
         }
     }
