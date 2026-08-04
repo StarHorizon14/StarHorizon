@@ -1,0 +1,42 @@
+- type: entity
+  id: HorizonCastaway
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CastawayRule
+    wreckGridPaths:
+    - /Maps/Salvage/medium-ruined-emergency-shuttle.yml
+    - /Maps/Salvage/small-ship-1.yml
+    - /Maps/Salvage/small-syndicate.yml
+    - /Maps/Salvage/hauling-shuttle.yml
+    - /Maps/Salvage/medium-crashed-shuttle.yml
+    survivalLoot:
+    - EmergencyOxygenTank
+    - MedkitFilled
+    - HandHeldMassScanner
+    - FlashlightLantern
+    - ClothingMaskBreath
+    - ClothingMaskBreath
+    - ClothingMaskBreath
+    - ClothingOuterSuitEmergency
+    - ClothingOuterSuitEmergency
+    - ClothingOuterSuitEmergency
+    - WeaponFlareGun
+    - ToolboxEmergency
+    - FireExtinguisherMini
+    - CrowbarRed
+    - RadioHandheldNF
+    - ToolboxEmergencyFilled
+    - NFClothingBackpack
+    - FloodlightBroken
+    - Flare
+    - BoxSurvivalSlots
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
