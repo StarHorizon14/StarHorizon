@@ -82,6 +82,7 @@ public sealed partial class ShipyardSystem
     {
         available = new List<string>();
         unavailable = new List<string>();
+        // Lua: parking console has no shuttle purchase list; ship name/status is conveyed via ParkingConsoleInterfaceState instead.
         return TryComp<ShipyardConsoleComponent>(uid, out var console) && console.ParkingConsole;
     }
 

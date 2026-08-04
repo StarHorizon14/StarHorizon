@@ -7,7 +7,6 @@ using Content.Server._Lua.Shipyard.Components;
 using Content.Server.Mind;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Ghost;
 using Content.Shared.Station.Components;
@@ -88,7 +87,7 @@ public sealed class ShuttleParkingSystem : EntitySystem
         { return new ShuttleParkingResult(ShuttleParkingError.InvalidDock); }
         if (_station.GetOwningStation(consoleUid) is not { Valid: true } consoleStation || _station.GetOwningStation(targetDockUid) != consoleStation)
         { return new ShuttleParkingResult(ShuttleParkingError.InvalidConsole); }
-        var config = _docking.GetDockingConfig(shuttleUid, targetGrid);
+        var config = _docking.GetDockingConfigForGridDock(shuttleUid, targetGrid, targetDockUid);
         if (config == null) return new ShuttleParkingResult(ShuttleParkingError.NoDockingPath);
         _docking.UndockDocks(shuttleUid);
         _shuttle.FTLDock((shuttleUid, Transform(shuttleUid)), config);
@@ -198,7 +197,7 @@ public sealed class ShuttleParkingSystem : EntitySystem
         var childEnumerator = xform.ChildEnumerator;
         while (childEnumerator.MoveNext(out var child))
         {
-            if (TryComp<MetaDataComponent>(child, out var meta) && meta.EntityPrototype?.ID == "MachineCryoSleepPod")
+            if (TryComp<MetaDataComponent>(child, out var meta) && meta.EntityPrototype?.ID == "MachineCryoSleepPodPlayer")
             { return true; }
             if (HasPlayerCryoPod(child)) return true;
         }

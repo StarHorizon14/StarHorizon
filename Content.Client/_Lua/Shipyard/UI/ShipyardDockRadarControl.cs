@@ -57,12 +57,10 @@ public sealed class ShipyardDockRadarControl : ShuttleNavControl
         var xformQuery = EntManager.GetEntityQuery<TransformComponent>();
         if (!xformQuery.TryGetComponent(_coordinates.Value.EntityId, out var anchorXform) || anchorXform.MapID == MapId.Nullspace) { return; }
         if (!xformQuery.TryGetComponent(playerEnt.Value, out var playerXform) || playerXform.MapID != anchorXform.MapID) { return; }
-        var posMatrix = Matrix3Helpers.CreateTransform(_coordinates.Value.Position, _rotation.Value);
-        var ourEntRot = RotateWithEntity ? _transform.GetWorldRotation(anchorXform) : _rotation.Value;
-        var ourEntMatrix = Matrix3Helpers.CreateTransform(_transform.GetWorldPosition(anchorXform), ourEntRot);
-        var shuttleToWorld = Matrix3x2.Multiply(posMatrix, ourEntMatrix);
-        Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
-        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPoint);
+        var worldRot = _rotation.Value;
+        var mapPos = _transform.ToMapCoordinates(_coordinates.Value);
+        var worldToShuttle = Matrix3Helpers.CreateTranslation(-mapPos.Position) * Matrix3Helpers.CreateRotation(-worldRot);
+        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
         var playerWorldPos = _transform.GetWorldPosition(playerEnt.Value);
         var p = Vector2.Transform(playerWorldPos, worldToShuttle * shuttleToView);
         const float radius = 5f;
@@ -121,8 +119,10 @@ public sealed class ShipyardDockRadarControl : ShuttleNavControl
         }
         if (!_panning) return;
         if (MidPoint.X <= 0 || MidPoint.Y <= 0) return;
+        // Lua: the radar view is already rendered in the station's local (rotated) space
+        // (see base Draw's worldToShuttle), and _baseCoords.Offset() below adds in that same
+        // local space too - so the screen-space drag delta needs no extra rotation here.
         var delta = new Vector2(args.Relative.X, -args.Relative.Y) / MidPoint * WorldRange;
-        delta = _baseAngle.Value.RotateVec(delta);
         _pan -= delta;
         _pan = new Vector2( Math.Clamp(_pan.X, -PanClamp, PanClamp), Math.Clamp(_pan.Y, -PanClamp, PanClamp));
         ApplyPan();

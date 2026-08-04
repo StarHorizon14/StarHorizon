@@ -4,17 +4,6 @@
   name: консоль парковки
   description: Используется для парковки кораблей
   components:
-  - type: Sprite
-    sprite: _Lua/Structures/Machines/computers.rsi
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: transferSyndicate
-    - map: ["computerLayerKeys"]
-      state: tech_key
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Parking
   - type: UserInterface
