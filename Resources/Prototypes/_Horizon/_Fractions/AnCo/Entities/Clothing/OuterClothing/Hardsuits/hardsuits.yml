@@ -46,9 +46,10 @@
     components:
     - type: Stealth
       minVisibility: 0.1
+      maxVisibility: 0.3
       lastVisibility: 0.1
   - type: PowerCellDraw
-    drawRate: 1.8
+    drawRate: 100
   - type: ToggleCellDraw
   - type: PowerCellSlot
     cellSlotId: cell_slot
@@ -60,11 +61,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: AnCoEnergyCore
         disableEject: true
         whitelist:
           tags:
-            - PowerCell
+            - PowerAnCo
 
 # титан
 - type: entity
