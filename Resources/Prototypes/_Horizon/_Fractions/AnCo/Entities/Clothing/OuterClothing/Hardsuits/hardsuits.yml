@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseAnCoContraband]
+  parent: [ClothingOuterHardsuitBase, BaseAnCoContraband, BaseToggleClothing]
   id: ClothingOuterHardsuitSpider
   suffix: StarHorizon, AnCo, HardSuit
   name: скафандр офицера Паука АнКо
@@ -38,6 +38,33 @@
     - FactionDFI
     - FactionTTI
     - FactionSIU
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.1
+      lastVisibility: 0.1
+  - type: PowerCellDraw
+    drawRate: 1.8
+  - type: ToggleCellDraw
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
 
 # титан
 - type: entity
