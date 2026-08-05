@@ -246,6 +246,11 @@
     - NightVisionPack # Horizon
     - StarlightSurgeryTools # Starlight
     - NFProtolathe # Frontier
+    dynamicRecipes:
+# Starshine-start
+      - ThrusterLargeAssemblyFlatpack
+      - ThrusterHugeAssemblyFlatpack
+# Starshine-end
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - NfsdAmmoStatic # Frontier: SecurityAmmo<NfsdAmmoStatic
