@@ -124,13 +124,8 @@
     guides:
     - NuclearReactor
     - Power
-  - type: PassiveThermalSignature # Mono
-    signature: 5000000
   # Mono
   - type: RequiresGrid
-  - type: ShipRepairable
-    repairTime: 45
-    repairCost: 200
   - type: RadarBlip
     visibleFromOtherGrids: true
     radarColor: "#00fa9a"
@@ -236,12 +231,7 @@
     outletRot: 180
     arrowPrototype: ReactorSmallFlowArrow
     gridbounds: [ 12, 11, 0, 0 ]
-  - type: PassiveThermalSignature # Mono
-    signature: 2500000
   # Mono
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 100
   - type: RadarBlip
     visibleFromOtherGrids: true
     radarColor: "#00fa9a"

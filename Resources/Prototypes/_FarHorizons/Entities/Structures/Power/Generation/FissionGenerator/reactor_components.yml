@@ -18,6 +18,9 @@
     - NuclearReactor
     - Power
 
+- type: Tag
+  id: ReactorPart
+
 # Fuel Rods
 - type: entity
   id: BaseReactorFuelRod
@@ -51,8 +54,6 @@
     guides:
     - NuclearReactor
     - Power
-  - type: PassiveThermalSignature # Mono
-    signature: 150000
 
 - type: entity
   id: CerenkiteReactorFuelRod

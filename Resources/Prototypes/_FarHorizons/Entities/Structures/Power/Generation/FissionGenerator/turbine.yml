@@ -105,9 +105,6 @@
     - Power
   # Mono
   - type: RequiresGrid
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 75
   - type: RadarBlip
     visibleFromOtherGrids: true
     radarColor: "#b8860b"
@@ -119,7 +116,6 @@
       respectZoom: true
       rotate: true
       bounds: "-1.5,-1.5,1.5,1.5"
-  - type: ThermalSignature # Mono
 
 - type: entity
   id: TurbineSmall
@@ -151,9 +147,6 @@
     outletRot: 0
     arrowPrototype: TurbineSmallFlowArrow
   # Mono
-  - type: ShipRepairable
-    repairTime: 20
-    repairCost: 40
   - type: RadarBlip
     visibleFromOtherGrids: true
     radarColor: "#b8860b"
@@ -165,7 +158,6 @@
       respectZoom: true
       rotate: true
       bounds: "-1.5,-1.5,1.5,1.5"
-  - type: ThermalSignature # Mono
 
 # Arrow to indicate flow
 - type: entity
