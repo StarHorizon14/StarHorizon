@@ -41,6 +41,9 @@ public sealed partial class AutomenderComponent : Component
     [DataField]
     public SoundSpecifier? HealingBeginSound;
 
+    /// <summary>
+    /// Звук, проигрываемый после каждого успешного тика лечения.
+    /// </summary>
     [DataField]
-    public SoundSpecifier? HealingTickSound;
+    public SoundSpecifier HealingTickSound = new SoundCollectionSpecifier("sparks");
 }

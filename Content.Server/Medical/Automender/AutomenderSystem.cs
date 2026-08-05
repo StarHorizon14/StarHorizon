@@ -63,7 +63,7 @@ public sealed class AutomenderSystem : EntitySystem
         if (!_powerCell.HasCharge(automender.Owner, automender.Comp.ChargeUsePerTick, user: user))
             return false;
 
-        _audio.PlayPredicted(automender.Comp.HealingBeginSound, automender.Owner, user);
+        _audio.PlayPvs(automender.Comp.HealingBeginSound, automender.Owner);
 
         var doAfterEventArgs = new DoAfterArgs(EntityManager, user, automender.Comp.Delay, new AutomenderDoAfterEvent(), target, target: target, used: automender.Owner)
         {
@@ -99,7 +99,7 @@ public sealed class AutomenderSystem : EntitySystem
 
         _damageable.TryChangeDamage(target.Owner, automender.Damage, true, origin: args.Args.User);
 
-        _audio.PlayPredicted(automender.HealingTickSound, target.Owner, args.User);
+        _audio.PlayPvs(automender.HealingTickSound, target.Owner);
 
         args.Repeat = HasDamage(automender, target.Comp);
         args.Handled = true;
