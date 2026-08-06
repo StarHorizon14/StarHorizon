@@ -16,6 +16,12 @@ frontier-lobby-frontier-description = Awaken from cryosleep here to:
    - Socialize with other pioneers
  {"["}color=gray]Some of the roles on this station are [color=lightblue]whitelist-only[/color] and require an application in the Discord to be accepted.[/color]
 
+abandonet-stationlobby-subtext = An abandoned station drifting in the void.
+abandonet-station-lobby-description = Once a bustling station, now abandoned and damaged.
+   - Explore what remains of the station
+   - Scavenge supplies from the wreckage
+   - Watch out for what lurks in the dark
+
 frontier-lobby-exped-subtext = Where seasoned mercenaries gather.
 frontier-lobby-exped-description = This is base camp for mercenaries and alike. Here you can:
    - Start a mercenary crew

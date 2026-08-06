@@ -1,0 +1,53 @@
+# Event scrapyard console: same as ComputerShipyardScrap, but without the Geode and Hammerhead shuttles.
+- type: entity
+  id: ComputerShipyardScrapEvent
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: scrapyard console
+  description: Used to purchase and sell "shuttles".
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Custom
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Custom:
+        type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardListing
+    shuttles:
+    - Nugget
+    - Orange
+    - Tide
+    - Construct
+    - Disciple
+    - Canister
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_scrap
+    - map: ["computerLayerKeyboard"]
+      state: scrap_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_scrap
+    - map: ["computerLayerKeys"]
+      state: scrap_key
+
+# Tabletop variant of the event scrapyard console.
+- type: entity
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardScrapEvent]
+  id: ComputerTabletopShipyardScrapEvent
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop_scrap
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: scrap_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard_scrap
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: scrap_key
