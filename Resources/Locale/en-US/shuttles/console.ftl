@@ -45,12 +45,14 @@ shuttle-console-ftl-state-Invalid = Invalid
 
 shuttle-console-map-settings = Settings
 shuttle-console-ftl-button = FTL
+shuttle-console-map-mark-button = Mark
 shuttle-console-map-rebuild = Scan
 shuttle-console-map-beacons = Show Beacons
 
 shuttle-console-no-signal = No Signal
 
 shuttle-console-map-objects = Sector Objects
+shuttle-console-map-zoom = Zoom
 
 # DOCK
 shuttle-console-docked = Docked Objects

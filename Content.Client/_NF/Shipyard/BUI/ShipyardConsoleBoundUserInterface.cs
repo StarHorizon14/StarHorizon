@@ -1,5 +1,7 @@
 using Content.Client._NF.Shipyard.UI;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared._Lua.Shipyard.BUIStates;
+using Content.Shared._Lua.Shipyard.Events;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared._NF.Shipyard.Events;
 using static Robust.Client.UserInterface.Controls.BaseButton;
@@ -27,6 +29,9 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
             _menu = this.CreateWindow<ShipyardConsoleMenu>();
             _menu.OnOrderApproved += ApproveOrder;
             _menu.OnSellShip += SellShip;
+            _menu.OnUnassignDeed += UnassignDeed;
+            _menu.OnRenameShip += RenameShip;
+            _menu.OnDockPortSelected += SelectDockPort;
             _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent("ShipyardConsole-targetId"));
             _menu.Owner = Owner;    // Horizon
 
@@ -60,14 +65,23 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
     {
         base.UpdateState(state);
 
-        if (state is not ShipyardConsoleInterfaceState cState)
-            return;
+        ShipyardConsoleInterfaceState? baseState = null;
+        ShipyardConsoleLuaDockSelectState? dockState = null;
 
-        Balance = cState.Balance;
-        ShipSellValue = cState.ShipSellValue;
-        var castState = (ShipyardConsoleInterfaceState) state;
-        Populate(castState.ShipyardPrototypes.available, castState.ShipyardPrototypes.unavailable, castState.FreeListings, castState.IsTargetIdPresent);
-        _menu?.UpdateState(castState);
+        if (state is ShipyardConsoleLuaDockSelectState lua)
+        {
+            baseState = lua.BaseState;
+            dockState = lua;
+        }
+        else if (state is ShipyardConsoleInterfaceState plain) { baseState = plain; }
+        else { return; }
+
+        Balance = baseState.Balance;
+        ShipSellValue = baseState.ShipSellValue;
+        Populate(baseState.ShipyardPrototypes.available, baseState.ShipyardPrototypes.unavailable, baseState.FreeListings, baseState.IsTargetIdPresent);
+        _menu?.UpdateState(baseState);
+        if (dockState != null) _menu?.UpdateDockSelect(dockState.DockNavState, dockState.SelectedDockPort);
+        else _menu?.UpdateDockSelect(null, null);
     }
 
     private void ApproveOrder(ButtonEventArgs args)
@@ -85,4 +99,17 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         //reserved for a sanity check, but im not sure what since we check all the important stuffs on server already
         SendMessage(new ShipyardConsoleSellMessage());
     }
+
+    private void UnassignDeed(ButtonEventArgs args)
+    {
+        SendMessage(new ShipyardConsoleUnassignDeedMessage());
+    }
+
+    private void RenameShip(string newName)
+    {
+        SendMessage(new ShipyardConsoleRenameMessage(newName));
+    }
+
+    private void SelectDockPort(NetEntity? port)
+    { SendMessage(new SelectDockPortMessage(port)); }
 }

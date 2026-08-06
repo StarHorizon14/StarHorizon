@@ -1,12 +1,14 @@
 // New Frontiers - This file is licensed under AGPLv3
 // Copyright (c) 2024 New Frontiers Contributors
 // See AGPLv3.txt for details.
-
 using System.Numerics;
+using Content.Client.Stylesheets;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Maths;
 
 namespace Content.Client.Shuttles.UI
 {
@@ -17,22 +19,27 @@ namespace Content.Client.Shuttles.UI
         public event Action<NetEntity?, ServiceFlags>? OnServiceFlagsChanged;
         public event Action<NetEntity?, Vector2>? OnSetTargetCoordinates;
         public event Action<NetEntity?, bool>? OnSetHideTarget;
+        public event Action<float?>? OnMaxShuttleSpeedChanged;
+        public event Action<float?>? OnMaxShuttleAngularSpeedChanged;
+
         private bool _targetCoordsModified = false;
-        public event Action<NetEntity?, float>? OnMaxShuttleSpeedChanged;
+
         public event Action<string, string>? OnNetworkPortButtonPressed;
 
         private void NfInitialize()
         {
-            // Frontier - IFF search
             IffSearchCriteria.OnTextChanged += args => OnIffSearchChanged(args.Text);
 
-            // Frontier - Maximum IFF Distance
-            MaximumIFFDistanceValue.GetChild(0).GetChild(1).Margin = new Thickness(8, 0, 0, 0);
+            ApplyThinSlider(MaximumIFFDistanceValue);
             MaximumIFFDistanceValue.OnValueChanged += args => OnRangeFilterChanged(args);
 
-            // Frontier - Maximum Shuttle Speed
-            MaximumShuttleSpeedValue.GetChild(0).GetChild(1).Margin = new Thickness(8, 0, 0, 0);
-            MaximumShuttleSpeedValue.OnValueChanged += args => OnMaxSpeedChanged(args);
+            ApplyThinSlider(MaximumShuttleSpeedValue);
+            ApplyThinSlider(MaximumShuttleAngularSpeedValue);
+            MaximumShuttleSpeedValue.OnValueChanged += OnMaxSpeedChanged;
+            MaximumShuttleAngularSpeedValue.OnValueChanged += OnMaxAngularSpeedChanged;
+
+            ApplyNavColumnFont(RightDisplayNav);
+            ApplyNavColumnFont(WeaponsPanel);
 
             DampenerOff.OnPressed += _ => SetDampenerMode(InertiaDampeningMode.Off);
             DampenerOn.OnPressed += _ => SetDampenerMode(InertiaDampeningMode.Dampen);
@@ -51,6 +58,7 @@ namespace Content.Client.Shuttles.UI
             DeviceButton6.OnPressed += _ => OnPortButtonPressed("device-button-6", "button-6");
             DeviceButton7.OnPressed += _ => OnPortButtonPressed("device-button-7", "button-7");
             DeviceButton8.OnPressed += _ => OnPortButtonPressed("device-button-8", "button-8");
+            DeviceButton9.OnPressed += _ => OnPortButtonPressed("device-button-9", "button-9");
 
             // Send off a request to get the current dampening mode.
             _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
@@ -84,11 +92,13 @@ namespace Content.Client.Shuttles.UI
             {
                 DampenerModeButtons.Visible = false;
                 ServiceFlagsBox.Visible = false;
+                MaximumShuttleSpeedBox.Visible = false;
             }
             else
             {
                 DampenerModeButtons.Visible = true;
                 ServiceFlagsBox.Visible = true;
+                MaximumShuttleSpeedBox.Visible = true;
                 DampenerOff.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Off;
                 DampenerOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Dampen;
                 AnchorOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Anchor;
@@ -128,17 +138,52 @@ namespace Content.Client.Shuttles.UI
             }
         }
 
-        // Frontier - Maximum IFF Distance
         private void OnRangeFilterChanged(int value)
         {
-            NavRadar.MaximumIFFDistance = (float)value;
+            NavRadar.MaximumIFFDistance = value;
         }
 
-        // Frontier - Maximum Shuttle Speed
+        private static void ApplyThinSlider(SliderIntInput control)
+        {
+            if (control.ChildCount == 0)
+                return;
+
+            var row = control.GetChild(0);
+            if (row.ChildCount < 2)
+                return;
+
+            if (row.GetChild(1) is not SpinBox spin)
+                return;
+
+            spin.Margin = new Thickness(6, 0, 0, 0);
+            spin.MaxHeight = 16;
+            spin.LineEditControl.MinSize = new Vector2(36, 0);
+            control.MaxHeight = 16;
+        }
+
+        private static void ApplyNavColumnFont(Control root)
+        {
+            foreach (var child in root.Children)
+            {
+                switch (child)
+                {
+                    case Label label:
+                        label.AddStyleClass(StyleNano.StyleClassLabelSmall);
+                        break;
+                }
+
+                ApplyNavColumnFont(child);
+            }
+        }
+
         private void OnMaxSpeedChanged(int value)
         {
-            _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
-            OnMaxShuttleSpeedChanged?.Invoke(shuttle, value);
+            OnMaxShuttleSpeedChanged?.Invoke(value <= 0 ? null : value);
+        }
+
+        private void OnMaxAngularSpeedChanged(int value)
+        {
+            OnMaxShuttleAngularSpeedChanged?.Invoke(value <= 0 ? null : MathHelper.DegreesToRadians(value));
         }
 
         private void ToggleServiceFlags(ServiceFlags flags, bool updateButtonsOnly = false)
@@ -179,7 +224,6 @@ namespace Content.Client.Shuttles.UI
 
         private void NfAddShuttleDesignation(EntityUid? shuttle)
         {
-            // Frontier - PR #1284 Add Shuttle Designation
             if (_entManager.TryGetComponent<MetaDataComponent>(shuttle, out var metadata))
             {
                 var shipNameParts = metadata.EntityName.Split(' ');
@@ -192,7 +236,6 @@ namespace Content.Client.Shuttles.UI
                 else
                     NavDisplayLabel.Text = metadata.EntityName;
             }
-            // End Frontier - PR #1284
         }
 
         private void SetTargetCoords()
@@ -209,6 +252,19 @@ namespace Content.Client.Shuttles.UI
             _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
             OnSetTargetCoordinates?.Invoke(shuttle, outputVector);
             _targetCoordsModified = false;
+        }
+
+        /// <summary>
+        /// Lua: Sets the radar target mark from an externally-provided world position (e.g. a click on the MAP tab)
+        /// and applies it the same way as manually typing coordinates and pressing "Set".
+        /// </summary>
+        public void SetTargetMark(Vector2 worldPosition)
+        {
+            TargetX.Text = worldPosition.X.ToString("F1");
+            TargetY.Text = worldPosition.Y.ToString("F1");
+            TargetShow.Pressed = true;
+            SetHideTarget(false);
+            SetTargetCoords();
         }
 
         private void SetHideTarget(bool hide)
