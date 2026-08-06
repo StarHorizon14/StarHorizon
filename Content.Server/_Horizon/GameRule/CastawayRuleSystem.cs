@@ -1,7 +1,7 @@
 using System.Numerics;
 using Content.Server._Horizon.GameRule.Components;
 using Content.Server.Access.Systems;
-using Content.Server.Body.Systems;
+using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Clothing.Systems;
 using Content.Server.GameTicking;
@@ -11,7 +11,6 @@ using Content.Server.Station.Systems;
 using Content.Server.Worldgen.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Chat;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
@@ -19,6 +18,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Jittering;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
@@ -39,10 +39,10 @@ namespace Content.Server._Horizon.GameRule;
 public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
+    [Dependency] private readonly SharedJitteringSystem _jitter = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -58,6 +58,56 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
         base.Initialize();
 
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
+    }
+
+    protected override void Started(EntityUid uid, CastawayRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    {
+        base.Started(uid, component, gameRule, args);
+
+        SpawnMapWrecks(component, GameTicker.DefaultMap);
+    }
+
+    private void SpawnMapWrecks(CastawayRuleComponent castaway, MapId mapId)
+    {
+        if (castaway.MapWreckGridPaths.Count == 0)
+            return;
+
+        var placed = new List<Vector2>();
+
+        for (var i = 0; i < castaway.MapWreckCount; i++)
+        {
+            var point = FindMapWreckSpot(castaway, placed);
+            if (point is not { } pos)
+                continue;
+
+            var path = _random.Pick(castaway.MapWreckGridPaths);
+            if (_mapLoader.TryLoadGrid(mapId, path, out _, offset: pos, rot: _random.NextAngle()))
+                placed.Add(pos);
+        }
+    }
+
+    private Vector2? FindMapWreckSpot(CastawayRuleComponent castaway, List<Vector2> placed)
+    {
+        for (var attempt = 0; attempt < castaway.MapWreckPlacementRetries; attempt++)
+        {
+            var distance = _random.NextFloat(castaway.MapWreckMinDistance, castaway.MapWreckMaxDistance);
+            var candidate = _random.NextAngle().ToVec() * distance;
+
+            var clear = true;
+            foreach (var other in placed)
+            {
+                if (Vector2.Distance(candidate, other) < castaway.MapWreckClearance)
+                {
+                    clear = false;
+                    break;
+                }
+            }
+
+            if (clear)
+                return candidate;
+        }
+
+        return null;
     }
 
     private void OnBeforeSpawn(PlayerBeforeSpawnEvent ev)
@@ -90,8 +140,12 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
             EnsureComp<WorldLoaderComponent>(mob);
             NameIdCard(mob, ev.Profile.Name);
 
-            var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Asphyxiation"), FixedPoint2.New(130));
-            _damageable.TryChangeDamage(mob, damage, ignoreResistances: true);
+            // IPCs and other non-breathing species have no concept of asphyxiation; skip the damage entirely for them.
+            if (HasComp<RespiratorComponent>(mob))
+            {
+                var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Asphyxiation"), FixedPoint2.New(110));
+                _damageable.TryChangeDamage(mob, damage, ignoreResistances: true);
+            }
 
             RunAtlasSequence(mob);
 
@@ -149,7 +203,8 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
 
     // Gap in seconds before each line, from the previous one (or from spawn for the first line).
     // Lines 3 ("critical", 5s VO) and 4 ("stabilized", 6s VO) need extra room after them so their voice lines finish playing.
-    private static readonly float[] AtlasDelays = [5, 5, 6, 7, 7, 5];
+    // The gap after "critical" also has to fit the defib sequence (safety_on/charge/zap), which starts once its VO ends.
+    private static readonly float[] AtlasDelays = [5, 5, 6, 12, 7, 5];
 
     private void RunAtlasSequence(EntityUid mob)
     {
@@ -175,11 +230,44 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
                 AtlasSpeak(atlas, Loc.GetString(locId));
                 _audio.PlayPvs(sound, atlas);
 
-                // Administer the omnizine right after the second line ("critical state" warning).
+                // Kick off the defib sequence right after the second line ("critical state" warning).
+                // The asphyxiation damage is healed once the zap itself lands, not before.
                 if (locId == "atlas-pai-critical")
+                    RunDefibSequence(mob);
+            });
+        }
+    }
+
+    // Timings roughly mirror the real defibrillator: a safety-off beep, a charge-up whine, then the zap itself.
+    // The 5s base offset lets the "critical" voice line finish before the defib sequence starts.
+    private static readonly (string Path, float Delay, bool IsZap)[] DefibSteps =
+    [
+        ("/Audio/Items/Defib/defib_safety_on.ogg", 5f, false),
+        ("/Audio/Items/Defib/defib_charge.ogg", 6f, false),
+        ("/Audio/Items/Defib/defib_zap.ogg", 7f, true),
+    ];
+
+    private void RunDefibSequence(EntityUid mob)
+    {
+        foreach (var (path, delay, isZap) in DefibSteps)
+        {
+            Timer.Spawn(TimeSpan.FromSeconds(delay), () =>
+            {
+                if (Deleted(mob))
+                    return;
+
+                _audio.PlayPvs(new SoundPathSpecifier(path), mob);
+
+                if (!isZap)
+                    return;
+
+                _jitter.DoJitter(mob, TimeSpan.FromSeconds(1), refresh: true, amplitude: 40f, frequency: 8f);
+
+                // Heal some of the asphyxiation damage once the zap actually lands.
+                if (HasComp<RespiratorComponent>(mob))
                 {
-                    var omnizine = new Solution("Omnizine", FixedPoint2.New(20));
-                    _bloodstream.TryAddToChemicals((mob, null), omnizine);
+                    var heal = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Asphyxiation"), FixedPoint2.New(-30));
+                    _damageable.TryChangeDamage(mob, heal, ignoreResistances: true);
                 }
             });
         }

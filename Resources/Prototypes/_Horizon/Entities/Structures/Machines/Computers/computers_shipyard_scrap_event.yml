@@ -30,3 +30,24 @@
       state: shipyard_scrap
     - map: ["computerLayerKeys"]
       state: scrap_key
+
+# Tabletop variant of the event scrapyard console.
+- type: entity
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardScrapEvent]
+  id: ComputerTabletopShipyardScrapEvent
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop_scrap
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: scrap_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard_scrap
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: scrap_key

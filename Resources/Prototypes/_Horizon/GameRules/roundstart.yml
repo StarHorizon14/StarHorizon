@@ -5,11 +5,12 @@
   components:
   - type: CastawayRule
     wreckGridPaths:
-    - /Maps/Salvage/medium-ruined-emergency-shuttle.yml
-    - /Maps/Salvage/small-ship-1.yml
-    - /Maps/Salvage/small-syndicate.yml
-    - /Maps/Salvage/hauling-shuttle.yml
-    - /Maps/Salvage/medium-crashed-shuttle.yml
+    - /Maps/_Horizon/Lostvoid/whiteship-bluespacejumper.yml
+    - /Maps/_Horizon/Lostvoid/hauling-shuttle.yml
+    - /Maps/_Horizon/Lostvoid/medium-crashed-shuttle.yml
+    - /Maps/_Horizon/Lostvoid/small-syndicate.yml
+    - /Maps/_Horizon/Lostvoid/small-ship-1.yml
+    - /Maps/_Horizon/Lostvoid/medium-ruined-emergency-shuttle.yml
     survivalLoot:
     - EmergencyOxygenTank
     - MedkitFilled
