@@ -274,6 +274,81 @@
     melted: true
     meltdownRadiation: 2.5
 
+# Micro crew nuclear reactors
+- type: entity
+  id: NuclearReactorMicro
+  parent: NuclearReactorCrew
+  name: micro nuclear reactor
+  description: A compact nuclear reactor vessel, barely large enough to hold a single fuel rod.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/micro_nuclear_reactor.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        - HighImpassable
+  - type: NuclearReactor
+    thermalMass: 42000
+    reactorGridWidth: 1
+    reactorGridHeight: 1
+    prefab: ReactorPrefab1x1Normal
+    inletPos: 0, 0
+    inletRot: 180
+    outletPos: 0, 0
+    outletRot: 0
+    arrowPrototype: ReactorSmallFlowArrow
+    gridbounds: [ 12, 11, 0, 0 ]
+  # Mono
+  - type: RadarBlip
+    visibleFromOtherGrids: true
+    radarColor: "#00fa9a"
+    scale: 1.5
+    shape: diamond
+    gridConfig:
+      color: "#00fa9a"
+      shape: Square
+      respectZoom: true
+      rotate: true
+      bounds: "-0.5,-0.5,0.5,0.5"
+
+- type: entity
+  id: NuclearReactorMicroRandom
+  parent: NuclearReactorMicro
+  suffix: Random
+  components:
+  - type: NuclearReactor
+    prefab: random
+
+- type: entity
+  id: NuclearReactorMicroEmpty
+  parent: NuclearReactorMicro
+  suffix: Empty
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefabEmpty
+
+- type: entity
+  id: NuclearReactorMicroMelted
+  parent: NuclearReactorMicro
+  suffix: Melted
+  description: A nuclear reactor vessel, long since melted down. It still glows with residual heat and radiation.
+  components:
+  - type: Sprite
+    layers:
+    - state: reactorbroken
+  - type: NuclearReactor
+    prefab: ReactorPrefabEmpty
+    melted: true
+    meltdownRadiation: 1.5
+
 # Salvage nuclear reactors
 - type: entity
   id: NuclearReactorSalvage

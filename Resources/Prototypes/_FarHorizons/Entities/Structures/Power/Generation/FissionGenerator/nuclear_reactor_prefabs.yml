@@ -252,3 +252,8 @@
     2,2: BohrumReactorControlRod
     2,3: BohrumReactorControlRod
     3,2: BohrumReactorControlRod
+
+- type: nuclearReactorPrefab
+  id: ReactorPrefab1x1Normal
+  parts:
+    0,0: CerenkiteReactorFuelRod
