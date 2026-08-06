@@ -253,6 +253,14 @@
     prefab: random
 
 - type: entity
+  id: NuclearReactorSmallEmpty
+  parent: NuclearReactorSmall
+  suffix: Empty
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefabEmpty
+
+- type: entity
   id: NuclearReactorSmallMelted
   parent: NuclearReactorSmall
   suffix: Melted
