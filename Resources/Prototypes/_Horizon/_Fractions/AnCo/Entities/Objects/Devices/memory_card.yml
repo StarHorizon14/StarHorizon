@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseItem
+  id: AnCoMemoryCard
+  name: карта памяти
+  description: Записывает нейронный слепок живого гуманоида, чтобы позже восстановить его тело в биофабрикаторе.
+  suffix: AnCo
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    layers:
+    - state: datadisk_hydro
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: datadisk_label
+  - type: AnCoMemoryCard

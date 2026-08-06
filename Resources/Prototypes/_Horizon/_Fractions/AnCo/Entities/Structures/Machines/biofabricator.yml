@@ -1,0 +1,114 @@
+# Биофабрикатор AnCo - двухтайловая структура, восстанавливающая тело игрока
+# по привязанной к нему карте памяти, при условии его смерти и согласия.
+
+- type: entity
+  id: AnCoBiofabricator
+  parent: BaseMachinePowered
+  name: биофабрикатор
+  description: Восстанавливает тело игрока по карте памяти, если владелец карты мёртв и дал согласие. Тело восстанавливается голым, но с сохранёнными трейтами и имплантами.
+  suffix: AnCo
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/cloning.rsi
+    scale: "2,2"
+    layers:
+      - state: pod_0
+        map: ["base"]
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: ApcPowerReceiver
+    powerLoad: 300
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,-1,1,1"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StrongMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:AnCoBiofabricatorBreakBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AnCoBiofabricatorDestroyed:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: MaterialStorage
+    materialWhiteList:
+    - Biomass
+  - type: WiresPanel
+  - type: AnCoBiofabricator
+  - type: ItemSlots
+    slots:
+      biofab-cardSlot:
+        whitelist:
+          components:
+          - AnCoMemoryCard
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AnCoBiofabricatorVisuals.Status:
+        base:
+          Restoring: { state: pod_1 }
+          Complete: { state: pod_0 }
+          Idle: { state: pod_0 }
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: BaseMachine
+  id: AnCoBiofabricatorDestroyed
+  name: сломанный биофабрикатор
+  description: Биофабрикатор, который повидал лучшие дни. Полностью нерабочий, годится только на металлолом.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/cloning.rsi
+    scale: "2,2"
+    state: pod_g
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,-1,1,1"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 2000
+      Glass: 1000
