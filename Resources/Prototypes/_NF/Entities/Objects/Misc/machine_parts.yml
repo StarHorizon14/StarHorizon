@@ -22,6 +22,24 @@
       price: 5
 
 - type: entity
+  id: CapacitorStockPart10
+  parent: CapacitorStockPart
+  suffix: Rating 1, Full
+  components:
+    - type: Stack
+      stackType: Capacitor
+      count: 10
+
+- type: entity
+  id: CapacitorStockPart5
+  parent: CapacitorStockPart
+  suffix: Rating 1, Half
+  components:
+    - type: Stack
+      stackType: Capacitor
+      count: 5
+
+- type: entity
   id: MatterBinStockPart
   name: basic matter bin
   parent: BaseStockPart

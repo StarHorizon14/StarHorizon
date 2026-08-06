@@ -209,7 +209,7 @@
               doAfter: 4
 
     - node: largeThruster
-      entity: ThrusterLarge
+      entity: ThrusterLargeStarshine
       edges:
       - to: nozzleAnchored
         conditions:

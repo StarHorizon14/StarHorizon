@@ -1420,6 +1420,22 @@
   - NFShuttlecraftThrust
   position: 2, 73 # Horizon
 
+- type: technology
+  id: AdvancedThrusters
+  name: research-technology-advanced-thrusters
+  entityIcon: ThrusterLargeStarshine
+  discipline: NFEngineering
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - ThrusterLargeElectronics
+  - ThrusterHugeElectronics
+  - ThrusterLargeAssemblyFlatpack
+  - ThrusterHugeAssemblyFlatpack
+  technologyPrerequisites:
+  - NFShuttlecraftThrust
+  position: 3, 73 # Horizon
+
 # region Atmospherics
 
 - type: technology

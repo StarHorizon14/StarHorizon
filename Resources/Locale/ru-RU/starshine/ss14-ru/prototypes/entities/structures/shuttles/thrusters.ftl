@@ -1,9 +1,9 @@
-ent-ThrusterLarge = большой двигатель
+ent-ThrusterLargeStarshine = большой двигатель
     .desc = Более крупная и мощная версия обычного двигателя, используемая для приведения в движение очень больших кораблей. Лучше держаться от него подальше когда он включён.
 ent-ThrusterHuge = огромный двигатель
     .desc = Гигантский блюспейс-двигатель, используемый для приведения в движение чрезвычайно больших кораблей. Жар от огня его сопла сопоставим жару поверхности солнца.
-ent-ThrusterLargeUnanchored = { ent-ThrusterLarge }
-    .desc = { ent-ThrusterLarge.desc }
+ent-ThrusterLargeUnanchored = { ent-ThrusterLargeStarshine }
+    .desc = { ent-ThrusterLargeStarshine.desc }
     .suffix = Незакреплённый
 ent-ThrusterHugeUnanchored = { ent-ThrusterHuge }
     .desc = { ent-ThrusterHuge.desc }

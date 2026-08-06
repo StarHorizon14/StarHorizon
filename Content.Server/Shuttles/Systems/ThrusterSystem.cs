@@ -20,7 +20,6 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Localizations;
 using Content.Shared.Power;
-using Robust.Shared.Physics;
 using Content.Server.Construction; // Frontier
 using Content.Server.Construction.Components; // Frontier
 using Content.Shared.Construction.Components; // Frontier
@@ -37,7 +36,6 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ConstructionSystem _construction = default!; // Frontier
     [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier
     [Dependency] private readonly TurfSystem _turf = default!;
@@ -363,7 +361,6 @@ public sealed class ThrusterSystem : EntitySystem
                     var shape = new PolygonShape();
                     shape.Set(component.BurnPoly);
                     _fixtureSystem.TryCreateFixture(uid, shape, BurnFixture, hard: false, collisionLayer: (int)CollisionGroup.FullTileMask, body: physicsComponent);
-                    _physics.SetBodyType(uid, BodyType.Dynamic, body: physicsComponent);
                 }
 
                 break;
@@ -538,14 +535,6 @@ public sealed class ThrusterSystem : EntitySystem
             if (!comp.Firing || comp.Colliding.Count == 0 || comp.Damage == null)
                 continue;
 
-            if (curTime < comp.NextFire)
-                continue;
-
-            comp.NextFire += comp.UpdateInterval;
-
-            var energy = power.PowerReceived * frameTime * comp.HeatValue / ((float)comp.UpdateInterval.TotalSeconds + 0.1f);
-            var stackAmount = Math.Clamp((int)MathF.Floor(comp.Thrust / (comp.HeatValue * ((float)comp.UpdateInterval.TotalSeconds + 0.1f))), 1, 3);
-
             foreach (var uid in comp.Colliding.ToArray())
             {
                 // Frontier: make sure they're still in danger
@@ -598,7 +587,6 @@ public sealed class ThrusterSystem : EntitySystem
                 continue;
 
             comp.Firing = true;
-            comp.NextFire = _timing.CurTime + comp.UpdateInterval;
             appearanceQuery.TryGetComponent(uid, out var appearance);
             _appearance.SetData(uid, ThrusterVisualState.Thrusting, true, appearance);
         }
