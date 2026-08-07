@@ -29,27 +29,27 @@ public sealed class NightVisionSystem : EntitySystem
 
     private void OnPlayerAttached(EntityUid uid, NightVisionComponent component, LocalPlayerAttachedEvent args)
     {
-        _overlay = new(component.NightVisionColor);
+        _overlay = new();
         _overlayMan.AddOverlay(_overlay);
     }
 
     private void OnPlayerDetached(EntityUid uid, NightVisionComponent component, LocalPlayerDetachedEvent args)
     {
-        _overlay = new(component.NightVisionColor);
+        _overlay = new();
         _overlayMan.RemoveOverlay(_overlay);
         _lightManager.DrawLighting = true;
     }
 
     private void OnNightVisionInit(EntityUid uid, NightVisionComponent component, ComponentInit args)
     {
-        _overlay = new(component.NightVisionColor);
+        _overlay = new();
         if (_player.LocalSession?.AttachedEntity == uid)
             _overlayMan.AddOverlay(_overlay);
     }
 
     private void OnNightVisionShutdown(EntityUid uid, NightVisionComponent component, ComponentShutdown args)
     {
-        _overlay = new(component.NightVisionColor);
+        _overlay = new();
         if (_player.LocalSession?.AttachedEntity == uid)
         {
             _lightManager.DrawLighting = true;
