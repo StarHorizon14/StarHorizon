@@ -2,6 +2,7 @@
 
 shipyard-console-invalid-vessel = Не удалось приобрести шаттл:
 shipyard-console-menu-title = Меню Верфи
+shipyard-console-menu-title-parking = Парковка шаттлов
 shipyard-console-menu-listing-free = Бесплатно
 shipyard-console-menu-listing-amount = ${ $amount }
 shipyard-console-docking = Шаттл { $vessel } капитана { $owner } в пути, расчётное время прибытия 10 секунд.
@@ -39,6 +40,20 @@ shipyard-console-menu-size-label = Размер:{ " " }
 shipyard-console-menu-class-label = Тип:{ " " }
 shipyard-console-menu-engine-label = Топливо:{ " " }
 shipyard-console-purchase-available = Купить
+shipyard-console-unassign-deed = Отвязать
+shipyard-console-park = Парковать
+shipyard-console-recall = Вызвать
+shipyard-console-parking-already-parked = Этот шаттл уже запаркован.
+shipyard-console-parking-not-parked = Этот шаттл не находится на парковке.
+shipyard-console-rename-button = Переменовать
+shipyard-console-rename-placeholder = Имя шаттла
+shipyard-console-parking-no-dock-selected = Сначала выберите стыковочный порт.
+shipyard-console-parking-invalid-dock = Выбран некорректный стыковочный порт.
+shipyard-console-parking-no-docking-path = Не удалось вызвать шаттл на выбранный стыковочный порт.
+shipyard-console-parking-cryo-pod-aboard = На шаттле установлена капсула криогенного сна игрока. Такой шаттл нельзя отправить на парковку.
+shipyard-console-parking-status-parked = Статус: запаркован
+shipyard-console-parking-status-active = Статус: активен
+shipyard-console-deed-label-none = Нет
 shipyard-console-guidebook = Руководство
 # Keep these in enum order for ease of validation.
 shipyard-console-category-All = ВСЕ

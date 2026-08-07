@@ -24,6 +24,8 @@ public partial class BaseShuttleControl : MapGridControl
     protected readonly SharedMapSystem Maps;
 
     protected readonly Font Font;
+    protected virtual Color RadarEquatorialLineColor => Color.LightGray; // Lua
+    protected virtual Color RadarRadialLineColor => Color.MediumSpringGreen; // Lua
 
     private GridDrawJob _drawJob;
 
@@ -31,8 +33,6 @@ public partial class BaseShuttleControl : MapGridControl
     public readonly Dictionary<EntityUid, GridDrawData> GridData = new();
 
     private Vector2[] _allVertices = Array.Empty<Vector2>();
-
-    private (DirectionFlag, Vector2i)[] _neighborDirections;
 
     public BaseShuttleControl() : this(32f, 32f, 32f)
     {
@@ -48,15 +48,6 @@ public partial class BaseShuttleControl : MapGridControl
         {
             ScaledVertices = _allVertices,
         };
-
-        _neighborDirections = new (DirectionFlag, Vector2i)[4];
-
-        for (var i = 0; i < 4; i++)
-        {
-            var dir = (DirectionFlag) Math.Pow(2, i);
-            var dirVec = dir.AsDir().ToIntVec();
-            _neighborDirections[i] = (dir, dirVec);
-        }
     }
 
     protected void DrawData(DrawingHandleScreen handle, string text)
@@ -73,20 +64,16 @@ public partial class BaseShuttleControl : MapGridControl
     protected void DrawCircles(DrawingHandleScreen handle)
     {
         // Equatorial lines
-        var gridLines = Color.LightGray.WithAlpha(0.01f);
+        var gridLines = RadarEquatorialLineColor.WithAlpha(0.01f); // Lua
 
         // Each circle is this x distance of the last one.
         const float EquatorialMultiplier = 2f;
 
         var minDistance = MathF.Pow(EquatorialMultiplier, EquatorialMultiplier * 1.5f);
         var maxDistance = MathF.Pow(2f, EquatorialMultiplier * 6f);
+        var cornerDistance = MathF.Sqrt(WorldRange * WorldRange + WorldRange * WorldRange);
 
-        // Frontier
-        // Distance from center of the map to the corner. We don't want to draw circles bigger than this.
-        float cornerDistance = ScaledWorldRange.Length();
-        // End Frontier
-
-        var origin = ScalePosition(-new Vector2(Offset.X, -Offset.Y));
+        var origin = MidPointVector; // Mono - stay with azimuth HUD when panning
 
         for (var radius = minDistance; radius <= maxDistance; radius *= EquatorialMultiplier)
         {
@@ -99,7 +86,7 @@ public partial class BaseShuttleControl : MapGridControl
             var textDimensions = handle.GetDimensions(Font, text, UIScale);
 
             handle.DrawCircle(origin, scaledRadius, color, false);
-            handle.DrawString(Font, ScalePosition(new Vector2(0f, -radius)) - new Vector2(0f, textDimensions.Y), text, UIScale, color);
+            handle.DrawString(Font, origin + new Vector2(0f, -scaledRadius) - new Vector2(0f, textDimensions.Y), text, UIScale, color);
         }
 
         const int gridLinesRadial = 8;
@@ -108,10 +95,8 @@ public partial class BaseShuttleControl : MapGridControl
         {
             Angle angle = (Math.PI / gridLinesRadial) * i;
             // TODO: Handle distance properly.
-            // Frontier
-            var aExtent = angle.ToVec() * PixelSize.Length;
-            // End Frontier
-            var lineColor = Color.MediumSpringGreen.WithAlpha(0.02f);
+            var aExtent = angle.ToVec() * ScaledMinimapRadius * 1.42f;
+            var lineColor = RadarRadialLineColor.WithAlpha(0.02f); // Lua
             handle.DrawLine(origin - aExtent, origin + aExtent, lineColor);
         }
     }
@@ -119,18 +104,308 @@ public partial class BaseShuttleControl : MapGridControl
     // Frontier Corvax: north line drawing
     protected void DrawNorthLine(DrawingHandleScreen handle, Angle angle)
     {
-        var origin = ScalePosition(-new Vector2(Offset.X, -Offset.Y));
-        var aExtent = (angle - Math.Tau / 4).ToVec() * PixelSize.Length;
+        var origin = MidPointVector; // Mono - stay with azimuth HUD when panning
+        var aExtent = (angle - Math.Tau / 4).ToVec() * ScaledMinimapRadius * 1.42f;
         var lineColor = Color.Red.WithAlpha(0.1f);
         handle.DrawLine(origin, origin + aExtent, lineColor);
     }
     // End Frontier Corvax
 
-    protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color color, float alpha = 0.01f)
+    // Mono
+    protected void DrawAzimuthScale(DrawingHandleScreen handle, Angle rotation)
     {
-        var rator = Maps.GetAllTilesEnumerator(grid.Owner, grid.Comp);
-        var tileSize = grid.Comp.TileSize;
+        const int azimuthMinorTickStepDegrees = 10;
+        const int azimuthMajorTickInterval = 3;
+        const int azimuthCardinalTickInterval = 9;
+        const float edgeInset = 10f;
+        const float tickInset = 4f;
+        const float minorTickLength = 5f;
+        const float majorTickLength = 9f;
+        const float cardinalTickLength = 12f;
+        const float labelPadding = 3f;
+        const float labelOffset = tickInset + cardinalTickLength + labelPadding;
+        const float regularLabelScale = 0.62f;
+        const float cardinalLabelScale = 0.72f;
 
+        var origin = MidPointVector;
+        var viewportSize = new Vector2(PixelWidth, PixelHeight);
+
+        var subtleGray = Color.FromHex("#676767");
+        var northAccent = Color.FromHex("#7F7442");
+        var eastAccent = Color.FromHex("#456273");
+        var baseTickColor = subtleGray.WithAlpha(0.34f);
+        var majorTickColor = subtleGray.WithAlpha(0.5f);
+        var cardinalTickColor = subtleGray.WithAlpha(0.68f);
+        var regularLabelColor = subtleGray.WithAlpha(0.76f);
+        var cardinalLabelColor = subtleGray.WithAlpha(0.9f);
+        var labelShadowColor = Color.Black.WithAlpha(0.36f);
+
+        for (var step = 0; step < 360 / azimuthMinorTickStepDegrees; step++)
+        {
+            var degrees = step * azimuthMinorTickStepDegrees;
+            var direction = GetAzimuthDirection(rotation, degrees);
+            var isCardinal = step % azimuthCardinalTickInterval == 0;
+            var isMajor = step % azimuthMajorTickInterval == 0;
+            var isNorth = degrees == 0;
+            var isEast = degrees == 90;
+            var tickLength = isCardinal
+                ? cardinalTickLength
+                : isMajor
+                    ? majorTickLength
+                    : minorTickLength;
+
+            if (!TryGetViewportEdgePoint(origin, direction, viewportSize, edgeInset, out var edgePoint, out var inwardNormal))
+                continue;
+
+            var outer = edgePoint + inwardNormal * tickInset;
+            var inner = outer + inwardNormal * tickLength;
+            var tickColor = isNorth
+                ? northAccent.WithAlpha(0.58f)
+                : isEast
+                    ? eastAccent.WithAlpha(0.58f)
+                    : isCardinal
+                        ? cardinalTickColor
+                        : isMajor
+                            ? majorTickColor
+                            : baseTickColor;
+            handle.DrawLine(outer, inner, tickColor);
+            if (isNorth)
+            {
+                var sideOffset = new Vector2(-inwardNormal.Y, inwardNormal.X) * 0.35f;
+                handle.DrawLine(outer + sideOffset, inner + sideOffset, tickColor.WithAlpha(0.46f));
+            }
+
+            if (!isMajor)
+                continue;
+
+            var label = degrees.ToString();
+            var labelScale = isCardinal ? cardinalLabelScale : regularLabelScale;
+            var labelColor = isEast
+                ? eastAccent.WithAlpha(0.76f)
+                : isCardinal
+                    ? cardinalLabelColor
+                    : regularLabelColor;
+            var labelSize = handle.GetDimensions(Font, label, labelScale);
+            var labelPosition = GetEdgeLabelPosition(edgePoint, inwardNormal, labelSize, viewportSize, labelOffset);
+            handle.DrawString(Font, labelPosition + new Vector2(1f, 1f), label, labelScale, labelShadowColor);
+            handle.DrawString(Font, labelPosition, label, labelScale, labelColor);
+        }
+    }
+
+    protected void DrawAzimuthRing(DrawingHandleScreen handle, Angle rotation)
+    {
+        const int azimuthMinorTickStepDegrees = 10;
+        const int azimuthMajorTickInterval = 3;
+        const int azimuthCardinalTickInterval = 9;
+        const float ringInset = 16f;
+        const float minorTickLength = 5f;
+        const float majorTickLength = 9f;
+        const float cardinalTickLength = 12f;
+        const float labelPadding = 5f;
+        const float regularLabelScale = 0.62f;
+        const float cardinalLabelScale = 0.72f;
+
+        var origin = MidPointVector;
+        var radius = MathF.Max(8f, SizeFull * 0.5f - ringInset);
+
+        var subtleGray = Color.FromHex("#676767");
+        var northAccent = Color.FromHex("#7F7442");
+        var eastAccent = Color.FromHex("#456273");
+        var baseTickColor = subtleGray.WithAlpha(0.34f);
+        var majorTickColor = subtleGray.WithAlpha(0.5f);
+        var cardinalTickColor = subtleGray.WithAlpha(0.68f);
+        var regularLabelColor = subtleGray.WithAlpha(0.76f);
+        var cardinalLabelColor = subtleGray.WithAlpha(0.9f);
+        var labelShadowColor = Color.Black.WithAlpha(0.36f);
+
+        handle.DrawCircle(origin, radius, subtleGray.WithAlpha(0.12f), false);
+
+        for (var step = 0; step < 360 / azimuthMinorTickStepDegrees; step++)
+        {
+            var degrees = step * azimuthMinorTickStepDegrees;
+            var direction = GetAzimuthDirection(rotation, degrees);
+            var isCardinal = step % azimuthCardinalTickInterval == 0;
+            var isMajor = step % azimuthMajorTickInterval == 0;
+            var isNorth = degrees == 0;
+            var isEast = degrees == 90;
+            var tickLength = isCardinal
+                ? cardinalTickLength
+                : isMajor
+                    ? majorTickLength
+                    : minorTickLength;
+
+            var outer = origin + direction * radius;
+            var inner = origin + direction * (radius - tickLength);
+            var tickColor = isNorth
+                ? northAccent.WithAlpha(0.58f)
+                : isEast
+                    ? eastAccent.WithAlpha(0.58f)
+                    : isCardinal
+                        ? cardinalTickColor
+                        : isMajor
+                            ? majorTickColor
+                            : baseTickColor;
+            handle.DrawLine(outer, inner, tickColor);
+            if (isNorth)
+            {
+                var sideOffset = new Vector2(-direction.Y, direction.X) * 0.35f;
+                handle.DrawLine(outer + sideOffset, inner + sideOffset, tickColor.WithAlpha(0.46f));
+            }
+
+            if (!isMajor)
+                continue;
+
+            var label = degrees.ToString();
+            var labelScale = isCardinal ? cardinalLabelScale : regularLabelScale;
+            var labelColor = isEast
+                ? eastAccent.WithAlpha(0.76f)
+                : isCardinal
+                    ? cardinalLabelColor
+                    : regularLabelColor;
+            var labelSize = handle.GetDimensions(Font, label, labelScale);
+            var labelPosition = origin + direction * (radius - tickLength - labelPadding) - labelSize * 0.5f;
+            handle.DrawString(Font, labelPosition + new Vector2(1f, 1f), label, labelScale, labelShadowColor);
+            handle.DrawString(Font, labelPosition, label, labelScale, labelColor);
+        }
+    }
+
+    protected void DrawCompassOverlay(DrawingHandleScreen handle, Angle heading)
+    {
+        var compassCenter = new Vector2(44f, 44f);
+        const float compassRadius = 24f;
+        var ringColor = Color.White.WithAlpha(0.08f);
+        var northColor = Color.FromHex("#776C43");
+        var eastColor = Color.FromHex("#4C6572");
+        var southColor = Color.FromHex("#776C43").WithAlpha(0.7f);
+        var westColor = Color.FromHex("#4C6572").WithAlpha(0.7f);
+        handle.DrawCircle(compassCenter, compassRadius, ringColor, false);
+        handle.DrawCircle(compassCenter, 2.5f, ringColor.WithAlpha(0.48f), true);
+
+        DrawCompassNeedle(handle, compassCenter, compassRadius, GetAzimuthDirection(heading, 0f), "N", northColor);
+        DrawCompassNeedle(handle, compassCenter, compassRadius * 0.82f, GetAzimuthDirection(heading, 90f), "E", eastColor);
+        DrawCompassNeedle(handle, compassCenter, compassRadius * 0.82f, GetAzimuthDirection(heading, 180f), "S", southColor);
+        DrawCompassNeedle(handle, compassCenter, compassRadius * 0.82f, GetAzimuthDirection(heading, 270f), "W", westColor);
+    }
+
+    private void DrawCompassNeedle(
+        DrawingHandleScreen handle,
+        Vector2 compassCenter,
+        float radius,
+        Vector2 direction,
+        string label,
+        Color color)
+    {
+        var tip = compassCenter + direction * radius;
+        var tail = compassCenter - direction * (radius * 0.35f);
+        DrawArrowLine(handle, tail, tip, color.WithAlpha(0.58f), 6f);
+
+        var labelSize = handle.GetDimensions(Font, label, 0.9f);
+        var labelPosition = tip + direction * 6f - new Vector2(labelSize.X * 0.5f, labelSize.Y * 0.5f);
+        handle.DrawString(Font, labelPosition, label, 0.9f, color.WithAlpha(0.7f));
+    }
+
+    private static void DrawArrowLine(
+        DrawingHandleScreen handle,
+        Vector2 start,
+        Vector2 end,
+        Color color,
+        float headLength)
+    {
+        var direction = end - start;
+        if (direction.LengthSquared() <= 0.001f)
+            return;
+
+        direction = Vector2.Normalize(direction);
+        var left = new Vector2(-direction.Y, direction.X);
+        handle.DrawLine(start, end, color);
+        handle.DrawLine(end, end - direction * headLength + left * (headLength * 0.45f), color);
+        handle.DrawLine(end, end - direction * headLength - left * (headLength * 0.45f), color);
+    }
+
+    private static bool TryGetViewportEdgePoint(
+        Vector2 origin,
+        Vector2 direction,
+        Vector2 viewportSize,
+        float inset,
+        out Vector2 edgePoint,
+        out Vector2 inwardNormal)
+    {
+        edgePoint = default;
+        inwardNormal = default;
+
+        if (direction.LengthSquared() <= 0.001f)
+            return false;
+
+        direction = Vector2.Normalize(direction);
+        var min = new Vector2(inset, inset);
+        var max = viewportSize - min;
+        if (max.X <= min.X || max.Y <= min.Y)
+            return false;
+
+        var tx = direction.X > 0f
+            ? (max.X - origin.X) / direction.X
+            : direction.X < 0f
+                ? (min.X - origin.X) / direction.X
+                : float.PositiveInfinity;
+        var ty = direction.Y > 0f
+            ? (max.Y - origin.Y) / direction.Y
+            : direction.Y < 0f
+                ? (min.Y - origin.Y) / direction.Y
+                : float.PositiveInfinity;
+
+        var t = Math.Min(tx, ty);
+        if (!float.IsFinite(t) || t <= 0f)
+            return false;
+
+        edgePoint = origin + direction * t;
+
+        if (tx < ty)
+            inwardNormal = direction.X > 0f ? -Vector2.UnitX : Vector2.UnitX;
+        else
+            inwardNormal = direction.Y > 0f ? -Vector2.UnitY : Vector2.UnitY;
+
+        return true;
+    }
+
+    private static Vector2 GetEdgeLabelPosition(
+        Vector2 edgePoint,
+        Vector2 inwardNormal,
+        Vector2 labelSize,
+        Vector2 viewportSize,
+        float offset)
+    {
+        var anchor = edgePoint + inwardNormal * offset;
+        Vector2 requested;
+        if (Math.Abs(inwardNormal.X) > Math.Abs(inwardNormal.Y))
+        {
+            requested = inwardNormal.X > 0f
+                ? new Vector2(anchor.X, anchor.Y - labelSize.Y * 0.5f)
+                : new Vector2(anchor.X - labelSize.X, anchor.Y - labelSize.Y * 0.5f);
+        }
+        else
+        {
+            requested = inwardNormal.Y > 0f
+                ? new Vector2(anchor.X - labelSize.X * 0.5f, anchor.Y)
+                : new Vector2(anchor.X - labelSize.X * 0.5f, anchor.Y - labelSize.Y);
+        }
+
+        var minPosition = new Vector2(offset, offset);
+        var maxPosition = viewportSize - labelSize - minPosition;
+        return Vector2.Clamp(requested, minPosition, maxPosition);
+    }
+
+    private static Vector2 GetAzimuthDirection(Angle baseAngle, float azimuthDegrees)
+    {
+        var angle = baseAngle + Angle.FromDegrees(azimuthDegrees);
+        var radians = (float) angle.Theta - MathF.PI / 2f;
+        return new Vector2(MathF.Cos(radians), MathF.Sin(radians));
+    }
+    // End Mono
+
+    protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color color, float alpha = 0.01f)
+    { DrawGrid(handle, gridToView, grid, color, color, alpha); } // Lua
+    protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color fillColor, Color edgeColor, float fillAlpha = 0.01f)
+    {
         // Check if we even have data
         // TODO: Need to prune old grid-data if we don't draw it.
         var gridData = GridData.GetOrNew(grid.Owner);
@@ -159,10 +434,9 @@ public partial class BaseShuttleControl : MapGridControl
             var start = (int) (i * BatchSize);
             var end = (int) Math.Min(triCount, start + BatchSize);
             var count = end - start;
-            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(_allVertices, start, count), color.WithAlpha(alpha));
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(_allVertices, start, count), fillColor.WithAlpha(fillAlpha)); // Lua
         }
-
-        handle.DrawPrimitives(DrawPrimitiveTopology.LineList, new Span<Vector2>(_allVertices, gridData.EdgeIndex, edgeCount), color);
+        handle.DrawPrimitives(DrawPrimitiveTopology.LineList, new Span<Vector2>(_allVertices, gridData.EdgeIndex, edgeCount), edgeColor); // Lua
     }
 
     private record struct GridDrawJob : IParallelRobustJob

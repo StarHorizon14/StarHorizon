@@ -4,9 +4,23 @@
                 HorizontalExpand="True">
     <BoxContainer Orientation="Horizontal"
                   HorizontalExpand="True">
+        <TextureRect Name="ClassIcon"
+                     SetSize="16 16"
+                     Stretch="KeepAspectCentered"
+                     Access="Public"
+                     Margin="6"/>
         <Label Name="VesselName"
             Access="Public"
             HorizontalExpand="True" />
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" HorizontalExpand="True">
+            <TextureRect Name="EngineIcon"
+                         SetSize="28 28"
+                         Stretch="KeepAspectCentered"
+                         Access="Public"
+                         TextureScale="2 2"
+                         Margin="6 0"/>
+            <Label Name="CategoryLabel" Access="Public"/>
+        </BoxContainer>
         <Label Name="Price"
             Access="Public"
             MinWidth="80"

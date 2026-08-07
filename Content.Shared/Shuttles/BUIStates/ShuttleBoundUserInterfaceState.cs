@@ -1,3 +1,4 @@
+using Content.Shared._Mono.FireControl; // Lua
 using Content.Shared.Shuttles.UI.MapObjects;
 using Robust.Shared.Serialization;
 
@@ -10,12 +11,16 @@ public sealed class ShuttleBoundUserInterfaceState : BoundUserInterfaceState
     public ShuttleMapInterfaceState MapState;
     public DockingInterfaceState DockState;
     public bool Broken; // Horizon tweak
+    public bool FireControlConnected; // Lua
+    public FireControllableEntry[]? FireControllables; // Lua
 
-    public ShuttleBoundUserInterfaceState(NavInterfaceState navState, ShuttleMapInterfaceState mapState, DockingInterfaceState dockState, bool broken)   // Horizon - broken bool
+    public ShuttleBoundUserInterfaceState(NavInterfaceState navState, ShuttleMapInterfaceState mapState, DockingInterfaceState dockState, bool broken, bool fireControlConnected = false, FireControllableEntry[]? fireControllables = null)   // Horizon - broken bool
     {
         NavState = navState;
         MapState = mapState;
         DockState = dockState;
         Broken = broken;    // Horizon
+        FireControlConnected = fireControlConnected; // Lua
+        FireControllables = fireControllables; // Lua
     }
 }

@@ -1,179 +1,422 @@
 // New Frontiers - This file is licensed under AGPLv3
 // Copyright (c) 2024 New Frontiers Contributors
 // See AGPLv3.txt for details.
-
-using System.Numerics;
+using Content.Shared._Mono.FireControl; // Lua
 using Content.Shared._NF.Shuttles.Events;
+using Content.Shared.Physics; // Lua
 using Content.Shared.Shuttles.BUIStates;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics; // Lua
+using Robust.Shared.Physics.Systems; // Lua
+using System.Linq; // Lua
+using System.Numerics;
 using Content.Shared.Shuttles.Components;
 using Robust.Client.Graphics;
 using Robust.Shared.Collections;
+using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
 using Robust.Shared.Timing;
 using Content.Shared._Mono.Radar;
 using Content.Client._Mono.Radar;
 using Content.Client.Station;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Prototypes;
 
-namespace Content.Client.Shuttles.UI
+// Purposefully colliding with base namespace.
+namespace Content.Client.Shuttles.UI;
+
+public partial class ShuttleNavControl // Mono
 {
-    public sealed partial class ShuttleNavControl
+    // Dependency
+    private readonly StationSystem _station;
+    private readonly RadarBlipsSystem _blips;
+
+    // Constants for gunnery system
+    // These 2 handle timing updates
+    private static readonly Color TargetColor = Color.FromHex("#99ff66");
+
+    #region Mono
+    // These 2 handle timing updates
+    private const float RadarUpdateInterval = 0f;
+    private float _updateAccumulator = 0f;
+
+    /// <summary>
+    /// Whether the shuttle is currently in FTL. This is used to disable the Park button
+    /// while in FTL to prevent parking while traveling.
+    /// </summary>
+    public bool InFtl { get; set; }
+    #endregion
+
+    protected bool _isMouseDown;
+    protected bool _isMouseInside;
+    protected Vector2 _lastMousePos;
+    protected float _lastFireTime;
+    protected const float FireRateLimit = 0.1f; // 100ms between shots
+
+    public bool IsMouseDown() => _isMouseDown;
+    protected override void MouseMove(GUIMouseMoveEventArgs args)
     {
-        public bool HideTarget { get; set; } = false;
-        public Vector2? Target { get; set; } = null;
-        public NetEntity? TargetEntity { get; set; } = null;
-        public InertiaDampeningMode DampeningMode { get; set; }
-        public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None;
-        private static readonly Color TargetColor = Color.FromHex("#9cae93ff");
+        base.MouseMove(args);
+        if (_isMouseInside)
+            _lastMousePos = args.RelativePosition;
 
-        /// <summary>
-        /// Whether the shuttle is currently in FTL. This is used to disable the Park button
-        /// while in FTL to prevent parking while traveling.
-        /// </summary>
-        public bool InFtl { get; set; }
+        if (!_draggin || _coordinates == null)
+            return;
 
-        private void NfUpdateState(NavInterfaceState state)
+        if (!_relativePanning
+            && _coordinates?.EntityId is { } coordEnt
+            && EntManager.TryGetComponent<TransformComponent>(coordEnt, out var coordXform)
+            && coordXform.MapUid != coordEnt
+        )
+            _coordinates = _transform.ToCoordinates(_transform.ToMapCoordinates(_coordinates.Value));
+
+        _wasPanned = true;
+    }
+    private FireControllableEntry[]? _fcControllables;
+    private HashSet<NetEntity> _fcSelectedWeapons = new();
+    public void UpdateControllables(FireControllableEntry[] controllables)
+    { _fcControllables = controllables; }
+    public void UpdateSelectedWeapons(HashSet<NetEntity> selectedWeapons)
+    { _fcSelectedWeapons = selectedWeapons; }
+    protected void DrawWeaponLines(DrawingHandleScreen handle)
+    {
+        if (_fcControllables == null || _coordinates == null || _rotation == null) return;
+        var xformQuery = EntManager.GetEntityQuery<TransformComponent>();
+        if (!xformQuery.TryGetComponent(_coordinates.Value.EntityId, out var xform) || xform.MapID == Robust.Shared.Map.MapId.Nullspace) return;
+        var physics = EntManager.System<SharedPhysicsSystem>();
+        var worldRot = _rotation.Value;
+        var mapPos = _transform.ToMapCoordinates(_coordinates.Value).Offset(worldRot.RotateVec(Offset));
+        var mapCoord = _transform.ToCoordinates(mapPos);
+        var worldToShuttle = Matrix3Helpers.CreateTranslation(-mapCoord.Position) * Matrix3Helpers.CreateRotation(-worldRot);
+        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
+        var worldToView = worldToShuttle * shuttleToView;
+        foreach (var controllable in _fcControllables)
         {
-            if (state.MaxIffRange != null)
-                MaximumIFFDistance = state.MaxIffRange.Value;
-            HideCoords = state.HideCoords;
-            Target = state.Target;
-            TargetEntity = state.TargetEntity;
-            HideTarget = state.HideTarget;
+            if (!_fcSelectedWeapons.Contains(controllable.NetEntity)) continue;
+            var coords = EntManager.GetCoordinates(controllable.Coordinates);
+            var worldPos = _transform.ToMapCoordinates(coords).Position;
+            var cursorCoords = GetMouseEntityCoordinates(_lastMousePos);
+            if (!cursorCoords.IsValid(EntManager))
+                continue;
+            var cursorWorldPos = _transform.ToMapCoordinates(cursorCoords).Position;
+            var cursorViewPos = Vector2.Transform(cursorWorldPos, worldToView);
+            var direction = cursorWorldPos - worldPos;
+            if (direction.LengthSquared() <= 0.001f)
+                continue;
+            var ray = new CollisionRay(worldPos, direction.Normalized(), (int)CollisionGroup.Impassable);
+            var results = physics.IntersectRay(xform.MapID, ray, direction.Length(), ignoredEnt: _coordinates.Value.EntityId);
+            if (!results.Any()) handle.DrawLine(Vector2.Transform(worldPos, worldToView), cursorViewPos, TargetColor.WithAlpha(0.3f));
+        }
+    }
+    // End Lua
 
-            if (!EntManager.GetCoordinates(state.Coordinates).HasValue ||
-                !EntManager.TryGetComponent(EntManager.GetCoordinates(state.Coordinates).GetValueOrDefault().EntityId, out TransformComponent? transform) ||
-                !EntManager.HasComponent<PhysicsComponent>(transform.GridUid))
-            {
-                return;
-            }
+    // Constants for IFF system
+    public float MaximumIFFDistance { get; set; } = -1f;
+    public bool HideCoords { get; set; } = false;
+    private static Color _dockLabelColor = Color.White;
+    public bool HideTarget { get; set; } = false;
+    public Vector2? Target { get; set; } = null;
+    public NetEntity? TargetEntity { get; set; } = null;
 
-            DampeningMode = state.DampeningMode;
-            Target = state.Target;
-            TargetEntity = state.TargetEntity;
+    public InertiaDampeningMode DampeningMode { get; set; }
+    public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None;
 
-            // Check if the entity has an FTLComponent which indicates it's in FTL
-            if (transform.GridUid != null)
+    /// <summary>
+    /// Updates the radar UI with the latest navigation state and sets additional NF-specific state.
+    /// </summary>
+    /// <param name="state">The navigation interface state.</param>
+    private void NFUpdateState(NavInterfaceState state)
+    {
+        if (state.MaxIffRange != null)
+            MaximumIFFDistance = state.MaxIffRange.Value;
+        HideCoords = state.HideCoords;
+        Target = state.Target;
+        TargetEntity = state.TargetEntity;
+        HideTarget = state.HideTarget;
+
+        if (!EntManager.GetCoordinates(state.Coordinates).HasValue ||
+            !EntManager.TryGetComponent(EntManager.GetCoordinates(state.Coordinates).GetValueOrDefault().EntityId, out TransformComponent? transform) ||
+                !EntManager.TryGetComponent(transform.GridUid, out PhysicsComponent? physicsComponent))
+        {
+            return;
+        }
+
+        DampeningMode = state.DampeningMode;
+        ServiceFlags = state.ServiceFlags;
+
+        // Check if the entity has an FTLComponent which indicates it's in FTL
+        if (transform.GridUid != null)
+        {
+            InFtl = EntManager.HasComponent<FTLComponent>(transform.GridUid);
+        }
+        else
+        {
+            InFtl = false;
+        }
+    }
+
+    /// <summary>
+    /// Checks if an IFF marker should be drawn based on distance and maximum IFF range.
+    /// </summary>
+    /// <param name="shouldDrawIff">Whether the IFF marker would otherwise be drawn.</param>
+    /// <param name="distance">The distance vector to the object.</param>
+    /// <returns>True if the IFF marker should be drawn, false otherwise.</returns>
+    private bool NFCheckShouldDrawIffRangeCondition(bool shouldDrawIff, Vector2 distance)
+    {
+        if (shouldDrawIff && MaximumIFFDistance >= 0.0f)
+        {
+            if (distance.Length() > MaximumIFFDistance)
             {
-                InFtl = EntManager.HasComponent<FTLComponent>(transform.GridUid);
-            }
-            else
-            {
-                InFtl = false;
+                shouldDrawIff = false;
             }
         }
 
-        // New Frontiers - Maximum IFF Distance - checks distance to object, draws if closer than max range
-        // This code is licensed under AGPLv3. See AGPLv3.txt
-        private bool NfCheckShouldDrawIffRangeCondition(bool shouldDrawIff, Vector2 distance)
+        return shouldDrawIff;
+    }
+
+    /// <summary>
+    /// Adds a blip to the blip data list for later drawing.
+    /// </summary>
+    private static void NFAddBlipToList(List<BlipData> blipDataList, bool isOutsideRadarCircle, Vector2 uiPosition, int uiXCentre, int uiYCentre, Color color, float scale = 1f, EntityUid gridUid = default)
+    {
+        Color blipColor = color;
+
+        blipDataList.Add(new BlipData
         {
-            if (shouldDrawIff && MaximumIFFDistance >= 0.0f)
-            {
-                if (distance.Length() > MaximumIFFDistance)
-                {
-                    shouldDrawIff = false;
-                }
-            }
+            IsOutsideRadarCircle = isOutsideRadarCircle,
+            UiPosition = uiPosition,
+            VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
+            Color = blipColor,
+            Scale = scale
+        });
+    }
 
-            return shouldDrawIff;
-        }
+    /// <summary>
+    /// Adds blip style triangles that are on ships or pointing towards ships on the edges of the radar.
+    /// Draws blips at the BlipData's uiPosition and uses VectorToPosition to rotate to point towards ships.
+    /// </summary>
+    private void NFDrawBlips(DrawingHandleBase handle, List<BlipData> blipDataList)
+    {
+        var blipValueList = new Dictionary<Color, ValueList<Vector2>>();
 
-        private static void NfAddBlipToList(List<BlipData> blipDataList, bool isOutsideRadarCircle, Vector2 uiPosition, int uiXCentre, int uiYCentre, Color color)
+        foreach (var blipData in blipDataList)
         {
-            blipDataList.Add(new BlipData
+            var s = blipData.Scale <= 0f ? 1f : blipData.Scale; // Lua mod icon
+            var triangleShapeVectorPoints = new[]
             {
-                IsOutsideRadarCircle = isOutsideRadarCircle,
-                UiPosition = uiPosition,
-                VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
-                Color = color
-            });
-        }
-
-        private static void NfAddBlipToList(List<BlipData> blipDataList, bool isOutsideRadarCircle, Vector2 uiPosition, int uiXCentre, int uiYCentre, Color color, EntityUid gridUid = default)
-        {
-            Color blipColor = color;
-
-            blipDataList.Add(new BlipData
-            {
-                IsOutsideRadarCircle = isOutsideRadarCircle,
-                UiPosition = uiPosition,
-                VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
-                Color = blipColor
-            });
-        }
-
-        /**
-         * Frontier - Adds blip style triangles that are on ships or pointing towards ships on the edges of the radar.
-         * Draws blips at the BlipData's uiPosition and uses VectorToPosition to rotate to point towards ships.
-         */
-        private void NfDrawBlips(DrawingHandleBase handle, List<BlipData> blipDataList)
-        {
-            var blipValueList = new Dictionary<Color, ValueList<Vector2>>();
-
-            foreach (var blipData in blipDataList)
-            {
-                var triangleShapeVectorPoints = new[]
-                {
                 new Vector2(0, 0),
-                new Vector2(RadarBlipSize, 0),
-                new Vector2(RadarBlipSize * 0.5f, RadarBlipSize)
+                new Vector2(RadarBlipSize * s, 0), // Lua mod icon
+                new Vector2(RadarBlipSize * 0.5f * s, RadarBlipSize * s)  // Lua mod icon
             };
 
-                if (blipData.IsOutsideRadarCircle)
+            if (blipData.IsOutsideRadarCircle)
+            {
+                // Calculate the angle of rotation
+                var angle = (float)Math.Atan2(blipData.VectorToPosition.Y, blipData.VectorToPosition.X) + -1.6f;
+
+                // Manually create a rotation matrix
+                var cos = (float)Math.Cos(angle);
+                var sin = (float)Math.Sin(angle);
+                float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
+
+                // Rotate each vertex
+                for (var i = 0; i < triangleShapeVectorPoints.Length; i++)
                 {
-                    // Calculate the angle of rotation
-                    var angle = (float)Math.Atan2(blipData.VectorToPosition.Y, blipData.VectorToPosition.X) + -1.6f;
-
-                    // Manually create a rotation matrix
-                    var cos = (float)Math.Cos(angle);
-                    var sin = (float)Math.Sin(angle);
-                    float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
-
-                    // Rotate each vertex
-                    for (var i = 0; i < triangleShapeVectorPoints.Length; i++)
-                    {
-                        var vertex = triangleShapeVectorPoints[i];
-                        var x = vertex.X * rotationMatrix[0, 0] + vertex.Y * rotationMatrix[0, 1];
-                        var y = vertex.X * rotationMatrix[1, 0] + vertex.Y * rotationMatrix[1, 1];
-                        triangleShapeVectorPoints[i] = new Vector2(x, y);
-                    }
+                    var vertex = triangleShapeVectorPoints[i];
+                    var x = vertex.X * rotationMatrix[0, 0] + vertex.Y * rotationMatrix[0, 1];
+                    var y = vertex.X * rotationMatrix[1, 0] + vertex.Y * rotationMatrix[1, 1];
+                    triangleShapeVectorPoints[i] = new Vector2(x, y);
                 }
-
-                var triangleCenterVector =
-                    (triangleShapeVectorPoints[0] + triangleShapeVectorPoints[1] + triangleShapeVectorPoints[2]) / 3;
-
-                // Calculate the vectors from the center to each vertex
-                var vectorsFromCenter = new Vector2[3];
-                for (int i = 0; i < 3; i++)
-                {
-                    vectorsFromCenter[i] = (triangleShapeVectorPoints[i] - triangleCenterVector) * UIScale;
-                }
-
-                // Calculate the vertices of the new triangle
-                var newVerts = new Vector2[3];
-                for (var i = 0; i < 3; i++)
-                {
-                    newVerts[i] = (blipData.UiPosition * UIScale) + vectorsFromCenter[i];
-                }
-
-                if (!blipValueList.TryGetValue(blipData.Color, out var valueList))
-                {
-                    valueList = new ValueList<Vector2>();
-
-                }
-                valueList.Add(newVerts[0]);
-                valueList.Add(newVerts[1]);
-                valueList.Add(newVerts[2]);
-                blipValueList[blipData.Color] = valueList;
             }
 
-            // One draw call for every color we have
-            foreach (var color in blipValueList)
+            var triangleCenterVector =
+                (triangleShapeVectorPoints[0] + triangleShapeVectorPoints[1] + triangleShapeVectorPoints[2]) / 3;
+
+            // Calculate the vectors from the center to each vertex
+            var vectorsFromCenter = new Vector2[3];
+            for (int i = 0; i < 3; i++)
             {
-                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, color.Value.Span, color.Key);
+                vectorsFromCenter[i] = (triangleShapeVectorPoints[i] - triangleCenterVector) * UIScale;
+            }
+
+            // Calculate the vertices of the new triangle
+            var newVerts = new Vector2[3];
+            for (var i = 0; i < 3; i++)
+            {
+                newVerts[i] = (blipData.UiPosition * UIScale) + vectorsFromCenter[i];
+            }
+
+            if (!blipValueList.TryGetValue(blipData.Color, out var valueList))
+            {
+                valueList = new ValueList<Vector2>();
+
+            }
+            valueList.Add(newVerts[0]);
+            valueList.Add(newVerts[1]);
+            valueList.Add(newVerts[2]);
+            blipValueList[blipData.Color] = valueList;
+        }
+
+        // One draw call for every color we have
+        foreach (var color in blipValueList)
+        {
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, color.Value.Span, color.Key);
+        }
+    }
+
+    private void HandleMouseEntered(GUIMouseHoverEventArgs args)
+    {
+        _isMouseInside = true;
+    }
+
+    private void HandleMouseExited(GUIMouseHoverEventArgs args)
+    {
+        _isMouseInside = false;
+    }
+
+    protected override void KeyBindDown(GUIBoundKeyEventArgs args)
+    {
+        base.KeyBindDown(args);
+
+        if (args.Function != EngineKeyFunctions.UIClick)
+            return;
+
+        _isMouseDown = true;
+        _lastMousePos = args.RelativePosition;
+        TryFireAtPosition(args.RelativePosition);
+    }
+
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        _updateAccumulator += args.DeltaSeconds;
+
+        if (_updateAccumulator >= RadarUpdateInterval)
+        {
+            _updateAccumulator = 0; // I'm not subtracting because frame updates can majorly lag in a way normal ones cannot.
+
+            if (_consoleEntity != null)
+                _blips.RequestBlips((EntityUid)_consoleEntity);
+        }
+
+        if (_isMouseDown && _isMouseInside)
+        {
+            var currentTime = IoCManager.Resolve<IGameTiming>().CurTime.TotalSeconds;
+            if (currentTime - _lastFireTime >= FireRateLimit)
+            {
+                var mousePos = UserInterfaceManager.MousePositionScaled;
+                var relativePos = mousePos.Position - GlobalPosition;
+                if (relativePos != _lastMousePos)
+                {
+                    _lastMousePos = relativePos;
+                }
+                TryFireAtPosition(relativePos);
+                _lastFireTime = (float)currentTime;
             }
         }
+    }
+
+    private void TryFireAtPosition(Vector2 relativePosition)
+    {
+        if (_coordinates == null || _rotation == null || OnRadarClick == null)
+            return;
+
+        OnRadarClick?.Invoke(GetMouseEntityCoordinates(relativePosition));
+    }
+
+    private void DrawBlipShape(DrawingHandleScreen handle, Vector2 position, float size, Color color, RadarBlipShape shape)
+    {
+        switch (shape)
+        {
+            case RadarBlipShape.Circle:
+                handle.DrawCircle(position, size, color);
+                break;
+            case RadarBlipShape.Square:
+                var halfSize = size / 2;
+                var rect = new UIBox2(
+                    position.X - halfSize,
+                    position.Y - halfSize,
+                    position.X + halfSize,
+                    position.Y + halfSize
+                );
+                handle.DrawRect(rect, color);
+                break;
+            case RadarBlipShape.Triangle:
+                var points = new Vector2[]
+                {
+                    position + new Vector2(0, -size),
+                    position + new Vector2(-size * 0.866f, size * 0.5f),
+                    position + new Vector2(size * 0.866f, size * 0.5f)
+                };
+                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, points, color);
+                break;
+            case RadarBlipShape.Star:
+                DrawStar(handle, position, size, color);
+                break;
+            case RadarBlipShape.Diamond:
+                var diamondPoints = new Vector2[]
+                {
+                    position + new Vector2(0, -size),
+                    position + new Vector2(size, 0),
+                    position + new Vector2(0, size),
+                    position + new Vector2(-size, 0)
+                };
+                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, diamondPoints, color);
+                break;
+            case RadarBlipShape.Hexagon:
+                DrawHexagon(handle, position, size, color);
+                break;
+            case RadarBlipShape.Arrow:
+                DrawArrow(handle, position, size, color);
+                break;
+        }
+    }
+
+    private void DrawStar(DrawingHandleScreen handle, Vector2 position, float size, Color color)
+    {
+        const int points = 5;
+        const float innerRatio = 0.4f;
+        var vertices = new Vector2[points * 2];
+
+        for (var i = 0; i < points * 2; i++)
+        {
+            var angle = i * Math.PI / points;
+            var radius = i % 2 == 0 ? size : size * innerRatio;
+            vertices[i] = position + new Vector2(
+                (float)Math.Sin(angle) * radius,
+                -(float)Math.Cos(angle) * radius
+            );
+        }
+
+        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, vertices, color);
+    }
+
+    private void DrawHexagon(DrawingHandleScreen handle, Vector2 position, float size, Color color)
+    {
+        var vertices = new Vector2[6];
+        for (var i = 0; i < 6; i++)
+        {
+            var angle = i * Math.PI / 3;
+            vertices[i] = position + new Vector2(
+                (float)Math.Sin(angle) * size,
+                -(float)Math.Cos(angle) * size
+            );
+        }
+
+        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, vertices, color);
+    }
+
+    private void DrawArrow(DrawingHandleScreen handle, Vector2 position, float size, Color color)
+    {
+        var vertices = new Vector2[]
+        {
+            position + new Vector2(0, -size),           // Tip
+            position + new Vector2(-size * 0.5f, 0),    // Left wing
+            position + new Vector2(0, size * 0.5f),     // Bottom
+            position + new Vector2(size * 0.5f, 0)      // Right wing
+        };
+
+        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, vertices, color);
     }
 }
