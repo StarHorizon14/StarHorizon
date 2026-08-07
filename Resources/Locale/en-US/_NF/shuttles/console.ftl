@@ -39,3 +39,15 @@ shuttle-console-device-button-5 = Button 5
 shuttle-console-device-button-6 = Button 6
 shuttle-console-device-button-7 = Button 7
 shuttle-console-device-button-8 = Button 8
+shuttle-console-device-button-9 = Button 9
+shuttle-console-network-connect-tooltip = Connect to a device via network port.
+
+shuttle-console-maximum-speed = Maximum Speed
+shuttle-console-maximum-speed-tooltip = The maximum linear speed of the shuttle.
+shuttle-console-maximum-angular-speed = Maximum Angular Speed
+shuttle-console-maximum-angular-speed-tooltip = The maximum rotational speed of the shuttle.
+
+shuttle-console-button-azimuth = Toggle azimuth display
+shuttle-console-button-rotation = Follow ship heading
+shuttle-console-button-anchor = Anchor/unanchor view
+shuttle-console-button-reset = Reset radar view

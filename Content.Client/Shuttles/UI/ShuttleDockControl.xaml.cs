@@ -40,8 +40,6 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
     private readonly HashSet<DockingPortState> _drawnDocks = new();
     private readonly Dictionary<DockingPortState, Button> _dockButtons = new();
 
-    private readonly Color _fallbackHighlightedColor = Color.Magenta;
-
     /// <summary>
     /// Store buttons for every other dock
     /// </summary>
@@ -64,8 +62,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         _dockSystem = EntManager.System<DockingSystem>();
         _shuttles = EntManager.System<SharedShuttleSystem>();
         _xformSystem = EntManager.System<SharedTransformSystem>();
-        // let the map range grow/shrink with the control size instead of scaling up to match the range
-        RescaleMap = false;
+        MinSize = new Vector2(SizeFull, SizeFull);
     }
 
     public void SetViewedDock(DockingPortState? dockState)
@@ -108,21 +105,16 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         }
 
         DrawCircles(handle);
-        DrawNorthLine(handle, _angle.Value); // Frontier Corvax: north line drawing
         var gridNent = EntManager.GetNetEntity(GridEntity);
         var mapPos = _xformSystem.ToMapCoordinates(_coordinates.Value);
         var ourGridToWorld = _xformSystem.GetWorldMatrix(GridEntity.Value);
         var selectedDockToOurGrid = Matrix3Helpers.CreateTransform(_coordinates.Value.Position, Angle.Zero);
         var selectedDockToWorld = Matrix3x2.Multiply(selectedDockToOurGrid, ourGridToWorld);
 
-        // Frontier: use ScaledWorldRange since we allow the world range to change with RescaleMap
-        Box2 viewBoundsWorld = Matrix3Helpers.TransformBox(selectedDockToWorld, new Box2(-ScaledWorldRange, ScaledWorldRange));
-        // End Frontier
+        Box2 viewBoundsWorld = Matrix3Helpers.TransformBox(selectedDockToWorld, new Box2(-WorldRangeVector, WorldRangeVector));
 
         Matrix3x2.Invert(selectedDockToWorld, out var worldToSelectedDock);
-        // Frontier: MidpointVector<Midpoint
-        var selectedDockToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPoint);
-        // End Frontier
+        var selectedDockToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
 
         // Draw nearby grids
         var controlBounds = PixelSizeBox;
@@ -130,9 +122,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         _mapManager.FindGridsIntersecting(gridXform.MapID, viewBoundsWorld, ref _grids);
 
         // offset the dotted-line position to the bounds.
-        // Frontier: MidpointVector<Midpoint
-        Vector2? viewedDockPos = _viewedState != null ? MidPoint : null;
-        // End Frontier
+        Vector2? viewedDockPos = _viewedState != null ? MidPointVector : null;
 
         if (viewedDockPos != null)
         {
@@ -141,9 +131,6 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
 
         var canDockChange = _timing.CurTime > _nextDockChange;
         var lineOffset = (float) _timing.RealTime.TotalSeconds * 30f;
-
-        var viewedDockType = _viewedState?.DockType ?? DockType.None; // Frontier: cache dock type
-        var viewedReceiveOnly = _viewedState?.ReceiveOnly ?? true; // Frontier: cache receive only
 
         foreach (var grid in _grids)
         {
@@ -199,7 +186,6 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                 };
 
                 var collisionCenter = verts[0] + verts[1] + verts[3] + verts[5];
-                Color otherDockColor = Color.ToSrgb(dock.Color);
 
                 var otherDockConnection = Color.ToSrgb(Color.Pink);
                 handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, otherDockConnection.WithAlpha(0.2f));
@@ -223,13 +209,15 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                     dockBL
                 };
 
+                Color otherDockColor;
+
                 if (HighlightedDock == dock.Entity)
                 {
-                    otherDockColor = Color.ToSrgb(dock.HighlightedColor);
+                    otherDockColor = Color.ToSrgb(Color.Magenta);
                 }
                 else
                 {
-                    otherDockColor = Color.ToSrgb(dock.Color);
+                    otherDockColor = Color.ToSrgb(Color.Purple);
                 }
 
                 /*
@@ -247,7 +235,6 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                 if (dockButton != null && dock.GridDockedWith != null)
                 {
                     dockButton.Disabled = !canDockChange;
-                    dockButton.Visible = true; // Frontier: undock should always be visible.
                 }
 
                 // If the dock is in range then also do highlighting
@@ -277,25 +264,18 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                             var canDock = distanceSq < maxDockDistSq && inAlignment;
 
                             if (dockButton != null)
-                            {
-                                dockButton.Disabled = !canDock && dock.GridDockedWith == null || !canDockChange; // Frontier: add "&& dock.GridDockedWith == null"
-                                dockButton.Visible = dock.GridDockedWith != null || (dock.DockType & viewedDockType) != DockType.None && !viewedReceiveOnly; // Frontier: do not enable docking for receive-only docks
-                            }
+                                dockButton.Disabled = !canDock || !canDockChange;
 
                             var lineColor = inAlignment ? Color.Lime : Color.Red;
                             handle.DrawDottedLine(viewedDockPos.Value, collisionCenter, lineColor, offset: lineOffset);
                         }
-                        else if (dockButton != null)
-                        {
-                            dockButton.Visible = dock.GridDockedWith != null; // Frontier: do not enable docking for receive-only docks
-                        }
 
                         canDraw = true;
                     }
-                    else if (dockButton != null)
+                    else
                     {
-                        dockButton.Disabled = true;
-                        dockButton.Visible = dock.GridDockedWith != null || (dock.DockType & viewedDockType) != DockType.None && !viewedReceiveOnly; // Frontier
+                        if (dockButton != null)
+                            dockButton.Disabled = true;
                     }
                 }
 
@@ -331,7 +311,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
             ScalePosition(Vector2.Transform(new Vector2(-0.5f, 0.5f), rotation)),
             ScalePosition(Vector2.Transform(new Vector2(0.5f, -0.5f), rotation)));
 
-        var dockColor = _viewedState?.HighlightedColor ?? _fallbackHighlightedColor;
+        var dockColor = Color.Magenta;
         var connectionColor = Color.Pink;
 
         handle.DrawRect(ourDockConnection, connectionColor.WithAlpha(0.2f));
@@ -456,7 +436,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
 
                 container.AddChild(new Label()
                 {
-                    Text = dock.LabelName ?? dock.Name, // Frontier: add dock.LabelName
+                    Text = dock.Name,
                     HorizontalAlignment = HAlignment.Center,
                 });
 

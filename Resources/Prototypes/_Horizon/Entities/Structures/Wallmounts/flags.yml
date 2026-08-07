@@ -1,0 +1,9 @@
+- type: entity
+  parent: BaseFlag
+  id: NTFlagTorn
+  name: torn Nanotrasen flag
+  description: A tattered Nanotrasen flag, torn apart in the wreckage.
+  components:
+  - type: Sprite
+    sprite: _Horizon/Structures/Wallmounts/flags.rsi
+    state: NT_flag_torn

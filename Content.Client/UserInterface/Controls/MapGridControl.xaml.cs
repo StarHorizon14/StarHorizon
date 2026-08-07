@@ -28,7 +28,11 @@ public partial class MapGridControl : LayoutContainer
     private Font _largerFont;
 
     /* Dragging */
-    protected virtual bool Draggable { get; } = false;
+    protected virtual bool Draggable { get; set; } = false; // Lua: settable so radar controls can toggle drag mode at runtime
+
+    // Lua: minimap auto-resize/scale hooks used by radar controls that fill their container (e.g. parking/dock radars)
+    protected virtual bool AllowResize => false;
+    protected virtual bool ScaleWithControlSize => false;
 
     /// <summary>
     /// Control offset from whatever is being tracked.
@@ -40,7 +44,7 @@ public partial class MapGridControl : LayoutContainer
     /// </summary>
     public Vector2 TargetOffset;
 
-    private bool _draggin;
+    protected bool _draggin; // Lua: protected so derived radar controls can read drag state
     protected Vector2 StartDragPosition;
     protected bool Recentering;
 
@@ -83,6 +87,7 @@ public partial class MapGridControl : LayoutContainer
     // Since the PixelSize isn't square it didn't make sense for Midpoint to be 1d
     protected Vector2i MidPoint => PixelSize / 2;
     // End Frontier
+    protected virtual Vector2 MidPointVector => MidPoint; // Lua: alias for code ported from upstream that still uses the old name
     protected int SizeFull => (int) ((UIDisplayRadius + MinimapMargin) * 2 * UIScale);
     protected int ScaledMinimapRadius => (int) (UIDisplayRadius * UIScale);
     // Frontier: Added MapScalingFactor, uses RescaleMap

@@ -1,7 +1,7 @@
 ent-AnCoWallKazmie = казмиевая стена
     .desc = Держите секреты внутри, сотрудников снаружи
     .suffix = StarHorizon, AnCo, Structure
-ent-AnCoWallKazmieIndestructible = казмиевая стена
+ent-AnCoWallKazmieIndestructible = дюразмиевая стена
     .desc = Держите секреты внутри, сотрудников снаружи.
     .suffix = StarHorizon, AnCo, Indestructible
 ent-AnCoWindowArdon = ардониевое окно

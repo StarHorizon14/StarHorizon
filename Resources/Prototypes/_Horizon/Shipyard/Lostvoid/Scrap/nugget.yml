@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: NuggetLostVoid
+  parent: BaseVessel
+  name: SV Nugget
+  description: A flying hunk of wood and metal disguised as a kitchen shuttle. Not FDA approved.
+  price: 15950 # +1450 from 10% Markup
+  category: Small
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/nugget.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Kitchen
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: NuggetLostVoid
+  mapName: 'SV Nugget'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/nugget.yml
+  minPlayers: 0
+  stations:
+    NuggetLostVoid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Nugget {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

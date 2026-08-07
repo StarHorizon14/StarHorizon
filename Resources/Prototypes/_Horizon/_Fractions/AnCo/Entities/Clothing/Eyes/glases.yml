@@ -36,4 +36,5 @@
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: PNV
+    color: "#620505"
   - type: ShowHealthBars

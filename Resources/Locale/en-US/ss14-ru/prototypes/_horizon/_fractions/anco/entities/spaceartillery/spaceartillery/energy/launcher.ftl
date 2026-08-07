@@ -1,0 +1,12 @@
+ent-AnCoTurretFlash = УБТ Вспышка
+    .desc = Управляемая Боевая Турель, способная выплескивать энергетический заряд способный перегрузить электорнику противника.
+    .suffix = StarHorizon, AnCo
+ent-AnCoTurretJumper = УБТ Попрыгунчик
+    .desc = Управляемая Боевая Турель, скорострельная и мощная, то что нужно для быстрых шаттлов.
+    .suffix = StarHorizon, AnCo
+ent-AnCoTurretGargantua = УБТ Гаргантюа
+    .desc = Управляемая Боевая Турель, медленная но смертоносная.
+    .suffix = StarHorizon, AnCo
+ent-AnCoTurretLightbolt = УБТ Молния
+    .desc = Управляемая Боевая Турель, удар молнии и перегрузка.
+    .suffix = StarHorizon, AnCo

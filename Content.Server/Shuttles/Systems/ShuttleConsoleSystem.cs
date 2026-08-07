@@ -1,9 +1,12 @@
+using Content.Server._Mono.FireControl; // Lua
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
+using Content.Shared._Mono.FireControl; // Lua
 using Content.Shared._NF.Shuttles.Events; // Frontier
+using Content.Shared.Shuttles.Events;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Popups;
@@ -42,6 +45,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!;
+    [Dependency] private readonly FireControlSystem _fireControl = default!; // Lua
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -69,6 +73,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             subs.Event<ShuttleConsoleFTLBeaconMessage>(OnBeaconFTLMessage);
             subs.Event<ShuttleConsoleFTLPositionMessage>(OnPositionFTLMessage);
             subs.Event<BoundUIClosedEvent>(OnConsoleUIClose);
+            subs.Event<ShuttleConsoleFireMessage>(OnShuttleConsoleFire); // Lua
+            subs.Event<ShuttleConsoleRefreshFireControlMessage>(OnShuttleConsoleRefreshFireControl); // Lua
         });
 
         SubscribeLocalEvent<DroneConsoleComponent, ConsoleShuttleEvent>(OnCargoGetConsole);
@@ -257,7 +263,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 DockType = comp.DockType, // Frontier
                 ReceiveOnly = comp.ReceiveOnly, // Frontier
                 Color = comp.RadarColor,
-                HighlightedColor = comp.HighlightedRadarColor
+                HighlightedColor = comp.HighlightedRadarColor,
+                RadarColor = comp.RadarColor,
+                HighlightedRadarColor = comp.HighlightedRadarColor
             };
 
             gridDocks.Add(state);
@@ -306,9 +314,44 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         if (_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key))
         {
-            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, consoleComp.Broken)); // Horizon
+            // Lua
+            var fcConnected = false;
+            FireControllableEntry[]? fcControllables = null;
+            if (shuttleGridUid != null && TryComp<FireControlGridComponent>(shuttleGridUid, out var fcGrid) && fcGrid.ControllingServer != null && Exists(fcGrid.ControllingServer) && TryComp<FireControlServerComponent>(fcGrid.ControllingServer, out var fcServer))
+            {
+                fcConnected = true;
+                var list = new List<FireControllableEntry>();
+                foreach (var c in fcServer.Controlled)
+                { list.Add(new FireControllableEntry(GetNetEntity(c), GetNetCoordinates(Transform(c).Coordinates), MetaData(c).EntityName)); }
+                fcControllables = list.ToArray();
+            }
+            // End Lua
+            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, consoleComp.Broken, fcConnected, fcControllables)); // Horizon + Lua
         }
     }
+
+    // Lua
+    private void OnShuttleConsoleFire(EntityUid uid, ShuttleConsoleComponent comp, ShuttleConsoleFireMessage args)
+    {
+        var grid = Transform(uid).GridUid;
+        if (grid == null) return;
+        if (!TryComp<FireControlGridComponent>(grid, out var fcGrid) || fcGrid.ControllingServer == null) return;
+        if (!TryComp<FireControlServerComponent>(fcGrid.ControllingServer, out var server)) return;
+        _fireControl.FireWeapons(fcGrid.ControllingServer.Value, args.Selected, args.Coordinates, server);
+        var fireEvent = new FireControlConsoleFireEvent(args.Coordinates, args.Selected);
+        RaiseLocalEvent(uid, fireEvent);
+    }
+
+    // Lua
+    private void OnShuttleConsoleRefreshFireControl(EntityUid uid, ShuttleConsoleComponent comp, ShuttleConsoleRefreshFireControlMessage args)
+    {
+        var grid = Transform(uid).GridUid;
+        if (grid != null && HasComp<FireControlGridComponent>(grid))
+        { _fireControl.RefreshControllables(grid.Value); }
+        DockingInterfaceState? dockState = null;
+        UpdateState(uid, ref dockState);
+    }
+    // End Lua
 
     public override void Update(float frameTime)
     {

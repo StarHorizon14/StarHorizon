@@ -445,6 +445,12 @@
   id: RustedWall
 
 - type: Tag
+  id: CatCrowbar
+
+- type: Tag
+  id: CatBag
+
+- type: Tag
   id: ChubbyBomb
 
 # Airlock

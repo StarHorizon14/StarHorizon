@@ -54,6 +54,10 @@
     storedSprite:
       sprite: _NF/Objects/Tools/crowbar.rsi # Frontier: _NF prefix
       state: storage
+  - type: Tag
+    tags:
+    - Crowbar
+    - CatCrowbar
 
 # Emergency (red) Crowbar
 - type: entity
@@ -66,6 +70,7 @@
     tags:
     - Crowbar
     - CrowbarRed
+    - CatCrowbar
   - type: Sprite
     layers:
     - state: icon
@@ -121,6 +126,10 @@
       - state: equipped-BELT
       - state: cover-equipped-BELT
         color: "#00621c"
+  - type: Tag
+    tags:
+    - Crowbar
+    - CatCrowbar
 
 # Toolbox (orange) Crowbar
 - type: entity
@@ -152,6 +161,10 @@
       - state: equipped-BELT
       - state: cover-equipped-BELT
         color: "#673800"
+  - type: Tag
+    tags:
+    - Crowbar
+    - CatCrowbar
 
 # Engineering (yellow) Crowbar
 - type: entity
@@ -183,3 +196,7 @@
       - state: equipped-BELT
       - state: cover-equipped-BELT
         color: "#968000"
+  - type: Tag
+    tags:
+    - Crowbar
+    - CatCrowbar

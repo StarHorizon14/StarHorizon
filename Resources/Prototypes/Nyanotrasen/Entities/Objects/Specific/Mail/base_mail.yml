@@ -96,6 +96,9 @@
   - type: CargoSellBlacklist # Frontier
   - type: PirateBountyItem
     id: Mail
+  - type: Tag
+    tags:
+    - Mail
 
 # This empty parcel is allowed to exist and evade the tests for the admin
 # mailto command.

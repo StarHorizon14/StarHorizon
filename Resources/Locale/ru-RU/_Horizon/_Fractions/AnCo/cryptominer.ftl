@@ -22,4 +22,4 @@ cryptominer-slot-disk-2 = Слот диска 2
 cryptominer-slot-disk-3 = Слот диска 3
 cryptominer-slot-disk-4 = Слот диска 4
 cryptominer-disk-empty = Диск пустой!
-cryptominer-disk-research-converted = Конвертировано {$points} ендов в очки исследований.
+cryptominer-disk-research-converted = Конвертировано { $points } ендов в очки исследований.

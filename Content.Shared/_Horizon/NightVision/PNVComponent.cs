@@ -10,4 +10,10 @@ public sealed partial class PNVComponent : Component
 {
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))] public string ActionProto = "NVToggleAction";
     [DataField] public EntityUid? ActionContainer;
+
+    /// <summary>
+    /// Если задан — цвет ночного зрения носителя переопределяется этим цветом
+    /// на время ношения предмета.
+    /// </summary>
+    [DataField] public Color? Color;
 }

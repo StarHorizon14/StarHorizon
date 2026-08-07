@@ -1,0 +1,36 @@
+# Author Info
+# GitHub: Cu1r (https://github.com/Cu1r/)
+# Discord: cu1r
+#
+- type: vessel
+  id: CanisterLostVoid
+  parent: BaseVessel
+  name: UAC Canister
+  description: Whatever you're bringing, it won't fit. Seats two. Gravity included.
+  price: 8000
+  category: Micro
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/canister.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: CanisterLostVoid
+  mapName: 'UAC Canister'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/canister.yml
+  minPlayers: 0
+  stations:
+    CanisterLostVoid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Canister {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

@@ -1,0 +1,32 @@
+- type: vessel
+  id: SprinterLostVoid
+  parent: BaseVessel
+  name: KC Sprinter
+  description: A light freighter often picked by bounty hunters due to its quick acceleration, expedition capable.
+  price: 60000
+  category: Medium
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-sprinter.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Expedition
+  engine:
+  - AME
+
+- type: gameMap
+  id: SprinterLostVoid
+  mapName: 'KC Sprinter'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-sprinter.yml
+  minPlayers: 0
+  stations:
+    SprinterLostVoid:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Sprinter {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

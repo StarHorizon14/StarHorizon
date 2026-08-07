@@ -1,0 +1,11 @@
+pet-storage-insert-verb = Положить в сумку
+pet-storage-remove-verb = Вытащить из сумки
+pet-storage-insert-to-verb = Положить в { $storage }
+pet-storage-remove-from-verb = Вытащить из { $storage }
+pet-storage-insert-start = Вы начинаете складывать { $item } в свою сумку...
+pet-storage-remove-start = Вы начинаете доставать { $item } из своей сумки...
+pet-storage-insert-success = Вы положили { $item } в свою сумку.
+pet-storage-remove-success = Вы достали { $item } из своей сумки.
+pet-storage-insert-failure = Не удалось положить { $item } в сумку!
+pet-storage-remove-failure = Не удалось достать предмет из сумки!
+pet-storage-item-too-big = Этот предмет слишком большой для вашей сумки!

@@ -49,6 +49,14 @@
   icon: { sprite: Objects/Materials/Sheets/other.rsi, state: plasma }
   color: "#7e009e"
   price: 0.2 # $35 for 1 unit # Frontier: 0.35<0.2 TODO - materials rebalance
+  properties:
+    electrical: 5
+    thermal: 3
+    hard: 2
+    density: 1
+    flammable: 8
+    chemical: 5
+    radioactive: 2
 
 - type: material
   id: Plastic
@@ -74,6 +82,14 @@
   icon: { sprite: Objects/Materials/Sheets/other.rsi, state: uranium }
   color: "#32a852"
   price: 0.2 # $85 for 1 unit # Frontier: 0.85<0.2 TODO - materials rebalance
+  properties:
+    electrical: 4
+    thermal: 3
+    hard: 5
+    density: 7
+    chemical: 6
+    radioactive: 4
+    n_radioactive: 3
 
 - type: material
   id: Bananium
@@ -83,6 +99,15 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: bananium }
   color: "#f4d536" # Frontier: "#32a852"<"e0c330"
   price: 0.2 # $100 for 1 unit # Frontier: 1.0<0.2 TODO - materials rebalance
+  properties:
+    electrical: 4
+    thermal: 4
+    hard: 4
+    density: 5
+    flammable: 1.5
+    chemical: 4.5
+    radioactive: 7
+    n_radioactive: 1.5
 
 - type: material
   id: Meaterial # you can't take this pun from me
@@ -144,3 +169,9 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: diamond }
   color: "#80ffff"
   price: 20 # big diamond gaslit us so hard diamonds actually became extremely rare
+  properties:
+    electrical: 3
+    thermal: 3
+    hard: 7
+    density: 6
+    chemical: 5

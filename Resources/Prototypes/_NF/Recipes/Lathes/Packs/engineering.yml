@@ -100,6 +100,18 @@
   - SolarAssemblyFlatpack
 
 - type: latheRecipePack
+  id: StarshineThrusters
+  recipes:
+  - ThrusterLargeAssemblyFlatpack
+  - ThrusterHugeAssemblyFlatpack
+
+- type: latheRecipePack
+  id: StarshineThrusterBoards
+  recipes:
+  - ThrusterLargeElectronics
+  - ThrusterHugeElectronics
+
+- type: latheRecipePack
   id: NFEngineering
   recipes:
   - ShipyardRCD

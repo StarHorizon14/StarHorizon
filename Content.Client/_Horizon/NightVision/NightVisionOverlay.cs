@@ -19,7 +19,6 @@ public sealed class NightVisionOverlay : Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
     private readonly ShaderInstance _greyscaleShader;
-    private readonly Color _baseNightVisionColor;
 
     private float _currentIntensity = 0f;
     private const float TransitionSpeed = 1.5f;
@@ -29,11 +28,10 @@ public sealed class NightVisionOverlay : Overlay
     private bool _isTransitioning = false;
     private bool _lastNightVisionState = false;
 
-    public NightVisionOverlay(Color color)
+    public NightVisionOverlay()
     {
         IoCManager.InjectDependencies(this);
         _greyscaleShader = _prototypeManager.Index<ShaderPrototype>("GreyscaleFullscreen").InstanceUnique();
-        _baseNightVisionColor = color;
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -96,7 +94,8 @@ public sealed class NightVisionOverlay : Overlay
 
         var worldHandle = args.WorldHandle;
         var viewport = args.WorldBounds;
-        var targetColor = _baseNightVisionColor.WithAlpha(_currentIntensity);
+        Color nightVisionColor = _nightVisionComponent.NightVisionColor;
+        var targetColor = nightVisionColor.WithAlpha(_currentIntensity);
 
         worldHandle.UseShader(_greyscaleShader);
         worldHandle.DrawRect(viewport, targetColor);

@@ -39,3 +39,8 @@
   id: device-button-8
   name: Порт 8
   description: "Порт 8"
+
+- type: sourcePort
+  id: device-button-9
+  name: Порт 9
+  description: "Порт 9"
