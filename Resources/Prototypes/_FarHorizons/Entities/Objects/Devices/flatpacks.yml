@@ -1,0 +1,44 @@
+- type: entity
+  parent: BaseNFFlatpack
+  id: NuclearReactorFlatpack
+  name: плоскоблок реактора
+  description: A flatpack used for constructing an autolathe.
+  components:
+  - type: Flatpack
+    entity: NuclearReactorEmpty
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: NuclearReactorMicroFlatpack
+  name: плоскоблок микро реактора
+  description: A flatpack used for constructing an autolathe.
+  components:
+  - type: Flatpack
+    entity: NuclearReactorMicroEmpty
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: NuclearReactorSmallFlatpack
+  name: плоскоблок маленького реактора
+  description: A flatpack used for constructing an autolathe.
+  components:
+  - type: Flatpack
+    entity: NuclearReactorSmallEmpty
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: GasTurbineFlatpack
+  name: плоскоблок турбины
+  description: A flatpack used for constructing an autolathe.
+  components:
+  - type: Flatpack
+    entity: Turbine
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: GasTurbineSmallFlatpack
+  name: плоскоблок маленькой турбины
+  description: A flatpack used for constructing an autolathe.
+  components:
+  - type: Flatpack
+    entity: TurbineSmall
