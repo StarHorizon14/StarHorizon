@@ -11,10 +11,6 @@
     Medicine:
       metabolismRate: 1
       effects:
-      - !type:NaniteOverlay
-      - !type:PlayMetabolismSound
-        sound:
-          path: /Audio/Effects/multitool_pulse.ogg
       - !type:ModifyBleedAmount
         amount: -3
       - !type:HealthChange
