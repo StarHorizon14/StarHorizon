@@ -3,7 +3,7 @@
   id: EncryptionKeyIHP
   name: Ключ связи IHP
   categories: [ DoNotMap ] # Frontier
-  description: Ключ отдельного радиоканала IHP. 
+  description: Ключ отдельного радиоканала IHP.
   suffix: IHP
   components:
   - type: EncryptionKey
@@ -31,7 +31,7 @@
   parent: ClothingHeadset
   id: ClothingHeadsetExoeditorIHP
   name: Экспедиционная гарнитура "IHP"
-  description: Специальная гарнитура для экспедиционных задач. Легкая и довольно упругая гарнитура для поддержки радиосвязи отдельной частоты IHP 
+  description: Специальная гарнитура для экспедиционных задач. Легкая и довольно упругая гарнитура для поддержки радиосвязи отдельной частоты IHP
   suffix: IHP
   components:
   - type: ContainerFill
@@ -48,7 +48,7 @@
   parent: ClothingHeadset
   id: ClothingHeadsetIHP
   name: Гарнитура "IHP"
-  description: Легкая и довольно упругая гарнитура для поддержки радиосвязи отдельной частоты IHP 
+  description: Легкая и довольно упругая гарнитура для поддержки радиосвязи отдельной частоты IHP
   suffix: IHP
   components:
   - type: ContainerFill
@@ -67,7 +67,7 @@
   parent: BasePDA
   id: BaseIHPpda
   name: КПК IHP
-  description: Мяу мяу. Мяу мяу. 
+  description: Мяу мяу. Мяу мяу.
   categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Pda
@@ -99,7 +99,7 @@
   suffix: IHP
   components:
   - type: Pda
-    id: IDcardAgentIHP 
+    id: IDcardAgentIHP
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
@@ -108,7 +108,7 @@
 
 - type: entity
   parent: BaseIHPpda
-  id: LiderIHPpda 
+  id: LiderIHPpda
   name: Кпк руководителя IHP
   description: Простой КПК используемый руководством IHP
   suffix: IHP
@@ -132,7 +132,7 @@
   - type: PresetIdCard
     job: Contractor
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/idcards.rsi 
+    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/idcards.rsi
     layers:
     - state: default
     - state: default
@@ -148,7 +148,7 @@
   - type: PresetIdCard
     job: Contractor
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/idcards.rsi 
+    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/idcards.rsi
     layers:
     - state: defaultLider
     - state: defaultLider
@@ -184,7 +184,7 @@
   components:
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 15
-    rechargeSound: null # 
+    rechargeSound: null #
   - type: BasicEntityAmmoProvider
     proto: ProjectileExowoycehBullet
     capacity: 1
@@ -229,7 +229,7 @@
 
 - type: entity
   parent: BaseAction
-  id: ActionExowoycehIHP 
+  id: ActionExowoycehIHP
   name: Активация Экзоскелета
   description: Активируйте ваш экзоскелет для раскрытия большинства функций.
   components:
@@ -465,7 +465,7 @@
   - type: RadioSpeaker
     toggleOnInteract: false
   - type: Intercom
-  - type: VoiceOverride 
+  - type: VoiceOverride
     speechVerbOverride: Electricity
     enabled: false
 
@@ -549,7 +549,7 @@
 
 - type: entity
   parent: ClothingBackpack
-  id: ClothingExpeditorBackpackIHP 
+  id: ClothingExpeditorBackpackIHP
   name: Экспедиционный Рюкзак "IHP"
   description: Небольшой и лёгкий рюкзак ничем не отличаю.. А видимо всё таки отличается..
   suffix: IHP
@@ -711,7 +711,7 @@
         - id: EmergencyMedipen
           amount: 2
         - id: DrinkWaterBottleFull
-          amount: 1        
+          amount: 1
         - id: FoodSnackNutribrick
           amount: 1
         - id: Flare
@@ -738,7 +738,7 @@
         - id: EmergencyMedipen
           amount: 2
         - id: DrinkWaterBottleFull
-          amount: 1        
+          amount: 1
         - id: FoodSnackNutribrick
           amount: 1
         - id: Flare
@@ -780,9 +780,9 @@
 
 - type: entity
   parent: [ClothingOuterCoatTrench, ClothingOuterStorageFoldableBase]
-  id: ClothingOuterLaboratoryCoatTrenchIHP 
+  id: ClothingOuterLaboratoryCoatTrenchIHP
   name: Лабораторный тренчкот "IHP"
-  description: Стандартный лабораторный тренчкот "IHP" используемый если вам просто холодно. 
+  description: Стандартный лабораторный тренчкот "IHP" используемый если вам просто холодно.
   suffix: IHP
   components:
   - type: Sprite
@@ -804,7 +804,7 @@
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesLaborIHP
   name: Лабораторные ботинки "IHP"
-  description: Лабораторные ботинки "IHP" - Чистота и ваш стиль. 
+  description: Лабораторные ботинки "IHP" - Чистота и ваш стиль.
   suffix: IHP
   components:
   - type: Sprite
@@ -812,10 +812,10 @@
   - type: Clothing
     sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Laboratori/jackbootsHPl.rsi
 
-# region Тактическое Снаряжение 
+# region Тактическое Снаряжение
 
 - type: entity
-  id: ClothingPNVtactikalIHP 
+  id: ClothingPNVtactikalIHP
   parent: ClothingEyesVision
   name: Тактическое ПНВ "IHP"
   description: Тактическое ПНВ является сборником всевозможных технологий которые вероятнее всего не пригодятся, но их наличие даёт небольшой шанс на желанный исход при необычных ситуациях.
@@ -840,10 +840,10 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingCloakIHPVip 
+  id: ClothingCloakIHPVip
   suffix: IHP
   name: Фирменный Плащ "IHP"
-  description: Фирменный плащ IHP с замечательной надписью! Создан специально при поддержке наших патриотов. 
+  description: Фирменный плащ IHP с замечательной надписью! Создан специально при поддержке наших патриотов.
   components:
   - type: Sprite
     sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/ihp_vip_plash.rsi
@@ -867,7 +867,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformTacticoolHPI
   name: Тактический комбинезон "IHP"
-  description: Тактический комбинезон созданный как для лабораторных работ, так и для космических боёв. 
+  description: Тактический комбинезон созданный как для лабораторных работ, так и для космических боёв.
   suffix: IHP
   components:
     - type: Sprite
@@ -882,7 +882,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformTacticoolIHPS
   name: Тактическая юбка-комбинезон "IHP"
-  description: Тактический комбинезон созданный как для лабораторных работ, так и для космических боёв. 
+  description: Тактический комбинезон созданный как для лабораторных работ, так и для космических боёв.
   suffix: IHP
   components:
     - type: Sprite
@@ -898,7 +898,7 @@
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesIHP
   name: Боевые ботинки "IHP"
-  description: Боевые ботинки "С.И.У" - Фонтан моды для лабораторных работ. 
+  description: Боевые ботинки "С.И.У" - Фонтан моды для лабораторных работ.
   suffix: IHP
   components:
   - type: Sprite
@@ -910,7 +910,7 @@
   parent: ClothingMaskGas
   id: ClothingMaskGasIHP
   name: Боевой противогаз "IHP"
-  description: Боевой противогаз для боевых ребят! 
+  description: Боевой противогаз для боевых ребят!
   suffix: IHP
   components:
   - type: Sprite
@@ -937,7 +937,7 @@
   parent: ClothingMaskGas
   id: ClothingMasksGasIHP
   name: Боевая маска "IHP"
-  description: Боевая маска для боевых ребят! 
+  description: Боевая маска для боевых ребят!
   suffix: IHP
   components:
   - type: Sprite
@@ -965,7 +965,7 @@
   parent: ClothingOuterBase
   id: ClothingOuterVestIHP
   name: Бронежилет Х-1 "IHP"
-  description: Простой и легкий бронежилет С.И.У, на удивление он весьма прочен для своего веса 
+  description: Простой и легкий бронежилет С.И.У, на удивление он весьма прочен для своего веса
   suffix: IHP
   components:
   - type: Sprite
@@ -986,7 +986,7 @@
   parent: ClothingOuterBase
   id: ClothingOuterIIVestIHP
   name: Бронекостюм Х-2 "IHP"
-  description: Среднего веса бронежилет дополнительно обеспечивающий защиту для колен, большей части рук и кистей. Имеет небольшие вставки из легкого материала. 
+  description: Среднего веса бронежилет дополнительно обеспечивающий защиту для колен, большей части рук и кистей. Имеет небольшие вставки из легкого материала.
   suffix: IHP
   components:
   - type: Sprite
@@ -1026,9 +1026,9 @@
 
 - type: entity
   parent: ClothingOuterBase
-  id: ClothingOuterTactikalVestIHP
+  id: ClothingOuterTactikalVestIHP2
   name: Тактический Бронекостюм Х-3 "IHP"
-  description: Среднего веса бронежилет дополнительно обеспечивающий защиту для колен, большей части рук и кистей. Имеет небольшие вставки из легкого материала. 
+  description: Среднего веса бронежилет дополнительно обеспечивающий защиту для колен, большей части рук и кистей. Имеет небольшие вставки из легкого материала.
   suffix: IHP
   components:
   - type: Sprite
@@ -1095,7 +1095,7 @@
 
 - type: entity
   parent: ClothingBackpack
-  id: ClothingTactilakBackpackIHP 
+  id: ClothingTactilakBackpackIHP
   name: Тактический Рюкзак "IHP"
   description: Небольшой и лёгкий рюкзак ничем не отличаю.. А видимо всё таки отличается..
   suffix: IHP
@@ -1129,7 +1129,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretIHP
   name: Тактический берет
-  description: Обычный черный берет. 
+  description: Обычный черный берет.
   suffix: IHP
   components:
   - type: Sprite
@@ -1147,7 +1147,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformSpecialForcesHPI
   name: Комбинезон Спецвойск "IHP"
-  description: Тактический комбинезон созданный как для лабораторных работ, так и для космических боёв. 
+  description: Тактический комбинезон созданный как для лабораторных работ, так и для космических боёв.
   suffix: IHP
   components:
     - type: Sprite
@@ -1165,7 +1165,7 @@
   parent: [ClothingShoesBootsMag, ClothingShoesBootsCombat]
   id: ClothingShoesBootsSpecialForcesIHP
   name: Магнитные ботинки Спецвойск IHP
-  description: Продвинутая модель магнитных ботинков используемая в отрядах Спецвойск. 
+  description: Продвинутая модель магнитных ботинков используемая в отрядах Спецвойск.
   suffix: IHP
   components:
   - type: Armor
@@ -1185,7 +1185,7 @@
   parent: ClothingBackpack
   id: ClothingIHPSpecialForcesBackpack
   name: Рюкзак Спецвойск "С.И.У"
-  description: Наноуглеродный рюкзак используемый для Спецвойск и передовых отрядов IHP 
+  description: Наноуглеродный рюкзак используемый для Спецвойск и передовых отрядов IHP
   suffix: IHP
   components:
   - type: ExplosionResistance
@@ -1212,7 +1212,7 @@
       - id: CombatMedipen
         amount: 3
       - id: WeaponGrapplingGun
-        amount: 1    
+        amount: 1
 
 
 - type: entity
@@ -1220,7 +1220,7 @@
   id: ClothingOuterIHPSpecialForce
   name: Экзоскафандр Спецвойск "С.И.У"
   suffix: IHP
-  description: Специализированный костюм для спец подразделений IHP направленных на ликвидацию или устранение определённых инцидентов и даже сущностей. 
+  description: Специализированный костюм для спец подразделений IHP направленных на ликвидацию или устранение определённых инцидентов и даже сущностей.
   components:
 
   - type: Sprite
@@ -1236,7 +1236,7 @@
   - type: GasTank
     outputPressure: 42.6
     air:
-      # Лол 
+      # Лол
       volume: 0.75
       temperature: 293.15
       moles:
@@ -1245,7 +1245,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Reflect
-    reflectProb: 0.7 
+    reflectProb: 0.7
     reflects:
       - Energy
   - type: Armor
@@ -1272,7 +1272,7 @@
   name: Шлем Экзоскафандра Спецвойск "С.И.У"
   categories: [ HideSpawnMenu ]
   suffix: IHP
-  description: Специализированный костюм для спец подразделений IHP направленных на ликвидацию или устранение определённых инцидентов и даже сущностей. 
+  description: Специализированный костюм для спец подразделений IHP направленных на ликвидацию или устранение определённых инцидентов и даже сущностей.
   components:
   - type: PNV
     color: "#4f20a8"
@@ -1297,7 +1297,7 @@
 
 - type: entity
   parent: [ ClothingOuterHardsuitBase, ClothingBackpack ]
-  id: ClothingOuterHardsuitLaboratoruIHP 
+  id: ClothingOuterHardsuitLaboratoruIHP
   name: Лабораторный Скафандр IHP
   suffix: IHP
   description: Стандартный скафандр IHP используемый для простой работы в космосе научным персоналом. Так же работы и вне космоса. Дополнительно имеет специальные грузовые отсеки на поясе.
