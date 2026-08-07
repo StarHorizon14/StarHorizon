@@ -45,6 +45,22 @@
       - Cat
       - PetsNT
   - type: ShowJobIcons
+  - type: LanguageSpeaker
+    languages:
+      Cat: Speak
+      GalacticCommon: Understand
+  - type: PetStorage
+    maxItemSize: Normal
+  - type: Body
+    prototype: CatBody
+  - type: ComplexInteraction
+  - type: Hands
+  - type: Paws
+    whitelistEntities:
+      - NFMailBag
+      - MailBagBig
+    whitelistTags:
+      - Mail
 
 - type: entity
   id: MobCatClarpy
@@ -74,8 +90,10 @@
     mindRoles: [ MindRoleGhostRoleNFPirate ]
   - type: Loadout
     prototypes: [ MobClarpyGear ]
-  - type: ReplacementAccent
-    accent: pirateCat
+  - type: LanguageSpeaker
+    languages:
+      Cat: Speak
+      GalacticCommon: Understand
   - type: RandomMetadata
     nameSegments: [NamesCatClarpy]
   - type: AutoImplant
@@ -96,7 +114,6 @@
   - type: NpcFactionMember
     factions:
     - Cat # Shouldn't be innately hostile to NT-aligned mobs
-  - type: PirateAccent
   - type: Speech
     audioParams:
       volume: -2
@@ -104,6 +121,17 @@
       pitch: 0.7
   - type: AutoPirate
     applyFaction: false
+  - type: PetStorage
+    maxItemSize: Small
+  - type: ComplexInteraction
+  - type: Body
+    prototype: CatBody
+  - type: Hands
+  - type: Paws
+    whitelistEntities:
+      - CombatKnife
+      - SurvivalKnife
+      - Cutlass
 
 - type: entity
   id: MobCatCappy
@@ -129,8 +157,10 @@
     mindRoles: [ MindRoleGhostRoleNeutral ]
   - type: Loadout
     prototypes: [ MobCappyGear ]
-  - type: ReplacementAccent
-    accent: nfsdCat
+  - type: LanguageSpeaker
+    languages:
+      Cat: Speak
+      GalacticCommon: Understand
   - type: RandomMetadata
     nameSegments: null
   - type: AutoImplant
@@ -168,7 +198,17 @@
       path: /Audio/_NF/Animals/nfsdcat_meow.ogg
   - type: PirateBountyItem
     id: Cappy
-  - type: SouthernAccent
+  - type: PetStorage
+    maxItemSize: Small
+  - type: ComplexInteraction
+  - type: Body
+    prototype: CatBody
+  - type: Hands
+  - type: Paws
+    whitelistEntities:
+      - CombatKnife
+      - SurvivalKnife
+      - Stunbaton
 
 - type: entity
   id: MobCatElCapo
@@ -199,6 +239,21 @@
   - type: NpcFactionMember
     factions:
     - Cat
+  - type: LanguageSpeaker
+    languages:
+      Cat: Speak
+      GalacticCommon: Understand
+  - type: PetStorage
+    maxItemSize: Small
+  - type: ComplexInteraction
+  - type: Body
+    prototype: CatBody
+  - type: Hands
+  - type: Paws
+    whitelistEntities:
+      - CombatKnife
+      - SurvivalKnife
+      - ThrowingKnife
 
 - type: entity
   id: MobCatCurie
@@ -252,7 +307,10 @@
       Male: SlimeCat
       Female: SlimeCat
       Unsexed: SlimeCat
-  - type: RussianAccent
+  - type: LanguageSpeaker
+    languages:
+      Cat: Speak
+      GalacticCommon: Understand
   - type: Speech
     speechVerb: Slime
     speechSounds: Slime
@@ -266,6 +324,22 @@
     - Pop
   - type: TypingIndicator
     proto: slime
+  - type: PetStorage
+    maxItemSize: Small
+  - type: ComplexInteraction
+  - type: Body
+    prototype: CatBody
+  - type: Hands
+  - type: Paws
+    whitelistEntities:
+      - CrowbarPocket
+      - Wrench
+      - Screwdriver
+      - Wirecutter
+      - Welder
+      - Multitool
+    whitelistTags:
+      - CatCrowbar
 
 - type: entity
   id: MobCatClugg
@@ -297,7 +371,10 @@
     despawnIfOffLinkedGrid: false
     addComponentsOnDeath: []
     removeComponentsOnDeath: []
-  - type: CavemanAccent
+  - type: LanguageSpeaker
+    languages:
+      Cat: Speak
+      GalacticCommon: Understand
 
 - type: entity
   id: MobCatMistake
@@ -320,8 +397,10 @@
     rules: ghost-role-information-freeagent-rules
     mindRoles: [ MindRoleGhostRoleFreeAgentHarmless ]
     prototype: CatMistake
-  - type: ReplacementAccent
-    accent: mistakeCat
+  - type: LanguageSpeaker
+    languages:
+      Cat: Speak
+      GalacticCommon: Understand
   - type: RandomMetadata
     nameSegments: [NamesCatMistake]
   - type: Vocal

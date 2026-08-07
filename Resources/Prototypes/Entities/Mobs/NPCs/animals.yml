@@ -3173,8 +3173,10 @@
     spawned:
     - id: FoodMeat
       amount: 3
-  - type: ReplacementAccent
-    accent: cat
+  - type: LanguageSpeaker
+    languages:
+      Cat: Speak
+      GalacticCommon: Understand
   - type: InteractionPopup
     successChance: 0.7
     interactSuccessString: petting-success-cat
@@ -3285,6 +3287,16 @@
         Slash: 6
         Piercing: 6
         Structural: 15
+  - type: PetStorage
+    maxItemSize: Small
+  - type: ComplexInteraction
+  - type: Body
+    prototype: CatBody
+  - type: Hands
+  - type: Paws
+    whitelistEntities:
+      - CombatKnife
+      - SurvivalKnife
 
 - type: entity
   name: space cat
