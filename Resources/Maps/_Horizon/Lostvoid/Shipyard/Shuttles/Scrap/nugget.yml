@@ -519,7 +519,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: Nugget
+      id: NuggetLostVoid
 - proto: Airlock
   entities:
   - uid: 2

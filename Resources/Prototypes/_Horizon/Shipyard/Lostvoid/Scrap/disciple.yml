@@ -15,7 +15,7 @@
   description: A cheaply made amalgamation of religious ships. For the seasoned religious assistant.
   price: 15000 # Appraises at 12179, ~25% margin - TODO: fix this value, getting tests to pass - Whatstone
   category: Small
-  group: Scrap
+  group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/disciple.yml
   guidebookPage: Null
   class:
@@ -25,12 +25,13 @@
   - Plasma
 
 - type: gameMap
+
   id: DiscipleLostVoid
   mapName: 'NSV Disciple'
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/disciple.yml
   minPlayers: 0
   stations:
-    Disciple:
+    DiscipleLostVoid:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

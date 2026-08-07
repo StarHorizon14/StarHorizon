@@ -5,7 +5,7 @@
   description: The Crescent, named for its exterior shape, is a vessel focused on providing service, medical aide, and scientific breakthroughs for smaller vessels.
   price: 300000
   category: Large
-  group: Scrap
+  group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-crescent.yml
   guidebookPage: Null
   class:
@@ -22,7 +22,7 @@
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-crescent.yml
   minPlayers: 0
   stations:
-    Crescent:
+    CrescentLostVoid:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

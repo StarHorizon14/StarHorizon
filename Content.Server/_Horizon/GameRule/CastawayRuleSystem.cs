@@ -4,11 +4,16 @@ using Content.Server.Access.Systems;
 using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Clothing.Systems;
+using Content.Server.Maps.NameGenerators;
+using Content.Server._NF.Shipyard.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
+using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Server.Worldgen.Components;
+using Content.Shared._Horizon.Castaway;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
@@ -21,6 +26,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Jittering;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.EntitySerialization.Systems;
@@ -46,9 +52,12 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly OutfitSystem _outfit = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly ShipyardSystem _shipyard = default!;
+    [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -124,7 +133,7 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
             var spawnPos = GetRandomCoords(castaway);
             var coords = new EntityCoordinates(mapUid.Value, spawnPos);
 
-            SpawnWreck(castaway, GameTicker.DefaultMap, spawnPos);
+            var wreckGrid = SpawnWreck(castaway, GameTicker.DefaultMap, spawnPos);
             SpawnLoot(castaway, mapUid.Value, spawnPos);
 
             var newMind = _mind.CreateMind(ev.Player.UserId, ev.Profile.Name);
@@ -138,7 +147,12 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
             RaiseLocalEvent(mob, ref gearEquippedEv);
 
             EnsureComp<WorldLoaderComponent>(mob);
+            EnsureComp<BankAccountComponent>(mob);
+            EnsureComp<CastawaySurvivorComponent>(mob);
             NameIdCard(mob, ev.Profile.Name);
+
+            if (wreckGrid is { } grid)
+                RegisterWreckOwnership(mob, grid, ev.Profile.Name);
 
             // IPCs and other non-breathing species have no concept of asphyxiation; skip the damage entirely for them.
             if (HasComp<RespiratorComponent>(mob))
@@ -156,17 +170,39 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
         }
     }
 
-    private void SpawnWreck(CastawayRuleComponent castaway, MapId mapId, Vector2 playerPos)
+    private EntityUid? SpawnWreck(CastawayRuleComponent castaway, MapId mapId, Vector2 playerPos)
     {
         if (castaway.WreckGridPaths.Count == 0)
-            return;
+            return null;
 
         var path = _random.Pick(castaway.WreckGridPaths);
 
         var wreckDistance = _random.NextFloat(castaway.WreckMinDistance, castaway.WreckMaxDistance);
         var wreckOffset = playerPos + _random.NextAngle().ToVec() * wreckDistance;
 
-        _mapLoader.TryLoadGrid(mapId, path, out _, offset: wreckOffset, rot: _random.NextAngle());
+        if (_mapLoader.TryLoadGrid(mapId, path, out var grid, offset: wreckOffset, rot: _random.NextAngle()))
+            return grid.Value.Owner;
+
+        return null;
+    }
+
+    private static readonly NanotrasenNameGenerator WreckNameGenerator = new() { PrefixCreator = "14" };
+
+    private void RegisterWreckOwnership(EntityUid mob, EntityUid wreckGrid, string ownerName)
+    {
+        if (!_inventory.TryGetSlotEntity(mob, "id", out var pdaUid))
+            return;
+
+        var targetId = pdaUid.Value;
+        if (TryComp<PdaComponent>(pdaUid, out var pda) && pda.ContainedId != null)
+            targetId = pda.ContainedId.Value;
+
+        var wreckName = WreckNameGenerator.FormatName("{1}");
+        _metaData.SetEntityName(wreckGrid, wreckName);
+
+        _shuttle.SetPlayerShuttleIFF(wreckGrid, Color.White);
+
+        _shipyard.RegisterShuttleDeed(targetId, wreckGrid, wreckName, ownerName);
     }
 
     private void SpawnLoot(CastawayRuleComponent castaway, EntityUid mapUid, Vector2 playerPos)
@@ -266,7 +302,7 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
                 // Heal some of the asphyxiation damage once the zap actually lands.
                 if (HasComp<RespiratorComponent>(mob))
                 {
-                    var heal = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Asphyxiation"), FixedPoint2.New(-30));
+                    var heal = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Asphyxiation"), FixedPoint2.New(-50));
                     _damageable.TryChangeDamage(mob, heal, ignoreResistances: true);
                 }
             });

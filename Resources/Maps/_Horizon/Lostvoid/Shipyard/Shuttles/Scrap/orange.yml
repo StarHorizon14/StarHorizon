@@ -546,7 +546,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: Orange
+      id: OrangeLostVoid
 - proto: AirlockCargoGlass
   entities:
   - uid: 2

@@ -106,7 +106,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: Construct
+      id: ConstructLostVoid
 - proto: AirlockExternalGlass
   entities:
   - uid: 45

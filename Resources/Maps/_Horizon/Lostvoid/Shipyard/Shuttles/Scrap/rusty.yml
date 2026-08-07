@@ -26,7 +26,7 @@ entities:
     - type: MetaData
       name: grid
     - type: BecomesStation
-      id: Rusty
+      id: RustyLostVoid
     - type: Transform
       parent: invalid
     - type: MapGrid

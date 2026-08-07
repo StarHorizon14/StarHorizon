@@ -1430,7 +1430,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: Bison
+      id: BisonLostVoid
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 217

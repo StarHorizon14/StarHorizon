@@ -5,7 +5,7 @@
   description: A medium sized multi-role long haul conversion of the long time popular Courser model.
   price: 68650
   category: Medium
-  group: Scrap
+  group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-courserx.yml
   guidebookPage: Null
   class:
@@ -20,7 +20,7 @@
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-courserx.yml
   minPlayers: 0
   stations:
-    CourserX:
+    CourserXLostVoid:
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup

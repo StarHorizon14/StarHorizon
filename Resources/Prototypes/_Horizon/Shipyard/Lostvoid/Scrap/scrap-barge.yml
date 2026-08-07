@@ -5,7 +5,7 @@
   description: A medium shipping vessel repurposed in a salvage and material exploitation vessel.
   price: 54000
   category: Medium
-  group: Scrap
+  group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-barge.yml
   guidebookPage: ShipyardBarge
   class:
@@ -22,7 +22,7 @@
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-barge.yml
   minPlayers: 0
   stations:
-    Barge:
+    BargeLostVoid:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

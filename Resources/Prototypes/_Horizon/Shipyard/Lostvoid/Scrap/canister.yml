@@ -9,7 +9,7 @@
   description: Whatever you're bringing, it won't fit. Seats two. Gravity included.
   price: 8000
   category: Micro
-  group: Scrap
+  group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/canister.yml
   guidebookPage: Null
   class:
@@ -24,7 +24,7 @@
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/canister.yml
   minPlayers: 0
   stations:
-    Canister:
+    CanisterLostVoid:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

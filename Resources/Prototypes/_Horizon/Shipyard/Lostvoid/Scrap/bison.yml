@@ -5,7 +5,7 @@
   description: A heavy duty ship breaker with a durable hull and a substantial amount of living space, built for long journeys with self-sufficiency.
   price: 166138
   category: Large
-  group: Scrap
+  group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/bison.yml
   guidebookPage: Null
   class:
@@ -21,7 +21,7 @@
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/bison.yml
   minPlayers: 0
   stations: 
-    Bison:
+    BisonLostVoid:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

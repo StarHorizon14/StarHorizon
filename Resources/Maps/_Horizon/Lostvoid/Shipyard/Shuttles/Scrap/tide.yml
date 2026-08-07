@@ -266,7 +266,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: Tide
+      id: TideLostVoid
 - proto: AirlockAssemblyMaintenance
   entities:
   - uid: 84

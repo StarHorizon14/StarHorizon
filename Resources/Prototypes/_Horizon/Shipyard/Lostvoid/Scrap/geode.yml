@@ -8,7 +8,7 @@
   description: Built into a rock by the finest goblin engineers, this vessel has all the discrete trader needs to conduct business.
   price: 51000 # 45957 0.1 50552.7
   category: Medium
-  group: Scrap
+  group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/geode.yml
   guidebookPage: ShipyardGeode
   class:
@@ -24,7 +24,7 @@
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/geode.yml
   minPlayers: 0
   stations:
-    Geode:
+    GeodeLostVoid:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

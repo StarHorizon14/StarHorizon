@@ -155,7 +155,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: Canister
+      id: CanisterLostVoid
 - proto: AirAlarm
   entities:
   - uid: 62

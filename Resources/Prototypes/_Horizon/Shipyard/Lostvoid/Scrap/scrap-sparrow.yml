@@ -5,7 +5,7 @@
   description: A small research and engineering vessel.
   price: 35000
   category: Small
-  group: Scrap
+  group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-sparrow.yml
   guidebookPage: ShipyardSparrow
   class:
@@ -21,7 +21,7 @@
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-sparrow.yml
   minPlayers: 0
   stations:
-    Sparrow:
+    SparrowLostVoid:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

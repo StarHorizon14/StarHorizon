@@ -8,5 +8,5 @@
   showInVote: false
   rules:
     - HorizonCastaway
-    - NFBasicStationEventScheduler
+    # - NFBasicStationEventScheduler
     - NFRoundstartVariation

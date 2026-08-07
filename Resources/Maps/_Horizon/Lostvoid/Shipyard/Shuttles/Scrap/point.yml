@@ -34,7 +34,7 @@ entities:
       pos: -0.39584857,-0.47913614
       parent: invalid
     - type: BecomesStation
-      id: Point
+      id: PointLostVoid
     - type: MapGrid
       chunks:
         0,0:

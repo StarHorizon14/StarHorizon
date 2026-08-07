@@ -19,7 +19,7 @@ entities:
       pos: -0.47058776,-0.52941173
       parent: invalid
     - type: BecomesStation
-      id: Disciple
+      id: DiscipleLostVoid
     - type: MapGrid
       chunks:
         0,0:

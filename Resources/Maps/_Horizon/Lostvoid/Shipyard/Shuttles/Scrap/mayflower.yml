@@ -411,7 +411,7 @@ entities:
       type: GridAtmosphere
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - id: Mayflower
+    - id: MayflowerLostVoid
       type: BecomesStation
 - proto: Airlock
   entities:
@@ -5329,7 +5329,7 @@ entities:
       pos: -0.5,-6.5
       parent: 1
       type: Transform
-    - id: Mayflower
+    - id: MayflowerLostVoid
       type: BecomesStation
 - proto: WebNest
   entities:

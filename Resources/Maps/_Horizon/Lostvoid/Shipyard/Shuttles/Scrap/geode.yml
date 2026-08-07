@@ -837,7 +837,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: Geode
+      id: GeodeLostVoid
     - type: ImplicitRoof
 - proto: AcousticGuitarInstrument
   entities:

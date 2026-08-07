@@ -15,7 +15,7 @@
   description: A flying hunk of wood and metal disguised as a kitchen shuttle. Not FDA approved.
   price: 15950 # +1450 from 10% Markup
   category: Small
-  group: Scrap
+  group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/nugget.yml
   guidebookPage: Null
   class:
@@ -30,7 +30,7 @@
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/nugget.yml
   minPlayers: 0
   stations:
-    Nugget:
+    NuggetLostVoid:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

@@ -452,6 +452,8 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: BecomesStation
+      id: InvestigatorLostVoid
 - proto: AirAlarm
   entities:
   - uid: 251
@@ -3877,50 +3879,6 @@ entities:
     components:
     - type: Transform
       pos: 11.45693,-1.8921804
-      parent: 2
-- proto: SpawnDungeonLootSpesos
-  entities:
-  - uid: 199
-    components:
-    - type: Transform
-      pos: -2.467063,0.70628095
-      parent: 2
-- proto: SpawnMobCarp
-  entities:
-  - uid: 68
-    components:
-    - type: Transform
-      pos: 10.5,0.5
-      parent: 2
-  - uid: 86
-    components:
-    - type: Transform
-      pos: 5.5,-2.5
-      parent: 2
-  - uid: 198
-    components:
-    - type: Transform
-      pos: 8.5,-0.5
-      parent: 2
-  - uid: 336
-    components:
-    - type: Transform
-      pos: -2.5,-2.5
-      parent: 2
-  - uid: 337
-    components:
-    - type: Transform
-      pos: 9.5,-8.5
-      parent: 2
-  - uid: 349
-    components:
-    - type: Transform
-      pos: 1.5,2.5
-      parent: 2
-  - uid: 359
-    components:
-    - type: Transform
-      pos: -3.5,-5.5
       parent: 2
 - proto: StoolBar
   entities:

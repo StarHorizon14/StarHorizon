@@ -70,6 +70,11 @@ public sealed class ClientGlobalSoundSystem : SharedGlobalSoundSystem
         _adminAudio.Add(stream?.Entity);
     }
 
+    /// <summary>
+    /// Entities currently playing audio sent via the admin "playglobalsound" command.
+    /// </summary>
+    public IReadOnlyList<EntityUid?> AdminAudioStreams => _adminAudio;
+
     private void PlayStationEventMusic(StationEventMusicEvent soundEvent)
     {
         // Either the cvar is disabled or it's already playing

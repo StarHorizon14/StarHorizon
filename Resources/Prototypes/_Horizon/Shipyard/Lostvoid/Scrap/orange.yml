@@ -5,7 +5,7 @@
   description: A cargo slash salvage shuttle made from scavenged wrecks, comes with some damage.
   price: 18000 #Appraisal is 15800, +5% margin - TODO: fix this value, getting tests to pass - Whatstone
   category: Small
-  group: Scrap
+  group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/orange.yml
   guidebookPage: Null
   class:
@@ -21,7 +21,7 @@
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/orange.yml
   minPlayers: 0
   stations:
-    Orange:
+    OrangeLostVoid:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

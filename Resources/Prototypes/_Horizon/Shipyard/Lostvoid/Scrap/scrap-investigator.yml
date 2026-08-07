@@ -5,7 +5,7 @@
   description: A medium research shuttle designed for xenoarcheological studies.
   price: 45000
   category: Medium
-  group: Scrap
+  group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-investigator.yml
   guidebookPage: ShipyardInvestigator
   class:
@@ -21,7 +21,7 @@
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-investigator.yml
   minPlayers: 0
   stations:
-    Investigator:
+    InvestigatorLostVoid:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
