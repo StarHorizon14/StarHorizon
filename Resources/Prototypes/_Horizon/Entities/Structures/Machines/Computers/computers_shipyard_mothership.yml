@@ -1,5 +1,14 @@
 # Записуйте все материнские консоли тут
 
+- type: entity
+  id: SellOnlyMothershipComputerNoTax
+  parent: BaseMothershipComputer
+  name: sell only shipyard console
+  components:
+  - type: ShipyardConsole
+    taxAccounts: {}
+    ignoreBaseSaleRate: true
+
 # The ophiophagus console
 - type: entity
   id: OphiophagusMothershipComputer

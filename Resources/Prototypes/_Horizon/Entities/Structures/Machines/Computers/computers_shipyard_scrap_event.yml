@@ -1,6 +1,6 @@
 # Event scrapyard console: same as ComputerShipyardScrap, but without the Geode and Hammerhead shuttles.
 - type: entity
-  id: ComputerShipyardScrapEvent
+  id: ComputerShipyardScrapLostVoid
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: scrapyard console
   description: Used to purchase and sell "shuttles".
@@ -11,14 +11,30 @@
     interfaces:
       enum.ShipyardConsoleUiKey.Custom:
         type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    taxAccounts:
+      Invalid: 1.0
+    ignoreBaseSaleRate: true
   - type: ShipyardListing
     shuttles:
-    - Nugget
-    - Orange
-    - Tide
-    - Construct
-    - Disciple
-    - Canister
+    - NuggetLostVoid
+    - OrangeLostVoid
+    - TideLostVoid
+    - ConstructLostVoid
+    - DiscipleLostVoid
+    - CanisterLostVoid
+    - RustyLostVoid
+    # - BargeLostVoid
+    # - CrescentLostVoid
+    - HaulerLostVoid
+    - InvestigatorLostVoid
+    # - SparrowLostVoid
+    - SprinterLostVoid
+    - CourserXLostVoid
+    # - BisonLostVoid
+    - CometLostVoid
+    # - MayflowerLostVoid
+    - GeodeLostVoid
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
@@ -31,10 +47,9 @@
     - map: ["computerLayerKeys"]
       state: scrap_key
 
-# Tabletop variant of the event scrapyard console.
 - type: entity
-  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardScrapEvent]
-  id: ComputerTabletopShipyardScrapEvent
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardScrapLostVoid]
+  id: ComputerTabletopShipyardScrapLostVoid
   components:
   - type: Sprite
     drawdepth: SmallObjects
