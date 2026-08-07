@@ -17,6 +17,9 @@
             "name": "reactor-small"
         },
         {
+            "name": "reactor-micro"
+        },
+        {
             "name": "turbine-small"
         }
     ]

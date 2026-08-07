@@ -19,6 +19,16 @@
   group: market
 
 - type: cargoProduct
+  id: NuclearReactorMicroFlatpackPurchase
+  icon:
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
+    state: reactor-micro
+  product: NuclearReactorMicroFlatpack
+  cost: 500000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
   id: GasTurbineFlatpackPurchase
   icon:
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
