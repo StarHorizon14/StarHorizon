@@ -64,3 +64,8 @@
 
 - type: Tag
   id: MagazineAsmgtAnCo
+
+# upgrade
+
+- type: Tag
+  id: AnCoMaximPrototype

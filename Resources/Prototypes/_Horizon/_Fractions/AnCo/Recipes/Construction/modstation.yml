@@ -1,0 +1,27 @@
+- type: constructionGraph
+  id: AnCoMaximPrototype
+  start: start
+  graph:
+    - node: start
+      entity: ClothingOuterHardsuitMaximPrototype
+      edges:
+        - to: done
+          steps:
+            - tag: AnCoMaximPrototype
+              doAfter: 4
+    - node: done
+      entity: ClothingOuterHardsuitAnCoMaximPrototype
+
+# - type: constructionGraph
+#   id: UpgradeHydroponicsTray
+#   start: start
+#   graph:
+#     - node: start
+#       edges:
+#         - to: upgraded
+#           steps:
+#             - tag: HydroponicsTrayUpgradeKit
+#               doAfter: 2
+
+#     - node: upgraded
+#       entity: indhydroponicsTray

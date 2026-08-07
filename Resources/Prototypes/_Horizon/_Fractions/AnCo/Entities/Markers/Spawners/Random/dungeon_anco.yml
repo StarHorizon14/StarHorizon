@@ -219,6 +219,23 @@
     - AnCoWeaponHeavyCaseGuardian
     rareChance: 0.33
 
+- type: entity
+  name: спавнер станций модификаций АнКо
+  id: SpawnAnCoModStationRandom
+  parent: MarkerBasePlaceFree
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _Horizon/_Fractions/AnCo/Objects/Misc/modstation.rsi
+        state: base
+  - type: RandomSpawner
+    prototypes:
+    - ModStationMaximPrototype
+    chance: 0.25
+    offset: 0.0
 
 - type: entity
   name: спавнер кейсов с оружием АнКо

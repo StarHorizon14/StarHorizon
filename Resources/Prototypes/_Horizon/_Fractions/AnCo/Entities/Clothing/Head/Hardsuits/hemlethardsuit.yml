@@ -195,3 +195,18 @@
         Caustic: 0.90
   - type: PointLight
     color: "#F05A5A"
+
+- type: entity
+  parent: [ClothingHeadHelmetHardsuitMaximPrototype, BaseAnCoContraband]
+  id: ClothingHeadHelmetHardsuitAnCoMaximPrototype
+  categories: [ HideSpawnMenu ]
+  name: корпоративный шлем скафандра утилизатора
+  description: Изолирующий от температур шлем, спасет вас от жары.
+  suffix: StarHorizon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/maxim_prototype.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/maxim_prototype.rsi
+  - type: PointLight
+    color: "#F05A5A"

@@ -311,3 +311,54 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHardsuitClifs
+
+- type: entity
+  parent: [ClothingOuterHardsuitMaximPrototype, BaseAnCoContraband]
+  id: ClothingOuterHardsuitAnCoMaximPrototype
+  suffix: StarHorizon, AnCo, HardSuit
+  name: корпоративный скафандр утилизатора
+  description: Казмий. Ардоний. Эти вещи куют великое оружие, они также куют великих спасателей.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/maxim_prototype.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/maxim_prototype.rsi
+  - type: Tag
+    tags:
+    - GasTank
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAnCoMaximPrototype
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.5
+        Radiation: 0.1 # Horizon
+        Caustic: 0.5
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      # 31 minutes
+      volume: 10
+      moles:
+        - 4.102758100 # oxygen
+      temperature: 293.15
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
+  - type: Jetpack
+    moleUsage: 0.00045

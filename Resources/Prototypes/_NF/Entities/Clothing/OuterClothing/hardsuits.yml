@@ -118,6 +118,9 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMaximPrototype
+  - type: Construction
+    graph: AnCoMaximPrototype
+    node: start
 
 # Syndicate NPC hard suit, unremoveable
 - type: entity

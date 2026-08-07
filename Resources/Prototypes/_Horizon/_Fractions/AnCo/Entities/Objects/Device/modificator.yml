@@ -1,0 +1,22 @@
+- type: entity
+  parent: [BaseItem]
+  id: ModStationMaximPrototype
+  suffix: StarHorizon, AnCo
+  name: станция модификации эксперементального скафандра
+  description: Вершина инженерной мысли, станция автоматической модификации скафандров
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/modstation.rsi
+    layers:
+    - state: base
+    - state: base-unshaded
+      shader: unshaded
+    - state: outer-clothing
+  - type: Appearance
+  - type: StaticPrice
+    price: 5000
+  - type: Tag
+    tags:
+    - AnCoMaximPrototype
