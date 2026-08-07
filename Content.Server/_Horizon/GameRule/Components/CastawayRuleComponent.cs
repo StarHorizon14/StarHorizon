@@ -22,12 +22,12 @@ public sealed partial class CastawayRuleComponent : Component
     [DataField]
     public List<ResPath> WreckGridPaths =
     [
-        new("/Maps/_Horizon/Lostvoid/whiteship_bluespacejumper.yml"),
-        new("/Maps/_Horizon/Lostvoid/hauling-shuttle.yml"),
-        new("/Maps/_Horizon/Lostvoid/medium-crashed-shuttle.yml"),
-        new("/Maps/_Horizon/Lostvoid/small-syndicate.yml"),
-        new("/Maps/_Horizon/Lostvoid/small-ship-1.yml"),
-        new("/Maps/_Horizon/Lostvoid/medium-ruined-emergency-shuttle.yml"),
+        new("/Maps/_Horizon/Lostvoid/Shuttle/whiteship-bluespacejumper.yml"),
+        new("/Maps/_Horizon/Lostvoid/Shuttle/hauling-shuttle.yml"),
+        new("/Maps/_Horizon/Lostvoid/Shuttle/medium-crashed-shuttle.yml"),
+        new("/Maps/_Horizon/Lostvoid/Shuttle/small-syndicate.yml"),
+        new("/Maps/_Horizon/Lostvoid/Shuttle/small-ship-1.yml"),
+        new("/Maps/_Horizon/Lostvoid/Shuttle/medium-ruined-emergency-shuttle.yml"),
     ];
 
     /// <summary>

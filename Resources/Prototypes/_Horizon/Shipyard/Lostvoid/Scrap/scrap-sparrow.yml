@@ -1,0 +1,33 @@
+- type: vessel
+  id: SparrowLostVoid
+  parent: BaseVessel
+  name: NR Sparrow
+  description: A small research and engineering vessel.
+  price: 35000
+  category: Small
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-sparrow.yml
+  guidebookPage: ShipyardSparrow
+  class:
+  - Scrapyard
+  - Science
+  - Engineering
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: SparrowLostVoid
+  mapName: 'NR Sparrow'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-sparrow.yml
+  minPlayers: 0
+  stations:
+    SparrowLostVoid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Sparrow {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

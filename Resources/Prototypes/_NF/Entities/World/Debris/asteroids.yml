@@ -384,6 +384,13 @@
           - id: WallSolidRust
             orGroup: rock
             prob: 0.05
+          # Horizon Room
+          - id: NZChipScrapRoomMarker
+            orGroup: rock
+            prob: 0.005
+          - id: NZChipScrapLargeRoomMarker
+            orGroup: rock
+            prob: 0.0005
     - type: IFF
       color: "#fcdec7"
 # endregion Scrap Table

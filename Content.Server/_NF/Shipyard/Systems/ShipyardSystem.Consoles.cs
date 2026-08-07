@@ -852,6 +852,22 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         Dirty(deed);
     }
 
+    public void RegisterShuttleDeed(EntityUid targetId, EntityUid shuttleUid, string shuttleName, string shuttleOwner)
+    {
+        // TrySellShuttle requires ShipyardMap to exist; normally set up on first purchase, which this path skips.
+        SetupShipyardIfNeeded();
+
+        EnsureComp<ShuttleComponent>(shuttleUid);
+
+        var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
+        AssignShuttleDeedProperties((targetId, deedID), shuttleUid, shuttleName, shuttleOwner, purchasedWithVoucher: false);
+
+        var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttleUid);
+        AssignShuttleDeedProperties((shuttleUid, deedShuttle), shuttleUid, shuttleName, shuttleOwner, purchasedWithVoucher: false);
+
+        EnsureComp<LinkedLifecycleGridParentComponent>(shuttleUid);
+    }
+
     private void OnInitDeedSpawner(EntityUid uid, StationDeedSpawnerComponent component, MapInitEvent args)
     {
         if (!HasComp<IdCardComponent>(uid)) // Test if the deed on an ID
