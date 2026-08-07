@@ -246,11 +246,7 @@
     - NightVisionPack # Horizon
     - StarlightSurgeryTools # Starlight
     - NFProtolathe # Frontier
-    dynamicRecipes:
-# Starshine-start
-      - ThrusterLargeAssemblyFlatpack
-      - ThrusterHugeAssemblyFlatpack
-# Starshine-end
+    - StarshineThrusters # Starshine
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - NfsdAmmoStatic # Frontier: SecurityAmmo<NfsdAmmoStatic
@@ -332,6 +328,7 @@
     - CytologyBoards # Horizon
     - NFEngineeringBoardsCircuitImprinter # Frontier
     - HorizonTradeFabricatorBoardsPack # Horizon - платы торговых фабрикаторов
+    - StarshineThrusterBoards # Starshine
   - type: EmagLatheRecipes
     emagDynamicPacks: [] # Frontier: empty list
     # - SecurityBoards # Frontier
