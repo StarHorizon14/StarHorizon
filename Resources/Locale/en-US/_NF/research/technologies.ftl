@@ -129,6 +129,7 @@ nf-research-technology-seed-extractor = Seed Extraction
 nf-research-technology-shuttlecraft = Shuttlecraft
 nf-research-technology-shuttlecraft-thrust = Thrusters
 nf-research-technology-shuttlecraft-thrust-small = Miniaturized Thrusters
+research-technology-advanced-thrusters = Advanced Thrusters
 nf-research-technology-space-handheld-scanning = Portable Object Detection
 nf-research-technology-space-scanning = Radar
 nf-research-technology-special-means = Special Means
