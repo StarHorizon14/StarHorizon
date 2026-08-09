@@ -1,0 +1,638 @@
+# ==========================================
+# 1. КАТЕГОРИИ МАГАЗИНА
+# ==========================================
+- type: storeCategory
+  id: LVHIUplinkHardsuits
+  name: "Скафандры"
+  priority: 0
+
+- type: storeCategory
+  id: LVHIUplinkMining
+  name: "Снаряжение шахтёров"
+  priority: 1
+
+- type: storeCategory
+  id: LVHIUplinkDrilling
+  name: "Буровые установки"
+  priority: 2
+
+- type: storeCategory
+  id: LVHIUplinkMedical
+  name: "Медицина"
+  priority: 3
+
+- type: storeCategory
+  id: LVHIUplinkSpesoCrystal
+  name: "Валюта"
+  priority: 4
+
+# ==========================================
+# 2. ТЕРМИНАЛ ЗАКАЗОВ LVHI
+# ==========================================
+- type: entity
+  parent: [BaseItem, StorePresetUplink]
+  id: LVHIUplinkRadio
+  name: "Терминал заказов LVHI"
+  description: "Портативный планшет связи с отделом снабжения Langstad-Voigt. Принимает кристаллизованные алмазы и спесо."
+  suffix: LVHI
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Specific/LVHIUplink.rsi
+    state: qm_clipboard
+  - type: Item
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Specific/LVHIUplink.rsi
+    size: Tiny
+  - type: Clothing
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Specific/LVHIUplink.rsi
+    slots:
+    - belt
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    canWithdraw: true
+    currencyWhitelist:
+    - LVHICrystal
+    - Speso
+    balance:
+      LVHICrystal: 0
+      Speso: 0
+    categories:
+    - LVHIUplinkHardsuits
+    - LVHIUplinkMining
+    - LVHIUplinkDrilling
+    - LVHIUplinkMedical
+    - LVHIUplinkSpesoCrystal
+
+# ==========================================
+# 3. КРИСТАЛЛИЗОВАННЫЕ АЛМАЗЫ (СУЩНОСТИ)
+# ==========================================
+- type: entity
+  parent: BaseItem
+  id: LVHIDiamondCrystal
+  name: "кристаллизованный алмаз" # Это имя самого предмета
+  description: "Кристалл невероятной плотности. Используется как официальная валюта и ресурс фракции LVHI."
+  suffix: 20 LVHI
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Specific/LVHIDiamondCrystal.rsi
+    state: telecrystal
+  - type: Item
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Specific/LVHIDiamondCrystal.rsi
+    size: Tiny
+  - type: Stack
+    count: 20
+    stackType: LVHIDiamondCrystal
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      LVHICrystal: 1
+
+- type: entity
+  parent: LVHIDiamondCrystal
+  id: LVHIDiamondCrystal1
+  name: "кристаллизованный алмаз (1 шт.)" # Имя предмета на 1 шт.
+  suffix: 1 LVHI
+  components:
+  - type: Stack
+    count: 1
+    stackType: LVHIDiamondCrystal
+
+- type: entity
+  parent: LVHIDiamondCrystal
+  id: LVHIDiamondCrystal5
+  name: "кристаллизованный алмаз (5 шт.)" # Имя предмета на 5 шт.
+  suffix: 5 LVHI
+  components:
+  - type: Stack
+    count: 5
+    stackType: LVHIDiamondCrystal
+
+- type: entity
+  parent: LVHIDiamondCrystal
+  id: LVHIDiamondCrystal10
+  name: "кристаллизованный алмаз (10 шт.)" # Имя предмета на 10 шт.
+  suffix: 10 LVHI
+  components:
+  - type: Stack
+    count: 10
+    stackType: LVHIDiamondCrystal
+
+# ==========================================
+# 4. ТОВАРЫ (LISTINGS)
+# ==========================================
+
+- type: listing
+  id: LVHIListingHardsuitSalvage
+  name: "Скафандр шахтёра"
+  description: "Стандартный утилитарный скафандр утилизаторов и шахтёров."
+  productEntity: ClothingOuterHardsuitSalvage
+  cost:
+    LVHICrystal: 2
+  categories:
+  - LVHIUplinkHardsuits
+
+- type: listing
+  id: LVHIListingHardSuitLight
+  name: "Лёгкий скафандр минералога LVHI"
+  description: "Лёгкий скафандр LVHI, предназначенный для работы и поиска минеральных образцов."
+  productEntity: ClothingOuterHardSuitLVHI
+  cost:
+    LVHICrystal: 4
+  categories:
+  - LVHIUplinkHardsuits
+
+- type: listing
+  id: LVHIListingClothingOuterHardsuitMaxim
+  name: "Максимальный скафандр Утилизатора"
+  description: "Максимальный скафандр, предназначенный для самых тяжелых условий работы на экспедиции."
+  productEntity: ClothingOuterHardsuitMaxim
+  cost:
+    LVHICrystal: 20
+  categories:
+  - LVHIUplinkHardsuits
+
+- type: listing
+  id: LVHIListingLVHIClothingOuterFight
+  name: "Боевой скафандр LVHI"
+  description: "Боевой скафандр для охранников объектов или мест раскопок."
+  productEntity: LVHIClothingOuterFight
+  cost:
+    LVHICrystal: 15
+  categories:
+  - LVHIUplinkHardsuits
+
+- type: listing
+  id: LVHIListingClothingOuterHardsuitGoliath
+  name: "Скафандр утилизатора (Голиаф)"
+  description: "Скафандр утилизатора обшитый шкурой голиафа."
+  productEntity: ClothingOuterHardsuitGoliath
+  cost:
+    LVHICrystal: 10
+  categories:
+  - LVHIUplinkHardsuits
+
+- type: listing
+  id: LVHIListingClothingOuterHardsuitLuxury
+  name: "Роскошный скафандр Шахтера"
+  description: "Роскошный скафандр шахтера, предназначенный для работы в самых простых условиях."
+  productEntity: ClothingOuterHardsuitLuxury
+  cost:
+    LVHICrystal: 3
+  categories:
+  - LVHIUplinkHardsuits
+
+- type: listing
+  id: LVHIListingNFClothingShoesBootsJetpack
+  name: "Реактивные ботинки"
+  description: "Реактивные ботинки, позволяющие перемещаться в космосе"
+  productEntity: NFClothingShoesBootsJetpack
+  cost:
+    LVHICrystal: 6
+  categories:
+  - LVHIUplinkHardsuits
+
+- type: listing
+  id: LVHIListingClothingShoesBootsJump
+  name: "Прыжковые ботинки"
+  description: "Прыжковые ботинки, позволяющие совершать длинные прыжки"
+  productEntity: ClothingShoesBootsJump
+  cost:
+    LVHICrystal: 4
+  categories:
+  - LVHIUplinkHardsuits
+
+- type: listing
+  id: LVHIListingClothingShoesBootsMagAdv
+  name: "Продвинутые магнитные ботинки"
+  description: "Продвинутые магнитные ботинки, позволяющие перемещаться в невесомости"
+  productEntity: ClothingShoesBootsMagAdv
+  cost:
+    LVHICrystal: 5
+  categories:
+  - LVHIUplinkHardsuits
+
+- type: listing
+  id: LVHIListingLVHIClothingOuterElite
+  name: "Элитный скафандр LVHI"
+  description: "Элитный скафандр LVHI, предназначенный для работы в самых тяжелых условиях."
+  productEntity: LVHIClothingOuterElite
+  cost:
+    LVHICrystal: 30
+  categories:
+  - LVHIUplinkHardsuits
+
+# --- СНАРЯЖЕНИЕ ШАХТЁРОВ ---
+
+- type: listing
+  id: LVHIListingOreBag
+  name: "Сумка для руды"
+  description: "Обычная сумка для руды на пояс"
+  productEntity: OreBag
+  cost:
+    Speso: 500
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingOreBagOfHolding
+  name: "Блюспейс сумка для руды"
+  description: "Блюспейс сумка для руды которая цепляется на пояс."
+  productEntity: OreBagOfHolding
+  cost:
+    LVHICrystal: 8
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingOreProcessorIndustrialMachineCircuitboard
+  name: "Промышленый переработчик руды"
+  description: "Плата промышленного переработчика руды"
+  productEntity: OreProcessorIndustrialMachineCircuitboard
+  cost:
+    LVHICrystal: 4
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingMiningDrill
+  name: "Бур"
+  description: "Обычный бур для добычи руды."
+  productEntity: MiningDrill
+  cost:
+    Speso: 500
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingMiningDrillDiamond
+  name: "Алмазный бур"
+  description: "Алмазный бур для бурения твердых пород."
+  productEntity: MiningDrillDiamond
+  cost:
+    LVHICrystal: 8
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingEnergyPickaxe
+  name: "Энергетическая кирка"
+  description: "Энергетический инструмент для добычи руды из твердых пород."
+  productEntity: NFEnergyPickaxe
+  cost:
+    LVHICrystal: 8
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingClothingBackpackExoWoyceh
+  name: "Экзосклет"
+  description: "Экзосклет позволяющий хранить вещи, практически равен блюспейс сумке. (Цепляется на спину)"
+  productEntity: ClothingBackpackExoWoyceh
+  cost:
+    LVHICrystal: 100
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingShuttleGunKineticCircuitboard
+  name: "Плата орудия ПТК-800e «Дематериализатор материи»"
+  description: "Машинная плата для сборки кинетического бурового орудия ПТК-800e на шаттл."
+  productEntity: ShuttleGunKineticCircuitboard
+  cost:
+    LVHICrystal: 5
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingNFWeaponPkaCannon
+  name: "Протокинетический ускоритель (Пушка)"
+  description: "Протокинетик способный ломать твердые породы."
+  productEntity: NFWeaponPkaCannon
+  cost:
+    LVHICrystal: 3
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingWeaponProtoKineticRailgun
+  name: "Протокинетическая Рельса"
+  description: "Мощный протокинетик способный прорубить дорогу практически в любых породах"
+  productEntity: WeaponProtoKineticRailgun
+  cost:
+    LVHICrystal: 5
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingPKAUpgradeDamage
+  name: "Улучшение для Кинетического снаряжения"
+  description: "Улучшение для Кинетического снаряжения (Наносимые повреждения)"
+  productEntity: PKAUpgradeDamage
+  cost:
+    LVHICrystal: 2
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingPKAUpgradeFireRate
+  name: "Улучшение для Кинетического снаряжения"
+  description: "Улучшение для Кинетического снаряжения (Скорость стрельбы)"
+  productEntity: PKAUpgradeFireRate
+  cost:
+    LVHICrystal: 2
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingPKAUpgradeLight
+  name: "Улучшение для Кинетического снаряжения"
+  description: "Улучшение для Кинетического снаряжения (Свет)"
+  productEntity: PKAUpgradeLight
+  cost:
+    LVHICrystal: 2
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingPKAUpgradeRange
+  name: "Улучшение для Кинетического снаряжения"
+  description: "Улучшение для Кинетического снаряжения (Дальность стрельбы)"
+  productEntity: PKAUpgradeRange
+  cost:
+    LVHICrystal: 2
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingLVHIOreBagOfHolding
+  name: "Блюспейс сумка LVHI для руды"
+  description: "Блюспейс сумка от компании LVHI, намного больше обычной БС-сумки, да еще и с полной защитой от радиации."
+  productEntity: LVHIOreBagOfHolding
+  cost:
+    LVHICrystal: 25
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingMiningDrillTitan
+  name: "Титановый горный бур LVHI"
+  description: "Сверхпрочный титановый бур LVHI с высоким уроном по твёрдой породе и стенам."
+  productEntity: LVHIMiningDrillTitan
+  cost:
+    LVHICrystal: 25
+  categories:
+  - LVHIUplinkMining
+
+- type: listing
+  id: LVHIListingLVHIWeaponProtoKineticRailgun
+  name: "Протокинетическая рельса LVHI"
+  description: "Улучшенная кинетическая Рельса, а что вы еще ожидали от горнодобывающей компании?"
+  productEntity: LVHIWeaponProtoKineticRailgun
+  cost:
+    LVHICrystal: 35
+  categories:
+  - LVHIUplinkMining
+
+# --- БУРОВЫЕ УСТАНУВКИ ---
+
+- type: listing
+  id: LVHIListingOreMiningDrill
+  name: "Буровая установка для добычи руды"
+  description: "Буровая установка для добычи руды"
+  productEntity: OreMiningDrill
+  cost:
+    LVHICrystal: 8
+  categories:
+  - LVHIUplinkDrilling
+
+- type: listing
+  id: LVHIListingGasMiningDrill
+  name: "Буровая установка для добычи газов"
+  description: "Буровая установка для добычи газов"
+  productEntity: GasMiningDrill
+  cost:
+    LVHICrystal: 8
+  categories:
+  - LVHIUplinkDrilling
+
+- type: listing
+  id: LVHIListingAnCoOreMiningDrill
+  name: "Буровая установки от корпорации AnCo"
+  description: "Буровая установка для добычи руды предоставленная корпорацией AnCo"
+  productEntity: AnCoMiningDrill
+  cost:
+    LVHICrystal: 25
+  categories:
+  - LVHIUplinkDrilling
+
+- type: listing
+  id: LVHIListingLVHIMiningDrill
+  name: "Тяжёлый буровой комплекс LVHI"
+  description: "Сдвоенный промышленный буровой комплекс LVHI с повышенной эффективностью и заниженным временем перезарядки."
+  productEntity: LVHIMiningDrill
+  cost:
+    LVHICrystal: 55
+  categories:
+  - LVHIUplinkDrilling
+
+- type: listing
+  id: LVHIListingAnCoOtherCircuitboard
+  name: "Плата микросхемы Фабрикатора снаряжения АнКо"
+  description: "Плата микросхемы Фабрикатора снаряжения АнКо на которую мы получили разрешения от корпорации AnCo."
+  productEntity: AnCoOtherCircuitboard
+  cost:
+    LVHICrystal: 100
+  categories:
+  - LVHIUplinkDrilling
+
+# --- МЕДИЦИНА ---
+
+- type: listing
+  id: LVHIListingMedkitAdvancedFilled
+  name: "Продвинутая аптечка"
+  description: "Продвинутая аптечка с полным набором медикаментов для оказания первой помощи."
+  productEntity: MedkitAdvancedFilled
+  cost:
+    LVHICrystal: 2
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingMedkitCombatFilled
+  name: "Боевая аптечка"
+  description: "Аптечка, предназначенная для оказания первой помощи в боевых условиях."
+  productEntity: MedkitCombatFilled
+  cost:
+    LVHICrystal: 3
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingWehMedipen
+  name: "Вех медипен"
+  description: "Медипен Ве... Погоди.. Как тут оказался игрушечный унатх?"
+  productEntity: WehMedipen
+  cost:
+    LVHICrystal: 1
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingBruizAutoInjector
+  name: "Медипен Бруизина"
+  description: "Медипен для работы с Избитым шахтером"
+  productEntity: BruizAutoInjector
+  cost:
+    Speso: 1500
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingHemostasisAutoInjector
+  name: "Медипен Гемостаза"
+  description: "Медипен для остановки кровотечения"
+  productEntity: HemostasisAutoInjector
+  cost:
+    Speso: 1500
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingBurnAutoInjector
+  name: "Медипен Ожога"
+  description: "Медипен для лечения ожогов"
+  productEntity: BurnAutoInjector
+  cost:
+    Speso: 1000
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingRadAutoInjector
+  name: "Медипен от Радиации"
+  description: "Медипен для лечения радиационного отравления"
+  productEntity: RadAutoInjector
+  cost:
+    Speso: 2000
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingBruteAutoInjector
+  name: "Медипен от Травм"
+  description: "Медипен для лечения физических повреждений"
+  productEntity: BruteAutoInjector
+  cost:
+    Speso: 1000
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingCrisisAutoInjector
+  name: "Медипен от Удушья"
+  description: "Медипен для лечения удушья"
+  productEntity: CrisisAutoInjector
+  cost:
+   Speso: 1000
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingAntiPoisonMedipen
+  name: "Медипен против Яда"
+  description: "Медипен для лечения отравления"
+  productEntity: AntiPoisonMedipen
+  cost:
+    Speso: 1500
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingLacerAutoInjector
+  name: "Медипен от Порезов"
+  description: "Медипен для лечения порезов"
+  productEntity: LacerAutoInjector
+  cost:
+    Speso: 1500
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingEphedrineAutoInjector
+  name: "Медипен Стимулятор (Эфедрин)"
+  description: "Медипен для стимуляции организма"
+  productEntity: EphedrineAutoInjector
+  cost:
+    Speso: 2000
+  categories:
+  - LVHIUplinkMedical
+
+- type: listing
+  id: LVHIListingERTBrownMedipen
+  name: "Медипен Питания"
+  description: "Медипен для внутривенного питания организма и восстановления крови"
+  productEntity: ERTBrownMedipen
+  cost:
+    LVHICrystal: 2
+  categories:
+  - LVHIUplinkMedical
+
+# --- ОБМЕН ВАЛЮТЫ ---
+
+- type: listing
+  id: LVHIListingSpaceCash2500
+  name: "Кредиты (2500)" # Имя товара в магазине
+  description: "Кредиты, валюта на Фронтире."
+  productEntity: SpaceCash2500 # Сущность, которую получит игрок
+  cost:
+    LVHICrystal: 1
+  categories:
+  - LVHIUplinkSpesoCrystal
+
+- type: listing
+  id: LVHIListingBuyDiamond1
+  name: "КА (1 шт.)" # Имя товара в магазине
+  description: "Обработанный до прозрачности алмаз LVHI."
+  productEntity: LVHIDiamondCrystal1 # Сущность, которую получит игрок
+  cost:
+    Speso: 2500
+  categories:
+  - LVHIUplinkSpesoCrystal
+
+- type: listing
+  id: LVHIListingSpaceCash25000
+  name: "Кредиты (25000)" # Имя товара в магазине
+  description: "Кредиты, валюта на Фронтире."
+  productEntity: SpaceCash25000 # Сущность, которую получит игрок
+  cost:
+    LVHICrystal: 10
+  categories:
+  - LVHIUplinkSpesoCrystal
+
+- type: listing
+  id: LVHIListingBuyDiamond10
+  name: "КА (10 шт.)" # Имя товара в магазине
+  description: "Обработанный до прозрачности алмаз LVHI."
+  productEntity: LVHIDiamondCrystal10 # Сущность, которую получит игрок
+  cost:
+    Speso: 25000
+  categories:
+  - LVHIUplinkSpesoCrystal
+
+- type: listing
+  id: LVHIListingLVHIPlushAria
+  name: "Плюшевая ирушка Арии... Что она тут делает?"
+  description: "Игрушка с фиолетовыми глазами, относительно похожая на Арию, там вытикает что-то белое..."
+  productEntity: LVHIPlushAria
+  cost:
+    Speso: 3500
+  restockLimit: 1 # <-- Ограничение: Товар можно купить только 1 раз!
+  categories:
+  - LVHIUplinkSpesoCrystal

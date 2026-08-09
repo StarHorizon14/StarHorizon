@@ -1,0 +1,31 @@
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: LVHIClothingOuterFight
+  name: Боевой скафандр LVHI
+  description: Боевой скафандр для охранников объектов или мест раскопок. Обеспечивает защиту от радиации, высоких и низких давлений, а также от взрывов. Скафандр оснащен встроенным шлемом с пнв.
+  suffix: StarHorizon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/OuterClothing/Hardsuits/fight.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/OuterClothing/Hardsuits/fight.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 10000
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.65
+        Heat: 0.7
+        Radiation: 0.3
+        Caustic: 0.65
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: LVHIClothingHeadHelmetHardsuitFight

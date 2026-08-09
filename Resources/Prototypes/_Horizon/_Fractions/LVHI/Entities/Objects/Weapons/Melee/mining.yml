@@ -1,0 +1,25 @@
+- type: entity
+  name: "Титановый горный бур LVHI"
+  id: LVHIMiningDrillTitan
+  parent: MiningDrillDiamond
+  suffix: LVHI
+  description: "Модифицированный титановый бур от инженерного отдела LVHI. Обладает увеличенной дальностью, широким распилом и форсированной системой дробления, он на столько прочный что вы можете спокойно Пиздить им об стены и твердые породы, они сломаются раньше, чем эта 'Машина' для бурения."
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Tools/handdrilltitan.rsi
+    state: handdrill
+  - type: MeleeWeapon
+    autoAttack: true
+    range: 1.5
+    angle: 10
+    wideAnimationRotation: -90
+    soundHit:
+      path: "/Audio/Items/drill_hit.ogg"
+    attackRate: 4
+    damage:
+      groups:
+        Brute: 3
+      types:
+        Structural: 45
+  - type: MiningGatheringHard
+  - type: MiningGatheringSoft
