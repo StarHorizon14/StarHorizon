@@ -187,6 +187,20 @@
 
 - type: entity
   parent: BaseImplantAction
+  id: ActionActivateChemImplant
+  name: Inject Chemicals
+  description: Activates your chem implant, injecting its chemical payload into your bloodstream.
+  components:
+  - type: Action
+    checkCanInteract: false
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Objects/Specific/Medical/hypospray.rsi
+      state: hypo
+
+- type: entity
+  parent: BaseImplantAction
   id: ActionActivateDnaScramblerImplant
   name: Scramble DNA
   description:  Randomly changes your name and appearance.

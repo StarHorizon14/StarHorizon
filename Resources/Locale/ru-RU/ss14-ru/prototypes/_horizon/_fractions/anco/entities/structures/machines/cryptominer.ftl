@@ -1,5 +1,5 @@
-ent-Cryptominer = cryptominer
-    .desc = A cryptocurrency mining device. Consumes power and generates heat. Earned credits are automatically transferred to the station's bank account.
+ent-Cryptominer = Криптомайнер
+    .desc = Устройство для майнинга криптовалюты. Потребляет энергию и выделяет тепло. Заработанные кредиты необходимо вывести.
     .suffix = StarHorizon, AnCo, Structure
 ent-AnCoMines = сервер АнКо
     .desc = Древний сервер для анализа метаданных блюспейса.

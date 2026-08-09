@@ -15,6 +15,3 @@ ent-ClothingBackpackCentcom = рюкзак Центком
     .suffix = StarHorizon
 ent-ClothingBackpackCentcomOld = рюкзак ЦентКома
     .desc = Роскошный рюкзак, пахнет деньгами.
-ent-TraumaBackPack = ранец "Траумы"
-    .desc = Рюкзак повышенной ёмкости, имеет многочисленные боковые и внутренние крепления для разного оборудования и снаряжения. Хорошо изолирован.
-    .suffix = TraumaTeam

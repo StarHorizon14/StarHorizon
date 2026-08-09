@@ -32,9 +32,14 @@ public sealed class PNVSystem : EntitySystem
         if (args.Slot != "eyes" && args.Slot != "mask" && args.Slot != "head")
             return;
 
-        var pnvComp = _entManager.GetComponent<NightVisionComponent>(args.Equipee);
-        if (pnvComp == null)
+        if (!_entManager.TryGetComponent<NightVisionComponent>(args.Equipee, out var nvComp))
             return;
+
+        if (component.Color is { } color)
+        {
+            nvComp.NightVisionColor = color;
+            _entManager.Dirty(args.Equipee, nvComp);
+        }
 
         _nightvisionableSystem.UpdateIsNightVision(args.Equipee);
         _actionsSystem.AddAction(args.Equipee, ref component.ActionContainer, component.ActionProto);
@@ -45,9 +50,14 @@ public sealed class PNVSystem : EntitySystem
         if (args.Slot != "eyes" && args.Slot != "mask" && args.Slot != "head")
             return;
 
-        var pnvComp = _entManager.GetComponent<NightVisionComponent>(args.Equipee);
-        if (pnvComp == null)
+        if (!_entManager.TryGetComponent<NightVisionComponent>(args.Equipee, out var nvComp))
             return;
+
+        if (component.Color != null)
+        {
+            nvComp.NightVisionColor = nvComp.DefaultNightVisionColor;
+            _entManager.Dirty(args.Equipee, nvComp);
+        }
 
         _nightvisionableSystem.UpdateIsNightVision(args.Equipee);
         _actionsSystem.RemoveAction(args.Equipee, component.ActionContainer);

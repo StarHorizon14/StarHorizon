@@ -1,0 +1,9 @@
+- type: startingGear
+  id: CastawayGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    outerClothing: ClothingOuterHardsuitJetpackEVA
+    head: ClothingHeadHelmetEVA
+    shoes: ClothingShoesColorBlack
+    back: EmergencyOxygenTankFilled
+    id: CastawayPDA

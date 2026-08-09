@@ -5,6 +5,12 @@
   icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: glass }
   color: "#a8ccd7"
   price: 0.075 # $15 for one unit # FRONTIER: 0.15<0.075 - TODO: review material values
+  properties:
+    electrical: 3
+    thermal: 3
+    hard: 3
+    density: 2
+    chemical: 5
 
 - type: material
   id: ReinforcedGlass
@@ -21,6 +27,12 @@
   icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: pglass }
   color: "#b35989"
   price: 0.22 # 1-1 mix of plasma and glass. # FRONTIER: 0.50<0.22 (80% of 0.275) - TODO: review material values
+  properties:
+    electrical: 3
+    thermal: 3
+    hard: 7
+    density: 3
+    chemical: 5
 
 - type: material
   id: ReinforcedPlasmaGlass
@@ -45,6 +57,14 @@
   icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: uglass }
   color: "#3cab38"
   price: 0.22 # 1-1 mix of uranium and glass. # FRONTIER: 1.0<0.22 (80% of 0.275) - TODO: review material values
+  properties:
+    electrical: 3.5
+    thermal: 3
+    hard: 4
+    density: 4.5
+    chemical: 5.5
+    radioactive: 2
+    n_radioactive: 1.5
 
 - type: material
   id: ReinforcedUraniumGlass

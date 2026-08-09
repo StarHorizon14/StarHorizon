@@ -1,0 +1,42 @@
+- type: entity
+  name: Блюспейс почтовая суммка
+  id: MailBagBig
+  parent: NFMailBag
+  description: Вмещает ОЧЕНЬ МНОГО ПОЧТЫ и так же благодоря блюспейс технологиям позволяет узнать кординаты адресанта и телепортироватся к нему в радиусе 50 метров. Только бы знать как им пользоватся...
+  suffix: Только коты
+  components:
+  - type: Clothing
+    sprite: Nyanotrasen/Clothing/Belt/mailbag.rsi
+    quickEquip: false
+    slots:
+    - belt
+    - outerClothing
+    - back
+  - type: Item
+    size: Normal
+    grid:
+    - 0,0,1,1
+  - type: CatWearable
+  - type: Dumpable
+  - type: Tag
+    tags:
+    - PetOnly
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,9,7
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      components:
+      - Paper
+      - Delivery
+      - Mail
+      - Envelope
+      - Cash
+      - NFCrate
+      tags:
+      - Document
+      - MailCapsule
+      - Paper
+      - Book

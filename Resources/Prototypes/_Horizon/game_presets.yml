@@ -1,0 +1,12 @@
+- type: gamePreset
+  id: HorizonCastaway
+  alias:
+    - horizoncastaway
+    - castaway
+  name: horizon-castaway-title
+  description: horizon-castaway-description
+  showInVote: false
+  rules:
+    - HorizonCastaway
+    # - NFBasicStationEventScheduler
+    - NFRoundstartVariation

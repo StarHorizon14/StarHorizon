@@ -43,10 +43,12 @@ shuttle-console-ftl-state-Arriving = Прибытие
 shuttle-console-ftl-state-Cooldown = Перезагрузка
 shuttle-console-map-settings = Настройки
 shuttle-console-ftl-button = БСС
+shuttle-console-map-mark-button = Метка
 shuttle-console-map-rebuild = Сканировать
 shuttle-console-map-beacons = Показать маяки
 shuttle-console-no-signal = Нет сигнала
 shuttle-console-map-objects = Объекты сектора
+shuttle-console-map-zoom = Масштаб
 # DOCK
 shuttle-console-docked = Пристыкованные объекты
 shuttle-console-view = Посмотреть

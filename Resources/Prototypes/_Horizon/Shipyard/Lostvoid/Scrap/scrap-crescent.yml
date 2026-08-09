@@ -1,0 +1,34 @@
+- type: vessel
+  id: CrescentLostVoid
+  parent: BaseVessel
+  name: NC Crescent
+  description: The Crescent, named for its exterior shape, is a vessel focused on providing service, medical aide, and scientific breakthroughs for smaller vessels.
+  price: 300000
+  category: Large
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-crescent.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Science
+  - Chemistry
+  - Civilian
+  engine:
+  - Bananium
+
+- type: gameMap
+  id: CrescentLostVoid
+  mapName: 'KC Crescent'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-crescent.yml
+  minPlayers: 0
+  stations:
+    CrescentLostVoid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Crescent {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

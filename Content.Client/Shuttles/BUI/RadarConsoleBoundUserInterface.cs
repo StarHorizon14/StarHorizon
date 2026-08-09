@@ -1,5 +1,7 @@
+using Content.Client.Shuttles.UI;
 using Content.Shared.Shuttles.BUIStates;
 using JetBrains.Annotations;
+using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using RadarConsoleWindow = Content.Client.Shuttles.UI.RadarConsoleWindow;
 

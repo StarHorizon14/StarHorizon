@@ -1,3 +1,4 @@
+using Content.Shared._Horizon.Audio;
 using Content.Shared.Audio;
 using Content.Shared.GameTicking;
 using AudioComponent = Robust.Shared.Audio.Components.AudioComponent;
@@ -40,6 +41,44 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         InitializeAmbientMusic();
         InitializeLobbyMusic();
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
+        SubscribeNetworkEvent<MuteClientEvent>(OnMuteClient);
+    }
+
+    private void OnMuteClient(MuteClientEvent ev)
+    {
+        if (ev.OnlyGlobalSound)
+        {
+            MuteGlobalSoundStreams(ev.FadeSeconds);
+            return;
+        }
+
+        if (ev.FadeSeconds <= 0f)
+        {
+            SilenceAudio();
+            return;
+        }
+
+        var query = AllEntityQuery<AudioComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            FadeOut(uid, comp, ev.FadeSeconds);
+        }
+    }
+
+    private void MuteGlobalSoundStreams(float fadeSeconds)
+    {
+        var globalSound = EntityManager.System<ClientGlobalSoundSystem>();
+
+        foreach (var stream in globalSound.AdminAudioStreams)
+        {
+            if (stream is not { } uid || !TryComp(uid, out AudioComponent? comp))
+                continue;
+
+            if (fadeSeconds <= 0f)
+                _audio.Stop(uid);
+            else
+                FadeOut(uid, comp, fadeSeconds);
+        }
     }
 
     private void OnRoundCleanup(RoundRestartCleanupEvent ev)

@@ -3,6 +3,7 @@ using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Map;
 
 namespace Content.Client.Shuttles.BUI;
@@ -27,6 +28,27 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         _window.DockRequest += OnDockRequest;
         _window.UndockRequest += OnUndockRequest;
         _window.UndockAllRequest += OnUndockAllRequest;
+        // Lua: fire control
+        _window.NavContainer.NavRadar.OnRadarClick += (coords) =>
+        {
+            var netCoords = EntMan.GetNetCoordinates(coords);
+            if (_window.NavContainer.NavRadar.IsMouseDown())
+            {
+                var selected = _window.NavContainer.GetSelectedWeapons();
+                if (selected.Count > 0) SendMessage(new ShuttleConsoleFireMessage(selected, netCoords));
+            }
+            else
+            { SendMessage(new ShuttleConsoleFireMessage(new List<NetEntity>(), netCoords)); }
+        };
+        _window.OnWeaponSelectionChanged += () =>
+        {
+            if (_window?.NavContainer == null) return;
+            var hasSelected = _window.NavContainer.GetSelectedWeapons().Count > 0;
+            _window.NavContainer.NavRadar.DefaultCursorShape = hasSelected ? Control.CursorShape.Crosshair : Control.CursorShape.Arrow;
+        };
+        _window.OnFireControlRefresh += () =>
+        { SendMessage(new ShuttleConsoleRefreshFireControlMessage()); };
+        // End Lua
         NfOpen(); // Frontier
     }
 

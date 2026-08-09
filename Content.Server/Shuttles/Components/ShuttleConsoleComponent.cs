@@ -56,7 +56,8 @@ namespace Content.Server.Shuttles.Components
             "device-button-5",
             "device-button-6",
             "device-button-7",
-            "device-button-8"
+            "device-button-8",
+            "device-button-9"
         };
 
         // Horizon tweak: is the console broken

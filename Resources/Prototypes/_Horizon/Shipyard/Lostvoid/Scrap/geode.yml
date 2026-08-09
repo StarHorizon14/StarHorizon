@@ -1,0 +1,36 @@
+# Author Info
+# Discord: LoakaOfTheWind
+#
+- type: vessel
+  id: GeodeLostVoid
+  parent: BaseVessel
+  name: CLU Geode
+  description: Built into a rock by the finest goblin engineers, this vessel has all the discrete trader needs to conduct business.
+  price: 51000 # 45957 0.1 50552.7
+  category: Medium
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/geode.yml
+  guidebookPage: ShipyardGeode
+  class:
+  - Scrapyard
+  - Civilian
+  - Salvage
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: GeodeLostVoid
+  mapName: 'CLU Geode'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/geode.yml
+  minPlayers: 0
+  stations:
+    GeodeLostVoid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Geode {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

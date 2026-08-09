@@ -1,0 +1,31 @@
+- type: vessel
+  id: ConstructLostVoid
+  parent: BaseVessel
+  name: NT Construct
+  description: A technically spacefaring vessel.  No livery.
+  price: 10500
+  category: Micro
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/construct.yml
+  guidebookPage: ShipyardConstruct
+  class:
+  - Scrapyard
+  - Engineering
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: ConstructLostVoid
+  mapName: 'NT Construct'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/construct.yml
+  minPlayers: 0
+  stations:
+    ConstructLostVoid:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Construct {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs: {}
