@@ -24,6 +24,7 @@
     - id: BluespaceCacheError
     - id: BluespaceCave
     - id: BluespaceVaultError
+    - id: BluespaceVaultError2
     - id: BluespaceVaultSmallError
     - id: BluespaceSyndicateFTLInterception
     - id: BluespaceWizardFederationScout

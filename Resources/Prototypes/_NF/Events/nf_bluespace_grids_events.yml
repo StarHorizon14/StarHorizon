@@ -86,6 +86,51 @@
       Frontier: 0.25
       Medical: 0.25
       Edison: 0.25
+
+- type: entity
+  id: BluespaceVaultError2
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-vault-start-announcement
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_vault_arrival.ogg
+    endAnnouncement: station-event-bluespace-vault-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_vault_leave.ogg
+    warningAnnouncement: station-event-bluespace-vault-warning-announcement
+    earliestStart: 30 # 0,5 hours # Horizon TempTweak
+    weight: 5
+    duration: 1020
+    maxDuration: 1350
+    minimumPlayers: 20 # Horizon
+    reoccurrenceDelay: 180 # 3 hours # Horizon TempTweak
+  - type: BluespaceErrorRule
+    groups:
+      grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-SecureNTVault
+        minimumDistance: 1500
+        maximumDistance: 2500
+        addComponents:
+        - type: Gravity
+          enabled: true
+          inherent: true
+        - type: IFF
+          color: "#E10F9B"
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor
+        paths:
+        - /Maps/_Horizon/Bluespace/NTbigsavebox.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
 - type: entity
   id: BluespaceVaultSmallError
   parent: BaseStationEventShortDelay
