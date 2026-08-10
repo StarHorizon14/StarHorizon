@@ -53,13 +53,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: GreySlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomGreySlimeMutation
   - type: StaticPrice
-    price: 300
+    price: 500
 
 - type: entity
   name: orange slime
@@ -79,13 +79,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: OrangeSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomOrangeSlimeMutation
   - type: StaticPrice
-    price: 600
+    price: 900
 
 - type: entity
   name: purple slime
@@ -105,13 +105,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: PurpleSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomPurpleSlimeMutation
   - type: StaticPrice
-    price: 600
+    price: 900
 
 - type: entity
   name: металлический слайм
@@ -132,13 +132,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: MetallSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomMetallSlimeMutation
   - type: StaticPrice
-    price: 600
+    price: 900
 
 - type: entity
   name: синий слайм
@@ -159,13 +159,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: BlueSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomBlueSlimeMutation
   - type: StaticPrice
-    price: 600
+    price: 900
 
 - type: entity
   name: red slime
@@ -185,13 +185,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: RedSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomRedSlimeMutation
   - type: StaticPrice
-    price: 900
+    price: 1200
 
 - type: entity
   name: dark blue slime
@@ -211,13 +211,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: DarkBlueSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomDarkBlueSlimeMutation
   - type: StaticPrice
-    price: 900
+    price: 1200
 
 - type: entity
   name: тёмно-фиолетовый слайм
@@ -238,13 +238,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: DarkPurpleSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomDarkPurpleSlimeMutation
   - type: StaticPrice
-    price: 900
+    price: 1200
 
 - type: entity
   name: золотой слайм
@@ -265,13 +265,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: GoldSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomGoldSlimeMutation
   - type: StaticPrice
-    price: 900
+    price: 1200
 
 - type: entity
   name: серебрянный слайм
@@ -292,13 +292,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: SilverSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomSilverSlimeMutation
   - type: StaticPrice
-    price: 900
+    price: 1200
 
 - type: entity
   name: розовый слайм
@@ -319,13 +319,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: PinkSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomPinkSlimeMutation
   - type: StaticPrice
-    price: 900
+    price: 1200
 
 - type: entity
   name: зеленый слайм
@@ -346,13 +346,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: GreenSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomGreenSlimeMutation
   - type: StaticPrice
-    price: 900
+    price: 1200
 
 - type: entity
   name: yellow slime
@@ -372,13 +372,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: YellowSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: MobAdultSlimesYellow
   - type: StaticPrice
-    price: 900
+    price: 1200
 
 - type: entity
   name: блюспейс слайм
@@ -399,13 +399,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: BlueSpaceSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomBlueSpaceSlimeMutation
   - type: StaticPrice
-    price: 1500
+    price: 2500
 
 - type: entity
   name: нефтяной слайм
@@ -426,13 +426,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: OilSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomOilSlimeMutation
   - type: StaticPrice
-    price: 1500
+    price: 2500
 
 - type: entity
   name: адамантитовый слайм
@@ -453,13 +453,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: AdamantiteSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomAdamantiteSlimeMutation
   - type: StaticPrice
-    price: 1500
+    price: 2500
 
 - type: entity
   name: сепиа слайм
@@ -480,13 +480,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: SepiaSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomSepiaSlimeMutation
   - type: StaticPrice
-    price: 1500
+    price: 2500
 
 - type: entity
   name: пиритовый слайм
@@ -507,13 +507,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: PyriteSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomPyriteSlimeMutation
   - type: StaticPrice
-    price: 1500
+    price: 2500
 
 - type: entity
   name: чёрный слайм
@@ -534,13 +534,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: BlackSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomBlackSlimeMutation
   - type: StaticPrice
-    price: 1500
+    price: 2500
 
 - type: entity
   name: светло розовый слайм
@@ -561,13 +561,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: LightPinkSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomLightPinkSlimeMutation
   - type: StaticPrice
-    price: 1500
+    price: 2500
 
 - type: entity
   name: лазурный слайм
@@ -588,13 +588,13 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 1
+      amount: 2
     - id: CeruleanSlimeExtract
-      amount: 1
+      amount: 3
   - type: XenoBiology
     mutagen: RandomCeruleanSlimeMutation
   - type: StaticPrice
-    price: 1500
+    price: 2500
 
 # Angry slimes
 
