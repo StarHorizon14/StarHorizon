@@ -32,9 +32,9 @@
         - ReagentId: GreyExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 1000
+    points: 100
   - type: StaticPrice
-    price: 300
+    price: 100
 
 - type: entity
   parent: BaseSlimeExtract
@@ -53,9 +53,9 @@
         - ReagentId: BlueExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 1500
+    points: 200
   - type: StaticPrice
-    price: 400
+    price: 200
 
 - type: entity
   parent: BaseSlimeExtract
@@ -74,9 +74,9 @@
         - ReagentId: PurpleExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 1500
+    points: 200
   - type: StaticPrice
-    price: 400
+    price: 200
 
 - type: entity
   parent: BaseSlimeExtract
@@ -95,9 +95,9 @@
         - ReagentId: OrangeExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 1500
+    points: 200
   - type: StaticPrice
-    price: 400
+    price: 200
 
 - type: entity
   parent: BaseSlimeExtract
@@ -116,9 +116,9 @@
         - ReagentId: MetallExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 1500
+    points: 200
   - type: StaticPrice
-    price: 400
+    price: 200
 
 - type: entity
   parent: BaseSlimeExtract
@@ -137,9 +137,9 @@
         - ReagentId: GreenExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 2000
+    points: 300
   - type: StaticPrice
-    price: 600
+    price: 300
 
 - type: entity
   parent: BaseSlimeExtract
@@ -158,9 +158,9 @@
         - ReagentId: YellowExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 2000
+    points: 300
   - type: StaticPrice
-    price: 600
+    price: 300
 
 - type: entity
   parent: BaseSlimeExtract
@@ -179,9 +179,9 @@
         - ReagentId: DarkBlueExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 2000
+    points: 300
   - type: StaticPrice
-    price: 600
+    price: 300
 
 - type: entity
   parent: BaseSlimeExtract
@@ -200,9 +200,9 @@
         - ReagentId: RedExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 2000
+    points: 300
   - type: StaticPrice
-    price: 600
+    price: 300
 
 - type: entity
   parent: BaseSlimeExtract
@@ -221,9 +221,9 @@
         - ReagentId: DarkPurpleExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 2000
+    points: 300
   - type: StaticPrice
-    price: 600
+    price: 300
 
 - type: entity
   parent: BaseSlimeExtract
@@ -242,9 +242,9 @@
         - ReagentId: GoldExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 2000
+    points: 300
   - type: StaticPrice
-    price: 600
+    price: 300
 
 - type: entity
   parent: BaseSlimeExtract
@@ -263,9 +263,9 @@
         - ReagentId: SilverExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 2000
+    points: 300
   - type: StaticPrice
-    price: 600
+    price: 300
 
 - type: entity
   parent: BaseSlimeExtract
@@ -284,9 +284,9 @@
         - ReagentId: PinkExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 2000
+    points: 300
   - type: StaticPrice
-    price: 600
+    price: 300
 
 - type: entity
   parent: BaseSlimeExtract
@@ -305,9 +305,9 @@
         - ReagentId: CeruleanExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 3000
+    points: 500
   - type: StaticPrice
-    price: 1000
+    price: 500
 
 - type: entity
   parent: BaseSlimeExtract
@@ -326,9 +326,9 @@
         - ReagentId: LightPinkExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 3000
+    points: 500
   - type: StaticPrice
-    price: 1000
+    price: 500
 
 - type: entity
   parent: BaseSlimeExtract
@@ -347,9 +347,9 @@
         - ReagentId: BlackExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 3000
+    points: 500
   - type: StaticPrice
-    price: 1000
+    price: 500
 
 - type: entity
   parent: BaseSlimeExtract
@@ -368,9 +368,9 @@
         - ReagentId: PyritExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 3000
+    points: 500
   - type: StaticPrice
-    price: 1000
+    price: 500
 
 - type: entity
   parent: BaseSlimeExtract
@@ -389,9 +389,9 @@
         - ReagentId: SepiaExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 3000
+    points: 500
   - type: StaticPrice
-    price: 1000
+    price: 500
 
 - type: entity
   parent: BaseSlimeExtract
@@ -410,9 +410,9 @@
         - ReagentId: AdamantiteExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 3000
+    points: 500
   - type: StaticPrice
-    price: 1000
+    price: 500
 
 - type: entity
   parent: BaseSlimeExtract
@@ -431,9 +431,9 @@
         - ReagentId: BlueSpaceExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 3000
+    points: 500
   - type: StaticPrice
-    price: 1000
+    price: 500
 
 - type: entity
   parent: BaseSlimeExtract
@@ -452,6 +452,6 @@
         - ReagentId: OilExtract
           Quantity: 5
   - type: ResearchDisk
-    points: 3000
+    points: 500
   - type: StaticPrice
-    price: 1000
+    price: 500
