@@ -13,6 +13,14 @@ cmd-dockemergencyshuttle-help = Usage: dockemergencyshuttle
 cmd-launchemergencyshuttle-desc = Early launches the emergency shuttle if possible.
 cmd-launchemergencyshuttle-help = Usage: launchemergencyshuttle
 
+## Toggle evac block
+cmd-toggleevacblock-desc = Toggles whether the emergency shuttle can be called via the communications console.
+cmd-toggleevacblock-help = Usage: toggleevacblock
+
+## Silent cancel evac
+cmd-silentcancelevac-desc = Cancels the emergency shuttle countdown without an announcement or sound.
+cmd-silentcancelevac-help = Usage: silentcancelevac
+
 # Emergency shuttle
 emergency-shuttle-left = The Emergency Shuttle has left the station. Estimate {$transitTime} seconds until the shuttle arrives at CentComm.
 emergency-shuttle-launch-time = The emergency shuttle will launch in {$consoleAccumulator} seconds.

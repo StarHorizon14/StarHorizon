@@ -132,5 +132,11 @@ namespace Content.Shared._Horizon.CCVar
         public static readonly CVarDef<bool> SpawnPlanets =
             CVarDef.Create("game.spawn_roundstart_planets", false, CVar.SERVERONLY);
 
+        /// <summary>
+        /// Если true, вызов эвакуационного шаттла через коммуникационную консоль заблокирован.
+        /// </summary>
+        public static readonly CVarDef<bool> EvacBlocked =
+            CVarDef.Create("shuttle.evac_blocked", true, CVar.SERVERONLY);
+
     }
 }
