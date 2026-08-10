@@ -31,6 +31,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     private readonly SharedMapSystem _mapSystem;
     private readonly ShuttleSystem _shuttles;
     private readonly SharedTransformSystem _xformSystem;
+    private readonly Content.Client.Parallax.ParallaxSystem _parallaxSystem;
 
     protected override bool Draggable => true;
     protected override bool AllowResize => true; // Lua
@@ -103,6 +104,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         _mapSystem = EntManager.System<SharedMapSystem>();
         _shuttles = EntManager.System<ShuttleSystem>();
         _xformSystem = EntManager.System<SharedTransformSystem>();
+        _parallaxSystem = EntManager.System<Content.Client.Parallax.ParallaxSystem>();
         var cache = IoCManager.Resolve<IResourceCache>();
 
         _physicsQuery = EntManager.GetEntityQuery<PhysicsComponent>();
@@ -203,52 +205,56 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
     private void DrawParallax(DrawingHandleScreen handle)
     {
-        if (!EntManager.TryGetComponent(_shuttleEntity, out TransformComponent? shuttleXform) || shuttleXform.MapUid == null)
+        if (ViewingMap == MapId.Nullspace)
             return;
 
-        // Draw background texture
-        var tex = _shuttles.GetTexture(shuttleXform.MapUid.Value);
-
-        // Size of the texture in world units.
-        var size = tex.Size * MinimapScale * 1f;
-
         var position = ScalePosition(new Vector2(-Offset.X, Offset.Y));
-        var slowness = 1f;
+        var curTime = _timing.RealTime;
 
-        // The "home" position is the effective origin of this layer.
-        // Parallax shifting is relative to the home, and shifts away from the home and towards the Eye centre.
-        // The effects of this are such that a slowness of 1 anchors the layer to the centre of the screen, while a slowness of 0 anchors the layer to the world.
-        // (For values 0.0 to 1.0 this is in effect a lerp, but it's deliberately unclamped.)
-        // The ParallaxAnchor adapts the parallax for station positioning and possibly map-specific tweaks.
-        var home = Vector2.Zero;
-        var scrolled = Vector2.Zero;
-
-        // Origin - start with the parallax shift itself.
-        var originBL = (position - home) * slowness + scrolled;
-
-        // Place at the home.
-        originBL += home;
-
-        // Centre the image.
-        originBL -= size / 2;
-
-        // Remove offset so we can floor.
-        var botLeft = new Vector2(0f, 0f);
-        var topRight = botLeft + PixelSize;
-
-        var flooredBL = botLeft - originBL;
-
-        // Floor to background size.
-        flooredBL = (flooredBL / size).Floored() * size;
-
-        // Re-offset.
-        flooredBL += originBL;
-
-        for (var x = flooredBL.X; x < topRight.X; x += size.X)
+        foreach (var layer in _parallaxSystem.GetParallaxLayers(ViewingMap))
         {
-            for (var y = flooredBL.Y; y < topRight.Y; y += size.Y)
+            var tex = layer.Texture;
+            var config = layer.Config;
+
+            // Size of the texture in world units, scaled down to fit the minimap.
+            var size = tex.Size * config.Scale * MinimapScale;
+
+            if (size.X <= 0f || size.Y <= 0f)
+                continue;
+
+            var botLeft = new Vector2(0f, 0f);
+            var topRight = botLeft + PixelSize;
+
+            if (!config.Tiled)
             {
-                handle.DrawTextureRect(tex, new UIBox2(x, y, x + size.X, y + size.Y));
+                var origin = (botLeft + topRight) / 2 - size / 2 + config.ControlHomePosition * MinimapScale;
+                handle.DrawTextureRect(tex, new UIBox2(origin, origin + size));
+                continue;
+            }
+
+            var scrolled = config.Scrolling * (float)curTime.TotalSeconds * MinimapScale;
+
+            // A slowness of 1 anchors the layer to the centre of the screen, while a slowness of 0 anchors it to the world.
+            var originBL = position * config.Slowness + scrolled;
+
+            // Centre the image.
+            originBL -= size / 2;
+
+            // Remove offset so we can floor.
+            var flooredBL = botLeft - originBL;
+
+            // Floor to background size.
+            flooredBL = (flooredBL / size).Floored() * size;
+
+            // Re-offset.
+            flooredBL += originBL;
+
+            for (var x = flooredBL.X; x < topRight.X; x += size.X)
+            {
+                for (var y = flooredBL.Y; y < topRight.Y; y += size.Y)
+                {
+                    handle.DrawTextureRect(tex, new UIBox2(x, y, x + size.X, y + size.Y));
+                }
             }
         }
     }
