@@ -53,9 +53,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: GreySlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomGreySlimeMutation
   - type: StaticPrice
@@ -79,9 +79,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: OrangeSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomOrangeSlimeMutation
   - type: StaticPrice
@@ -105,9 +105,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: PurpleSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomPurpleSlimeMutation
   - type: StaticPrice
@@ -132,9 +132,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: MetallSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomMetallSlimeMutation
   - type: StaticPrice
@@ -159,9 +159,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: BlueSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomBlueSlimeMutation
   - type: StaticPrice
@@ -185,9 +185,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: RedSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomRedSlimeMutation
   - type: StaticPrice
@@ -211,9 +211,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: DarkBlueSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomDarkBlueSlimeMutation
   - type: StaticPrice
@@ -238,9 +238,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: DarkPurpleSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomDarkPurpleSlimeMutation
   - type: StaticPrice
@@ -265,9 +265,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: GoldSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomGoldSlimeMutation
   - type: StaticPrice
@@ -292,9 +292,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: SilverSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomSilverSlimeMutation
   - type: StaticPrice
@@ -319,9 +319,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: PinkSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomPinkSlimeMutation
   - type: StaticPrice
@@ -346,9 +346,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: GreenSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomGreenSlimeMutation
   - type: StaticPrice
@@ -372,9 +372,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: YellowSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: MobAdultSlimesYellow
   - type: StaticPrice
@@ -399,9 +399,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: BlueSpaceSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomBlueSpaceSlimeMutation
   - type: StaticPrice
@@ -426,9 +426,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: OilSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomOilSlimeMutation
   - type: StaticPrice
@@ -453,9 +453,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: AdamantiteSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomAdamantiteSlimeMutation
   - type: StaticPrice
@@ -480,9 +480,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: SepiaSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomSepiaSlimeMutation
   - type: StaticPrice
@@ -507,9 +507,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: PyriteSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomPyriteSlimeMutation
   - type: StaticPrice
@@ -534,9 +534,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: BlackSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomBlackSlimeMutation
   - type: StaticPrice
@@ -561,9 +561,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: LightPinkSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomLightPinkSlimeMutation
   - type: StaticPrice
@@ -588,9 +588,9 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 2
+      amount: 1
     - id: CeruleanSlimeExtract
-      amount: 3
+      amount: 1
   - type: XenoBiology
     mutagen: RandomCeruleanSlimeMutation
   - type: StaticPrice
