@@ -1,6 +1,3 @@
-ent-ComputerTabletopStationAdminBankATMTrauma = { ent-BaseComputerTabletopStationAdminBankATM }
-    .desc = Используется для доступа к банковскому счету Trauma Team.
-    .suffix = TraumaTeam, Настольный
 ent-ComputerTabletopShuttleAntagSyndicate = { ent-ComputerTabletopShuttleAntag }
     .suffix = Syndicate, Disk
     .desc = { ent-ComputerTabletopShuttleAntag.desc }

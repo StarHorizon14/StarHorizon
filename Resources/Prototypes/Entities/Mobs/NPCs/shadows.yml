@@ -50,8 +50,10 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: cat
   - type: Physics
-  - type: ReplacementAccent
-    accent: cat
+  - type: LanguageSpeaker
+    languages:
+      Cat: Speak
+      GalacticCommon: Understand
   - type: InteractionPopup
     successChance: 0.01 # you cant pet shadow cat... almost
     interactSuccessString: petting-success-cat

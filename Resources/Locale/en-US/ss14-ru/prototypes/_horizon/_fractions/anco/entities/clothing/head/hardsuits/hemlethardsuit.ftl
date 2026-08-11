@@ -16,3 +16,6 @@ ent-ClothingHeadHardsuitGranite = шлем скафандра Гранит
 ent-ClothingHeadHardsuitDusk = шлем скафандра Сумрак
     .desc = шлем обладающий просторным куполом, идеальный выбор для работы.
     .suffix = StarHorizon
+ent-ClothingHeadHardsuitClifs = шлем скафандра Скала
+    .desc = Изолирующий от температур шлем, спасет вас от жары.
+    .suffix = StarHorizon

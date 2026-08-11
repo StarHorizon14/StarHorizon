@@ -102,6 +102,33 @@
     solution: hypospray
 
 - type: entity
+  name: капсула Титана
+  categories: [ HideSpawnMenu ]
+  parent: BaseItem
+  suffix: StarHorizon, AnCo
+  description: Капсула с реагентами для инжектора скафандра Титана
+  id: TitanCapsule
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Specific/Medical/capsulemedipen.rsi
+    layers:
+      - state: cartridge
+  - type: SolutionCartridge
+    targetSolution: hypospray
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 15
+  - type: Tag
+    tags:
+      - TitanCapsule
+  - type: InjectableSolution
+    solution: hypospray
+
+- type: entity
   name: инжект-капсула нанитов
   parent: AnCoCapsule
   suffix: StarHorizon, AnCo

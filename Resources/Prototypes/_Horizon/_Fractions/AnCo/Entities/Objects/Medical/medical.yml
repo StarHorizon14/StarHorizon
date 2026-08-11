@@ -55,3 +55,23 @@
         reagents:
         - ReagentId: AnConanits
           Quantity: 100
+
+- type: entity
+  parent: [BaseItem, PowerCellSlotSmallItem, BaseAnCoContraband]
+  id: AutomenderAnCo
+  name: автомендер АнКо
+  suffix: StarHorizon, AnCo
+  description: Медицинский инструмент на батарейном питании для затяжного лечения пациента.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/defib.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Automender
+    damage:
+      types:
+        Blunt: -0.15
+        Heat: -0.15
+    chargeUsePerTick: 20
+  - type: DoAfter

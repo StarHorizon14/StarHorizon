@@ -223,6 +223,31 @@
   - type: DeleteOnTrigger
 
 - type: entity
+  parent: BaseSubdermalImplant
+  id: ChemImplant
+  name: chem implant
+  description: This implant injects a chemical payload into the user's bloodstream, either manually or automatically upon entering critical condition. Single use.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionActivateChemImplant
+  - type: TriggerOnActivateImplant
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: InjectOnTrigger
+    solution: injection
+    targetUser: true
+  - type: DeleteOnTrigger
+  - type: SolutionContainerManager
+    solutions:
+      injection:
+        maxVol: 15
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 15
+
+- type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: BaseSubdermalImplant
   id: ChameleonControllerImplant

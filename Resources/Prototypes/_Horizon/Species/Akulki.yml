@@ -61,6 +61,7 @@
   - type: HumanoidAppearance
     species: Akulki
   - type: Inventory
+    speciesId: akulki
     femaleDisplacements:
       jumpsuit:
         sizeMaps:

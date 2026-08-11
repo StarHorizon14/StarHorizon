@@ -41,8 +41,10 @@
   components:
   - type: RandomMetadata
     nameSegments: [NamesCat]
-  - type: ReplacementAccent
-    accent: cat
+  - type: LanguageSpeaker
+    languages:
+      Cat: Speak
+      GalacticCommon: Understand
   - type: Vocal
     sounds:
       Male: Cat

@@ -41,6 +41,20 @@
     event: !type:ActivateImplantEvent
 
 - type: entity
+  id: ActionActivateTitanSuitInjector
+  name: Инъекция реагентов
+  description: Впрыскивает 5 единиц реагентов из капсулы скафандра в кровь пользователя
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: _Horizon/_Fractions/AnCo/Objects/Specific/Medical/hypospray.rsi
+      state: hypo
+    event: !type:TitanSuitInjectEvent
+
+- type: entity
   id: AnCoCreateDrone
   name: Синтезировать бота
   description: Синтез защитного бота АнКо из нанитов в организме

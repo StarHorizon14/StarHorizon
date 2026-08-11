@@ -27,3 +27,6 @@ ent-AnCoMechBegemothInferno = { ent-AnCoMechBegemothDungeon }
 ent-AnCoMechMushInferno = { ent-AnCoMechMushDungeon }
     .suffix = Inferno
     .desc = { ent-AnCoMechMushDungeon.desc }
+ent-AnCoEvilLarryInferno = { ent-AnCoEvilLarry }
+    .suffix = Inferno
+    .desc = { ent-AnCoEvilLarry.desc }

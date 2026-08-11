@@ -1,7 +1,5 @@
 ent-NFBulletLaserLow = { ent-NFBaseBulletLaser }
     .desc = { ent-NFBaseBulletLaser.desc }
-ent-NFBulletLaserAP = { ent-NFBaseBulletLaserAP }
-    .desc = { ent-NFBaseBulletLaserAP.desc }
 ent-NFBulletLaserPractice = { ent-NFBaseBulletLaser }
     .desc = { ent-NFBaseBulletLaser.desc }
 ent-NFBulletLaserMedium = { ent-NFBaseBulletLaser }

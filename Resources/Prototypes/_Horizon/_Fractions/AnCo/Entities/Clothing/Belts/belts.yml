@@ -12,7 +12,7 @@
 - type: entity
   id: ClothingBeltWebbingAnCo
   name: боевой РПС АнКо
-  parent: [ NFClothingBeltStorageBase, BaseAnCoContraband ]
+  parent: [ NFClothingBeltStorageBase, BaseAnCoContraband, ContentsExplosionResistanceBase]
   description: Что ты положешь в меня? Магазины? Медицину? О боже инструменты.
   components:
   - type: Sprite

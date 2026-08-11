@@ -4,6 +4,10 @@
   name: construction bag
   description: A robust bag for construction specialists and engineers alike to carry large amounts of construction materials. Magnetises any nearby construction materials when attached to a belt.
   components:
+  - type: Tag
+    tags:
+    - CatBag
+  - type: CatWearable
   - type: MagnetPickup
     magnetEnabled: false
     magnetCanBeEnabled: false

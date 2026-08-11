@@ -1,4 +1,4 @@
-ent-ClothingBeltAnCo = { ent-NFClothingBeltStorageBase }
-    .desc = { ent-NFClothingBeltStorageBase.desc }
-ent-ClothingBeltWebbingAnCo = { ent-NFClothingBeltStorageBase }
-    .desc = { ent-NFClothingBeltStorageBase.desc }
+ent-ClothingBeltAnCo = много-функциональный пояс АнКо
+    .desc = Тот самый пояс который спасет вас в трудную секунду.
+ent-ClothingBeltWebbingAnCo = боевой РПС АнКо
+    .desc = Что ты положешь в меня? Магазины? Медицину? О боже инструменты.
