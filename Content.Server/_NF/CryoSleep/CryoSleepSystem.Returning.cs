@@ -112,7 +112,8 @@ public sealed partial class CryoSleepSystem
         }
 
         if (body != null
-            && Transform(body.Value.Body).MapUid == _storageMap)
+            && Transform(body.Value.Body).MapUid == _storageMap
+            && _configurationManager.GetCVar(NFCCVars.CryoDeleteBodyOnRespawn))
         {
             QueueDel(body.Value.Body);
         }

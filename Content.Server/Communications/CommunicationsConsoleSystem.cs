@@ -7,6 +7,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared._Horizon.CCVar;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
@@ -309,6 +310,12 @@ namespace Content.Server.Communications
         {
             if (!CanCallOrRecall(comp))
                 return;
+
+            if (_cfg.GetCVar(HorizonCCVars.EvacBlocked))
+            {
+                _popupSystem.PopupEntity(Loc.GetString("comms-console-shuttle-unavailable"), uid, message.Actor);
+                return;
+            }
 
             var mob = message.Actor;
 
