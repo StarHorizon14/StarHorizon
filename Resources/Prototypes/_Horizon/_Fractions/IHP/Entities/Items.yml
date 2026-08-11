@@ -14,7 +14,7 @@
       shape:
       - 0,0,3,3
     - type: Sprite
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/Box.rsi
+      sprite: _Horizon/_Fractions/IHP/Item/Box.rsi
       state: box01
     - type: StaticPrice
       price: 100
@@ -34,7 +34,7 @@
       shape:
       - 0,0,3,3
     - type: Sprite
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/Box.rsi
+      sprite: _Horizon/_Fractions/IHP/Item/Box.rsi
       state: box01
     - type: StaticPrice
       price: 100
@@ -54,7 +54,7 @@
       grid:
         - 0,0,3,5
     - type: Sprite
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/Box.rsi
+      sprite: _Horizon/_Fractions/IHP/Item/Box.rsi
       state: box02
     - type: StaticPrice
       price: 500
@@ -143,7 +143,7 @@
   suffix: IHP
   components:
     - type: Sprite
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/flash.rsi
+      sprite: _Horizon/_Fractions/IHP/Item/flash.rsi
       layers:
       - state: flash
         map: [ "enum.FlashVisualLayers.BaseLayer" ]
@@ -155,7 +155,7 @@
       maxCharges: 10
     - type: Item
       size: Small
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/flash.rsi
+      sprite: _Horizon/_Fractions/IHP/Item/flash.rsi
     - type: UseDelay
       delay: 2
     - type: GenericVisualizer
@@ -176,9 +176,9 @@
   suffix: IHP
   components:
   - type: Item
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/gps.rsi
+    sprite: _Horizon/_Fractions/IHP/Item/gps.rsi
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/gps.rsi
+    sprite: _Horizon/_Fractions/IHP/Item/gps.rsi
     state: icon
     layers:
       - state: icon
@@ -204,7 +204,7 @@
   suffix: IHP 
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/radar.rsi
+    sprite: _Horizon/_Fractions/IHP/Item/radar.rsi
     state: radar
   - type: RadarBlip
     radarColor: "#ba6ee6"
@@ -224,7 +224,7 @@
   suffix: IHP 
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/radar.rsi
+    sprite: _Horizon/_Fractions/IHP/Item/radar.rsi
     state: radar_red
   - type: RadarBlip
     radarColor: "#e24545"
@@ -242,7 +242,7 @@
   suffix: IHP 
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/radar.rsi
+    sprite: _Horizon/_Fractions/IHP/Item/radar.rsi
     state: radar_green
   - type: RadarBlip
     radarColor: "#45e252"
@@ -299,13 +299,13 @@
     doAfter: 5
     removeOnInteract: true
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/Abc.rsi
+    sprite: _Horizon/_Fractions/IHP/Item/Abc.rsi
     state: packed
   - type: Item
     size: Ginormous
     shape:
     - 0,0,3,3
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/Abc.rsi
+    sprite: _Horizon/_Fractions/IHP/Item/Abc.rsi
 
 - type: entity 
   id: WeaponTurretAsmgtNtDeployedIHP
@@ -340,7 +340,7 @@
     factions:
     - IHPTurrel
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Item/Abc.rsi
+    sprite: _Horizon/_Fractions/IHP/Item/Abc.rsi
     drawdepth: Mobs
     layers:
     - state: base
