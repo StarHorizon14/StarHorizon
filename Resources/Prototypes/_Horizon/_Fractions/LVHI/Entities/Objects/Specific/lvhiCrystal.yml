@@ -1,25 +1,13 @@
-# ==========================================
-# 4. ПРОТОТИПЫ ВАЛЮТ И СТАКА
-# ==========================================
-# Валюта 1: Кристаллы LVHI
 - type: currency
   id: LVHICrystal
-  displayName: store-currency-display-lvhi-crystal # Ссылка на ключ из .ftl
+  displayName: store-currency-display-lvhi-crystal
   canWithdraw: true
   cash:
     1: LVHIDiamondCrystal1
 
-- type: currency
-  id: Speso
-  displayName: store-currency-display-speso # Ссылка на ключ из .ftl
-  canWithdraw: true
-  cash:
-    1: SpaceCash
-
-# Стак для кристаллов
 - type: stack
   id: LVHIDiamondCrystal
-  name: "КА" # ИСПРАВЛЕНО
+  name: "КА"
   spawn: LVHIDiamondCrystal1
   maxCount: 200
   icon:

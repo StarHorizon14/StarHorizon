@@ -1,6 +1,3 @@
-# ==========================================
-# 1. ТЯЖЁЛАЯ БУРОВАЯ УСТАНОВКА LVHI
-# ==========================================
 
 - type: entity
   id: LVHIMiningDrill
@@ -18,18 +15,18 @@
   - type: MagnetPickup
     magnetEnabled: true
     magnetCanBeEnabled: true
-    range: 2.0       # Увеличенный радиус магнита
+    range: 2.0
   - type: ApcPowerReceiver
-    powerLoad: 3000  # Чуть повысили энергопотребление для компенсации скорости
+    powerLoad: 3000
   - type: Machine
     board: LVHIDrillCircuitboard
   - type: Storage
     maxItemSize: Normal
     grid:
-    - 0,0,7,7        # Расширенное хранилище (64 ячейки)
+    - 0,0,7,7
     quickInsert: false
     areaInsert: false
-    clickInsert: false # <-- ИСПРАВЛЕНО: Английская буква 'c'
+    clickInsert: false
     openOnActivate: true
     storageInsertSound: null
     whitelist:
@@ -54,16 +51,16 @@
         visible: false
 
 - type: entity
-  id: LVHIDrillCircuitboard # <-- ИСПРАВЛЕНО: ID платы соответствует ожиданиям буровой установки LVHI
+  id: LVHIDrillCircuitboard
   parent: BaseMachineCircuitboard
   name: "Тяжёлая буровая установка LVHI (машинная плата)"
   description: "Печатная плата для сборки тяжёлого бурового комплекса LVHI."
   components:
     - type: Sprite
-      sprite: Objects/Misc/module.rsi # <-- Указан стандартный путь, так как у вас не было своего
+      sprite: Objects/Misc/module.rsi
       state: engineering
     - type: MachineBoard
-      prototype: LVHIMiningDrill # <-- Ссылка на вашу буровую установку
+      prototype: LVHIMiningDrill
       stackRequirements:
         Steel: 10
         Silver: 20

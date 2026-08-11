@@ -291,16 +291,6 @@
   - LVHIUplinkMining
 
 - type: listing
-  id: LVHIListingClothingBackpackExoWoyceh
-  name: "Экзосклет"
-  description: "Экзосклет позволяющий хранить вещи, практически равен блюспейс сумке. (Цепляется на спину)"
-  productEntity: ClothingBackpackExoWoyceh
-  cost:
-    LVHICrystal: 100
-  categories:
-  - LVHIUplinkMining
-
-- type: listing
   id: LVHIListingShuttleGunKineticCircuitboard
   name: "Плата орудия ПТК-800e «Дематериализатор материи»"
   description: "Машинная плата для сборки кинетического бурового орудия ПТК-800e на шаттл."
@@ -588,9 +578,9 @@
 
 - type: listing
   id: LVHIListingSpaceCash2500
-  name: "Кредиты (2500)" # Имя товара в магазине
+  name: "Кредиты (2500)"
   description: "Кредиты, валюта на Фронтире."
-  productEntity: SpaceCash2500 # Сущность, которую получит игрок
+  productEntity: SpaceCash2500
   cost:
     LVHICrystal: 1
   categories:
@@ -598,9 +588,9 @@
 
 - type: listing
   id: LVHIListingBuyDiamond1
-  name: "КА (1 шт.)" # Имя товара в магазине
+  name: "КА (1 шт.)"
   description: "Обработанный до прозрачности алмаз LVHI."
-  productEntity: LVHIDiamondCrystal1 # Сущность, которую получит игрок
+  productEntity: LVHIDiamondCrystal1
   cost:
     Speso: 2500
   categories:
@@ -608,9 +598,9 @@
 
 - type: listing
   id: LVHIListingSpaceCash25000
-  name: "Кредиты (25000)" # Имя товара в магазине
+  name: "Кредиты (25000)"
   description: "Кредиты, валюта на Фронтире."
-  productEntity: SpaceCash25000 # Сущность, которую получит игрок
+  productEntity: SpaceCash25000
   cost:
     LVHICrystal: 10
   categories:
@@ -618,9 +608,9 @@
 
 - type: listing
   id: LVHIListingBuyDiamond10
-  name: "КА (10 шт.)" # Имя товара в магазине
+  name: "КА (10 шт.)"
   description: "Обработанный до прозрачности алмаз LVHI."
-  productEntity: LVHIDiamondCrystal10 # Сущность, которую получит игрок
+  productEntity: LVHIDiamondCrystal10
   cost:
     Speso: 25000
   categories:
@@ -633,6 +623,6 @@
   productEntity: LVHIPlushAria
   cost:
     Speso: 3500
-  restockLimit: 1 # <-- Ограничение: Товар можно купить только 1 раз!
+  restockLimit: 1
   categories:
   - LVHIUplinkSpesoCrystal
