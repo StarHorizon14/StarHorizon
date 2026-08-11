@@ -10,9 +10,6 @@
   guidebookPage: Null
   class:
   - Scrapyard
-  - Science
-  - Chemistry
-  - Civilian
   engine:
   - Bananium
 
@@ -23,7 +20,7 @@
   minPlayers: 0
   stations:
     CrescentLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Crescent {1}'

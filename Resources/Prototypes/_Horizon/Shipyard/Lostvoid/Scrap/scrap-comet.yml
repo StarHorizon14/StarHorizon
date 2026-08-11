@@ -10,8 +10,6 @@
   guidebookPage: ShipyardComet
   class:
   - Scrapyard
-  - Salvage
-  - Engineering
   engine:
   - Uranium
 
@@ -22,7 +20,7 @@
   minPlayers: 0
   stations:
     CometLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Comet {1}'

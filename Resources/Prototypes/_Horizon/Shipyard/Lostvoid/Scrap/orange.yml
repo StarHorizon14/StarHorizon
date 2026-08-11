@@ -10,8 +10,6 @@
   guidebookPage: Null
   class:
   - Scrapyard
-  - Cargo
-  - Salvage
   engine:
   - Uranium
 
@@ -22,7 +20,7 @@
   minPlayers: 0
   stations:
     OrangeLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Orange {1}'

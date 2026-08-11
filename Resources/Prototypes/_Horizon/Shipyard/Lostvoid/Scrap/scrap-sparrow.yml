@@ -10,8 +10,6 @@
   guidebookPage: ShipyardSparrow
   class:
   - Scrapyard
-  - Science
-  - Engineering
   engine:
   - Uranium
 
@@ -22,7 +20,7 @@
   minPlayers: 0
   stations:
     SparrowLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Sparrow {1}'

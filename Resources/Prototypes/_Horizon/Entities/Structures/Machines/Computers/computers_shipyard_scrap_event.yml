@@ -28,7 +28,7 @@
     # - CrescentLostVoid
     - HaulerLostVoid
     - InvestigatorLostVoid
-    # - SparrowLostVoid
+    - SparrowLostVoid
     - SprinterLostVoid
     - CourserXLostVoid
     # - BisonLostVoid
@@ -36,6 +36,7 @@
     - PointLostVoid
     # - MayflowerLostVoid
     # - GeodeLostVoid
+    # - Hammerhead
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
     layers:

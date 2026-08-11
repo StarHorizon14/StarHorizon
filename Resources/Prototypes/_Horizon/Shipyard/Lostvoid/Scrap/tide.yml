@@ -10,7 +10,6 @@
   guidebookPage: ShipyardTide
   class:
   - Scrapyard
-  - Civilian
   engine:
   - Plasma
 
@@ -21,7 +20,7 @@
   minPlayers: 0
   stations:
     TideLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Tide {1}'

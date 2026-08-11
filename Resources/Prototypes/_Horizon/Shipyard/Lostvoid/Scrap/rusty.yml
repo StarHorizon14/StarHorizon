@@ -14,7 +14,6 @@
   guidebookPage: ShipyardRusty
   class:
   - Scrapyard
-  - Civilian
   engine:
   - Welding
 
@@ -25,7 +24,7 @@
   minPlayers: 0
   stations:
     RustyLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Rusty {1}'

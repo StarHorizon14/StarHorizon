@@ -10,7 +10,6 @@
   guidebookPage: Null
   class:
   - Scrapyard
-  - Expedition
   engine:
   - AME
 

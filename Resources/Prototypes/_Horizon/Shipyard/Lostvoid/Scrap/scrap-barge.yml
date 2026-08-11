@@ -10,8 +10,6 @@
   guidebookPage: ShipyardBarge
   class:
   - Scrapyard
-  - Cargo
-  - Salvage
   engine:
   - Solar
   - Uranium
@@ -23,7 +21,7 @@
   minPlayers: 0
   stations:
     BargeLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Barge {1}'

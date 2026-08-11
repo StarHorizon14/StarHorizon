@@ -13,8 +13,6 @@
   guidebookPage: ShipyardGeode
   class:
   - Scrapyard
-  - Civilian
-  - Salvage
   engine:
   - Uranium
 
@@ -25,7 +23,7 @@
   minPlayers: 0
   stations:
     GeodeLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Geode {1}'

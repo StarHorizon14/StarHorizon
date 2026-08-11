@@ -10,7 +10,6 @@
   guidebookPage: Null
   class:
   - Scrapyard
-  - Civilian
   engine:
   - Plasma
 
@@ -21,7 +20,7 @@
   minPlayers: 0
   stations:
     MayflowerLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Mayflower {1}'

@@ -10,7 +10,6 @@
   guidebookPage: ShipyardInvestigator
   class:
   - Scrapyard
-  - Science
   engine:
   - Solar
   - Uranium
@@ -22,7 +21,7 @@
   minPlayers: 0
   stations:
     InvestigatorLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Investigator {1}'

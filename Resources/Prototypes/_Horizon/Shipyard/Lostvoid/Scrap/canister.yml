@@ -14,7 +14,6 @@
   guidebookPage: Null
   class:
   - Scrapyard
-  - Civilian
   engine:
   - Plasma
 
@@ -25,7 +24,7 @@
   minPlayers: 0
   stations:
     CanisterLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Canister {1}'

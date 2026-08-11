@@ -10,7 +10,6 @@
   guidebookPage: Null
   class:
   - Scrapyard
-  - Science
   engine:
   - Plasma
 
@@ -20,8 +19,8 @@
   mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/point.yml
   minPlayers: 0
   stations:
-    Point:
-      stationProto: StandardFrontierVessel
+    PointLostVoid:
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Point {1}'

@@ -20,7 +20,6 @@
   guidebookPage: Null
   class:
   - Scrapyard
-  - Civilian
   engine:
   - Plasma
 
@@ -32,7 +31,7 @@
   minPlayers: 0
   stations:
     DiscipleLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Disciple {1}'

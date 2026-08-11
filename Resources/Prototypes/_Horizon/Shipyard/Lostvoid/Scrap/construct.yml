@@ -10,7 +10,6 @@
   guidebookPage: ShipyardConstruct
   class:
   - Scrapyard
-  - Engineering
   engine:
   - Plasma
 
@@ -21,7 +20,7 @@
   minPlayers: 0
   stations:
     ConstructLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
       - type: StationNameSetup
         mapNameTemplate: 'Construct {1}'

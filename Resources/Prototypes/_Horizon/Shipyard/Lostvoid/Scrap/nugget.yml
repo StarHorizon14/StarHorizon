@@ -20,7 +20,6 @@
   guidebookPage: Null
   class:
   - Scrapyard
-  - Kitchen
   engine:
   - Plasma
 
@@ -31,7 +30,7 @@
   minPlayers: 0
   stations:
     NuggetLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Nugget {1}'
