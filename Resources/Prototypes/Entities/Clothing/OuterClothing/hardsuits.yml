@@ -609,6 +609,9 @@
   - type: StaticPrice
     price: 5000
   - type: CatWearable
+  - type: Construction
+    graph: AnCoUpgradeSyndie
+    node: start
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -706,6 +709,9 @@
     useRate: 0
   - type: UseDelay
     delay: 10.0 #backmen-shield-end
+  - type: Construction
+    graph: AnCoUpgradeElite
+    node: start
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -785,6 +791,9 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: Construction
+    graph: AnCoUpgradeJuggernaut
+    node: start
 
 #Wizard Hardsuit
 - type: entity

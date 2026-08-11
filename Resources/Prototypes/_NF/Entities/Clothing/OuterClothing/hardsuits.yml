@@ -119,7 +119,7 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMaximPrototype
   - type: Construction
-    graph: AnCoMaximPrototype
+    graph: AnCoUpgradeMaximPrototype
     node: start
 
 # Syndicate NPC hard suit, unremoveable

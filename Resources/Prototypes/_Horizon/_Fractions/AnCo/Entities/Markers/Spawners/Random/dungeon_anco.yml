@@ -234,6 +234,9 @@
   - type: RandomSpawner
     prototypes:
     - ModStationMaximPrototype
+    - ModStationJuggernaut
+    - ModStationElite
+    - ModStationSyndie
     chance: 0.25
     offset: 0.0
 

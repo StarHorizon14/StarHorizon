@@ -68,4 +68,13 @@
 # upgrade
 
 - type: Tag
-  id: AnCoMaximPrototype
+  id: AnCoUpgradeMaximPrototype
+
+- type: Tag
+  id: AnCoUpgradeJuggernaut
+
+- type: Tag
+  id: AnCoUpgradeElite
+
+- type: Tag
+  id: AnCoUpgradeSyndie

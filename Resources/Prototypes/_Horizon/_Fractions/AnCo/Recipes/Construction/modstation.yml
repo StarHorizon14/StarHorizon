@@ -1,5 +1,5 @@
 - type: constructionGraph
-  id: AnCoMaximPrototype
+  id: AnCoUpgradeMaximPrototype
   start: start
   graph:
     - node: start
@@ -7,21 +7,49 @@
       edges:
         - to: done
           steps:
-            - tag: AnCoMaximPrototype
+            - tag: AnCoUpgradeMaximPrototype
               doAfter: 4
     - node: done
       entity: ClothingOuterHardsuitAnCoMaximPrototype
 
-# - type: constructionGraph
-#   id: UpgradeHydroponicsTray
-#   start: start
-#   graph:
-#     - node: start
-#       edges:
-#         - to: upgraded
-#           steps:
-#             - tag: HydroponicsTrayUpgradeKit
-#               doAfter: 2
+- type: constructionGraph
+  id: AnCoUpgradeJuggernaut
+  start: start
+  graph:
+    - node: start
+      entity: ClothingOuterHardsuitJuggernaut
+      edges:
+        - to: done
+          steps:
+            - tag: AnCoUpgradeJuggernaut
+              doAfter: 4
+    - node: done
+      entity: ClothingOuterHardsuitAnCoJuggernaut
 
-#     - node: upgraded
-#       entity: indhydroponicsTray
+- type: constructionGraph
+  id: AnCoUpgradeElite
+  start: start
+  graph:
+    - node: start
+      entity: ClothingOuterHardsuitSyndieElite
+      edges:
+        - to: done
+          steps:
+            - tag: AnCoUpgradeElite
+              doAfter: 4
+    - node: done
+      entity: ClothingOuterHardsuitAnCoElite
+
+- type: constructionGraph
+  id: AnCoUpgradeSyndie
+  start: start
+  graph:
+    - node: start
+      entity: ClothingOuterHardsuitSyndie
+      edges:
+        - to: done
+          steps:
+            - tag: AnCoUpgradeSyndie
+              doAfter: 4
+    - node: done
+      entity: ClothingOuterHardsuitAnCoSyndie

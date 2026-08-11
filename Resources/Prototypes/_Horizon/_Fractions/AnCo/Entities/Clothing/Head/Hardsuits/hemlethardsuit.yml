@@ -191,7 +191,7 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.90
-        Radiation: 0.85
+        Radiation: 0.80
         Caustic: 0.90
   - type: PointLight
     color: "#F05A5A"
@@ -205,8 +205,53 @@
   suffix: StarHorizon
   components:
   - type: Sprite
-    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/maxim_prototype.rsi
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/Modificate/maxim_prototype.rsi
   - type: Clothing
-    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/maxim_prototype.rsi
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/Modificate/maxim_prototype.rsi
+  - type: PointLight
+    color: "#F05A5A"
+
+- type: entity
+  parent: [NFClothingHeadHardsuitWithLightBase, BaseAnCoContraband]
+  id: ClothingHeadHelmetHardsuitAnCoCybersun
+  categories: [ HideSpawnMenu ]
+  name: корпоративный шлем джагернаута
+  description: Красная спрессованая материя заменена на пулестойкий Ардоний, тот же узнаваемый красный, только лучше.
+  suffix: StarHorizon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/Modificate/jaggernaut.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/Modificate/jaggernaut.rsi
+  - type: PointLight
+    color: "#F05A5A"
+
+- type: entity
+  parent: [ClothingHeadHelmetHardsuitSyndieElite, BaseAnCoContraband]
+  id: ClothingHeadHelmetHardsuitAnCoSyndieElite
+  categories: [ HideSpawnMenu ]
+  name: корпоративный шлем Феникса
+  description: Надежный казмий, и немного ардония, все что нужно для спокойствия.
+  suffix: StarHorizon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/Modificate/elite.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/Modificate/elite.rsi
+  - type: PointLight
+    color: "#F05A5A"
+
+- type: entity
+  parent: [ClothingHeadHelmetHardsuitSyndie, BaseAnCoContraband]
+  id: ClothingHeadHelmetHardsuitAnCoSyndie
+  categories: [ HideSpawnMenu ]
+  name: корпоративный шлем Отшельника
+  description: Шлем для ценителей одиночества, вы не выбрали героизм, вы выбрали выживание.
+  suffix: StarHorizon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/Modificate/blood.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/Modificate/blood.rsi
   - type: PointLight
     color: "#F05A5A"

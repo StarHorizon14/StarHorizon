@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 08/07/2026 23:03:59
-  entityCount: 2620
+  time: 08/11/2026 01:01:54
+  entityCount: 2621
 maps:
 - 1653
 grids:
@@ -16199,6 +16199,11 @@ entities:
     components:
     - type: Transform
       pos: 19.5,44.5
+      parent: 1653
+  - uid: 2140
+    components:
+    - type: Transform
+      pos: 7.5,7.5
       parent: 1653
 - proto: SpawnAnCoPlushiesRandom
   entities:
