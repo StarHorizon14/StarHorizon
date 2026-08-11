@@ -40,9 +40,9 @@
       - EncryptionKeyIHP
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/baseHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/baseHPl.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/baseHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/baseHPl.rsi
 
 - type: entity
   parent: ClothingHeadset
@@ -57,9 +57,9 @@
       - EncryptionKeyIHP
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/baseHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/baseHPl.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/baseHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/baseHPl.rsi
 
 
 # КПК
@@ -75,7 +75,7 @@
   - type: PdaBorderColor
     borderColor: "#717059"
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/pda.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: "pda"
@@ -88,7 +88,7 @@
       shader: "unshaded"
       visible: false
   - type: Icon
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/pda.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/pda.rsi
     state: pda
 
 - type: entity
@@ -132,7 +132,7 @@
   - type: PresetIdCard
     job: Contractor
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/idcards.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/idcards.rsi
     layers:
     - state: default
     - state: default
@@ -148,7 +148,7 @@
   - type: PresetIdCard
     job: Contractor
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/idcards.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/idcards.rsi
     layers:
     - state: defaultLider
     - state: defaultLider
@@ -164,7 +164,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    icon: { sprite : StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/energo_bullet.rsi, state: blastwave }
+    icon: { sprite : _Horizon/_Fractions/IHP/energo_bullet.rsi, state: blastwave }
     itemIconStyle: BigAction
     priority: 2
     useDelay: 15 # Frontier
@@ -206,7 +206,7 @@
     radius: 3.0
     energy: 5.0
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/energo_bullet.rsi
+    sprite: _Horizon/_Fractions/IHP/energo_bullet.rsi
     layers:
     - state: blastwave
       shader: unshaded
@@ -259,7 +259,7 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/exowoyceh.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/exowoyceh.rsi
   - type: ClothingSlowOnDamageModifier
     modifier: 0
   - type: Storage
@@ -279,7 +279,7 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehspeed.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehspeed.rsi
   - type: ClothingSlowOnDamageModifier
     modifier: 0
   - type: Storage
@@ -363,7 +363,7 @@
           tags:
             - PowerCell
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehjamp.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehjamp.rsi
   - type: ClothingSpeedModifier
     walkModifier: 1.1
     sprintModifier: 1.1
@@ -445,7 +445,7 @@
           tags:
             - PowerCell
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehtack.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehtack.rsi
   - type: ClothingSlowOnDamageModifier
     modifier: 0
   - type: ClothingSpeedModifier
@@ -477,7 +477,7 @@
   description: Экспериментальный экзоскелет созданный на основе сервоприводного экзоскелета, в том числе и объединяет лучшие стороны своих предшественников, а основное предназначение этого экземпляра - быть оружием уничтожения.
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehlastangel.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehlastangel.rsi
   - type: ClothingSpeedModifier
     walkModifier: 1.25
     sprintModifier: 1.25
@@ -555,7 +555,7 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/backIHP.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/backIHP.rsi
   - type: Storage
     grid:
     - 0,0,7,4
@@ -569,7 +569,7 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/duffelHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/duffelHPl.rsi
   - type: Storage
     maxItemSize: Huge
     defaultStorageOrientation: Vertical
@@ -595,9 +595,9 @@
           Cold: 0.9
           Bloodloss: 0.95
     - type: Sprite
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl.rsi
     - type: Clothing
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl.rsi
     - type: SuitSensor
       randomMode: false
       mode: SensorOff
@@ -616,9 +616,9 @@
           Heat: 0.9
           Cold: 0.9
     - type: Sprite
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl_s.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl_s.rsi
     - type: Clothing
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl_s.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl_s.rsi
     - type: SuitSensor
       randomMode: false
       mode: SensorOff
@@ -631,9 +631,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/webvestHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/webvestHPl.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/webvestHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/webvestHPl.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -654,9 +654,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/beltIHP.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/beltIHP.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/beltIHP.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/beltIHP.rsi
   - type: ItemMapper
     mapLayers:
       flashbang:
@@ -684,9 +684,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/bingIHP.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/bingIHP.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Expeditor/bingIHP.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/bingIHP.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: StaticPrice
@@ -756,9 +756,9 @@
   suffix: IHP
   components:
     - type: Sprite
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl.rsi
     - type: Clothing
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl.rsi
     - type: SuitSensor
       randomMode: false
       mode: SensorOff
@@ -771,9 +771,9 @@
   suffix: IHP
   components:
     - type: Sprite
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl_s.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl_s.rsi
     - type: Clothing
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl_s.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl_s.rsi
     - type: SuitSensor
       randomMode: false
       mode: SensorOff
@@ -786,9 +786,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Laboratori/ihp_trench.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/ihp_trench.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Laboratori/ihp_trench.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/ihp_trench.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -798,7 +798,7 @@
   description: Плащ IHP носимый обычными сотрудниками.
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Laboratori/ihp_plash.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/ihp_plash.rsi
 
 - type: entity
   parent: ClothingShoesBaseButcherable
@@ -808,9 +808,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Laboratori/jackbootsHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/jackbootsHPl.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Laboratori/jackbootsHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/jackbootsHPl.rsi
 
 # region Тактическое Снаряжение
 
@@ -823,10 +823,10 @@
   components:
   - type: Item
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/ninjavisor.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/ninjavisor.rsi
     state: icon
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/ninjavisor.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/ninjavisor.rsi
     quickEquip: true
     slots: [ Eyes ]
   - type: UseDelay
@@ -846,7 +846,7 @@
   description: Фирменный плащ IHP с замечательной надписью! Создан специально при поддержке наших патриотов.
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/ihp_vip_plash.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/ihp_vip_plash.rsi
 
 - type: entity
   parent: ClothingHandsGlovesColorBlack
@@ -856,9 +856,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/combatHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/combatHPl.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/combatHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/combatHPl.rsi
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-insulative
@@ -871,9 +871,9 @@
   suffix: IHP
   components:
     - type: Sprite
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/tacticooIHPl.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/tacticooIHPl.rsi
     - type: Clothing
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/tacticooIHPl.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/tacticooIHPl.rsi
     - type: SuitSensor
       randomMode: false
       mode: SensorOff
@@ -886,9 +886,9 @@
   suffix: IHP
   components:
     - type: Sprite
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/tacticoolHPl_s.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/tacticoolHPl_s.rsi
     - type: Clothing
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/tacticoolHPl_s.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/tacticoolHPl_s.rsi
     - type: SuitSensor
       randomMode: false
       mode: SensorOff
@@ -902,9 +902,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/jackbootsHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/jackbootsHPl.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/jackbootsHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/jackbootsHPl.rsi
 
 - type: entity
   parent: ClothingMaskGas
@@ -914,9 +914,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/squadronHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/squadronHPl.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/squadronHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/squadronHPl.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -941,9 +941,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/squadron_nekHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/squadron_nekHPl.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/squadron_nekHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/squadron_nekHPl.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -969,9 +969,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/webvestHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/webvestHPl.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/webvestHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/webvestHPl.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -990,9 +990,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/webvestIIHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/webvestIIHPl.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/webvestIIHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/webvestIIHPl.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -1011,9 +1011,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalwebvest.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalwebvest.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalwebvest.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalwebvest.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -1032,9 +1032,9 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/TactikalwebvestI.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/TactikalwebvestI.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/TactikalwebvestI.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/TactikalwebvestI.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -1058,10 +1058,10 @@
         Blunt: 0.95
         Heat: 0.95
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/magboots-HPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/magboots-HPl.rsi
     state: icon
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/magboots-HPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/magboots-HPl.rsi
   - type: Magboots
     magbootsAlert: MagbootsSecurity
 
@@ -1073,10 +1073,10 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/magbootsomega-HPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/magbootsomega-HPl.rsi
     state: icon
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/magbootsomega-HPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/magbootsomega-HPl.rsi
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -1101,7 +1101,7 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalback.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalback.rsi
   - type: Storage
     grid:
     - 0,0,7,5
@@ -1114,7 +1114,7 @@
   suffix: IHP
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalduffel.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalduffel.rsi
   - type: Storage
     maxItemSize: Huge
     defaultStorageOrientation: Vertical
@@ -1151,9 +1151,9 @@
   suffix: IHP
   components:
     - type: Sprite
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesHPl.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesHPl.rsi
     - type: Clothing
-      sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesHPl.rsi
+      sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesHPl.rsi
     - type: ClothingSpeedModifier
       walkModifier: 1.1
       sprintModifier: 1.1
@@ -1174,10 +1174,10 @@
         Blunt: 0.9
         Heat: 0.9
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesMagboots-HPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesMagboots-HPl.rsi
     state: icon
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesMagboots-HPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesMagboots-HPl.rsi
   - type: Magboots
     magbootsAlert: MagbootsSecurity
 
@@ -1191,7 +1191,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesBackpackHPl.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesBackpackHPl.rsi
   - type: Storage
     grid:
     - 0,0,8,5
@@ -1224,14 +1224,14 @@
   components:
 
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: Item
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit.rsi
     size: Huge
   - type: GasTank
     outputPressure: 42.6
@@ -1278,9 +1278,9 @@
     color: "#4f20a8"
   - type: BreathMask
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit_helmet.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit_helmet.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit_helmet.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit_helmet.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -1303,9 +1303,9 @@
   description: Стандартный скафандр IHP используемый для простой работы в космосе научным персоналом. Так же работы и вне космоса. Дополнительно имеет специальные грузовые отсеки на поясе.
   components:
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuit.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuit.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuit.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuit.rsi
   - type: Storage
     grid:
     - 0,0,3,4
@@ -1345,9 +1345,9 @@
     color: "#4f20a8"
   - type: BreathMask
   - type: Sprite
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuithelmet.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuithelmet.rsi
   - type: Clothing
-    sprite: StarHorizon/Resources/Textures/_Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuithelmet.rsi
+    sprite: _Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuithelmet.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000

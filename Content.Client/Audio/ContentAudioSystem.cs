@@ -61,6 +61,11 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         var query = AllEntityQuery<AudioComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
+            // Skip streams that are already silent/invalid - fading these produces NaN/Infinity
+            // in UpdateFades since they never reach MinVolume and get stuck fading forever.
+            if (!float.IsFinite(comp.Volume) || comp.Volume <= MinVolume)
+                continue;
+
             FadeOut(uid, comp, ev.FadeSeconds);
         }
     }
@@ -76,7 +81,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
 
             if (fadeSeconds <= 0f)
                 _audio.Stop(uid);
-            else
+            else if (float.IsFinite(comp.Volume) && comp.Volume > MinVolume)
                 FadeOut(uid, comp, fadeSeconds);
         }
     }
@@ -138,7 +143,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         // TODO: Maybe handle the removals by making it seamless?
         _fadingIn.Remove(stream.Value);
         var diff = component.Volume - MinVolume;
-        _fadingOut.Add(stream.Value, diff / duration);
+        _fadingOut[stream.Value] = diff / duration;
     }
 
     public void FadeIn(EntityUid? stream, AudioComponent? component = null, float duration = DefaultDuration)
@@ -149,7 +154,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         _fadingOut.Remove(stream.Value);
         var curVolume = component.Volume;
         var change = (MinVolume - curVolume) / duration;
-        _fadingIn.Add(stream.Value, (change, component.Volume));
+        _fadingIn[stream.Value] = (change, component.Volume);
         component.Volume = MinVolume;
     }
 

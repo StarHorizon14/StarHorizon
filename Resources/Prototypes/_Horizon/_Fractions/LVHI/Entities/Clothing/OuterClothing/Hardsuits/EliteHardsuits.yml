@@ -1,0 +1,31 @@
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: LVHIClothingOuterElite
+  name: Элитный скафандр LVHI
+  description: Элитный скафандр для вазни с Мегафауной и работы в Экстримальный условиях. Обеспечивает защиту от радиации, высоких и низких давлений, а также от взрывов. Скафандр оснащен встроенным шлемом с пнв он состоит из Углеродных трубок высокой плотности и с титановой обшифкой для защиты от давления.
+  suffix: StarHorizon, LVHI
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/OuterClothing/Hardsuits/Elithardsuit.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/OuterClothing/Hardsuits/Elithardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 10000
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+     coefficients:
+        Blunt: 0.35
+        Slash: 0.35
+        Piercing: 0.55
+        Heat: 0.35
+        Radiation: 0.1
+        Caustic: 0.35
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: LVHIClothingHeadHelmetHardsuitElite

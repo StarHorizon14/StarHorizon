@@ -11,6 +11,16 @@ emergency-shuttle-command-round-no = Невозможно продлить ок�
 cmd-dockemergencyshuttle-desc = Calls the emergency shuttle and docks it to the station... if it can.
 cmd-dockemergencyshuttle-help = Usage: dockemergencyshuttle
 
+## Toggle evac block
+
+cmd-toggleevacblock-desc = Переключает блокировку вызова эвакуационного шаттла через коммуникационную консоль.
+cmd-toggleevacblock-help = Использование: toggleevacblock
+
+## Silent cancel evac
+
+cmd-silentcancelevac-desc = Отменяет отсчёт эвакуационного шаттла без объявления и звука.
+cmd-silentcancelevac-help = Использование: silentcancelevac
+
 ## Dock emergency shuttle
 
 cmd-launchemergencyshuttle-desc = Early launches the emergency shuttle if possible.
