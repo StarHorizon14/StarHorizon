@@ -1,0 +1,25 @@
+- type: entity
+  name: "бездонная сумка для руды LVHI"
+  id: LVHIOreBagOfHolding
+  parent: OreBag
+  suffix: LVHI
+  description: "Сверхвместительная экранированная сумка от инженерного отдела LVHI. Оснащена усиленным магнитом для сбора породы и свинцово-композитной изоляцией, полностью блокирующей радиацию."
+  components:
+  - type: MagnetPickup
+    range: 5
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Specific/Mining/ore_bag_holding.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Specific/Mining/ore_bag_holding.rsi
+  - type: Storage
+    grid:
+    - 0,0,29,9
+  - type: RadiationBlockingContainer
+  - type: Item
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Specific/Mining/ore_bag_holding.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
