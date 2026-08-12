@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CombatMode;
 using Content.Shared.Cuffs;
@@ -24,6 +25,7 @@ namespace Content.Shared.Strip;
 public abstract class SharedStrippableSystem : EntitySystem
 {
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
 
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
@@ -380,6 +382,12 @@ public abstract class SharedStrippableSystem : EntitySystem
         }
 
         if (!_handsSystem.CanPickupToHand(target, activeItem.Value, handName, checkActionBlocker: false, target.Comp))
+        {
+            _popupSystem.PopupCursor(Loc.GetString("strippable-component-cannot-put-message", ("owner", Identity.Entity(target, EntityManager))));
+            return false;
+        }
+
+        if (!_actionBlocker.CanPickup(target, activeItem.Value))
         {
             _popupSystem.PopupCursor(Loc.GetString("strippable-component-cannot-put-message", ("owner", Identity.Entity(target, EntityManager))));
             return false;

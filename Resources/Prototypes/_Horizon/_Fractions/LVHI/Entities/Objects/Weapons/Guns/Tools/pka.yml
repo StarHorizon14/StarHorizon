@@ -1,0 +1,43 @@
+- type: entity
+  name: "Протокинетическая рельса LVHI"
+  id: LVHIWeaponProtoKineticRailgun
+  parent: [WeaponProtoKineticAcceleratorBase, BaseC1Contraband]
+  description: "Модифицированная инженерами LVHI протокинетическая рельса. Обладает сокрушительным пробивным потенциалом, способным прорубать путь сквозь плотные породы астероидов и броню."
+  components:
+  - type: Sprite
+    sprite: _Horizon/Objects/Weapons/Guns/PKA/kinetic_railgun.rsi
+    layers:
+    - state: icon
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
+  - type: UpgradeableGun
+    maxUpgradeCount: 2
+    whitelist:
+      tags:
+      - PKAUpgrade
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+  - type: Item
+    sprite: _Horizon/Objects/Weapons/Guns/PKA/kinetic_railgun.rsi
+    size: Normal
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletKineticHighPower
+    capacity: 1
+    count: 1
+  - type: Gun
+    resetOnHandSelected: false
+    fireRate: 0.5
+    angleDecay: 25
+    minAngle: 25
+    maxAngle: 25
+    cameraRecoilScalar: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: Clothing
+    sprite: _Horizon/Objects/Weapons/Guns/PKA/kinetic_railgun.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt

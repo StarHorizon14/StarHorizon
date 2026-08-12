@@ -120,8 +120,6 @@ public sealed partial class MapScreen : BoxContainer
             RequestBeaconFTL?.Invoke(ent, angle);
         };
 
-        MapRebuildButton.Visible = false; // Lua
-        MapRebuildButton.Disabled = true; // Lua
         _nextAutoRefresh = _timing.CurTime; // Lua
     }
 
@@ -132,6 +130,7 @@ public sealed partial class MapScreen : BoxContainer
         _beacons = state.Destinations;
         _exclusions = state.Exclusions;
         var previousState = _state;
+        var wasBlocked = IsFTLBlocked();
         _state = state.FTLState;
         _ftlTime = state.FTLTime;
         MapRadar.InFtl = true;
@@ -194,6 +193,13 @@ public sealed partial class MapScreen : BoxContainer
             MapRebuildButton.Disabled = true;
             ClearMapObjects();
         }
+        else if (wasBlocked)
+        {
+            // FTL just finished (or became available) - refresh the destination list immediately
+            // instead of waiting for the next auto-refresh tick.
+            RebuildMapObjects();
+            _nextAutoRefresh = _timing.CurTime + _autoRefreshInterval;
+        }
     }
 
     private void SetFTLAllowed(bool value)
@@ -201,6 +207,7 @@ public sealed partial class MapScreen : BoxContainer
         if (value && !_inCombat)
         {
             MapFTLButton.Disabled = false;
+            MapMarkButton.Disabled = false;
         }
         else
         {
@@ -208,6 +215,10 @@ public sealed partial class MapScreen : BoxContainer
             MapRadar.FtlMode = false;
             MapRadar.ShowFTLRangeOnly = false;
             MapFTLButton.Disabled = true;
+
+            MapMarkButton.Pressed = false;
+            MapRadar.MarkMode = false;
+            MapMarkButton.Disabled = true;
         }
     }
 
@@ -231,6 +242,10 @@ public sealed partial class MapScreen : BoxContainer
                 MapRadar.ShowFTLRange = true;
                 MapRadar.NoFTLRange = false;
                 MapFTLButton.Pressed = true;
+
+                MapMarkButton.Pressed = false;
+                MapRadar.MarkMode = false;
+                MapMarkButton.Disabled = true;
             }
             else
             {
@@ -238,6 +253,9 @@ public sealed partial class MapScreen : BoxContainer
                 MapRadar.ShowFTLRange = true;
                 MapRadar.NoFTLRange = false;
                 MapFTLButton.Pressed = false;
+
+                if (!IsFTLBlocked())
+                    MapMarkButton.Disabled = false;
             }
         }
         finally
@@ -357,7 +375,6 @@ public sealed partial class MapScreen : BoxContainer
 
         while (mapComps.MoveNext(out var mapUid, out var mapComp, out var mapXform, out var mapMetadata))
         {
-            if (mapComp.MapId != ourMap) continue; // Lua StarMap
             if (_console != null && !_shuttles.CanFTLTo(_shuttleEntity.Value, mapComp.MapId, _console.Value))
             { continue; }
             var mapName = mapMetadata.EntityName;
@@ -712,6 +729,8 @@ public sealed partial class MapScreen : BoxContainer
             RebuildMapObjects(); // Lua
             _nextAutoRefresh = curTime + _autoRefreshInterval; // Lua
         }
+
+        MapRebuildButton.Disabled = IsFTLBlocked() || _nextPing > curTime;
 
         var progress = _ftlTime.ProgressAt(curTime);
         FTLBar.SetProgress(float.IsFinite(progress) ? progress : 1);

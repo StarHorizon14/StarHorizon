@@ -14,14 +14,15 @@ public sealed class MuteSoundCommand : IConsoleCommand
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     public string Command => "mutesound";
-    public string Description => "Silences currently playing audio for the given players.";
-    public string Help => "mutesound <fadeSeconds> <onlyGlobalSound> <username> [username2] [...]\n" +
+    public string Description => "Silences currently playing audio, either globally or for the given players.";
+    public string Help => "mutesound <fadeSeconds> <onlyGlobalSound> [username] [username2] [...]\n" +
                            "fadeSeconds: how long the audio should take to fade out; 0 mutes instantly.\n" +
-                           "onlyGlobalSound: if true, only mutes audio played via the admin \"playglobalsound\" command instead of everything.";
+                           "onlyGlobalSound: if true, only mutes audio played via the admin \"playglobalsound\" command instead of everything.\n" +
+                           "username: if omitted, mutes every connected player instead of specific ones.";
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (args.Length < 3)
+        if (args.Length < 2)
         {
             shell.WriteLine(Help);
             return;
@@ -40,6 +41,16 @@ public sealed class MuteSoundCommand : IConsoleCommand
         }
 
         var muteSystem = _entManager.System<MuteSoundSystem>();
+
+        if (args.Length == 2)
+        {
+            foreach (var session in _playerManager.Sessions)
+            {
+                muteSystem.Mute(session, fadeSeconds, onlyGlobalSound);
+            }
+
+            return;
+        }
 
         for (var i = 2; i < args.Length; i++)
         {

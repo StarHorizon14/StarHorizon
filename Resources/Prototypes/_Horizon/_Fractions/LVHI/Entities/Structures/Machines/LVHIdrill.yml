@@ -1,0 +1,69 @@
+
+- type: entity
+  id: LVHIMiningDrill
+  parent: OreMiningDrill
+  name: "Тяжёлый буровой комплекс LVHI"
+  suffix: StarHorizon, LVHI, Structure
+  description: "Сдвоенный промышленный буровой комплекс LVHI. Обладает колоссальной эффективностью добычи, ускоренным циклом работы и встроенным мощным магнитом."
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: OreExtractor
+    luck: 3
+    efficiency: 7.0
+    cooldown: 3.0
+  - type: MagnetPickup
+    magnetEnabled: true
+    magnetCanBeEnabled: true
+    range: 2.0
+  - type: ApcPowerReceiver
+    powerLoad: 3000
+  - type: Machine
+    board: LVHIDrillCircuitboard
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,7,7
+    quickInsert: false
+    areaInsert: false
+    clickInsert: false
+    openOnActivate: true
+    storageInsertSound: null
+    whitelist:
+      tags:
+        - ArtifactFragment
+        - Ore
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Specific/Mining/LVHIextractor.rsi
+    snapCardinals: true
+    granularLayersRendering: true
+    layers:
+      - state: drill-off
+        map: [ "drill" ]
+      - state: base
+      - state: base-powered
+        shader: unshaded
+        visible: false
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      - state: drill-empty-unlit
+        shader: unshaded
+        map: [ "light" ]
+        visible: false
+
+- type: entity
+  id: LVHIDrillCircuitboard
+  parent: BaseMachineCircuitboard
+  name: "Тяжёлая буровая установка LVHI (машинная плата)"
+  description: "Печатная плата для сборки тяжёлого бурового комплекса LVHI."
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: engineering
+    - type: MachineBoard
+      prototype: LVHIMiningDrill
+      stackRequirements:
+        Steel: 10
+        Silver: 20
+        CableHV: 10
+    - type: BindToStation
+      enabled: false

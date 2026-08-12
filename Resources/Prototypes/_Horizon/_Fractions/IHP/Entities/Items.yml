@@ -1,0 +1,387 @@
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxExpeditorIHP
+  name: Коробка для Образцов "IHP"
+  description: Небольшая коробка. Внутри что-то лежит...
+  suffix: IHP
+  components:
+    - type: Storage
+      grid:
+        - 0,0,3,3
+    - type: Item
+      size: Normal
+      shape:
+      - 0,0,3,3
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Item/Box.rsi
+      state: box01
+    - type: StaticPrice
+      price: 100
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxIHP
+  name: Коробка
+  description: Небольшая коробка. Внутри что-то лежит...
+  suffix: IHP
+  components:
+    - type: Storage
+      grid:
+        - 0,0,3,3
+    - type: Item
+      size: Normal
+      shape:
+      - 0,0,3,3
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Item/Box.rsi
+      state: box01
+    - type: StaticPrice
+      price: 100
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxExpeditorCardIHP
+  name: Контейнер "IHP"
+  description: Небольшой контейнер пренадлежащий IHP. Сделан из лёгких материалов что так же отражается на хрупкости.
+  suffix: IHP
+  components:
+    - type: Item
+      size: Normal
+      shape:
+      - 0,0,3,3
+    - type: Storage
+      grid:
+        - 0,0,3,5
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Item/Box.rsi
+      state: box02
+    - type: StaticPrice
+      price: 500
+
+# region Полные коробки и контейнеры 
+
+- type: entity
+  parent: BoxIHP
+  id: BoxFlashFullIHP
+  name: Коробка Вспышек
+  description: Небольшая коробка. Внутри что-то лежит...
+  suffix: IHP | Заполнено 
+  components:
+    - type: StorageFill
+      contents:
+        - id: FlashIHP
+          amount: 8
+
+- type: entity
+  parent: BoxIHP
+  id: BoxRadarFullIHP
+  name: Коробка Маячков
+  description: Небольшая коробка. Внутри что-то лежит...
+  suffix: IHP | Заполнено 
+  components:
+    - type: StorageFill
+      contents:
+        - id: RadarIHP
+          amount: 8
+
+- type: entity
+  parent: BoxIHP
+  id: BoxRadarRedFullIHP
+  name: Коробка Красных Маячков
+  description: Небольшая коробка. Внутри что-то лежит...
+  suffix: IHP | Заполнено 
+  components:
+    - type: StorageFill
+      contents:
+        - id: RadarRedIHP
+          amount: 8
+
+- type: entity
+  parent: BoxIHP
+  id: BoxRadarGreenFullIHP
+  name: Коробка Зеленых Маячков
+  description: Небольшая коробка. Внутри что-то лежит...
+  suffix: IHP | Заполнено 
+  components:
+    - type: StorageFill
+      contents:
+        - id: RadarGreenIHP
+          amount: 8
+
+- type: entity
+  parent: BoxIHP
+  id: BoxFlareFullIHP
+  name: Коробка фальшфейеров
+  description: Небольшая коробка. Внутри что-то лежит...
+  suffix: IHP | Заполнено 
+  components:
+    - type: StorageFill
+      contents:
+        - id: Flare
+          amount: 16
+
+- type: entity
+  parent: BoxIHP
+  id: BoxGrenadeFlashFullIHP
+  name: Коробка светошумовых гранат
+  description: Небольшая коробка. Внутри что-то лежит...
+  suffix: IHP | Заполнено 
+  components:
+    - type: StorageFill
+      contents:
+        - id: GrenadeFlashBang
+          amount: 16
+
+# region Оборудование 
+
+- type: entity
+  name: Универсальная Вспышка
+  parent: Flash
+  id: FlashIHP
+  description: Улучшенная вспышка разработанная IHP, её исключительное предназначение - уничтожение теней Забвения
+  suffix: IHP
+  components:
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Item/flash.rsi
+      layers:
+      - state: flash
+        map: [ "enum.FlashVisualLayers.BaseLayer" ]
+      - state: flashing
+        map: [ "enum.FlashVisualLayers.LightLayer" ]
+        visible: false
+        shader: unshaded
+    - type: LimitedCharges
+      maxCharges: 10
+    - type: Item
+      size: Small
+      sprite: _Horizon/_Fractions/IHP/Item/flash.rsi
+    - type: UseDelay
+      delay: 2
+    - type: GenericVisualizer
+      visuals:
+        enum.FlashVisuals.Burnt:
+          enum.FlashVisualLayers.BaseLayer:
+            True: {state: burnt}
+        enum.FlashVisuals.Flashing:
+          enum.FlashVisualLayers.LightLayer:
+            True: {visible: true}
+            False: {visible: false}
+
+- type: entity
+  name: Г.П.С
+  parent: HandHeldMassScanner
+  id: GpsIHP
+  description: Глобальная поисковая система - является аналогом глобальной системы позиционирования, но со встроенным сканером масс.
+  suffix: IHP
+  components:
+  - type: Item
+    sprite: _Horizon/_Fractions/IHP/Item/gps.rsi
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Item/gps.rsi
+    state: icon
+    layers:
+      - state: icon
+      - state: scanner
+        shader: unshaded
+        visible: false
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: RadarConsole
+    maxRange: 300
+    followEntity: true
+  - type: StaticPrice
+    price: 250
+  - type: Tag
+    tags:
+    - GPS
+  - type: HandheldGPS
+
+- type: entity
+  parent: BaseItem
+  id: RadarIHP
+  name: Сигнальный Маяк
+  description: Небольшое устройство выполняющее роль исключительно маяка, работает только при наличии сканера масс и соответственно показывается на нём фиолетовым огоньком.
+  suffix: IHP 
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Item/radar.rsi
+    state: radar
+  - type: RadarBlip
+    radarColor: "#ba6ee6"
+    scale: 1
+  - type: StaticPrice
+    price: 50
+  - type: PointLight
+    radius: 3.5
+    energy: 1.6
+    color: "#9f6fc7c5"
+
+- type: entity
+  parent: RadarIHP
+  id: RadarRedIHP
+  name: Красный сигнальный Маяк
+  description: Небольшое устройство выполняющее роль исключительно маяка, работает только при наличии сканера масс и соответственно показывается на нём красненьким огоньком.
+  suffix: IHP 
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Item/radar.rsi
+    state: radar_red
+  - type: RadarBlip
+    radarColor: "#e24545"
+    scale: 1
+  - type: PointLight
+    radius: 3.5
+    energy: 1.6
+    color: "#eb3030c5"
+
+- type: entity
+  parent: RadarIHP
+  id: RadarGreenIHP
+  name: Зелёный сигнальный Маяк
+  description: Небольшое устройство выполняющее роль исключительно маяка, работает только при наличии сканера масс и соответственно показывается на нём зелёным огоньком.
+  suffix: IHP 
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Item/radar.rsi
+    state: radar_green
+  - type: RadarBlip
+    radarColor: "#45e252"
+    scale: 1
+  - type: PointLight
+    radius: 3.5
+    energy: 1.6
+    color: "#46eb30c5"
+
+# region Складные Турели
+
+- type: npcFaction
+  id: IHPTurrel
+  friendly:
+  - Crawford
+  hostile:
+  - SimpleHostile
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Dragon
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  - WizFedFaction # Frontier
+  - BloodCultNF # Frontier
+  - NFSyndicate # Frontier
+  - NFPirate # Frontier
+  - ExplorersExpeditionNF # Frontier
+  - ArtifactConstruct # Frontier
+  - StreetGangNF # Frontier
+  - DinosaursNF # Frontier
+  - MercenariesExpeditionNF # Frontier
+  - SiliconsExpeditionNF # Frontier
+  - AberrantFleshExpeditionNF # Frontier
+  - OblivionMob
+  - OblivionShadowsMob
+  - OblivionCloverMob
+
+- type: entity 
+  id: WeaponTurretAsmgtNtPackedIHP
+  name: Сложенная XE-АБС
+  description: |-
+   Автоматическая Баллистическая Система - комплексная турель предназначенная для поражения лёгких и средних целей, разработанна специально для Забвения, но это не мешает ей выполнять и прочие задания.
+  suffix: IHP 
+  parent:
+  - BaseItem
+  components:
+  - type: WeaponCaseInsertable
+  - type: MultiHandedItem
+  - type: SpawnAfterInteract
+    prototype: WeaponTurretAsmgtNtDeployedIHP
+    doAfter: 5
+    removeOnInteract: true
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Item/Abc.rsi
+    state: packed
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,3,3
+    sprite: _Horizon/_Fractions/IHP/Item/Abc.rsi
+
+- type: entity 
+  id: WeaponTurretAsmgtNtDeployedIHP
+  name: IHP XE-АБС 
+  description: |-
+   Автоматическая Баллистическая Система - комплексная турель предназначенная для поражения лёгких и средних целей, разработанна специально для Забвения, но это не мешает ей выполнять и прочие задания.
+  suffix: IHP
+  parent:
+  - BaseWeaponTurretMagazineFed
+  components:
+  - type: HTN
+    rootTask:
+      task: TurretCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        4.141
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/Silicon/startup.ogg
+      VisionRadius: !type:Single
+        45
+      AggroVisionRadius: !type:Single
+        45
+      NavSmash: !type:Bool
+        true
+  - type: Gun
+    examineCaliber: gun-examine-caliber-asmgt
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: NpcFactionMember
+    factions:
+    - IHPTurrel
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Item/Abc.rsi
+    drawdepth: Mobs
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 11
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineAsmgt
+  - type: Construction
+    deconstructionTarget: null
+    graph: WeaponTurretAsmgtNtPackingGraphIHP
+    node: WeaponTurretAsmgtNtPackedIHP
+  
+- type: constructionGraph # deconstruction graph
+  id: WeaponTurretAsmgtNtPackingGraphIHP
+  start: WeaponTurretAsmgtNtPackedIHP
+  graph:
+  - node: WeaponTurretAsmgtNtPackedIHP
+    entity: WeaponTurretAsmgtNtDeployedIHP
+    edges:
+    - to: WeaponTurretAsmgtNtPackedIHP
+      completed:
+      - !type:SpawnPrototype
+            prototype: WeaponTurretAsmgtNtPackedIHP
+            amount: 1
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity {}
+      steps:
+        - tool: Screwing
+          doAfter: 14

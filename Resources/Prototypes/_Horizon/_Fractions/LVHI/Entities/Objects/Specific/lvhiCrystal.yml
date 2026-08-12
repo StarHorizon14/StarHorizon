@@ -1,0 +1,15 @@
+- type: currency
+  id: LVHICrystal
+  displayName: store-currency-display-lvhi-crystal
+  canWithdraw: true
+  cash:
+    1: LVHIDiamondCrystal1
+
+- type: stack
+  id: LVHIDiamondCrystal
+  name: "КА"
+  spawn: LVHIDiamondCrystal1
+  maxCount: 200
+  icon:
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Specific/LVHIDiamondCrystal.rsi
+    state: telecrystal
