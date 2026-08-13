@@ -8,9 +8,13 @@
         <BoxContainer Orientation="Horizontal" Margin="3 0" HorizontalExpand="True" VerticalExpand="True">
             <BoxContainer Orientation="Vertical" Margin="2 3 0 3">
                 <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="3 0">
-                    <BoxContainer Orientation="Horizontal">
+                    <BoxContainer Orientation="Horizontal" Name="BalanceContainer">
                         <Label Text="{Loc 'bank-atm-menu-balance-label'}" FontColorOverride="Silver"/>
                         <Label Name="BalanceLabel"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal" Name="CashSlotContainer" Visible="False">
+                        <Label Text="{Loc 'shipyard-console-cash-slot-label'}" FontColorOverride="Silver"/>
+                        <Label Name="CashSlotLabel"/>
                     </BoxContainer>
                     <BoxContainer Orientation="Horizontal">
                         <Label Text="{Loc 'shipyard-console-appraisal-label'}" FontColorOverride="Silver"/>
@@ -49,6 +53,12 @@
                             VerticalExpand="True"
                             HorizontalExpand="True"
                             Access="Public"
+                            Text="{Loc 'id-card-console-window-insert-button'}"/>
+                    <Button Name="CashSlotButton"
+                            VerticalExpand="True"
+                            HorizontalExpand="True"
+                            Access="Public"
+                            Visible="False"
                             Text="{Loc 'id-card-console-window-insert-button'}"/>
                     <controls:ConfirmButton Name="SellShipButton"
                                             VerticalExpand="True"
