@@ -56,55 +56,55 @@
         - ReagentId: AnConanits
           Quantity: 100
 
-- type: entity
-  parent: [BaseItem, BaseAnCoContraband]
-  id: BaseAutomenderAnCo
-  name: автомендер АнКо
-  suffix: StarHorizon, AnCo
-  description: Медицинский инструмент на батарейном питании для затяжного лечения пациента.
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Medical/defib.rsi
-    state: icon
-  - type: Item
-    size: Normal
-  - type: Automender
-    damage:
-      types:
-        Blunt: -0.15
-        Heat: -0.15
-    chargeUsePerTick: 20 # количество заряда
-  - type: DoAfter
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: AnCoEnergyCore
-        whitelist:
-          tags:
-            - PowerAnCo
+# - type: entity
+#   parent: [BaseItem, BaseAnCoContraband]
+#   id: BaseAutomenderAnCo
+#   name: автомендер АнКо
+#   suffix: StarHorizon, AnCo
+#   description: Медицинский инструмент на батарейном питании для затяжного лечения пациента.
+#   components:
+#   - type: Sprite
+#     sprite: Objects/Specific/Medical/defib.rsi
+#     state: icon
+#   - type: Item
+#     size: Normal
+#   - type: Automender
+#     damage:
+#       types:
+#         Blunt: -0.15
+#         Heat: -0.15
+#     chargeUsePerTick: 20 # количество заряда
+#   - type: DoAfter
+#   - type: ContainerContainer
+#     containers:
+#       cell_slot: !type:ContainerSlot
+#   - type: PowerCellSlot
+#     cellSlotId: cell_slot
+#   - type: ItemSlots
+#     slots:
+#       cell_slot:
+#         name: power-cell-slot-component-slot-name-default
+#         startingItem: AnCoEnergyCore
+#         whitelist:
+#           tags:
+#             - PowerAnCo
 
 
-- type: entity
-  parent: [BaseItem, BaseAnCoContraband]
-  id: BaseAutomenderAnCo
-  name: медицинский заплатчик АнКо
-  suffix: StarHorizon, AnCo
-  description: Медицинский инструмент на батарейном питании.
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Medical/defib.rsi
-    state: icon
-  - type: Item
-    size: Normal
-  - type: Automender
-    damage:
-      groups:
-        Brute: -15
-    chargeUsePerTick: 500 # количество заряда
+# - type: entity
+#   parent: [BaseItem, BaseAnCoContraband]
+#   id: BaseAutomenderAnCo
+#   name: медицинский заплатчик АнКо
+#   suffix: StarHorizon, AnCo
+#   description: Медицинский инструмент на батарейном питании.
+#   components:
+#   - type: Sprite
+#     sprite: Objects/Specific/Medical/defib.rsi
+#     state: icon
+#   - type: Item
+#     size: Normal
+#   - type: Automender
+#     damage:
+#       groups:
+#         Brute: -15
+#     chargeUsePerTick: 500 # количество заряда
 

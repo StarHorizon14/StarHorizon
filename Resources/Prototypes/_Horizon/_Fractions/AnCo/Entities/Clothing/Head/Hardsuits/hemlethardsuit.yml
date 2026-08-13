@@ -40,9 +40,9 @@
   suffix: StarHorizon
   components:
   - type: Sprite
-    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/titanh.rsi
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/titan-atlant.rsi
   - type: Clothing
-    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/titanh.rsi
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/titan-atlant.rsi
   - type: PointLight
     color: "#B30E0E"
   - type: PressureProtection

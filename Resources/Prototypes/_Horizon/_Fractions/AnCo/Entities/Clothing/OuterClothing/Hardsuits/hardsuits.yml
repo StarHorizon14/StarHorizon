@@ -78,9 +78,9 @@
   - type: AnCoLiftStrength
     liftStrength: 5
   - type: Sprite
-    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/titan.rsi
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/titan-atlant.rsi
   - type: Clothing
-    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/titan.rsi
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/titan-atlant.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
