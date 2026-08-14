@@ -45,6 +45,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Server._Horizon.Shipyard;
 using Content.Shared._Lua.Shipyard.BUIStates;
+using Content.Shared.Stacks;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -669,6 +670,22 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
 
         // Horizon: also react to cash slot changes so the displayed cash balance stays current
+        if (component.CashSlotName != null && args.Container.ID == component.CashSlotName)
+        {
+            if (component.CurrencyStackType != null
+                && _itemSlots.TryGetSlot(uid, component.CashSlotName, out var cashSlot)
+                && TryComp<StackComponent>(cashSlot.ContainerSlot?.ContainedEntity, out var stack)
+                && stack.StackTypeId == component.CurrencyStackType)
+            {
+                component.CashSlotBalance = stack.Count;
+            }
+            else
+            {
+                component.CashSlotBalance = 0;
+            }
+            Dirty(uid, component);
+        }
+
         if (args.Container.ID != component.TargetIdSlot.ID
             && (component.CashSlotName == null || args.Container.ID != component.CashSlotName))
             return;

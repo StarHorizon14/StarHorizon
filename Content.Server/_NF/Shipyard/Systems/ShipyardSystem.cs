@@ -13,6 +13,7 @@ using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared._NF.Shipyard;
+using Content.Server.Stack;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Stacks;
 using Robust.Server.GameObjects;

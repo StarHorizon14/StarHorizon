@@ -34,7 +34,6 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
             _menu.OnRenameShip += RenameShip;
             _menu.OnDockPortSelected += SelectDockPort;
             _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(ShipyardConsoleComponent.TargetIdCardSlotId));
-            _menu.CashSlotButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(ShipyardConsoleComponent.CashSlotId));
             _menu.Owner = Owner;    // Horizon
 
             // Disable the NFSD popup for now.

@@ -54,12 +54,6 @@
                             HorizontalExpand="True"
                             Access="Public"
                             Text="{Loc 'id-card-console-window-insert-button'}"/>
-                    <Button Name="CashSlotButton"
-                            VerticalExpand="True"
-                            HorizontalExpand="True"
-                            Access="Public"
-                            Visible="False"
-                            Text="{Loc 'id-card-console-window-insert-button'}"/>
                     <controls:ConfirmButton Name="SellShipButton"
                                             VerticalExpand="True"
                                             HorizontalExpand="True"

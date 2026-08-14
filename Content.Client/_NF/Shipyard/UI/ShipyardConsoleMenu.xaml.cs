@@ -536,18 +536,10 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         NoDeedHelperContainer.Visible = !state.IsTargetIdPresent;
 
         // Horizon: cash payment
-        // Cash-only consoles hide the (unused) bank balance; regular consoles show both, since
-        // cash simply covers part of the price and the bank account covers the remainder.
         CashSlotContainer.Visible = state.HasCashSlot;
         BalanceContainer.Visible = !state.CashOnly;
-        CashSlotButton.Visible = state.HasCashSlot;
         if (state.HasCashSlot)
-        {
             CashSlotLabel.Text = BankSystemExtensions.ToSpesoString(state.CashSlotBalance);
-            CashSlotButton.Text = state.IsCashPresent
-                ? Loc.GetString("id-card-console-window-eject-button")
-                : Loc.GetString("id-card-console-window-insert-button");
-        }
         if (state.ShipDeedTitle != null)
         {
             DeedTitle.Text = state.ShipDeedTitle;

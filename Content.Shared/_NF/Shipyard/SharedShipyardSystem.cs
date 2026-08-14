@@ -1,8 +1,6 @@
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Stacks;
 using Content.Shared._NF.Shipyard;
 using JetBrains.Annotations;
-using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Content.Shared._NF.Shipyard.Components;
@@ -35,8 +33,6 @@ public abstract class SharedShipyardSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentRemove>(OnComponentRemove);
-        SubscribeLocalEvent<ShipyardConsoleComponent, EntInsertedIntoContainerMessage>(OnCashSlotEntityInserted); // Horizon: cash slot
-        SubscribeLocalEvent<ShipyardConsoleComponent, EntRemovedFromContainerMessage>(OnCashSlotEntityRemoved); // Horizon: cash slot
 
         // Horizon commented
         //SubscribeLocalEvent<ShipyardConsoleComponent, ComponentGetState>(OnGetState);
@@ -72,36 +68,6 @@ public abstract class SharedShipyardSystem : EntitySystem
         if (component.CashSlot != null)
             _itemSlotsSystem.RemoveItemSlot(uid, component.CashSlot);
     }
-
-    // Horizon: cash slot handlers
-    private void OnCashSlotEntityInserted(Entity<ShipyardConsoleComponent> ent, ref EntInsertedIntoContainerMessage args)
-    {
-        if (ent.Comp.CashSlotName == null || args.Container.ID != ent.Comp.CashSlotName)
-            return;
-
-        if (ent.Comp.CurrencyStackType != null
-            && _itemSlotsSystem.TryGetSlot(ent.Owner, ent.Comp.CashSlotName, out var slot)
-            && TryComp<StackComponent>(slot.ContainerSlot?.ContainedEntity, out var stack)
-            && stack.StackTypeId == ent.Comp.CurrencyStackType)
-        {
-            ent.Comp.CashSlotBalance = stack.Count;
-        }
-        else
-        {
-            ent.Comp.CashSlotBalance = 0;
-        }
-        Dirty(ent);
-    }
-
-    private void OnCashSlotEntityRemoved(Entity<ShipyardConsoleComponent> ent, ref EntRemovedFromContainerMessage args)
-    {
-        if (ent.Comp.CashSlotName == null || args.Container.ID != ent.Comp.CashSlotName)
-            return;
-
-        ent.Comp.CashSlotBalance = 0;
-        Dirty(ent);
-    }
-    // End Horizon: cash slot handlers
 
     [Serializable, NetSerializable]
     private sealed class ShipyardConsoleComponentState : ComponentState
