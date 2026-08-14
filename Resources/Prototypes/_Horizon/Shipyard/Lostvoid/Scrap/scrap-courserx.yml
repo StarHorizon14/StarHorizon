@@ -7,7 +7,6 @@
   category: Medium
   group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-courserx.yml
-  guidebookPage: Null
   class:
   - Scrapyard
   engine:

@@ -7,7 +7,6 @@
   category: Small
   group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/tide.yml
-  guidebookPage: ShipyardTide
   class:
   - Scrapyard
   engine:

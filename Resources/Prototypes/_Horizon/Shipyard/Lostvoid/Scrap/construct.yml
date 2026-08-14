@@ -7,7 +7,6 @@
   category: Micro
   group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/construct.yml
-  guidebookPage: ShipyardConstruct
   class:
   - Scrapyard
   engine:

@@ -1,23 +1,12 @@
-# Author Info
-# GitHub: ???
-# Discord: ???
-
-# Maintainer Info
-# GitHub: ???
-# Discord: ???
-
-# Shuttle Notes:
-#
 - type: vessel
   id: NuggetLostVoid
   parent: BaseVessel
   name: SV Nugget
   description: A flying hunk of wood and metal disguised as a kitchen shuttle. Not FDA approved.
-  price: 15950 # +1450 from 10% Markup
+  price: 15950
   category: Small
   group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/nugget.yml
-  guidebookPage: Null
   class:
   - Scrapyard
   engine:
