@@ -40,6 +40,22 @@ public sealed partial class NFCargoOrderConsoleComponent : Component
     public Dictionary<SectorBankAccount, float> TaxAccounts = new();
 
     /// <summary>
+    /// Horizon: If true, this console ignores bank funds entirely. The order can only be paid for
+    /// by selling goods placed on the sale pallets linked to this console (see NFCargoPalletConsoleComponent
+    /// on the same entity). Whether the excess value is returned to the buyer is controlled by
+    /// <see cref="GiveChange"/> - by default it is lost.
+    /// </summary>
+    [DataField]
+    public bool BarterOnly;
+
+    /// <summary>
+    /// Horizon: If true, any pallet value left over after paying for a barter order is spawned as
+    /// <see cref="CashType"/> and given to the buyer. If false (default), the excess is lost.
+    /// </summary>
+    [DataField]
+    public bool GiveChange;
+
+    /// <summary>
     /// The time at which the console will be able to play the deny sound.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]

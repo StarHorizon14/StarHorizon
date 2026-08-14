@@ -1,0 +1,97 @@
+- type: entity
+  id: ComputerCargoBarter
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
+  name: barter computer
+  description: Used to order supplies in exchange for goods placed on the connected sale pallets.
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: NFCargoOrderConsole
+    barterOnly: true
+    giveChange: false # Set to true to spawn leftover pallet value as cash for the buyer.
+    allowedGroups: ["market"]
+  - type: NFCargoPalletConsole
+    palletDistance: 8
+  - type: MarketModifier
+    buy: false
+    mod: 1.0
+  - type: ActivatableUI
+    key: enum.NFCargoConsoleUiKey.Orders
+  - type: UserInterface
+    interfaces:
+      enum.NFCargoConsoleUiKey.Orders:
+        type: CargoOrderConsoleNFBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: CargoRequestComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#b89f25"
+  - type: AccessReader
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: DeviceLinkSource
+    range: 200
+    ports:
+      - OrderSender
+
+# Concrete tiers
+
+- type: entity
+  parent: ComputerCargoBarter
+  id: ComputerCargoBarterVeryHighMarket
+  suffix: VeryHigh
+  components:
+  - type: MarketModifier
+    buy: false
+    mod: 1.50
+
+- type: entity
+  parent: ComputerCargoBarter
+  id: ComputerCargoBarterHighMarket
+  suffix: High
+  components:
+  - type: MarketModifier
+    buy: false
+    mod: 1.25
+
+- type: entity
+  parent: ComputerCargoBarter
+  id: ComputerCargoBarterNormalMarket
+  suffix: Normal
+  components:
+  - type: MarketModifier
+    buy: false
+    mod: 1.0
+
+- type: entity
+  parent: ComputerCargoBarter
+  id: ComputerCargoBarterLowMarket
+  suffix: Low
+  components:
+  - type: MarketModifier
+    buy: false
+    mod: 0.75
+
+- type: entity
+  parent: ComputerCargoBarter
+  id: ComputerCargoBarterVeryLowMarket
+  suffix: VeryLow
+  components:
+  - type: MarketModifier
+    buy: false
+    mod: 0.50

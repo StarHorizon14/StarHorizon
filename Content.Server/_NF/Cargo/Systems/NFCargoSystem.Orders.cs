@@ -8,6 +8,7 @@ using Content.Shared._NF.Cargo.Components;
 using Content.Shared._NF.Cargo.BUI;
 using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
+using Content.Shared.Coordinates;
 using Content.Shared.Database;
 using Content.Shared.Labels.Components;
 using Content.Shared.Paper;
@@ -84,7 +85,7 @@ public sealed partial class NFCargoSystem
             return;
         }
 
-        if (!HasComp<BankAccountComponent>(player))
+        if (!ent.Comp.BarterOnly && !HasComp<BankAccountComponent>(player)) // Horizon: barter consoles don't need a bank account
         {
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-nf-no-bank-account"));
             PlayDenySound(ent);
@@ -125,8 +126,18 @@ public sealed partial class NFCargoSystem
 
         var cost = data.Price * data.OrderQuantity;
 
+        // Horizon: barter consoles pay for the order by selling goods on their linked pallets instead of using bank funds.
+        if (ent.Comp.BarterOnly)
+        {
+            if (!TryPayWithBarter(ent, player, cost, out var barterError))
+            {
+                ConsolePopup(args.Actor, Loc.GetString(barterError, ("cost", cost)));
+                PlayDenySound(ent);
+                return;
+            }
+        }
         // Not enough balance
-        if (!_bank.TryBankWithdraw(player, cost))
+        else if (!_bank.TryBankWithdraw(player, cost))
         {
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", cost)));
             PlayDenySound(ent);
@@ -170,8 +181,11 @@ public sealed partial class NFCargoSystem
             if (!TryComp(user, out MetaDataComponent? meta))
                 continue;
 
+            // Horizon: barter consoles show the appraised value of goods on their linked pallets instead of a bank balance.
             var balance = 0;
-            if (TryComp<BankAccountComponent>(user, out var playerBank))
+            if (ent.Comp.BarterOnly)
+                balance = (int)GetBarterPalletValue(ent, stationGrid, user);
+            else if (TryComp<BankAccountComponent>(user, out var playerBank))
                 balance = playerBank.Balance;
 
             if (station == null || !TryGetOrderDatabase(station.Value, out var _, out var orderDatabase))
@@ -343,6 +357,64 @@ public sealed partial class NFCargoSystem
         return true;
 
     }
+
+    // Horizon: barter payment
+    /// <summary>
+    /// Calculates the appraised value of goods currently sitting on the sale pallets linked to a barter
+    /// console, applying the console's MarketModifier if present. Mirrors UpdatePalletConsoleInterface.
+    /// </summary>
+    private double GetBarterPalletValue(Entity<NFCargoOrderConsoleComponent> ent, EntityUid gridUid, EntityUid actor)
+    {
+        if (!TryComp<NFCargoPalletConsoleComponent>(ent, out var palletComp))
+            return 0;
+
+        GetPalletGoods((ent.Owner, palletComp), gridUid, actor, out _, out var amount, out var noModAmount, out _);
+        if (TryComp<MarketModifierComponent>(ent, out var priceMod))
+            amount *= priceMod.Mod;
+        amount += noModAmount;
+
+        return amount;
+    }
+
+    /// <summary>
+    /// Attempts to pay for an order entirely by selling the goods on the console's linked sale pallets.
+    /// If <see cref="NFCargoOrderConsoleComponent.GiveChange"/> is true, any value left over after paying
+    /// for the order is spawned as cash and handed to the buyer; otherwise the excess is lost.
+    /// </summary>
+    private bool TryPayWithBarter(Entity<NFCargoOrderConsoleComponent> ent, EntityUid player, int cost, out LocId error)
+    {
+        error = "cargo-console-barter-no-pallets";
+
+        if (!TryComp<NFCargoPalletConsoleComponent>(ent, out var palletComp)
+            || !TryComp(ent, out TransformComponent? xform)
+            || xform.GridUid is not { } gridUid)
+            return false;
+
+        var amount = GetBarterPalletValue(ent, gridUid, player);
+        if (amount < cost)
+        {
+            error = "cargo-console-barter-insufficient-goods";
+            return false;
+        }
+
+        if (!SellPallets((ent.Owner, palletComp), gridUid, player, out _, out _, out _))
+            return false;
+
+        if (ent.Comp.GiveChange)
+        {
+            var change = (int)(amount - cost);
+            if (change > 0)
+            {
+                var stackPrototype = _proto.Index(ent.Comp.CashType);
+                var stackUid = _stack.Spawn(change, stackPrototype, player.ToCoordinates());
+                if (!_hands.TryPickupAnyHand(player, stackUid))
+                    _transform.SetLocalRotation(stackUid, Angle.Zero);
+            }
+        }
+
+        return true;
+    }
+    // End Horizon: barter payment
 
     private bool TryGetOrderDatabase(EntityUid uid, [NotNullWhen(true)] out EntityUid? dbUid, [NotNullWhen(true)] out NFStationCargoOrderDatabaseComponent? dbComp)
     {
