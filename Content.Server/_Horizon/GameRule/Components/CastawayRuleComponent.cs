@@ -1,4 +1,6 @@
+using Content.Shared.Procedural;
 using Content.Shared.Roles;
+using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -11,10 +13,30 @@ public sealed partial class CastawayRuleComponent : Component
     public ProtoId<StartingGearPrototype> StartingGear = "CastawayGear";
 
     [DataField]
-    public int MinDistance = 4000;
+    public int MinDistance = 500;
 
     [DataField]
-    public int MaxDistance = 6000;
+    public int MaxDistance = 1000;
+
+    /// <summary>
+    /// Starting gear for the derelict pod scenario: no suit/helmet, just what a passenger would wear.
+    /// </summary>
+    [DataField]
+    public ProtoId<StartingGearPrototype> PodStartingGear = "CastawayPodGear";
+
+    /// <summary>
+    /// Map loaded for the derelict pod scenario; the player is spawned inside a MedicalPodSpawn
+    /// entity hand-placed on this map.
+    /// </summary>
+    [DataField]
+    public ResPath PodMapPath = new("/Maps/_Horizon/Lostvoid/derelict.yml");
+
+    /// <summary>
+    /// Name of the hand-placed wreck grid on PodMapPath that becomes the player's ShuttleDeed
+    /// property for the derelict pod scenario, matched by its MetaData entity name.
+    /// </summary>
+    [DataField]
+    public string PodWreckGridName = "Разрушеный шаттл";
 
     /// <summary>
     /// Candidate wreck grids spawned near the player; one is picked at random.
@@ -97,6 +119,40 @@ public sealed partial class CastawayRuleComponent : Component
     /// </summary>
     [DataField]
     public int MapWreckPlacementRetries = 10;
+
+    /// <summary>
+    /// Procedurally-generated dungeons (with mobs) scattered across the map at round start, same
+    /// generation as the BluespaceErrorRule station event's VGRoid dungeons, but spawned directly
+    /// by this rule instead of through the station-event scheduler/announcement pipeline.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<DungeonConfigPrototype>> MapDungeons =
+    [
+        "NFVGRoidBasalt",
+        "NFVGRoidSnow",
+        "NFVGRoidCave",
+        "NFVGRoidChromite",
+    ];
+
+    [DataField]
+    public List<ProtoId<SalvageFactionPrototype>> MapDungeonFactions =
+    [
+        "NFXenos",
+        "NFCarps",
+        "NFFlesh",
+    ];
+
+    /// <summary>
+    /// Mob spawn budget for each dungeon, same meaning as DungeonSpawnComponent.MobBudget.
+    /// </summary>
+    [DataField]
+    public int MapDungeonMobBudget = 30;
+
+    /// <summary>
+    /// How many dungeons to scatter across the map at round start.
+    /// </summary>
+    [DataField]
+    public int MapDungeonCount = 5;
 
     /// <summary>
     /// Survival items scattered in space around the player's spawn point.

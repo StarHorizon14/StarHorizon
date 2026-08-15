@@ -1,0 +1,23 @@
+- type: entity
+  parent: MedicalPod
+  id: MedicalPodSpawn
+  suffix: Castaway Spawn
+  components:
+  - type: EntityStorage
+    openSound: /Audio/Mecha/mechmove03.ogg # Internals on/off
+    closeSound: /Audio/Mecha/mechmove03.ogg # Internals on/off
+    capacity: 1
+    airtight: true
+    air:
+      volume: 200
+      temperature: 235
+      moles:
+        - 1.7417897
+        - 6.5703363
+        - 0
+        - 0
+        - 0
+        - 10 # water vapor
+    whitelist:
+      components:
+      - CanEnterCryostorage

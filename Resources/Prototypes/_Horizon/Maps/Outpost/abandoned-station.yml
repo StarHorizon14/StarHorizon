@@ -19,4 +19,5 @@
           lobbySortOrder: 1
         - type: StationJobs
           availableJobs:
-            Contractor: [ -1, -1 ]
+            CastawaySurvivor: [ -1, -1 ]
+            CastawaySleeper: [ -1, -1 ]
