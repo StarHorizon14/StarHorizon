@@ -5,9 +5,9 @@
   description: Перчатки, созданные для боя с фауной, даже если вы потеряли своё оружие.
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/powerglove.rsi
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/Arm/Gloves.rsi
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/powerglove.rsi
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/Arm/Gloves.rsi
   - type: MeleeWeapon
     autoAttack: False
     attackRate: 2
