@@ -1,0 +1,40 @@
+{
+    "version": 1,
+    "license": null,
+    "copyright": null,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "random",
+            "delays": [
+                [
+                    2.5,
+                    0.1,
+                    0.4,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "random-broken"
+        },
+        {
+            "name": "random-off"
+        },
+        {
+            "name": "random-deny",
+            "delays": [
+                [
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "random-light-mask"
+        }
+    ]
+}

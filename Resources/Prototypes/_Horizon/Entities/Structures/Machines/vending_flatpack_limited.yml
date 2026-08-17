@@ -1,0 +1,62 @@
+- type: entity
+  parent: VendingMachineFlatpackVend
+  id: VendingMachineFlatpackVendLimited
+  name: FlatpackVend
+  suffix: Limited Stock
+  components:
+  - type: VendingMachine
+    pack: FlatpackVendLimitedInventory
+
+- type: entity
+  parent: VendingMachineExpeditionaryFlatpackVend
+  id: VendingMachineExpeditionaryFlatpackVendLimited
+  name: Expeditionary FlatpackVend
+  suffix: Limited Stock
+  components:
+  - type: VendingMachine
+    pack: ExpeditionaryFlatpackVendLimitedInventory
+
+- type: entity
+  parent: [BaseMachinePowered, BaseStructureDisableToolUse, BaseStructureIndestructible]
+  id: ScrapVoucherVendingMachine
+  name: Автомат с ваунчерами
+  description: Выдаёт бесплатный ваунчер, один ваунчер в одни руки, не наглейте.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/scrapvouchervend.rsi
+    snapCardinals: true
+    state: custom
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.45,0.25,0.45"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: InteractionOutline
+  - type: LimitedItemGiver
+    spawnEntries:
+    - id: ShipVoucherFrontierScrap
+    receivedPopup: scrap-voucher-vend-received-popup
+    deniedPopup: scrap-voucher-vend-denied-popup
+    sound:
+      path: /Audio/Machines/machine_vend.ogg

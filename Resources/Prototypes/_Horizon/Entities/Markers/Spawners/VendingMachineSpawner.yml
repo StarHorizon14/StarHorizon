@@ -1,0 +1,287 @@
+- type: entityTable
+  id: VendingMachineAnyTable
+  table: !type:GroupSelector
+    children:
+    - id: LessLethalVendingMachine
+      weight: 1
+    - id: NFVendingMachineCart
+      weight: 1
+    # - id: NFVendingMachineCartNfsd
+    #   weight: 1
+    - id: NFVendingMachineMagivend
+      weight: 1
+    - id: NonLethalVendingMachine
+      weight: 1
+    - id: PirateBountyVendingMachine
+      weight: 1
+    - id: VendingMachineAmmo
+      weight: 1
+    - id: VendingMachineAnCo
+      weight: 1
+    - id: VendingMachineAnCoWeapon
+      weight: 1
+    - id: VendingMachineArcadia
+      weight: 1
+    - id: VendingMachineAstroVend
+      weight: 1
+    - id: VendingMachineAtmosDrobe
+      weight: 1
+    - id: VendingMachineAutoTuneVend
+      weight: 1
+    - id: VendingMachineBooze
+      weight: 1
+    - id: VendingMachineBoozeSyndicate
+      weight: 1
+    - id: VendingMachineBountyVend
+      weight: 1
+    - id: VendingMachineBountyVendPunk
+      weight: 1
+    - id: VendingMachineBoxingDrobe
+      weight: 1
+    - id: VendingMachineCargoDrobe
+      weight: 1
+    - id: VendingMachineCart
+      weight: 1
+    - id: VendingMachineCentDrobe
+      weight: 1
+    - id: VendingMachineChang
+      weight: 1
+    - id: VendingMachineChapel
+      weight: 1
+    - id: VendingMachineChefDrobe
+      weight: 1
+    - id: VendingMachineChefvend
+      weight: 1
+    - id: VendingMachineChemDrobe
+      weight: 1
+    - id: VendingMachineChemicals
+      weight: 1
+    - id: VendingMachineChemicalsSyndicate
+      weight: 1
+    - id: VendingMachineCigs
+      weight: 1
+    - id: VendingMachineCiviMed
+      weight: 1
+    - id: VendingMachineCiviMedPlus
+      weight: 1
+    - id: VendingMachineClothing
+      weight: 1
+    - id: VendingMachineClothingPunk
+      weight: 1
+    - id: VendingMachineCoffee
+      weight: 1
+    - id: VendingMachineCola
+      weight: 1
+    - id: VendingMachineColaBlack
+      weight: 1
+    - id: VendingMachineColaRed
+      weight: 1
+    - id: VendingMachineCondiments
+      weight: 1
+    - id: VendingMachineCuddlyCritterVend
+      weight: 1
+    - id: VendingMachineCuraDrobe
+      weight: 1
+    - id: VendingMachineDetDrobe
+      weight: 1
+    - id: VendingMachineDinnerware
+      weight: 1
+    - id: VendingMachineDiscount
+      weight: 1
+    - id: VendingMachineDonut
+      weight: 1
+    - id: VendingMachineDrGibb
+      weight: 1
+    - id: VendingMachineEngiDrobe
+      weight: 1
+    - id: VendingMachineEngivend
+      weight: 1
+    - id: VendingMachineExpeditionaryFlatpackVendLimited
+      weight: 1
+    - id: VendingMachineFlatpackVendLimited
+      weight: 1
+    - id: VendingMachineFuelVend
+      weight: 1
+    - id: VendingMachineGames
+      weight: 1
+    - id: VendingMachineGeneDrobe
+      weight: 1
+    - id: VendingMachineHappyHonk
+      weight: 1
+    - id: VendingMachineHydrobe
+      weight: 1
+    - id: VendingMachineJaniDrobe
+      weight: 1
+    - id: VendingMachineLawDrobe
+      weight: 1
+    - id: VendingMachineMagivend
+      weight: 1
+    - id: VendingMachineMagivendConjured
+      weight: 1
+    - id: VendingMachineMailDrobe
+      weight: 1
+    - id: VendingMachineMailVend
+      weight: 1
+    - id: VendingMachineMediDrobe
+      weight: 1
+    - id: VendingMachineMedical
+      weight: 1
+    - id: VendingMachineNfsdDrobe
+      weight: 1
+    - id: VendingMachineNfsdTech
+      weight: 1
+    - id: VendingMachineNutri
+      weight: 1
+    - id: VendingMachinePickNPack
+      weight: 1
+    - id: VendingMachinePottedPlantVend
+      weight: 1
+    - id: VendingMachinePwrGame
+      weight: 1
+    - id: VendingMachineRepDrobe
+      weight: 1
+    - id: VendingMachineRoboDrobe
+      weight: 1
+    - id: VendingMachineRobotics
+      weight: 1
+    - id: VendingMachineSalvage
+      weight: 1
+    - id: VendingMachineSciDrobe
+      weight: 1
+    - id: VendingMachineSec
+      weight: 1
+    - id: VendingMachineSecDrobe
+      weight: 1
+    - id: VendingMachineSeeds
+      weight: 1
+    - id: VendingMachineSeedsUnlocked
+      weight: 1
+    - id: VendingMachineShamblersJuice
+      weight: 1
+    - id: VendingMachineSmite
+      weight: 1
+    - id: VendingMachineSnack
+      weight: 1
+    - id: VendingMachineSnackBlue
+      weight: 1
+    - id: VendingMachineSnackGreen
+      weight: 1
+    - id: VendingMachineSnackOrange
+      weight: 1
+    - id: VendingMachineSnackTeal
+      weight: 1
+    - id: VendingMachineSoda
+      weight: 1
+    - id: VendingMachineSovietSoda
+      weight: 1
+    - id: VendingMachineSpaceUp
+      weight: 1
+    - id: VendingMachineStardrop
+      weight: 1
+    - id: VendingMachineStarkist
+      weight: 1
+    - id: VendingMachineSustenance
+      weight: 1
+    - id: VendingMachineSyndieContraband
+      weight: 1
+    - id: VendingMachineSyndieDrobe
+      weight: 1
+    - id: VendingMachineTankDispenserEVA
+      weight: 1
+    - id: VendingMachineTankDispenserEngineering
+      weight: 1
+    - id: VendingMachineTheater
+      weight: 1
+    - id: VendingMachineUnderwear
+      weight: 1
+    - id: VendingMachineValetDrobe
+      weight: 1
+    - id: VendingMachineVendomat
+      weight: 1
+    - id: VendingMachineViroDrobe
+      weight: 1
+    - id: VendingMachineWallMedical
+      weight: 1
+    - id: VendingMachineWinter
+      weight: 1
+    - id: VendingMachineYarrrDrobe
+      weight: 1
+    - id: VendingMachineYouTool
+      weight: 1
+
+- type: entity
+  id: VendingMachineAnySpawner
+  parent: MarkerBase
+  name: vending machine spawner (any)
+  suffix: Random Vending
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/snack.rsi
+    state: normal-unshaded
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: VendingMachineAnyTable
+
+- type: entityTable
+  id: VendingMachinePOITable
+  table: !type:GroupSelector
+    children:
+    - id: LessLethalVendingMachinePOI
+      weight: 1
+    - id: NonLethalVendingMachinePOI
+      weight: 1
+    - id: VendingMachineAmmoPOI
+      weight: 1
+    # - id: VendingMachineAmmoPOIMercenary
+    #   weight: 1
+    - id: VendingMachineAstroVendPOI
+      weight: 1
+    - id: VendingMachineAutoTuneVendPOI
+      weight: 1
+    - id: VendingMachineBoozePOI
+      weight: 1
+    - id: VendingMachineBountyVendPOI
+      weight: 1
+    - id: VendingMachineCigsPOI
+      weight: 1
+    - id: VendingMachineCuddlyCritterVendPOI
+      weight: 1
+    - id: VendingMachineEngivendPOI
+      weight: 1
+    - id: VendingMachineExpeditionaryFlatpackVend
+      weight: 1
+    - id: VendingMachineFlatpackVend
+      weight: 1
+    - id: VendingMachineGamesPOI
+      weight: 1
+    - id: VendingMachineMediDrobePOI
+      weight: 1
+    - id: VendingMachinePickNPackPOI
+      weight: 1
+    - id: VendingMachinePottedPlantVendPOI
+      weight: 1
+    - id: VendingMachineSalvagePOI
+      weight: 1
+    - id: VendingMachineTankDispenserEVAPOI
+      weight: 1
+    - id: VendingMachineVendomatPOI
+      weight: 1
+    - id: VendingMachineYouToolPOI
+      weight: 1
+
+- type: entity
+  id: VendingMachinePOISpawner
+  parent: MarkerBase
+  name: vending machine spawner (POI)
+  suffix: Random Vending, POI
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/snack.rsi
+    state: normal-unshaded
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: VendingMachinePOITable

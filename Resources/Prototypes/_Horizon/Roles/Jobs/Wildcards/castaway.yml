@@ -15,6 +15,13 @@
     shoes: ClothingShoesColorBlack
     id: CastawayPDA
 
+- type: startingGear
+  id: CastawayEscapeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    shoes: ClothingShoesColorBlack
+    id: CastawayPDA
+
 # Сценарий 1: в космосе с разбросаными вещами и шаттлом
 - type: job
   id: CastawaySurvivor
@@ -40,3 +47,16 @@
 
 - type: playTimeTracker
   id: JobCastawaySleeper
+
+# Сценарий 3: побег с крейсера синдиката
+- type: job
+  id: CastawayEscapee
+  name: castaway-job-name-escapee
+  description: castaway-job-description-escapee
+  playTimeTracker: JobCastawayEscapee
+  setPreference: false
+  startingGear: CastawayEscapeGear
+  icon: "JobIconPassenger"
+
+- type: playTimeTracker
+  id: JobCastawayEscapee

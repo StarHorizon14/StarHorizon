@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Server._Horizon.GameRule.Components;
 using Content.Server.Access.Systems;
 using Content.Server.Body.Components;
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Clothing.Systems;
 using Content.Server.Maps.NameGenerators;
@@ -19,6 +20,7 @@ using Content.Server.Worldgen.Components;
 using Content.Shared._Horizon.Castaway;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared.Access.Components;
+using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Damage;
@@ -37,6 +39,7 @@ using Content.Shared.Roles;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
+using Robust.Shared.Enums;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.EntitySerialization;
@@ -44,9 +47,11 @@ using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Horizon.GameRule;
 
@@ -59,6 +64,7 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
     [Dependency] private readonly AnchorableSystem _anchorable = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly DungeonSystem _dungeon = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
@@ -237,12 +243,16 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
             _mind.SetUserId(newMind, ev.Player.UserId);
 
             // Players pick their scenario in the lobby via the job selector (CastawaySurvivor vs
-            // CastawaySleeper). Alternate scenarios can fail to set up if their hand-placed map
-            // content is missing or malformed; scenario 1 only depends on the always-present
-            // WreckGridPaths, so it's the safe fallback for any of them, including an unset job.
-            var mob = ev.JobId == "CastawaySleeper"
-                ? SpawnPodScenario(castaway, ev)
-                : null;
+            // CastawaySleeper vs CastawayEscapee). Alternate scenarios can fail to set up if their
+            // hand-placed map content is missing or malformed; scenario 1 only depends on the
+            // always-present WreckGridPaths, so it's the safe fallback for any of them, including an
+            // unset job.
+            var mob = ev.JobId switch
+            {
+                "CastawaySleeper" => SpawnPodScenario(castaway, ev),
+                "CastawayEscapee" => SpawnEscapeScenario(castaway, ev),
+                _ => null,
+            };
 
             var spawnedMob = mob ?? SpawnWreckScenario(castaway, ev);
 
@@ -325,6 +335,114 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
             RegisterWreckOwnership(mob, wreckGrid, ev.Profile.Name);
 
         return mob;
+    }
+
+    // Scenario 3: player wakes up a prisoner aboard a hijacked syndicate ship. Movement is locked
+    // while the intercom and a hidden radio walk them through what's happening; once the radio
+    // finishes, they're set free, and EscapeAlarmDelay later the "shuttle doomed" warning and
+    // tension music kick in. The whole map (player included) is deleted after EscapeMapLifetimeAfterMusic
+    // regardless of whether they made it onto the escape shuttle by then, so RegisterWreckOwnership
+    // only matters if they fly it away before that.
+    private EntityUid? SpawnEscapeScenario(CastawayRuleComponent castaway, PlayerBeforeSpawnEvent ev)
+    {
+        var loadOptions = new DeserializationOptions { InitializeMaps = true };
+        if (!_mapLoader.TryLoadMap(castaway.EscapeMapPath, out var map, out _, loadOptions))
+            return null;
+
+        var mapUid = map.Value.Owner;
+        EnsureComp<CastawayMapComponent>(mapUid);
+
+        var spawn = FindEntityByProtoId(mapUid, castaway.EscapeSpawnMarker);
+        if (spawn is null)
+        {
+            QueueDel(mapUid);
+            return null;
+        }
+
+        var coords = Transform(spawn.Value).Coordinates;
+        var mob = _stationSpawning.SpawnPlayerMob(coords, null, ev.Profile, null, session: ev.Player);
+        _outfit.SetOutfit(mob, castaway.EscapeStartingGear);
+        EnsureComp<AdminFrozenComponent>(mob);
+
+        if (FindNamedGrid(mapUid, castaway.EscapeShuttleGridName) is { } shuttleGrid)
+            RegisterWreckOwnership(mob, shuttleGrid, ev.Profile.Name);
+
+        RunHijackSequence(castaway, mapUid, mob, ev.Player);
+
+        return mob;
+    }
+
+    // Intercom (announces the boarding) -> radio hidden in the dresser (two lines guiding the
+    // player out) -> movement unlocked -> after a delay, the "shuttle doomed" warning + tension
+    // music -> the whole map is deleted after its own further delay.
+    private void RunHijackSequence(CastawayRuleComponent castaway, EntityUid mapUid, EntityUid mob, ICommonSession session)
+    {
+        var intercom = FindEntityByProtoId(mapUid, castaway.EscapeIntercomMarker);
+        var radio = FindEntityByProtoId(mapUid, castaway.EscapeRadioMarker);
+
+        var elapsed = castaway.EscapeIntercomDelay;
+        Timer.Spawn(elapsed, () =>
+        {
+            if (intercom is { } i && !Deleted(i))
+                _chat.TrySendInGameICMessage(i, castaway.EscapeIntercomMessage, InGameICChatType.Speak, ChatTransmitRange.Normal, ignoreActionBlocker: true);
+        });
+
+        foreach (var line in castaway.EscapeRadioMessages)
+        {
+            elapsed += castaway.EscapeRadioLineGap;
+            var delay = elapsed;
+
+            Timer.Spawn(delay, () =>
+            {
+                if (radio is { } r && !Deleted(r))
+                    _chat.TrySendInGameICMessage(r, line, InGameICChatType.Speak, ChatTransmitRange.Normal, ignoreActionBlocker: true);
+            });
+        }
+
+        // Movement unlocks the moment the last radio line is spoken.
+        Timer.Spawn(elapsed, () =>
+        {
+            if (!Deleted(mob))
+                RemComp<AdminFrozenComponent>(mob);
+        });
+
+        var alarmDelay = elapsed + castaway.EscapeAlarmDelay;
+        Timer.Spawn(alarmDelay, () =>
+        {
+            if (Deleted(mob) || session.Status != SessionStatus.InGame)
+                return;
+
+            var sender = Loc.GetString(castaway.EscapeAlarmSender);
+            var wrapped = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(castaway.EscapeAlarmMessage)));
+            _chatManager.ChatMessageToManyFiltered(Filter.SinglePlayer(session), ChatChannel.Radio, castaway.EscapeAlarmMessage, wrapped, mob, false, true, castaway.EscapeAlarmColor);
+
+            _audio.PlayGlobal(castaway.EscapeMusic, session);
+        });
+
+        Timer.Spawn(alarmDelay + castaway.EscapeMusicLength + castaway.EscapeExplosionDelay, () =>
+        {
+            if (!Deleted(mapUid))
+                QueueDel(mapUid);
+        });
+    }
+
+    // Searches a map's entity tree for the first entity spawned from the given prototype (e.g. a
+    // hand-placed SpawnPointPrisoner marker), since it could be nested a few levels deep.
+    private EntityUid? FindEntityByProtoId(EntityUid root, string protoId)
+    {
+        var xform = Transform(root);
+        var children = xform.ChildEnumerator;
+
+        while (children.MoveNext(out var child))
+        {
+            if (Comp<MetaDataComponent>(child).EntityPrototype?.ID == protoId)
+                return child;
+
+            if (FindEntityByProtoId(child, protoId) is { } found)
+                return found;
+        }
+
+        return null;
     }
 
     // Gap in seconds before each line, from the previous one (or from spawn for the first line).

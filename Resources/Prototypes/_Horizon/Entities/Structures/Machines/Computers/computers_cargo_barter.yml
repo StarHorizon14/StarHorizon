@@ -21,6 +21,9 @@
     barterOnly: true
     giveChange: false # Set to true to spawn leftover pallet value as cash for the buyer.
     allowedGroups: ["market"]
+    randomizeProducts: true
+    minRandomProducts: 5
+    maxRandomProducts: 15
   - type: NFCargoPalletConsole
     palletDistance: 8
   - type: MarketModifier
@@ -48,6 +51,8 @@
     range: 200
     ports:
       - OrderSender
+  - type: AutoLinkTransmitter
+    channel: CargoBarter
 
 # Concrete tiers
 

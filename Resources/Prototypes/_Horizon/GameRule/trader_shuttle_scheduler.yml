@@ -1,0 +1,13 @@
+- type: entityTable
+  id: HorizonCastawayEventsTable
+  table: !type:AllSelector
+    children:
+    - id: TraderShuttleArrival
+
+- type: entity
+  id: HorizonCastawayEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: HorizonCastawayEventsTable

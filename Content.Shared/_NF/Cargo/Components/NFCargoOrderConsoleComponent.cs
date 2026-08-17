@@ -11,7 +11,7 @@ namespace Content.Shared._NF.Cargo.Components;
 /// <summary>
 /// Handles sending order requests to cargo. Doesn't handle orders themselves via shuttle or telepads.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause, AutoGenerateComponentState]
 [Access(typeof(SharedNFCargoSystem))]
 public sealed partial class NFCargoOrderConsoleComponent : Component
 {
@@ -39,19 +39,9 @@ public sealed partial class NFCargoOrderConsoleComponent : Component
     [DataField]
     public Dictionary<SectorBankAccount, float> TaxAccounts = new();
 
-    /// <summary>
-    /// Horizon: If true, this console ignores bank funds entirely. The order can only be paid for
-    /// by selling goods placed on the sale pallets linked to this console (see NFCargoPalletConsoleComponent
-    /// on the same entity). Whether the excess value is returned to the buyer is controlled by
-    /// <see cref="GiveChange"/> - by default it is lost.
-    /// </summary>
     [DataField]
     public bool BarterOnly;
 
-    /// <summary>
-    /// Horizon: If true, any pallet value left over after paying for a barter order is spawned as
-    /// <see cref="CashType"/> and given to the buyer. If false (default), the excess is lost.
-    /// </summary>
     [DataField]
     public bool GiveChange;
 
@@ -66,4 +56,17 @@ public sealed partial class NFCargoOrderConsoleComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan DenySoundDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public bool RandomizeProducts;
+
+    [DataField]
+    public int MinRandomProducts = 5;
+
+    [DataField]
+    public int MaxRandomProducts = 10;
+
+    [DataField, AutoNetworkedField]
+    [Access(typeof(SharedNFCargoSystem), Other = AccessPermissions.ReadExecute)]
+    public List<ProtoId<CargoProductPrototype>> AllowedProductIds = new();
 }

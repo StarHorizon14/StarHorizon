@@ -21,3 +21,4 @@
           availableJobs:
             CastawaySurvivor: [ -1, -1 ]
             CastawaySleeper: [ -1, -1 ]
+            CastawayEscapee: [ -1, -1 ]

@@ -1,0 +1,69 @@
+- type: entityTable
+  id: CargoBarterConsoleMarketTiers
+  table: !type:GroupSelector
+    children:
+    - id: ComputerCargoBarterVeryHighMarket
+      weight: 0.05
+    - id: ComputerCargoBarterHighMarket
+      weight: 0.15
+    - id: ComputerCargoBarterNormalMarket
+      weight: 0.3
+    - id: ComputerCargoBarterLowMarket
+      weight: 0.3
+    - id: ComputerCargoBarterVeryLowMarket
+      weight: 0.2
+
+- type: entity
+  id: CargoBarterConsoleSpawner
+  parent: MarkerBase
+  name: barter console spawner
+  suffix: Random Markup
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: Structures/Machines/computers.rsi
+      state: computer
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: request
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: CargoBarterConsoleMarketTiers
+
+- type: entityTable
+  id: CargoBarterConsoleTabletopMarketTiers
+  table: !type:GroupSelector
+    children:
+    - id: ComputerTabletopCargoBarterVeryHighMarket
+      weight: 0.05
+    - id: ComputerTabletopCargoBarterHighMarket
+      weight: 0.15
+    - id: ComputerTabletopCargoBarterNormalMarket
+      weight: 0.3
+    - id: ComputerTabletopCargoBarterLowMarket
+      weight: 0.3
+    - id: ComputerTabletopCargoBarterVeryLowMarket
+      weight: 0.2
+
+- type: entity
+  id: CargoBarterConsoleTabletopSpawner
+  parent: MarkerBase
+  name: barter console spawner (tabletop)
+  suffix: Random Markup, Tabletop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: request
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: CargoBarterConsoleTabletopMarketTiers

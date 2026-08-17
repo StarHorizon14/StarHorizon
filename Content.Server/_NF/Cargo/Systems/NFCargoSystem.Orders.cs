@@ -13,6 +13,7 @@ using Content.Shared.Database;
 using Content.Shared.Labels.Components;
 using Content.Shared.Paper;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Cargo.Systems;
 
@@ -34,7 +35,29 @@ public sealed partial class NFCargoSystem
         SubscribeLocalEvent<NFCargoOrderConsoleComponent, CargoConsoleAddOrderMessage>(OnAddOrderMessage);
         SubscribeLocalEvent<NFCargoOrderConsoleComponent, BoundUIOpenedEvent>(OnOrderUIOpened);
         SubscribeLocalEvent<NFCargoOrderConsoleComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<NFCargoOrderConsoleComponent, MapInitEvent>(OnConsoleMapInit);
         ResetOrders();
+    }
+
+    private void OnConsoleMapInit(Entity<NFCargoOrderConsoleComponent> ent, ref MapInitEvent args)
+    {
+        if (!ent.Comp.RandomizeProducts)
+            return;
+
+        var pool = new List<ProtoId<CargoProductPrototype>>();
+        foreach (var product in _proto.EnumeratePrototypes<CargoProductPrototype>())
+        {
+            if (ent.Comp.AllowedGroups.Contains(product.Group))
+                pool.Add(product.ID);
+        }
+
+        var min = Math.Min(ent.Comp.MinRandomProducts, pool.Count);
+        var max = Math.Min(ent.Comp.MaxRandomProducts, pool.Count);
+        var count = min >= max ? max : _random.Next(min, max + 1);
+
+        _random.Shuffle(pool);
+        ent.Comp.AllowedProductIds = pool.GetRange(0, count);
+        Dirty(ent);
     }
 
     public void ResetOrders()
@@ -106,6 +129,9 @@ public sealed partial class NFCargoSystem
         }
 
         if (!ent.Comp.AllowedGroups.Contains(product.Group))
+            return;
+
+        if (ent.Comp.RandomizeProducts && !ent.Comp.AllowedProductIds.Contains(product.ID))
             return;
 
         var data = GetOrderData(EntityManager.GetNetEntity(ent), args, product, GenerateOrderId(orderDatabase));
