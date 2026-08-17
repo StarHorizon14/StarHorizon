@@ -20,6 +20,26 @@
 
 - type: entity
   parent: [ClothingBackpack, BaseAnCoContraband]
+  id: AnCoBackpackDuffel
+  suffix: StarHorizon, AnCo
+  name: сегментированный вещмешок АнКо.
+  description: Вещмешок с углубленными карманами на удобном магнитном крепеже.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Back/Satchels/big.rsi
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,9,5
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: StaticPrice
+    price: 2500
+
+- type: entity
+  parent: [ClothingBackpack, BaseAnCoContraband]
   id: AnCosatchelDEBUG
   suffix: StarHorizon, AnCo, DEBUG
   name: ОЧЕНЬ глубокая сумка АнКо

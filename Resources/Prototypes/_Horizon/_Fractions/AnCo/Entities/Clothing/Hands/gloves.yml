@@ -30,3 +30,35 @@
     sprite: _Horizon/_Fractions/AnCo/Clothing/Hands/Gloves/gloves.rsi
   - type: StaticPrice
     price: 500
+
+- type: entity
+  parent: [ClothingHandsGlovesSyntheticBase, BaseAnCoContraband]
+  id: AnCoGlovesTitan
+  suffix: StarHorizon, AnCo
+  name:  перчатки Титана АнКо
+  description: Тяжелые перчатки, они куда тяжелее чем вы думаете.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Hands/Gloves/titan-gloves.rsi
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Hands/Gloves/titan-gloves.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: красные переливающиеся
+  - type: StaticPrice
+    price: 500
+  - type: AnCoWeaponWeight
+    weight: 1
+  - type: StaminaDamageOnHit
+    damage: 35
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: 20
+        Structural: 40
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
