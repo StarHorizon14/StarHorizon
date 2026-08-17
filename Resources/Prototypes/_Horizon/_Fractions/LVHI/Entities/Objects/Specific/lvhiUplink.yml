@@ -219,6 +219,16 @@
   - LVHIUplinkHardsuits
 
 - type: listing
+  id: LVHIListingClothingShoesBootsMagLVHI
+  name: "Боевые магнитные ботинки"
+  description: "Боевые магнитки LVHI"
+  productEntity: ClothingShoesBootsMagLVHI
+  cost:
+    LVHICrystal: 10
+  categories:
+  - LVHIUplinkHardsuits
+
+- type: listing
   id: LVHIListingLVHIClothingOuterElite
   name: "Элитный скафандр LVHI"
   description: "Элитный скафандр LVHI, предназначенный для работы в самых тяжелых условиях."
@@ -276,7 +286,7 @@
   description: "Алмазный бур для бурения твердых пород."
   productEntity: MiningDrillDiamond
   cost:
-    LVHICrystal: 8
+    LVHICrystal: 6
   categories:
   - LVHIUplinkMining
 
@@ -286,7 +296,7 @@
   description: "Энергетический инструмент для добычи руды из твердых пород."
   productEntity: NFEnergyPickaxe
   cost:
-    LVHICrystal: 8
+    LVHICrystal: 10
   categories:
   - LVHIUplinkMining
 
@@ -366,7 +376,7 @@
   description: "Блюспейс сумка от компании LVHI, намного больше обычной БС-сумки, да еще и с полной защитой от радиации."
   productEntity: LVHIOreBagOfHolding
   cost:
-    LVHICrystal: 25
+    LVHICrystal: 20
   categories:
   - LVHIUplinkMining
 
@@ -376,7 +386,7 @@
   description: "Сверхпрочный титановый бур LVHI с высоким уроном по твёрдой породе и стенам."
   productEntity: LVHIMiningDrillTitan
   cost:
-    LVHICrystal: 25
+    LVHICrystal: 15
   categories:
   - LVHIUplinkMining
 
@@ -386,7 +396,7 @@
   description: "Улучшенная кинетическая Рельса, а что вы еще ожидали от горнодобывающей компании?"
   productEntity: LVHIWeaponProtoKineticRailgun
   cost:
-    LVHICrystal: 35
+    LVHICrystal: 25
   categories:
   - LVHIUplinkMining
 
@@ -618,7 +628,7 @@
 
 - type: listing
   id: LVHIListingLVHIPlushAria
-  name: "Плюшевая ирушка Арии... Что она тут делает?"
+  name: "Плюшевая игрушка Арии... Что она тут делает?"
   description: "Игрушка с фиолетовыми глазами, относительно похожая на Арию, там вытикает что-то белое..."
   productEntity: LVHIPlushAria
   cost:

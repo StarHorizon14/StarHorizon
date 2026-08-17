@@ -1,0 +1,17 @@
+- type: entity
+  parent: NFClothingBackpack
+  id: ClothingBackpackExoLVHI
+  name: Экзоскелет LVHI
+  description: Экспериментальный образец грузового экзоскелета. В нём устранены конструктивные недостатки, кардинально снижавшие подвижность.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/Backpacks/exolvhi.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.10
+    sprintModifier: 1.20
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,9,6
