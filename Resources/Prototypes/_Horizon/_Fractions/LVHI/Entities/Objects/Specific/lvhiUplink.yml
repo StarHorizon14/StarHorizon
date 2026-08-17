@@ -636,3 +636,13 @@
   restockLimit: 1
   categories:
   - LVHIUplinkSpesoCrystal
+
+- type: listing
+  id: LVHIListingRubberStampLVHI
+  name: "Печать LVHI"
+  description: "Печать для подтверждения документаций."
+  productEntity: RubberStampLVHI
+  cost:
+    Speso: 2500
+  categories:
+  - LVHIUplinkSpesoCrystal
