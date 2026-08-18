@@ -4,7 +4,7 @@
   description: Упакованая турель корпорации АнКо.
   suffix: StarHorizon, AnCo
   parent:
-  - BaseAnCoContraband
+  - BaseTKAnCoContraband
   - BaseItem
   components:
   - type: WeaponCaseInsertable
@@ -28,7 +28,7 @@
   description: Автономная Защитная Турель корпорации АнКо, защищает даже когда все мертвы.
   suffix: StarHorizon, AnCo
   parent:
-  - BaseAnCoContraband
+  - BaseTKAnCoContraband
   - BaseWeaponTurretMagazineFed
   components:
   - type: NPCImprintingOnSpawnBehaviour

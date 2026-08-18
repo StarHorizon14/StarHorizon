@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseAnCoContraband, BaseToggleClothing]
+  parent: [ClothingOuterHardsuitBase, BaseOperAnCoContraband, BaseToggleClothing]
   id: ClothingOuterHardsuitSpider
   suffix: StarHorizon, AnCo, HardSuit
   name: скафандр офицера Паука АнКо
@@ -69,7 +69,7 @@
 
 # титан
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseAnCoContraband]
+  parent: [ClothingOuterHardsuitBase, BaseMaxAnCoContraband]
   id: ClothingOuterHardsuitTitan
   suffix: StarHorizon, AnCo, HardSuit
   name: cкафандр офицера Титана АнКо
@@ -130,7 +130,7 @@
 
 # рыцарь
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseAnCoContraband]
+  parent: [ClothingOuterHardsuitBase, BaseOperAnCoContraband]
   id: ClothingOuterHardsuitKnight
   suffix: StarHorizon, AnCo, HardSuit
   name: cкафандр офицера Рыцаря АнКо
@@ -280,7 +280,7 @@
     allowedFactions: []
 
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseAnCoContraband]
+  parent: [ClothingOuterHardsuitBase, BaseTKAnCoContraband]
   id: ClothingOuterHardsuitClifs
   suffix: StarHorizon, AnCo, HardSuit
   name: Скала
@@ -318,7 +318,7 @@
     clothingPrototype: ClothingHeadHardsuitClifs
 
 - type: entity
-  parent: [BaseAnCoContraband, ClothingOuterHardsuitMaximPrototype]
+  parent: [BaseTKAnCoContraband, ClothingOuterHardsuitMaximPrototype]
   id: ClothingOuterHardsuitAnCoMaximPrototype
   suffix: StarHorizon, AnCo, HardSuit
   name: корпоративный скафандр утилизатора
@@ -369,7 +369,7 @@
     moleUsage: 0.00045
 
 - type: entity
-  parent: [BaseAnCoContraband, ClothingOuterHardsuitJuggernaut]
+  parent: [BaseTKAnCoContraband, ClothingOuterHardsuitJuggernaut]
   id: ClothingOuterHardsuitAnCoJuggernaut
   suffix: StarHorizon, AnCo, HardSuit
   name: корпоративный скафандр джагернаута
@@ -386,7 +386,7 @@
     sprintModifier: 0.70
 
 - type: entity
-  parent: [BaseAnCoContraband, ClothingOuterHardsuitSyndie]
+  parent: [BaseTKAnCoContraband, ClothingOuterHardsuitSyndie]
   id: ClothingOuterHardsuitAnCoElite
   suffix: StarHorizon, AnCo, HardSuit
   name: корпоративный скафандр Феникса
@@ -426,7 +426,7 @@
     sprintModifier: 1.0
 
 - type: entity
-  parent: [BaseAnCoContraband, ClothingOuterHardsuitSyndie]
+  parent: [BaseTKAnCoContraband, ClothingOuterHardsuitSyndie]
   id: ClothingOuterHardsuitAnCoSyndie
   suffix: StarHorizon, AnCo, HardSuit
   name: корпоративный скафандр Отшельника

@@ -56,55 +56,93 @@
         - ReagentId: AnConanits
           Quantity: 100
 
-# - type: entity
-#   parent: [BaseItem, BaseAnCoContraband]
-#   id: BaseAutomenderAnCo
-#   name: автомендер АнКо
-#   suffix: StarHorizon, AnCo
-#   description: Медицинский инструмент на батарейном питании для затяжного лечения пациента.
-#   components:
-#   - type: Sprite
-#     sprite: Objects/Specific/Medical/defib.rsi
-#     state: icon
-#   - type: Item
-#     size: Normal
-#   - type: Automender
-#     damage:
-#       types:
-#         Blunt: -0.15
-#         Heat: -0.15
-#     chargeUsePerTick: 20 # количество заряда
-#   - type: DoAfter
-#   - type: ContainerContainer
-#     containers:
-#       cell_slot: !type:ContainerSlot
-#   - type: PowerCellSlot
-#     cellSlotId: cell_slot
-#   - type: ItemSlots
-#     slots:
-#       cell_slot:
-#         name: power-cell-slot-component-slot-name-default
-#         startingItem: AnCoEnergyCore
-#         whitelist:
-#           tags:
-#             - PowerAnCo
+- type: entity
+  parent: [BaseItem, BaseAnCoContraband]
+  id: BaseAutomenderAnCo
+  name: автомендер АнКо
+  suffix: StarHorizon, AnCo
+  description: Медицинский инструмент на батарейном питании для затяжного лечения пациента.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/defib.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Automender
+    damage:
+      types:
+        Blunt: -0.15
+        Heat: -0.15
+    chargeUsePerTick: 20 # количество заряда
+  - type: DoAfter
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: AnCoEnergyCore
+        whitelist:
+          tags:
+            - PowerAnCo
 
+- type: entity
+  parent: [BaseAutomenderAnCo, BaseAnCoContraband]
+  id: BaseAutomenderBruteAnCo
+  name: медицинский заплатчик АнКо
+  suffix: StarHorizon, AnCo
+  description: Медицинский инструмент на батарейном питании.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Specific/Medical/medtool.rsi/mender-brute.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+      shader: unshaded
+  - type: Item
+    size: Normal
+  - type: Automender
+    damage:
+      types:
+        Heat: -5
+        Cold: -5
+        Shock: -5
+      groups:
+        Brute: -15
+    chargeUsePerTick: 300 # количество заряда
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+  - type: Appearance
 
-# - type: entity
-#   parent: [BaseItem, BaseAnCoContraband]
-#   id: BaseAutomenderAnCo
-#   name: медицинский заплатчик АнКо
-#   suffix: StarHorizon, AnCo
-#   description: Медицинский инструмент на батарейном питании.
-#   components:
-#   - type: Sprite
-#     sprite: Objects/Specific/Medical/defib.rsi
-#     state: icon
-#   - type: Item
-#     size: Normal
-#   - type: Automender
-#     damage:
-#       groups:
-#         Brute: -15
-#     chargeUsePerTick: 500 # количество заряда
-
+- type: entity
+  parent: [BaseAutomenderAnCo, BaseAnCoContraband]
+  id: BaseAutomenderPirsAnCo
+  name: медицинская игла АнКо
+  suffix: StarHorizon, AnCo
+  description: Медицинский инструмент на батарейном питании.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Specific/Medical/medtool.rsi/mender-pirs.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+      shader: unshaded
+  - type: Item
+    size: Normal
+  - type: Automender
+    damage:
+      types:
+        Piercing: -15
+    chargeUsePerTick: 300 # количество заряда
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+  - type: Appearance

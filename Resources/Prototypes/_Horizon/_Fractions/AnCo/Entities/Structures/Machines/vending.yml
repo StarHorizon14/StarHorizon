@@ -1,5 +1,5 @@
 - type: entity
-  parent: [VendingMachine, BaseAnCoContraband]
+  parent: [VendingMachine, BaseTKAnCoContraband]
   suffix: StarHorizon, AnCo, Structure
   id: AnCoVending
   name: униформат АнКо
@@ -91,7 +91,7 @@
     EngiPlushin: 1
 
 - type: entity
-  parent: [VendingMachine, BaseAnCoContraband]
+  parent: [VendingMachine, BaseTKAnCoContraband]
   suffix: StarHorizon, AnCo, Structure
   id: AnCoVendingWeapon
   name: боемат АнКо

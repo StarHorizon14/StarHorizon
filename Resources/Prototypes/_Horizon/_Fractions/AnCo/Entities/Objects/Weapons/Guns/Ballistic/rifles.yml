@@ -120,7 +120,7 @@
 
 - type: entity
   name: Стрела
-  parent: [BaseWeaponPistol, BaseAnCoContraband]
+  parent: [BaseWeaponPistol, BaseTKAnCoContraband]
   id: WeaponRifles30AnCo
   description: Высокоточный полу-автоматический карабин.
   suffix: StarHorizon, AnCo, Weapon
@@ -182,7 +182,7 @@
 
 - type: entity
   name: Шторм
-  parent: [BaseWeaponPistol, BaseAnCoContraband]
+  parent: [BaseWeaponPistol, BaseTKAnCoContraband]
   id: WeaponMachineGun30AnCo
   description: Скорострельный пулемет на .30 калибре от АнКо.
   suffix: StarHorizon, AnCo, Weapon

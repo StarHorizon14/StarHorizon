@@ -109,7 +109,7 @@
 
 - type: entity
   name: Ардониевый пулемет АнКо
-  parent: BaseWeaponAnCo
+  parent: [BaseOperAnCoContraband, BaseWeaponAnCo]
   id: WeaponLaserMinigunAnCo
   description: Первая попытка АнКо создать машину смерти, хоть и в форме пулемёта.
   suffix: StarHorizon, AnCo, Weapon
@@ -157,7 +157,7 @@
 
 - type: entity
   name: Ардониевый гранатомет АнКо
-  parent: BaseWeaponAnCo
+  parent: [BaseOperAnCoContraband, BaseWeaponAnCo]
   id: WeaponLaserGranadeAnCo
   description: Первая попытка АнКо создать машину смерти, хоть и в форме гранатомёта.
   suffix: StarHorizon, AnCo, Weapon
@@ -209,7 +209,7 @@
 
 - type: entity
   name: винтовка-дизейблер АнКо
-  parent: BaseWeaponAnCo
+  parent: [BaseOperAnCoContraband, BaseWeaponAnCo]
   id: WeaponDisablerSniperAnCo
   description: Энергоёмкое EFS-устройство, используемое только в крайних случаях.
   suffix: StarHorizon, AnCo, Weapon
@@ -254,7 +254,7 @@
 
 - type: entity
   name: рипсоидная винтовка АнКо
-  parent: BaseWeaponAnCo
+  parent: [BaseMaxAnCoContraband, BaseWeaponAnCo]
   id: AnCoRipsoidCannon
   description: Рипсоидная винтовка с расширенной батареей.
   suffix: StarHorizon, AnCo, Weapon
@@ -299,7 +299,7 @@
 
 - type: entity
   name: пистолет совета АнКо
-  parent: BaseWeaponAnCo
+  parent: [BaseMaxAnCoContraband, BaseWeaponAnCo]
   id: AnCoCounselorGun
   description: Особая модификация рипсоидной винтовки, созданная для защиты совета.
   suffix: StarHorizon, AnCo, Weapon
@@ -341,7 +341,7 @@
 
 - type: entity
   name: модифицированный ПП АнКо
-  parent: BaseWeaponPowerCellAnCo
+  parent: [BaseOperAnCoContraband, BaseWeaponPowerCellAnCo]
   id: PMLaserAnCoGun
   description: Лазерный ПП, модернизированный в сторону мощности, хоть и в ущерб автономному электроснабжению.
   suffix: StarHorizon, AnCo, Weapon
@@ -364,7 +364,7 @@
 
 - type: entity
   name: лазерная винтовка АнКо
-  parent: BaseWeaponPowerCellAnCo
+  parent: [BaseOperAnCoContraband, BaseWeaponPowerCellAnCo]
   id: LaserAnCoGun
   description: Специально созданная под Ардониевые ячейки, винтовка с высокой скорострельностью.
   suffix: StarHorizon, AnCo, Weapon

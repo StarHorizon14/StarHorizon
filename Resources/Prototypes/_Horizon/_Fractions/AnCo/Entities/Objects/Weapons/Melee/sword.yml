@@ -1,6 +1,6 @@
 - type: entity
   name: Ардониевый меч
-  parent: BaseAnCoSharpWeapon
+  parent: [BaseOperAnCoContraband, BaseAnCoSharpWeapon]
   id: AnCoSword
   description: Сегментированный меч, созданный чтобы нарезать врагов на такие же сегменты.
   suffix: StarHorizon, AnCo, Weapon

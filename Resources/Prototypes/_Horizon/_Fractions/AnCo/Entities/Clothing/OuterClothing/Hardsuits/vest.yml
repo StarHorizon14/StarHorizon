@@ -24,7 +24,7 @@
     price: 1000
 
 - type: entity
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseAnCoContraband, ClothingOuterCoatHoSTrench]
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseMaxAnCoContraband, ClothingOuterCoatHoSTrench]
   id: AnCocoastconsul
   suffix: StarHorizon, AnCo
   name: плащ совета АнКо

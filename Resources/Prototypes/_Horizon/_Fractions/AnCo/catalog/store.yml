@@ -54,7 +54,7 @@
 
 - type: entity
   name: Енды
-  parent: [BaseItem, BaseAnCoContraband]
+  parent: [BaseItem, BaseTKAnCoContraband]
   id: CitadelCoin
   suffix: StarHorizon, AnCo, 20 Енды
   description: Кажется, он пульсирует подозрительно манящей энергией.

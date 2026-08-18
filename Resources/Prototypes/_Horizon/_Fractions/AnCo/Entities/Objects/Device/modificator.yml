@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem]
+  parent: [BaseTKAnCoContraband, BaseItem]
   id: ModStationHardSuit
   suffix: StarHorizon, AnCo
   categories: [ HideSpawnMenu ]

@@ -2,6 +2,19 @@
   id: AnCoItem
   examineText: AnCo-contraband-examine-text
 
+- type: contrabandSeverity
+  id: AnCoTK
+  examineText: AnCo-TK-contraband-examine-text
+
+- type: contrabandSeverity
+  id: AnCoOperation
+  examineText: AnCo-high-contraband-examine-text
+
+- type: contrabandSeverity
+  id: AnCoMax
+  examineText: AnCo-max-contraband-examine-text
+
+# Нет ТК???
 - type: entity
   id: BaseAnCoContraband
   parent: BaseC3ExpeditionContraband
@@ -12,4 +25,48 @@
     turnInValues:
       FrontierUplinkCoin: 0
       Doubloon: 0
+      Telecrystal: 0
     allowedDepartments: [ ]
+
+# ТК даааа
+- type: entity
+  id: BaseTKAnCoContraband
+  parent: BaseC3ExpeditionContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: AnCoTK
+    turnInValues:
+      FrontierUplinkCoin: 2
+      Doubloon: 2
+      Telecrystal: 2
+    allowedDepartments: [ ]
+
+# офицер
+- type: entity
+  id: BaseOperAnCoContraband
+  parent: BaseC3ExpeditionContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: AnCoOperation
+    turnInValues:
+      FrontierUplinkCoin: 2
+      Doubloon: 2
+      Telecrystal: 2
+    allowedDepartments: [ ]
+
+# сектор
+- type: entity
+  id: BaseMaxAnCoContraband
+  parent: BaseC3ExpeditionContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: AnCoMax
+    turnInValues:
+      FrontierUplinkCoin: 0
+      Doubloon: 0
+      Telecrystal: 0
+    allowedDepartments: [ ]
+

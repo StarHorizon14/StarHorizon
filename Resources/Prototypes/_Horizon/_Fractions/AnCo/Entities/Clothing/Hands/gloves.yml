@@ -32,7 +32,7 @@
     price: 500
 
 - type: entity
-  parent: [ClothingHandsGlovesSyntheticBase, BaseAnCoContraband]
+  parent: [ClothingHandsGlovesSyntheticBase, BaseMaxAnCoContraband]
   id: AnCoGlovesTitan
   suffix: StarHorizon, AnCo
   name:  перчатки Титана АнКо

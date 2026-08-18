@@ -1,6 +1,6 @@
 - type: entity
   id: AnCoGunneryServerHigh
-  parent: GunneryServerBase
+  parent: [BaseOperAnCoContraband, GunneryServerBase]
   name: сервер высокой АВС продуктивности
   suffix: StarHorizon, AnCo
   description: Сервер оптимизирующий работу множеств устройств. Контролирует УБТ.

@@ -2,12 +2,14 @@
   name: Ардониевая граната
   description: Граната, содержащая в себе кристалл Ардония.
   suffix: StarHorizon, AnCo
-  parent: [GrenadeBase, BaseAnCoContraband]
+  parent: [GrenadeBase, BaseTKAnCoContraband]
   id: AnCoGranade
   components:
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Grenades/grenade.rsi
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Explosive
     explosionType: AnCoExplodes
     maxIntensity: 10
@@ -26,7 +28,7 @@
   name: Ардониевый заряд
   description: Заряд, содержащая в себе кристалл Ардония для прорыва стен, обладает крутым дисплеем.
   suffix: StarHorizon, AnCo
-  parent: [BasePlasticExplosive, BaseAnCoContraband]
+  parent: [BasePlasticExplosive, BaseTKAnCoContraband]
   id: AnCoPlasticExplode
   components:
   - type: StaticPrice
