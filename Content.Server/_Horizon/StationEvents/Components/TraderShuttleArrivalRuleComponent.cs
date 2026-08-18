@@ -13,4 +13,7 @@ public sealed partial class TraderShuttleArrivalRuleComponent : Component
 
     [DataField]
     public EntityUid? ShuttleGrid;
+
+    [DataField]
+    public EntityUid? ShuttleStation;
 }

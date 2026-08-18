@@ -1,3 +1,4 @@
+using Content.Shared.Dataset;
 using Content.Shared.Procedural;
 using Content.Shared.Roles;
 using Content.Shared.Salvage.Expeditions;
@@ -154,6 +155,13 @@ public sealed partial class CastawayRuleComponent : Component
     /// </summary>
     [DataField]
     public int MapDungeonCount = 5;
+
+    /// <summary>
+    /// Dataset used to generate a random FTL-style name for each spawned dungeon grid, same as
+    /// BluespaceErrorRule's VGRoid dungeons use. Without this the grid keeps its default "grid" name.
+    /// </summary>
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype> MapDungeonNameDataset = "NamesBorer";
 
     /// <summary>
     /// Survival items scattered in space around the player's spawn point.

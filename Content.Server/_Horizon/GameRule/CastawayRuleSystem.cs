@@ -36,6 +36,7 @@ using Content.Shared.PDA;
 using Content.Shared.Procedural;
 using Content.Shared.Random;
 using Content.Shared.Roles;
+using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -79,6 +80,7 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly OutfitSystem _outfit = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedSalvageSystem _salvage = default!;
     [Dependency] private readonly ShipyardSystem _shipyard = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
@@ -151,6 +153,9 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
 
             var grid = _mapManager.CreateGridEntity(mapId);
             _transform.SetMapCoordinates(grid, new MapCoordinates(pos, mapId));
+
+            if (_proto.TryIndex(castaway.MapDungeonNameDataset, out var nameDataset))
+                _metaData.SetEntityName(grid, _salvage.GetFTLName(nameDataset, _random.Next()));
 
             GenerateDungeon(dungeonProto, faction, grid.Owner, grid.Comp, castaway.MapDungeonMobBudget);
             placed.Add(pos);
