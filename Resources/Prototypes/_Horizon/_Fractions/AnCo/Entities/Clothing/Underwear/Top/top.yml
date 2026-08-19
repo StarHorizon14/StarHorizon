@@ -1,0 +1,29 @@
+- type: entity
+  parent: [ClothingUnderwearTopBase, BaseAnCoContraband]
+  id: ClothingUnderwearBigBraAnCo
+  name: казмиевый топ
+  suffix: StarHorizon, AnCo
+  description: Стандартизированный топ из нановолокна казмия, такая же ткань, только еще и прочная.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Underwear/Top/kazmie-big-bra.rsi
+
+- type: entity
+  parent: [ClothingUnderwearTopBase, BaseAnCoContraband]
+  id: ClothingUnderwearMediumBraAnCo
+  name: казмиевый лифчик
+  suffix: StarHorizon, AnCo
+  description: Стандартизированный лифчик из нановолокна казмия, такая же ткань, только еще и прочная.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Underwear/Top/kazmie-medium-bra.rsi
+
+- type: entity
+  parent: [ClothingUnderwearTopBase, BaseAnCoContraband]
+  id: ClothingUnderwearSmallBraAnCo
+  name: казмиевое бикини
+  suffix: StarHorizon, AnCo
+  description: Стандартизированный бикини из нановолокна казмия, такая же ткань, только еще и прочная.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Underwear/Top/kazmie-small-bra.rsi

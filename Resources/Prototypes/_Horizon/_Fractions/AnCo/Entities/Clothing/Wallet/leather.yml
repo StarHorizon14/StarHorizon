@@ -1,0 +1,75 @@
+- type: entity
+  parent: [BaseStorageItem, Clothing, BaseAnCoContraband]
+  id: ClothingWalletAnCo
+  suffix: StarHorizon, AnCo
+  name: кошелек АнКо
+  description: сложите все необходимое в кошелек, возможно оно сможет пережить вас.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Wallet/leather.rsi
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"] # scuffed values to get ItemMapper to play nice with the generic visualizer
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      components:
+      - Cash
+      - Paper
+      - NFShipyardVoucher
+      - Card # single cards
+      - NFEmagPass
+      - Currency
+    blacklist:
+      tags:
+      - Book
+      components:
+      - Blueprint
+  - type: Item
+    size: Small
+  - type: Clothing
+    slots: [wallet]
+    quickEquip: false
+  - type: Appearance
+  - type: ItemMapper
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Wallet/leather.rsi
+    mapLayers:
+      closed-paper:
+        whitelist:
+          components:
+          - Paper
+          - NFShipyardVoucher
+          - Card
+          - NFEmagPass
+      closed-cash:
+        whitelist:
+          components:
+          - Cash
+  - type: GenericVisualizer
+    visuals:
+      enum.SharedBagOpenVisuals.BagState:
+        closeLayer:
+          Open: { visible: false }
+          Closed: { visible: true }
+        openLayer:
+          Open: { visible: true }
+          Closed: { visible: false }
+        closed-paper:
+          Open: { state: open-paper }
+          Closed: { state: closed-paper }
+        closed-cash:
+          Open: { state: open-cash }
+          Closed: { state: closed-cash }

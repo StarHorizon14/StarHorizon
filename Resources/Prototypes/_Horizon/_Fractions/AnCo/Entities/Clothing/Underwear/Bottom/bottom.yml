@@ -1,0 +1,29 @@
+- type: entity
+  parent: [ClothingUnderwearBottomBase, BaseAnCoContraband]
+  id: ClothingUnderwearBottomBigPantiesAnCo
+  name: казмиевые трусы
+  suffix: StarHorizon, AnCo
+  description: Стандартизированные трусы из нановолокна казмия, такая же ткань, только еще и прочная.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Underwear/Bottom/kazmie-big-panties.rsi
+
+- type: entity
+  parent: [ClothingUnderwearBottomBase, BaseAnCoContraband]
+  id: ClothingUnderwearBottomMediumPantiesAnCo
+  name: казмиевые трусики
+  suffix: StarHorizon, AnCo
+  description: Стандартизированные трусики из нановолокна казмия, такая же ткань, только еще и прочная.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Underwear/Bottom/kazmie-medium-panties.rsi
+
+- type: entity
+  parent: [ClothingUnderwearBottomBase, BaseAnCoContraband]
+  id: ClothingUnderwearBottomSmallPantiesAnCo
+  name: казмиевые стринги
+  suffix: StarHorizon, AnCo
+  description: Стандартизированные стринги из нановолокна казмия, такая же ткань, только еще и прочная.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Underwear/Bottom/kazmie-small-panties.rsi

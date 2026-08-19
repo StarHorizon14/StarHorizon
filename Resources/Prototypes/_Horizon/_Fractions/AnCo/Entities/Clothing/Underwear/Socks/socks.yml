@@ -1,0 +1,9 @@
+- type: entity
+  parent: [ClothingUnderwearSocksBase, BaseAnCoContraband]
+  id: ClothingUnderwearSocksAnCo
+  name: казмиевые носки
+  suffix: StarHorizon, AnCo
+  description: Стандартизированные носки из нановолокна казмия, такая же ткань, только еще и прочная.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Underwear/Socks/kazmie-socks.rsi

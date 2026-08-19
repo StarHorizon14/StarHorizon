@@ -49,6 +49,10 @@
 - type: Tag
   id: TitanCapsule
 
+- type: Tag
+  id: AnCoCoin
+
+
 # Cryptominer
 
 - type: Tag

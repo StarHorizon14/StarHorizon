@@ -130,3 +130,26 @@
   - type: Clothing
     sprite:  _Horizon/_Fractions/AnCo/Clothing/Uniforms/turtlenecklesspocket.rsi
 
+- type: entity
+  suffix: StarHorizon, AnCo
+  description: Казмиевое платье защитит пылающее сердце в порыве страстей.
+  name: казмиевое платье
+  parent: [ClothingOuterBaseMedium, BaseAnCoContraband]
+  id: KazmieDressAnCo
+  components:
+  - type: Sprite
+    sprite:  _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Dress/kazmie-dress.rsi
+  - type: Clothing
+    sprite:  _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Dress/kazmie-dress.rsi
+
+- type: entity
+  suffix: StarHorizon, AnCo
+  description: Вы выбрали быть звездой, пусть яркий ардон перекроет ледяное сердце.
+  name: ардониевое платье
+  parent: [ClothingOuterBaseMedium, BaseAnCoContraband]
+  id: ArdonDressAnCo
+  components:
+  - type: Sprite
+    sprite:  _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Dress/ardon-dress.rsi
+  - type: Clothing
+    sprite:  _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Dress/ardon-dress.rsi

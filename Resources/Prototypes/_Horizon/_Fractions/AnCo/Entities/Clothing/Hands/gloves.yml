@@ -32,6 +32,20 @@
     price: 500
 
 - type: entity
+  parent: AnCoGlovesIsolate
+  id: AnCoGlovesKazmie
+  suffix: StarHorizon, AnCo
+  name: казмиевые перчатки
+  description: Перчатки из волокна Казмия. Кажется, они ледяные.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Hands/Gloves/kazmie-gloves.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Hands/Gloves/kazmie-gloves.rsi
+  - type: StaticPrice
+    price: 500
+
+- type: entity
   parent: [ClothingHandsGlovesSyntheticBase, BaseMaxAnCoContraband]
   id: AnCoGlovesTitan
   suffix: StarHorizon, AnCo
