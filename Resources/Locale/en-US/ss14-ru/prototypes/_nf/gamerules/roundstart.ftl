@@ -1,5 +1,7 @@
 ent-NFAdventure = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
+ent-HorizonCastaway = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
 ent-BluespaceEventScheduler = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-BluespaceDungeonEventScheduler = { ent-BaseGameRule }

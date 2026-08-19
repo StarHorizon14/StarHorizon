@@ -44,6 +44,7 @@ using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Server._Horizon.Shipyard;
+using Content.Shared._Lua.Shipyard.BUIStates;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -99,16 +100,22 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (HasComp<ShuttleDeedComponent>(targetId))
+        if (TryComp<AccessReaderComponent>(shipyardConsoleUid, out var accessReaderComponent) && !_access.IsAllowed(player, shipyardConsoleUid, accessReaderComponent))
         {
-            ConsolePopup(player, Loc.GetString("shipyard-console-already-deeded"));
+            ConsolePopup(player, Loc.GetString("comms-console-permission-denied"));
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
         }
 
-        if (TryComp<AccessReaderComponent>(shipyardConsoleUid, out var accessReaderComponent) && !_access.IsAllowed(player, shipyardConsoleUid, accessReaderComponent))
+        if (component.ParkingConsole) // Lua
         {
-            ConsolePopup(player, Loc.GetString("comms-console-permission-denied"));
+            HandleParkingPurchase(shipyardConsoleUid, component, player, targetId);
+            return;
+        }
+
+        if (HasComp<ShuttleDeedComponent>(targetId))
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-already-deeded"));
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
         }
@@ -186,7 +193,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
-        if (!TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttleUidOut))
+        if (!TryPurchaseShuttleToDock(shipyardConsoleUid, station, vessel.ShuttlePath, out var shuttleUidOut)) // Lua: dock to the port selected on the console radar, if any
         {
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
@@ -359,6 +366,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
+        if (component.ParkingConsole) // Lua
+        {
+            HandleParkingSell(uid, component, player, targetId);
+            return;
+        }
+
         if (!TryComp<ShuttleDeedComponent>(targetId, out var deed) || deed.ShuttleUid is not { Valid: true } shuttleUid)
         {
             ConsolePopup(player, Loc.GetString("shipyard-console-no-deed"));
@@ -507,6 +520,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
 
+        if (component.ParkingConsole)
+        {
+            RefreshParkingState(uid, deed != null ? GetFullName(deed) : null, targetId);
+            return;
+        }
+
         int sellValue = 0;
         if (deed?.ShuttleUid != null)
         {
@@ -603,6 +622,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
 
             var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
+
+            if (component.ParkingConsole)
+            {
+                RefreshParkingState(uid, deed != null ? GetFullName(deed) : null, targetId);
+                continue;
+            }
 
             int sellValue = 0;
             if (deed?.ShuttleUid != null)
@@ -706,6 +731,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var available = new List<string>();
         var unavailable = new List<string>();
 
+        if (TryGetAvailableParkingShuttles(uid, targetId, out available, out unavailable)) // Lua
+            return (available, unavailable);
+
         if (key == null && TryComp<UserInterfaceComponent>(uid, out var ui))
         {
             // Try to find a ui key that is an instance of the shipyard console ui key
@@ -806,8 +834,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             freeListings,
             CalculateSellRate(uid));
 
-        _ui.SetUiState(uid, uiKey, newState);
+        BoundUserInterfaceState state = newState; // Lua
+        ExtendUiStateLua(uid, ref state); // Lua
+        _ui.SetUiState(uid, uiKey, state);
     }
+
+    // Lua: allow extensions to shipyard UI state without modifying NF state type.
+    partial void ExtendUiStateLua(EntityUid uid, ref BoundUserInterfaceState state); // Lua
 
     #region Deed Assignment
     void AssignShuttleDeedProperties(Entity<ShuttleDeedComponent> deed, EntityUid? shuttleUid, string? shuttleName, string? shuttleOwner, bool purchasedWithVoucher)
@@ -817,6 +850,22 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         deed.Comp.ShuttleOwner = shuttleOwner;
         deed.Comp.PurchasedWithVoucher = purchasedWithVoucher;
         Dirty(deed);
+    }
+
+    public void RegisterShuttleDeed(EntityUid targetId, EntityUid shuttleUid, string shuttleName, string shuttleOwner)
+    {
+        // TrySellShuttle requires ShipyardMap to exist; normally set up on first purchase, which this path skips.
+        SetupShipyardIfNeeded();
+
+        EnsureComp<ShuttleComponent>(shuttleUid);
+
+        var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
+        AssignShuttleDeedProperties((targetId, deedID), shuttleUid, shuttleName, shuttleOwner, purchasedWithVoucher: false);
+
+        var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttleUid);
+        AssignShuttleDeedProperties((shuttleUid, deedShuttle), shuttleUid, shuttleName, shuttleOwner, purchasedWithVoucher: false);
+
+        EnsureComp<LinkedLifecycleGridParentComponent>(shuttleUid);
     }
 
     private void OnInitDeedSpawner(EntityUid uid, StationDeedSpawnerComponent component, MapInitEvent args)
@@ -889,4 +938,166 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         return 0;
     }
     #endregion Ship Pricing
+
+    // Lua
+    public void OnRenameMessage(EntityUid uid, ShipyardConsoleComponent component, ShipyardConsoleRenameMessage args)
+    {
+        if (args.Actor is not { Valid: true } player)
+            return;
+
+        if (component.TargetIdSlot.ContainerSlot?.ContainedEntity is not { Valid: true } targetId)
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-no-idcard"));
+            PlayDenySound(player, uid, component);
+            return;
+        }
+
+        if (!TryComp<ShuttleDeedComponent>(targetId, out var deed) || deed.ShuttleUid == null)
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-no-deed"));
+            PlayDenySound(player, uid, component);
+            return;
+        }
+
+        // Validate the new name
+        var newName = args.NewName.Trim();
+        if (string.IsNullOrEmpty(newName))
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-rename-empty"));
+            PlayDenySound(player, uid, component);
+            return;
+        }
+
+        if (newName.Length > ShuttleDeedComponent.MaxNameLength)
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-rename-too-long", ("max", ShuttleDeedComponent.MaxNameLength)));
+            PlayDenySound(player, uid, component);
+            return;
+        }
+
+        // Get the old name for logging
+        var oldName = GetFullName(deed);
+
+        // Preserve the original sell value from the current UI state
+        int originalSellValue = 0;
+        if (_ui.TryGetUiState<BoundUserInterfaceState>(uid, (ShipyardConsoleUiKey) args.UiKey, out var anyState))
+        {
+            var baseState = anyState switch
+            { ShipyardConsoleLuaDockSelectState lua => lua.BaseState, ShipyardConsoleInterfaceState plain => plain, _ => null };
+            if (baseState != null) originalSellValue = baseState.ShipSellValue;
+        }
+
+        string? preservedSuffix = deed.ShuttleNameSuffix;
+        if (string.IsNullOrEmpty(preservedSuffix))
+        {
+            if (!string.IsNullOrEmpty(deed.ShuttleName))
+            {
+                var nameParts = deed.ShuttleName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (nameParts.Length > 0)
+                {
+                    var lastPart = nameParts[^1];
+                    if (lastPart.Length == 4 && lastPart.All(char.IsDigit)) { preservedSuffix = lastPart; }
+                }
+            }
+            if (string.IsNullOrEmpty(preservedSuffix))
+            {
+                var fullName = GetFullName(deed);
+                var nameParts = fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (nameParts.Length > 0)
+                {
+                    var lastPart = nameParts[^1];
+                    if (lastPart.Length == 4 && lastPart.All(char.IsDigit)) { preservedSuffix = lastPart; }
+                }
+            }
+        }
+
+        if (TryRenameShuttle(targetId, deed, newName, preservedSuffix))
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-rename-success", ("name", GetFullName(deed))));
+            PlayConfirmSound(player, uid, component);
+
+            // Get the player's balance or use 0 if they don't have a bank account
+            int balance = 0;
+            if (TryComp<BankAccountComponent>(player, out var bank))
+                balance = bank.Balance;
+
+            // Update the UI with the new ship name, preserving the original sell value
+            var fullName = GetFullName(deed);
+            RefreshState(uid, balance, true, fullName, originalSellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, false);
+
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low,
+                $"{ToPrettyString(player):actor} renamed ship from '{oldName}' to '{GetFullName(deed)}' via {ToPrettyString(uid)}");
+        }
+        else
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-rename-failed"));
+            PlayDenySound(player, uid, component);
+        }
+    }
+
+    public void OnUnassignDeedMessage(EntityUid uid, ShipyardConsoleComponent component, ShipyardConsoleUnassignDeedMessage args)
+    {
+        if (args.Actor is not { Valid: true } player)
+            return;
+
+        if (component.TargetIdSlot.ContainerSlot?.ContainedEntity is not { Valid: true } targetId)
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-no-idcard"));
+            PlayDenySound(player, uid, component);
+            return;
+        }
+
+        if (!TryComp<ShuttleDeedComponent>(targetId, out var deed) || deed.ShuttleUid == null)
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-no-deed"));
+            PlayDenySound(player, uid, component);
+            return;
+        }
+
+        // Check if the player is on cooldown
+        var cooldown = EnsureComp<ShipyardUnassignCooldownComponent>(player);
+        var currentTime = _timing.CurTime;
+
+        if (currentTime < cooldown.NextUnassignTime)
+        {
+            // Calculate remaining time
+            var timeRemaining = cooldown.NextUnassignTime - currentTime;
+            var hoursRemaining = (int)timeRemaining.TotalHours;
+            var minutesRemaining = (int)timeRemaining.TotalMinutes % 60;
+
+            // Display cooldown message
+            var cooldownMessage = Loc.GetString(
+                "shipyard-console-unassign-cooldown",
+                ("hours", hoursRemaining),
+                ("minutes", minutesRemaining)
+            );
+            ConsolePopup(player, cooldownMessage);
+            PlayDenySound(player, uid, component);
+            return;
+        }
+
+        // Get the name of the ship before we remove the component
+        var shipName = GetFullName(deed);
+
+        // Remove the deed component from the ID card
+        RemComp<ShuttleDeedComponent>(targetId);
+
+        // Set the cooldown
+        cooldown.NextUnassignTime = currentTime + cooldown.CooldownDuration;
+
+        ConsolePopup(player, Loc.GetString("shipyard-console-deed-unassigned"));
+        PlayConfirmSound(player, uid, component);
+
+        // Get the player's balance or use 0 if they don't have a bank account
+        int balance = 0;
+        if (TryComp<BankAccountComponent>(player, out var bank))
+            balance = bank.Balance;
+
+        // Update the UI
+        RefreshState(uid, balance, true, null, 0, targetId, (ShipyardConsoleUiKey)args.UiKey, false);
+
+        _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low,
+            $"{ToPrettyString(player):actor} unassigned deed for ship '{shipName}' from {ToPrettyString(targetId)} via {ToPrettyString(uid)}");
+    }
+    // End Lua
 }

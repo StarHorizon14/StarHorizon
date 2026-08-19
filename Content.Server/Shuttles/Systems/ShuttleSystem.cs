@@ -12,6 +12,7 @@ using Content.Shared.Damage;
 using Content.Shared.Light.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Salvage;
+using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
@@ -199,5 +200,13 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     private void OnFTLCompleted(Entity<ShuttleComponent> ent, ref FTLCompletedEvent args)
     {
         ent.Comp.DampingModifier = ent.Comp.BodyModifier;
+    }
+
+    public void SetPlayerShuttleIFF(EntityUid gridUid, Color color)
+    {
+        var iff = EnsureComp<IFFComponent>(gridUid);
+        iff.Color = color;
+        iff.Flags |= IFFFlags.IsPlayerShuttle;
+        Dirty(gridUid, iff);
     }
 }

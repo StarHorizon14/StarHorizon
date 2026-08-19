@@ -19563,6 +19563,17 @@ entities:
     - type: ImplicitRoof
     - type: BecomesStation
       id: Frontier
+    - type: ProtectedGrid
+      hostileMobKillSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/holy.ogg
+      killHostileMobs: True
+      preventArtifactTriggers: True
+      preventExplosions: True
+      preventEmpEvents: True
+      preventRCDUse: True
+      preventFloorPlacement: True
+      preventFloorRemoval: True
+      preventImpactDamage: true
     - type: RadiationGridResistance
     - type: NavMap
     - type: IFF

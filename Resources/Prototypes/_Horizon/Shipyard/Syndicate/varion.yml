@@ -16,6 +16,7 @@
   price: 55000
   category: Small
   group: Syndicate
+  access: SyndicateAgent
   shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Syndicate/varion.yml
   class:
   - Syndicate

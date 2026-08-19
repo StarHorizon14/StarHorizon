@@ -1,0 +1,32 @@
+- type: soundCollection
+  id: AmbienceCastaway
+  files:
+    - /Audio/_Crescent/Ambient/OuterRing/outer_ring_1.ogg
+    - /Audio/_Crescent/Ambient/OuterRing/outer_ring_2.ogg
+    - /Audio/_Crescent/Ambient/OuterRing/outer_ring_3.ogg
+    - /Audio/_Crescent/Ambient/OuterRing/outer_ring_4.ogg
+    - /Audio/_Crescent/Ambient/FarReaches/far_reaches_i.ogg
+    - /Audio/_Crescent/Ambient/FarReaches/far_reaches_ii.ogg
+    - /Audio/_Crescent/Ambient/MiddleRing/middle_ring_1.ogg
+    - /Audio/_Crescent/Ambient/MiddleRing/middle_ring_2.ogg
+    - /Audio/_Crescent/Ambient/MiddleRing/middle_ring_3.ogg
+    - /Audio/_Crescent/Ambient/MiddleRing/middle_ring_4.ogg
+    - /Audio/_Crescent/Ambient/MiddleRing/middle_ring_5.ogg
+    - /Audio/_Crescent/Ambient/MiddleRing/middle_ring_6.ogg
+
+- type: ambientMusic
+  id: Castaway
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceCastaway
+  fadeIn: true
+  interruptable: true
+  rules: IsCastawaySurvivor
+  priority: 2
+
+- type: rules
+  id: IsCastawaySurvivor
+  rules:
+    - !type:HasCastawaySurvivorRule
+    - !type:InSpaceRule

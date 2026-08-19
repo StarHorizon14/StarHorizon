@@ -12,7 +12,7 @@
     - TechnologyDiscDurandTechnology
     - TechnologyDiscPhazonTechnology
     - TechnologyDiscArsenalAmmoModules
-    - TechnologyDiscArsenalDome
+    # - TechnologyDiscArsenalDome
     - TechnologyDiscArsenalAmmunition
     - TechnologyDiscHydroponicsDNAManip
     - TechnologyDiscUniversalTranslator

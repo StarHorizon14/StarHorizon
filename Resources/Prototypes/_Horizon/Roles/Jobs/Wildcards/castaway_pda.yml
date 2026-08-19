@@ -1,0 +1,10 @@
+# PDA carrying a standard Personal AI in its pAI slot for Castaway survivors.
+- type: entity
+  parent: PassengerPDA
+  id: CastawayPDA
+  name: passenger PDA
+  components:
+  - type: Pda
+    paiSlot:
+      startingItem: PersonalAI
+      priority: -3

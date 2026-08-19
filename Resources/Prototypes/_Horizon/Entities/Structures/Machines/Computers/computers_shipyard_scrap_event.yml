@@ -1,0 +1,140 @@
+# Event scrapyard console: same as ComputerShipyardScrap, but without the Geode and Hammerhead shuttles.
+- type: entity
+  id: ComputerShipyardScrapLostVoid
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: scrapyard console
+  description: Used to purchase and sell "shuttles".
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Custom
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Custom:
+        type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    taxAccounts:
+      Invalid: 1.0
+    ignoreBaseSaleRate: true
+  - type: ShipyardListing
+    shuttles:
+    - NuggetLostVoid
+    - OrangeLostVoid
+    - TideLostVoid
+    - ConstructLostVoid
+    - DiscipleLostVoid
+    # - CanisterLostVoid
+    # - RustyLostVoid
+    # - BargeLostVoid
+    # - CrescentLostVoid
+    - HaulerLostVoid
+    - InvestigatorLostVoid
+    # - SparrowLostVoid
+    - SprinterLostVoid
+    - CourserXLostVoid
+    # - BisonLostVoid
+    - CometLostVoid
+    - PointLostVoid
+    # - MayflowerLostVoid
+    # - GeodeLostVoid
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_scrap
+    - map: ["computerLayerKeyboard"]
+      state: scrap_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_scrap
+    - map: ["computerLayerKeys"]
+      state: scrap_key
+
+- type: entity
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardScrapLostVoid]
+  id: ComputerTabletopShipyardScrapLostVoid
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop_scrap
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: scrap_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard_scrap
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: scrap_key
+
+# Same as ComputerShipyardScrapLostVoid, but with every LostVoid scrap shuttle unlocked.
+- type: entity
+  id: ComputerShipyardScrapLostVoidAll
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: scrapyard console
+  description: Used to purchase and sell "shuttles".
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Custom
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Custom:
+        type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    taxAccounts:
+      Invalid: 1.0
+    ignoreBaseSaleRate: true
+  - type: ShipyardListing
+    shuttles:
+    - NuggetLostVoid
+    - OrangeLostVoid
+    - TideLostVoid
+    - ConstructLostVoid
+    - DiscipleLostVoid
+    - CanisterLostVoid
+    - RustyLostVoid
+    - BargeLostVoid
+    - CrescentLostVoid
+    - HaulerLostVoid
+    - InvestigatorLostVoid
+    - SparrowLostVoid
+    - SprinterLostVoid
+    - CourserXLostVoid
+    - BisonLostVoid
+    - CometLostVoid
+    - PointLostVoid
+    - MayflowerLostVoid
+    - GeodeLostVoid
+    - Hammerhead
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_scrap
+    - map: ["computerLayerKeyboard"]
+      state: scrap_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_scrap
+    - map: ["computerLayerKeys"]
+      state: scrap_key
+
+- type: entity
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardScrapLostVoidAll]
+  id: ComputerTabletopShipyardScrapLostVoidAll
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop_scrap
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: scrap_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard_scrap
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: scrap_key

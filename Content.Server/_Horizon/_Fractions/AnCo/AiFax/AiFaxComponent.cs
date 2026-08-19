@@ -1,3 +1,4 @@
+using Content.Shared._Horizon._Fractions.AnCo.AiFax;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Horizon._Fractions.AnCo.AiFax;
@@ -9,7 +10,13 @@ namespace Content.Server._Horizon._Fractions.AnCo.AiFax;
 public sealed partial class AiFaxComponent : Component
 {
     /// <summary>
-    /// Gemini API key for authentication.
+    /// Which AI provider to use for generating responses.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public AiFaxProvider Provider { get; set; } = AiFaxProvider.Gemini;
+
+    /// <summary>
+    /// API key for authentication with the selected provider.
     /// </summary>
     [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
     public string ApiKey { get; set; } = string.Empty;
@@ -33,7 +40,8 @@ public sealed partial class AiFaxComponent : Component
     public string SystemPrompt { get; set; } = "Ты помощник на космической станции.";
 
     /// <summary>
-    /// Gemini model to use (gemini-3.1-flash-lite, gemini-1.5-pro, etc.)
+    /// Model to use for the selected provider (e.g. gemini-3.1-flash-lite for Gemini,
+    /// deepseek-chat/deepseek-reasoner for DeepSeek).
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public string Model { get; set; } = "gemini-3.1-flash-lite";

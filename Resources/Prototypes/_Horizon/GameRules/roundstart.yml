@@ -1,0 +1,43 @@
+- type: entity
+  id: HorizonCastaway
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CastawayRule
+    wreckGridPaths:
+    - /Maps/_Horizon/Lostvoid/Shuttle/whiteship-bluespacejumper.yml
+    - /Maps/_Horizon/Lostvoid/Shuttle/hauling-shuttle.yml
+    - /Maps/_Horizon/Lostvoid/Shuttle/medium-crashed-shuttle.yml
+    - /Maps/_Horizon/Lostvoid/Shuttle/small-syndicate.yml
+    - /Maps/_Horizon/Lostvoid/Shuttle/small-ship-1.yml
+    - /Maps/_Horizon/Lostvoid/Shuttle/medium-ruined-emergency-shuttle.yml
+    survivalLoot:
+    - EmergencyOxygenTank
+    - MedkitFilled
+    - HandHeldMassScanner
+    - FlashlightLantern
+    - ClothingMaskBreath
+    - ClothingMaskBreath
+    - ClothingMaskBreath
+    - ClothingOuterSuitEmergency
+    - ClothingOuterSuitEmergency
+    - ClothingOuterSuitEmergency
+    - WeaponFlareGun
+    - ToolboxEmergency
+    - FireExtinguisherMini
+    - CrowbarRed
+    - RadioHandheldNF
+    - ToolboxEmergencyFilled
+    - NFClothingBackpack
+    - FloodlightBroken
+    - Flare
+    - BoxSurvivalSlots
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100
+    - SalvageSpawnerScrapValuable100

@@ -36,10 +36,10 @@
         balance: 8000
         increasePerSecond: 1 # A trickle - generate your own power to sell for stuff.
       # Horizon start
-      Trauma: 
-        !type:SectorBankAccountInfo
-        balance: 8000
-        increasePerSecond: 4 # Продавайте подписки, 14к в час хватит.
+      # Trauma:
+      #   !type:SectorBankAccountInfo
+      #   balance: 8000
+      #   increasePerSecond: 4 # Продавайте подписки, 14к в час хватит.
       # Horizon end
 
 # A global source of character records (DNA, fingerprints, criminal records, etc.)

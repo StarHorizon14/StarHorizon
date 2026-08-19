@@ -1,48 +1,9 @@
-using System.Linq;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Horizon._Fractions.AnCo.AiFax;
-
-/// <summary>
-/// Command to set AI fax system prompt.
-/// </summary>
-[AdminCommand(AdminFlags.Admin)]
-public sealed class AiFaxPromptCommand : IConsoleCommand
-{
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-
-    public string Command => "aifax_prompt";
-    public string Description => "Устанавливает системный промпт для AI-факса.";
-    public string Help => "Usage: aifax_prompt <entityUid> <prompt text>\nExample: aifax_prompt 12345 Ты помощник на станции.";
-
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
-    {
-        if (args.Length < 2)
-        {
-            shell.WriteLine("Использование: aifax_prompt <entityUid> <текст промпта>");
-            return;
-        }
-
-        if (!EntityUid.TryParse(args[0], out var uid))
-        {
-            shell.WriteLine($"Неверный EntityUid: {args[0]}");
-            return;
-        }
-
-        if (!_entityManager.TryGetComponent<AiFaxComponent>(uid, out var comp))
-        {
-            shell.WriteLine($"Entity {uid} не имеет AiFaxComponent");
-            return;
-        }
-
-        var prompt = string.Join(" ", args.Skip(1));
-        comp.SystemPrompt = prompt;
-        shell.WriteLine($"Промпт установлен ({prompt.Length} символов)");
-    }
-}
 
 /// <summary>
 /// Command to add context file to AI fax.
@@ -233,6 +194,7 @@ public sealed class AiFaxStatusCommand : IConsoleCommand
         }
 
         shell.WriteLine($"=== AI Fax Status: {uid} ===");
+        shell.WriteLine($"Провайдер: {comp.Provider}");
         shell.WriteLine($"Модель: {comp.Model}");
         shell.WriteLine($"Ключевое слово: {comp.TriggerKeyword} (требуется: {comp.RequireTriggerKeyword})");
         shell.WriteLine($"Имя отправителя: {comp.ResponseSenderName}");
@@ -244,113 +206,6 @@ public sealed class AiFaxStatusCommand : IConsoleCommand
         shell.WriteLine($"Файлов контекста: {comp.ContextFiles.Count}");
         shell.WriteLine($"Папок контекста: {comp.ContextFolders.Count}");
         shell.WriteLine($"Контекст загружен: {(comp.LoadedContextContent != null ? $"{comp.LoadedContextContent.Length} символов" : "нет")}");
-    }
-}
-
-/// <summary>
-/// Command to list all AI fax entities.
-/// </summary>
-[AdminCommand(AdminFlags.Admin)]
-public sealed class AiFaxListCommand : IConsoleCommand
-{
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-
-    public string Command => "aifax_list";
-    public string Description => "Показывает список всех AI-факсов на карте.";
-    public string Help => "Usage: aifax_list";
-
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
-    {
-        var query = _entityManager.EntityQueryEnumerator<AiFaxComponent>();
-        var count = 0;
-
-        shell.WriteLine("=== AI Fax Entities ===");
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            var name = _entityManager.GetComponent<MetaDataComponent>(uid).EntityName;
-            shell.WriteLine($"  {uid}: {name} (модель: {comp.Model}, история: {comp.ConversationHistory.Count} сообщений)");
-            count++;
-        }
-
-        if (count == 0)
-            shell.WriteLine("  AI-факсы не найдены");
-        else
-            shell.WriteLine($"Всего: {count}");
-    }
-}
-
-/// <summary>
-/// Command to set AI fax model.
-/// </summary>
-[AdminCommand(AdminFlags.Admin)]
-public sealed class AiFaxModelCommand : IConsoleCommand
-{
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-
-    public string Command => "aifax_model";
-    public string Description => "Устанавливает модель Gemini для AI-факса.";
-    public string Help => "Usage: aifax_model <entityUid> <model>\nExample: aifax_model 12345 gemini-1.5-flash";
-
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
-    {
-        if (args.Length != 2)
-        {
-            shell.WriteLine("Использование: aifax_model <entityUid> <модель>");
-            shell.WriteLine("Модели: gemini-1.5-flash, gemini-1.5-pro, gemini-3.1-flash-lite и др.");
-            return;
-        }
-
-        if (!EntityUid.TryParse(args[0], out var uid))
-        {
-            shell.WriteLine($"Неверный EntityUid: {args[0]}");
-            return;
-        }
-
-        if (!_entityManager.TryGetComponent<AiFaxComponent>(uid, out var comp))
-        {
-            shell.WriteLine($"Entity {uid} не имеет AiFaxComponent");
-            return;
-        }
-
-        comp.Model = args[1];
-        shell.WriteLine($"Модель установлена: {args[1]}");
-    }
-}
-
-/// <summary>
-/// Command to set AI fax API key.
-/// </summary>
-[AdminCommand(AdminFlags.Admin)]
-public sealed class AiFaxApiKeyCommand : IConsoleCommand
-{
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-
-    public string Command => "aifax_apikey";
-    public string Description => "Устанавливает API ключ Gemini для AI-факса.";
-    public string Help => "Usage: aifax_apikey <entityUid> <apikey>";
-
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
-    {
-        if (args.Length != 2)
-        {
-            shell.WriteLine("Использование: aifax_apikey <entityUid> <apikey>");
-            return;
-        }
-
-        if (!EntityUid.TryParse(args[0], out var uid))
-        {
-            shell.WriteLine($"Неверный EntityUid: {args[0]}");
-            return;
-        }
-
-        if (!_entityManager.TryGetComponent<AiFaxComponent>(uid, out var comp))
-        {
-            shell.WriteLine($"Entity {uid} не имеет AiFaxComponent");
-            return;
-        }
-
-        comp.ApiKey = args[1];
-        shell.WriteLine($"API ключ установлен ({args[1].Length} символов)");
     }
 }
 

@@ -1,0 +1,32 @@
+- type: vessel
+  id: PointLostVoid
+  parent: BaseVessel
+  name: SV Point
+  description: Two wrecks welded together that are somehow capable of research.
+  price: 16100
+  category: Small
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/point.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Science
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: PointLostVoid
+  mapName: 'SV Point'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/point.yml
+  minPlayers: 0
+  stations:
+    Point:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Point {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

@@ -105,70 +105,6 @@ public sealed partial class DockingScreen : BoxContainer
         }
 
         UndockAllButton.Disabled = !hasDockedPorts;
-
-        // Update lock status indicators on all dock buttons
-        UpdateDockLockIndicators(shuttle);
-    }
-
-    private void UpdateDockLockIndicators(EntityUid? shuttle)
-    {
-        if (shuttle == null)
-            return;
-
-        var netEntity = _entManager.GetNetEntity(shuttle.Value);
-        if (!Docks.TryGetValue(netEntity, out var shuttleDocks))
-            return;
-
-        foreach (var dock in shuttleDocks)
-        {
-            if (!_ourDockButtons.TryGetValue(dock.Entity, out var button))
-                continue;
-
-            // Find the lock indicator label in the button's children
-            if (button.ChildCount == 0)
-                continue;
-
-            var buttonContainer = button.GetChild(0) as BoxContainer;
-            if (buttonContainer == null)
-                continue;
-
-            // Only update if connected to another grid
-            if (!dock.Connected || dock.GridDockedWith == null)
-            {
-                // If there's a lock indicator but no connection anymore, remove it
-                if (buttonContainer.ChildCount > 1)
-                {
-                    var existingIndicator = buttonContainer.GetChild(1);
-                    if (existingIndicator != null)
-                    {
-                        buttonContainer.RemoveChild(existingIndicator);
-                    }
-                }
-                continue;
-            }
-
-            var dockedEntity = _entManager.GetEntity(dock.GridDockedWith.Value);
-
-            // Get or create lock indicator
-            Label? lockIndicator = null;
-            if (buttonContainer.ChildCount > 1)
-            {
-                lockIndicator = buttonContainer.GetChild(1) as Label;
-            }
-
-            if (lockIndicator == null)
-            {
-                // Create new lock indicator if it doesn't exist
-                lockIndicator = new Label
-                {
-                    HorizontalAlignment = Control.HAlignment.Right,
-                    VerticalAlignment = Control.VAlignment.Center,
-                    Margin = new Thickness(2f, 0f),
-                    MinWidth = 70
-                };
-                buttonContainer.AddChild(lockIndicator);
-            }
-        }
     }
 
     private void BuildDocks(EntityUid? shuttle)
@@ -189,7 +125,7 @@ public sealed partial class DockingScreen : BoxContainer
 
         if (!Docks.TryGetValue(shuttleNent, out var shuttleDocks) || shuttleDocks.Count <= 0)
             return;
-
+        var visibleDocks = shuttleDocks;
         var dockText = new StringBuilder();
         var buttonGroup = new ButtonGroup();
         var idx = 0;
@@ -197,7 +133,7 @@ public sealed partial class DockingScreen : BoxContainer
         DockingPortState? firstState = null; // Frontier
 
         // Build the dock buttons for our docks.
-        foreach (var dock in shuttleDocks.OrderBy(x => x.LabelName ?? x.Name)) // Frontier: order by name
+        foreach (var dock in visibleDocks.OrderBy(x => x.LabelName ?? x.Name))
         {
             if (idx == 0) // Frontier: get first element
                 firstState = dock; // Frontier: get first element
@@ -207,35 +143,14 @@ public sealed partial class DockingScreen : BoxContainer
 
             dockText.Append(dock.LabelName ?? dock.Name);
 
-            // Create a BoxContainer to hold button text and lock indicator
-            var buttonContainer = new BoxContainer
-            {
-                Orientation = BoxContainer.LayoutOrientation.Horizontal,
-                HorizontalExpand = true,
-                VerticalAlignment = Control.VAlignment.Center,
-                Margin = new Thickness(3f),
-            };
-
-            // The text label
-            var textLabel = new Label
-            {
-                Text = dockText.ToString(),
-                HorizontalExpand = true,
-                Margin = new Thickness(4f, 0f),
-            };
-            buttonContainer.AddChild(textLabel);
-
             var button = new Button()
             {
-                Text = dockText.ToString(),
                 ToggleMode = true,
                 Group = buttonGroup,
                 Margin = new Thickness(0f, 3f),
-                HorizontalExpand = true
+                HorizontalExpand = true,
+                Text = dockText.ToString(),
             };
-
-            // Add the container with text and lock indicator to the button
-            button.AddChild(buttonContainer);
 
             button.OnMouseEntered += args =>
             {
@@ -274,7 +189,7 @@ public sealed partial class DockingScreen : BoxContainer
 
         var shuttleContainers = new Dictionary<NetEntity, DockObject>();
 
-        foreach (var dock in shuttleDocks.OrderBy(x => x.GridDockedWith))
+        foreach (var dock in visibleDocks.OrderBy(x => x.GridDockedWith))
         {
             if (dock.GridDockedWith == null)
                 continue;
@@ -298,7 +213,7 @@ public sealed partial class DockingScreen : BoxContainer
                 // DockedWith.AddChild(dockContainer);
             }
 
-            dockContainer.AddDock(dock, DockingControl);
+            dockContainer!.AddDock(dock, DockingControl);
         }
     }
 

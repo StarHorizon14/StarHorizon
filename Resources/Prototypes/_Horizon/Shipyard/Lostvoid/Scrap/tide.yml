@@ -1,0 +1,32 @@
+- type: vessel
+  id: TideLostVoid
+  parent: BaseVessel
+  name: SV Tide
+  description: A cheaply made mass-produced shuttle made from salvaged wrecks. For the seasoned assistant.
+  price: 9700
+  category: Small
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/tide.yml
+  guidebookPage: ShipyardTide
+  class:
+  - Scrapyard
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: TideLostVoid
+  mapName: 'SV Tide'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/tide.yml
+  minPlayers: 0
+  stations:
+    TideLostVoid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Tide {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

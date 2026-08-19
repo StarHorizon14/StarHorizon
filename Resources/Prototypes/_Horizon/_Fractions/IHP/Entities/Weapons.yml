@@ -1,0 +1,91 @@
+
+
+
+- type: entity
+  name: PSI | Стрекач
+  parent: [BaseWeaponSubMachineGun, BaseC2ContrabandUnredeemable, BaseAttachableHolder] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  id: WeaponIHPShadowStrike
+  description: Портативный облегчённый автомат используемый агентами IHP. Использует уникальные разработки корпорации, заточен под использование патронов калибра .35 для пистолета.
+  suffix: IHP
+  components:
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Weapon/AUG.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+        - state: mag-0
+          map: ["enum.GunVisualLayers.Mag"]
+    - type: Clothing
+      sprite: _Horizon/_Fractions/IHP/Weapon/AUG.rsi
+    - type: Wieldable
+      unwieldOnUse: false
+    - type: GunWieldBonus
+      minAngle: -20
+      maxAngle: -25
+    - type: ChamberMagazineAmmoProvider
+      autoEject: true
+    - type: Gun
+      minAngle: 20
+      maxAngle: 40
+      fireRate: 5
+      burstFireRate: 5
+      soundGunshot:
+        path: /Audio/_Horizon/_Fractions/IHP/Weapon/IHP_pistol_machinegun.ogg
+      selectedMode: Burst
+      availableModes:
+      - Burst
+      - FullAuto
+      - SemiAuto
+      shotsPerBurst: 3
+      burstCooldown: 0.375
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: NFMagazineSubMachineGun35
+          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - NFMagazineSubMachineGunPistol35
+          whitelistFailPopup: gun-magazine-whitelist-fail
+        gun_chamber:
+          name: Chamber 
+          startingItem: NFCartridgePistol35
+          priority: 1
+          whitelist:
+            tags:
+              - NFCartridgePistol35
+    - type: MagazineVisuals
+      magState: mag
+      steps: 5
+      zeroVisible: true
+    - type: Appearance
+
+
+  # Horizon Attachments start
+    - type: AttachableHolder
+      slots:
+        rmc-aslot-underbarrel:
+          whitelist:
+            tags:
+            - AttachmentVerticalGrip
+            - AttachmentLaserSight
+        rmc-aslot-rail:
+          whitelist:
+            tags:
+            - AttachmentMagneticHarness
+            - AttachmentReflexSight
+            - AttachmentT2Miniscope
+        rmc-aslot-barrel:
+          whitelist:
+            tags:
+            - AttachmentSuppressor
+            - AttachmentAntiLyingWarrior
+    - type: AttachableHolderVisuals
+      offsets:
+        rmc-aslot-underbarrel: 0.28, -0.1250
+        rmc-aslot-rail: -0.0325, -0.0625
+        rmc-aslot-barrel: 0.90625, 0
+      # Horizon Attachment start

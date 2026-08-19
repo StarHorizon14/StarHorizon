@@ -1,0 +1,32 @@
+- type: vessel
+  id: MayflowerLostVoid
+  parent: BaseVessel
+  name: USS Mayflower
+  description: An oldership from an older world found cover in web, seems like an old bounty huntership with an expedition console
+  price: 50000
+  category: Medium
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/mayflower.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: MayflowerLostVoid
+  mapName: 'USS Mayflower'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/mayflower.yml
+  minPlayers: 0
+  stations:
+    MayflowerLostVoid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Mayflower {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

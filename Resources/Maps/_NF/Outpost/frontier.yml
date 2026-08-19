@@ -179,6 +179,17 @@ entities:
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
+    - type: ProtectedGrid
+      hostileMobKillSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/holy.ogg
+      killHostileMobs: True
+      preventArtifactTriggers: True
+      preventExplosions: True
+      preventEmpEvents: True
+      preventRCDUse: True
+      preventFloorPlacement: True
+      preventFloorRemoval: True
+      preventImpactDamage: true
     - type: WorldGenDistanceCarver
       distanceThresholds:
         # Dead zone
@@ -4011,17 +4022,6 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: Frontier
-    - type: ProtectedGrid
-      hostileMobKillSound: !type:SoundPathSpecifier
-        path: /Audio/Effects/holy.ogg
-      killHostileMobs: True
-      preventArtifactTriggers: True
-      preventExplosions: True
-      preventEmpEvents: True
-      preventRCDUse: True
-      preventFloorPlacement: True
-      preventFloorRemoval: True
-      preventImpactDamage: true
     - type: SpreaderGrid
     - type: IFF
       readOnly: True

@@ -10,7 +10,7 @@
       - SimpleHostile
   - type: HTN
     rootTask:
-       task: InfernoSimpleMeleeHostileCompound
+       task: SimpleHostileCompound
     blackboard:
       NavClimb: !type:Bool
         true
@@ -244,8 +244,6 @@
   suffix: Inferno
   components:
   - type: HTN
-    rootTask:
-       task: InfernoSimpleRangedHostileCompound
     blackboard:
       NavClimb: !type:Bool
         true

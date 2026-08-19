@@ -1,6 +1,7 @@
 ## UI
 shipyard-console-invalid-vessel = Cannot purchase vessel:
 shipyard-console-menu-title = Shipyard Menu
+shipyard-console-menu-title-parking = Shuttle Parking
 shipyard-console-menu-listing-free = Free
 shipyard-console-docking = {$owner} shuttle {$vessel} en route.
 shipyard-console-leaving = {$owner} shuttle {$vessel} sold by {$player}.
@@ -21,7 +22,18 @@ shipyard-console-sale-unknown-reason = Ship cannot be sold: {reason}
 shipyard-console-no-idcard-helper-line1 = Insert ID card to buy or sell a ship.
 shipyard-console-no-idcard-helper-line2 = Your ID card is in your PDA.
 shipyard-console-deed-label = Registered Ship:
+shipyard-console-deed-label-none = None
 shipyard-console-appraisal-label = Shuttle Resale Value:{" "}
+shipyard-console-unassign-deed = Unassign
+shipyard-console-deed-unassigned = Deed unassigned from ID card successfully.
+shipyard-console-confirm-unassign = Are you sure?
+shipyard-console-unassign-cooldown = Wait {$minutes} minute(s) before unassigning another deed.
+shipyard-console-rename-button = Rename
+shipyard-console-rename-placeholder = Name
+shipyard-console-rename-empty = Ship name cannot be empty.
+shipyard-console-rename-too-long = Ship name cannot exceed { $max } characters.
+shipyard-console-rename-success = Ship renamed to "{ $name }".
+shipyard-console-rename-failed = Failed to rename ship.
 shipyard-console-no-voucher-redemptions = All voucher redemptions have been used.
 shipyard-console-invalid-voucher-type = This voucher cannot be used at this console.
 
@@ -37,6 +49,16 @@ shipyard-console-menu-engine-label = Engine:{" "}
 shipyard-console-menu-sortby-label = Sort By:{" "}
 
 shipyard-console-purchase-available = Purchase
+shipyard-console-park = Park
+shipyard-console-recall = Recall
+shipyard-console-parking-already-parked = This shuttle is already parked.
+shipyard-console-parking-not-parked = This shuttle is not parked.
+shipyard-console-parking-no-dock-selected = Select a docking port first.
+shipyard-console-parking-invalid-dock = An invalid docking port was selected.
+shipyard-console-parking-no-docking-path = Failed to recall the shuttle to the selected docking port.
+shipyard-console-parking-cryo-pod-aboard = A player cryo-sleep pod is installed on this shuttle. It cannot be parked.
+shipyard-console-parking-status-parked = Status: parked
+shipyard-console-parking-status-active = Status: active
 shipyard-console-guidebook = Manual
 
 # Keep these in enum order for ease of validation.

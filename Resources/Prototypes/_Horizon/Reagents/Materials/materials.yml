@@ -45,6 +45,14 @@
   icon: { sprite: "_Horizon/Objects/Materials/Sheets/other.rsi", state: plutonium }
   color: "#b50f09"
   price: 1
+  properties:
+    electrical: 7
+    thermal: 6
+    hard: 7
+    density: 8
+    chemical: 6
+    radioactive: 3
+    n_radioactive: 5
 
 - type: material
   id: Neptunium

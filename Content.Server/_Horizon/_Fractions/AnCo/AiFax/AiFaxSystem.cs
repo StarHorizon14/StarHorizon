@@ -5,6 +5,7 @@ using System.Text;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Fax;
 using Robust.Shared.Utility;
+using Content.Shared._Horizon._Fractions.AnCo.AiFax;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.DeviceNetwork.Events;
@@ -28,6 +29,10 @@ public sealed class AiFaxSystem : EntitySystem
     [Dependency] private readonly IResourceManager _resourceManager = default!;
 
     private GeminiApiService _geminiApi = default!;
+    private DeepSeekApiService _deepSeekApi = default!;
+    private GroqApiService _groqApi = default!;
+    private OpenRouterApiService _openRouterApi = default!;
+    private GrokApiService _grokApi = default!;
     private ISawmill _sawmill = default!;
 
     public override void Initialize()
@@ -36,6 +41,10 @@ public sealed class AiFaxSystem : EntitySystem
 
         _sawmill = _logManager.GetSawmill("ai-fax");
         _geminiApi = new GeminiApiService(_logManager);
+        _deepSeekApi = new DeepSeekApiService(_logManager);
+        _groqApi = new GroqApiService(_logManager);
+        _openRouterApi = new OpenRouterApiService(_logManager);
+        _grokApi = new GrokApiService(_logManager);
 
         SubscribeLocalEvent<AiFaxComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
     }
@@ -174,7 +183,7 @@ public sealed class AiFaxSystem : EntitySystem
                 _sawmill.Debug($"AI Fax system prompt length: {fullSystemPrompt.Length} chars");
             }
 
-            _sawmill.Info($"AI Fax sending request to model: {aiComp.Model}");
+            _sawmill.Info($"AI Fax sending request to {aiComp.Provider} model: {aiComp.Model}");
 
             // Build conversation history for API
             List<(string role, string text)>? history = null;
@@ -186,17 +195,49 @@ public sealed class AiFaxSystem : EntitySystem
                 _sawmill.Debug($"AI Fax including {history.Count} history messages");
             }
 
-            var response = await _geminiApi.GenerateContentAsync(
-                aiComp.ApiKey,
-                aiComp.Model,
-                fullSystemPrompt,
-                message,
-                history,
-                aiComp.RequestTimeoutSeconds);
+            var response = await (aiComp.Provider switch
+            {
+                AiFaxProvider.DeepSeek => _deepSeekApi.GenerateContentAsync(
+                    aiComp.ApiKey,
+                    aiComp.Model,
+                    fullSystemPrompt,
+                    message,
+                    history,
+                    aiComp.RequestTimeoutSeconds),
+                AiFaxProvider.Groq => _groqApi.GenerateContentAsync(
+                    aiComp.ApiKey,
+                    aiComp.Model,
+                    fullSystemPrompt,
+                    message,
+                    history,
+                    aiComp.RequestTimeoutSeconds),
+                AiFaxProvider.OpenRouter => _openRouterApi.GenerateContentAsync(
+                    aiComp.ApiKey,
+                    aiComp.Model,
+                    fullSystemPrompt,
+                    message,
+                    history,
+                    aiComp.RequestTimeoutSeconds),
+                AiFaxProvider.Grok => _grokApi.GenerateContentAsync(
+                    aiComp.ApiKey,
+                    aiComp.Model,
+                    fullSystemPrompt,
+                    message,
+                    history,
+                    aiComp.RequestTimeoutSeconds),
+                _ => _geminiApi.GenerateContentAsync(
+                    aiComp.ApiKey,
+                    aiComp.Model,
+                    fullSystemPrompt,
+                    message,
+                    history,
+                    aiComp.RequestTimeoutSeconds),
+            });
 
             if (string.IsNullOrEmpty(response))
             {
-                response = "[AI не смог обработать запрос]";
+                _sawmill.Warning("AI Fax got empty response, not replying");
+                return;
             }
 
             // Truncate response to fit fax limits
