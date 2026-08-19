@@ -6,9 +6,9 @@
   suffix: LVHI
   components:
   - type: Stamp
-    stampedName: "LANGSTAD-VOIGT HEAVY INDUSTRIES" # Текст, который оставляется на бумаге
-    stampedColor: "#e26817" # Фирменный оранжевый цвет LVHI
-    stampState: "paper_stamp-nf-engineer" # Визуальный вид оттиска на бумаге
+    stampedName: "LANGSTAD-VOIGT HEAVY INDUSTRIES"
+    stampedColor: "#e26817"
+    stampState: "paper_stamp-nf-engineer"
   - type: Sprite
     sprite: _NF/Objects/Misc/stamps.rsi
     state: stamp-engineer
