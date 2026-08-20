@@ -51,6 +51,10 @@
       #     Log:
       #       min: 2
       #       max: 8
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#cc0000"
 
 - type: entity
   id: PlantAnCoGrass
@@ -113,6 +117,9 @@
           AnCoSeedBigMushroom:
             min: 0
             max: 1
+          ArdonOre1:
+            min: 0
+            max: 2
 
 - type: entity
   id: PlantAnCoMushroom
@@ -252,7 +259,7 @@
     - state: seed
   - type: Appearance
   - type: StaticPrice
-    price: 5000
+    price: 1000
 
 - type: entity
   parent: BaseSeedAnCo
@@ -321,12 +328,34 @@
   description: Крутой горшок из казмия
   abstract: true
   components:
+  - type: SpriteFade
+  - type: Transform
+    noRot: true
   - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.1
+        density: 190
+        mask:
+        - HighImpassable
   - type: Sprite
+    drawdepth: Overdoors
+    offset: "0.0,0.3"
     sprite: Structures/Furniture/potted_plants.rsi
     noRot: true
+  - type: Speech
+    speechVerb: Plant # for pais (In the secret stash)
+  - type: Pullable
   - type: StaticPrice
     price: 50
+  - type: ContainerContainer
+    containers:
+      stash: !type:ContainerSlot {}
 
 - type: entity
   parent: [BaseAnCoContraband, PottedPlantAnCoBase]
@@ -341,9 +370,7 @@
     - state: empty
   - type: Construction
     graph: AnCoPlantSeed
-    node: start
-
-
+    node: donecraft
 
 - type: entity
   parent: [BaseAnCoContraband, PottedPlantAnCoBase]
@@ -360,7 +387,14 @@
   - type: Construction
     graph: AnCoPlantSeed
     node: grass
-
+  - type: SecretStash
+    tryInsertItemSound: /Audio/Effects/plant_rustle.ogg
+    tryRemoveItemSound: /Audio/Effects/plant_rustle.ogg
+    secretStashName: secret-stash-plant
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#cc0000"
 
 - type: entity
   parent: [BaseAnCoContraband, PottedPlantAnCoBase]
@@ -377,7 +411,14 @@
   - type: Construction
     graph: AnCoPlantSeed
     node: big-mushroom
-
+  - type: SecretStash
+    tryInsertItemSound: /Audio/Effects/plant_rustle.ogg
+    tryRemoveItemSound: /Audio/Effects/plant_rustle.ogg
+    secretStashName: secret-stash-plant
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#cc0000"
 
 - type: entity
   parent: [BaseAnCoContraband, PottedPlantAnCoBase]
@@ -394,7 +435,14 @@
   - type: Construction
     graph: AnCoPlantSeed
     node: mushroom
-
+  - type: SecretStash
+    tryInsertItemSound: /Audio/Effects/plant_rustle.ogg
+    tryRemoveItemSound: /Audio/Effects/plant_rustle.ogg
+    secretStashName: secret-stash-plant
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#cc0000"
 
 - type: entity
   parent: [BaseAnCoContraband, PottedPlantAnCoBase]
@@ -411,7 +459,14 @@
   - type: Construction
     graph: AnCoPlantSeed
     node: mimic
-
+  - type: SecretStash
+    tryInsertItemSound: /Audio/Effects/plant_rustle.ogg
+    tryRemoveItemSound: /Audio/Effects/plant_rustle.ogg
+    secretStashName: secret-stash-plant
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#cc0000"
 
 - type: entity
   parent: [BaseAnCoContraband, PottedPlantAnCoBase]
@@ -428,7 +483,14 @@
   - type: Construction
     graph: AnCoPlantSeed
     node: ball
-
+  - type: SecretStash
+    tryInsertItemSound: /Audio/Effects/plant_rustle.ogg
+    tryRemoveItemSound: /Audio/Effects/plant_rustle.ogg
+    secretStashName: secret-stash-plant
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#cc0000"
 
 - type: entity
   parent: [BaseAnCoContraband, PottedPlantAnCoBase]
@@ -445,4 +507,11 @@
   - type: Construction
     graph: AnCoPlantSeed
     node: sliced
-
+  - type: SecretStash
+    tryInsertItemSound: /Audio/Effects/plant_rustle.ogg
+    tryRemoveItemSound: /Audio/Effects/plant_rustle.ogg
+    secretStashName: secret-stash-plant
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#cc0000"

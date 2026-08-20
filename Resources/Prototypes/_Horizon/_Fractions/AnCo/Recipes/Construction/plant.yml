@@ -3,6 +3,13 @@
   start: start
   graph:
     - node: start
+      edges:
+        - to: donecraft
+          steps:
+            - material: KazmieSheetStack
+              amount: 3
+              doAfter: 2
+    - node: donecraft
       entity: PottedEmpty
       edges:
         - to: grass
@@ -41,3 +48,15 @@
       entity: AnCoPottedBall
     - node: sliced
       entity: AnCoPottedSliced
+
+- type: construction
+  id: PottedEmpty
+  graph: AnCoPlantSeed
+  startNode: start
+  targetNode: donecraft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
