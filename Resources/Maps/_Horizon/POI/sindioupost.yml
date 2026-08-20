@@ -10190,6 +10190,13 @@ entities:
     - type: Transform
       pos: 28.5,12.5
       parent: 1
+- proto: BaseResearchAndDevelopmentPointSource
+  entities:
+  - uid: 389
+    components:
+    - type: Transform
+      pos: -0.5,16.5
+      parent: 1
 - proto: Bed
   entities:
   - uid: 390
@@ -40264,7 +40271,7 @@ entities:
         Итого затрачено: -
 
 
-        Сектор: 
+        Сектор:
 
 
         -
@@ -40340,17 +40347,17 @@ entities:
         Прошу рассмотреть на добро на нижеописанную операцию:
          -
 
-        Цель операции: 
+        Цель операции:
          -
 
         [head=2]Запрос оборудования[/head]
 
         Запрашиваю поставку следующего оборудования:
-         • 
-         • 
-         • 
-         • 
-         • 
+         •
+         •
+         •
+         •
+         •
 
         Причина запроса: -
 
@@ -55996,5 +56003,12 @@ entities:
     components:
     - type: Transform
       pos: -7.474308,-4.600937
+      parent: 1
+- proto: SpawnMobCatElCapo
+  entities:
+  - uid: 7526
+    components:
+    - type: Transform
+      pos: 0.5,17.5
       parent: 1
 ...
