@@ -82,3 +82,24 @@
 
 - type: Tag
   id: AnCoUpgradeSyndie
+
+# plant
+
+- type: Tag
+  id: AnCoPlantSeedGrass
+
+- type: Tag
+  id: AnCoPlantSeedBigMushroom
+
+- type: Tag
+  id: AnCoPlantSeedMushroom
+
+- type: Tag
+  id: AnCoPlantSeedMimic
+
+- type: Tag
+  id: AnCoPlantSeedBall
+
+- type: Tag
+  id: AnCoPlantSeedSliced
+

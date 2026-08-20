@@ -1,0 +1,43 @@
+- type: constructionGraph
+  id: AnCoPlantSeed
+  start: start
+  graph:
+    - node: start
+      entity: PottedEmpty
+      edges:
+        - to: grass
+          steps:
+            - tag: AnCoPlantSeedGrass
+              doAfter: 4
+        - to: big-mushroom
+          steps:
+            - tag: AnCoPlantSeedBigMushroom
+              doAfter: 4
+        - to: mushroom
+          steps:
+            - tag: AnCoPlantSeedMushroom
+              doAfter: 4
+        - to: mimic
+          steps:
+            - tag: AnCoPlantSeedMimic
+              doAfter: 4
+        - to: ball
+          steps:
+            - tag: AnCoPlantSeedBall
+              doAfter: 4
+        - to: sliced
+          steps:
+            - tag: AnCoPlantSeedSliced
+              doAfter: 4
+    - node: grass
+      entity: AnCoPottedGrass
+    - node: big-mushroom
+      entity: AnCoPottedBigMushroom
+    - node: mushroom
+      entity: AnCoPottedMushroom
+    - node: mimic
+      entity: AnCoPottedMimic
+    - node: ball
+      entity: AnCoPottedBall
+    - node: sliced
+      entity: AnCoPottedSliced

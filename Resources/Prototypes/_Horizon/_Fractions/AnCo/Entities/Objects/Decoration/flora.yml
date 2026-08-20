@@ -1,0 +1,430 @@
+- type: entity
+  id: BasePlantAnCo
+  description: Красные растения, о боже!
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: SpriteFade
+  - type: Clickable
+  - type: Sprite
+    noRot: true
+    sprite: _Horizon/_Fractions/AnCo/Structures/flora.rsi
+    drawdepth: Overdoors
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Weapons/slash.ogg
+        params:
+          variation: 0.05
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Weapons/slash.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      # - !type:SpawnEntitiesBehavior
+      #   spawn:
+      #     Log:
+      #       min: 2
+      #       max: 8
+
+- type: entity
+  id: PlantAnCoGrass
+  parent: BasePlantAnCo
+  suffix: StarHorizon, AnCo, Flora
+  name: трава ардониевой пустоши
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Horizon/_Fractions/AnCo/Structures/flora.rsi
+    layers:
+    - state: grass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Weapons/slash.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AnCoSeedGrass:
+            min: 0
+            max: 1
+
+- type: entity
+  id: PlantAnCoBigMushroom
+  parent: BasePlantAnCo
+  suffix: StarHorizon, AnCo, Flora
+  name: огромный гриб ардониевой пустоши
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Horizon/_Fractions/AnCo/Structures/flora.rsi
+    layers:
+    - state: big-mushroom
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Weapons/slash.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AnCoSeedBigMushroom:
+            min: 0
+            max: 1
+
+- type: entity
+  id: PlantAnCoMushroom
+  parent: BasePlantAnCo
+  suffix: StarHorizon, AnCo, Flora
+  name: грибы ардониевой пустоши
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Horizon/_Fractions/AnCo/Structures/flora.rsi
+    layers:
+    - state: mushroom
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Weapons/slash.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AnCoSeedMushroom:
+            min: 0
+            max: 1
+
+- type: entity
+  id: PlantAnCoMimic
+  parent: BasePlantAnCo
+  suffix: StarHorizon, AnCo, Flora
+  name: мимик ардониевой пустоши
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Horizon/_Fractions/AnCo/Structures/flora.rsi
+    layers:
+    - state: mimic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Weapons/slash.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AnCoSeedMimic:
+            min: 0
+            max: 1
+
+- type: entity
+  id: PlantAnCoBall
+  parent: BasePlantAnCo
+  suffix: StarHorizon, AnCo, Flora
+  name: шаровик ардониевой пустоши
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Horizon/_Fractions/AnCo/Structures/flora.rsi
+    layers:
+    - state: ball
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Weapons/slash.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AnCoSeedBall:
+            min: 0
+            max: 1
+
+- type: entity
+  id: PlantAnCoSliced
+  parent: BasePlantAnCo
+  suffix: StarHorizon, AnCo, Flora
+  name: лезвиник ардониевой пустоши
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Horizon/_Fractions/AnCo/Structures/flora.rsi
+    layers:
+    - state: sliced
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Weapons/slash.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AnCoSeedSliced:
+            min: 0
+            max: 1
+
+- type: entity
+  parent: [BaseAnCoContraband, BaseItem]
+  id: BaseSeedAnCo
+  suffix: StarHorizon, AnCo
+  categories: [ HideSpawnMenu ]
+  name: семена ардониевой пустоши
+  description: семена редких растений. Растут лишь в особых условиях.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/flora.rsi
+    layers:
+    - state: seed
+  - type: Appearance
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: BaseSeedAnCo
+  id: AnCoSeedGrass
+  suffix: StarHorizon, AnCo
+  name: семена травы ардониевой пустоши
+  components:
+  - type: Tag
+    tags:
+    - AnCoPlantSeedGrass
+
+- type: entity
+  parent: BaseSeedAnCo
+  id: AnCoSeedBigMushroom
+  suffix: StarHorizon, AnCo
+  name: семена огромного гриба ардониевой пустоши
+  components:
+  - type: Tag
+    tags:
+    - AnCoPlantSeedBigMushroom
+
+- type: entity
+  parent: BaseSeedAnCo
+  id: AnCoSeedMushroom
+  suffix: StarHorizon, AnCo
+  name: семена гриба ардониевой пустоши
+  components:
+  - type: Tag
+    tags:
+    - AnCoPlantSeedMushroom
+
+- type: entity
+  parent: BaseSeedAnCo
+  id: AnCoSeedMimic
+  suffix: StarHorizon, AnCo
+  name: семена мимика ардониевой пустоши
+  components:
+  - type: Tag
+    tags:
+    - AnCoPlantSeedMimic
+
+- type: entity
+  parent: BaseSeedAnCo
+  id: AnCoSeedBall
+  suffix: StarHorizon, AnCo
+  name: семена шаровика ардониевой пустоши
+  components:
+  - type: Tag
+    tags:
+    - AnCoPlantSeedBall
+
+- type: entity
+  parent: BaseSeedAnCo
+  id: AnCoSeedSliced
+  suffix: StarHorizon, AnCo
+  name: семена лезвиника ардониевой пустоши
+  components:
+  - type: Tag
+    tags:
+    - AnCoPlantSeedSliced
+
+- type: entity
+  id: PottedPlantAnCoBase
+  parent: BaseStructureDynamic
+  name: пустой горшок для растений
+  description: Крутой горшок из казмия
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Structures/Furniture/potted_plants.rsi
+    noRot: true
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: [BaseAnCoContraband, PottedPlantAnCoBase]
+  id: PottedEmpty
+  suffix: StarHorizon, AnCo
+  name: пустой горшок
+  description: Крутой горшок из казмия
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Decoration/plant.rsi
+    layers:
+    - state: empty
+  - type: Construction
+    graph: AnCoPlantSeed
+    node: start
+
+
+
+- type: entity
+  parent: [BaseAnCoContraband, PottedPlantAnCoBase]
+  id: AnCoPottedGrass
+  suffix: StarHorizon, AnCo
+  name: горшок с растением из ардонивой пустоши
+  description: Крутой горшок из казмия
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Decoration/plant.rsi
+    layers:
+    - state: empty
+    - state: grass
+
+
+- type: entity
+  parent: [BaseAnCoContraband, PottedPlantAnCoBase]
+  id: AnCoPottedBigMushroom
+  suffix: StarHorizon, AnCo
+  name: горшок с растением из ардонивой пустоши
+  description: Крутой горшок из казмия
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Decoration/plant.rsi
+    layers:
+    - state: empty
+    - state: big-mushroom
+
+
+- type: entity
+  parent: [BaseAnCoContraband, PottedPlantAnCoBase]
+  id: AnCoPottedMushroom
+  suffix: StarHorizon, AnCo
+  name: горшок с растением из ардонивой пустоши
+  description: Крутой горшок из казмия
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Decoration/plant.rsi
+    layers:
+    - state: empty
+    - state: mushroom
+
+
+- type: entity
+  parent: [BaseAnCoContraband, PottedPlantAnCoBase]
+  id: AnCoPottedMimic
+  suffix: StarHorizon, AnCo
+  name: горшок с растением из ардонивой пустоши
+  description: Крутой горшок из казмия
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Decoration/plant.rsi
+    layers:
+    - state: empty
+    - state: mimic
+
+
+- type: entity
+  parent: [BaseAnCoContraband, PottedPlantAnCoBase]
+  id: AnCoPottedBall
+  suffix: StarHorizon, AnCo
+  name: горшок с растением из ардонивой пустоши
+  description: Крутой горшок из казмия
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Decoration/plant.rsi
+    layers:
+    - state: empty
+    - state: ball
+
+
+- type: entity
+  parent: [BaseAnCoContraband, PottedPlantAnCoBase]
+  id: AnCoPottedSliced
+  suffix: StarHorizon, AnCo
+  name: горшок с растением из ардонивой пустоши
+  description: Крутой горшок из казмия
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Decoration/plant.rsi
+    layers:
+    - state: empty
+    - state: sliced
+
