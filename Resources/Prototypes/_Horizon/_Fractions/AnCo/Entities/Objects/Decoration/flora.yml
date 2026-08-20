@@ -357,6 +357,9 @@
     layers:
     - state: empty
     - state: grass
+  - type: Construction
+    graph: AnCoPlantSeed
+    node: grass
 
 
 - type: entity
@@ -371,6 +374,9 @@
     layers:
     - state: empty
     - state: big-mushroom
+  - type: Construction
+    graph: AnCoPlantSeed
+    node: big-mushroom
 
 
 - type: entity
@@ -385,6 +391,9 @@
     layers:
     - state: empty
     - state: mushroom
+  - type: Construction
+    graph: AnCoPlantSeed
+    node: mushroom
 
 
 - type: entity
@@ -399,6 +408,9 @@
     layers:
     - state: empty
     - state: mimic
+  - type: Construction
+    graph: AnCoPlantSeed
+    node: mimic
 
 
 - type: entity
@@ -413,6 +425,9 @@
     layers:
     - state: empty
     - state: ball
+  - type: Construction
+    graph: AnCoPlantSeed
+    node: ball
 
 
 - type: entity
@@ -427,4 +442,7 @@
     layers:
     - state: empty
     - state: sliced
+  - type: Construction
+    graph: AnCoPlantSeed
+    node: sliced
 
