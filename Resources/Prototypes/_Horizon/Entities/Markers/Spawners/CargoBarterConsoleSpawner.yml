@@ -18,7 +18,6 @@
   parent: MarkerBase
   name: barter console spawner
   suffix: Random Markup
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -53,7 +52,6 @@
   parent: MarkerBase
   name: barter console spawner (tabletop)
   suffix: Random Markup, Tabletop
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:

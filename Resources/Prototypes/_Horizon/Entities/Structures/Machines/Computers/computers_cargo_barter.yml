@@ -51,8 +51,6 @@
     range: 200
     ports:
       - OrderSender
-  - type: AutoLinkTransmitter
-    channel: CargoBarter
 
 # Concrete tiers
 

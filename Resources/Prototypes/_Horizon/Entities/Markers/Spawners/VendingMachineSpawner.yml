@@ -214,7 +214,6 @@
   parent: MarkerBase
   name: vending machine spawner (any)
   suffix: Random Vending
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/snack.rsi
@@ -276,7 +275,6 @@
   parent: MarkerBase
   name: vending machine spawner (POI)
   suffix: Random Vending, POI
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/snack.rsi
