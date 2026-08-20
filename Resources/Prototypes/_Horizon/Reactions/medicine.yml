@@ -122,3 +122,108 @@
       catalyst: true
   products:
     Agonolexyne: 3
+
+# NEW
+- type: reaction
+  id: StypticPowder
+  reactants:
+    Aluminium:
+      amount: 1
+    Hydroxide:
+      amount: 2
+    SulfuricAcid:
+      amount: 1
+  products:
+    StypticPowder: 4
+
+- type: reaction
+  id: SilverSulfadiazine
+  reactants:
+    Ammonia:
+      amount: 1
+    Silver:
+      amount: 1
+    Sulfur:
+      amount: 1
+    Oxygen:
+      amount: 1
+    Chlorine:
+      amount: 1
+  products:
+    SilverSulfadiazine: 5
+
+- type: reaction
+  id: Tirimol
+  reactants:
+    Acetone:
+      amount: 2
+    SodiumPolyacrylate:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+  products:
+    Tirimol: 4
+
+- type: reaction
+  id: Calomel
+  minTemp: 370
+  reactants:
+    Mercury:
+      amount: 1
+    Lithium:
+      amount: 1
+  products:
+    Calomel: 2
+
+- type: reaction
+  id: AmmoniatedMercury
+  reactants:
+    Calomel:
+      amount: 1
+    Ammonia:
+      amount: 1
+  products:
+    AmmoniatedMercury: 2
+
+- type: reaction
+  id: Synthcells
+  reactants:
+    Omnizine:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+    Blood:
+      amount: 1
+    StypticPowder:
+      amount: 1
+  products:
+    Synthcells: 3
+
+- type: reaction
+  id: SalicylicAcid
+  minTemp: 370
+  reactants:
+    TranexamicAcid:
+      amount: 1
+    FluorosulfuricAcid:
+      amount: 1
+    SodiumHydroxide:
+      amount: 1
+    Bicaridine:
+      amount: 1
+  products:
+    SalicylicAcid: 4
+
+- type: reaction
+  id: Oxandrolone
+  reactants:
+    SodiumCarbonate:
+      amount: 1
+    Dermaline:
+      amount: 1
+    Phenol:
+      amount: 1
+    Leporazine:
+      amount: 1
+  products:
+    Oxandrolone: 4

@@ -112,3 +112,29 @@
         whitelist:
           components:
           - Storage
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingAtmosphericsOveralls
+  name: спецовка атмосферного техника
+  description: Огнеупорная спецовка, крайне хороша для защиты тонкой одежды от утечек газа и маленьких пожаров.
+  components:
+  - type: Sprite
+    sprite: _StarHorizon/Clothing/OuterClothing/Coats/atmos_overalls.rsi
+  - type: Clothing
+    sprite: _StarHorizon/Clothing/OuterClothing/Coats/atmos_overalls.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+      - state: equipped-OUTERCLOTHING-unshaded
+        shader: unshaded
+      - state: equipped-OUTERCLOTHING-unshaded
+        shader: shaded
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Caustic: 0.80
+        Heat: 0.70

@@ -88,3 +88,15 @@
   - type: Clothing
     sprite: _StarHorizon/Clothing/Eyes/glassestransparentc.rsi
   - type: EyeProtection
+
+- type: entity
+  parent: [ClothingEyesGlassesMeson, ShowMedicalIcons]
+  id: ClothingEyesGlassesMesonMod
+  name: модифицированные мезонные авиаторы
+  description: Солнцезащитные авиаторы оснащённые защитным экранированным покрытием специально для атмосов и инженеров. Походу этот модифицирован медсканером.
+  components:
+  - type: Sprite
+    sprite: _StarHorizon/Clothing/Eyes/mesonmod.rsi
+  - type: Clothing
+    sprite: _StarHorizon/Clothing/Eyes/mesonmod.rsi
+  - type: FlashImmunity

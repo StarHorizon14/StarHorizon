@@ -68,7 +68,7 @@
   keycode: 'у'
   frequency: 1213
   color: "#8f4a4b"
-#  longRange: true # Frontier - Move to Syndicate Base
+  longRange: true # Frontier - Move to Syndicate Base
 
 - type: radioChannel
   id: Handheld
@@ -77,7 +77,7 @@
   color: "#967101"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   longRange: true
-  showFrequency: true # Frontier
+  showFrequency: true # Frontier # SH - Проблема коммуникации
 
 - type: radioChannel
   id: Binary
@@ -95,7 +95,7 @@
   frequency: 1984
   color: "#f6ce64"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
-  #longRange: true # Frontier - Move to server on cove
+  longRange: true # Frontier - Move to server on cove # SH - Проблема коммуникации
 
 - type: radioChannel
   abstract: true # Frontier

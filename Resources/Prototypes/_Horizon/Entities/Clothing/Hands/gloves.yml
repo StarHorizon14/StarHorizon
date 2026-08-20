@@ -63,3 +63,14 @@
     fiberMaterial: fibers-synthetic
     fiberColor: fibers-black
 # А дальше уже не Cvartet @_@
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesAtmos
+  name: защитные атмосферные перчатки
+  description: Перчатки для работы в самых опасных средах. Они плотные и огнеупорные.
+  components:
+  - type: Sprite
+    sprite: _StarHorizon/Clothing/Hands/Gloves/atmos_insuls.rsi
+  - type: Clothing
+    sprite: _StarHorizon/Clothing/Hands/Gloves/atmos_insuls.rsi
