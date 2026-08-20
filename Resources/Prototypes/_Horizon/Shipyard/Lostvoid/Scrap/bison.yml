@@ -1,0 +1,33 @@
+- type: vessel
+  id: BisonLostVoid
+  parent: BaseVessel
+  name: NT Bison
+  description: A heavy duty ship breaker with a durable hull and a substantial amount of living space, built for long journeys with self-sufficiency.
+  price: 166138
+  category: Large
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/bison.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Salvage
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: BisonLostVoid
+  mapName: 'NT Bison'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/bison.yml
+  minPlayers: 0
+  stations: 
+    BisonLostVoid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bison {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

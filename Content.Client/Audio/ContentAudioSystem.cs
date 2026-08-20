@@ -1,3 +1,4 @@
+using Content.Shared._Horizon.Audio;
 using Content.Shared.Audio;
 using Content.Shared.GameTicking;
 using AudioComponent = Robust.Shared.Audio.Components.AudioComponent;
@@ -40,6 +41,49 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         InitializeAmbientMusic();
         InitializeLobbyMusic();
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
+        SubscribeNetworkEvent<MuteClientEvent>(OnMuteClient);
+    }
+
+    private void OnMuteClient(MuteClientEvent ev)
+    {
+        if (ev.OnlyGlobalSound)
+        {
+            MuteGlobalSoundStreams(ev.FadeSeconds);
+            return;
+        }
+
+        if (ev.FadeSeconds <= 0f)
+        {
+            SilenceAudio();
+            return;
+        }
+
+        var query = AllEntityQuery<AudioComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            // Skip streams that are already silent/invalid - fading these produces NaN/Infinity
+            // in UpdateFades since they never reach MinVolume and get stuck fading forever.
+            if (!float.IsFinite(comp.Volume) || comp.Volume <= MinVolume)
+                continue;
+
+            FadeOut(uid, comp, ev.FadeSeconds);
+        }
+    }
+
+    private void MuteGlobalSoundStreams(float fadeSeconds)
+    {
+        var globalSound = EntityManager.System<ClientGlobalSoundSystem>();
+
+        foreach (var stream in globalSound.AdminAudioStreams)
+        {
+            if (stream is not { } uid || !TryComp(uid, out AudioComponent? comp))
+                continue;
+
+            if (fadeSeconds <= 0f)
+                _audio.Stop(uid);
+            else if (float.IsFinite(comp.Volume) && comp.Volume > MinVolume)
+                FadeOut(uid, comp, fadeSeconds);
+        }
     }
 
     private void OnRoundCleanup(RoundRestartCleanupEvent ev)
@@ -99,7 +143,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         // TODO: Maybe handle the removals by making it seamless?
         _fadingIn.Remove(stream.Value);
         var diff = component.Volume - MinVolume;
-        _fadingOut.Add(stream.Value, diff / duration);
+        _fadingOut[stream.Value] = diff / duration;
     }
 
     public void FadeIn(EntityUid? stream, AudioComponent? component = null, float duration = DefaultDuration)
@@ -110,7 +154,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         _fadingOut.Remove(stream.Value);
         var curVolume = component.Volume;
         var change = (MinVolume - curVolume) / duration;
-        _fadingIn.Add(stream.Value, (change, component.Volume));
+        _fadingIn[stream.Value] = (change, component.Volume);
         component.Volume = MinVolume;
     }
 

@@ -1,0 +1,1359 @@
+- type: entity
+  parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseCargoContraband
+  id: EncryptionKeyIHP
+  name: Ключ связи IHP
+  categories: [ DoNotMap ] # Frontier
+  description: Ключ отдельного радиоканала IHP.
+  suffix: IHP
+  components:
+  - type: EncryptionKey
+    channels:
+    - IHPRadion
+    defaultChannel: IHPRadion
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - state: cargo_label
+  - type: Tag
+    tags:
+    - EncryptionCargo
+
+- type: radioChannel
+  id: IHPRadion
+  name: IHP
+  keycode: 'л'
+  frequency: 1671
+  color: "#8a42a0"
+  longRange: true
+
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetExoeditorIHP
+  name: Экспедиционная гарнитура "IHP"
+  description: Специальная гарнитура для экспедиционных задач. Легкая и довольно упругая гарнитура для поддержки радиосвязи отдельной частоты IHP
+  suffix: IHP
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyIHP
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/baseHPl.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/baseHPl.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetIHP
+  name: Гарнитура "IHP"
+  description: Легкая и довольно упругая гарнитура для поддержки радиосвязи отдельной частоты IHP
+  suffix: IHP
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyIHP
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/baseHPl.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/baseHPl.rsi
+
+
+# КПК
+- type: entity
+  parent: BasePDA
+  id: BaseIHPpda
+  name: КПК IHP
+  description: Мяу мяу. Мяу мяу.
+  categories: [ HideSpawnMenu ] # Frontier
+  components:
+  - type: Pda
+    id: PassengerIDCard
+  - type: PdaBorderColor
+    borderColor: "#717059"
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/pda.rsi
+    state: pda
+
+- type: entity
+  parent: BaseIHPpda
+  id: AgentIHPpda
+  name: КПК агента IHP
+  description: Простой КПК используемый работниками IHP
+  suffix: IHP
+  components:
+  - type: Pda
+    id: IDcardAgentIHP
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda
+
+- type: entity
+  parent: BaseIHPpda
+  id: LiderIHPpda
+  name: Кпк руководителя IHP
+  description: Простой КПК используемый руководством IHP
+  suffix: IHP
+  components:
+  - type: Pda
+    id: IDcardLiderIHP
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda
+
+
+- type: entity
+  parent: PassengerIDCard
+  id: IDcardAgentIHP
+  name: Айди карта Агента IHP
+  suffix: IHP
+  components:
+  - type: WorldItem
+  - type: PresetIdCard
+    job: Contractor
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/idcards.rsi
+    layers:
+    - state: default
+    - state: default
+
+
+- type: entity
+  parent: PassengerIDCard
+  id: IDcardLiderIHP
+  name: Айди карта Руководителя IHP
+  suffix: IHP
+  components:
+  - type: WorldItem
+  - type: PresetIdCard
+    job: Contractor
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/idcards.rsi
+    layers:
+    - state: defaultLider
+    - state: defaultLider
+
+
+# region Экзоскелеты
+
+- type: entity
+  parent: BaseAction
+  id: ActionExowoycehBullet
+  name: "[color=orange] Пустить Прото-Квазерный Заряд [/color]"
+  description: Вы выстреливаете зарядом энергии из своего костюма!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: { sprite : _Horizon/_Fractions/IHP/energo_bullet.rsi, state: blastwave }
+    itemIconStyle: BigAction
+    priority: 2
+    useDelay: 15 # Frontier
+    sound: # Frontier
+      path: /Audio/Animals/space_dragon_roar.ogg # Frontier
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: IHPGun
+  name: IHP
+  description: FIHP
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 15
+    rechargeSound: null #
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileExowoycehBullet
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot: null
+    soundEmpty: null
+    projectileSpeed: 10
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletTrigger
+  id: ProjectileExowoycehBullet
+  name: Прото-Квазерный всплеск
+  description: Летящий наверное в вашу сторону разрушительный снаряд!
+  components:
+  - type: PointLight
+    color: "#9619c7"
+    radius: 3.0
+    energy: 5.0
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/energo_bullet.rsi
+    layers:
+    - state: blastwave
+      shader: unshaded
+  - type: IgnitionSource
+    temperature: 1000
+    ignited: true
+  - type: RepeatingTrigger
+    delay: 0.2 # line of fire as well as if it hits something
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Bluespace
+    totalIntensity: 7
+    intensitySlope: 1
+    maxIntensity: 3
+    canCreateVacuum: false
+    deleteAfterExplosion: false
+    repeatable: true
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  parent: BaseAction
+  id: ActionExowoycehIHP
+  name: Активация Экзоскелета
+  description: Активируйте ваш экзоскелет для раскрытия большинства функций.
+  components:
+  - type: Action
+    # have to plan (un)cloaking ahead of time
+    useDelay: 5
+    priority: -9
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleSpeedExowoyceh
+  name: Активировать Сервопривод
+  description: Активирует ваш экзоскелет
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: entity
+  parent: NFClothingBackpack
+  id: ClothingBackpackExoWoycehIHP
+  name: Грузовой Экзоскелет XR-F.0
+  description: Экспериментальный образец грузового экзоскелета разработанный IHP. В отличии от обычных экзоскелетов этот полностью сконцентрирован на грузоперевозках.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/exowoyceh.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,7,6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+
+
+- type: entity
+  parent: [NFClothingBackpack, PowerCellSlotSmallItem, BaseToggleClothing]
+  id: ClothingSpeedExoWoycehIHP
+  name: Сервоприводный экзоскелет XR-F.2.5
+  description: Специальный экзоскелет с сервоприводом, по большей части сама конструкция совсем не даёт никакой защиты и служит лишь поверхностным корпусом для привода расположенного на поясе, обладает не только превосходной скоростью но встроенным небольшим реактивным джетпаком.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehspeed.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,5,4
+  - type: ToggleClothing
+    action: ActionToggleSpeedExowoyceh
+  - type: ClothingSpeedModifier
+    walkModifier: 1.30
+    sprintModifier: 1.30
+    standing: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: {state: icon}
+          False: {state: icon}
+  - type: PowerCellDraw
+    drawRate: 30
+  - type: ToggleCellDraw
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+  - type: Tag
+    tags: []
+  - type: JumpAbility
+    jumpDistance: 4
+    jumpSound: /Audio/Effects/stealthoff.ogg
+  - type: ActionGrant
+    actions:
+    - ActionGravityJump
+  - type: ItemActionGrant
+    actions:
+    - ActionGravityJump
+- type: entity
+  parent: [NFClothingBackpack, AllowSuitStorageClothing, BaseToggleClothing]
+  id: ClothingJumpExoWoycehIHP
+  name: Прыжковой Экзоскелет XR-F.2
+  description: Специализированный экзоскелет расчитанный на мобильность, позволяет носителю выполнять сложные прыжки сравнимые с небольшими полётами, при этом повывает так же и скорость бега.
+  suffix: IHP
+  components:
+  - type: ToggleClothing
+    action: ActionExowoycehIHP
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: JumpAbility
+      jumpDistance: 4
+      jumpSound: /Audio/Effects/stealthoff.ogg
+    - type: ActionGrant
+      actions:
+      - ActionGravityJump
+    - type: ItemActionGrant
+      actions:
+      - ActionGravityJump
+    - type: PointLight
+      radius: 3.5
+      energy: 1.6
+      color: "#b030ebc5"
+    activeIfWorn: true
+  - type: PowerCellDraw
+    drawRate: 3.5
+  - type: ToggleCellDraw
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehjamp.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,3,2
+  - type: RadioMicrophone
+    powerRequired: true
+    unobstructedRequired: true
+    listenRange: 2
+    toggleOnInteract: false
+  - type: RadioSpeaker
+    toggleOnInteract: false
+  - type: Intercom
+  - type: VoiceOverride #
+    speechVerbOverride: Electricity
+    enabled: false
+
+- type: entity
+  parent: [NFClothingBackpack, AllowSuitStorageClothing, BaseToggleClothing]
+  id: ClothingTackExoWoycehIHP
+  name: Тактический Экзоскелет XR-F.4
+  description: Экзоскелет военного образца, предназначен исключительно для длительных сражений на территории того или иного пространства, его большим недостатком является отсуствие герметичности, в остальном он уступает лучшим тактическим скафандрам.
+  suffix: IHP
+  components:
+  - type: Reflect
+    reflectProb: 0.2
+    reflects:
+      - Energy
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.7
+        Caustic: 0.7
+        Cold: 0.6
+        Bloodloss: 0.6
+  - type: ToggleClothing
+    action: ActionExowoycehIHP
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: JumpAbility
+      jumpDistance: 4
+      jumpSound: /Audio/Effects/stealthoff.ogg
+    - type: ActionGrant
+      actions:
+      - ActionGravityJump
+    - type: ItemActionGrant
+      actions:
+      - ActionGravityJump
+    - type: PointLight
+      radius: 3.5
+      energy: 1.6
+      color: "#b030ebc5"
+    activeIfWorn: true
+  - type: PowerCellDraw
+    drawRate: 3.5
+  - type: ToggleCellDraw
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehtack.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0
+  - type: ClothingSpeedModifier
+    walkModifier: 1.05
+    sprintModifier: 1.05
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,5
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: RadioMicrophone
+    powerRequired: true
+    unobstructedRequired: true
+    listenRange: 2
+    toggleOnInteract: false
+  - type: RadioSpeaker
+    toggleOnInteract: false
+  - type: Intercom
+  - type: VoiceOverride
+    speechVerbOverride: Electricity
+    enabled: false
+
+
+- type: entity
+  parent: [NFClothingBackpack, AllowSuitStorageClothing, BaseToggleClothing]
+  id: ClothingAngelExoWoycehIHP
+  name: Прото-Экзоскелет "Падший Ангел" XR-F.6
+  description: Экспериментальный экзоскелет созданный на основе сервоприводного экзоскелета, в том числе и объединяет лучшие стороны своих предшественников, а основное предназначение этого экземпляра - быть оружием уничтожения.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/exowoycehlastangel.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.25
+    sprintModifier: 1.25
+  - type: ClothingSlowOnDamageModifier
+    modifier: 1.25
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,6
+
+  - type: Reflect
+    reflectProb: 0.2
+    reflects:
+      - Energy
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.5
+        Caustic: 0.5
+        Cold: 0.5
+        Bloodloss: 0.5
+  - type: ToggleClothing
+    action: ActionExowoycehIHP
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: JumpAbility
+      jumpDistance: 4
+      jumpSound: /Audio/Effects/stealthoff.ogg
+    - type: ActionGrant
+      actions:
+      - ActionGravityJump
+    - type: ItemActionGrant
+      actions:
+      - ActionGravityJump
+    - type: PointLight
+      radius: 3.5
+      energy: 1.6
+      color: "#b030ebc5"
+    - type: ActionGun
+      action: ActionExowoycehBullet
+      gunProto: IHPGun
+
+    activeIfWorn: true
+  - type: PowerCellDraw
+    drawRate: 3.5
+  - type: ToggleCellDraw
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+
+# region Униформа Экспедиционная
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingExpeditorBackpackIHP
+  name: Экспедиционный Рюкзак "IHP"
+  description: Небольшой и лёгкий рюкзак ничем не отличаю.. А видимо всё таки отличается..
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/backIHP.rsi
+  - type: Storage
+    grid:
+    - 0,0,7,4
+
+
+- type: entity
+  parent: [BaseSubfloorAnchorStorage, ClothingBackpackDuffel]
+  id: ClothingExpeditorDuffelIHP
+  name: Экспедиционный вещмешок "IHP"
+  description: Лёгкий экспедиционный вещмешок созданный по большей части из углеволокна. Используется наверное для экспедиций?
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/duffelHPl.rsi
+  - type: Storage
+    maxItemSize: Huge
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,8,4
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,7,5
+
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformExpeditorIHP
+  name: Экспедиционный комбинезон "IHP"
+  description: Экспедиционная униформа работников и работниц IHP, отличается своей превосходной удобной структурой с дополнительной защитой от всякой гадости.
+  suffix: IHP
+  components:
+    - type: Armor
+      modifiers:
+        coefficients:
+          Heat: 0.9
+          Cold: 0.9
+          Bloodloss: 0.95
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl.rsi
+    - type: Clothing
+      sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl.rsi
+    - type: SuitSensor
+      randomMode: false
+      mode: SensorOff
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformExpeditorIHPS
+  name: Экспедиционная юбка-комбинезон "IHP"
+  description: Экспедиционная униформа работников и работниц IHP, отличается своей превосходной удобной структурой с дополнительной защитой от всякой гадости.
+  suffix: IHP
+  components:
+    - type: Armor
+      modifiers:
+        coefficients:
+          Bloodloss: 0.95
+          Heat: 0.9
+          Cold: 0.9
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl_s.rsi
+    - type: Clothing
+      sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/overalls_HPl_s.rsi
+    - type: SuitSensor
+      randomMode: false
+      mode: SensorOff
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterVestExpeditorIHP
+  name: Бронежилет Х-2.5 "IHP"
+  description: Экспедиционный жилет разработанный специально для лёгких путешествий по самым различным плоскостям. Сделан по большей части из материалов добытых в Забвении.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/webvestHPl.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/webvestHPl.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.7
+        Bloodloss: 0.90
+        Heat: 0.7
+        Cold: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+
+- type: entity
+  parent: NFClothingBeltStorageBase
+  id: ClothingBeltExpeditorIHP
+  name: Экспедиционный пояс "IHP"
+  description: Тактический пояс используемый группами IHP, имеет небольшую защиту для содержимого.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/beltIHP.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/beltIHP.rsi
+  - type: ItemMapper
+    mapLayers:
+      flashbang:
+        whitelist:
+          components:
+          - FlashOnTrigger
+      stunbaton:
+        whitelist:
+          components:
+          - Stunbaton
+      tear_gas_grenade:
+        whitelist:
+          components:
+          - SmokeOnTrigger
+    sprite: Clothing/Belt/belt_overlay.rsi
+  - type: Appearance
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ContentsExplosionResistanceBase] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseSyndicateContraband<BaseC1Contraband
+  id: ClothingBeltIHPWebbing
+  name: Экспедиционный РПС "IHP"
+  description: РПС используемый группами IHP, ничем не отличается от своих простых аналогов кроме расцветки.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/bingIHP.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Expeditor/bingIHP.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: StaticPrice
+    price: 500
+
+
+- type: entity
+  parent: ClothingBeltIHPWebbing
+  id: ClothingBeltIHPWebbingFull
+  name: Экспедиционный РПС "IHP"
+  description: РПС используемый группами IHP, ничем не отличается от своих простых аналогов кроме расцветки.
+  suffix: IHP | Заполненно
+  components:
+    - type: StorageFill
+      contents:
+        - id: HandheldGPSBasic
+          amount: 1
+        - id: HandHeldMassScanner
+          amount: 1
+        - id: CombatKnife
+          amount: 1
+        - id: EmergencyMedipen
+          amount: 2
+        - id: DrinkWaterBottleFull
+          amount: 1
+        - id: FoodSnackNutribrick
+          amount: 1
+        - id: Flare
+          amount: 2
+        - id: FlashlightLantern
+          amount: 1
+
+
+- type: entity
+  parent: ClothingBeltExpeditorIHP
+  id: ClothingBeltExpeditorIHPFull
+  name: Экспедиционный пояс "IHP"
+  description: Тактический пояс используемый группами IHP, имеет небольшую защиту для содержимого.
+  suffix: IHP | Заполненно
+  components:
+    - type: StorageFill
+      contents:
+        - id: HandheldGPSBasic
+          amount: 1
+        - id: HandHeldMassScanner
+          amount: 1
+        - id: CombatKnife
+          amount: 1
+        - id: EmergencyMedipen
+          amount: 2
+        - id: DrinkWaterBottleFull
+          amount: 1
+        - id: FoodSnackNutribrick
+          amount: 1
+        - id: Flare
+          amount: 2
+        - id: FlashlightLantern
+          amount: 1
+
+# region Униформа Лабораторная
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformLaboratoryIHP
+  name: Лабораторный комбинезон "IHP"
+  description: Лабораторная униформа работников и работниц IHP, отличается своей превосходной удобной структурой.
+  suffix: IHP
+  components:
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl.rsi
+    - type: Clothing
+      sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl.rsi
+    - type: SuitSensor
+      randomMode: false
+      mode: SensorOff
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformLaboratoryIHPS
+  name: Лабораторная юбка-комбинезон "IHP"
+  description: Лабораторная униформа работников и работниц IHP, отличается своей превосходной удобной структурой.
+  suffix: IHP
+  components:
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl_s.rsi
+    - type: Clothing
+      sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/overalls_HPl_s.rsi
+    - type: SuitSensor
+      randomMode: false
+      mode: SensorOff
+
+- type: entity
+  parent: [ClothingOuterCoatTrench, ClothingOuterStorageFoldableBase]
+  id: ClothingOuterLaboratoryCoatTrenchIHP
+  name: Лабораторный тренчкот "IHP"
+  description: Стандартный лабораторный тренчкот "IHP" используемый если вам просто холодно.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/ihp_trench.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/ihp_trench.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakIHP
+  suffix: IHP
+  name: Плащ "IHP"
+  description: Плащ IHP носимый обычными сотрудниками.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/ihp_plash.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesLaborIHP
+  name: Лабораторные ботинки "IHP"
+  description: Лабораторные ботинки "IHP" - Чистота и ваш стиль.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/jackbootsHPl.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Laboratori/jackbootsHPl.rsi
+
+# region Тактическое Снаряжение
+
+- type: entity
+  id: ClothingPNVtactikalIHP
+  parent: ClothingEyesVision
+  name: Тактическое ПНВ "IHP"
+  description: Тактическое ПНВ является сборником всевозможных технологий которые вероятнее всего не пригодятся, но их наличие даёт небольшой шанс на желанный исход при необычных ситуациях.
+  suffix: IHP
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/ninjavisor.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/ninjavisor.rsi
+    quickEquip: true
+    slots: [ Eyes ]
+  - type: UseDelay
+    delay: 2
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: PNV
+  - type: ShowHealthBars
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakIHPVip
+  suffix: IHP
+  name: Фирменный Плащ "IHP"
+  description: Фирменный плащ IHP с замечательной надписью! Создан специально при поддержке наших патриотов.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/ihp_vip_plash.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: ClothingHandsIHPCombat
+  name: Боевые перчатки "IHP"
+  description: Прочные и довольно мягкие перчатки, созданные словно прямо под ваш размер.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/combatHPl.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/combatHPl.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTacticoolHPI
+  name: Тактический комбинезон "IHP"
+  description: Тактический комбинезон созданный как для лабораторных работ, так и для космических боёв.
+  suffix: IHP
+  components:
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/tacticooIHPl.rsi
+    - type: Clothing
+      sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/tacticooIHPl.rsi
+    - type: SuitSensor
+      randomMode: false
+      mode: SensorOff
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTacticoolIHPS
+  name: Тактическая юбка-комбинезон "IHP"
+  description: Тактический комбинезон созданный как для лабораторных работ, так и для космических боёв.
+  suffix: IHP
+  components:
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/tacticoolHPl_s.rsi
+    - type: Clothing
+      sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/tacticoolHPl_s.rsi
+    - type: SuitSensor
+      randomMode: false
+      mode: SensorOff
+
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesIHP
+  name: Боевые ботинки "IHP"
+  description: Боевые ботинки "С.И.У" - Фонтан моды для лабораторных работ.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/jackbootsHPl.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/jackbootsHPl.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasIHP
+  name: Боевой противогаз "IHP"
+  description: Боевой противогаз для боевых ребят!
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/squadronHPl.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/squadronHPl.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    hideOnToggle: true
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMasksGasIHP
+  name: Боевая маска "IHP"
+  description: Боевая маска для боевых ребят!
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/squadron_nekHPl.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/squadron_nekHPl.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    hideOnToggle: true
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterVestIHP
+  name: Бронежилет Х-1 "IHP"
+  description: Простой и легкий бронежилет С.И.У, на удивление он весьма прочен для своего веса
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/webvestHPl.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/webvestHPl.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.50
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterIIVestIHP
+  name: Бронекостюм Х-2 "IHP"
+  description: Среднего веса бронежилет дополнительно обеспечивающий защиту для колен, большей части рук и кистей. Имеет небольшие вставки из легкого материала.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/webvestIIHPl.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/webvestIIHPl.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.50
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterTactikalVestIHP
+  name: Бронежилет Х-2.5 "IHP"
+  description: Необычный бронежилет по форме напоминающий средневековый нагрудник, защищает не только туловище но и плечи.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalwebvest.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalwebvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.50
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterTactikalVestIHP2
+  name: Тактический Бронекостюм Х-3 "IHP"
+  description: Среднего веса бронежилет дополнительно обеспечивающий защиту для колен, большей части рук и кистей. Имеет небольшие вставки из легкого материала.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/TactikalwebvestI.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/TactikalwebvestI.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.5
+        Heat: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.50
+
+- type: entity
+  parent: [ClothingShoesBootsMag, ClothingShoesBootsCombat]
+  id: ClothingShoesBootsMagIHP
+  name: Продвинутые магнитные ботинки IHP
+  description: Продвинутая модель "Боевых магнитных ботинков" только теперь в исполнении С.И.У
+  suffix: IHP
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Heat: 0.95
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/magboots-HPl.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/magboots-HPl.rsi
+  - type: Magboots
+    magbootsAlert: MagbootsSecurity
+
+- type: entity
+  parent: [ClothingShoesBootsMagBase, BaseJetpack]
+  id: ClothingShoesBootsMagEpxIHP
+  name: Экспериментальные магнитные ботинки "IHP"
+  description: Более продвинутая модель "Боевых магнитных ботинков" только теперь с улучшенной магнитной системой и встроенным балоном сжатого газа
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/magbootsomega-HPl.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/magbootsomega-HPl.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 2 minutes of thrust
+      volume: 0.75
+      temperature: 293.15
+      moles:
+      - 0.153853429 # oxygen
+      - 0.153853429 # nitrogen
+  - type: Item
+    sprite: null
+    size: Normal
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingTactilakBackpackIHP
+  name: Тактический Рюкзак "IHP"
+  description: Небольшой и лёгкий рюкзак ничем не отличаю.. А видимо всё таки отличается..
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalback.rsi
+  - type: Storage
+    grid:
+    - 0,0,7,5
+
+- type: entity
+  parent: [BaseSubfloorAnchorStorage, ClothingBackpackDuffel]
+  id: ClothingTactilakDuffelIHP
+  name: Тактический вещмешок "IHP"
+  description: Специальный тактический Вещмешок IHP, чаще всего используется оперативниками?..
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/Tactical/Tactikalduffel.rsi
+  - type: Storage
+    maxItemSize: Huge
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,8,4
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,7,6
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretIHP
+  name: Тактический берет
+  description: Обычный черный берет.
+  suffix: IHP
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/beret_french.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/beret_french.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+# region Снаряжение СпецВойск
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformSpecialForcesHPI
+  name: Комбинезон Спецвойск "IHP"
+  description: Тактический комбинезон созданный как для лабораторных работ, так и для космических боёв.
+  suffix: IHP
+  components:
+    - type: Sprite
+      sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesHPl.rsi
+    - type: Clothing
+      sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesHPl.rsi
+    - type: ClothingSpeedModifier
+      walkModifier: 1.1
+      sprintModifier: 1.1
+    - type: SuitSensor
+      randomMode: false
+      mode: SensorOff
+
+- type: entity
+  parent: [ClothingShoesBootsMag, ClothingShoesBootsCombat]
+  id: ClothingShoesBootsSpecialForcesIHP
+  name: Магнитные ботинки Спецвойск IHP
+  description: Продвинутая модель магнитных ботинков используемая в отрядах Спецвойск.
+  suffix: IHP
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Heat: 0.9
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesMagboots-HPl.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesMagboots-HPl.rsi
+  - type: Magboots
+    magbootsAlert: MagbootsSecurity
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingIHPSpecialForcesBackpack
+  name: Рюкзак Спецвойск "С.И.У"
+  description: Наноуглеродный рюкзак используемый для Спецвойск и передовых отрядов IHP
+  suffix: IHP
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForcesBackpackHPl.rsi
+  - type: Storage
+    grid:
+    - 0,0,8,5
+
+- type: entity
+  parent: ClothingIHPSpecialForcesBackpack
+  id: ClothingIHPSpecialForcesBackpackFill
+  suffix: IHP | Заполнен
+  components:
+  - type: StorageFill
+    contents:
+      - id: JetpackCaptainFilled
+        amount: 1
+      - id: HandHeldMassScanner
+        amount: 1
+      - id: DoubleEmergencyOxygenTankFilled
+        amount: 2
+      - id: CombatMedipen
+        amount: 3
+      - id: WeaponGrapplingGun
+        amount: 1
+
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseJetpack]
+  id: ClothingOuterIHPSpecialForce
+  name: Экзоскафандр Спецвойск "С.И.У"
+  suffix: IHP
+  description: Специализированный костюм для спец подразделений IHP направленных на ликвидацию или устранение определённых инцидентов и даже сущностей.
+  components:
+
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: Item
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit.rsi
+    size: Huge
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # Лол
+      volume: 0.75
+      temperature: 293.15
+      moles:
+      - 0.253853429 # oxygen
+      - 0.253853429 # nitrogen
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Reflect
+    reflectProb: 0.7
+    reflects:
+      - Energy
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.4
+        Heat: 0.4
+        Caustic: 0.4
+        Cold: 0.4
+        Bloodloss: 0.4
+        Radiation: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 1.05
+    sprintModifier: 1.05
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetIHPSpecialForce
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetIHPSpecialForce
+  name: Шлем Экзоскафандра Спецвойск "С.И.У"
+  categories: [ HideSpawnMenu ]
+  suffix: IHP
+  description: Специализированный костюм для спец подразделений IHP направленных на ликвидацию или устранение определённых инцидентов и даже сущностей.
+  components:
+  - type: PNV
+    color: "#4f20a8"
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit_helmet.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/SpecialForces/SpecialForce/SpecialForces_hardhuit_helmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Heat: 0.9
+        Cold: 0.9
+        Bloodloss: 0.9
+
+
+# region Скафандры
+
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, ClothingBackpack ]
+  id: ClothingOuterHardsuitLaboratoruIHP
+  name: Лабораторный Скафандр IHP
+  suffix: IHP
+  description: Стандартный скафандр IHP используемый для простой работы в космосе научным персоналом. Так же работы и вне космоса. Дополнительно имеет специальные грузовые отсеки на поясе.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuit.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuit.rsi
+  - type: Storage
+    grid:
+    - 0,0,3,4
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.20
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 1.1
+        Heat: 0.4
+        Asphyxiation: 0.4
+        Poison: 0.4
+        Radiation: 0.20
+        Caustic: 0.50
+        Cellular: 0.55
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitLaboratoruIHP
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitLaboratoruIHP
+  name: Шлем лабораторного Скафандра IHP
+  categories: [ HideSpawnMenu ]
+  suffix: IHP
+  description: Стандартный скафандр IHP используемый для простой работы в космосе научным персоналом. Так же работы и вне космоса.
+  components:
+  - type: PNV
+    color: "#4f20a8"
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuithelmet.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/IHP/Clothing/OuterHardsuit/Laboratori/hardhuithelmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Heat: 0.95
+        Asphyxiation: 0.9

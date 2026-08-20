@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: Nyozzl https://github.com/nyozzl
+# Discord: Nyozzl
+
+# Maintainer Info
+# GitHub: Nyozzl https://github.com/nyozzl
+# Discord: Nyozzl
+
+# Shuttle Notes:I liked the idea of a scrap church also 9kw is probably all thats needed to run it
+#
+- type: vessel
+  id: DiscipleLostVoid
+  parent: BaseVessel
+  name: NSV Disciple
+  description: A cheaply made amalgamation of religious ships. For the seasoned religious assistant.
+  price: 15000 # Appraises at 12179, ~25% margin - TODO: fix this value, getting tests to pass - Whatstone
+  category: Small
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/disciple.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+
+  id: DiscipleLostVoid
+  mapName: 'NSV Disciple'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/disciple.yml
+  minPlayers: 0
+  stations:
+    DiscipleLostVoid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Disciple {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

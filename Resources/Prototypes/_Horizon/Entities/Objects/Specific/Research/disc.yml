@@ -95,11 +95,11 @@
   name: technology disc [Arsenal Ammunition]
   description: A disk containing data about Arsenal Ammunition.
 
-- type: entity
-  parent: TechnologyDiscBase
-  id: TechnologyDiscArsenalDome
-  name: technology disc [Energy dome]
-  description: A disk containing data about Energy dome.
+# - type: entity
+#   parent: TechnologyDiscBase
+#   id: TechnologyDiscArsenalDome
+#   name: technology disc [Energy dome]
+#   description: A disk containing data about Energy dome.
 
 - type: entity
   parent: TechnologyDiscBase

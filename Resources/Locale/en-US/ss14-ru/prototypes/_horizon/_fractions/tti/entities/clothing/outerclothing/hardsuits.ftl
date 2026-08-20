@@ -1,0 +1,9 @@
+ent-ClothingOuterHardsuitTraumaTeam = EVA парамедика траумы
+    .desc = Стандартный образец герметичного комплекта брони Trauma Team Interstellar, усилен более крепким материалом для работы в безвоздушном пространстве.
+    .suffix = TraumaTeam
+ent-ClothingOuterHardsuitTraumaTeamRed = EVA техника траумы
+    .desc = Стандартный образец герметичного комплекта брони Trauma Team Interstellar, усилен более крепким материалом для работы в безвоздушном пространстве.
+ent-ClothingOuterHardsuitTraumaTeamSur = EVA реаниматора траумы
+    .desc = Стандартный образец герметичного комплекта брони Trauma Team Interstellar, усилен более крепким материалом для работы в безвоздушном пространстве.
+ent-ClothingOuterHardsuitTraumaTeamPilot = EVA пилота траумы
+    .desc = Стандартный образец герметичного комплекта брони Trauma Team Interstellar, усилен более крепким материалом для работы в безвоздушном пространстве.

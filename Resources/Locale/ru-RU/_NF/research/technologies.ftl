@@ -129,6 +129,7 @@ nf-research-technology-seed-extractor = Экстрактор семян
 nf-research-technology-shuttlecraft = Шаттлостроение
 nf-research-technology-shuttlecraft-thrust = Двигатели
 nf-research-technology-shuttlecraft-thrust-small = Миниатюрные двигатели
+research-technology-advanced-thrusters = Улучшенные двигатели
 nf-research-technology-space-handheld-scanning = Портативный сканер объектов
 nf-research-technology-space-scanning = Радар
 nf-research-technology-special-means = Специальные средства

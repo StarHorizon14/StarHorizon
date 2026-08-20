@@ -1,0 +1,12 @@
+- type: entity
+  parent: BasePlushie
+  id: LVHIPlushAria
+  name: "Плюшевая ирушка Арии"
+  description: "Игрушка с пнв из-за чего не видно глаз, относительно похожая на Арию"
+  suffix: StarHorizon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Fun/PlushAria.rsi
+    state: icon
+  - type: Item
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/Fun/PlushAria.rsi

@@ -1,0 +1,32 @@
+- type: vessel
+  id: CourserXLostVoid
+  parent: BaseVessel
+  name: NT Courser-X
+  description: A medium sized multi-role long haul conversion of the long time popular Courser model.
+  price: 68650
+  category: Medium
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-courserx.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Expedition
+  engine:
+  - AME
+
+- type: gameMap
+  id: CourserXLostVoid
+  mapName: 'NT Courser-X'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-courserx.yml
+  minPlayers: 0
+  stations:
+    CourserXLostVoid:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Courser-X {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

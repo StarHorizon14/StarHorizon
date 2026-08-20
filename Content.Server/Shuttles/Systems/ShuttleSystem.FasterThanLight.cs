@@ -124,6 +124,11 @@ public sealed partial class ShuttleSystem
                 continue;
             }
 
+            if (HasComp<FTLDestinationComponent>(gridXform.MapUid))
+            {
+                continue;
+            }
+
             TryAddFTLDestination(gridXform.MapID, true, false, false, out _);
         }
     }

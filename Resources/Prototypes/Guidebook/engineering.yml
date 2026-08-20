@@ -311,6 +311,7 @@
   - TEG
   - RTG
   - SolarPanels
+  - NuclearReactor
 
 - type: guideEntry
   id: AME

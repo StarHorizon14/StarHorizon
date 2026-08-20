@@ -16,6 +16,7 @@
   price: 120000
   category: Large
   group: Syndicate
+  access: SyndicateAgent
   shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Syndicate/straiker.yml
   class:
   - Syndicate

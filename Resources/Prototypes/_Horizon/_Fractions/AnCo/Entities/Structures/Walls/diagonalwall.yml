@@ -2,6 +2,7 @@
   parent: WallDiagonalBase
   id: AnCoKazmieWallDiagonal
   name: казмиевая стена
+  suffix: StarHorizon, AnCo, Structure
   description: Держите секреты внутри, сотрудников снаружи
   components:
   - type: Sprite
@@ -36,3 +37,23 @@
   - type: Construction
     graph: WallKazmie
     node: wallkazmiediagonaly
+
+- type: entity
+  parent: WallDiagonalBase
+  id: AnCoKazmieWallDiagonalIndestructible
+  name: дюразмиевая стена
+  suffix: StarHorizon, AnCo, Indestructible
+  description: Держите секреты внутри, сотрудников снаружи
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Horizon/_Fractions/AnCo/Structure/Walls/kazmie_diagonal-duras.rsi
+    state: state0
+  - type: Icon
+    sprite: _Horizon/_Fractions/AnCo/Structure/Walls/kazmie_diagonal-duras.rsi
+    state: state0
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: RadiationBlocker
+    resistance: 5

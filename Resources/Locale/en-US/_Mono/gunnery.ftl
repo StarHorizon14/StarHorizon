@@ -1,0 +1,12 @@
+gunnery-window-title = Weapons Control
+gunnery-window-disconnected = DISCONNECTED
+gunnery-window-connected = CONNECTED
+gunnery-select-all = Select All
+gunnery-unselect-all = Unselect All
+gunnery-select-ballistic = Ballistics
+gunnery-select-energy = Energy
+gunnery-select-missile = Missiles
+gunnery-select-mining = Mining
+gunnery-guns = Guns
+gunnery-shield-label = Shields
+gunnery-server-examine-detail = The server is using [color={ $valueColor }]{ $usedProcessingPower }/{ $processingPower }[/color] of its processing power.

@@ -11,6 +11,7 @@
     name: "Автоответчик"
     responsePings: true
   - type: AiFax
+    provider: Gemini
     apiKey: "API KEY"
     #triggerKeyword: "slyunyavykot"
     #requireTriggerKeyword: false

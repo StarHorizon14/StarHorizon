@@ -47,16 +47,16 @@
 - type: entity
   parent: WallPlastitaniumIndestructible
   id: AnCoWallKazmieIndestructible
-  name: казмиевая стена
+  name: дюразмиевая стена
   description: Держите секреты внутри, сотрудников снаружи.
   suffix: StarHorizon, AnCo, Indestructible
   components:
   - type: Sprite
-    sprite: _Horizon/_Fractions/AnCo/Structure/Walls/kamie-walls.rsi
+    sprite: _Horizon/_Fractions/AnCo/Structure/Walls/kamie-walls-duras.rsi
     color: "#ffffff"
   - type: WallReplacementMarker
   - type: Icon
-    sprite: _Horizon/_Fractions/AnCo/Structure/Walls/kamie-walls.rsi
+    sprite: _Horizon/_Fractions/AnCo/Structure/Walls/kamie-walls-duras.rsi
   - type: IconSmooth
     key: walls
     base: solid

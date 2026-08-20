@@ -1,0 +1,222 @@
+# region Космо Мусор
+- type: dungeonRoom
+  id: HZChipScrapRoomA
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 0,0
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomB
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 8,0
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomC
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 16,0
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomD
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 24,0
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomE
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 32,0
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomG
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 40,0
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomH
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 48,0
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomJ
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 56,0
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomK
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 0,8
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomL
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 8,8
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomZ
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 16,8
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomX
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 24,8
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomV
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 32,8
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomN
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 40,8
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomM
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 48,8
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: dungeonRoom
+  id: HZChipScrapRoomY
+  size: 7,7
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 56,8
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarker
+
+- type: entity
+  id: NZChipScrapRoomMarker
+  parent: BaseRoomMarker
+  name: Маркер Космического Мусора
+  components:
+  - type: RoomFill
+    roomWhitelist:
+      tags:
+      - ChipScrapRoomMarker
+# endregion Космо Мусор
+
+# region Большой Космический Мусор
+- type: entity
+  id: NZChipScrapLargeRoomMarker
+  parent: BaseRoomMarker
+  name: Маркер Большого Космического Мусора
+  components:
+  - type: RoomFill
+    maxSize: 11, 11
+    roomWhitelist:
+      tags:
+      - ChipScrapRoomMarkerLarge
+
+- type: dungeonRoom
+  id: HZChipScrapLargeA
+  size: 11,11
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 0,16
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarkerLarge
+
+- type: dungeonRoom
+  id: HZChipScrapLargeB
+  size: 11,11
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 12,16
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarkerLarge
+
+- type: dungeonRoom
+  id: HZChipScrapLargeC
+  size: 11,11
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 24,16
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarkerLarge
+
+- type: dungeonRoom
+  id: HZChipScrapLargeD
+  size: 11,11
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 36,16
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarkerLarge
+
+- type: dungeonRoom
+  id: HZChipScrapLargeV
+  size: 11,11
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 48,16
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarkerLarge
+
+- type: dungeonRoom
+  id: HZChipScrapLargeN
+  size: 11,11
+  atlas: /Maps/_Horizon/Dungeon/ChipScrap.yml
+  offset: 60,16
+  ignoreTile: FloorShuttleOrange
+  tags:
+  - ChipScrapRoomMarkerLarge
+# endregion Большой Космический Мусор

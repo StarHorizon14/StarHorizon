@@ -19,8 +19,8 @@
     slots:
       Webbing:
         priority: 1
-        insertVerbText: Прикрепить к РПС
-        ejectVerbText: Открепить с РПС
+        insertVerbText: Прикрепить к левой части РПС
+        ejectVerbText: Открепить с левой части РПС
         name: РПС
         swap: false
         whitelist:
@@ -28,8 +28,8 @@
           - Item
       Webbing2:
         priority: 2
-        insertVerbText: Прикрепить к РПС
-        ejectVerbText: Открепить с РПС
+        insertVerbText: Прикрепить к правой части РПС
+        ejectVerbText: Открепить с правой части РПС
         name: РПС
         swap: false
         whitelist:

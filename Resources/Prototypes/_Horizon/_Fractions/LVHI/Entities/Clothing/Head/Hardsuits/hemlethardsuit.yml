@@ -1,0 +1,75 @@
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitLVHI
+  name: "шлем скафандра минералога LVHI"
+  description: "Шлем лёгкого скафандра минералога LVHI."
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/Head/Hardsuits/mineralogist.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/Head/Hardsuits/mineralogist.rsi
+    hideLayers:
+    - Hair
+    - Head
+    - Snout
+    - HeadTop
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 10000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Radiation: 0.3
+        Caustic: 0.9
+  - type: PointLight
+    radius: 5
+    energy: 4
+    color: "#ff0202"
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - LVHI
+
+
+- type: entity
+  parent: [ NFClothingHeadHardsuitWithLightBase ]
+  id: LVHIClothingHeadHelmetHardsuitFight
+  name: боевой шлем
+  description: старая модель
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/Head/Hardsuits/fight.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/Head/Hardsuits/fight.rsi
+  - type: PNV
+    color: "#CC5500"
+  - type: PointLight
+    color: "#F4C430"
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - LVHI
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase ]
+  id: LVHIClothingHeadHelmetHardsuitElite
+  name: Шлем элитного скафандра
+  description: Снабжен ПНВ
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/Head/Hardsuits/Elithardsuit.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/LVHI/Entities/Clothing/Head/Hardsuits/Elithardsuit.rsi
+  - type: PNV
+    color: "#CC5500"
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 1000

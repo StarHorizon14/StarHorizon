@@ -1,6 +1,6 @@
-ent-BaseAnCoMob = { "" }
+ent-BaseAnCoMob = { ent-NFBaseMobRestrictions }
     .suffix = StarHorizon, AnCo
-    .desc = { "" }
+    .desc = { ent-NFBaseMobRestrictions.desc }
 ent-AnCoDroneDungeon = защитный бот АнКо
     .desc = Бот необходимый для защиты важного оборудования АнКо
     .suffix = StarHorizon, AnCo, Dungeon

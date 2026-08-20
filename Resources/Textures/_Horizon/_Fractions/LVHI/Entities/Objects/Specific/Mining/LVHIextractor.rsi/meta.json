@@ -1,0 +1,44 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "sprite by madness for lvhi",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "pipe"
+        },
+        {
+            "name": "base"
+        },
+        {
+            "name": "base-powered"
+        },
+        {
+            "name": "drill"
+        },
+        {
+            "name": "drill-blocked-unlit"
+        },
+        {
+            "name": "drill-empty-unlit"
+        },
+        {
+            "name": "drill-low-unlit"
+        },
+        {
+            "name": "drill-off"
+        },
+        {
+            "name": "drill-on-unlit"
+        },
+        {
+            "name": "icon"
+        },
+        {
+            "name": "panel"
+        }
+    ]
+}

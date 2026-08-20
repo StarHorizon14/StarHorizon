@@ -33,4 +33,14 @@ shuttle-console-device-button-5 = Порт 5
 shuttle-console-device-button-6 = Порт 6
 shuttle-console-device-button-7 = Порт 7
 shuttle-console-device-button-8 = Порт 8
+shuttle-console-device-button-9 = Порт 9
 shuttle-console-maximum-speed = Максимальная скорость
+shuttle-console-maximum-speed-tooltip = Максимальная линейная скорость шаттла.
+shuttle-console-maximum-angular-speed = Максимальная угловая скорость
+shuttle-console-maximum-angular-speed-tooltip = Максимальная скорость вращения шаттла.
+shuttle-console-network-connect-tooltip = Подключиться к устройству по сетевому порту.
+
+shuttle-console-button-azimuth = Переключить отображение азимута
+shuttle-console-button-rotation = Следовать за курсом корабля
+shuttle-console-button-anchor = Закрепить/открепить вид
+shuttle-console-button-reset = Сбросить вид радара

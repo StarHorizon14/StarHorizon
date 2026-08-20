@@ -1,0 +1,33 @@
+- type: vessel
+  id: CometLostVoid
+  parent: BaseVessel
+  name: NT Comet
+  description: A mining and construction vessel intended to help build or repair quickly.
+  price: 62000
+  category: Medium
+  group: Custom
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-comet.yml
+  guidebookPage: ShipyardComet
+  class:
+  - Scrapyard
+  - Salvage
+  - Engineering
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: CometLostVoid
+  mapName: 'NT Comet'
+  mapPath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-comet.yml
+  minPlayers: 0
+  stations:
+    CometLostVoid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Comet {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
