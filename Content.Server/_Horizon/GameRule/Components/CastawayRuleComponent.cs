@@ -261,8 +261,8 @@ public sealed partial class CastawayRuleComponent : Component
     [DataField]
     public List<string> EscapeRadioMessages =
     [
-        "Псс, иди сюда, открой тумбочку бери вещи и взломай двери железяко",
-        "У меня нету времени говорить, следуй по табличкам к дроп капсулам быстрее",
+        "Псс, иди сюда, открой тумбочку, возьки железку и взломай дверь",
+        "У меня нет времени говорить, следуй по табличкам к дроп-капсулам, быстрее",
     ];
 
     /// <summary>
@@ -283,13 +283,19 @@ public sealed partial class CastawayRuleComponent : Component
     /// way as a SyndicateComputerComms announcement (red comms message from "Nuclear Operatives").
     /// </summary>
     [DataField]
-    public string EscapeAlarmMessage = "ВНИМАНИЕ ВРАГИ ЗАХВАТЫВАЮТ ШАТТЛ, обнаружены критические поломки, до взрыва шаттла осталось 4 минуты!";
+    public string EscapeAlarmMessage = "ВНИМАНИЕ, ВРАГИ ЗАХВАТЫВАЮТ ШАТТЛ! Обнаружены критические поломки, до взрыва шаттла осталось 4 минуты!";
 
     /// <summary>
     /// Sender name for the alarm announcement, same locale string SyndicateComputerComms uses.
     /// </summary>
     [DataField]
     public LocId EscapeAlarmSender = "comms-console-announcement-title-nukie";
+
+    /// <summary>
+    /// Sound played once when the alarm announcement is sent.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier EscapeAlarmSound = new SoundPathSpecifier("/Audio/Announcements/war.ogg");
 
     /// <summary>
     /// Color for the alarm announcement, same as SyndicateComputerComms.

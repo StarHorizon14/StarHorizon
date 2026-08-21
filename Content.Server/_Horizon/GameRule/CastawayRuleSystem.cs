@@ -421,6 +421,7 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
             var wrapped = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(castaway.EscapeAlarmMessage)));
             _chatManager.ChatMessageToManyFiltered(Filter.SinglePlayer(session), ChatChannel.Radio, castaway.EscapeAlarmMessage, wrapped, mob, false, true, castaway.EscapeAlarmColor);
 
+            _audio.PlayGlobal(castaway.EscapeAlarmSound, session);
             _audio.PlayGlobal(castaway.EscapeMusic, session);
         });
 
@@ -451,22 +452,14 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
     }
 
     // Gap in seconds before each line, from the previous one (or from spawn for the first line).
-    // Sized to fit each line's voice clip (cryo-1.ogg ~4.2s, cryo-2.ogg ~3.3s, cryo-3.ogg ~3.5s)
-    // so lines don't overlap or cut each other off.
-    private static readonly float[] PodDelays = [4.5f, 3.5f, 3.5f];
+    private static readonly float[] PodDelays = [4.5f, 1.5f, 2f, 3.5f];
 
     private static readonly string[] PodMessages =
     [
+        "castaway-pod-error-1",
+        "castaway-pod-error-2",
         "castaway-pod-malfunction",
         "castaway-pod-waking",
-        "castaway-pod-ready",
-    ];
-
-    private static readonly SoundSpecifier?[] PodSounds =
-    [
-        new SoundPathSpecifier("/Audio/_Horizon/Cryo/cryo-1.ogg"),
-        new SoundPathSpecifier("/Audio/_Horizon/Cryo/cryo-2.ogg"),
-        new SoundPathSpecifier("/Audio/_Horizon/Cryo/cryo-3.ogg"),
     ];
 
     private void RunPodSequence(EntityUid mob, EntityUid pod)
@@ -476,7 +469,6 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
         {
             elapsed += PodDelays[i];
             var locId = PodMessages[i];
-            var sound = PodSounds[i];
             var delay = TimeSpan.FromSeconds(elapsed);
 
             Timer.Spawn(delay, () =>
@@ -485,9 +477,8 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
                     return;
 
                 _chat.TrySendInGameICMessage(pod, Loc.GetString(locId), InGameICChatType.Speak, ChatTransmitRange.Normal, ignoreActionBlocker: true);
-                _audio.PlayPvs(sound, pod);
 
-                // Heal on the second line, once the "waking up" process is announced.
+                // Heal once the "waking up" process is announced.
                 if (locId == "castaway-pod-waking")
                     ApplyAsphyxiation(mob, -80);
             });

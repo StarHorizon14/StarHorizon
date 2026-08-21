@@ -8,9 +8,10 @@ atlas-pai-stabilized = Пользователь стабилизируется, 
 atlas-pai-jetpack = Реактивный ранец подключён
 atlas-pai-ready = Последовательность инициализации завершена
 
-castaway-pod-malfunction = Внимание! Обнаружена поломка криогенной камеры
-castaway-pod-waking = Запущен процесс вывода пользователя из анабиоза
-castaway-pod-ready = Процесс завершён успешно. Удачной смены
+castaway-pod-error-1 = ОШИБКА
+castaway-pod-error-2 = ОШИБКА
+castaway-pod-malfunction = Обнаружена критическая поломка криокапсулы
+castaway-pod-waking = Запуск аварийного пробуждения
 
 castaway-job-name-survivor = Потеряный среди пустоты
 castaway-job-description-survivor = Вы просыпаешься среди космоса, в аварийном скафандре с кислородным баллоном. Удачи!
