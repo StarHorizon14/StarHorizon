@@ -1,6 +1,8 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server._Horizon.GameRule.Components;
+using Content.Shared.CCVar;
+using Robust.Shared.Configuration;
 using Content.Server.Access.Systems;
 using Content.Server.Body.Components;
 using Content.Server.Chat.Managers;
@@ -63,6 +65,7 @@ namespace Content.Server._Horizon.GameRule;
 public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
 {
     [Dependency] private readonly AnchorableSystem _anchorable = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
@@ -262,7 +265,10 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
             var spawnedMob = mob ?? SpawnWreckScenario(castaway, ev);
 
             EnsureComp<WorldLoaderComponent>(spawnedMob);
-            EnsureComp<BankAccountComponent>(spawnedMob);
+
+            if (_cfg.GetCVar(CCVars.CastawaySpawnBankAccountEnabled))
+                EnsureComp<BankAccountComponent>(spawnedMob);
+
             EnsureComp<CastawaySurvivorComponent>(spawnedMob);
             NameIdCard(spawnedMob, ev.Profile.Name);
 
