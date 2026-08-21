@@ -977,18 +977,10 @@
         damage:
           types:
             Asphyxiation: -7
-        conditions:
-        - !type:OrganType
-          type: Shadekin
-          shouldHave: false
       - !type:HealthChange
         damage:
           types:
             Heat: -3
-        conditions:
-        - !type:OrganType
-          type: Shadekin
-          shouldHave: true
       - !type:TakeStaminaDamage
         amount: 3
         immediate: false
