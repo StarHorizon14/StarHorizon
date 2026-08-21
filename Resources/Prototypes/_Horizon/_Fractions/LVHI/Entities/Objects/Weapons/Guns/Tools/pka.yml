@@ -23,7 +23,7 @@
     sprite: _Horizon/Objects/Weapons/Guns/PKA/kinetic_railgun.rsi
     size: Normal
   - type: BasicEntityAmmoProvider
-    proto: NFBulletKineticHighPower
+    proto: BulletKineticRailgun
     capacity: 1
     count: 1
   - type: Gun
