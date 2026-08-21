@@ -93,6 +93,6 @@ generator_enabled = false
 
 [sponsor]
 # Paths to sponsor system files
-discord_sponsors_path = "sponsorSystem/warp/discord_sponsors.txt"
-disposable_path = "sponsorSystem/warp/disposable.txt"
+discord_sponsors_path = "data/sponsorSystem/warp/discord_sponsors.txt"
+disposable_path = "data/sponsorSystem/warp/disposable.txt"
 items_path = "sponsorSystem/sponsor_items.txt"
