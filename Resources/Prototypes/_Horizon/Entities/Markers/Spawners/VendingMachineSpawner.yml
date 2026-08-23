@@ -16,9 +16,9 @@
       weight: 1
     - id: VendingMachineAmmo
       weight: 1
-    - id: VendingMachineAnCo
+    - id: AnCoVending
       weight: 1
-    - id: VendingMachineAnCoWeapon
+    - id: AnCoVendingWeapon
       weight: 1
     - id: VendingMachineArcadia
       weight: 1
