@@ -36,10 +36,11 @@ public sealed class SponsorManagerHelper : EntitySystem
         var playerName = args.SenderSession.Name;
         var isSponsor = _sponsorManager.IsSponsor(ev.SponsorName);
         var balance = _sponsorManager.GetBalance(ev.SponsorName);
+        var discountPercent = _sponsorManager.GetDiscountPercent(ev.SponsorName);
 
-        _sawmill.Info($"Player {playerName} (sponsor name: {ev.SponsorName}) attempted to open sponsor shop. Is sponsor: {isSponsor}, Balance: {balance}");
+        _sawmill.Info($"Player {playerName} (sponsor name: {ev.SponsorName}) attempted to open sponsor shop. Is sponsor: {isSponsor}, Balance: {balance}, Discount: {discountPercent}%");
 
-        RaiseNetworkEvent(new SponsorCheckResponseEvent(isSponsor, balance), args.SenderSession.Channel);
+        RaiseNetworkEvent(new SponsorCheckResponseEvent(isSponsor, balance, discountPercent), args.SenderSession.Channel);
     }
 
     private void OnSponsorBuyItemRequest(SponsorBuyItemRequestEvent ev, EntitySessionEventArgs args)
