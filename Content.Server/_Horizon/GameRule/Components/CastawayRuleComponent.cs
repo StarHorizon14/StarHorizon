@@ -1,4 +1,5 @@
 using Content.Shared.Dataset;
+using Content.Shared.Explosion;
 using Content.Shared.Procedural;
 using Content.Shared.Roles;
 using Content.Shared.Salvage.Expeditions;
@@ -223,11 +224,27 @@ public sealed partial class CastawayRuleComponent : Component
     public TimeSpan EscapeMusicLength = TimeSpan.FromMinutes(3) + TimeSpan.FromSeconds(51);
 
     /// <summary>
-    /// Extra delay after EscapeMusic finishes playing (simulating the shuttle actually blowing up)
-    /// before the map is deleted, regardless of whether the player has escaped on the shuttle by then.
+    /// Explosion prototype used for the shuttle's destruction, centered on the escape shuttle grid
+    /// itself (falls back to the player's position if the shuttle grid can't be found).
     /// </summary>
     [DataField]
-    public TimeSpan EscapeExplosionDelay = TimeSpan.FromSeconds(20);
+    public ProtoId<ExplosionPrototype> EscapeExplosionType = "Default";
+
+    [DataField]
+    public float EscapeExplosionIntensity = 200000f;
+
+    [DataField]
+    public float EscapeExplosionSlope = 5f;
+
+    [DataField]
+    public float EscapeExplosionMaxTileIntensity = 50f;
+
+    /// <summary>
+    /// Delay after the explosion is spawned before the map is deleted, regardless of whether the
+    /// player has escaped on the shuttle by then.
+    /// </summary>
+    [DataField]
+    public TimeSpan EscapeMapCleanupDelay = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// Hand-placed IntercomFreelance entity that announces the hijacking as soon as the player spawns.

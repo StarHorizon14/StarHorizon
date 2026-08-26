@@ -8,6 +8,7 @@ using Content.Server.Body.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Clothing.Systems;
+using Content.Server.Explosion.EntitySystems;
 using Content.Server.Maps.NameGenerators;
 using Content.Server._NF.Shipyard.Systems;
 using Content.Server.GameTicking;
@@ -72,6 +73,7 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly DungeonSystem _dungeon = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
+    [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
@@ -375,10 +377,11 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
         _outfit.SetOutfit(mob, castaway.EscapeStartingGear);
         EnsureComp<AdminFrozenComponent>(mob);
 
-        if (FindNamedGrid(mapUid, castaway.EscapeShuttleGridName) is { } shuttleGrid)
-            RegisterWreckOwnership(mob, shuttleGrid, ev.Profile.Name);
+        var shuttleGrid = FindNamedGrid(mapUid, castaway.EscapeShuttleGridName);
+        if (shuttleGrid is { } grid)
+            RegisterWreckOwnership(mob, grid, ev.Profile.Name);
 
-        RunHijackSequence(castaway, mapUid, mob, ev.Player);
+        RunHijackSequence(castaway, mapUid, mob, shuttleGrid, ev.Player);
 
         return mob;
     }
@@ -386,7 +389,7 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
     // Intercom (announces the boarding) -> radio hidden in the dresser (two lines guiding the
     // player out) -> movement unlocked -> after a delay, the "shuttle doomed" warning + tension
     // music -> the whole map is deleted after its own further delay.
-    private void RunHijackSequence(CastawayRuleComponent castaway, EntityUid mapUid, EntityUid mob, ICommonSession session)
+    private void RunHijackSequence(CastawayRuleComponent castaway, EntityUid mapUid, EntityUid mob, EntityUid? shuttleGrid, ICommonSession session)
     {
         var intercom = FindEntityByProtoId(mapUid, castaway.EscapeIntercomMarker);
         var radio = FindEntityByProtoId(mapUid, castaway.EscapeRadioMarker);
@@ -431,7 +434,28 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
             _audio.PlayGlobal(castaway.EscapeMusic, session);
         });
 
-        Timer.Spawn(alarmDelay + castaway.EscapeMusicLength + castaway.EscapeExplosionDelay, () =>
+        var explosionDelay = alarmDelay + castaway.EscapeMusicLength;
+        Timer.Spawn(explosionDelay, () =>
+        {
+            if (shuttleGrid is { } grid && !Deleted(grid))
+            {
+                _explosion.QueueExplosion(grid,
+                    castaway.EscapeExplosionType,
+                    castaway.EscapeExplosionIntensity,
+                    castaway.EscapeExplosionSlope,
+                    castaway.EscapeExplosionMaxTileIntensity);
+            }
+            else if (!Deleted(mob))
+            {
+                _explosion.QueueExplosion(mob,
+                    castaway.EscapeExplosionType,
+                    castaway.EscapeExplosionIntensity,
+                    castaway.EscapeExplosionSlope,
+                    castaway.EscapeExplosionMaxTileIntensity);
+            }
+        });
+
+        Timer.Spawn(explosionDelay + castaway.EscapeMapCleanupDelay, () =>
         {
             if (!Deleted(mapUid))
                 QueueDel(mapUid);
