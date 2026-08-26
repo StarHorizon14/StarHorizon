@@ -45,3 +45,9 @@
   name: ui-options-hud-theme-corp
   path: Anrox
   order: 7
+
+- type: hudTheme
+  id: AnroxThemeMini
+  name: ui-options-hud-theme-corp-mini
+  path: AnroxMini
+  order: 8

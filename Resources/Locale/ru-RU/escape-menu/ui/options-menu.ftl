@@ -92,6 +92,7 @@ ui-options-filter-nearest = Ближайший (без сглаживания)
 ui-options-filter-bilinear = Билинейный (со сглаживанием)
 ui-options-hud-theme-ashen = Пепел
 ui-options-hud-theme-corp = Корпорат
+ui-options-hud-theme-corp-mini = Корпорат минимализм
 ui-options-vp-stretch = Растянуть изображение для соответствия окну игры
 ui-options-vp-scale = Фиксированный масштаб окна игры:
 ui-options-vp-integer-scaling = Использовать целочисленное масштабирование (может вызывать появление чёрных полос/обрезания)
