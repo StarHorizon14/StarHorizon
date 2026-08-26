@@ -25,6 +25,10 @@
     {
       "name": "equipped-OUTERCLOTHING-akulki",
       "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-cat",
+      "directions": 4
     }
   ]
 }
