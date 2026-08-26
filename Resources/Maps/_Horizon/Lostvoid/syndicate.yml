@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 08/20/2026 15:55:50
+  time: 08/22/2026 15:19:37
   entityCount: 9770
 maps:
 - 7
@@ -9345,7 +9345,8 @@ entities:
           -2,-12:
             0: 36044
           -1,-17:
-            0: 56735
+            0: 55711
+            2: 1024
           -4,-9:
             0: 36590
           -4,-11:
@@ -10508,7 +10509,7 @@ entities:
       pos: -9.5,23.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -36256.82
+      secondsUntilStateChange: -36422.785
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -30291,6 +30292,13 @@ entities:
       parent: 5837
     - type: Fixtures
       fixtures: {}
+- proto: ClothingBeltMilitaryWebbing
+  entities:
+  - uid: 3143
+    components:
+    - type: Transform
+      pos: 2.5658832,-64.7041
+      parent: 1
 - proto: ClothingOuterArmorBasic
   entities:
   - uid: 3355
@@ -31773,8 +31781,8 @@ entities:
           friction: 0.4
     - type: ThrownItem
       playLandSound: True
-      landTime: 5645.44553
-      thrownTime: 5645.4276879
+      landTime: 386.0507894
+      thrownTime: 386.0329473
 - proto: FloorTileItemShuttleBlack
   entities:
   - uid: 8283
@@ -34112,6 +34120,32 @@ entities:
     - type: Transform
       pos: -1.5,-65.5
       parent: 1
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            radius: 0.01
+            vertices:
+            - -0.25,-0.48
+            - 0.25,-0.48
+            - 0.25,0.48
+            - -0.25,0.48
+          mask:
+          - Impassable
+          - HighImpassable
+          - LowImpassable
+          layer:
+          - BulletImpassable
+          - Opaque
+          density: 75
+          hard: True
+          restitution: 0
+          friction: 0.4
+    - type: EntityStorage
+      open: True
+      removedMasks: 20
+    - type: PlaceableSurface
+      isPlaceable: True
   - uid: 6859
     components:
     - type: Transform
@@ -34456,11 +34490,6 @@ entities:
       anchored: True
       pos: 18.5,-43.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        3143:
-        - - Output
-          - Trigger
     - type: Physics
       canCollide: False
       bodyType: Static
@@ -34583,7 +34612,7 @@ entities:
       dockJointId: docking23273524
       dockedWith: 6134
     - type: Door
-      secondsUntilStateChange: -12668.273
+      secondsUntilStateChange: -12834.237
       changeAirtight: False
       state: Opening
   - uid: 65
@@ -34595,7 +34624,7 @@ entities:
       dockJointId: docking23273525
       dockedWith: 6135
     - type: Door
-      secondsUntilStateChange: -12639.136
+      secondsUntilStateChange: -12805.1
       changeAirtight: False
       state: Opening
   - uid: 66
@@ -34608,7 +34637,7 @@ entities:
       dockJointId: docking23273726
       dockedWith: 6137
     - type: Door
-      secondsUntilStateChange: -12625.736
+      secondsUntilStateChange: -12791.7
       changeAirtight: False
       state: Opening
   - uid: 67
@@ -34621,7 +34650,7 @@ entities:
       dockJointId: docking23273727
       dockedWith: 6136
     - type: Door
-      secondsUntilStateChange: -12611.653
+      secondsUntilStateChange: -12777.617
       changeAirtight: False
       state: Opening
   - uid: 2385
@@ -34656,7 +34685,7 @@ entities:
       dockJointId: docking23273524
       dockedWith: 64
     - type: Door
-      secondsUntilStateChange: -12668.273
+      secondsUntilStateChange: -12834.237
       changeAirtight: False
       state: Opening
   - uid: 6135
@@ -34669,7 +34698,7 @@ entities:
       dockJointId: docking23273525
       dockedWith: 65
     - type: Door
-      secondsUntilStateChange: -12639.136
+      secondsUntilStateChange: -12805.1
       changeAirtight: False
       state: Opening
   - uid: 6136
@@ -34682,7 +34711,7 @@ entities:
       dockJointId: docking23273727
       dockedWith: 67
     - type: Door
-      secondsUntilStateChange: -12611.653
+      secondsUntilStateChange: -12777.617
       changeAirtight: False
       state: Opening
   - uid: 6137
@@ -34695,7 +34724,7 @@ entities:
       dockJointId: docking23273726
       dockedWith: 66
     - type: Door
-      secondsUntilStateChange: -12625.736
+      secondsUntilStateChange: -12791.7
       changeAirtight: False
       state: Opening
 - proto: NFInflatableWall
@@ -34728,7 +34757,7 @@ entities:
   - uid: 8629
     components:
     - type: Transform
-      pos: -7.759447,-70.420586
+      pos: -1.5005591,-65.60688
       parent: 1
 - proto: NFSignShield
   entities:
@@ -34865,33 +34894,6 @@ entities:
       parent: 1
     - type: Pullable
       prevFixedRotation: True
-- proto: NuclearGrenadeInstant
-  entities:
-  - uid: 4068
-    components:
-    - type: Transform
-      pos: 7.5,-26.5
-      parent: 1
-  - uid: 5006
-    components:
-    - type: Transform
-      pos: 18.5,-44.5
-      parent: 1
-  - uid: 6834
-    components:
-    - type: Transform
-      pos: -10.5,-73.5
-      parent: 1
-  - uid: 8423
-    components:
-    - type: Transform
-      pos: 4.5,-61.5
-      parent: 1
-  - uid: 8424
-    components:
-    - type: Transform
-      pos: 16.5,-21.5
-      parent: 1
 - proto: OxygenCanister
   entities:
   - uid: 693
@@ -41923,6 +41925,9 @@ entities:
   entities:
   - uid: 3165
     components:
+    - type: MetaData
+      desc: Снесённая дверь из технического шкафа. Можно использовать что бы вскрыть дверь
+      name: дверь шкафчика (монтировка)
     - type: Transform
       parent: 6638
     - type: Physics
@@ -43648,39 +43653,6 @@ entities:
       fixtures: {}
 - proto: SignalTimer
   entities:
-  - uid: 3143
-    components:
-    - type: Transform
-      pos: 18.5,-44.5
-      parent: 1
-    - type: SignalTimer
-      maxDuration: 99999
-      delay: 260
-    - type: DeviceLinkSource
-      range: 999
-      linkedPorts:
-        4068:
-        - - Timer
-          - Trigger
-        5006:
-        - - Timer
-          - Trigger
-        8424:
-        - - Timer
-          - Trigger
-        8423:
-        - - Timer
-          - Trigger
-        6834:
-        - - Timer
-          - Trigger
-    - type: DeviceLinkSink
-      invokeCounter: 1
-    - type: ExtensionCableReceiver
-      receptionRange: 999
-    - type: Fixtures
-      fixtures: {}
-    - type: ActiveSignalTimer
   - uid: 6997
     components:
     - type: Transform
