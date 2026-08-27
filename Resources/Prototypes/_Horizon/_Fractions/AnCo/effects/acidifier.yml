@@ -25,4 +25,16 @@
         - WallLayer
         hard: false
   - type: TimedDespawn
-    lifetime: 3.7
+    lifetime: 3
+  - type: ExplodeOnTrigger
+    keysIn:
+    - trigger
+  - type: Explosive
+    explosionType: AnCoExplodes
+    totalIntensity: 60
+    intensitySlope: 5
+    maxIntensity: 30
+    canCreateVacuum: false
+  - type: ActiveTimerTrigger
+    timeRemaining: 2
+

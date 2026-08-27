@@ -103,7 +103,6 @@
 
 - type: entity
   name: капсула Титана
-  categories: [ HideSpawnMenu ]
   parent: BaseItem
   suffix: StarHorizon, AnCo
   description: Капсула с реагентами для инжектора скафандра Титана
@@ -138,10 +137,10 @@
   - type: SolutionCartridge
     targetSolution: hypospray
     solution:
-      maxVol: 29
+      maxVol: 20
       reagents:
       - ReagentId: AnConanits
-        Quantity: 29
+        Quantity: 20
 
 - type: entity
   name: боевой медипен АнКо

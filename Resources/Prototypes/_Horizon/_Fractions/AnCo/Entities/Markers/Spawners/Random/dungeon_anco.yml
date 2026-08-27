@@ -128,7 +128,7 @@
     - CombatMedipenAnCo
     - AnCoDeathAcidifierImplanter
     - AnCoImplanterTreker
-    - AnCoNanitsCapsule
+    # - AnCoNanitsCapsule теперь без этой крутой штуки
     - AnCoExtractImplanterCrystall
     chance: 0.5
     offset: 0.0
@@ -139,8 +139,8 @@
     - NanitMedipenAnCo
     - NanitMedipenAnCo
     - AnCohypoNerf
-    - AnCohypocapsule
-    rareChance: 0.10
+    # - AnCohypocapsule теперь без этой крутой штуки
+    rareChance: 0.30
 
 - type: entity
   name: спавнер плюшек АнКо
