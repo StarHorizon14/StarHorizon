@@ -641,10 +641,10 @@
         amount: 4
       - id: AnCoExtractImplanterCrystall
         amount: 2
-      - id: AnCoNanitsCapsule
-        amount: 4
-      - id: AnCohypocapsule
-        amount: 1
+      # - id: AnCoNanitsCapsule теперь без этой крутой штуки
+      #   amount: 4
+      # - id: AnCohypocapsule теперь без этой крутой штуки
+      #   amount: 1
 
 # патроны
 
