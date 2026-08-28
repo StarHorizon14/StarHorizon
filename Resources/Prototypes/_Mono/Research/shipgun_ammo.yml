@@ -7,21 +7,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: technology
-  id: BasicShipWeapons
-  name: research-technology-basic-ship-weapons
-  entityIcon: WeaponTurretM25
-  discipline: NFArsenalNfsd
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - WeaponTurretM25Flatpack
-  - WeaponTurretL85AutocannonFlatpack
-  technologyPrerequisites:
-  - SpaceBattles
-  prerequisiteLineType: Diagonal
-  position: 1, 66
-
-- type: technology
   id: UniversalRailgunAmmo
   name: research-technology-universal-railgun-ammo
   entityIcon: CharonSlugAmmo
