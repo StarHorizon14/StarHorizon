@@ -924,6 +924,21 @@
     - SponsorShopDisk13
     - SponsorShopDisk14
 
+- type: sponsorShopCategory
+  id: SponsorShopCategSeven
+  name: "ВАЛЮТЫ ФРАКЦИЙ"
+  priority: 26
+
+- type: sponsorShopCategory
+  id: SponsorShopFactionCurrency
+  name: валюты фракций
+  parent: SponsorShopCategSeven
+  priority: 27
+  items:
+    - SponsorShopCurrencyTelecrystal
+    - SponsorShopCurrencyDoubloon
+    - SponsorShopCurrencyFrontierCoin
+
 # region Очки
 - type: sponsorShopListing
   id: SponsorShopEyes1
@@ -7016,3 +7031,32 @@
 #   priority: 24
 #   state: rndmajordisk
 #   prototypeId: TechnologyDiscArsenalDome
+
+# region Валюты фракций
+
+- type: sponsorShopListing
+  id: SponsorShopCurrencyTelecrystal
+  name: 2 телекристалла
+  description: Пара тускло мерцающих телекристаллов синдиката. Можно обменять на снаряжение в аплинке.
+  cost: 1
+  priority: 27
+  state: telecrystal
+  prototypeId: SponsorShopTelecrystal2
+
+- type: sponsorShopListing
+  id: SponsorShopCurrencyDoubloon
+  name: 2 дублона
+  description: Пара грязных золотых монет, используемых пиратами для тёмных сделок.
+  cost: 1
+  priority: 27
+  state: doubloon
+  prototypeId: SponsorShopDoubloon2
+
+- type: sponsorShopListing
+  id: SponsorShopCurrencyFrontierCoin
+  name: 2 фронтир-коина
+  description: Пара жетонов НФСД, выдаваемых за сдачу контрабанды. Можно обменять на снаряжение в аплинке.
+  cost: 1
+  priority: 27
+  state: frontieruplinkcoin
+  prototypeId: SponsorShopFrontierUplinkCoin2

@@ -1,0 +1,24 @@
+# region Валюты для спонсорского магазина
+- type: entity
+  parent: Telecrystal
+  id: SponsorShopTelecrystal2
+  suffix: 2
+  components:
+  - type: Stack
+    count: 2
+
+- type: entity
+  parent: Doubloon
+  id: SponsorShopDoubloon2
+  suffix: 2
+  components:
+  - type: Stack
+    count: 2
+
+- type: entity
+  parent: FrontierUplinkCoin
+  id: SponsorShopFrontierUplinkCoin2
+  suffix: 2
+  components:
+  - type: Stack
+    count: 2

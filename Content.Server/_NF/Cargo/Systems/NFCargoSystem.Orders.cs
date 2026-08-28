@@ -13,6 +13,7 @@ using Content.Shared.Database;
 using Content.Shared.Labels.Components;
 using Content.Shared.Paper;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Cargo.Systems;
@@ -151,6 +152,15 @@ public sealed partial class NFCargoSystem
         data.OrderQuantity = Math.Min(capacity - amount, data.OrderQuantity);
 
         var cost = data.Price * data.OrderQuantity;
+
+        // Horizon start - sponsor discount
+        if (TryComp<ActorComponent>(player, out var actorComp) && actorComp.PlayerSession != null)
+        {
+            var discountPercent = _sponsorManager.GetDiscountPercent(actorComp.PlayerSession.Name);
+            if (discountPercent > 0)
+                cost = (int)(cost * (1 - discountPercent / 100f));
+        }
+        // Horizon end
 
         // Horizon: barter consoles pay for the order by selling goods on their linked pallets instead of using bank funds.
         if (ent.Comp.BarterOnly)

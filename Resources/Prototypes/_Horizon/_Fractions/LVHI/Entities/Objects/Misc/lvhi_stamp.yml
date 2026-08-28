@@ -1,0 +1,14 @@
+- type: entity
+  parent: RubberStampBase
+  id: RubberStampLVHI
+  name: "штамп LVHI"
+  description: "Официальная печать компании Langstad-Voigt Heavy Industries для заверения документов и контрактов."
+  suffix: LVHI
+  components:
+  - type: Stamp
+    stampedName: "LANGSTAD-VOIGT HEAVY INDUSTRIES"
+    stampedColor: "#e26817"
+    stampState: "paper_stamp-nf-engineer"
+  - type: Sprite
+    sprite: _NF/Objects/Misc/stamps.rsi
+    state: stamp-engineer

@@ -46,6 +46,7 @@ using Robust.Shared.Timing;
 using Content.Server._Horizon.Shipyard;
 using Content.Shared._Lua.Shipyard.BUIStates;
 using Content.Shared.Stacks;
+using Content.Server._Horizon.SponsorManager;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -69,6 +70,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly SponsorManager _sponsorManager = default!;
 
     // Horizon
     [Dependency] private readonly ShipOwnershipSystem? _shipOwnership = default!;
@@ -187,6 +189,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 item.Modify(player, shipyardConsoleUid, ref price, _entityManager);
 
             if (!TryPayForVessel(shipyardConsoleUid, component, player, price, out var payError))
+            if (TryComp<ActorComponent>(player, out var priceActorComp) && priceActorComp.PlayerSession != null)
+            {
+                var discountPercent = _sponsorManager.GetDiscountPercent(priceActorComp.PlayerSession.Name);
+                if (discountPercent > 0)
+                    price = (int)(price * (1 - discountPercent / 100f));
+            }
+
+            // Horizon end
+            if (!_bank.TryBankWithdraw(player, price))  // Horizon - modify price
             {
                 ConsolePopup(player, Loc.GetString(payError, ("cost", price)));
                 PlayDenySound(player, shipyardConsoleUid, component);

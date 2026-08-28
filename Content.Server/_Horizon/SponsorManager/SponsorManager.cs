@@ -46,6 +46,7 @@ namespace Content.Server._Horizon.SponsorManager
         private readonly Dictionary<string, int> _sponsorsAndBalances = new(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<string, int> _sponsorSlots = new(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<string, string> _sponsorColors = new(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, int> _sponsorDiscounts = new(StringComparer.OrdinalIgnoreCase);
 
         public void Initialize()
         {
@@ -206,6 +207,7 @@ namespace Content.Server._Horizon.SponsorManager
                 var newBalances = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
                 var newSlots = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
                 var newColors = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                var newDiscounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
                 // Read file and collect only sponsors NOT already in memory
                 var discordLines = SafeReadAllLines(_dsSponsorsFilePath);
@@ -231,6 +233,7 @@ namespace Content.Server._Horizon.SponsorManager
 
                     newSlots[normalizedCkey] = CalculateSlots(discordId);
                     newBalances[normalizedCkey] = CalculateTokens(discordId);
+                    newDiscounts[normalizedCkey] = CalculateDiscountPercent(discordId);
 
                     if (parts.Length > 4 && !string.IsNullOrWhiteSpace(parts[4]))
                         newColors[normalizedCkey] = parts[4].Trim();
@@ -267,6 +270,7 @@ namespace Content.Server._Horizon.SponsorManager
                     _sponsors.Add(name);
                     _sponsorsAndBalances[name] = balance;
                     _sponsorSlots[name] = newSlots.GetValueOrDefault(name);
+                    _sponsorDiscounts[name] = newDiscounts.GetValueOrDefault(name);
 
                     if (newColors.TryGetValue(name, out var color))
                         _sponsorColors[name] = color;
@@ -299,6 +303,7 @@ namespace Content.Server._Horizon.SponsorManager
                 _sponsorsAndBalances.Clear();
                 _sponsorSlots.Clear();
                 _sponsorColors.Clear();
+                _sponsorDiscounts.Clear();
 
                 var discordLines = SafeReadAllLines(_dsSponsorsFilePath);
                 _sawmill.Debug($"Read {discordLines.Length} lines from discord_sponsors");
@@ -333,6 +338,7 @@ namespace Content.Server._Horizon.SponsorManager
 
                 var slots = CalculateSlots(discordId);
                 var tokens = CalculateTokens(discordId);
+                var discount = CalculateDiscountPercent(discordId);
 
                 // Parse color from parts[4] if available (format: something,ckey,discordId,something,#color)
                 string? color = null;
@@ -341,7 +347,7 @@ namespace Content.Server._Horizon.SponsorManager
                     color = parts[4].Trim();
                 }
 
-                SetSponsorData(originalCkey, slots, tokens, color);
+                SetSponsorData(originalCkey, slots, tokens, discount, color);
                 count++;
             }
 
@@ -409,18 +415,37 @@ namespace Content.Server._Horizon.SponsorManager
                 _ => 0
             };
         }
+
+        /// <summary>
+        /// Скидка (в процентах, 0-100) на заказы в консоли карго и на покупку кораблей в верфи,
+        /// нарастающая по тиру спонсора.
+        /// </summary>
+        private int CalculateDiscountPercent(string discordId)
+        {
+            return discordId switch
+            {
+                "1349080752209395833" => 0, // Спонсор I - Авантюрист
+                "1349080829334257856" => 5, // Спонсор II - Наемник
+                "1349080858224623717" => 10, // Спонсор III - Шериф
+                "1349080888927064216" => 12, // Спонсор IV - Представитель
+                "1349080921537773568" => 15, // Спонсор V - Легенда
+                "1349080947399725136" => 20, // Спонсор VI - пока нету
+                _ => 0
+            };
+        }
         #endregion Discord
 
         #region Memory-only sponsor data
         /// <summary>
         /// Обновляет данные спонсора только в памяти (без записи в файл).
         /// </summary>
-        private void SetSponsorData(string userName, int slot, int token, string? color = null)
+        private void SetSponsorData(string userName, int slot, int token, int discount = 0, string? color = null)
         {
             var normalizedName = NormalizeUserName(userName);
             _sponsors.Add(normalizedName);
             _sponsorSlots[normalizedName] = slot;
             _sponsorsAndBalances[normalizedName] = token;
+            _sponsorDiscounts[normalizedName] = discount;
 
             if (!string.IsNullOrWhiteSpace(color))
             {
@@ -449,6 +474,7 @@ namespace Content.Server._Horizon.SponsorManager
             _sponsorsAndBalances.Remove(normalizedName);
             _sponsorSlots.Remove(normalizedName);
             _sponsorColors.Remove(normalizedName);
+            _sponsorDiscounts.Remove(normalizedName);
             _sawmill.Debug($"Removed sponsor from memory: {userName}");
         }
         #endregion Memory-only sponsor data
@@ -476,6 +502,15 @@ namespace Content.Server._Horizon.SponsorManager
             }
 
             return maxCharacterSlots;
+        }
+
+        /// <summary>
+        /// Возвращает скидку спонсора (в процентах, 0-100) для консоли заказов карго и верфи.
+        /// </summary>
+        public int GetDiscountPercent(string userName)
+        {
+            var normalizedName = NormalizeUserName(userName);
+            return _sponsorDiscounts.TryGetValue(normalizedName, out var discount) ? discount : 0;
         }
 
         public int GetBalance(string userName)
