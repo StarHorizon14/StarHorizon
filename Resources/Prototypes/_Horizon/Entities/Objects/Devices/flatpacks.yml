@@ -32,3 +32,48 @@
   components:
   - type: Flatpack
     entity: PortableGeneratorStarPacman
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretM25Flatpack
+  name: M25 mining pulser flatpack
+  description: A flatpack used for constructing an M25 mining pulser turret.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretM25
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretL85AutocannonFlatpack
+  name: L85 20mm autocannon flatpack
+  description: A flatpack used for constructing an L85 20mm autocannon turret.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretL85Autocannon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretM220Flatpack
+  name: M220 RUBICON EMP launcher flatpack
+  description: A flatpack used for constructing an M220 RUBICON EMP launcher turret.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretM220
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretType54Flatpack
+  name: Type-54C plasma autopulser flatpack
+  description: A flatpack used for constructing a Type-54C plasma autopulser turret.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretType54
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretType35Flatpack
+  name: Type-35 MARAUDER-type plasma cannon flatpack
+  description: A flatpack used for constructing a Type-35 MARAUDER-type plasma cannon turret.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretType35
