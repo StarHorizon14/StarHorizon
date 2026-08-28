@@ -18,11 +18,13 @@ namespace Content.Shared._Horizon.Sponsors.Systems
     {
         public bool IsSponsor { get; }
         public int Balance { get; }
+        public int DiscountPercent { get; }
 
-        public SponsorCheckResponseEvent(bool isSponsor, int balance)
+        public SponsorCheckResponseEvent(bool isSponsor, int balance, int discountPercent = 0)
         {
             IsSponsor = isSponsor;
             Balance = balance;
+            DiscountPercent = discountPercent;
         }
     }
 

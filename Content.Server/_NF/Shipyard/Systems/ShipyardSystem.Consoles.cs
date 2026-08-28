@@ -45,6 +45,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Server._Horizon.Shipyard;
 using Content.Shared._Lua.Shipyard.BUIStates;
+using Content.Server._Horizon.SponsorManager;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -68,6 +69,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly SponsorManager _sponsorManager = default!;
 
     // Horizon
     [Dependency] private readonly ShipOwnershipSystem? _shipOwnership = default!;
@@ -183,6 +185,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             foreach (var item in vessel.CostModifiers)
                 item.Modify(player, shipyardConsoleUid, ref price, _entityManager);
+
+            if (TryComp<ActorComponent>(player, out var priceActorComp) && priceActorComp.PlayerSession != null)
+            {
+                var discountPercent = _sponsorManager.GetDiscountPercent(priceActorComp.PlayerSession.Name);
+                if (discountPercent > 0)
+                    price = (int)(price * (1 - discountPercent / 100f));
+            }
 
             // Horizon end
             if (!_bank.TryBankWithdraw(player, price))  // Horizon - modify price

@@ -24,6 +24,8 @@ namespace Content.Client._Horizon.Sponsors.UI
         private SponsorShopMenu? _window;
         private int _currentBalance;
 
+        public int DiscountPercent { get; private set; }
+
         public override void Initialize()
         {
             base.Initialize();
@@ -62,6 +64,7 @@ namespace Content.Client._Horizon.Sponsors.UI
         {
             var isSponsor = ev.IsSponsor;
             _currentBalance = ev.Balance;
+            DiscountPercent = ev.DiscountPercent;
 
             if (SponsorShopButton != null)
             {
