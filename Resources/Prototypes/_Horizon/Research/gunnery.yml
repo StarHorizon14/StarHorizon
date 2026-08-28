@@ -24,6 +24,9 @@
   recipeUnlocks:
   - WeaponTurretM25Flatpack
   - WeaponTurretL85AutocannonFlatpack
+  - WeaponTurretM220Flatpack
+  - WeaponTurretType54Flatpack
+  - WeaponTurretType35Flatpack
   technologyPrerequisites:
   - SpaceBattles
   prerequisiteLineType: Diagonal
