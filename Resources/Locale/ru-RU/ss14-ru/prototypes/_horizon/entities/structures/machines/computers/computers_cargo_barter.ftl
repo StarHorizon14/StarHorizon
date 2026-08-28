@@ -1,0 +1,17 @@
+ent-ComputerCargoBarter = бартерный компьютер
+    .desc = Используется для заказа товаров в обмен на груз, размещённый на подключённых грузовых поддонах.
+ent-ComputerCargoBarterVeryHighMarket = { ent-ComputerCargoBarter }
+    .suffix = Очень высокий
+    .desc = { ent-ComputerCargoBarter.desc }
+ent-ComputerCargoBarterHighMarket = { ent-ComputerCargoBarter }
+    .suffix = Высокий
+    .desc = { ent-ComputerCargoBarter.desc }
+ent-ComputerCargoBarterNormalMarket = { ent-ComputerCargoBarter }
+    .suffix = Нормальный
+    .desc = { ent-ComputerCargoBarter.desc }
+ent-ComputerCargoBarterLowMarket = { ent-ComputerCargoBarter }
+    .suffix = Низкий
+    .desc = { ent-ComputerCargoBarter.desc }
+ent-ComputerCargoBarterVeryLowMarket = { ent-ComputerCargoBarter }
+    .suffix = Очень низкий
+    .desc = { ent-ComputerCargoBarter.desc }

@@ -1,0 +1,80 @@
+- type: entity
+  parent: [VendingMachine, BaseStructureDisableToolUse, BaseStructureIndestructible]
+  id: VendingMachineRandom
+  name: РандомВенд
+  description: Готовы ли вы испытать свою удачу?
+  components:
+  - type: VendingMachine
+    pack: RandomVendInventory
+    offState: random-off
+    brokenState: random-broken
+    normalState: random
+    denyState: random-deny
+  - type: MarketModifier
+    mod: 250
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/randomvend.rsi
+    layers:
+    - state: "random-off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: random
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#d4ab33"
+
+- type: entity
+  parent: [VendingMachine, BaseStructureDisableToolUse, BaseStructureIndestructible]
+  id: VendingMachineRandomStructures
+  name: РандомВенд
+  suffix: Структуры
+  description: Готовы ли вы испытать свою удачу?
+  components:
+  - type: VendingMachine
+    pack: RandomVendStructuresInventory
+    offState: random-off
+    brokenState: random-broken
+    normalState: random
+    denyState: random-deny
+  - type: MarketModifier
+    mod: 250
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/randomvend.rsi
+    layers:
+    - state: "random-off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: random
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#d4ab33"
+
+- type: entity
+  parent: [VendingMachine, BaseStructureDisableToolUse, BaseStructureIndestructible]
+  id: VendingMachineRandomMystery
+  name: РандомВенд
+  suffix: Совершено рамдом
+  description: Готовы ли вы испытать свою удачу?
+  components:
+  - type: VendingMachine
+    pack: RandomVendMysteryInventory
+    offState: random-off
+    brokenState: random-broken
+    normalState: random
+    denyState: random-deny
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/randomvend.rsi
+    layers:
+    - state: "random-off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: random
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#d4ab33"

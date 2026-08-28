@@ -54,11 +54,19 @@ public abstract class SharedShipyardSystem : EntitySystem
     private void OnComponentInit(EntityUid uid, ShipyardConsoleComponent component, ComponentInit args)
     {
         _itemSlotsSystem.AddItemSlot(uid, ShipyardConsoleComponent.TargetIdCardSlotId, component.TargetIdSlot);
+
+        // Horizon: create the cash slot if this console has one
+        if (component.CashSlot != null && component.CashSlotName != null)
+            _itemSlotsSystem.AddItemSlot(uid, component.CashSlotName, component.CashSlot);
     }
 
     private void OnComponentRemove(EntityUid uid, ShipyardConsoleComponent component, ComponentRemove args)
     {
         _itemSlotsSystem.RemoveItemSlot(uid, component.TargetIdSlot);
+
+        // Horizon: cash slot
+        if (component.CashSlot != null)
+            _itemSlotsSystem.RemoveItemSlot(uid, component.CashSlot);
     }
 
     [Serializable, NetSerializable]

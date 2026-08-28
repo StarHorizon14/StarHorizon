@@ -6,6 +6,8 @@ cargo-console-order-nf-menu-notes-label = Notes:
 
 ## Orders
 cargo-console-nf-no-bank-account = No bank account found
+cargo-console-barter-no-pallets = No sale pallets found for this console.
+cargo-console-barter-insufficient-goods = Not enough goods on the pallets. Cost: {$cost} credits.
 
 cargo-console-nf-paper-print-text = [head=2]Order #{$orderNumber}[/head]
     {"[bold]Item:[/bold]"} {$itemName} ({$orderIndex} of {$orderQuantity})

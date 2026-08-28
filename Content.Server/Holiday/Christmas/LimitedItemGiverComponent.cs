@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Storage;
+using Robust.Shared.Audio;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -38,4 +39,10 @@ public sealed partial class LimitedItemGiverComponent : Component
     /// </summary>
     [DataField("requiredHoliday", customTypeSerializer: typeof(PrototypeIdSerializer<HolidayPrototype>)), ViewVariables(VVAccess.ReadWrite)]
     public string? RequiredHoliday = null;
+
+    /// <summary>
+    /// Sound played when successfully handing out an item.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? Sound;
 }

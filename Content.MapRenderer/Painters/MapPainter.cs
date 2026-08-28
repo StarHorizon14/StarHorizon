@@ -16,6 +16,7 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Log;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
@@ -52,6 +53,11 @@ namespace Content.MapRenderer.Painters
                 Fresh = true,
                 // Seriously whoever made MapPainter use GameMapPrototype I wish you step on a lego one time.
                 Map = _map is RenderMapPrototype prototype ? prototype.Prototype : PoolManager.TestMap,
+                // The map renderer only cares about producing an image, not about asserting
+                // the content is bug-free -- a non-fatal content warning/error logged while
+                // loading prototypes (e.g. a malformed Sprite layer on some unrelated
+                // prototype) shouldn't abort the whole render the way it would a real test.
+                FailureLogLevel = LogLevel.Fatal,
             };
             _pair = await PoolManager.GetServerClient(poolSettings, _testContextLike);
 

@@ -1,0 +1,14 @@
+- type: entityTable
+  id: HorizonCastawayEventsTable
+  table: !type:AllSelector
+    children:
+    - id: TraderShuttleArrival
+    - id: LostvoidPlanetExpedition
+
+- type: entity
+  id: HorizonCastawayEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: HorizonCastawayEventsTable

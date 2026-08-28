@@ -541,6 +541,12 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             ? Loc.GetString("id-card-console-window-eject-button")
             : Loc.GetString("id-card-console-window-insert-button");
         NoDeedHelperContainer.Visible = !state.IsTargetIdPresent;
+
+        // Horizon: cash payment
+        CashSlotContainer.Visible = state.HasCashSlot;
+        BalanceContainer.Visible = !state.CashOnly;
+        if (state.HasCashSlot)
+            CashSlotLabel.Text = BankSystemExtensions.ToSpesoString(state.CashSlotBalance);
         if (state.ShipDeedTitle != null)
         {
             DeedTitle.Text = state.ShipDeedTitle;

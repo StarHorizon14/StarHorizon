@@ -7,3 +7,16 @@ atlas-pai-critical = Внимание, замечено критическое �
 atlas-pai-stabilized = Пользователь стабилизируется, Система жизнеобеспечения включена
 atlas-pai-jetpack = Реактивный ранец подключён
 atlas-pai-ready = Последовательность инициализации завершена
+
+castaway-pod-error-1 = ОШИБКА
+castaway-pod-error-2 = ОШИБКА
+castaway-pod-malfunction = Обнаружена критическая поломка криокапсулы
+castaway-pod-waking = Запуск аварийного пробуждения
+
+castaway-job-name-survivor = Потеряный среди пустоты
+castaway-job-description-survivor = Вы просыпаешься среди космоса, в аварийном скафандре с кислородным баллоном. Удачи!
+castaway-job-name-sleeper = Сломаная криопапсула
+castaway-job-description-sleeper = Вы просыпаетесь в неисправной криокапсулы на заброшенной станции. Найдите способ выбратся.
+
+castaway-job-name-escapee = Побег с захваченного шаттла
+castaway-job-description-escapee = Вы очнулись заключённым на борту захваченного синдикатами корабля. У вас есть 3 минуты, чтобы найти челнок и сбежать, прежде чем корабль будет уничтожен.

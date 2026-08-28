@@ -1,0 +1,20 @@
+- type: entity
+  name: nuclear grenade (instant)
+  description: A nuclear device rigged to detonate instantly on signal, no timer.
+  id: NuclearGrenadeInstant
+  parent: MarkerBase
+  suffix: Trigger, Map
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/nukenade.rsi
+    state: icon
+  - type: TriggerOnSignal
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 20000 # ~15 tile radius.
+    intensitySlope: 5
+    maxIntensity: 50

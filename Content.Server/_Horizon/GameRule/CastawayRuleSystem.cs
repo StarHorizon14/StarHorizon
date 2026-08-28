@@ -1,21 +1,31 @@
+using System.Linq;
 using System.Numerics;
 using Content.Server._Horizon.GameRule.Components;
+using Content.Shared.CCVar;
+using Robust.Shared.Configuration;
 using Content.Server.Access.Systems;
 using Content.Server.Body.Components;
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Clothing.Systems;
+using Content.Server.Explosion.EntitySystems;
 using Content.Server.Maps.NameGenerators;
 using Content.Server._NF.Shipyard.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
+using Content.Server.Procedural;
+using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Server.Storage.EntitySystems;
 using Content.Server.Worldgen.Components;
 using Content.Shared._Horizon.Castaway;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared.Access.Components;
+using Content.Shared.Administration;
 using Content.Shared.Chat;
+using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
@@ -24,17 +34,28 @@ using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Jittering;
+using Content.Shared.Physics;
 using Content.Shared.PDA;
+using Content.Shared.Procedural;
+using Content.Shared.Random;
 using Content.Shared.Roles;
+using Content.Shared.Salvage;
+using Content.Shared.Salvage.Expeditions;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
+using Robust.Shared.Enums;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Collections;
+using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Horizon.GameRule;
 
@@ -44,18 +65,27 @@ namespace Content.Server._Horizon.GameRule;
 /// </summary>
 public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
 {
+    [Dependency] private readonly AnchorableSystem _anchorable = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly DungeonSystem _dungeon = default!;
+    [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
+    [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly RandomSystem _randomSys = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly OutfitSystem _outfit = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedSalvageSystem _salvage = default!;
     [Dependency] private readonly ShipyardSystem _shipyard = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
@@ -67,21 +97,38 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
         base.Initialize();
 
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
+        SubscribeLocalEvent<FTLStartedEvent>(OnFtlStarted);
+    }
+
+    // Mirrors salvage expeditions: once the last shuttle leaves a Castaway player's dedicated map
+    // via FTL, the map is torn down behind them since it was never a valid FTL destination anyway.
+    private void OnFtlStarted(ref FTLStartedEvent ev)
+    {
+        if (ev.FromMapUid is not { } fromMapUid || !HasComp<CastawayMapComponent>(fromMapUid))
+            return;
+
+        QueueDel(fromMapUid);
     }
 
     protected override void Started(EntityUid uid, CastawayRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
 
-        SpawnMapWrecks(component, GameTicker.DefaultMap);
+        // Salvage wrecks scattered for exploration stay on the main round map, not each player's
+        // dedicated Castaway map, since they're meant to be found via the shared map, not a pocket.
+        var placed = new List<Vector2>();
+        SpawnMapWrecks(component, GameTicker.DefaultMap, placed);
+
+        // Same VGRoid dungeon generation as the BluespaceErrorRule station event, but spawned
+        // directly here instead of through the station-event scheduler (no "Central Command"
+        // announcement tied to it, and it doesn't depend on station events being enabled).
+        SpawnMapDungeons(component, GameTicker.DefaultMap, placed);
     }
 
-    private void SpawnMapWrecks(CastawayRuleComponent castaway, MapId mapId)
+    private void SpawnMapWrecks(CastawayRuleComponent castaway, MapId mapId, List<Vector2> placed)
     {
         if (castaway.MapWreckGridPaths.Count == 0)
             return;
-
-        var placed = new List<Vector2>();
 
         for (var i = 0; i < castaway.MapWreckCount; i++)
         {
@@ -92,6 +139,81 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
             var path = _random.Pick(castaway.MapWreckGridPaths);
             if (_mapLoader.TryLoadGrid(mapId, path, out _, offset: pos, rot: _random.NextAngle()))
                 placed.Add(pos);
+        }
+    }
+
+    private void SpawnMapDungeons(CastawayRuleComponent castaway, MapId mapId, List<Vector2> placed)
+    {
+        if (castaway.MapDungeons.Count == 0 || castaway.MapDungeonFactions.Count == 0)
+            return;
+
+        for (var i = 0; i < castaway.MapDungeonCount; i++)
+        {
+            var point = FindMapWreckSpot(castaway, placed);
+            if (point is not { } pos)
+                continue;
+
+            var dungeonProto = _proto.Index(_random.Pick(castaway.MapDungeons));
+            var faction = _proto.Index(_random.Pick(castaway.MapDungeonFactions));
+
+            var grid = _mapManager.CreateGridEntity(mapId);
+            _transform.SetMapCoordinates(grid, new MapCoordinates(pos, mapId));
+
+            if (_proto.TryIndex(castaway.MapDungeonNameDataset, out var nameDataset))
+                _metaData.SetEntityName(grid, _salvage.GetFTLName(nameDataset, _random.Next()));
+
+            GenerateDungeon(dungeonProto, faction, grid.Owner, grid.Comp, castaway.MapDungeonMobBudget);
+            placed.Add(pos);
+        }
+    }
+
+    private async void GenerateDungeon(DungeonConfigPrototype dungeonProto, SalvageFactionPrototype faction, EntityUid grid, MapGridComponent gridComp, int budget)
+    {
+        var dungeons = await _dungeon.GenerateDungeonAsync(dungeonProto, dungeonProto.ID, grid, gridComp, Vector2i.Zero, _random.Next());
+
+        if (dungeons.Count <= 0 || dungeons[0] is not { } dungeon || dungeon.Rooms.Count <= 0)
+            return;
+
+        var budgetEntries = new List<IBudgetEntry>();
+        foreach (var entry in faction.MobGroups)
+            budgetEntries.Add(entry);
+
+        float mobBudget = budget;
+        var probSum = budgetEntries.Sum(x => x.Prob);
+        var random = new Random(_random.Next());
+
+        while (mobBudget > 0f)
+        {
+            var entry = _randomSys.GetBudgetEntry(ref mobBudget, ref probSum, budgetEntries, random);
+            if (entry == null)
+                break;
+
+            SpawnDungeonMob((grid, gridComp), entry, dungeon, random);
+        }
+    }
+
+    private void SpawnDungeonMob(Entity<MapGridComponent> grid, IBudgetEntry entry, Dungeon dungeon, Random random)
+    {
+        var availableRooms = new ValueList<DungeonRoom>(dungeon.Rooms);
+        var availableTiles = new ValueList<Vector2i>();
+
+        while (availableRooms.Count > 0)
+        {
+            availableTiles.Clear();
+            var roomIndex = random.Next(availableRooms.Count);
+            var room = availableRooms.RemoveSwap(roomIndex);
+            availableTiles.AddRange(room.Tiles);
+
+            while (availableTiles.Count > 0)
+            {
+                var tile = availableTiles.RemoveSwap(random.Next(availableTiles.Count));
+
+                if (!_anchorable.TileFree(grid, tile, (int)CollisionGroup.MachineLayer, (int)CollisionGroup.MachineLayer))
+                    continue;
+
+                Spawn(entry.Proto, _mapSystem.GridTileToLocal(grid, grid, tile));
+                return;
+            }
         }
     }
 
@@ -127,47 +249,308 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
             if (!GameTicker.IsGameRuleActive(uid, rule))
                 continue;
 
-            if (!_mapSystem.TryGetMap(GameTicker.DefaultMap, out var mapUid))
-                continue;
-
-            var spawnPos = GetRandomCoords(castaway);
-            var coords = new EntityCoordinates(mapUid.Value, spawnPos);
-
-            var wreckGrid = SpawnWreck(castaway, GameTicker.DefaultMap, spawnPos);
-            SpawnLoot(castaway, mapUid.Value, spawnPos);
-
             var newMind = _mind.CreateMind(ev.Player.UserId, ev.Profile.Name);
             _mind.SetUserId(newMind, ev.Player.UserId);
 
-            var mob = _stationSpawning.SpawnPlayerMob(coords, null, ev.Profile, null, session: ev.Player);
-            _outfit.SetOutfit(mob, castaway.StartingGear);
-
-            // Turns on the emergency oxygen tank's internals automatically, same as the "Вкл подачу воздуха" verb.
-            var gearEquippedEv = new StartingGearEquippedEvent(mob);
-            RaiseLocalEvent(mob, ref gearEquippedEv);
-
-            EnsureComp<WorldLoaderComponent>(mob);
-            EnsureComp<BankAccountComponent>(mob);
-            EnsureComp<CastawaySurvivorComponent>(mob);
-            NameIdCard(mob, ev.Profile.Name);
-
-            if (wreckGrid is { } grid)
-                RegisterWreckOwnership(mob, grid, ev.Profile.Name);
-
-            // IPCs and other non-breathing species have no concept of asphyxiation; skip the damage entirely for them.
-            if (HasComp<RespiratorComponent>(mob))
+            // Players pick their scenario in the lobby via the job selector (CastawaySurvivor vs
+            // CastawaySleeper vs CastawayEscapee). Alternate scenarios can fail to set up if their
+            // hand-placed map content is missing or malformed; scenario 1 only depends on the
+            // always-present WreckGridPaths, so it's the safe fallback for any of them, including an
+            // unset job.
+            var mob = ev.JobId switch
             {
-                var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Asphyxiation"), FixedPoint2.New(110));
-                _damageable.TryChangeDamage(mob, damage, ignoreResistances: true);
-            }
+                "CastawaySleeper" => SpawnPodScenario(castaway, ev),
+                "CastawayEscapee" => SpawnEscapeScenario(castaway, ev),
+                _ => null,
+            };
 
-            RunAtlasSequence(mob);
+            var spawnedMob = mob ?? SpawnWreckScenario(castaway, ev);
 
-            _mind.TransferTo(newMind, mob);
+            EnsureComp<WorldLoaderComponent>(spawnedMob);
+
+            if (_cfg.GetCVar(CCVars.CastawaySpawnBankAccountEnabled))
+                EnsureComp<BankAccountComponent>(spawnedMob);
+
+            EnsureComp<CastawaySurvivorComponent>(spawnedMob);
+            NameIdCard(spawnedMob, ev.Profile.Name);
+
+            _mind.TransferTo(newMind, spawnedMob);
 
             ev.Handled = true;
             break;
         }
+    }
+
+    // Scenario 1: player wakes up floating in open space next to their own wreck and some loot.
+    // Runs on its own dedicated, isolated map; it's never registered as an FTL destination, so
+    // nobody (including the player themselves) can fly back to it once they've left on their wreck.
+    private EntityUid SpawnWreckScenario(CastawayRuleComponent castaway, PlayerBeforeSpawnEvent ev)
+    {
+        var mapUid = _mapSystem.CreateMap(out var castawayMapId);
+        EnsureComp<CastawayMapComponent>(mapUid);
+
+        var spawnPos = GetRandomCoords(castaway);
+        var coords = new EntityCoordinates(mapUid, spawnPos);
+
+        var wreckGrid = SpawnWreck(castaway, castawayMapId, spawnPos);
+        SpawnLoot(castaway, mapUid, spawnPos);
+
+        var mob = _stationSpawning.SpawnPlayerMob(coords, null, ev.Profile, null, session: ev.Player);
+        _outfit.SetOutfit(mob, castaway.StartingGear);
+
+        // Turns on the emergency oxygen tank's internals automatically, same as the "Вкл подачу воздуха" verb.
+        var gearEquippedEv = new StartingGearEquippedEvent(mob);
+        RaiseLocalEvent(mob, ref gearEquippedEv);
+
+        if (wreckGrid is { } grid)
+            RegisterWreckOwnership(mob, grid, ev.Profile.Name);
+
+        // IPCs and other non-breathing species have no concept of asphyxiation; skip the damage entirely for them.
+        ApplyAsphyxiation(mob, 110);
+
+        RunAtlasSequence(mob);
+
+        return mob;
+    }
+
+    // Scenario 2: player wakes up inside a malfunctioning medical pod on a derelict station. The
+    // derelict map file is a full map (not a standalone grid), and it becomes the player's own
+    // dedicated map outright — same isolation/no-FTL-back guarantees as the wreck scenario.
+    private EntityUid? SpawnPodScenario(CastawayRuleComponent castaway, PlayerBeforeSpawnEvent ev)
+    {
+        var loadOptions = new DeserializationOptions { InitializeMaps = true };
+        if (!_mapLoader.TryLoadMap(castaway.PodMapPath, out var map, out _, loadOptions))
+            return null;
+
+        EnsureComp<CastawayMapComponent>(map.Value.Owner);
+
+        var pod = FindPodSpawn(map.Value.Owner);
+        if (pod is null)
+        {
+            QueueDel(map.Value.Owner);
+            return null;
+        }
+
+        var coords = new EntityCoordinates(pod.Value, Vector2.Zero);
+        var mob = _stationSpawning.SpawnPlayerMob(coords, null, ev.Profile, null, session: ev.Player);
+        _outfit.SetOutfit(mob, castaway.PodStartingGear);
+
+        _entityStorage.Insert(mob, pod.Value);
+
+        // IPCs and other non-breathing species have no concept of asphyxiation; skip the damage entirely for them.
+        ApplyAsphyxiation(mob, 110);
+
+        RunPodSequence(mob, pod.Value);
+
+        // The map already has a hand-placed wreck grid sitting near the station; hand it over as
+        // the player's own ShuttleDeed property, same as the wreck spawned in scenario 1.
+        if (FindNamedGrid(map.Value.Owner, castaway.PodWreckGridName) is { } wreckGrid)
+            RegisterWreckOwnership(mob, wreckGrid, ev.Profile.Name);
+
+        return mob;
+    }
+
+    // Scenario 3: player wakes up a prisoner aboard a hijacked syndicate ship. Movement is locked
+    // while the intercom and a hidden radio walk them through what's happening; once the radio
+    // finishes, they're set free, and EscapeAlarmDelay later the "shuttle doomed" warning and
+    // tension music kick in. The whole map (player included) is deleted after EscapeMapLifetimeAfterMusic
+    // regardless of whether they made it onto the escape shuttle by then, so RegisterWreckOwnership
+    // only matters if they fly it away before that.
+    private EntityUid? SpawnEscapeScenario(CastawayRuleComponent castaway, PlayerBeforeSpawnEvent ev)
+    {
+        var loadOptions = new DeserializationOptions { InitializeMaps = true };
+        if (!_mapLoader.TryLoadMap(castaway.EscapeMapPath, out var map, out _, loadOptions))
+            return null;
+
+        var mapUid = map.Value.Owner;
+        EnsureComp<CastawayMapComponent>(mapUid);
+
+        var spawn = FindEntityByProtoId(mapUid, castaway.EscapeSpawnMarker);
+        if (spawn is null)
+        {
+            QueueDel(mapUid);
+            return null;
+        }
+
+        var coords = Transform(spawn.Value).Coordinates;
+        var mob = _stationSpawning.SpawnPlayerMob(coords, null, ev.Profile, null, session: ev.Player);
+        _outfit.SetOutfit(mob, castaway.EscapeStartingGear);
+        EnsureComp<AdminFrozenComponent>(mob);
+
+        var shuttleGrid = FindNamedGrid(mapUid, castaway.EscapeShuttleGridName);
+        if (shuttleGrid is { } grid)
+            RegisterWreckOwnership(mob, grid, ev.Profile.Name);
+
+        RunHijackSequence(castaway, mapUid, mob, ev.Player);
+
+        return mob;
+    }
+
+    // Intercom (announces the boarding) -> radio hidden in the dresser (two lines guiding the
+    // player out) -> movement unlocked -> after a delay, the "shuttle doomed" warning + tension
+    // music -> the whole map is deleted after its own further delay.
+    private void RunHijackSequence(CastawayRuleComponent castaway, EntityUid mapUid, EntityUid mob, ICommonSession session)
+    {
+        var intercom = FindEntityByProtoId(mapUid, castaway.EscapeIntercomMarker);
+        var radio = FindEntityByProtoId(mapUid, castaway.EscapeRadioMarker);
+
+        var elapsed = castaway.EscapeIntercomDelay;
+        Timer.Spawn(elapsed, () =>
+        {
+            if (intercom is { } i && !Deleted(i))
+                _chat.TrySendInGameICMessage(i, castaway.EscapeIntercomMessage, InGameICChatType.Speak, ChatTransmitRange.Normal, ignoreActionBlocker: true);
+        });
+
+        foreach (var line in castaway.EscapeRadioMessages)
+        {
+            elapsed += castaway.EscapeRadioLineGap;
+            var delay = elapsed;
+
+            Timer.Spawn(delay, () =>
+            {
+                if (radio is { } r && !Deleted(r))
+                    _chat.TrySendInGameICMessage(r, line, InGameICChatType.Speak, ChatTransmitRange.Normal, ignoreActionBlocker: true);
+            });
+        }
+
+        // Movement unlocks the moment the last radio line is spoken.
+        Timer.Spawn(elapsed, () =>
+        {
+            if (!Deleted(mob))
+                RemComp<AdminFrozenComponent>(mob);
+        });
+
+        var alarmDelay = elapsed + castaway.EscapeAlarmDelay;
+        Timer.Spawn(alarmDelay, () =>
+        {
+            if (Deleted(mob) || session.Status != SessionStatus.InGame)
+                return;
+
+            var sender = Loc.GetString(castaway.EscapeAlarmSender);
+            var wrapped = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(castaway.EscapeAlarmMessage)));
+            _chatManager.ChatMessageToManyFiltered(Filter.SinglePlayer(session), ChatChannel.Radio, castaway.EscapeAlarmMessage, wrapped, mob, false, true, castaway.EscapeAlarmColor);
+
+            _audio.PlayGlobal(castaway.EscapeAlarmSound, session);
+            _audio.PlayGlobal(castaway.EscapeMusic, session);
+        });
+
+        var explosionDelay = alarmDelay + castaway.EscapeMusicLength;
+        Timer.Spawn(explosionDelay, () =>
+        {
+            // Only explode on the player if they're still on the hijacked ship's map - if they've
+            // already flown off (on the escape shuttle or otherwise) via FTL, they're on a different
+            // map by now and are safe; the leftover map just gets cleaned up on its own delay below.
+            if (!Deleted(mob) && Transform(mob).MapUid == mapUid)
+            {
+                _explosion.QueueExplosion(mob,
+                    castaway.EscapeExplosionType,
+                    castaway.EscapeExplosionIntensity,
+                    castaway.EscapeExplosionSlope,
+                    castaway.EscapeExplosionMaxTileIntensity);
+            }
+        });
+
+        Timer.Spawn(explosionDelay + castaway.EscapeMapCleanupDelay, () =>
+        {
+            if (!Deleted(mapUid))
+                QueueDel(mapUid);
+        });
+    }
+
+    // Searches a map's entity tree for the first entity spawned from the given prototype (e.g. a
+    // hand-placed SpawnPointPrisoner marker), since it could be nested a few levels deep.
+    private EntityUid? FindEntityByProtoId(EntityUid root, string protoId)
+    {
+        var xform = Transform(root);
+        var children = xform.ChildEnumerator;
+
+        while (children.MoveNext(out var child))
+        {
+            if (Comp<MetaDataComponent>(child).EntityPrototype?.ID == protoId)
+                return child;
+
+            if (FindEntityByProtoId(child, protoId) is { } found)
+                return found;
+        }
+
+        return null;
+    }
+
+    // Gap in seconds before each line, from the previous one (or from spawn for the first line).
+    private static readonly float[] PodDelays = [4.5f, 1.5f, 2f, 3.5f];
+
+    private static readonly string[] PodMessages =
+    [
+        "castaway-pod-error-1",
+        "castaway-pod-error-2",
+        "castaway-pod-malfunction",
+        "castaway-pod-waking",
+    ];
+
+    private void RunPodSequence(EntityUid mob, EntityUid pod)
+    {
+        var elapsed = 0f;
+        for (var i = 0; i < PodMessages.Length; i++)
+        {
+            elapsed += PodDelays[i];
+            var locId = PodMessages[i];
+            var delay = TimeSpan.FromSeconds(elapsed);
+
+            Timer.Spawn(delay, () =>
+            {
+                if (Deleted(pod) || Deleted(mob))
+                    return;
+
+                _chat.TrySendInGameICMessage(pod, Loc.GetString(locId), InGameICChatType.Speak, ChatTransmitRange.Normal, ignoreActionBlocker: true);
+
+                // Heal once the "waking up" process is announced.
+                if (locId == "castaway-pod-waking")
+                    ApplyAsphyxiation(mob, -80);
+            });
+        }
+    }
+
+    // Recursively searches a map's entity tree for a hand-placed MedicalPodSpawn, since it could be
+    // nested a few levels deep (grid -> pod) rather than a direct child of the map itself.
+    private EntityUid? FindPodSpawn(EntityUid root)
+    {
+        var xform = Transform(root);
+        var children = xform.ChildEnumerator;
+
+        while (children.MoveNext(out var child))
+        {
+            if (Comp<MetaDataComponent>(child).EntityPrototype?.ID == "MedicalPodSpawn")
+                return child;
+
+            if (FindPodSpawn(child) is { } found)
+                return found;
+        }
+
+        return null;
+    }
+
+    // Finds a direct child grid of a map by its MetaData entity name (e.g. a hand-placed wreck grid).
+    private EntityUid? FindNamedGrid(EntityUid mapUid, string name)
+    {
+        var xform = Transform(mapUid);
+        var children = xform.ChildEnumerator;
+
+        while (children.MoveNext(out var child))
+        {
+            if (HasComp<MapGridComponent>(child) && Comp<MetaDataComponent>(child).EntityName == name)
+                return child;
+        }
+
+        return null;
+    }
+
+    private void ApplyAsphyxiation(EntityUid mob, float amount)
+    {
+        if (!HasComp<RespiratorComponent>(mob))
+            return;
+
+        var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Asphyxiation"), FixedPoint2.New(amount));
+        _damageable.TryChangeDamage(mob, damage, ignoreResistances: true);
     }
 
     private EntityUid? SpawnWreck(CastawayRuleComponent castaway, MapId mapId, Vector2 playerPos)
@@ -300,11 +683,7 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
                 _jitter.DoJitter(mob, TimeSpan.FromSeconds(1), refresh: true, amplitude: 40f, frequency: 8f);
 
                 // Heal some of the asphyxiation damage once the zap actually lands.
-                if (HasComp<RespiratorComponent>(mob))
-                {
-                    var heal = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Asphyxiation"), FixedPoint2.New(-50));
-                    _damageable.TryChangeDamage(mob, heal, ignoreResistances: true);
-                }
+                ApplyAsphyxiation(mob, -50);
             });
         }
     }

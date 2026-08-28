@@ -7,11 +7,8 @@
   category: Large
   group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/bison.yml
-  guidebookPage: Null
   class:
   - Scrapyard
-  - Salvage
-  - Civilian
   engine:
   - Plasma
 
@@ -22,7 +19,7 @@
   minPlayers: 0
   stations: 
     BisonLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Bison {1}'

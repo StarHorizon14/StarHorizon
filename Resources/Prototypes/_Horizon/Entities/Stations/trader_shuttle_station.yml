@@ -1,0 +1,6 @@
+- type: entity
+  id: TraderShuttleStation
+  parent: [BaseStation, NFBaseStationCargo, BaseStationCargoMarket]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform

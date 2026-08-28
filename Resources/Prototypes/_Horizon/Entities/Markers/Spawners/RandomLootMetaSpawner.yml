@@ -1,0 +1,320 @@
+- type: entityTable
+  id: RandomLootMetaTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDungeonCanisterBroken
+      weight: 1
+    - id: SpawnDungeonClutterBeakerEmpty
+      weight: 1
+    - id: SpawnDungeonClutterHypospray
+      weight: 1
+    - id: SpawnDungeonClutterImplanter
+      weight: 1
+    - id: SpawnDungeonClutterMedical
+      weight: 1
+    - id: SpawnDungeonClutterMedipens
+      weight: 1
+    - id: SpawnDungeonClutterMedsFull
+      weight: 1
+    - id: SpawnDungeonClutterMedsSingle
+      weight: 1
+    - id: SpawnDungeonClutterPatientTransport
+      weight: 1
+    - id: SpawnDungeonClutterSyringe
+      weight: 1
+    - id: SpawnDungeonComputerFrame
+      weight: 1
+    - id: SpawnDungeonFurnitureBedroom
+      weight: 1
+    - id: SpawnDungeonFurnitureKitchen
+      weight: 1
+    - id: SpawnDungeonFurnitureScience
+      weight: 1
+    - id: SpawnDungeonLootAmmoIncendiary
+      weight: 1
+    - id: SpawnDungeonLootAmmoLethal
+      weight: 1
+    - id: SpawnDungeonLootAmmoPractice
+      weight: 1
+    - id: SpawnDungeonLootAmmoRandom
+      weight: 1
+    - id: SpawnDungeonLootAmmoRubber
+      weight: 1
+    - id: SpawnDungeonLootAmmoUranium
+      weight: 1
+    - id: SpawnDungeonLootArmorMercenary
+      weight: 1
+    - id: SpawnDungeonLootArmoryClutter
+      weight: 1
+    - id: SpawnDungeonLootArmoryClutterSec
+      weight: 1
+    - id: SpawnDungeonLootArmoryExplosives
+      weight: 1
+    - id: SpawnDungeonLootArmoryGuns
+      weight: 1
+    - id: SpawnDungeonLootArmoryMelee
+      weight: 1
+    - id: SpawnDungeonLootArmoryRare
+      weight: 1
+    - id: SpawnDungeonLootBriefcase
+      weight: 1
+    - id: SpawnDungeonLootBureaucracy
+      weight: 1
+    - id: SpawnDungeonLootBureaucracyPen
+      weight: 1
+    - id: SpawnDungeonLootChems
+      weight: 1
+    - id: SpawnDungeonLootChemsHydroponics
+      weight: 1
+    - id: SpawnDungeonLootCircuitBoard
+      weight: 1
+    - id: SpawnDungeonLootCircuitBoardEngi
+      weight: 1
+    - id: SpawnDungeonLootCircuitBoardMed
+      weight: 1
+    - id: SpawnDungeonLootCircuitBoardSalvage
+      weight: 1
+    - id: SpawnDungeonLootCircuitBoardScience
+      weight: 1
+    - id: SpawnDungeonLootClothesEngi
+      weight: 1
+    - id: SpawnDungeonLootClothesHydroponics
+      weight: 1
+    - id: SpawnDungeonLootClothesKitchen
+      weight: 1
+    - id: SpawnDungeonLootClothesMed
+      weight: 1
+    - id: SpawnDungeonLootClothesMercenary
+      weight: 1
+    - id: SpawnDungeonLootClothesSalvage
+      weight: 1
+    - id: SpawnDungeonLootClothesScience
+      weight: 1
+    - id: SpawnDungeonLootClutterEngi
+      weight: 1
+    - id: SpawnDungeonLootClutterEngiWithMines
+      weight: 1
+    - id: SpawnDungeonLootClutterHydroponics
+      weight: 1
+    - id: SpawnDungeonLootClutterKitchen
+      weight: 1
+    - id: SpawnDungeonLootClutterSalvage
+      weight: 1
+    - id: SpawnDungeonLootClutterScience
+      weight: 1
+    - id: SpawnDungeonLootCrateArmoryArmor
+      weight: 1
+    - id: SpawnDungeonLootCrateArmoryWeapon
+      weight: 1
+    - id: SpawnDungeonLootCrateEmptyEngi
+      weight: 1
+    - id: SpawnDungeonLootCrateEmptyHydro
+      weight: 1
+    - id: SpawnDungeonLootCrateEmptyMed
+      weight: 1
+    - id: SpawnDungeonLootCrateEmptyService
+      weight: 1
+    - id: SpawnDungeonLootCrateEngi
+      weight: 1
+    - id: SpawnDungeonLootCrateGeneral
+      weight: 1
+    - id: SpawnDungeonLootCrateHydro
+      weight: 1
+    - id: SpawnDungeonLootCrateMaterials
+      weight: 1
+    - id: SpawnDungeonLootCrateMed
+      weight: 1
+    - id: SpawnDungeonLootCrateRestockArmory
+      weight: 1
+    - id: SpawnDungeonLootCrateRestockClothes
+      weight: 1
+    - id: SpawnDungeonLootCrateRestockEngi
+      weight: 1
+    - id: SpawnDungeonLootCrateRestockGeneral
+      weight: 1
+    - id: SpawnDungeonLootCrateRestockHydro
+      weight: 1
+    - id: SpawnDungeonLootCrateRestockMed
+      weight: 1
+    - id: SpawnDungeonLootCrateRestockService
+      weight: 1
+    - id: SpawnDungeonLootCrateScience
+      weight: 1
+    - id: SpawnDungeonLootCrateService
+      weight: 1
+    - id: SpawnDungeonLootCrateVehicle
+      weight: 1
+    - id: SpawnDungeonLootCutlery
+      weight: 1
+    - id: SpawnDungeonLootEngineeringRipleyDisassembled
+      weight: 1
+    - id: SpawnDungeonLootExplosivesT1
+      weight: 1
+    - id: SpawnDungeonLootExplosivesT2
+      weight: 1
+    - id: SpawnDungeonLootExplosivesT3
+      weight: 1
+    - id: SpawnDungeonLootExplosivesT4
+      weight: 1
+    - id: SpawnDungeonLootExplosivesT5
+      weight: 1
+    - id: SpawnDungeonLootFlatpacks
+      weight: 1
+    - id: SpawnDungeonLootFlatpacksEngi
+      weight: 1
+    - id: SpawnDungeonLootFlatpacksMed
+      weight: 1
+    - id: SpawnDungeonLootFlatpacksScience
+      weight: 1
+    - id: SpawnDungeonLootFlatpacksService
+      weight: 1
+    - id: SpawnDungeonLootFlatpacksSuppl
+      weight: 1
+    - id: SpawnDungeonLootFood
+      weight: 1
+    - id: SpawnDungeonLootGunT1
+      weight: 1
+    - id: SpawnDungeonLootGunT2
+      weight: 1
+    - id: SpawnDungeonLootGunT3
+      weight: 1
+    - id: SpawnDungeonLootGunT4
+      weight: 1
+    - id: SpawnDungeonLootGunT5
+      weight: 1
+    - id: SpawnDungeonLootHardsuitsMercenary
+      weight: 1
+    - id: SpawnDungeonLootHardsuitsSalvage
+      weight: 1
+    - id: SpawnDungeonLootKitSurgery
+      weight: 1
+    - id: SpawnDungeonLootKitchenTabletop
+      weight: 1
+    - id: SpawnDungeonLootKitsFirstAid
+      weight: 1
+    - id: SpawnDungeonLootLathe
+      weight: 1
+    - id: SpawnDungeonLootLatheArmory
+      weight: 1
+    - id: SpawnDungeonLootLatheEngi
+      weight: 1
+    - id: SpawnDungeonLootLatheSalvage
+      weight: 1
+    - id: SpawnDungeonLootLockersArmory
+      weight: 1
+    - id: SpawnDungeonLootLockersEngi
+      weight: 1
+    - id: SpawnDungeonLootLockersGeneral
+      weight: 1
+    - id: SpawnDungeonLootLockersMed
+      weight: 1
+    - id: SpawnDungeonLootLockersProtectiveGear
+      weight: 1
+    - id: SpawnDungeonLootLockersSalvage
+      weight: 1
+    - id: SpawnDungeonLootMaterialsBasicFull
+      weight: 1
+    - id: SpawnDungeonLootMaterialsBasicSingle
+      weight: 1
+    - id: SpawnDungeonLootMaterialsValuableFull
+      weight: 1
+    - id: SpawnDungeonLootMaterialsValuableSingle
+      weight: 1
+    - id: SpawnDungeonLootMeleeT1
+      weight: 1
+    - id: SpawnDungeonLootMeleeT2
+      weight: 1
+    - id: SpawnDungeonLootMeleeT3
+      weight: 1
+    - id: SpawnDungeonLootMeleeT4
+      weight: 1
+    - id: SpawnDungeonLootMeleeT5
+      weight: 1
+    - id: SpawnDungeonLootMugs
+      weight: 1
+    - id: SpawnDungeonLootOresFull
+      weight: 1
+    - id: SpawnDungeonLootOresSingle
+      weight: 1
+    - id: SpawnDungeonLootPartsEngi
+      weight: 1
+    - id: SpawnDungeonLootPowerCell
+      weight: 1
+    - id: SpawnDungeonLootRnDDisk
+      weight: 1
+    - id: SpawnDungeonLootSeed
+      weight: 1
+    - id: SpawnDungeonLootShieldsMercenary
+      weight: 1
+    - id: SpawnDungeonLootSpesos
+      weight: 1
+    - id: SpawnDungeonLootSuitStorageUnitsEngi
+      weight: 1
+    - id: SpawnDungeonLootSuitStorageUnitsGeneral
+      weight: 1
+    - id: SpawnDungeonLootSuitStorageUnitsMercenary
+      weight: 1
+    - id: SpawnDungeonLootSuitStorageUnitsSalvage
+      weight: 1
+    - id: SpawnDungeonLootToolbox
+      weight: 1
+    - id: SpawnDungeonLootToolsAdvancedEngineering
+      weight: 1
+    - id: SpawnDungeonLootToolsBasicEngineering
+      weight: 1
+    - id: SpawnDungeonLootToolsHydroponics
+      weight: 1
+    - id: SpawnDungeonLootToolsSalvage
+      weight: 1
+    - id: SpawnDungeonLootToolsSurgery
+      weight: 1
+    - id: SpawnDungeonLootToolsSurgeryAdvanced
+      weight: 1
+    - id: SpawnDungeonLootToolsSurgeryCrude
+      weight: 1
+    - id: SpawnDungeonLootVaultGuns
+      weight: 1
+    - id: SpawnDungeonLootVendingRestocks
+      weight: 1
+    - id: SpawnDungeonMachineFrame
+      weight: 1
+    - id: SpawnDungeonVendomatsArmory
+      weight: 1
+    - id: SpawnDungeonVendomatsClothes
+      weight: 1
+    - id: SpawnDungeonVendomatsEngi
+      weight: 1
+    - id: SpawnDungeonVendomatsMed
+      weight: 1
+    - id: SpawnDungeonVendomatsRecreational
+      weight: 1
+    - id: SpawnDungeonVendomatsSalvage
+      weight: 1
+    - id: SpawnDungeonVendomatsTools
+      weight: 1
+    - id: SpawnPoiClutterMedical
+      weight: 1
+    - id: SpawnPoiLootClutterKitchen
+      weight: 1
+    - id: SpawnPoiLootPowerCell
+      weight: 1
+
+- type: entity
+  id: RandomLootMetaSpawner
+  parent: MarkerBase
+  name: Случайная вещь или структура
+  suffix: Random, Any
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: RandomLootMetaTable
+  - type: StaticPrice
+    price: 0
+    vendPrice: 5000

@@ -45,6 +45,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Server._Horizon.Shipyard;
 using Content.Shared._Lua.Shipyard.BUIStates;
+using Content.Shared.Stacks;
 using Content.Server._Horizon.SponsorManager;
 
 namespace Content.Server._NF.Shipyard.Systems;
@@ -147,7 +148,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (!TryComp<BankAccountComponent>(player, out var bank))
+        TryComp<BankAccountComponent>(player, out var bank); // Horizon: bank account may be irrelevant for cash-only consoles
+        if (!component.CashOnly && bank == null)
         {
             ConsolePopup(player, Loc.GetString("shipyard-console-no-bank"));
             PlayDenySound(player, shipyardConsoleUid, component);
@@ -186,6 +188,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             foreach (var item in vessel.CostModifiers)
                 item.Modify(player, shipyardConsoleUid, ref price, _entityManager);
 
+            if (!TryPayForVessel(shipyardConsoleUid, component, player, price, out var payError))
             if (TryComp<ActorComponent>(player, out var priceActorComp) && priceActorComp.PlayerSession != null)
             {
                 var discountPercent = _sponsorManager.GetDiscountPercent(priceActorComp.PlayerSession.Name);
@@ -196,10 +199,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             // Horizon end
             if (!_bank.TryBankWithdraw(player, price))  // Horizon - modify price
             {
-                ConsolePopup(player, Loc.GetString("cargo-console-insufficient-funds", ("cost", price)));   // Horizon - modify price
+                ConsolePopup(player, Loc.GetString(payError, ("cost", price)));
                 PlayDenySound(player, shipyardConsoleUid, component);
                 return;
             }
+            // Horizon end
         }
 
         if (!TryPurchaseShuttleToDock(shipyardConsoleUid, station, vessel.ShuttlePath, out var shuttleUidOut)) // Lua: dock to the port selected on the console radar, if any
@@ -339,7 +343,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             );
         }
 
-        RefreshState(shipyardConsoleUid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
+        RefreshState(shipyardConsoleUid, bank?.Balance ?? 0, true, name, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
     }
 
     private void TryParseShuttleName(ShuttleDeedComponent deed, string name)
@@ -390,7 +394,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         bool voucherUsed = deed.PurchasedWithVoucher;
 
-        if (!TryComp<BankAccountComponent>(player, out var bank))
+        TryComp<BankAccountComponent>(player, out var bank); // Horizon: bank account may be irrelevant for cash-only consoles
+        if (!component.CashOnly && bank == null)
         {
             ConsolePopup(player, Loc.GetString("shipyard-console-no-bank"));
             PlayDenySound(player, uid, component);
@@ -470,7 +475,18 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
             bill = int.Max(0, bill);
 
-            _bank.TryBankDeposit(player, bill);
+            // Horizon: cash-only consoles have no bank account to deposit into, so drop the payout
+            // as physical currency next to the console instead.
+            if (component.CashOnly)
+            {
+                if (bill > 0 && component.CurrencyStackType != null)
+                    _stack.Spawn(bill, new ProtoId<StackPrototype>(component.CurrencyStackType), Transform(uid).Coordinates);
+            }
+            else
+            {
+                _bank.TryBankDeposit(player, bill);
+            }
+
             PlayConfirmSound(player, uid, component);
         }
 
@@ -495,7 +511,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             refreshId = null;
         }
 
-        RefreshState(uid, bank.Balance, true, null, 0, refreshId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
+        RefreshState(uid, bank?.Balance ?? 0, true, null, 0, refreshId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
     }
 
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
@@ -513,7 +529,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         //      mayhaps re-enable this later for HoS/SA
         //        var station = _station.GetOwningStation(uid);
 
-        if (!TryComp<BankAccountComponent>(player, out var bank))
+        TryComp<BankAccountComponent>(player, out var bank); // Horizon: bank account may be irrelevant for cash-only consoles
+        if (!component.CashOnly && bank == null)
             return;
 
         var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
@@ -543,7 +560,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var fullName = deed != null ? GetFullName(deed) : null;
-        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
+        RefreshState(uid, bank?.Balance ?? 0, true, fullName, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
     }
 
     private void ConsolePopup(EntityUid uid, string text)
@@ -583,6 +600,79 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
     }
 
+    // Horizon: cash payment
+    /// <summary>
+    /// Returns the amount of currency currently sitting in the console's cash slot, along with
+    /// the stack entity holding it (if any).
+    /// </summary>
+    private int GetCashSlotBalance(EntityUid uid, ShipyardConsoleComponent component, out Entity<StackComponent>? cashEntity)
+    {
+        cashEntity = null;
+
+        if (component.CashSlotName == null
+            || component.CurrencyStackType == null
+            || !_itemSlots.TryGetSlot(uid, component.CashSlotName, out var cashSlot)
+            || !TryComp<StackComponent>(cashSlot.ContainerSlot?.ContainedEntity, out var stack)
+            || stack.StackTypeId != component.CurrencyStackType)
+            return 0;
+
+        cashEntity = (cashSlot.ContainerSlot!.ContainedEntity!.Value, stack);
+        return stack.Count;
+    }
+
+    /// <summary>
+    /// Attempts to pay the given price using the console's cash slot first, then (unless the console
+    /// is cash-only) the buyer's bank account for the remainder. Mirrors VendingMachineSystem.AuthorizedVend.
+    /// </summary>
+    private bool TryPayForVessel(EntityUid uid, ShipyardConsoleComponent component, EntityUid player, int price, out LocId error)
+    {
+        error = "shipyard-console-no-cash";
+
+        var cashSlotBalance = GetCashSlotBalance(uid, component, out var cashEntity);
+
+        if (component.CashOnly)
+        {
+            // Cash-only consoles ignore the bank account entirely and require full payment from the cash slot.
+            if (cashSlotBalance < price)
+            {
+                error = cashEntity == null ? "shipyard-console-no-cash" : "shipyard-console-insufficient-cash";
+                return false;
+            }
+
+            _stack.SetCount(cashEntity!.Value.Owner, cashSlotBalance - price, cashEntity.Value.Comp);
+            component.CashSlotBalance = cashSlotBalance - price;
+            Dirty(uid, component);
+            return true;
+        }
+
+        var bankBalance = 0;
+        if (TryComp<BankAccountComponent>(player, out var bank))
+            bankBalance = bank.Balance;
+
+        if (price > bankBalance + cashSlotBalance)
+        {
+            error = "cargo-console-insufficient-funds";
+            return false;
+        }
+
+        if (cashEntity != null)
+        {
+            var newCashSlotBalance = Math.Max(cashSlotBalance - price, 0);
+            _stack.SetCount(cashEntity.Value.Owner, newCashSlotBalance, cashEntity.Value.Comp);
+            component.CashSlotBalance = newCashSlotBalance;
+            Dirty(uid, component);
+        }
+
+        if (price > cashSlotBalance && !_bank.TryBankWithdraw(player, price - cashSlotBalance))
+        {
+            error = "cargo-console-insufficient-funds";
+            return false;
+        }
+
+        return true;
+    }
+    // End Horizon: cash payment
+
     private void PlayDenySound(EntityUid playerUid, EntityUid consoleUid, ShipyardConsoleComponent component)
     {
         if (_timing.CurTime >= component.NextDenySoundTime)
@@ -602,7 +692,25 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!component.Initialized)
             return;
 
-        if (args.Container.ID != component.TargetIdSlot.ID)
+        // Horizon: also react to cash slot changes so the displayed cash balance stays current
+        if (component.CashSlotName != null && args.Container.ID == component.CashSlotName)
+        {
+            if (component.CurrencyStackType != null
+                && _itemSlots.TryGetSlot(uid, component.CashSlotName, out var cashSlot)
+                && TryComp<StackComponent>(cashSlot.ContainerSlot?.ContainedEntity, out var stack)
+                && stack.StackTypeId == component.CurrencyStackType)
+            {
+                component.CashSlotBalance = stack.Count;
+            }
+            else
+            {
+                component.CashSlotBalance = 0;
+            }
+            Dirty(uid, component);
+        }
+
+        if (args.Container.ID != component.TargetIdSlot.ID
+            && (component.CashSlotName == null || args.Container.ID != component.CashSlotName))
             return;
 
         // kind of cursed. We need to update the UI when an Id is entered, but the UI needs to know the player characters bank account.
@@ -616,7 +724,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (user is not { Valid: true } player)
                 continue;
 
-            if (!TryComp<BankAccountComponent>(player, out var bank))
+            TryComp<BankAccountComponent>(player, out var bank); // Horizon: bank account may be irrelevant for cash-only consoles
+            if (!component.CashOnly && bank == null)
                 continue;
 
             var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
@@ -647,7 +756,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             var fullName = deed != null ? GetFullName(deed) : null;
             RefreshState(uid,
-                bank.Balance,
+                bank?.Balance ?? 0,
                 true,
                 fullName,
                 sellValue,
@@ -831,6 +940,21 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, EntityUid? targetId, ShipyardConsoleUiKey uiKey, bool freeListings)
     {
+        // Horizon: cash payment
+        var cashOnly = false;
+        var hasCashSlot = false;
+        var cashSlotBalance = 0;
+        var isCashPresent = false;
+        if (TryComp<ShipyardConsoleComponent>(uid, out var consoleComp))
+        {
+            cashOnly = consoleComp.CashOnly;
+            hasCashSlot = consoleComp.CashSlotName != null;
+            cashSlotBalance = consoleComp.CashSlotBalance;
+            isCashPresent = consoleComp.CashSlotName != null
+                && _itemSlots.TryGetSlot(uid, consoleComp.CashSlotName, out var cashSlot)
+                && cashSlot.HasItem;
+        }
+
         var newState = new ShipyardConsoleInterfaceState(
             balance,
             access,
@@ -841,7 +965,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             GetAvailableShuttles(uid, uiKey, targetId: targetId),
             uiKey.ToString(),
             freeListings,
-            CalculateSellRate(uid));
+            CalculateSellRate(uid),
+            cashOnly,
+            hasCashSlot,
+            cashSlotBalance,
+            isCashPresent);
 
         BoundUserInterfaceState state = newState; // Lua
         ExtendUiStateLua(uid, ref state); // Lua

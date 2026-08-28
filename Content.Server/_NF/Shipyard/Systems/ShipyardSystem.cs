@@ -13,6 +13,9 @@ using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared._NF.Shipyard;
+using Content.Server.Stack;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Stacks;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
@@ -34,6 +37,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Horizon: cash slot
+    [Dependency] private readonly StackSystem _stack = default!; // Horizon: cash slot
 
     public MapId? ShipyardMap { get; private set; }
     private float _shuttleIndex;

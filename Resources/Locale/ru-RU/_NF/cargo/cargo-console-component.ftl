@@ -8,6 +8,8 @@ cargo-console-order-nf-menu-notes-label = Примечания:
 ## Orders
 
 cargo-console-nf-no-bank-account = No bank account found
+cargo-console-barter-no-pallets = Не найдены пады продажи для этой консоли.
+cargo-console-barter-insufficient-goods = Недостаточно ценностей на падах. Стоимость: { $cost } кредитов.
 cargo-console-nf-paper-print-text =
     { "[" }head=2]Заказ #{ $orderNumber }[/head]
     { "[bold]Предмет:[/bold]" } { $itemName } ({ $orderIndex } из { $orderQuantity })

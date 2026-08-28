@@ -1,5 +1,6 @@
 #nullable enable
 
+using Robust.Shared.Log;
 using Robust.Shared.Random;
 
 namespace Content.IntegrationTests;
@@ -96,6 +97,16 @@ public sealed class PoolSettings
     /// If you need to check adventure game rule things, set this to nfadventure or nfpirate.
     /// </summary>
     public string GameLobbyDefaultPreset { get; set; } = "secret";
+
+    /// <summary>
+    /// Overrides the log level that causes a hard test failure (defaults to
+    /// <see cref="LogLevel.Warning"/>, matching the normal integration-test
+    /// harness behaviour). Tools like Content.MapRenderer that only care
+    /// about rendering a map -- not asserting the content is bug-free --
+    /// can raise this to <see cref="LogLevel.Fatal"/> so a non-fatal content
+    /// warning/error logged during prototype loading doesn't abort the run.
+    /// </summary>
+    public LogLevel? FailureLogLevel { get; init; }
 
     #region Inferred Properties
 
