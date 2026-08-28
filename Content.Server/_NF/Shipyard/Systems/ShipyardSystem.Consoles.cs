@@ -383,7 +383,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         bool voucherUsed = deed.PurchasedWithVoucher;
 
-        if (!TryComp<BankAccountComponent>(player, out var bank))
+        TryComp<BankAccountComponent>(player, out var bank); // Horizon: bank account may be irrelevant for cash-only consoles
+        if (!component.CashOnly && bank == null)
         {
             ConsolePopup(player, Loc.GetString("shipyard-console-no-bank"));
             PlayDenySound(player, uid, component);
@@ -463,7 +464,18 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
             bill = int.Max(0, bill);
 
-            _bank.TryBankDeposit(player, bill);
+            // Horizon: cash-only consoles have no bank account to deposit into, so drop the payout
+            // as physical currency next to the console instead.
+            if (component.CashOnly)
+            {
+                if (bill > 0 && component.CurrencyStackType != null)
+                    _stack.Spawn(bill, new ProtoId<StackPrototype>(component.CurrencyStackType), Transform(uid).Coordinates);
+            }
+            else
+            {
+                _bank.TryBankDeposit(player, bill);
+            }
+
             PlayConfirmSound(player, uid, component);
         }
 
@@ -488,7 +500,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             refreshId = null;
         }
 
-        RefreshState(uid, bank.Balance, true, null, 0, refreshId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
+        RefreshState(uid, bank?.Balance ?? 0, true, null, 0, refreshId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
     }
 
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)

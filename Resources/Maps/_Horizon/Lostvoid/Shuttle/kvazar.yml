@@ -1073,7 +1073,7 @@ entities:
     - type: Transform
       pos: 0.5,-1.5
       parent: 1
-- proto: AirlockShuttleNfsdLocked
+- proto: AirlockGlassShuttle
   entities:
   - uid: 419
     components:

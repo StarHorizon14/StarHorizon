@@ -16,4 +16,10 @@ public sealed partial class TraderShuttleArrivalRuleComponent : Component
 
     [DataField]
     public EntityUid? ShuttleStation;
+
+    /// <summary>
+    /// How long before the event's Duration ends to announce that the shuttle is about to leave.
+    /// </summary>
+    [DataField]
+    public TimeSpan DepartureWarning = TimeSpan.FromMinutes(5);
 }

@@ -381,7 +381,7 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
         if (shuttleGrid is { } grid)
             RegisterWreckOwnership(mob, grid, ev.Profile.Name);
 
-        RunHijackSequence(castaway, mapUid, mob, shuttleGrid, ev.Player);
+        RunHijackSequence(castaway, mapUid, mob, ev.Player);
 
         return mob;
     }
@@ -389,7 +389,7 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
     // Intercom (announces the boarding) -> radio hidden in the dresser (two lines guiding the
     // player out) -> movement unlocked -> after a delay, the "shuttle doomed" warning + tension
     // music -> the whole map is deleted after its own further delay.
-    private void RunHijackSequence(CastawayRuleComponent castaway, EntityUid mapUid, EntityUid mob, EntityUid? shuttleGrid, ICommonSession session)
+    private void RunHijackSequence(CastawayRuleComponent castaway, EntityUid mapUid, EntityUid mob, ICommonSession session)
     {
         var intercom = FindEntityByProtoId(mapUid, castaway.EscapeIntercomMarker);
         var radio = FindEntityByProtoId(mapUid, castaway.EscapeRadioMarker);
@@ -437,15 +437,10 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
         var explosionDelay = alarmDelay + castaway.EscapeMusicLength;
         Timer.Spawn(explosionDelay, () =>
         {
-            if (shuttleGrid is { } grid && !Deleted(grid))
-            {
-                _explosion.QueueExplosion(grid,
-                    castaway.EscapeExplosionType,
-                    castaway.EscapeExplosionIntensity,
-                    castaway.EscapeExplosionSlope,
-                    castaway.EscapeExplosionMaxTileIntensity);
-            }
-            else if (!Deleted(mob))
+            // Only explode on the player if they're still on the hijacked ship's map - if they've
+            // already flown off (on the escape shuttle or otherwise) via FTL, they're on a different
+            // map by now and are safe; the leftover map just gets cleaned up on its own delay below.
+            if (!Deleted(mob) && Transform(mob).MapUid == mapUid)
             {
                 _explosion.QueueExplosion(mob,
                     castaway.EscapeExplosionType,

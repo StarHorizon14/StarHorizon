@@ -94,6 +94,12 @@ public sealed partial class CastawayRuleComponent : Component
         new("/Maps/Salvage/cargo-1.yml"),
         new("/Maps/Salvage/engineering-chunk.yml"),
         new("/Maps/Salvage/security-chunk.yml"),
+        new("/Maps/_Horizon/Lostvoid/POI/anomalousgeode.yml"),
+        new("/Maps/_Horizon/Lostvoid/POI/edison.yml"),
+        new("/Maps/_Horizon/Lostvoid/POI/frontier.yml"),
+        new("/Maps/_Horizon/Lostvoid/POI/grifty.yml"),
+        new("/Maps/_Horizon/Lostvoid/POI/medical.yml"),
+        new("/Maps/_Horizon/Lostvoid/POI/nanotrasendeport.yml"),
     ];
 
     /// <summary>
@@ -231,7 +237,7 @@ public sealed partial class CastawayRuleComponent : Component
     public ProtoId<ExplosionPrototype> EscapeExplosionType = "Default";
 
     [DataField]
-    public float EscapeExplosionIntensity = 200000f;
+    public float EscapeExplosionIntensity = 20000000f;
 
     [DataField]
     public float EscapeExplosionSlope = 5f;

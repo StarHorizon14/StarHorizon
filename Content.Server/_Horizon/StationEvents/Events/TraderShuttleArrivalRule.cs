@@ -4,6 +4,7 @@ using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station;
@@ -14,6 +15,7 @@ using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Horizon.StationEvents.Events;
 
@@ -22,6 +24,7 @@ public sealed class TraderShuttleArrivalRule : StationEventSystem<TraderShuttleA
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycle = default!;
 
     private const string AnnouncementSender = "торговый шаттл";
     private const string TraderStationProto = "TraderShuttleStation";
@@ -81,7 +84,24 @@ public sealed class TraderShuttleArrivalRule : StationEventSystem<TraderShuttleA
             Filter.Broadcast(),
             Loc.GetString("station-event-trader-shuttle-start-announcement"),
             sender: AnnouncementSender,
-            announcementSound: new SoundPathSpecifier("/Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_ship_arrival.ogg"));
+            announcementSound: new SoundPathSpecifier("/Audio/Announcements/announce.ogg"));
+
+        // Warn shortly before the event's Duration runs out and Ended() evacuates/removes the shuttle.
+        if (TryComp<StationEventComponent>(uid, out var stationEvent) && stationEvent.Duration is { } duration && duration > component.DepartureWarning)
+        {
+            var warningDelay = duration - component.DepartureWarning;
+            Timer.Spawn(warningDelay, () =>
+            {
+                if (component.ShuttleGrid is not { } grid || Deleted(grid))
+                    return;
+
+                ChatSystem.DispatchFilteredAnnouncement(
+                    Filter.Broadcast(),
+                    Loc.GetString("station-event-trader-shuttle-warning-announcement"),
+                    sender: AnnouncementSender,
+                    announcementSound: new SoundPathSpecifier("/Audio/Announcements/announce.ogg"));
+            });
+        }
     }
 
     protected override void Ended(EntityUid uid, TraderShuttleArrivalRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
@@ -91,8 +111,10 @@ public sealed class TraderShuttleArrivalRule : StationEventSystem<TraderShuttleA
         if (component.ShuttleGrid is not { } shuttleGrid)
             return;
 
+        // Evacuate anyone still aboard to open space at their current position instead of deleting
+        // them along with the grid, same as the syndicate shuttle event does.
         if (!Deleted(shuttleGrid))
-            QueueDel(shuttleGrid);
+            _linkedLifecycle.UnparentPlayersFromGrid(shuttleGrid, deleteGrid: true);
 
         if (component.ShuttleStation is { } shuttleStation && !Deleted(shuttleStation))
             QueueDel(shuttleStation);
@@ -101,7 +123,7 @@ public sealed class TraderShuttleArrivalRule : StationEventSystem<TraderShuttleA
             Filter.Broadcast(),
             Loc.GetString("station-event-trader-shuttle-end-announcement"),
             sender: AnnouncementSender,
-            announcementSound: new SoundPathSpecifier("/Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_ship_leave.ogg"));
+            announcementSound: new SoundPathSpecifier("/Audio/Announcements/announce.ogg"));
     }
 
     // Docking needs an actual grid (docks are looked up as direct children of the grid entity),
