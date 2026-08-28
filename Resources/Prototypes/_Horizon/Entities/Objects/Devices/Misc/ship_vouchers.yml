@@ -1,5 +1,5 @@
 # Ваучеры для тестов
-# Фронтир шаттлы 
+# Фронтир шаттлы
 - type: entity
   parent: BaseShipVoucher
   id: ShipVoucherFrontierShipyard
@@ -87,10 +87,28 @@
   description: Позволяет бесплатно купить один шаттл на консоле свалки. Уничтожается при продаже шаттла. Вы серьёзно даже не можете позволить это купить за свои деньги?
   components:
   - type: Sprite
+    sprite: _Horizon/Objects/Misc/scrap_voucher.rsi
     layers:
-    - state: blue
+    - state: sharp
+  - type: Item
+    heldPrefix: sharp
   - type: ShipyardVoucher
     consoleType: Scrap
+
+- type: entity
+  parent: ShipVoucherFrontierShipyard
+  id: ShipVoucherFrontierScrapLostVoid
+  name: Ваучер на мусорный шаттл
+  description: Позволяет бесплатно купить один шаттл на консоле свалки. Уничтожается при продаже шаттла. Вы серьёзно даже не можете позволить это купить за свои деньги?
+  components:
+  - type: Sprite
+    sprite: _Horizon/Objects/Misc/scrap_voucher.rsi
+    layers:
+    - state: sharp
+  - type: Item
+    heldPrefix: sharp
+  - type: ShipyardVoucher
+    consoleType: Custom
 
 # Шаттлы предстовителей фронтира
 - type: entity
@@ -145,4 +163,4 @@
   - type: ShipyardVoucher
     consoleType: Security
     access:
-    - Detective 
+    - Detective

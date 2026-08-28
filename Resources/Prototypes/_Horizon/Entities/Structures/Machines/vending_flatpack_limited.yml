@@ -55,7 +55,7 @@
   - type: InteractionOutline
   - type: LimitedItemGiver
     spawnEntries:
-    - id: ShipVoucherCustom
+    - id: ShipVoucherFrontierScrapLostVoid
     receivedPopup: scrap-voucher-vend-received-popup
     deniedPopup: scrap-voucher-vend-denied-popup
     sound:

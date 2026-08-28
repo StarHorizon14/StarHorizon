@@ -96,10 +96,10 @@ public sealed partial class CastawayRuleComponent : Component
         new("/Maps/Salvage/security-chunk.yml"),
         new("/Maps/_Horizon/Lostvoid/POI/anomalousgeode.yml"),
         new("/Maps/_Horizon/Lostvoid/POI/edison.yml"),
-        new("/Maps/_Horizon/Lostvoid/POI/frontier.yml"),
         new("/Maps/_Horizon/Lostvoid/POI/grifty.yml"),
         new("/Maps/_Horizon/Lostvoid/POI/medical.yml"),
         new("/Maps/_Horizon/Lostvoid/POI/nanotrasendeport.yml"),
+        new("/Maps/_Horizon/Lostvoid/Shuttle/velvet.yml"),
     ];
 
     /// <summary>
