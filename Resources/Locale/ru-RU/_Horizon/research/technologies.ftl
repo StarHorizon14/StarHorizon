@@ -62,6 +62,7 @@ research-technology-fuel-pure = Производство чистого топл
 research-technology-experimental-generators = Экспериментальные генераторы
 research-technology-ore-drilling = Бурение руды
 research-technology-space-battles = Космические сражения
+research-technology-basic-ship-weapons = Базовое корабельное вооружение
 research-technology-universal-railgun-ammo = Боеприпасы для линейного ускорителя
 research-technology-universal-railgun-ammo-subnuclear = Ядерные боеприпасы
 research-technology-universal-asm220-ammo = Торпеды ASM-220

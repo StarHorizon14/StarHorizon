@@ -1,0 +1,24 @@
+- type: latheRecipe
+  id: BaseShipgunWeaponRecipe
+  abstract: true
+  categories:
+  - ShipWeapons
+  completetime: 5
+
+- type: latheRecipe
+  id: WeaponTurretM25Flatpack
+  result: WeaponTurretM25Flatpack
+  parent: BaseShipgunWeaponRecipe
+  materials:
+    Steel: 3000
+    Glass: 800
+    Silver: 600
+
+- type: latheRecipe
+  id: WeaponTurretL85AutocannonFlatpack
+  result: WeaponTurretL85AutocannonFlatpack
+  parent: BaseShipgunWeaponRecipe
+  materials:
+    Steel: 3500
+    Plasteel: 1000
+    Silver: 300

@@ -76,6 +76,7 @@ research-technology-hydroponics-dna-manip = Hydroponics DNA Manipulation
 research-technology-experimental-generators = Experimental Generators
 research-technology-ore-drilling = Ore Drilling
 research-technology-space-battles = Space Battles
+research-technology-basic-ship-weapons = Basic Ship Weapons
 research-technology-universal-railgun-ammo = Universal Railgun Ammunition
 research-technology-universal-railgun-ammo-subnuclear = Universal Subnuclear Railgun Ammo
 research-technology-universal-asm220-ammo = ASM-220 Torpedoes
