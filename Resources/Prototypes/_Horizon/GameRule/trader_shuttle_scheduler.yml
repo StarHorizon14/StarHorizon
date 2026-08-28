@@ -3,6 +3,7 @@
   table: !type:AllSelector
     children:
     - id: TraderShuttleArrival
+    - id: LostvoidPlanetExpedition
 
 - type: entity
   id: HorizonCastawayEventScheduler
