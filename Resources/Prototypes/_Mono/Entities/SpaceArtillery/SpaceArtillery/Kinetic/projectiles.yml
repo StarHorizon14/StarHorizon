@@ -20,8 +20,8 @@
   - type: Projectile
     damage:
       types:
-        Structural: 12500
-        Blunt: 1500
+        Structural: 250
+        Blunt: 50
 #        Ion: 300
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
@@ -31,7 +31,7 @@
     muzzleFlash: null
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    radarColor: "#c51515"
+    radarColor: "#d83a3a"
     scale: 3
     requireNoGrid: true
     shape: triangle
@@ -42,9 +42,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
-    totalIntensity: 2500
-    intensitySlope: 50
-    maxIntensity: 800
+    totalIntensity: 15
+    intensitySlope: 10
+    maxIntensity: 25
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
@@ -60,9 +60,9 @@
   - type: Projectile
     damage:
       types:
-        Structural: 150
-        Blunt: 37.5
-        Piercing: 50
+        Structural: 15
+        Blunt: 15
+        Piercing: 15
     ignoreWeaponGrid: true
   - type: ShipWeaponProjectile
   - type: TimedDespawn
@@ -84,8 +84,8 @@
   - type: Projectile
     damage:
       types:
-        Structural: 12.5
-        Piercing: 62.5
+        Structural: 12
+        Piercing: 15
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/50_armorpiercing_machinegun_casing.rsi
     layers:
@@ -104,9 +104,9 @@
   - type: Projectile
     damage:
       types:
-        Structural: 410
-        Blunt: 60
-        Piercing: 105
+        Structural: 75
+        Blunt: 30
+        Piercing: 50
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/57_shell.rsi
     layers:
@@ -114,9 +114,9 @@
     scale: 1, 1
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    scale: 2.5
+    radarColor: "#e7ac2c"
+    scale: 2
     requireNoGrid: true
-    shape: triangle
   - type: TimedDespawn
     lifetime: 7
   - type: PointLight
@@ -124,9 +124,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DefaultShipGun
-    totalIntensity: 40
+    totalIntensity: 15
     intensitySlope: 5
-    maxIntensity: 25
+    maxIntensity: 5
     maxTileBreak: 1
 
 # 90mm
@@ -159,15 +159,19 @@
   - type: Projectile
     damage:
       types:
-        Structural: 900
+        Structural: 75
         Blunt: 50
-        Piercing: 125
+        Piercing: 75
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
     layers:
     - state: base-projectile
+  - type: RadarBlip
+    radarColor: "#ffaa0b"
+    scale: 3
+    requireNoGrid: true
   - type: Explosive
-    totalIntensity: 25 # totalIntensity goes first, please.
+    totalIntensity: 5
     intensitySlope: 2
     maxIntensity: 5
     maxTileBreak: 1
@@ -197,8 +201,8 @@
   - type: Projectile
     damage:
       types:
-        Structural: 3250
-        Blunt: 5000
+        Structural: 325
+        Blunt: 500
 #        Ion: 8750
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
@@ -219,9 +223,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
-    totalIntensity: 1300
-    intensitySlope: 18
-    maxIntensity: 1900
+    totalIntensity: 25
+    intensitySlope: 5
+    maxIntensity: 50
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
@@ -237,8 +241,8 @@
   - type: Projectile
     damage:
       types:
-        Structural: 4250
-        Blunt: 6000
+        Structural: 425
+        Blunt: 600
 #        Ion: 10000
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
@@ -259,9 +263,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
-    totalIntensity: 1000
+    totalIntensity: 15
     intensitySlope: 25
-    maxIntensity: 75
+    maxIntensity: 25
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
@@ -277,8 +281,8 @@
   - type: Projectile
     damage:
       types:
-        Structural: 3000
-        Blunt: 3750
+        Structural: 300
+        Blunt: 375
 #        Ion: 7000
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
@@ -299,9 +303,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
-    totalIntensity: 750
-    intensitySlope: 35
-    maxIntensity: 50
+    totalIntensity: 20
+    intensitySlope: 5
+    maxIntensity: 10
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
@@ -318,8 +322,8 @@
   - type: Projectile
     damage:
       types:
-        Structural: 6250
-        Blunt: 7500
+        Structural: 500
+        Blunt: 750
 #        Ion: 15000
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
@@ -340,9 +344,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
-    totalIntensity: 1250
+    totalIntensity: 35
     intensitySlope: 5
-    maxIntensity: 1450
+    maxIntensity: 20
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard

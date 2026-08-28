@@ -47,7 +47,7 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 550
+    autoRechargeRate: 1500
   - type: SpaceArtillery
     powerChargeRate: 100
     powerUsePassive: 100
@@ -97,8 +97,8 @@
   - type: FireControlRotate
   - type: AmmoCounter
   - type: Battery
-    maxCharge: 30000
-    startingCharge: 30000
+    maxCharge: 2500
+    startingCharge: 2500
   - type: ExaminableBattery
   - type: WirelessNetworkConnection
     range: 500
@@ -111,7 +111,7 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 220
+    autoRechargeRate: 50
   - type: SpaceArtillery
     powerChargeRate: 220
     powerUsePassive: 750
@@ -157,8 +157,8 @@
   - type: FireControlRotate
   - type: AmmoCounter
   - type: Battery
-    maxCharge: 40000
-    startingCharge: 40000
+    maxCharge: 5000
+    startingCharge: 5000
   - type: ExaminableBattery
   - type: WirelessNetworkConnection
     range: 500
@@ -176,7 +176,7 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 125
+    autoRechargeRate: 100
   - type: SpaceArtillery
     powerChargeRate: 125
     powerUsePassive: 600
@@ -184,7 +184,7 @@
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
     proto: 90mmBulletArmorPiercing
-    fireCost: 50
+    fireCost: 250
   - type: Destructible
     thresholds:
     - trigger:
@@ -253,7 +253,7 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 12000
+    autoRechargeRate: 1000
   - type: SpaceArtillery
     powerChargeRate: 12000
     powerUsePassive: 1500
@@ -330,7 +330,7 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 12000
+    autoRechargeRate: 1000
   - type: SpaceArtillery
     powerChargeRate: 12000
     powerUsePassive: 1500
@@ -376,8 +376,8 @@
   - type: FireControlRotate
   - type: AmmoCounter
   - type: Battery
-    maxCharge: 20000
-    startingCharge: 20000
+    maxCharge: 25000
+    startingCharge: 25000
   - type: ExaminableBattery
   - type: WirelessNetworkConnection
     range: 500
@@ -473,7 +473,7 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 12000
+    autoRechargeRate: 1000
     autoRechargePause: true
   - type: SpaceArtillery
     powerChargeRate: 12000
@@ -546,7 +546,7 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 10000
+    autoRechargeRate: 1000
     autoRechargePause: true
   - type: SpaceArtillery
     powerChargeRate: 10000
