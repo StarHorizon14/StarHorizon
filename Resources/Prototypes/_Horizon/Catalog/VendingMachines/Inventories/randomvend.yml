@@ -1,0 +1,102 @@
+- type: vendingMachineInventory
+  id: RandomVendInventory
+  startingInventory:
+    SpawnDungeonClutterBeakerEmpty: 20
+    SpawnDungeonClutterHypospray: 5
+    SpawnDungeonClutterImplanter: 5
+    SpawnDungeonClutterMedical: 10
+    SpawnDungeonClutterMedipens: 20
+    SpawnDungeonClutterMedsFull: 20
+    # SpawnDungeonClutterMedsSingle: 20
+    SpawnDungeonClutterPatientTransport: 5
+    SpawnDungeonClutterSyringe: 20
+    SpawnDungeonLootAmmoIncendiary: 3
+    SpawnDungeonLootAmmoLethal: 3
+    SpawnDungeonLootAmmoPractice: 3
+    SpawnDungeonLootAmmoRandom: 3
+    SpawnDungeonLootAmmoRubber: 3
+    SpawnDungeonLootAmmoUranium: 3
+    SpawnDungeonLootArmorMercenary: 5
+    SpawnDungeonLootArmoryClutter: 5
+    SpawnDungeonLootArmoryClutterSec: 5
+    SpawnDungeonLootArmoryExplosives: 3
+    SpawnDungeonLootArmoryGuns: 30
+    SpawnDungeonLootArmoryMelee: 30
+    SpawnDungeonLootArmoryRare: 30
+    SpawnDungeonLootBriefcase: 3
+    SpawnDungeonLootBureaucracy: 30
+    SpawnDungeonLootBureaucracyPen: 5
+    SpawnDungeonLootChems: 10
+    SpawnDungeonLootChemsHydroponics: 20
+    SpawnDungeonLootCircuitBoard: 5
+    SpawnDungeonLootCircuitBoardEngi: 5
+    SpawnDungeonLootCircuitBoardMed: 5
+    SpawnDungeonLootCircuitBoardSalvage: 5
+    SpawnDungeonLootCircuitBoardScience: 5
+    SpawnDungeonLootClothesEngi: 30
+    SpawnDungeonLootClothesHydroponics: 30
+    SpawnDungeonLootClothesKitchen: 30
+    SpawnDungeonLootClothesMed: 30
+    SpawnDungeonLootClothesMercenary: 30
+    SpawnDungeonLootClothesSalvage: 30
+    SpawnDungeonLootClothesScience: 30
+    SpawnDungeonLootClutterEngi: 20
+    SpawnDungeonLootClutterEngiWithMines: 20
+    SpawnDungeonLootClutterHydroponics: 20
+    SpawnDungeonLootClutterKitchen: 20
+    SpawnDungeonLootClutterSalvage: 20
+    SpawnDungeonLootClutterScience: 20
+    SpawnDungeonLootCutlery: 20
+    SpawnDungeonLootEngineeringRipleyDisassembled: 5
+    SpawnDungeonLootExplosivesT1: 10
+    SpawnDungeonLootExplosivesT2: 5
+    SpawnDungeonLootExplosivesT3: 3
+    # SpawnDungeonLootExplosivesT4: 4294967295
+    # SpawnDungeonLootExplosivesT5: 4294967295
+    SpawnDungeonLootFlatpacks: 5
+    SpawnDungeonLootFlatpacksEngi: 5
+    SpawnDungeonLootFlatpacksMed: 5
+    SpawnDungeonLootFlatpacksScience: 5
+    SpawnDungeonLootFlatpacksService: 5
+    SpawnDungeonLootFlatpacksSuppl: 5
+    # SpawnDungeonLootFood: 4294967295
+    SpawnDungeonLootGunT1: 30
+    SpawnDungeonLootGunT2: 20
+    SpawnDungeonLootGunT3: 10
+    SpawnDungeonLootGunT4: 5
+    SpawnDungeonLootGunT5: 1
+    SpawnDungeonLootHardsuitsMercenary: 5
+    SpawnDungeonLootHardsuitsSalvage: 5
+    SpawnDungeonLootKitSurgery: 3
+    SpawnDungeonLootKitsFirstAid: 5
+    SpawnDungeonLootMaterialsBasicFull: 10
+    # SpawnDungeonLootMaterialsBasicSingle: 4294967295
+    SpawnDungeonLootMaterialsValuableFull: 5
+    # SpawnDungeonLootMaterialsValuableSingle: 4294967295
+    SpawnDungeonLootMeleeT1: 30
+    SpawnDungeonLootMeleeT2: 20
+    SpawnDungeonLootMeleeT3: 10
+    SpawnDungeonLootMeleeT4: 5
+    SpawnDungeonLootMeleeT5: 1
+    SpawnDungeonLootMugs: 30
+    SpawnDungeonLootOresFull: 10
+    # SpawnDungeonLootOresSingle: 4294967295
+    SpawnDungeonLootPartsEngi: 30
+    SpawnDungeonLootPowerCell: 30
+    SpawnDungeonLootRnDDisk: 30
+    SpawnDungeonLootSeed: 30
+    SpawnDungeonLootShieldsMercenary: 10
+    SpawnDungeonLootSpesos: 50
+    SpawnDungeonLootToolbox: 10
+    SpawnDungeonLootToolsAdvancedEngineering: 20
+    SpawnDungeonLootToolsBasicEngineering: 30
+    SpawnDungeonLootToolsHydroponics: 30
+    SpawnDungeonLootToolsSalvage: 30
+    SpawnDungeonLootToolsSurgery: 10
+    SpawnDungeonLootToolsSurgeryAdvanced: 10
+    SpawnDungeonLootToolsSurgeryCrude: 30
+    SpawnDungeonLootVaultGuns: 5
+    SpawnDungeonLootVendingRestocks: 30
+    SpawnPoiClutterMedical: 3
+    # SpawnPoiLootClutterKitchen: 4294967295
+    # SpawnPoiLootPowerCell: 30

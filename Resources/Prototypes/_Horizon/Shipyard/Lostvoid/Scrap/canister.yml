@@ -1,7 +1,3 @@
-# Author Info
-# GitHub: Cu1r (https://github.com/Cu1r/)
-# Discord: cu1r
-#
 - type: vessel
   id: CanisterLostVoid
   parent: BaseVessel
@@ -11,10 +7,8 @@
   category: Micro
   group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/canister.yml
-  guidebookPage: Null
   class:
   - Scrapyard
-  - Civilian
   engine:
   - Plasma
 
@@ -25,7 +19,7 @@
   minPlayers: 0
   stations:
     CanisterLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Canister {1}'

@@ -7,10 +7,8 @@
   category: Medium
   group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-investigator.yml
-  guidebookPage: ShipyardInvestigator
   class:
   - Scrapyard
-  - Science
   engine:
   - Solar
   - Uranium
@@ -22,7 +20,7 @@
   minPlayers: 0
   stations:
     InvestigatorLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Investigator {1}'

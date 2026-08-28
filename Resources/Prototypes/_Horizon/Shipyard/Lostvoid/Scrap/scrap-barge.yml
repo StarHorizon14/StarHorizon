@@ -7,11 +7,8 @@
   category: Medium
   group: Custom
   shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-barge.yml
-  guidebookPage: ShipyardBarge
   class:
   - Scrapyard
-  - Cargo
-  - Salvage
   engine:
   - Solar
   - Uranium
@@ -23,7 +20,7 @@
   minPlayers: 0
   stations:
     BargeLostVoid:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Barge {1}'

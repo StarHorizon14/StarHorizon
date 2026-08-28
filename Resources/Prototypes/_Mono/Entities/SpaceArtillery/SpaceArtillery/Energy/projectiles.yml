@@ -19,9 +19,9 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 625
-        Structural: 2125
-        Heat: 175
+        Radiation: 50
+        Structural: 25
+        Heat: 150
 #        Ion: 175
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
@@ -31,26 +31,26 @@
     muzzleFlash: MuzzleFlashEffectPlasmaPulser
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    radarColor: "#C92BCC"
+    radarColor: "#2bcc41"
     scale: 2.5
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
     lifetime: 6.6
   - type: PointLight
-    color: "#FF0040"
+    color: "#2bff00"
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DefaultShipGun
-    totalIntensity: 250
-    intensitySlope: 6
-    maxIntensity: 25
+    totalIntensity: 25
+    intensitySlope: 5
+    maxIntensity: 15
     maxTileBreak: 1
 
 # Autopulser
 
 - type: entity
-  id: ShipAutopulserPlasmaProjectile
+  id: ShipAutopulserPlasmaProjectile 
   name: plasma projectile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -58,9 +58,9 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 300
-        Structural: 200
-        Heat: 60
+        Radiation: 25
+        Structural: 50
+        Heat: 30
 #        Ion: 75
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
@@ -71,8 +71,8 @@
     muzzleFlash: MuzzleFlashEffectPlasmaPulser
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    radarColor: "#C92BCC"
-    scale: 1
+    radarColor: "#cc302b"
+    scale: 2
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
@@ -82,9 +82,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DefaultShipGun
-    totalIntensity: 20
-    intensitySlope: 2
-    maxIntensity: 40
+    totalIntensity: 2.5
+    intensitySlope: 1
+    maxIntensity: 1
     maxTileBreak: 1
 
 # Type 241
@@ -98,9 +98,9 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 100
-        Structural: 150
-        Heat: 200
+        Radiation: 25
+        Structural: 75 
+        Heat: 50
 #        Ion: 250
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
@@ -111,20 +111,20 @@
     muzzleFlash: null
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    radarColor: "#FF00AA"
+    radarColor: "#ff4c4c"
     scale: 2.4
     requireNoGrid: true
     shape: arrow
   - type: TimedDespawn
     lifetime: 24
   - type: PointLight
-    color: "#FF00AA"
+    color: "#ff3333"
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DefaultShipGun
-    totalIntensity: 120
-    intensitySlope: 9
-    maxIntensity: 70
+    totalIntensity: 15
+    intensitySlope: 5
+    maxIntensity: 5
     maxTileBreak: 5
 
 # M25
@@ -138,8 +138,8 @@
   - type: Projectile
     damage:
       types:
-        Structural: 7
-        Heat: 17
+        Structural: 75
+        Heat: 7.5
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
     layers:
@@ -149,18 +149,17 @@
     muzzleFlash: MuzzleFlashEffectPlasmaPulser
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    radarColor: "#C92BCC"
-    scale: 0.5
+    radarColor: "#7d0080"
+    scale: 1
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
     lifetime: 3
   - type: PointLight
-    color: "#C92BCC"
+    color: "#930396"
   - type: GatheringProjectile
   - type: MiningGatheringSoft
-  - type: MiningGatheringHard
-
+    
 # RUBICON
 
 - type: entity
@@ -172,8 +171,8 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 37
-        Heat: 57
+        Radiation: 15
+        Heat: 25
 #        Ion: 187
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
@@ -190,10 +189,10 @@
   - type: TimedDespawn
     lifetime: 6.6
   - type: PointLight
-    color: "#FB00FF"
+    color: "#2600ff"
   - type: EmpOnTrigger
-    range: 4
-    energyConsumption: 2700000
+    range: 5
+    energyConsumption: 270000
     disableDuration: 10
 
 
@@ -208,8 +207,8 @@
   - type: Projectile
     damage:
       types:
-        Structural: 5000
-        Heat: 5000
+        Structural: 250
+        Heat: 75
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/turbolaser_shot.rsi
     layers:
@@ -218,8 +217,8 @@
     muzzleFlash: null
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    radarColor: "#C92BCC"
-    scale: 3.5
+    radarColor: "#2bc7cc"
+    scale: 5
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
@@ -229,9 +228,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
-    totalIntensity: 1250
+    totalIntensity: 50
     intensitySlope: 10
-    maxIntensity: 55
+    maxIntensity: 25
     maxTileBreak: 5
   - type: GatheringProjectile
   - type: MiningGatheringSoft

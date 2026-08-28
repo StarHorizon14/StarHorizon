@@ -3,6 +3,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared._Lua.Shipyard.BUIStates;
 using Content.Shared._Lua.Shipyard.Events;
 using Content.Shared._NF.Shipyard.BUI;
+using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard.Events;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using Robust.Client.UserInterface;
@@ -32,7 +33,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
             _menu.OnUnassignDeed += UnassignDeed;
             _menu.OnRenameShip += RenameShip;
             _menu.OnDockPortSelected += SelectDockPort;
-            _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent("ShipyardConsole-targetId"));
+            _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(ShipyardConsoleComponent.TargetIdCardSlotId));
             _menu.Owner = Owner;    // Horizon
 
             // Disable the NFSD popup for now.

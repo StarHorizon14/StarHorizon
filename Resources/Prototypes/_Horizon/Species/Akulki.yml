@@ -53,9 +53,9 @@
         - MobLayer
   - type: Vocal
     sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: MaleHuman
+      Male: MaleAvzag
+      Female: FemaleAvzag
+      Unsexed: MaleAvzag
   - type: Speech
     speechSounds: Alto
   - type: HumanoidAppearance

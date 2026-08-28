@@ -18,7 +18,7 @@
   - type: Projectile
     damage:
       types:
-        Structural: 225
+        Structural: 150
         Blunt: 32
         Heat: 5
   - type: Sprite
@@ -29,7 +29,7 @@
     muzzleFlash: MuzzleFlashEffectSmall
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    radarColor: "#FCBA03"
+    radarColor: "#b83eff"
     scale: 1
     requireNoGrid: true
     shape: triangle
@@ -42,9 +42,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DefaultShipGun
-    totalIntensity: 75
-    intensitySlope: 8
-    maxIntensity: 25
+    totalIntensity: 15
+    intensitySlope: 3
+    maxIntensity: 5
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
@@ -67,8 +67,8 @@
   - type: Projectile
     damage:
       types:
-        Structural: 500
-        Blunt: 87
+        Structural: 250
+        Blunt: 70
         Heat: 25
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -78,7 +78,7 @@
     muzzleFlash: MuzzleFlashEffectSmall
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    radarColor: "#FCBA03"
+    radarColor: "#d181ff"
     scale: 1.5
     requireNoGrid: true
     shape: triangle
@@ -91,9 +91,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DefaultShipGun
-    totalIntensity: 150
+    totalIntensity: 30
     intensitySlope: 10
-    maxIntensity: 55
+    maxIntensity: 40
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
@@ -127,7 +127,7 @@
     muzzleFlash: null
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    radarColor: "#FCBA03"
+    radarColor: "#dfa9ff"
     scale: 4
     requireNoGrid: true
     shape: triangle
@@ -140,9 +140,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DefaultShipGun
-    maxIntensity: 6000
+    maxIntensity: 125
     intensitySlope: 30
-    totalIntensity: 6000
+    totalIntensity: 150
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
@@ -165,7 +165,7 @@
   - type: Projectile
     damage:
       types:
-        Structural: 3750
+        Structural: 375
         Heat: 15
 #        Ion: 1250
   - type: Sprite
@@ -176,7 +176,7 @@
     muzzleFlash: MuzzleFlashEffectSmall
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    radarColor: "#FB00FF"
+    radarColor: "#27b0ff"
     scale: 1
     requireNoGrid: true
     shape: triangle
@@ -193,7 +193,7 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DefaultShipGun
-    totalIntensity: 100
+    totalIntensity: 50
     intensitySlope: 10
     maxIntensity: 50
     maxTileBreak: 1

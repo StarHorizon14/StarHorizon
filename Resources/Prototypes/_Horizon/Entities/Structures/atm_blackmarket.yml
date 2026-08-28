@@ -1,0 +1,48 @@
+- type: entity
+  suffix: BlackMarket, 50%
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerBankATMDeposit]
+  id: ComputerBlackMarketBankATM50
+  description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 50%
+  components:
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/Machines/atm/illegal_atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unshaded
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.BlackMarket
+  - type: UserInterface
+    interfaces:
+      enum.BankATMMenuUiKey.BlackMarket:
+        type: BankATMMenuBoundUserInterface
+  - type: BankATM
+    taxAccounts:
+      Frontier: 0.5
+
+- type: entity
+  suffix: Wallmount, BlackMarket, 50%
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureComputerWallmount, ComputerBankATMDeposit]
+  id: ComputerWallmountBlackMarketBankATM50
+  description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 50%
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _NF/Structures/Machines/atm/wall_illegal_atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unshaded
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.BlackMarket
+  - type: UserInterface
+    interfaces:
+      enum.BankATMMenuUiKey.BlackMarket:
+        type: BankATMMenuBoundUserInterface
+  - type: BankATM
+    taxAccounts:
+      Frontier: 0.5

@@ -89,3 +89,8 @@
   files:
   - /Audio/Nyanotrasen/Voice/Felinid/cat_scream2.ogg
   - /Audio/Nyanotrasen/Voice/Felinid/cat_scream3.ogg
+
+- type: soundCollection
+  id: AvzagDeathGasp
+  files:
+  - /Audio/_Horizon/Voice/AvzagGasp.ogg

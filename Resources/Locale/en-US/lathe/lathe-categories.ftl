@@ -41,6 +41,7 @@ lathe-category-robotics = Robotics
 lathe-category-ammo = Ammo
 lathe-category-boxes = Boxes
 lathe-category-magazines = Magazines
+lathe-category-shipweapons = Ship Weapons
 
 # Uniform
 lathe-category-bedsheets = Bedsheets

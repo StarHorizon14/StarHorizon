@@ -1,4 +1,12 @@
-# Event scrapyard console: same as ComputerShipyardScrap, but without the Geode and Hammerhead shuttles.
+- type: entity
+  id: SellOnlyComputerNoTax
+  parent: BaseMothershipComputer
+  name: sell only console
+  components:
+  - type: ShipyardConsole
+    taxAccounts: {}
+    ignoreBaseSaleRate: true
+
 - type: entity
   id: ComputerShipyardScrapLostVoid
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
@@ -15,6 +23,7 @@
     taxAccounts:
       Invalid: 1.0
     ignoreBaseSaleRate: true
+    cashOnly: true
   - type: ShipyardListing
     shuttles:
     - NuggetLostVoid
@@ -22,20 +31,21 @@
     - TideLostVoid
     - ConstructLostVoid
     - DiscipleLostVoid
-    # - CanisterLostVoid
-    # - RustyLostVoid
-    # - BargeLostVoid
-    # - CrescentLostVoid
     - HaulerLostVoid
     - InvestigatorLostVoid
-    # - SparrowLostVoid
+    - SparrowLostVoid
     - SprinterLostVoid
     - CourserXLostVoid
-    # - BisonLostVoid
     - CometLostVoid
     - PointLostVoid
+    - BargeLostVoid
+    # - CanisterLostVoid
+    # - RustyLostVoid
+    # - CrescentLostVoid
+    # - BisonLostVoid
     # - MayflowerLostVoid
     # - GeodeLostVoid
+    # - Hammerhead
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
@@ -68,7 +78,6 @@
       sprite: _NF/Structures/Machines/computers.rsi
       state: scrap_key
 
-# Same as ComputerShipyardScrapLostVoid, but with every LostVoid scrap shuttle unlocked.
 - type: entity
   id: ComputerShipyardScrapLostVoidAll
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
@@ -85,6 +94,7 @@
     taxAccounts:
       Invalid: 1.0
     ignoreBaseSaleRate: true
+    cashOnly: true
   - type: ShipyardListing
     shuttles:
     - NuggetLostVoid
