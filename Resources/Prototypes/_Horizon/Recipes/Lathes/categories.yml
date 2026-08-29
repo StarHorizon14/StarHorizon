@@ -33,3 +33,7 @@
 - type: latheCategory
   id: ShipAmmo
   name: lathe-category-shipammo
+
+- type: latheCategory
+  id: ShipWeapons
+  name: lathe-category-shipweapons

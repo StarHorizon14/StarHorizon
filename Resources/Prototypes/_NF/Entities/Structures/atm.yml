@@ -170,6 +170,32 @@
       Frontier: 0.3 # The scandal!
 
 - type: entity
+  suffix: Scrap
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBankATMDeposit]
+  id: ComputerScrapBankATM
+  name: банкомат свалки
+  description: Потрёпанный банкомат с наклейкой "КОМИССИЯ 50%".
+  components:
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _Horizon/Structures/Machines/scrap_atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unshaded
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.BlackMarket
+  - type: UserInterface
+    interfaces:
+      enum.BankATMMenuUiKey.BlackMarket:
+        type: BankATMMenuBoundUserInterface
+  - type: BankATM
+    taxAccounts:
+      Frontier: 0.5
+
+- type: entity
   name: station administration console
   parent: [BaseStructureDisableScrewing, BaseStructureDisablePrying, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, ComputerBankATMBase]
   id: BaseStationAdminBankATM

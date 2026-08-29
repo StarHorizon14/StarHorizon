@@ -11,7 +11,7 @@ namespace Content.Shared._NF.Cargo.Components;
 /// <summary>
 /// Handles sending order requests to cargo. Doesn't handle orders themselves via shuttle or telepads.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause, AutoGenerateComponentState]
 [Access(typeof(SharedNFCargoSystem))]
 public sealed partial class NFCargoOrderConsoleComponent : Component
 {
@@ -39,6 +39,12 @@ public sealed partial class NFCargoOrderConsoleComponent : Component
     [DataField]
     public Dictionary<SectorBankAccount, float> TaxAccounts = new();
 
+    [DataField]
+    public bool BarterOnly;
+
+    [DataField]
+    public bool GiveChange;
+
     /// <summary>
     /// The time at which the console will be able to play the deny sound.
     /// </summary>
@@ -50,4 +56,17 @@ public sealed partial class NFCargoOrderConsoleComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan DenySoundDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public bool RandomizeProducts;
+
+    [DataField]
+    public int MinRandomProducts = 5;
+
+    [DataField]
+    public int MaxRandomProducts = 10;
+
+    [DataField, AutoNetworkedField]
+    [Access(typeof(SharedNFCargoSystem), Other = AccessPermissions.ReadExecute)]
+    public List<ProtoId<CargoProductPrototype>> AllowedProductIds = new();
 }

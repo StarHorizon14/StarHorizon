@@ -4,7 +4,7 @@
   id: CastawayPDA
   name: passenger PDA
   components:
-  - type: Pda
-    paiSlot:
-      startingItem: PersonalAI
-      priority: -3
+  - type: ContainerFill
+    containers:
+      PDA-pai:
+      - PersonalAI

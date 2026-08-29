@@ -1,0 +1,52 @@
+- type: vendingMachineInventory
+  id: RandomVendStructuresInventory
+  startingInventory:
+    # SpawnDungeonCanisterBroken: 4294967295
+    # SpawnDungeonComputerFrame: 4294967295
+    SpawnDungeonFurnitureBedroom: 5
+    SpawnDungeonFurnitureKitchen: 5
+    SpawnDungeonFurnitureScience: 5
+    SpawnDungeonLootCrateArmoryArmor: 5
+    SpawnDungeonLootCrateArmoryWeapon: 5
+    # SpawnDungeonLootCrateEmptyEngi: 4294967295
+    # SpawnDungeonLootCrateEmptyHydro: 4294967295
+    # SpawnDungeonLootCrateEmptyMed: 4294967295
+    # SpawnDungeonLootCrateEmptyService: 4294967295
+    SpawnDungeonLootCrateEngi: 5
+    SpawnDungeonLootCrateGeneral: 5
+    SpawnDungeonLootCrateHydro: 5
+    SpawnDungeonLootCrateMaterials: 5
+    SpawnDungeonLootCrateMed: 5
+    SpawnDungeonLootCrateRestockArmory: 5
+    SpawnDungeonLootCrateRestockClothes: 5
+    SpawnDungeonLootCrateRestockEngi: 5
+    SpawnDungeonLootCrateRestockGeneral: 5
+    SpawnDungeonLootCrateRestockHydro: 5
+    SpawnDungeonLootCrateRestockMed: 5
+    SpawnDungeonLootCrateRestockService: 5
+    SpawnDungeonLootCrateScience: 5
+    SpawnDungeonLootCrateService: 5
+    SpawnDungeonLootCrateVehicle: 5
+    SpawnDungeonLootKitchenTabletop: 5
+    SpawnDungeonLootLathe: 5
+    SpawnDungeonLootLatheArmory: 5
+    SpawnDungeonLootLatheEngi: 5
+    SpawnDungeonLootLatheSalvage: 5
+    SpawnDungeonLootLockersArmory: 5
+    SpawnDungeonLootLockersEngi: 5
+    SpawnDungeonLootLockersGeneral: 5
+    SpawnDungeonLootLockersMed: 5
+    SpawnDungeonLootLockersProtectiveGear: 5
+    SpawnDungeonLootLockersSalvage: 5
+    SpawnDungeonLootSuitStorageUnitsEngi: 5
+    SpawnDungeonLootSuitStorageUnitsGeneral: 5
+    SpawnDungeonLootSuitStorageUnitsMercenary: 5
+    SpawnDungeonLootSuitStorageUnitsSalvage: 5
+    SpawnDungeonMachineFrame: 5
+    SpawnDungeonVendomatsArmory: 5
+    SpawnDungeonVendomatsClothes: 5
+    SpawnDungeonVendomatsEngi: 5
+    SpawnDungeonVendomatsMed: 5
+    SpawnDungeonVendomatsRecreational: 5
+    SpawnDungeonVendomatsSalvage: 5
+    SpawnDungeonVendomatsTools: 5

@@ -13,3 +13,21 @@
   - MachineShieldLightCircuitboard
   - MachineShieldMediumCircuitboard
   position: 0, 68
+
+- type: technology
+  id: BasicShipWeapons
+  name: research-technology-basic-ship-weapons
+  entityIcon: WeaponTurretM25
+  discipline: NFArsenalNfsd
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - WeaponTurretM25Flatpack
+  - WeaponTurretL85AutocannonFlatpack
+  - WeaponTurretM220Flatpack
+  - WeaponTurretType54Flatpack
+  - WeaponTurretType35Flatpack
+  technologyPrerequisites:
+  - SpaceBattles
+  prerequisiteLineType: Diagonal
+  position: 1, 66

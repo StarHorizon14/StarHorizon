@@ -11,6 +11,9 @@
     - /Maps/_Horizon/Lostvoid/Shuttle/small-syndicate.yml
     - /Maps/_Horizon/Lostvoid/Shuttle/small-ship-1.yml
     - /Maps/_Horizon/Lostvoid/Shuttle/medium-ruined-emergency-shuttle.yml
+    - /Maps/_Horizon/Lostvoid/Shuttle/cargo-destroyed.yml
+    - /Maps/_Horizon/Lostvoid/Shuttle/duranihp-destroyed.yml
+    - /Maps/_Horizon/Lostvoid/Shuttle/miner-destroyed.yml
     survivalLoot:
     - EmergencyOxygenTank
     - MedkitFilled

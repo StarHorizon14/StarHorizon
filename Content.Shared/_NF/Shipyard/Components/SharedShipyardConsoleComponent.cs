@@ -14,8 +14,48 @@ public sealed partial class ShipyardConsoleComponent : Component
 {
     public static string TargetIdCardSlotId = "ShipyardConsole-targetId";
 
+    /// <summary>
+    /// Fixed container id for the cash slot, mirroring <see cref="TargetIdCardSlotId"/>.
+    /// Kept constant (rather than reading <see cref="CashSlotName"/>, which isn't networked)
+    /// so the client can reference the slot without waiting on component state.
+    /// </summary>
+    public static string CashSlotId = "ShipyardConsole-cash";
+
     [DataField]
     public ItemSlot TargetIdSlot = new();
+
+    /// <summary>
+    /// Optional item slot for cash, allowing ships to be paid for with physical currency.
+    /// </summary>
+    [DataField]
+    public ItemSlot? CashSlot = null;
+
+    /// <summary>
+    /// Name of the cash slot, if there is one. Null if there isn't.
+    /// Should always match <see cref="CashSlotId"/> when set.
+    /// </summary>
+    [DataField]
+    public string? CashSlotName;
+
+    /// <summary>
+    /// The type of currency to accept in the cash slot.
+    /// </summary>
+    [DataField]
+    public string? CurrencyStackType;
+
+    /// <summary>
+    /// The current balance in the cash slot.
+    /// Kept for convenience of access.
+    /// </summary>
+    [DataField]
+    public int CashSlotBalance;
+
+    /// <summary>
+    /// If true, ships can only be purchased using physical currency in the cash slot.
+    /// The buyer's bank account balance is ignored entirely.
+    /// </summary>
+    [DataField]
+    public bool CashOnly;
 
     [DataField]
     public SoundSpecifier ErrorSound =
