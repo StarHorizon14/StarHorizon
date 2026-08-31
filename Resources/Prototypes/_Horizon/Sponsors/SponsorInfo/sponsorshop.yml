@@ -7036,8 +7036,8 @@
 
 - type: sponsorShopListing
   id: SponsorShopCurrencyTelecrystal
-  name: 2 телекристалла
-  description: Пара тускло мерцающих телекристаллов синдиката. Можно обменять на снаряжение в аплинке.
+  name: телекристалл
+  description: Похоже, он переливается подозрительно манящей энергией.
   cost: 1
   priority: 27
   state: telecrystal
@@ -7045,18 +7045,18 @@
 
 - type: sponsorShopListing
   id: SponsorShopCurrencyDoubloon
-  name: 2 дублона
-  description: Пара грязных золотых монет, используемых пиратами для тёмных сделок.
+  name: дублон
+  description: Грязная золотая монета, которая используется для гнусных пиратских сделок.
   cost: 1
   priority: 27
   state: doubloon
-  prototypeId: SponsorShopDoubloon2
+  prototypeId: Doubloon1
 
 - type: sponsorShopListing
   id: SponsorShopCurrencyFrontierCoin
-  name: 2 фронтир-коина
-  description: Пара жетонов НФСД, выдаваемых за сдачу контрабанды. Можно обменять на снаряжение в аплинке.
+  name: таможенная монета
+  description: Таможенная монета, которые выдаются за представителям ДШНФ за успешный перехват контрабанды.
   cost: 1
   priority: 27
   state: frontieruplinkcoin
-  prototypeId: SponsorShopFrontierUplinkCoin2
+  prototypeId: FrontierUplinkCoin1
