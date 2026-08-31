@@ -137,6 +137,19 @@
   abstract: true
   components:
   - type: StationAiWhitelist
+  # Horizon: cash slot
+  - type: VendingMachine
+    cashSlot:
+      whitelist:
+        components:
+        - Cash
+    cashSlotName: cash_slot
+    currencyStackType: Credit
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+  # End Horizon
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
