@@ -188,7 +188,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             foreach (var item in vessel.CostModifiers)
                 item.Modify(player, shipyardConsoleUid, ref price, _entityManager);
 
-            if (!TryPayForVessel(shipyardConsoleUid, component, player, price, out var payError))
             if (TryComp<ActorComponent>(player, out var priceActorComp) && priceActorComp.PlayerSession != null)
             {
                 var discountPercent = _sponsorManager.GetDiscountPercent(priceActorComp.PlayerSession.Name);
@@ -196,8 +195,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     price = (int)(price * (1 - discountPercent / 100f));
             }
 
-            // Horizon end
-            if (!_bank.TryBankWithdraw(player, price))  // Horizon - modify price
+            if (!TryPayForVessel(shipyardConsoleUid, component, player, price, out var payError))
             {
                 ConsolePopup(player, Loc.GetString(payError, ("cost", price)));
                 PlayDenySound(player, shipyardConsoleUid, component);
