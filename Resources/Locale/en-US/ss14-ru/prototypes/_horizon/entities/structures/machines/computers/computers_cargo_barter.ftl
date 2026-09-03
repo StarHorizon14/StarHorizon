@@ -1,0 +1,17 @@
+ent-ComputerCargoBarter = barter computer
+    .desc = Used to order supplies in exchange for goods placed on the connected sale pallets.
+ent-ComputerCargoBarterVeryHighMarket = { ent-ComputerCargoBarter }
+    .suffix = VeryHigh
+    .desc = { ent-ComputerCargoBarter.desc }
+ent-ComputerCargoBarterHighMarket = { ent-ComputerCargoBarter }
+    .suffix = High
+    .desc = { ent-ComputerCargoBarter.desc }
+ent-ComputerCargoBarterNormalMarket = { ent-ComputerCargoBarter }
+    .suffix = Normal
+    .desc = { ent-ComputerCargoBarter.desc }
+ent-ComputerCargoBarterLowMarket = { ent-ComputerCargoBarter }
+    .suffix = Low
+    .desc = { ent-ComputerCargoBarter.desc }
+ent-ComputerCargoBarterVeryLowMarket = { ent-ComputerCargoBarter }
+    .suffix = VeryLow
+    .desc = { ent-ComputerCargoBarter.desc }

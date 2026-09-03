@@ -2,6 +2,7 @@
 using Content.Server.Popups;
 using Content.Shared.Interaction;
 using Content.Shared.Storage;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 
 namespace Content.Server.Holiday.Christmas;
@@ -14,6 +15,7 @@ public sealed class LimitedItemGiverSystem : EntitySystem
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly HolidaySystem _holiday = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -45,5 +47,6 @@ public sealed class LimitedItemGiverSystem : EntitySystem
 
         component.GrantedPlayers.Add(actor.PlayerSession.UserId);
         _popup.PopupEntity(Loc.GetString(component.ReceivedPopup), uid, args.User);
+        _audio.PlayPvs(component.Sound, uid);
     }
 }

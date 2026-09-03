@@ -54,7 +54,8 @@ public static partial class PoolManager
                 LoadConfigAndUserData = false,
                 LoadContentResources = !poolSettings.NoLoadContent,
             },
-            ContentAssemblies = _contentAssemblies.ToArray()
+            ContentAssemblies = _contentAssemblies.ToArray(),
+            FailureLogLevel = poolSettings.FailureLogLevel ?? LogLevel.Warning,
         };
 
         var logHandler = new PoolTestLogHandler("SERVER");
@@ -129,7 +130,7 @@ public static partial class PoolManager
     {
         var options = new RobustIntegrationTest.ClientIntegrationOptions
         {
-            FailureLogLevel = LogLevel.Warning,
+            FailureLogLevel = poolSettings.FailureLogLevel ?? LogLevel.Warning,
             ContentStart = true,
             ContentAssemblies = new[]
             {

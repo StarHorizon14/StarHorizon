@@ -7,3 +7,56 @@
     shoes: ClothingShoesColorBlack
     back: EmergencyOxygenTankFilled
     id: CastawayPDA
+
+- type: startingGear
+  id: CastawayPodGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    id: CastawayPDA
+
+- type: startingGear
+  id: CastawayEscapeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    shoes: ClothingShoesColorBlack
+    id: CastawayPDA
+
+# Сценарий 1: в космосе с разбросаными вещами и шаттлом
+- type: job
+  id: CastawaySurvivor
+  name: castaway-job-name-survivor
+  description: castaway-job-description-survivor
+  playTimeTracker: JobCastawaySurvivor
+  setPreference: false
+  startingGear: CastawayGear
+  icon: "JobIconPassenger"
+
+- type: playTimeTracker
+  id: JobCastawaySurvivor
+
+# Сценарий 2: Просыпается на заброшеной станции с разрушеным шаттлом
+- type: job
+  id: CastawaySleeper
+  name: castaway-job-name-sleeper
+  description: castaway-job-description-sleeper
+  playTimeTracker: JobCastawaySleeper
+  setPreference: false
+  startingGear: CastawayPodGear
+  icon: "JobIconPassenger"
+
+- type: playTimeTracker
+  id: JobCastawaySleeper
+
+# Сценарий 3: побег с крейсера синдиката
+- type: job
+  id: CastawayEscapee
+  name: castaway-job-name-escapee
+  description: castaway-job-description-escapee
+  playTimeTracker: JobCastawayEscapee
+  setPreference: false
+  startingGear: CastawayEscapeGear
+  icon: "JobIconPassenger"
+
+- type: playTimeTracker
+  id: JobCastawayEscapee

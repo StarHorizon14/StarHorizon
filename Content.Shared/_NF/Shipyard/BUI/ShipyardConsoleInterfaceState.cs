@@ -16,6 +16,10 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
     public readonly string ShipyardName;
     public readonly bool FreeListings;
     public readonly float SellRate;
+    public readonly bool CashOnly;
+    public readonly bool HasCashSlot;
+    public readonly int CashSlotBalance;
+    public readonly bool IsCashPresent;
 
     public ShipyardConsoleInterfaceState(
         int balance,
@@ -27,7 +31,11 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         (List<string> available, List<string> unavailable) shipyardPrototypes,
         string shipyardName,
         bool freeListings,
-        float sellRate)
+        float sellRate,
+        bool cashOnly = false,
+        bool hasCashSlot = false,
+        int cashSlotBalance = 0,
+        bool isCashPresent = false)
     {
         Balance = balance;
         AccessGranted = accessGranted;
@@ -39,5 +47,9 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         ShipyardName = shipyardName;
         FreeListings = freeListings;
         SellRate = sellRate;
+        CashOnly = cashOnly;
+        HasCashSlot = hasCashSlot;
+        CashSlotBalance = cashSlotBalance;
+        IsCashPresent = isCashPresent;
     }
 }

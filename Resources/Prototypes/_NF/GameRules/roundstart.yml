@@ -22,9 +22,12 @@
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: BluespaceCacheError
+    - id: BluespaceCacheError2
     - id: BluespaceCave
     - id: BluespaceVaultError
+    - id: BluespaceVaultError2
     - id: BluespaceVaultSmallError
+    - id: BluespaceVaultSmallError2
     - id: BluespaceSyndicateFTLInterception
     - id: BluespaceWizardFederationScout
     - id: BluespaceBloodMoon

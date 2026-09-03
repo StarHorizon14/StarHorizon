@@ -1,0 +1,25 @@
+- type: radioChannel
+  id: LVHIRadio
+  name: LVHI
+  keycode: 'ъ'
+  frequency: 8562
+  color: "#e26817"
+  longRange: true
+
+- type: entity
+  parent: BaseItem
+  id: EncryptionKeyLVHI
+  suffix: StarHorizon, LVHI
+  name: "ключ шифрования LVHI"
+  description: "Ключ шифрования корпорации LVHI. Позволяет связываться по защищённому каналу связи."
+  components:
+  - type: Item
+    size: Tiny
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/devices/encryptionkeys.rsi
+  - type: Sprite
+    sprite: _Horizon/_Fractions/LVHI/Entities/Objects/devices/encryptionkeys.rsi
+    state: crypto-base
+  - type: EncryptionKey
+    channels:
+    - LVHIRadio
+    defaultChannel: LVHIRadio

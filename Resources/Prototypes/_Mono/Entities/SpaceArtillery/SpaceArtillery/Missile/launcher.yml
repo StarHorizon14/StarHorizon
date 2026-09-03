@@ -50,7 +50,7 @@
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
     proto: ShipMissileASM417
-    fireCost: 867
+    fireCost: 4000
   - type: RadarBlip
     radarColor: "#FCBA03"
     scale: 2
@@ -94,11 +94,11 @@
     powerUsePassive: 200
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 60
+    autoRechargeRate: 1000
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
     proto: ShipMissileASM501
-    fireCost: 350
+    fireCost: 20000
   - type: RadarBlip
     radarColor: "#FCBA03"
     scale: 2.5
@@ -138,11 +138,11 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 60
+    autoRechargeRate: 1000
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
     proto: ShipMissileASM302
-    fireCost: 300
+    fireCost: 12500
   - type: SpaceArtillery
     powerChargeRate: 350
     powerUsePassive: 600

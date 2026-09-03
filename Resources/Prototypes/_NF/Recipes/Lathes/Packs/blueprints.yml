@@ -245,6 +245,12 @@
   # NFBasicShuttleArmament
   - NFGrenadeFlash
   - NFGrenadeEMP
+  # BasicShipWeapons
+  - WeaponTurretM25Flatpack
+  - WeaponTurretL85AutocannonFlatpack
+  - WeaponTurretM220Flatpack
+  - WeaponTurretType54Flatpack
+  - WeaponTurretType35Flatpack
 
 # region Salvage
 - type: latheRecipePack
@@ -508,6 +514,12 @@
   - PowerCageMedium
   - PowerCageHigh
   - NFMagazineGrenadeEmpty
+  # BasicShipWeapons
+  - WeaponTurretM25Flatpack
+  - WeaponTurretL85AutocannonFlatpack
+  - WeaponTurretM220Flatpack
+  - WeaponTurretType54Flatpack
+  - WeaponTurretType35Flatpack
   # NFPortableMicrofusionWeaponry
   - NFPortableRecharger
 

@@ -1,0 +1,19 @@
+- type: entity
+  name: explosion sound marker
+  id: ExplosionSoundMarker
+  parent: MarkerBase
+  suffix: Trigger
+  components:
+  - type: Sprite
+    sprite: Effects/explosion.rsi
+    state: explosion
+  - type: TriggerOnSignal
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+  - type: EmitSoundOnTrigger
+    positional: true
+    sound: !type:SoundCollectionSpecifier
+      collection: Explosion
+      params:
+        volume: 6
