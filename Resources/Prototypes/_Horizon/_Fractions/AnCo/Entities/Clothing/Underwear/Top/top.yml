@@ -7,6 +7,8 @@
   components:
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Clothing/Underwear/Top/kazmie-big-bra.rsi
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   parent: [ClothingUnderwearTopBase, BaseAnCoContraband]
@@ -17,6 +19,8 @@
   components:
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Clothing/Underwear/Top/kazmie-medium-bra.rsi
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   parent: [ClothingUnderwearTopBase, BaseAnCoContraband]
@@ -27,3 +31,5 @@
   components:
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Clothing/Underwear/Top/kazmie-small-bra.rsi
+  - type: StaticPrice
+    price: 500

@@ -7,3 +7,5 @@
   components:
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Clothing/Underwear/Socks/kazmie-socks.rsi
+  - type: StaticPrice
+    price: 500

@@ -86,9 +86,16 @@
    KnightPlushin: 3
    CyclopPlushin: 3
    RipsiPlushin: 3
+   ClothingUnderwearBigBraAnCo: 3
+   ClothingUnderwearBottomBigPantiesAnCo: 3
+   ClothingUnderwearMediumBraAnCo: 3
+   ClothingUnderwearBottomMediumPantiesAnCo: 3
+   ClothingUnderwearSocksAnCo: 3
   contrabandInventory:
     LumaPlushina: 1
     EngiPlushin: 1
+    ClothingUnderwearSmallBraAnCo: 1
+    ClothingUnderwearBottomSmallPantiesAnCo: 1
 
 - type: entity
   parent: [VendingMachine, BaseTKAnCoContraband]
