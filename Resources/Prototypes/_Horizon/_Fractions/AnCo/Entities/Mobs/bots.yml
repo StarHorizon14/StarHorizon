@@ -257,6 +257,8 @@
   - type: TimerTrigger
     delay: 3.5
   - type: SpawnOnTrigger
+    keysIn:
+    - timer
     proto: AnCoDrone
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
@@ -278,6 +280,8 @@
   - type: TimerTrigger
     delay: 3.5
   - type: SpawnOnTrigger
+    keysIn:
+    - timer
     proto: AnCoDroneCombat
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
@@ -296,9 +300,15 @@
   parent: BaseItem
   components:
   - type: DeleteOnTrigger
+    keysIn:
+    - timer
   - type: TimerTrigger
     delay: 3.5
+    keysIn:
+    - timer
   - type: SpawnOnTrigger
+    keysIn:
+    - timer
     proto: AnCoDroneMine
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi

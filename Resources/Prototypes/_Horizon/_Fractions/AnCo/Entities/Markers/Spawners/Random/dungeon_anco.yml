@@ -65,6 +65,7 @@
     offset: 0.0
     rarePrototypes:
     - JetpackAnCo
+    - ClothingOuterHardsuitClifs
     rareChance: 0.10
 
 - type: entity
@@ -139,6 +140,7 @@
     - NanitMedipenAnCo
     - NanitMedipenAnCo
     - AnCohypoNerf
+    - MedkitAnCoFilledElect
     # - AnCohypocapsule теперь без этой крутой штуки
     rareChance: 0.30
 
