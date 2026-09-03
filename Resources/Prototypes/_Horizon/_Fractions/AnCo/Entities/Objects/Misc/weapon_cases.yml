@@ -481,6 +481,39 @@
         amount: 4
 
 - type: entity
+  id: AnCoWeaponCaseCombatBot
+  parent: AnCoWeaponCaseExplosives
+  suffix: StarHorizon, AnCo, Grenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoGranadeSpawnCombat
+        amount: 4
+
+- type: entity
+  id: AnCoWeaponCaseSecurBot
+  parent: AnCoWeaponCaseExplosives
+  suffix: StarHorizon, AnCo, Grenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoGranadeSpawnSecure
+        amount: 4
+
+- type: entity
+  id: AnCoWeaponCaseCluster
+  parent: AnCoWeaponCaseExplosives
+  suffix: StarHorizon, AnCo, Grenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeStingerAnCoTarget
+        amount: 4
+
+- type: entity
   id: AnCoWeaponCaseMachineGun
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, MachineGun

@@ -270,6 +270,9 @@
     - AnCoWeaponCaseMeleeSplah
     - AnCoWeaponCaseMeleeKnife
     - AnCoWeaponCaseGrenade
+    - AnCoWeaponCaseSecurBot
+    - AnCoWeaponCaseCombatBot
+    - AnCoWeaponCaseCluster
     - AnCoWeaponCaseMachineGun
     - AnCoWeaponCaseCarabine
     - AnCoWeaponCaseShotGun
