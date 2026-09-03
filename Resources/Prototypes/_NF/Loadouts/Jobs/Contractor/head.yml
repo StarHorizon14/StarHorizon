@@ -320,6 +320,15 @@
     head: ClothingHeadHatBeretEngineering
 
 - type: loadout
+  id: ContractorClothingHeadHatBeretAtmos
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1250
+  equipment:
+    head: ClothingHeadHatBeretAtmos
+
+- type: loadout
   id: ContractorClothingHeadHatBeretSeniorPhysician
   effects:
   - !type:GroupLoadoutEffect

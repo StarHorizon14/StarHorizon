@@ -333,6 +333,7 @@
   - ContractorClothingOuterCoatRobo
   - ContractorClothingOuterCoatLabViro
   - ContractorClothingOuterBioScientist
+  - ContractorClothingAtmosphericsOveralls
   - ContractorClothingOuterWinterCoat
   - ContractorClothingOuterWinterCoatLong
   - ContractorClothingOuterWinterAtmos
@@ -552,6 +553,7 @@
   - ContractorClothingHeadTinfoil
   - ContractorClothingHeadHatBeretRND
   - ContractorClothingHeadHatBeretEngineering
+  - ContractorClothingHeadHatBeretAtmos
   - ContractorClothingHeadHatBeretSeniorPhysician
 #  - ContractorClothingHeadHatBeretCmo # Temp removed for DOC. Will return if replaced.
   - ContractorClothingHeadHatBeretQM

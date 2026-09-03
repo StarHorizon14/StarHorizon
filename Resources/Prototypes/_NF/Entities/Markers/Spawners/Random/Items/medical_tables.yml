@@ -517,10 +517,12 @@
     children:
     - id: HypoMini
       weight: 0.54
-    - id: HypoBrigmedic
-      weight: 0.3
+    # SH-Tweak-Start
     - id: HypoMiniLimitedEdition
-      weight: 0.1
+      weight: 0.25
+    - id: HypoBrigmedic
+      weight: 0.15
+    # SH-Tweak-End
     - id: Hypospray
       weight: 0.05
     - id: SyndiHypo

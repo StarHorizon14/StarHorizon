@@ -70,3 +70,14 @@
     sprite: _StarHorizon/Clothing/Mask/pilot_mask.rsi
   - type: Clothing
     sprite: _StarHorizon/Clothing/Mask/pilot_mask.rsi
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingMaskGasAtmosMod
+  name: модифицированный атмос противогаз
+  description: Улучшенныый противогаз атмоса в угоду комфорта и стиля.
+  components:
+  - type: Sprite
+    sprite: _StarHorizon/Clothing/Mask/gasatmos.rsi
+  - type: Clothing
+    sprite: _StarHorizon/Clothing/Mask/gasatmos.rsi

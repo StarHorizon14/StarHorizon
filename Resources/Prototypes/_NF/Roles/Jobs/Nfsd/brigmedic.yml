@@ -41,6 +41,7 @@
   id: BrigmedicGear
   equipment:
     pocket1: NFWeaponPistolUniversalNfsdLessLethal
+    pocket2: HypoBrigmedic # SH-Tweak
   storage:
     back:
     - Flash

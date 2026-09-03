@@ -1,0 +1,7 @@
+- type: marking
+  id: HumanHairZiegler
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Horizon/Mobs/customization/human_hair.rsi
+      state: ziegler
