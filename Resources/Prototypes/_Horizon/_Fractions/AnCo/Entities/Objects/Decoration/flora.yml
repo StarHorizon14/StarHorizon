@@ -358,7 +358,7 @@
       stash: !type:ContainerSlot {}
 
 - type: entity
-  parent: [BaseAnCoContraband, PottedPlantAnCoBase]
+  parent: [BaseAnCoContraband, PottedPlantAnCoBase, ClothingHeadBase]
   id: PottedEmpty
   suffix: StarHorizon, AnCo
   name: пустой горшок
@@ -371,6 +371,10 @@
   - type: Construction
     graph: AnCoPlantSeed
     node: donecraft
+  - type: Item
+    size: Normal
+  - type: DisableToolUse
+    anchoring: true
 
 - type: entity
   parent: [BaseAnCoContraband, PottedPlantAnCoBase]

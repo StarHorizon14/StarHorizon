@@ -76,7 +76,7 @@
     - id: KazmieSheet1
     - id: AnCoCrab
     - id: AnCoDrone
-    - id: AnCoDroneOff
+    - id: AnCoGranadeSpawnSecure
     - id: AnCoDeathAcidifierImplanter
     - id: AnCoImplanterTreker
     - id: AnCoImplanterDrone
@@ -117,7 +117,7 @@
     - id: AnCoEnergyCore
     - id: PMLaserAnCoGun
     - id: CombatMedipenAnCo
-    - id: AnCoDroneOff
+    - id: AnCoGranadeSpawnSecure
 
 # Рыцарь
 - type: entity
@@ -134,7 +134,7 @@
     - id: LaserAnCoGun
     - id: NanitMedipenAnCo
     - id: CombatMedipenAnCo
-    - id: AnCoDroneOff
+    - id: AnCoGranadeSpawnSecure
     - id: AnCoGranade
 
 # Паук
@@ -152,7 +152,7 @@
     - id: CombatMedipenAnCo
     - id: NanitMedipenAnCo
     - id: NanitMedipenAnCo
-    - id: AnCoDroneOff
+    - id: AnCoGranadeSpawnSecure
     - id: AnCoGranade
 
 # Титан
@@ -171,8 +171,8 @@
     - id: NanitMedipenAnCo
     - id: CombatMedipenAnCo
     - id: CombatMedipenAnCo
-    - id: AnCoDroneOff
-    - id: AnCoDroneOff
+    - id: AnCoGranadeSpawnSecure
+    - id: AnCoGranadeSpawnSecure
     - id: AnCoGranade
     - id: AnCoGranade
 
@@ -191,5 +191,5 @@
     - id: CombatMedipenAnCo
     - id: NanitMedipenAnCo
     - id: NanitMedipenAnCo
-    - id: AnCoDroneOff
-    - id: AnCoDroneOff
+    - id: AnCoGranadeSpawnSecure
+    - id: AnCoGranadeSpawnSecure

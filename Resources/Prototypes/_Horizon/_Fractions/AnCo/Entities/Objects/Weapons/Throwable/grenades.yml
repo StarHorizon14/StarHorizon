@@ -69,3 +69,139 @@
     layers:
     - state: icon
       map: ["base"]
+
+- type: entity
+  name: Граната капсула
+  description: Граната, содержащая в себе защитного бота АнКо.
+  suffix: StarHorizon, AnCo
+  parent: [GrenadeBase, BaseTKAnCoContraband]
+  id: AnCoGranadeSpawnSecure
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Grenades/bot-grenade.rsi
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    predicted: true
+    proto: AnCoDrone
+  - type: TimerTrigger
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 1
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+
+- type: entity
+  name: Граната капсула
+  description: Граната, содержащая в себе боевого бота АнКо.
+  suffix: StarHorizon, AnCo
+  parent: [GrenadeBase, BaseTKAnCoContraband]
+  id: AnCoGranadeSpawnCombat
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Grenades/bot-grenade.rsi
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    predicted: true
+    proto: AnCoDroneCombat
+  - type: TimerTrigger
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 1
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+
+- type: entity
+  name: Граната капсула
+  description: Граната, содержащая в себе бомбу бота АнКо.
+  suffix: StarHorizon, AnCo
+  parent: [GrenadeBase, BaseTKAnCoContraband]
+  id: AnCoGranadeSpawnMine
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Grenades/bot-grenade.rsi
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    predicted: true
+    proto: AnCoDroneMine
+  - type: TimerTrigger
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 1
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+
+- type: entity
+  name: Граната капсула
+  description: Граната, содержащая в себе ЦИКЛОПА НАХУЙ.
+  suffix: StarHorizon, AnCo
+  parent: [GrenadeBase, BaseTKAnCoContraband]
+  id: AnCoGranadeSpawnCyclop
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Grenades/bot-grenade.rsi
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    predicted: true
+    proto: AnCoMechCyclopDungeon
+  - type: TimerTrigger
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 1
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+
+- type: entity
+  parent: [ProjectileGrenadeBase, BaseTKAnCoContraband]
+  id: GrenadeStingerAnCoTarget
+  suffix: StarHorizon, AnCo
+  name: кластерная граната
+  description: Она делает бум, и еще бабах, и даже наводится. Но на всех.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Grenades/cluster-grenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ProjectileGrenade
+    fillPrototype: StandartBallisticAnCoShotgun # Frontier: use NF variant
+    capacity: 30
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: "/Audio/Effects/flash_bang.ogg"
+    positional: true
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    proto: GrenadeFlashEffect
+    predicted: true
+  - type: TriggerOnUse
+  - type: TimerTrigger
+    initialBeepDelay: 0
+    beepInterval: 2
+    delay: 3.5
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Effects/countdown.ogg
+  - type: AnCoGunAutoTarget

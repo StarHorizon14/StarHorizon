@@ -25,6 +25,10 @@
         {
             "name": "sliced"
         },
+    {
+      "name": "equipped-HELMET",
+      "directions": 4
+    },
         {
             "name": "empty"
         }

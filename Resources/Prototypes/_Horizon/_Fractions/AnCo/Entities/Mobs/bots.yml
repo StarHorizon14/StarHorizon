@@ -203,15 +203,18 @@
     energyConsumption: 2700000
   - type: Item
     size: Small
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
 
 - type: entity
   id: AnCoDrone
   parent: AnCoDroneDungeon
   suffix: StarHorizon, AnCo, Mob
   components:
-  - type: SpawnItemsOnUse
-    items:
-      - id: AnCoDroneOff
+  # - type: SpawnItemsOnUse
+  #   items:
+  #     - id: AnCoDroneOff
   - type: NpcFactionMember
     factions:
      - AnCoSecurBot
@@ -223,9 +226,9 @@
   parent: AnCoDroneMineDungeon
   suffix: StarHorizon, AnCo, Mob
   components:
-  - type: SpawnItemsOnUse
-    items:
-      - id: AnCoDroneMineOff
+  # - type: SpawnItemsOnUse
+  #   items:
+  #     - id: AnCoDroneMineOff
   - type: NpcFactionMember
     factions:
      - AnCoSecurBot
@@ -237,9 +240,9 @@
   parent: AnCoDroneCombatDungeon
   suffix: StarHorizon, AnCo, Mob
   components:
-  - type: SpawnItemsOnUse
-    items:
-      - id: AnCoDroneCombatOff
+  # - type: SpawnItemsOnUse
+  #   items:
+  #     - id: AnCoDroneCombatOff
   - type: NpcFactionMember
     factions:
      - AnCoSecurBot
@@ -247,78 +250,79 @@
     size: Small
 
 # начало отключенные версии
-- type: entity
-  id: AnCoDroneOff
-  name: отключенный защитный бот АнКо
-  suffix: StarHorizon, AnCo, Mob
-  parent: BaseItem
-  components:
-  - type: DeleteOnTrigger
-  - type: TimerTrigger
-    delay: 3.5
-  - type: SpawnOnTrigger
-    keysIn:
-    - timer
-    proto: AnCoDrone
-  - type: Sprite
-    sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
-    state: crab-off
-  - type: Item
-    sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
-    state: crab-off
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Machines/button.ogg
+# - type: entity
+#   id: AnCoDroneOff
+#   name: отключенный защитный бот АнКо
+#   suffix: StarHorizon, AnCo, Mob
+#   parent: BaseItem
+#   components:
+#   - type: DeleteOnTrigger
+#   - type: TimerTrigger
+#     delay: 3.5
+#   - type: SpawnOnTrigger
+#     proto: AnCoDrone
+#   - type: Sprite
+#     sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
+#     state: crab-off
+#   - type: Item
+#     sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
+#     state: crab-off
+#   - type: EmitSoundOnActivate
+#     sound:
+#       path: /Audio/Machines/button.ogg
 
-- type: entity
-  id: AnCoDroneCombatOff
-  name: отключенный боевой бот АнКо
-  suffix: StarHorizon, AnCo, Mob
-  parent: BaseItem
-  components:
-  - type: DeleteOnTrigger
-  - type: TimerTrigger
-    delay: 3.5
-  - type: SpawnOnTrigger
-    keysIn:
-    - timer
-    proto: AnCoDroneCombat
-  - type: Sprite
-    sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
-    state: combat-off
-  - type: Item
-    sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
-    state: combat-off
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Machines/button.ogg
+# - type: entity
+#   id: AnCoDroneCombatOff
+#   name: отключенный боевой бот АнКо
+#   suffix: StarHorizon, AnCo, Mob
+#   parent: BaseItem
+#   components:
+#   - type: DeleteOnTrigger
+#     keysIn:
+#     - timer
+#   - type: TimerTrigger
+#     delay: 3.5
+#   - type: SpawnOnTrigger
+#     keysIn:
+#     - timer
+#     predicted: true
+#     proto: AnCoDroneCombat
+#   - type: Sprite
+#     sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
+#     state: combat-off
+#   - type: Item
+#     sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
+#     state: combat-off
+#   - type: EmitSoundOnActivate
+#     sound:
+#       path: /Audio/Machines/button.ogg
+#   - type: Appearance
+#   - type: Tag
+#     tags:
+#     - HandGrenade
 
-- type: entity
-  id: AnCoDroneMineOff
-  name: отключенный бот бомба АнКо
-  suffix: StarHorizon, AnCo, Mob
-  parent: BaseItem
-  components:
-  - type: DeleteOnTrigger
-    keysIn:
-    - timer
-  - type: TimerTrigger
-    delay: 3.5
-    keysIn:
-    - timer
-  - type: SpawnOnTrigger
-    keysIn:
-    - timer
-    proto: AnCoDroneMine
-  - type: Sprite
-    sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
-    state: mine-off
-  - type: Item
-    sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
-    state: mine-off
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Machines/button.ogg
+
+
+# - type: entity
+#   id: AnCoDroneMineOff
+#   name: отключенный бот бомба АнКо
+#   suffix: StarHorizon, AnCo, Mob
+#   parent: BaseItem
+#   components:
+#   - type: DeleteOnTrigger
+#   - type: TimerTrigger
+#     delay: 3.5
+#   - type: SpawnOnTrigger
+#     proto: AnCoDroneMine
+#   - type: Sprite
+#     sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
+#     state: mine-off
+#   - type: Item
+#     sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
+#     state: mine-off
+#   - type: EmitSoundOnActivate
+#     sound:
+#       path: /Audio/Machines/button.ogg
 
 # уээээээ разделитель уэээээээ
 
@@ -350,9 +354,9 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
-  - type: NpcFactionMember
-    factions:
-     - AnCoSecurBot
+  # - type: NpcFactionMember
+  #   factions:
+  #    - AnCoSecurBot
   - type: Destructible
     thresholds:
     - trigger:

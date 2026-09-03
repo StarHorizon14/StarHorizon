@@ -60,7 +60,7 @@
     implantAction: AnCoCreateDrone
   - type: TriggerOnActivateImplant
   - type: SpawnOnTrigger
-    proto: AnCoDroneOff
+    proto: AnCoGranadeSpawnSecure
 
 - type: entity
   parent: BaseTranslatorImplant
