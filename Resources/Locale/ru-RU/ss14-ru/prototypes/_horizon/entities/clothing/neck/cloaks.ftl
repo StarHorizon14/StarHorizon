@@ -62,4 +62,4 @@ ent-ClothingNeckCloakSpriter = плащ спрайтера
     .suffix = StarHorizon
 ent-ClothingNeckMaidArmlet = Нарукавники горничной с наплечниками
     .desc = Почему они отдельно?
-    .suffix = Cvartet
+    .suffix = StarHorizon

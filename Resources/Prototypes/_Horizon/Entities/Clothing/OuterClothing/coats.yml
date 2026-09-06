@@ -235,52 +235,50 @@
         - ReagentId: Fiber
           Quantity: 20
 
-# Прототипы сделаны Cvartet's ^~^
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLatexJacket
   name: Латексный пиджак
   description: "Ой... почему у него открытая грудь?!"
-  suffix: Cvartet
+  suffix: StarHorizon
   components:
   - type: Sprite
-    sprite: _Horizon/Clothing/OuterClothing/Coats/cvartet_latex_jacket.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Coats/latex_jacket.rsi
   - type: Clothing
-    sprite: _Horizon/Clothing/OuterClothing/Coats/cvartet_latex_jacket.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Coats/latex_jacket.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatMaidDress
   name: Престижный костюм горничной
   description: Элегантный костюм горничной с черным сердечком на фартуке.
-  suffix: Cvartet
+  suffix: StarHorizon
   components:
   - type: Sprite
-    sprite: _Horizon/Clothing/OuterClothing/Coats/cvartet_maid_dress.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Coats/maid_dress.rsi
   - type: Clothing
-    sprite: _Horizon/Clothing/OuterClothing/Coats/cvartet_maid_dress.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Coats/maid_dress.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatMaidApron
   name: Фартук горничной
   description: Миленький фартук горничной, как-то мало он прикрывает...
-  suffix: Cvartet
+  suffix: StarHorizon
   components:
   - type: Sprite
-    sprite: _Horizon/Clothing/OuterClothing/Coats/cvartet_maid_apron.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Coats/maid_apron.rsi
   - type: Clothing
-    sprite: _Horizon/Clothing/OuterClothing/Coats/cvartet_maid_apron.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Coats/maid_apron.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLeatherJacket
   name: Кожаная куртка
   description: Брутальная кожаная куртка, она очень круто выглядит на тебе, хорошо подчеркивает твои формы.
-  suffix: Cvartet
+  suffix: StarHorizon
   components:
   - type: Sprite
-    sprite: _Horizon/Clothing/OuterClothing/Coats/cvartet_leather_jacket.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Coats/leather_jacket.rsi
   - type: Clothing
-    sprite: _Horizon/Clothing/OuterClothing/Coats/cvartet_leather_jacket.rsi
-# А дальше уже не Cvartet @_@
+    sprite: _Horizon/Clothing/OuterClothing/Coats/leather_jacket.rsi

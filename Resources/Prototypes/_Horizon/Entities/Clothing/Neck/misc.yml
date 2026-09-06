@@ -20,14 +20,12 @@
   - type: Clothing
     sprite: _Horizon/Clothing/Neck/Misc/wingsagel.rsi
 
- # Прототип сделан Cvartet ^~^
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckHarness
   name: Обвязка
   description: Обвязка вокруг шеи? Пу-пу-пу... Дергать не стоит, лишь нежно притягивать.
-  suffix: Cvartet
+  suffix: StarHorizon
   components:
   - type: Sprite
-    sprite: _Horizon/Clothing/Neck/Misc/cvartet_harness.rsi
-# А дальше уже не Cvartet @_@
+    sprite: _Horizon/Clothing/Neck/Misc/harness.rsi

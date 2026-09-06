@@ -52,7 +52,7 @@
   - type: StorageFill
     contents:
       - id: ClothingHandsBlackBracelet
-      - id: ClothingHeadHatBunnyEarsCvartet
+      - id: ClothingHeadHatBunnyEars2
       - id: ClothingNeckHarness
       - id: ClothingOuterCoatLatexJacket
       - id: ClothingOuterCoatLeatherJacket
