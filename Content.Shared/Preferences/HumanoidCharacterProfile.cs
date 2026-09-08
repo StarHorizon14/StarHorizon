@@ -120,6 +120,9 @@ namespace Content.Shared.Preferences
         public string OOCFlavorText { get; set; } = string.Empty;
 
         [DataField]
+        public string ERPFlavorText { get; set; } = string.Empty;
+
+        [DataField]
         private HashSet<ProtoId<LanguagePrototype>> _languages = new();
 
         public IReadOnlySet<ProtoId<LanguagePrototype>> Languages => _languages;
@@ -167,6 +170,7 @@ namespace Content.Shared.Preferences
             ErpStatus erp,
             ProtoId<CharacterFactionPrototype> faction,
             string oocFlavor,
+            string erpFlavor,
             BarkData bark,
             HashSet<ProtoId<LanguagePrototype>> languages) // Horizon end
         {
@@ -188,6 +192,7 @@ namespace Content.Shared.Preferences
             ErpStat = erp;
             Faction = faction;
             OOCFlavorText = oocFlavor;
+            ERPFlavorText = erpFlavor;
             Bark = bark;
             _languages = languages;
             // Horizon end
@@ -218,6 +223,7 @@ namespace Content.Shared.Preferences
                 other.ErpStat,
                 other.Faction,
                 other.OOCFlavorText,
+                other.ERPFlavorText,
                 other.Bark,
                 other.Languages.ToHashSet()) // Horizon end
         {
@@ -243,6 +249,7 @@ namespace Content.Shared.Preferences
                 other.ErpStat,
                 other.Faction,
                 other.OOCFlavorText,
+                other.ERPFlavorText,
                 other.Bark,
                 other.Languages.ToHashSet()) // Horizon end
         {
@@ -554,6 +561,7 @@ namespace Content.Shared.Preferences
             if (ErpStat != other.ErpStat) return false;
             if (Faction != other.Faction) return false;
             if (OOCFlavorText != other.OOCFlavorText) return false;
+            if (ERPFlavorText != other.ERPFlavorText) return false;
             if (!_languages.SequenceEqual(other._languages)) return false;
             // Horizon end
             return Appearance.MemberwiseEquals(other.Appearance);
@@ -944,6 +952,11 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile WithOOCFlavorText(string flavorText)
         {
             return new(this) { OOCFlavorText = flavorText };
+        }
+
+        public HumanoidCharacterProfile WithERPFlavorText(string flavorText)
+        {
+            return new(this) { ERPFlavorText = flavorText };
         }
 
         #endregion

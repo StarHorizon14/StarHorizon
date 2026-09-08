@@ -4,6 +4,9 @@ erp-status-Consentual-flavor = [color=yellow]С данным персонаже�
 erp-status-NonCon-flavor = [color=green]Для большей части ЕРП взаимодействий, с данным персонажем предварительно согласие не требуется. Действия насильственного характера, все ещё требуют предварительного согласования.[/color]
 flavor-no-ic-desc = Описание отсутствует.
 flavor-no-ooc-desc = OOC заметки отсутствуют.
+flavor-no-erp-desc = NSFW описание отсутствуют.
 flavor-menu-tab-ic = Описание
 flavor-menu-tab-ooc = OOC заметки
+flavor-menu-tab-erp = NSFW описание
 ooc-flavor-text-placeholder = OOC заметки, которые смогут прочитать другие игроки вместе с внешним описанием.
+erp-flavor-text-placeholder = Описание пикантных деталей персонажа.
