@@ -53,4 +53,10 @@ public sealed partial class PortalComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public bool RandomTeleport = true;
+
+    /// <summary>
+    /// If true, this portal (and any portal it's linked to) will be deleted after the first entity teleports through it.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool OneUse;
 }
