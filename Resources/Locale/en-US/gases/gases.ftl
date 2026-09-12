@@ -17,3 +17,4 @@ gases-proto-nitrate = Proto-Nitrate
 gases-zauker = Zauker
 gases-halon = Halon
 gases-anti-noblium = Anti-Noblium
+gases-water = Water

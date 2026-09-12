@@ -82,3 +82,6 @@ alerts-rooted-name = Укоренен
 alerts-rooted-desc = Вы укоренены в землю. Вы не можете скользить, но поглощаете жидкости под собой.
 alerts-stealthy-name = Карманные кражи
 alerts-stealthy-desc = Показывает, совершаются ли вами карманные кражи. Нажмите, чтобы переключить.
+
+alerts-drowning-name = Утопление
+alerts-drowning-desc = Вы тонете в воде!

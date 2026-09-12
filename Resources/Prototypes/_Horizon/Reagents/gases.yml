@@ -1,0 +1,28 @@
+- type: reagent
+  id: SeaWater
+  name: reagent-name-seawater
+  desc: reagent-desc-seawater
+  physicalDesc: reagent-physical-desc-odorless
+  flavor: salty
+  color: "#135c4f"
+  recognizable: true
+  boilingPoint: 100.0
+  meltingPoint: 0.0
+  metabolisms:
+    Gas:
+      effects:
+        - !type:HealthChange
+          ignoreResistances: true
+          damage:
+            types:
+              Cold: 0.33
+        - !type:AdjustTemperature
+          amount: -20
+        - !type:PopupMessage
+          type: Local
+          messages: [ "water-in-lungs" ]
+          probability: 0.7
+        - !type:AdjustAlert
+          alertType: Drowning
+          clear: True
+          time: 5
