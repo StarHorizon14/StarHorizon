@@ -305,6 +305,7 @@ namespace Content.Server.Database
                 (ErpStatus)profile.ErpStatus,
                 profile.Faction,
                 profile.OOCFlavorText,
+                profile.ERPFlavorText,
                 new BarkData(profile.BarkProto, profile.BarkPitch, profile.LowBarkVar, profile.HighBarkVar),
                 languages.ToHashSet() // Horizon end
             );
@@ -411,6 +412,7 @@ namespace Content.Server.Database
 
             profile.ErpStatus = (int)humanoid.ErpStat;
             profile.Faction = humanoid.Faction;
+            profile.ERPFlavorText = humanoid.ERPFlavorText;
             profile.OOCFlavorText = humanoid.OOCFlavorText;
             profile.Languages.Clear();
             profile.Languages.AddRange(
