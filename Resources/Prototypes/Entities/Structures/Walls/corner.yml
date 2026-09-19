@@ -14,6 +14,8 @@
 - type: entity
   parent: HorizonBaseRailing
   id: WoodenRailing
+  name: деревянные перила
+  description: Простые деревянные перила, предназначенные для защиты таких идиотов как вы от падения.
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -64,6 +66,8 @@
 - type: entity
   parent: HorizonBaseRailing
   id: WoodenRailingCorner
+  name: деревянные перила
+  description: Простые деревянные перила, предназначенные для защиты таких идиотов как вы от падения.
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -122,6 +126,8 @@
 - type: entity
   parent: HorizonBaseRailing
   id: WoodenRailingCornerSmall
+  name: деревянные перила
+  description: Простые деревянные перила, предназначенные для защиты таких идиотов как вы от падения.
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -171,6 +177,8 @@
 - type: entity
   parent: HorizonBaseRailing
   id: WoodenRailingRound
+  name: деревянные перила
+  description: Простые деревянные перила, предназначенные для защиты таких идиотов как вы от падения.
   components:
   - type: Sprite
     drawdepth: SmallObjects
