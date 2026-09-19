@@ -778,7 +778,7 @@
 
 - type: construction
   id: WoodenRailingCorner
-  name: WoodenRailingCorner
+  name: деревянные перила угловые
   graph: WoodenRailing
   startNode: start
   targetNode: WoodenRailingCorner
@@ -791,7 +791,7 @@
 
 - type: construction
   id: WoodenRailingCornerSmall
-  name: WoodenRailingCornerSmall
+  name: деревянные перила угловые малые
   graph: WoodenRailing
   startNode: start
   targetNode: WoodenRailingCornerSmall
@@ -804,7 +804,7 @@
 
 - type: construction
   id: WoodenRailingRound
-  name: WoodenRailingRound
+  name: деревянные перила круглые
   graph: WoodenRailing
   startNode: start
   targetNode: WoodenRailingRound
