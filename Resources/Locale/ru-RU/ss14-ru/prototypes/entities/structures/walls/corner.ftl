@@ -1,5 +1,5 @@
-ent-HorizonBaseRailing = WoodenRailing
-    .desc = Basic wooden railing meant to protect idiots like you from falling.
+ent-HorizonBaseRailing = деревянные перила
+    .desc = Простые деревянные перила, предназначенные для защиты таких идиотов как вы от падения.
 ent-WoodenRailing = { ent-HorizonBaseRailing }
     .desc = { ent-HorizonBaseRailing.desc }
 ent-WoodenRailingCorner = { ent-HorizonBaseRailing }
