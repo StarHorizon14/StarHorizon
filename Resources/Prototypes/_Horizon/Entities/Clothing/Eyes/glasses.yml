@@ -96,7 +96,7 @@
   description: Солнцезащитные авиаторы оснащённые защитным экранированным покрытием специально для атмосов и инженеров. Походу этот модифицирован медсканером.
   components:
   - type: Sprite
-    sprite: _StarHorizon/Clothing/Eyes/mesonmod.rsi
+    sprite: _StarHorizon/Clothing/Eyes/Glasses/mesonmod.rsi
   - type: Clothing
-    sprite: _StarHorizon/Clothing/Eyes/mesonmod.rsi
+    sprite: _StarHorizon/Clothing/Eyes/Glasses/mesonmod.rsi
   - type: FlashImmunity

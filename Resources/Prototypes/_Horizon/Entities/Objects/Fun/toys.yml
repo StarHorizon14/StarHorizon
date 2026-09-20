@@ -1007,5 +1007,5 @@
   description: Мягкая плюшевая игрушка в виде атмосферного техника эльфийки с длинными ушками и беретом на голове. За спиной у неё миниатюрный пожарный топорик, а на груди аккуратно вышит бейджик с именем — "Диана".
   components:
   - type: Sprite
-    sprite: _StarHorizon/Object/Fun/plusieatmoself.rsi
+    sprite: _StarHorizon/Objects/Fun/plusieatmoself.rsi
     state: plushie_elfatmos
