@@ -105,3 +105,13 @@
   - type: Clothing
     sprite: _Horizon/Clothing/Head/Misc/maid_cap.rsi
 
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretAtmos
+  name: берет атмосферного техника
+  description: Голубой берет с вышитой эмблемой атмосферного отдела. Пахнет фрезоном.
+  components:
+  - type: Sprite
+    sprite: _StarHorizon/Clothing/Head/Hats/beret_atmospheric_technician.rsi
+  - type: Clothing
+    sprite: _StarHorizon/Clothing/Head/Hats/beret_atmospheric_technician.rsi

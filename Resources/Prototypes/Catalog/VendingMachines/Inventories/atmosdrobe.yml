@@ -15,5 +15,11 @@
     ClothingOuterWinterAtmos: 2
     ClothingNeckScarfStripedLightBlue: 3
     ClothingShoesBootsWinterAtmos: 2 #Delta V: Add departmental winter boots
+    ClothingHeadHatBeretAtmos: 3 # SH
+    ClothingAtmosphericsOveralls: 3 # SH
+    ClothingHandsGlovesAtmos: 1 # SH
   contrabandInventory:
     ToyFigurineAtmosTech: 1
+    PlushieElfAtmos: 1 # SH
+    ClothingEyesGlassesMesonMod: 1 # SH
+    ClothingMaskGasAtmosMod: 1 # SH
