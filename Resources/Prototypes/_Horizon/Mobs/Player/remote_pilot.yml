@@ -66,13 +66,14 @@
     - DoorBumpOpener
     - AnomalyHost
   - type: NightVision
+  - type: MobState
   - type: FTLKnockdownImmune
   - type: HumanoidAppearance
     species: Human
   #- type: Visibility  space-station-14/issues/37934 причина почему это не используется
   #  Layer: 5
   - type: RemotePilot
-            
+
 - type: entity
   save: false
   name: Remote Pilot
