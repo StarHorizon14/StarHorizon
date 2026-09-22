@@ -34,9 +34,6 @@
     interactSuccessString: hugging-success-generic
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
     messagePerceivedByOthers: hugging-success-generic-others
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
   - type: UserInterface
     interfaces:
       enum.HumanoidMarkingModifierKey.Key:
