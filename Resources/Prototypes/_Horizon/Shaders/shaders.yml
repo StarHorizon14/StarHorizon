@@ -17,3 +17,8 @@
     color1: 1, 1, 1
     color2: 1, 1, 1
     direction: 0
+
+- type: shader
+  id: PixelBlackHole
+  kind: source
+  path: "/Textures/_Horizon/Shaders/pixel_blackhole.swsl"
