@@ -1670,6 +1670,22 @@
       - id: MagazineShotgun # For Zauer and SPAS12
         amount: 3
 
+- type: listing
+  id: UplinkSecurityBackmanAmmoBlueprint
+  name: Чертеж боеприпасов
+  description: Чертеж для техфаба
+  icon: { sprite: _NF/Objects/Tools/blueprints.rsi, state: icon-base }
+  productEntity: MagazineSniperBarrettM82AR
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
 # - type: listing
 #   id: UplinkSecurityEnergyDomeGeneratorPersonalNSFD
 #   name: Энергетический барьер

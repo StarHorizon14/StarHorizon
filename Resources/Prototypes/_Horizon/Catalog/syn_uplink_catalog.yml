@@ -1391,3 +1391,14 @@
         amount: 1
       - id: MagazineShotgun # For Zauer and SPAS12
         amount: 3
+
+- type: listing
+  id: UplinkBackmanAmmoBlueprint
+  name: Чертеж боеприпасов
+  description: Чертеж для техфаба
+  icon: { sprite: _NF/Objects/Tools/blueprints.rsi, state: icon-base }
+  productEntity: MagazineSniperBarrettM82AR
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkAmmo
