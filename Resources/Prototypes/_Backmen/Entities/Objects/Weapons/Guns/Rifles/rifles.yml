@@ -17,11 +17,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tiny.rsi
   - type: Gun
-    minAngle: 1.5
+    minAngle: 0.05 #3 моа (1 моа это 1\60 градуса)
     maxAngle: 11
-    angleIncrease: 0.5
+    angleIncrease: 0.4
     angleDecay: 3
-    fireRate: 5.6
+    fireRate: 5 #скорострельность делаю по реальной то есть 600/60/2 и того 5
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
   - type: ChamberMagazineAmmoProvider
@@ -77,11 +77,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi
   - type: Gun
-    minAngle: 2.5
-    maxAngle: 15
+    minAngle: 0.08
+    maxAngle: 10
     angleIncrease: 0.8
     angleDecay: 3
-    fireRate: 5.6
+    fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
   - type: ChamberMagazineAmmoProvider
@@ -137,11 +137,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
   - type: Gun
-    minAngle: 1.4
-    maxAngle: 12
-    angleIncrease: 0.8
+    minAngle: 0.03
+    maxAngle: 10
+    angleIncrease: 0.6
     angleDecay: 4
-    fireRate: 6.5
+    fireRate: 6.6
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/ar18.ogg
     soundEmpty:
@@ -199,11 +199,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
   - type: Gun
-    minAngle: 0.8
+    minAngle: 0.02
     maxAngle: 6
-    angleIncrease: 0.6
+    angleIncrease: 0.5
     angleDecay: 4
-    fireRate: 5.8
+    fireRate: 6.25
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/g36.ogg
     soundEmpty:
@@ -261,9 +261,9 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tiny.rsi
   - type: Gun
-    minAngle: 1.2
+    minAngle: 0.0125
     maxAngle: 12
-    angleIncrease: 0.9
+    angleIncrease: 0.6
     angleDecay: 5
     fireRate: 5
     soundGunshot:
@@ -322,11 +322,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/tiny.rsi
   - type: Gun
-    minAngle: 2.2
+    minAngle: 0.07
     maxAngle: 16
     angleIncrease: 1
     angleDecay: 3
-    fireRate: 5.5
+    fireRate: 4.1
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
   - type: ChamberMagazineAmmoProvider
@@ -382,11 +382,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/tiny.rsi
   - type: Gun
-    minAngle: 0.7
+    minAngle: 0.02
     maxAngle: 13
-    angleIncrease: 0.8
+    angleIncrease: 0.5
     angleDecay: 5
-    fireRate: 6.7
+    fireRate: 7.5
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/m16.ogg
   - type: ChamberMagazineAmmoProvider
@@ -442,7 +442,7 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/tiny.rsi
   - type: Gun
-    minAngle: 1.2
+    minAngle: 0.2
     maxAngle: 10
     angleIncrease: 1.8
     angleDecay: 5
@@ -625,11 +625,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aug/tiny.rsi
   - type: Gun
-    minAngle: 1.2
+    minAngle: 0.2
     maxAngle: 7
     angleIncrease: 0.5
     angleDecay: 3
-    fireRate: 6.9
+    fireRate: 5.6
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/famas.ogg
   - type: ChamberMagazineAmmoProvider
@@ -685,11 +685,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/scar/tiny.rsi
   - type: Gun
-    minAngle: 1.2
+    minAngle: 0.02
     maxAngle: 9
-    angleIncrease: 0.9
+    angleIncrease: 0.4
     angleDecay: 3
-    fireRate: 6.3
+    fireRate: 5.2
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/T64.ogg
   - type: ChamberMagazineAmmoProvider
