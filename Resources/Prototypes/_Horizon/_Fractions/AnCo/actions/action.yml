@@ -1,4 +1,5 @@
 - type: entity
+  parent: BaseAction
   id: AnCoToggleInvisibilitySpider
   name: Невидимость Паука
   description: Переключение режима метаматериала для маскировки
@@ -12,6 +13,7 @@
     event: !type:ToggleActionEvent
 
 - type: entity
+  parent: BaseAction
   id: AnCoToggshield
   name: Метаматериал
   description: Переключение режима метаматериала для защиты
@@ -41,6 +43,7 @@
     event: !type:ActivateImplantEvent
 
 - type: entity
+  parent: BaseAction
   id: ActionActivateTitanSuitInjector
   name: Инъекция реагентов
   description: Впрыскивает 5 единиц реагентов из капсулы скафандра в кровь пользователя
@@ -55,6 +58,7 @@
     event: !type:TitanSuitInjectEvent
 
 - type: entity
+  parent: BaseAction
   id: AnCoCreateDrone
   name: Синтезировать бота
   description: Синтез защитного бота АнКо из нанитов в организме
