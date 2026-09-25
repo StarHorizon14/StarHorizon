@@ -1,0 +1,9 @@
+theend-connecting-in-progress = Подключение к серверу...
+theend-connecting-state-error = Ошибка
+theend-connecting-no-exit = Выхода нету
+theend-connecting-tip = Умри.
+theend-connecting-window-tip = Совет ???
+theend-connecting-tip-body = Что такое реальность?
+theend-connecting-reconnecting = Повторное подключение: { $seconds }
+theend-connecting-state-connected = Подключён
+theend-connecting-state-extraction = Аварийное извлечение

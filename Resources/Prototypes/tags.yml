@@ -1127,6 +1127,9 @@
   id: PlushieLizard
 
 - type: Tag
+  id: PlushieLizardAnomaly
+
+- type: Tag
   id: PlushieSharkBlue
 
 - type: Tag

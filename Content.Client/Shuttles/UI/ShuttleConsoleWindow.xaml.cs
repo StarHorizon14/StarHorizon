@@ -47,6 +47,9 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         NavModeButton.Pressed = true;
         SetupMode(_mode);
 
+        LayoutContainer.SetAnchorPreset(Contents, LayoutContainer.LayoutPreset.Wide);
+        LayoutContainer.SetAnchorPreset(DistortionOverlay, LayoutContainer.LayoutPreset.Wide);
+
         MapContainer.RequestFTL += (coords, angle) =>
         {
             RequestFTL?.Invoke(coords, angle);
@@ -167,6 +170,8 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
 
     public void UpdateState(EntityUid owner, ShuttleBoundUserInterfaceState cState)
     {
+        DistortionOverlay.Console = owner;
+
         var coordinates = _entManager.GetCoordinates(cState.NavState.Coordinates);
         NavContainer.SetShuttle(coordinates?.EntityId);
         NavContainer.SetConsole(owner);

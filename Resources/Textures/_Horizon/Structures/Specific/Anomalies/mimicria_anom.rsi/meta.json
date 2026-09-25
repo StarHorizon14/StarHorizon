@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "copyright": "anom7 and anom7-pulse taken from Workbench-Team/space-station-14 (Structures/Specific/anomaly.rsi) at https://github.com/Workbench-Team/space-station-14/tree/arumoon-server",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "anom7",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "anom7-pulse",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    }
+  ]
+}

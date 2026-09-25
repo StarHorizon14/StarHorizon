@@ -1,0 +1,17 @@
+ent-MobMimicriaBase = { ent-MobMimicBase }
+    .desc = { ent-MobMimicBase.desc }
+ent-MobStrider = strider
+    .desc = A terrible creature... The more you look at his skinny and mutilated body, the more you want to close this examine window. Wait, examine window? What are you talking about, you didn't say that?
+ent-MobMimicClown = clown
+    .desc = A very strange clown.
+    .suffix = Mimic
+ent-MobMimicTider = assistant
+    .desc = A very average assistant.
+    .suffix = Mimic
+ent-MobMimicTiderAngry = { ent-MobMimicTider }
+    .desc = { ent-MobMimicTider.desc }
+    .suffix = Mimic, Angry
+ent-ClothingMaskStrider = strider mask
+    .desc = Mask of a truly scary creature.
+ent-FoodMeatMimic = mimic flesh
+    .desc = Imitates even after death...

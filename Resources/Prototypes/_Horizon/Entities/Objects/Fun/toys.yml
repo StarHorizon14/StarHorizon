@@ -1009,3 +1009,75 @@
   - type: Sprite
     sprite: _StarHorizon/Objects/Fun/plusieatmoself.rsi
     state: plushie_elfatmos
+
+- type: entity
+  parent: PlushieLizard
+  id: PlushieLizardAnomaly #weh proklatie
+  name: серый унатх
+  description: Вех! (Бегите)
+  suffix: Очень сильно нагружает сервер
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Plushies/lizard.rsi
+    state: rainbowlizardplush
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: rainbowlizardplush-equipped-HELMET
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: rainbowlizardplush-inhand-left
+      right:
+      - state: rainbowlizardplush-inhand-right
+  - type: TriggerOnSpawn
+    keyOut: timer
+  - type: TimerTrigger
+    keysIn:
+    - timer
+    delay: 30
+    popup: null
+    keyOut: spawn-scatter
+  - type: SpawnOnTrigger
+    keysIn:
+    - spawn-scatter
+    proto: PlushieLizardAnomalyScatterer
+  - type: Tag
+    tags:
+    - PlushieLizardAnomaly
+  - type: RequiresGrid
+  - type: Damageable
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+        Structural: 25
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: UseDelay
+    delay: 0.8
+
+- type: entity
+  id: PlushieLizardAnomalyScatterer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+    keyOut: timer
+  - type: Tag
+    tags:
+    - PlushieLizardAnomaly
+  - type: RequiresGrid
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ScatteringGrenade
+    fillPrototype: PlushieLizardAnomaly
+    capacity: 2
+    triggerContents: false
+    velocity: 30
