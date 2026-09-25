@@ -1013,6 +1013,12 @@
   id: NukeOpsUplink
 
 - type: Tag
+  id: OperativeUplink
+
+- type: Tag
+  id: TelecomOfficerUplink
+
+- type: Tag
   id: Ointment
 
 - type: Tag

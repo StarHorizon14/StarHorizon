@@ -1749,6 +1749,7 @@
     Telecrystal: 4
   categories:
   - UplinkWearables
+
 - type: listing
   id: UplinkHardsuitSyndie
   name: uplink-hardsuit-syndie-name
