@@ -1397,7 +1397,7 @@
   name: Чертеж боеприпасов
   description: Чертеж для техфаба
   icon: { sprite: _NF/Objects/Tools/blueprints.rsi, state: icon-base }
-  productEntity: MagazineSniperBarrettM82AR
+  productEntity: BackmanAmmoBlueprint
   cost:
     Telecrystal: 20
   categories:
