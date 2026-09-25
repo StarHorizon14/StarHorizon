@@ -47,21 +47,6 @@
   - UplinkWeaponry
 
 - type: listing
-  id: UplinkHorizonSunfire
-  name: Набор Солнцепёка
-  description: "Да сгинут враги синдиката в адском пламени термобарического снаряда"
-  icon: { sprite:  /Textures/Objects/Weapons/Guns/Launchers/rocket.rsi, state: base }
-  productEntity: ClothingBackpackDuffelSyndicateFilledSunfire
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 45
-  cost:
-    Telecrystal: 60
-  categories:
-  - UplinkWeaponry
-
-
-- type: listing
   id: UplinkNFPistolCobra
   name: uplink-pistol-cobra-name
   description: uplink-pistol-cobra45-desc

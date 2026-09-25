@@ -26,11 +26,18 @@
     - UplinkSyndicateGunneryMissile
     - UplinkSyndicateGunneryAmmo
     - UplinkSyndicateGunneryConsoles
+    - UplinkTransfer
     # Horizon end
     currencyWhitelist:
     - Telecrystal
+    - Doubloon #horizon
+    - FrontierUplinkCoin #horizon
+    - CitadelCoin #horizon
     balance:
       Telecrystal: 0
+      Doubloon: 0 #horizon
+      FrontierUplinkCoin: 0 #horizon
+      CitadelCoin: 0 #horizon
 
 - type: entity
   id: StorePresetSpellbook
