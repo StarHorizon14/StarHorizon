@@ -1,0 +1,127 @@
+# Ported from Workbench-Team/space-station-14 (Starshine), admin spawn only
+- type: entity
+  id: AnomalyMimicria
+  parent: BaseAnomaly
+  suffix: Mimicria
+  components:
+  - type: Sprite
+    sprite: _Horizon/Structures/Specific/Anomalies/mimicria_anom.rsi
+    layers:
+    - state: anom7
+      map: ["enum.AnomalyVisualLayers.Base"]
+    - state: anom7-pulse
+      map: ["enum.AnomalyVisualLayers.Animated"]
+      visible: false
+  - type: PointLight
+    color: "#333333"
+    castShadows: false
+  - type: AmbientSound
+    range: 5
+    volume: -5
+    sound:
+      path: /Audio/_Horizon/Misc/radio_static.ogg
+  - type: Anomaly
+    minPointsPerSecond: 50
+    maxPointsPerSecond: 250
+  - type: EntitySpawnAnomaly
+    entries:
+    - settings:
+        spawnOnPulse: true
+        maxAmount: 7
+        maxRange: 5
+      spawns:
+      - MobMimicTider
+      - MobMimicTiderAngry
+      - MobMimicClown
+      - SlimeFloor
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 7
+        maxAmount: 7
+        maxRange: 5
+      spawns:
+      - MobStrider
+      - SlimeFloor
+      - SlimeFloor
+      - SlimeFloor
+
+- type: entity
+  id: SlimeFloor
+  parent: BaseKudzu
+  name: slime floor
+  description: The floor is covered in slime. Gross!
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/slash.ogg"
+  - type: Sprite
+    sprite: _Horizon/Tiles/Misc/slime.rsi
+    state: slime
+    drawdepth: FloorTiles
+  - type: Clickable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Damageable
+    damageModifierSet: SlimeMimic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Temperature
+    heatDamage:
+      types:
+        Heat: 5
+    coldDamage: {}
+    coldDamageThreshold: 0
+  - type: Flammable
+    fireSpread: true
+    damage:
+      types:
+        Heat: 1
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+    reactions:
+    - reagents: [SpaceCleaner]
+      methods: [Touch]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Heat: 10
+  - type: AtmosExposed
+  - type: Kudzu
+    growthTickChance: 0.1
+    spreadChance: 0.1
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.8
+    sprintSpeedModifier: 0.8
+    ignoreWhitelist:
+      components:
+      - IgnoreKudzu
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: DamageContacts
+    damage:
+      types:
+        Caustic: 3
