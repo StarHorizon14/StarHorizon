@@ -933,7 +933,7 @@
   name: магазин (.45 Auto)
   description: Магазин калибра .45 Auto для Вектора.
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_vector.rsi, state: base }
-  productEntity: MagazinePistolSubMachineGunVector45ACP
+  productEntity: MagazinePistolSubMachineGunVector45ACPExt
   cost:
     Telecrystal: 1
   categories:
@@ -1069,6 +1069,10 @@
   - type: StorageFill
     contents:
     - id: WeaponSubMachineGunVectorSpecial
+    - id: MagazinePistolSubMachineGunVector45ACPExt
+    - id: MagazinePistolSubMachineGunVector45ACPExt
+    - id: MagazinePistolSubMachineGunVector45ACPExt
+    - id: MagazinePistolSubMachineGunVector45ACPExt
     - id: MagazinePistolSubMachineGunVector45ACPExt
     - id: MagazinePistolSubMachineGunVector45ACPExt
 
