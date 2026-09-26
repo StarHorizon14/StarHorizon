@@ -80,6 +80,14 @@ public sealed partial class AdvancedRCDComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier SuccessSound { get; set; } = new SoundPathSpecifier("/Audio/Items/deconstruct.ogg");
+
+    /// <summary>
+    /// Horizon: if false, machine boards can't be inserted to add new buildable entities - the
+    /// device is limited to its AvailablePrototypes. Used for station-bound purchases, which are
+    /// meant to stay a simple fixed-recipe tool.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool AllowBoardInsertion { get; set; } = true;
 }
 
 [Serializable, NetSerializable]

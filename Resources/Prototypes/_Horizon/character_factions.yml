@@ -3,16 +3,12 @@
   name: faction-none-name
   desc: faction-none-desc
 
-# region Frontier
-
 - type: characterFaction
   id: FactionFrontier
   name: faction-frontier-name
   desc: faction-frontier-desc
   color: "#263B99"
   roundstart: false
-
-# region NFSD
 
 - type: characterFaction
   id: FactionNFSD
@@ -29,8 +25,6 @@
   color: "#369926"
   roundstart: false
   outpostSpawnListProto: FactionNFSD
-
-# region Experimental
 
 - type: characterFaction
   id: FactionSIU
@@ -49,8 +43,6 @@
   name: faction-anco-name
   desc: faction-anco-desc
   color: "#b30e0e"
-
-# region Medical
 
 - type: characterFaction
   id: FactionMed
@@ -78,8 +70,6 @@
   desc: faction-ccc-desc
   color: "#27BEF5"
 
-# region Edison / Engineering
-
 - type: characterFaction
   id: FactionEdison
   name: faction-edison-name
@@ -105,8 +95,6 @@
   desc: faction-nakamura-desc
   color: "#E0861D"
 
-# region Pirate
-
 - type: characterFaction
   id: FactionPirate
   name: faction-pirate-name
@@ -123,10 +111,8 @@
   roundstart: false
   outpostSpawnListProto: FactionSyndicate
 
-# region PMC
-
-- type: characterFaction
-  id: FactionInteQ
-  name: faction-inteq-name
-  desc: faction-inteq-desc
-  color: "#FF8C00"
+# - type: characterFaction
+#   id: FactionInteQ
+#   name: faction-inteq-name
+#   desc: faction-inteq-desc
+#   color: "#FF8C00"

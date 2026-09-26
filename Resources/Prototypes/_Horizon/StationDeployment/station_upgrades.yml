@@ -1,0 +1,528 @@
+# Station upgrade equipment - purchasable via the station control console once a development
+# category reaches the required level. Delivered flatpacked to the docked cargo capsule
+# ("tradedrop"); the crew has to carry it to the station and unpack it with a tool there. The
+# unpacked machine stays inert until activated with the station owner's ID card
+# (StationUpgradeEquipmentSystem), which also anchors it in place.
+#
+# These are the vanilla/NF bank ATM computers, just wrapped with StationUpgradeEquipment so
+# they have to be installed and activated by the station owner like any other purchase.
+
+- type: entity
+  parent: ComputerWithdrawBankATM
+  id: StationUpgradeWithdrawAtm
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: ComputerBlackMarketBankATM
+  id: StationUpgradeBlackMarketAtm
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: ComputerBankATM
+  id: StationUpgradeFullAtm
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeWithdrawAtmFlatpack
+  name: station bank terminal flatpack (withdraw-only)
+  description: A flatpack used for installing a withdraw-only bank terminal on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeWithdrawAtm
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeBlackMarketAtmFlatpack
+  name: station black market terminal flatpack
+  description: A flatpack used for installing a black market bank terminal on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeBlackMarketAtm
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeFullAtmFlatpack
+  name: station bank terminal flatpack
+  description: A flatpack used for installing a full-service bank terminal on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeFullAtm
+
+- type: stationUpgradePurchase
+  id: StationUpgradeWithdrawAtmPurchase
+  name: station-upgrade-withdraw-atm-name
+  description: station-upgrade-withdraw-atm-description
+  category: NFService
+  requiredLevel: 3
+  price: 5000
+  entity: StationUpgradeWithdrawAtmFlatpack
+  limit: 5
+
+- type: stationUpgradePurchase
+  id: StationUpgradeBlackMarketAtmPurchase
+  name: station-upgrade-blackmarket-atm-name
+  description: station-upgrade-blackmarket-atm-description
+  category: NFService
+  requiredLevel: 5
+  price: 8000
+  entity: StationUpgradeBlackMarketAtmFlatpack
+  limit: 5
+
+- type: stationUpgradePurchase
+  id: StationUpgradeFullAtmPurchase
+  name: station-upgrade-full-atm-name
+  description: station-upgrade-full-atm-description
+  category: NFService
+  requiredLevel: 10
+  price: 15000
+  entity: StationUpgradeFullAtmFlatpack
+  limit: 5
+
+# Heavier equipment upgrades - same delivery/activation flow as the ATMs above. Machines wired
+# straight into the HV power network (CableDeviceNode, no ExtensionCableReceiver) are unlocked too,
+# but lose power the moment they're re-anchored off their bound station's grid - see
+# BindToStationSystem.DisableOffGridCableDevices and StationUpgradeEquipmentSystem.OnMapInit.
+
+- type: entity
+  parent: SalvageMagnet
+  id: StationUpgradeSalvageMagnet
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+# Disabled - the gateway's destinations rely on GatewayGeneratorSystem, which is gated behind the
+# gateway.generator_enabled server cvar (defaults to false) and looks unfinished upstream. Re-enable
+# once that's sorted out.
+# - type: entity
+#   parent: Gateway
+#   id: StationUpgradeGateway
+#   suffix: Station Upgrade
+#   components:
+#   - type: StationUpgradeEquipment
+#   # Gateway.Enabled defaults to false (normally toggled on by admins/mappers once a destination is
+#   # ready) - a purchased gateway should just work once installed.
+#   - type: Gateway
+#     enabled: true
+
+- type: entity
+  parent: EnergyAirConverter
+  id: StationUpgradeEnergyAirConverter
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: AntiMatterFabricator
+  id: StationUpgradeAntiMatterFabricator
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: PowerTransmissionPoint
+  id: StationUpgradePowerTransmissionPoint
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: SMESBig
+  id: StationUpgradeSMESBig
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: MachineCryoSleepPodFallback
+  id: StationUpgradeCryoPod
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: VendingMachineFlatpackVend
+  id: StationUpgradeFlatpackVend
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: GasSalePoint
+  id: StationUpgradeGasSalePoint
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: GasSalePort
+  id: StationUpgradeGasSalePort
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: VendingMachineAmmoPOI
+  id: StationUpgradeAmmoVend
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: VendingMachinePickNPackPOI
+  id: StationUpgradePickNPackVend
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: ComputerPalletConsoleNFLowMarket
+  id: StationUpgradePalletConsoleLowMarket
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: ComputerPalletConsoleNFNormalMarket
+  id: StationUpgradePalletConsoleNormalMarket
+  suffix: Station Upgrade
+  components:
+  - type: StationUpgradeEquipment
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeSalvageMagnetFlatpack
+  name: station salvage magnet flatpack
+  description: A flatpack used for installing a salvage magnet on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeSalvageMagnet
+
+# Disabled - see StationUpgradeGateway above.
+# - type: entity
+#   parent: BaseNFFlatpack
+#   id: StationUpgradeGatewayFlatpack
+#   name: station gateway flatpack
+#   description: A flatpack used for installing a gateway on a deployed station.
+#   components:
+#   - type: Flatpack
+#     entity: StationUpgradeGateway
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeEnergyAirConverterFlatpack
+  name: station energy-to-air converter flatpack
+  description: A flatpack used for installing an energy-to-air converter on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeEnergyAirConverter
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeAntiMatterFabricatorFlatpack
+  name: station anti-matter fabricator flatpack
+  description: A flatpack used for installing an anti-matter fabricator on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeAntiMatterFabricator
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradePowerTransmissionPointFlatpack
+  name: station power transmission point flatpack
+  description: A flatpack used for installing a power transmission point on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradePowerTransmissionPoint
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeSMESBigFlatpack
+  name: station BLES flatpack
+  description: A flatpack used for installing a bluespace-leveraged energy storage unit on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeSMESBig
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeCryoPodFlatpack
+  name: station cryo pod flatpack
+  description: A flatpack used for installing a cryo sleep pod on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeCryoPod
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeFlatpackVendFlatpack
+  name: station FlatpackVend flatpack
+  description: A flatpack used for installing a FlatpackVend vending machine on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeFlatpackVend
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeGasSalePointFlatpack
+  name: station gas sale point flatpack
+  description: A flatpack used for installing a gas sale point on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeGasSalePoint
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeGasSalePortFlatpack
+  name: station gas sale port flatpack
+  description: A flatpack used for installing a dockable gas sale port on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeGasSalePort
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradeAmmoVendFlatpack
+  name: station ammo vendor flatpack
+  description: A flatpack used for installing an ammunition vending machine on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradeAmmoVend
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradePickNPackVendFlatpack
+  name: station Pick n' Pack flatpack
+  description: A flatpack used for installing a Pick n' Pack vending machine on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradePickNPackVend
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradePalletConsoleLowMarketFlatpack
+  name: station cargo sale computer flatpack (low market)
+  description: A flatpack used for installing a low-market cargo sale computer on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradePalletConsoleLowMarket
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationUpgradePalletConsoleNormalMarketFlatpack
+  name: station cargo sale computer flatpack
+  description: A flatpack used for installing a cargo sale computer on a deployed station.
+  components:
+  - type: Flatpack
+    entity: StationUpgradePalletConsoleNormalMarket
+
+- type: stationUpgradePurchase
+  id: StationUpgradeSalvageMagnetPurchase
+  name: station-upgrade-salvage-magnet-name
+  description: station-upgrade-salvage-magnet-description
+  category: NFEngineering
+  requiredLevel: 4
+  price: 12000
+  entity: StationUpgradeSalvageMagnetFlatpack
+  limit: 1
+
+# Disabled - see StationUpgradeGateway above.
+# - type: stationUpgradePurchase
+#   id: StationUpgradeGatewayPurchase
+#   name: station-upgrade-gateway-name
+#   description: station-upgrade-gateway-description
+#   category: NFScience
+#   requiredLevel: 8
+#   price: 50000
+#   entity: StationUpgradeGatewayFlatpack
+#   limit: 1
+
+- type: stationUpgradePurchase
+  id: StationUpgradeEnergyAirConverterPurchase
+  name: station-upgrade-energy-air-converter-name
+  description: station-upgrade-energy-air-converter-description
+  category: NFEngineering
+  requiredLevel: 5
+  price: 20000
+  entity: StationUpgradeEnergyAirConverterFlatpack
+  limit: 1
+
+- type: stationUpgradePurchase
+  id: StationUpgradeAntiMatterFabricatorPurchase
+  name: station-upgrade-antimatter-fabricator-name
+  description: station-upgrade-antimatter-fabricator-description
+  category: NFEngineering
+  requiredLevel: 8
+  price: 40000
+  entity: StationUpgradeAntiMatterFabricatorFlatpack
+  limit: 1
+
+- type: stationUpgradePurchase
+  id: StationUpgradePowerTransmissionPointPurchase
+  name: station-upgrade-power-transmission-point-name
+  description: station-upgrade-power-transmission-point-description
+  category: NFEngineering
+  requiredLevel: 3
+  price: 15000
+  entity: StationUpgradePowerTransmissionPointFlatpack
+  limit: 2
+
+- type: stationUpgradePurchase
+  id: StationUpgradeSMESBigPurchase
+  name: station-upgrade-smes-big-name
+  description: station-upgrade-smes-big-description
+  category: NFEngineering
+  requiredLevel: 2
+  price: 8000
+  entity: StationUpgradeSMESBigFlatpack
+  limit: 4
+
+- type: stationUpgradePurchase
+  id: StationUpgradeCryoPodPurchase
+  name: station-upgrade-cryo-pod-name
+  description: station-upgrade-cryo-pod-description
+  category: NFService
+  requiredLevel: 2
+  price: 6000
+  entity: StationUpgradeCryoPodFlatpack
+  limit: 2
+
+- type: stationUpgradePurchase
+  id: StationUpgradeFlatpackVendPurchase
+  name: station-upgrade-flatpack-vend-name
+  description: station-upgrade-flatpack-vend-description
+  category: NFService
+  requiredLevel: 1
+  price: 3000
+  entity: StationUpgradeFlatpackVendFlatpack
+  limit: 4
+
+- type: stationUpgradePurchase
+  id: StationUpgradeGasSalePointPurchase
+  name: station-upgrade-gas-sale-point-name
+  description: station-upgrade-gas-sale-point-description
+  category: NFEngineering
+  requiredLevel: 3
+  price: 5000
+  entity: StationUpgradeGasSalePointFlatpack
+  limit: 1
+
+- type: stationUpgradePurchase
+  id: StationUpgradeGasSalePortPurchase
+  name: station-upgrade-gas-sale-port-name
+  description: station-upgrade-gas-sale-port-description
+  category: NFEngineering
+  requiredLevel: 3
+  price: 5000
+  entity: StationUpgradeGasSalePortFlatpack
+  limit: 1
+
+- type: stationUpgradePurchase
+  id: StationUpgradeAmmoVendPurchase
+  name: station-upgrade-ammo-vend-name
+  description: station-upgrade-ammo-vend-description
+  category: NFArsenalMercenary
+  requiredLevel: 3
+  price: 7000
+  entity: StationUpgradeAmmoVendFlatpack
+  limit: 1
+
+- type: stationUpgradePurchase
+  id: StationUpgradePickNPackVendPurchase
+  name: station-upgrade-picknpack-vend-name
+  description: station-upgrade-picknpack-vend-description
+  category: NFService
+  requiredLevel: 2
+  price: 5000
+  entity: StationUpgradePickNPackVendFlatpack
+  limit: 1
+
+- type: stationUpgradePurchase
+  id: StationUpgradePalletConsoleLowMarketPurchase
+  name: station-upgrade-pallet-console-low-name
+  description: station-upgrade-pallet-console-low-description
+  category: NFService
+  requiredLevel: 1
+  price: 4000
+  entity: StationUpgradePalletConsoleLowMarketFlatpack
+  limit: 1
+
+- type: stationUpgradePurchase
+  id: StationUpgradePalletConsoleNormalMarketPurchase
+  name: station-upgrade-pallet-console-normal-name
+  description: station-upgrade-pallet-console-normal-description
+  category: NFService
+  requiredLevel: 4
+  price: 10000
+  entity: StationUpgradePalletConsoleNormalMarketFlatpack
+  limit: 1
+
+# Station-bound tools - not StationUpgradeEquipment (those anchor into place; these stay handheld
+# items). Instead they use GridAccessComponent, the same swipe-to-authorize mechanism ShipyardRCD
+# uses for ships, extended to also recognize StationDeedComponent (see GridAccessSystem). Swiping
+# the station's deed ID card on one binds it to that station's grid; it just won't work anywhere
+# else.
+
+- type: entity
+  name: station RCD
+  parent: RCD
+  id: StationRCD
+  suffix: Station Upgrade
+  description: A rapid construction device bound to a deployed station - swipe the station's deed ID card on it to authorize.
+  components:
+  - type: GridAccess
+
+- type: entity
+  name: station construction pistol
+  parent: AdvancedRCD
+  id: StationAdvancedRCD
+  suffix: Station Upgrade
+  description: An advanced construction device bound to a deployed station - swipe the station's deed ID card on it to authorize. Doesn't accept machine boards.
+  components:
+  - type: GridAccess
+  - type: AdvancedRCD
+    allowBoardInsertion: false
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationRCDFlatpack
+  name: station RCD flatpack
+  description: A flatpack used for delivering a station-bound RCD.
+  components:
+  - type: Flatpack
+    entity: StationRCD
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationAdvancedRCDFlatpack
+  name: station construction pistol flatpack
+  description: A flatpack used for delivering a station-bound construction pistol.
+  components:
+  - type: Flatpack
+    entity: StationAdvancedRCD
+
+- type: stationUpgradePurchase
+  id: StationRCDPurchase
+  name: station-upgrade-rcd-name
+  description: station-upgrade-rcd-description
+  category: NFEngineering
+  requiredLevel: 2
+  price: 6000
+  entity: StationRCDFlatpack
+  limit: 4
+
+- type: stationUpgradePurchase
+  id: StationAdvancedRCDPurchase
+  name: station-upgrade-advanced-rcd-name
+  description: station-upgrade-advanced-rcd-description
+  category: NFEngineering
+  requiredLevel: 5
+  price: 15000
+  entity: StationAdvancedRCDFlatpack
+  limit: 1

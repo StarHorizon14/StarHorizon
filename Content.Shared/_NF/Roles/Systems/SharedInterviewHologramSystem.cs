@@ -1,3 +1,4 @@
+using Content.Shared._Horizon.StationDeployment.Components;
 using Content.Shared._NF.Roles.Components;
 using Content.Shared._NF.Roles.Events;
 using Content.Shared._NF.Shipyard.Components;
@@ -54,16 +55,27 @@ public abstract partial class SharedInterviewHologramSystem : EntitySystem
     }
 
     /// <summary>
-    /// Checks if a given entity is the captain of the ship the target entity is on.
+    /// Checks if a given entity is the captain of the ship the target entity is on - or, for a
+    /// player-deployed station (Horizon), the holder of that station's deed.
     /// </summary>
     /// <param name="uid">The entity to check.</param>
     /// <param name="target">The target entity that's on the ship in question.</param>
     protected bool IsCaptain(EntityUid uid, EntityUid target)
     {
-        return IdCardSystem.TryFindIdCard(uid, out var idCard)
-            && TryComp(idCard, out ShuttleDeedComponent? shuttleDeed)
-            && TryComp(target, out TransformComponent? targetXform)
-            && shuttleDeed.ShuttleUid == targetXform.GridUid;
+        if (!IdCardSystem.TryFindIdCard(uid, out var idCard) ||
+            !TryComp(target, out TransformComponent? targetXform))
+        {
+            return false;
+        }
+
+        if (TryComp(idCard, out ShuttleDeedComponent? shuttleDeed) && shuttleDeed.ShuttleUid == targetXform.GridUid)
+            return true;
+
+        // Horizon: player-deployed stations use StationDeedComponent instead of ShuttleDeedComponent.
+        if (TryComp(idCard, out StationDeedComponent? stationDeed) && stationDeed.StationGridUid == targetXform.GridUid)
+            return true;
+
+        return false;
     }
 
     private void OnToggleApplicantApproval(Entity<InterviewHologramComponent> ent, ref ToggleApplicantApprovalEvent ev)
