@@ -126,22 +126,17 @@
   id: UplinkSyndicateGunneryConsoles
   name: store-category-syndicate-gunnery-consoles
   priority: 17
-
-- type: storeCategory
-  id: UplinkTransfer
-  name: store-category-syndicate-transfer
-  priority: 18
 # Horizon end
 
 - type: storeCategory
   id: UplinkJob
   name: store-category-job
-  priority: 19
+  priority: 18
 
 - type: storeCategory
   id: UplinkPointless
   name: store-category-pointless
-  priority: 20
+  priority: 19
 
 #revenant
 - type: storeCategory

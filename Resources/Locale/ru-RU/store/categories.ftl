@@ -18,7 +18,6 @@ store-category-syndicate-gunnery-kinetic = Кинетические орудия
 store-category-syndicate-gunnery-missile = Ракетные системы
 store-category-syndicate-gunnery-ammo = Боеприпасы для орудий
 store-category-syndicate-gunnery-consoles = Оборудование шаттла
-store-category-syndicate-transfer = Трансфер
 # Wizard
 store-caregory-spellbook-offensive = Наступательные заклинания
 store-caregory-spellbook-defensive = Защитные заклинания

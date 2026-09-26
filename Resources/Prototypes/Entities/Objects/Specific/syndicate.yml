@@ -71,9 +71,6 @@
   - type: Store
     balance:
       Telecrystal: 0
-      Doubloon: 0 #horizon
-      FrontierUplinkCoin: 0 #horizon
-      CitadelCoin: 0 #horizon
 
 - type: entity
   parent: BaseUplinkRadio
