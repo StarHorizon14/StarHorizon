@@ -619,7 +619,7 @@ namespace Content.Client.Lobby.UI
                 // Horizon start
 
                 _flavorText.OnOOCFlavorTextChanged += OnOOCFlavorTextChange;
-
+                _flavorText.OnERPFlavorTextChanged += OnERPFlavorTextChange;
                 _flavorText.OnErpStatChanged += args =>
                 {
                     OnErpChange((ErpStatus)args);
@@ -1526,6 +1526,7 @@ namespace Content.Client.Lobby.UI
             if (_flavorText != null)
             {
                 _flavorText.OOCFlavorTextInput.TextRope = new Rope.Leaf(Profile?.OOCFlavorText ?? "");
+                _flavorText.ERPFlavorTextInput.TextRope = new Rope.Leaf(Profile?.ERPFlavorText ?? "");
                 for (var i = 0; i <= (int)ErpStatus.NonCon; i++)
                 {
                     //_flavorText.ERPStatusButton.AddItem(FormattedMessage.RemoveMarkupOrThrow(Loc.GetString($"erp-status-{(ErpStatus)i}")), i);
@@ -2213,6 +2214,15 @@ namespace Content.Client.Lobby.UI
                 return;
 
             Profile = Profile.WithOOCFlavorText(content);
+            SetDirty();
+        }
+
+        private void OnERPFlavorTextChange(string content)
+        {
+            if (Profile is null)
+                return;
+
+            Profile = Profile.WithERPFlavorText(content);
             SetDirty();
         }
         // Horizon end
