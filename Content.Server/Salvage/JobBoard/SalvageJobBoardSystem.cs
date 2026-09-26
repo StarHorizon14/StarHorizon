@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._NF.Cargo.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Radio.EntitySystems;
@@ -39,6 +40,10 @@ public sealed class SalvageJobBoardSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<EntitySoldEvent>(OnSold);
+        // Horizon: the NF cargo pallet console (used by every Frontier-flavored sale computer,
+        // including the purchasable station upgrades) raises its own sold event instead of vanilla's
+        // EntitySoldEvent, so bounty completion never fired for anything sold through it.
+        SubscribeLocalEvent<NFEntitySoldEvent>(OnNFSold);
         SubscribeLocalEvent<SalvageJobBoardConsoleComponent, BoundUIOpenedEvent>(OnBUIOpened);
         Subs.BuiEvents<SalvageJobBoardConsoleComponent>(SalvageJobBoardUiKey.Key,
             subs =>
@@ -57,6 +62,21 @@ public sealed class SalvageJobBoardSystem : EntitySystem
             if (!FulfillsSalvageJob(sold, (args.Station, salvageJobsData), out var jobId))
                 continue;
             TryCompleteSalvageJob((args.Station, salvageJobsData), jobId.Value);
+        }
+    }
+
+    // Horizon
+    private void OnNFSold(ref NFEntitySoldEvent args)
+    {
+        if (_station.GetOwningStation(args.Grid) is not { } station ||
+            !TryComp<SalvageJobsDataComponent>(station, out var salvageJobsData))
+            return;
+
+        foreach (var sold in args.Sold)
+        {
+            if (!FulfillsSalvageJob(sold, (station, salvageJobsData), out var jobId))
+                continue;
+            TryCompleteSalvageJob((station, salvageJobsData), jobId.Value);
         }
     }
 

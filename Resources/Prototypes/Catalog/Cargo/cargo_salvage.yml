@@ -41,16 +41,6 @@
 
 # Rank 3
 - type: cargoProduct
-  id: CargoFulton
-  icon:
-    sprite: /Textures/Objects/Tools/fulton.rsi
-    state: extraction_pack
-  product: CrateFulton
-  cost: 20000
-  category: cargoproduct-category-name-cargo
-  group: market
-
-- type: cargoProduct
   id: CargoVoidJetpack
   icon:
     sprite: Objects/Tanks/Jetpacks/void.rsi

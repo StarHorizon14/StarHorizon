@@ -1,3 +1,7 @@
+# Station deployment - cargo capsule dock port priority tag
+- type: Tag
+  id: CargoCapsuleDock
+
 # Mech gygax
 
 - type: Tag
