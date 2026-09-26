@@ -58,7 +58,7 @@
   id: UplinkMagazineSniperBarrettM82AR
   name: uplink-magazine-sniper-barrett-m82-ar-name
   description: uplink-magazine-sniper-barrett-m82-ar-desc
-  icon: { sprite: _Horizon/Objects/Weapons/Guns/Ammunition/Casings/sniper_barrettm82_mag.rsi, state: sred }
+  icon: { sprite: _Horizon/Objects/Weapons/Guns/Ammunition/Casings/sniper_barrettm82_mag.rsi, state: armor_piercing }
   productEntity: MagazineSniperBarrettM82AR
   cost:
     Telecrystal: 3
@@ -69,7 +69,7 @@
   id: UplinkMagazineBarrettM82HighVelocity
   name: uplink-magazine-barrett-m82-high-velocity-name
   description: uplink-magazine-barrett-m82-high-velocity-desc
-  icon: { sprite: _Horizon/Objects/Weapons/Guns/Ammunition/Casings/sniper_barrettm82_mag.rsi, state: red }
+  icon: { sprite: _Horizon/Objects/Weapons/Guns/Ammunition/Casings/sniper_barrettm82_mag.rsi, state: high_velocity }
   productEntity: MagazineBarrettM82HighVelocity
   cost:
     Telecrystal: 3
@@ -102,7 +102,7 @@
   id: UplinkMagazinePistols9x18
   name: uplink-magazine-pistols-9x18-name
   description: uplink-magazine-pistols-9x18-desc
-  icon: { sprite: _Horizon/Objects/Weapons/Guns/Pistols/makarov.rsi, state: slug }
+  icon: { sprite: _Horizon/Objects/Weapons/Guns/Ammunition/Casings/pistol_makarov_mag.rsi, state: base }
   productEntity: MagazinePistols9x18
   cost:
     Telecrystal: 3
@@ -933,7 +933,7 @@
   name: магазин (.45 Auto)
   description: Магазин калибра .45 Auto для Вектора.
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_vector.rsi, state: base }
-  productEntity: MagazinePistolSubMachineGunVector45ACP
+  productEntity: MagazinePistolSubMachineGunVector45ACPExt
   cost:
     Telecrystal: 1
   categories:
@@ -1069,6 +1069,10 @@
   - type: StorageFill
     contents:
     - id: WeaponSubMachineGunVectorSpecial
+    - id: MagazinePistolSubMachineGunVector45ACPExt
+    - id: MagazinePistolSubMachineGunVector45ACPExt
+    - id: MagazinePistolSubMachineGunVector45ACPExt
+    - id: MagazinePistolSubMachineGunVector45ACPExt
     - id: MagazinePistolSubMachineGunVector45ACPExt
     - id: MagazinePistolSubMachineGunVector45ACPExt
 
@@ -1253,6 +1257,11 @@
     Telecrystal: 60
   categories:
   - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - TelecomOfficerUplink
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -1275,6 +1284,11 @@
     Telecrystal: 40
   categories:
   - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - TelecomOfficerUplink
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -1297,6 +1311,11 @@
     Telecrystal: 17
   categories:
   - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - TelecomOfficerUplink
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -1311,10 +1330,10 @@
 
 - type: listing
   id: UplinkSpas12Bundle
-  name: набор "SPAS-12"
-  description: Спас-12, великолепное оружие которое показала свою надежность и убойную силу. В комплетке 43 патрона.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledSPAS12
+  name: набор "Guardian-17"
+  description: Дробовик Guardian модели U-Type производства "Interdyne", сплав корпуса сделан из передовых материалов, что придает легкость в обращении, .
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/guard-17/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledGu17
   cost:
     Telecrystal: 15
   categories:
@@ -1322,12 +1341,12 @@
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
-  id: ClothingBackpackDuffelSyndicateFilledSPAS12
-  name: набор "SPAS-12"
+  id: ClothingBackpackDuffelSyndicateFilledGu17
+  name: набор "Guardian-17"
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgun12
+    - id: WeaponShotgunGuardian
 
 - type: listing
   id: UplinkFlamethrower
@@ -1391,3 +1410,47 @@
         amount: 1
       - id: MagazineShotgun # For Zauer and SPAS12
         amount: 3
+
+- type: listing
+  id: UplinkBackmanAmmoBlueprint
+  name: Чертеж боеприпасов
+  description: Чертеж для техфаба
+  icon: { sprite: _NF/Objects/Tools/blueprints.rsi, state: icon-base }
+  productEntity: BackmanAmmoBlueprint
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkHardsuitSyndieCommander
+  name: Скафандр командира синдиката
+  description: Для настоящих командиров
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateCommanderHardsuitBundle
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 15
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - TelecomOfficerUplink
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateCommanderHardsuitBundle
+  name: syndicate hardsuit bundle
+  description: "Contains the Syndicate's signature blood red hardsuit."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitSyndieCommander
+      - id: ClothingMaskGasSyndicate
+      - id: ClothingHandsGlovesCombat
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
