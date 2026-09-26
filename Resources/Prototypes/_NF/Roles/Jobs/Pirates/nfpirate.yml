@@ -46,6 +46,7 @@
   storage:
     back:
     - AppraisalTool
+    - CoordinatesDiskPirate
 
 - type: chameleonOutfit
   id: NFPirateChameleonOutfit
