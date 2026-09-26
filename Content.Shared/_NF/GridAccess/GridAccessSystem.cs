@@ -1,6 +1,7 @@
 using Content.Shared.Popups;
 using Content.Shared.Interaction;
 using Content.Shared._NF.Shipyard.Components;
+using Content.Shared._Horizon.StationDeployment.Components;
 using Content.Shared.Access.Components;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.StationRecords;
@@ -39,8 +40,16 @@ public sealed class GridAccessSystem : EntitySystem
         // Device found, we're handling this event.
         args.Handled = true;
 
-        // If the id card has no registered ship we cant continue.
-        if (!TryComp<ShuttleDeedComponent>(uid, out var shuttleDeedComponent))
+        // Horizon: accept either a shuttle deed (ships) or a station deed (deployed stations),
+        // preferring the shuttle deed if the card somehow carries both.
+        EntityUid? linkedGridUid = null;
+        if (TryComp<ShuttleDeedComponent>(uid, out var shuttleDeedComponent))
+            linkedGridUid = shuttleDeedComponent.ShuttleUid;
+        else if (TryComp<StationDeedComponent>(uid, out var stationDeedComponent))
+            linkedGridUid = stationDeedComponent.StationGridUid;
+
+        // If the id card has no registered ship or station we cant continue.
+        if (linkedGridUid is not { Valid: true })
         {
             _popup.PopupClient(Loc.GetString("grid-access-missing-id-deed"),
                 uid, args.User, PopupType.Medium);
@@ -49,7 +58,7 @@ public sealed class GridAccessSystem : EntitySystem
         }
 
         // Swiping it again removes the authorization on it.
-        if (gridAccessComponent.LinkedShuttleUid == shuttleDeedComponent.ShuttleUid)
+        if (gridAccessComponent.LinkedShuttleUid == linkedGridUid)
         {
             _popup.PopupClient(Loc.GetString("grid-access-id-card-removed"),
                 uid, args.User, PopupType.Medium);
@@ -61,7 +70,7 @@ public sealed class GridAccessSystem : EntitySystem
             _popup.PopupClient(Loc.GetString("grid-access-id-card-accepted"),
                 uid, args.User, PopupType.Medium);
             _audio.PlayLocal(gridAccessComponent.InsertSound, rcdEntityUid, args.User);
-            gridAccessComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
+            gridAccessComponent.LinkedShuttleUid = linkedGridUid;
         }
 
         Dirty(rcdEntityUid, gridAccessComponent);

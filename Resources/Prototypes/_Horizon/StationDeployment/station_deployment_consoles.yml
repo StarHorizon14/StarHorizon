@@ -1,0 +1,41 @@
+- type: entity
+  id: ComputerStationControl
+  parent: BaseComputer
+  name: station control console
+  description: Lets you rename this station and manage its bank account.
+  components:
+  - type: StationControlConsole
+    cashSlot:
+      name: station-bank-ATM-cashSlot
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - Cash
+  - type: ActivatableUI
+    key: enum.StationControlConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.StationControlConsoleUiKey.Key:
+        type: StationControlConsoleBoundUserInterface
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      station-control-console-cashSlot: !type:ContainerSlot
+
+- type: entity
+  id: ComputerStationTask
+  parent: BaseComputer
+  name: station task console
+  description: Lets you browse the station's active orders and summon/recall a cargo capsule to deliver them.
+  components:
+  - type: StationTaskConsole
+  - type: ActivatableUI
+    key: enum.StationTaskConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.StationTaskConsoleUiKey.Key:
+        type: StationTaskConsoleBoundUserInterface

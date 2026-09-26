@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server._NF.Cargo.Systems;
 using Content.Server._NF.Market.Components;
 using Content.Server._NF.Market.Extensions;
+using Content.Server.Cargo.Systems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Materials;
 using Content.Shared.Power;
@@ -25,6 +26,9 @@ public sealed partial class MarketSystem
     private void InitializeConsole()
     {
         SubscribeLocalEvent<NFEntitySoldEvent>(OnEntitySoldEvent);
+        // Horizon: a couple of vanilla CargoPalletConsole entities still exist and raise vanilla's
+        // EntitySoldEvent instead of the NF one - keep market data in sync for those too.
+        SubscribeLocalEvent<EntitySoldEvent>(OnVanillaEntitySoldEvent);
         SubscribeLocalEvent<MarketConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);
         SubscribeLocalEvent<MarketConsoleComponent, MarketConsoleCartMessage>(OnCartMessage);
         SubscribeLocalEvent<MarketConsoleComponent, PowerChangedEvent>(OnPowerChanged);
@@ -49,6 +53,18 @@ public sealed partial class MarketSystem
         {
             return;
         }
+
+        foreach (var sold in entitySoldEvent.Sold)
+        {
+            UpsertEntity(market, sold);
+        }
+    }
+
+    // Horizon
+    private void OnVanillaEntitySoldEvent(ref EntitySoldEvent entitySoldEvent)
+    {
+        if (!_entityManager.TryGetComponent<CargoMarketDataComponent>(entitySoldEvent.Station, out var market))
+            return;
 
         foreach (var sold in entitySoldEvent.Sold)
         {
