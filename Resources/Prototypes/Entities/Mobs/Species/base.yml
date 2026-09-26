@@ -220,6 +220,7 @@
     - DoorBumpOpener
     - AnomalyHost
   - type: NightVision
+  - type: InGas # Horizon: underwater crush-depth detection
 
 - type: entity
   save: false

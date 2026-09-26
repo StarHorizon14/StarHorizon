@@ -43,7 +43,7 @@ public sealed partial class AtmosphereSystem
            return;
        }
 
-       var mixtures = new GasMixture[13]; // Add one per added array. // Frontier:9<13
+       var mixtures = new GasMixture[15]; // Add one per added array. // Frontier:9<13 // Horizon:13<15
        for (var i = 0; i < mixtures.Length; i++)
            mixtures[i] = new GasMixture(Atmospherics.CellVolume) { Temperature = Atmospherics.T20C };
 
@@ -93,6 +93,14 @@ public sealed partial class AtmosphereSystem
        mixtures[12].AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesStandard);
        mixtures[12].AdjustMoles(Gas.WaterVapor, Atmospherics.NitrogenMolesStandard);
        mixtures[12].Temperature = 340f; // Sauna
+
+       // Horizon - 13: Water
+       mixtures[13].AdjustMoles(Gas.Water, Atmospherics.WaterMolesStandard);
+       mixtures[13].Temperature = 40f;
+
+       // Horizon - 14: Trench Water (extremely high pressure for the bottom of a trench)
+       mixtures[14].AdjustMoles(Gas.Water, Atmospherics.TrenchMolesStandard);
+       mixtures[14].Temperature = 20f;
 
        foreach (var arg in args)
        {

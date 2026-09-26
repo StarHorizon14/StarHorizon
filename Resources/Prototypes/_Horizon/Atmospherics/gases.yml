@@ -1,0 +1,11 @@
+- type: gas
+  id: 21
+  name: gases-water
+  specificHeat: 1000
+  heatCapacityRatio: 1.33
+  molarMass: 18
+  gasOverlaySprite: /Textures/_Horizon/Effects/atmospherics_water.rsi
+  gasOverlayState: water
+  color: 135c4f
+  reagent: SeaWater
+  pricePerMole: 0.04
