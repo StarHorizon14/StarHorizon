@@ -1,7 +1,7 @@
 - type: gameMap
   id: Frontier
   mapName: 'Аванпост Фронтира'
-  mapPath: /Maps/_NF/Outpost/frontier.yml
+  mapPath: /Maps/_Horizon/Outpost/frontier.yml #Horizon-Maps
   minPlayers: 0
   maxPlayers: 100
   randomRotation: false
