@@ -69,7 +69,7 @@
     count: 20
     stackType: CitadelCoin
   - type: StaticPrice
-    price: 0
+    price: 10
   - type: StackPrice
     price: 200
   - type: Currency

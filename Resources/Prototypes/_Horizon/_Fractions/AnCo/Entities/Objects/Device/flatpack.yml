@@ -15,6 +15,7 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
+    vendPrise: 500
   - type: Rotatable # Frontier
   - type: BindToStation # Horizon
     enabled: false # Horizon - should be draggable between stations
