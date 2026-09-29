@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Numerics;
 using Content.Server.Administration;
 using Content.Shared._Horizon.Mirage;
@@ -42,8 +43,8 @@ public sealed class MirageLinkCommand : LocalizedEntityCommands
 
         if (args.Length == 6)
         {
-            if (!float.TryParse(args[2], out var offsetX) || !float.TryParse(args[3], out var offsetY)
-                || !float.TryParse(args[4], out var sizeX) || !float.TryParse(args[5], out var sizeY))
+            if (!float.TryParse(args[2], NumberStyles.Float, CultureInfo.InvariantCulture, out var offsetX) || !float.TryParse(args[3], NumberStyles.Float, CultureInfo.InvariantCulture, out var offsetY)
+                || !float.TryParse(args[4], NumberStyles.Float, CultureInfo.InvariantCulture, out var sizeX) || !float.TryParse(args[5], NumberStyles.Float, CultureInfo.InvariantCulture, out var sizeY))
             {
                 shell.WriteError(Loc.GetString("shell-argument-must-be-number"));
                 return;

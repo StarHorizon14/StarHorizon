@@ -133,6 +133,8 @@ public sealed class MirageBorderSystem : SharedMirageBorderSystem
             var eye = new FixedEye
             {
                 DrawFov = false,
+                // Eyes default to a zoom of 2, the viewport has to map one tile to PixelsPerMeter pixels.
+                Zoom = Vector2.One,
             };
 
             var viewport = _clyde.CreateViewport(pixelSize, $"Mirage-{uid}");
