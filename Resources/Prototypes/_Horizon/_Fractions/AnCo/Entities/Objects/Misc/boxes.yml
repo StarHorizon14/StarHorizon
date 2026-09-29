@@ -224,19 +224,19 @@
   - type: StaticPrice
     price: 5000
 
-- type: entity
-  categories: [ HideSpawnMenu ]
-  parent: AnCoBox
-  id: AnCoBoxStoreBug
-  components:
-  - type: SpawnItemsOnUse
-    items:
-    - id: SuitProtectiveAnCo
-    - id: AnCoDroneOff
-    - id: AnCoDroneOff
-    - id: AnCoDroneOff
-    - id: AnCoDroneOff
-    - id: AnCoopenbox
+# - type: entity
+#   categories: [ HideSpawnMenu ]
+#   parent: AnCoBox
+#   id: AnCoBoxStoreBug
+#   components:
+#   - type: SpawnItemsOnUse
+#     items:
+#     - id: SuitProtectiveAnCo
+#     - id: AnCoDroneOff
+#     - id: AnCoDroneOff
+#     - id: AnCoDroneOff
+#     - id: AnCoDroneOff
+#     - id: AnCoopenbox
 
 - type: entity
   categories: [ HideSpawnMenu ]
