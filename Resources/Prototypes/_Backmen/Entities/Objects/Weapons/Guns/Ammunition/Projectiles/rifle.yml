@@ -20,7 +20,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 20
+        Piercing: 10
         Structural: 20
     ignoreResistances: true
 
@@ -81,8 +81,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 21
-        Structural: 21
+        Piercing: 11
+        Structural: 20
     ignoreResistances: true
 
 - type: entity
@@ -142,7 +142,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 17
+        Piercing: 8
         Structural: 17
     ignoreResistances: true
 
@@ -203,7 +203,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 28
+        Piercing: 14
         Structural: 28
     ignoreResistances: true
 
@@ -264,8 +264,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 36
-        Structural: 36
+        Piercing: 20
+        Structural: 40
     ignoreResistances: true
 
 - type: entity
@@ -278,7 +278,6 @@
     damage:
       types:
         Piercing: 40
-        Blunt: 25
         Structural: 80
   - type: StaminaDamageOnCollide
     damage: 50
@@ -292,6 +291,6 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 65
+        Piercing: 50
         Structural: 350
     ignoreResistances: true

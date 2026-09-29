@@ -1,0 +1,42 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+               Title="{Loc 'station-task-console-window-title'}"
+               MinSize="500 400"
+               SetSize="600 550">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Orientation="Horizontal"
+                      HorizontalExpand="True"
+                      VerticalExpand="False"
+                      MinHeight="85"
+                      Margin="10">
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+                <RichTextLabel Name="CapsuleStatusLabel"/>
+                <Control VerticalExpand="True"/>
+                <BoxContainer Name="CategoryLevelsContainer" Orientation="Horizontal" HorizontalExpand="True" VerticalAlignment="Bottom"/>
+                <!-- This is where we put all of the little graphics that display development levels! -->
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalAlignment="Right">
+                <Button Name="SummonButton" Text="{Loc 'station-task-console-summon-button'}" MinHeight="40"/>
+                <Label Name="SummonCostLabel" StyleClasses="LabelSubText" HorizontalAlignment="Center"/>
+                <Button Name="RecallButton" Text="{Loc 'station-task-console-recall-button'}" MinHeight="40"/>
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical"
+                      HorizontalExpand="True"
+                      VerticalExpand="True"
+                      Margin="10 0 10 10">
+            <Label Text="{Loc 'station-task-console-orders-header'}" HorizontalAlignment="Center"/>
+            <customControls:HSeparator StyleClasses="LowDivider" Margin="0 0 0 10"/>
+            <PanelContainer VerticalExpand="True">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                </PanelContainer.PanelOverride>
+                <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+                    <BoxContainer Name="OrdersContainer" Orientation="Vertical" VerticalExpand="True"/>
+                </ScrollContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

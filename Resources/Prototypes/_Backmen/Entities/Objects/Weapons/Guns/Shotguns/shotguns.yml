@@ -206,10 +206,10 @@
     delay: 0.4
   - type: GunRequiresWield
   - type: Gun
-    fireRate: 2
+    fireRate: 2.5
     cameraRecoilScalar: 1
     soundGunshot:
-      collection: GuardianShot
+      path: /Audio/Weapons/Guns64/Shotguns/t35.ogg
 
 - type: entity
   parent: [WeaponShotgunZauer, BaseC3Contraband]

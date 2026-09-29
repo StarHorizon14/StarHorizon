@@ -24,7 +24,4 @@ public sealed partial class CCVars
 
     public static readonly CVarDef<float> StopSpeed =
         CVarDef.Create("physics.stop_speed", 0.1f, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
-
-    public static readonly CVarDef<bool> EnablePushBody =
-        CVarDef.Create("physics.push_body", true, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
 }

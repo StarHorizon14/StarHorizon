@@ -1006,7 +1006,7 @@ entities:
     - type: Transform
       pos: 0.5,11.5
       parent: 1
-- proto: ComputerTabletopShuttleAntagPirate
+- proto: ComputerTabletopShuttleAntag
   entities:
   - uid: 106
     components:

@@ -83,10 +83,6 @@
   - type: Blueprint
     providedRecipes:
     - MagazinePacketHeavyRifle50BMG
-    - MagazinePacketPistol50AEAP
-    - MagazinePacketRifle762x39AP
-    - MagazinePacketRifle556UEGAP
-    - MagazinePacketRifle762UEGAP
     - MagazinePacketPistol9x17
     - MagazinePacketPistolACP
     - MagazinePacketPistol57x28
@@ -110,6 +106,12 @@
     - MagazinePacketPistol9x17
     - MagazinePacketPistol57x28
     - MagazinePacketPistol50AE
+    - SpeedLoader357Magnum
+    - SpeedLoader38Special
+    - SpeedLoader44Magnum
+    - MagazinePacketRevolver357Magnum
+    - MagazinePacketRevolver44Magnum
+    - MagazinePacketRevolver38Special
 
 - type: entity
   parent: NFBaseBlueprintExpeditionArmory
@@ -159,9 +161,4 @@
     - MagazinePistol45ACPincendiary
     - MagazinePistol57x28Incendiary
     - MagazinePistol9x17Incendiary
-    - SpeedLoader357Magnum
-    - SpeedLoader38Special
-    - SpeedLoader44Magnum
-    - MagazinePacketRevolver357Magnum
-    - MagazinePacketRevolver44Magnum
-    - MagazinePacketRevolver38Special
+

@@ -1,4 +1,6 @@
+using Content.Server._Horizon.BlackholeEvent;
 using Content.Shared.Administration;
+using Content.Shared._Horizon.BlackholeEvent;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameWindow;
@@ -198,6 +200,13 @@ namespace Content.Server.GameTicking
                     var rulesMessage = GetGameRulesListMessage(true);
                     _chatManager.SendAdminAnnouncementMessage(session, Loc.GetString("starting-rule-selected-preset", ("preset", rulesMessage)));
                 }
+            }
+
+            // _Horizon: while the blackhole event is active, hold the player on a lockdown scene instead of gameplay.
+            if (EntityManager.System<BlackholeEventSystem>().Active)
+            {
+                RaiseNetworkEvent(new BlackholeEventStateMessage(true), session.Channel);
+                return;
             }
 
             RaiseNetworkEvent(new TickerJoinGameEvent(), session.Channel);

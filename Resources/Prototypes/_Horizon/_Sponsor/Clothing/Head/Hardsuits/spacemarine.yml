@@ -1,0 +1,23 @@
+- type: entity
+  parent: [NFClothingHeadHardsuitWithLightBase, BaseC3Contraband]
+  id: ClothingHeadHelmetHardsuitSyndicateExperimentalHorizon
+  categories: [ HideSpawnMenu ]
+  name: 'шлем "Эксперимент-00 Бессмертный полк"'
+  description: Тяжело бронированный шлем экспериментального синдикатского скафандра.
+  suffix: Sponsor
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Sponsor/Clothing/Head/Hardsuits/spacemarine.rsi
+  - type: Clothing
+    sprite: _Horizon/_Sponsor/Clothing/Head/Hardsuits/spacemarine.rsi
+  - type: BreathMask
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9

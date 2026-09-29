@@ -1,0 +1,33 @@
+- type: entity
+  parent: [BaseC3Contraband, ClothingOuterHardsuitJuggernaut] # Jugger Suit
+  id: ClothingOuterHardsuitSyndicateExperimentalHorizon
+  name: 'Эксперимент-00 "Бессмертный полк"'
+  description: Крайне тяжело бронированный экспериментальный синдикатский скафандр. Это чудо инженерной мысли использует передовые сплавы, обеспечивая колоссальную защиту почти без потери подвижности.
+  suffix: Sponsor
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Sponsor/Clothing/OuterClothing/Hardsuits/spacemarine-hard.rsi
+  - type: Clothing
+    sprite: _Horizon/_Sponsor/Clothing/OuterClothing/Hardsuits/spacemarine-hard.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSyndicateExperimentalHorizon
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.15
+        Slash: 0.15
+        Piercing: 0.15
+        Heat: 0.15
+        Radiation: 0.15
+        Caustic: 0.15
+  - type: ClothingSpeedModifier
+    walkModifier: 0.70
+    sprintModifier: 0.60
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: ExosuitWalkERT

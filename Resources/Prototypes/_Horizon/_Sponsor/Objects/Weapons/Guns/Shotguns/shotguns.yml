@@ -1,0 +1,76 @@
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Enforcer
+  parent: [BaseItem, BaseGunWieldable, BaseC2ContrabandUnredeemable]
+  id: WeaponShotgunEnforcerHorizon
+  suffix: Sponsor
+  description: Премиальный полу автоматический дробовик. Усовершенствован незаконой технологией синдиката.
+  components: # intend for Enforcer to have wider choke for semi-auto function
+  - type: Sprite
+    sprite: _Horizon/_Sponsor/Objects/Weapons/Guns/Shotguns/shotgun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: _Horizon/_Sponsor/Objects/Weapons/Guns/Shotguns/shotgun.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 5000
+    # Horizon Attachments start
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-underbarrel:
+        whitelist:
+          tags:
+          - AttachmentVerticalGrip
+          - AttachmentLaserSight
+      rmc-aslot-rail:
+        whitelist:
+          tags:
+          - AttachmentMagneticHarness
+          - AttachmentReflexSight
+          - AttachmentT2Miniscope
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-underbarrel: 0.2875, -0.125
+      rmc-aslot-rail: -0.0375, -0.1575
+    # Horizon Attachments end

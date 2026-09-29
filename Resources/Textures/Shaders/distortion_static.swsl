@@ -1,0 +1,45 @@
+// Vignette-shaped interference static: a clean "peephole" in the middle that
+// shrinks and gets noisier the stronger Intensity is, so there's always
+// something visible ahead even at full strength.
+//
+// MinClearRadius/MaxClearRadius/EdgeWidth/MaxAlpha shape the vignette, so the
+// same shader can be drawn twice with different params for a layered effect:
+// once as the close-range noise that closes in toward the center, and once
+// as a fainter, farther-reaching ring confined to the edges of the screen.
+
+uniform highp float Intensity; // 0..1
+uniform highp float MinClearRadius; // clear radius at Intensity = 1
+uniform highp float MaxClearRadius; // clear radius at Intensity = 0
+uniform highp float EdgeWidth; // thickness of the noisy gradient band
+uniform highp float MaxAlpha; // cap on how opaque the noise gets
+
+void fragment() {
+    highp vec2 screenSize = vec2(1.0 / SCREEN_PIXEL_SIZE.x, 1.0 / SCREEN_PIXEL_SIZE.y);
+    highp vec2 center = screenSize * 0.5;
+    highp float minDimension = min(screenSize.x, screenSize.y);
+    highp vec2 diff = (FRAGCOORD.xy - center) / minDimension;
+    highp float dist = length(diff);
+
+    highp float clearRadius = mix(MaxClearRadius, MinClearRadius, Intensity);
+    highp float edgeRadius = clearRadius + EdgeWidth;
+    highp float vignette = smoothstep(clearRadius, edgeRadius, dist);
+
+    // Re-roll the noise in discrete steps (like a TV picking up interference) instead of
+    // drifting smoothly with TIME, so it actually flickers rather than looking like a wave.
+    // Kept slow and the flicker band narrow (below) to stay well clear of photosensitive
+    // epilepsy triggers - no fast, high-contrast full-screen flashing.
+    highp float frame = floor(TIME * 6.0);
+    highp vec2 noiseSeed = FRAGCOORD.xy * SCREEN_PIXEL_SIZE + frame;
+    highp vec2 noiseValue = zRandom(noiseSeed);
+    highp vec3 noiseColor = vec3(noiseValue.x);
+
+    // Gentle flicker on the overall opacity - interference isn't perfectly steady, but this
+    // stays slow and narrow-range rather than strobing between fully on and off.
+    highp float flickerFrame = floor(TIME * 2.5);
+    highp float flickerRandom = zRandom(vec2(flickerFrame * 0.137, 7.0)).x;
+    highp float flickerAmount = mix(0.9, 1.0, flickerRandom);
+
+    highp float alpha = vignette * Intensity * flickerAmount * MaxAlpha;
+
+    COLOR = vec4(noiseColor, alpha);
+}

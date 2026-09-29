@@ -23,7 +23,6 @@
         amount: 2
       - id: PillCanisterKelotane
       - id: PillCanisterDermaline
-      - id: SprayBottleSilverSulfadiazine # SH-Tweak
 
 - type: entity
   id: MedkitBruteFilled
@@ -36,7 +35,6 @@
       - id: Gauze
       - id: PillCanisterIron
       - id: PillCanisterCopper
-      - id: SprayBottleStypticPowder # SH-Tweak
 
 - type: entity
   id: MedkitToxinFilled

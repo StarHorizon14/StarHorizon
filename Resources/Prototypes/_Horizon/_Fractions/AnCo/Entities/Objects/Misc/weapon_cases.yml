@@ -1,5 +1,6 @@
 
 - type: entity
+  abstract: true
   name: оружейный кейс АнКо
   parent: BaseStorageItem
   id: AnCoWeaponCaseBase

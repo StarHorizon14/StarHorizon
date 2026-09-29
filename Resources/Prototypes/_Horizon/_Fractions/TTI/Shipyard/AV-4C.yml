@@ -6,7 +6,7 @@
   parent: BaseVessel
   name: TTI AV-4C
   description: Стандартный АВИ переработанный под службу в условиях безвоздушного пространства. # Описание шаттла
-  price: 10000
+  price: 50000
   category: Small
   group: Custom
   shuttlePath: /Maps/_Horizon/_Fraction/TTI/TTI.yml

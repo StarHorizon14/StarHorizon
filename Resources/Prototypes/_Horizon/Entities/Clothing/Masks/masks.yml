@@ -78,6 +78,6 @@
   description: Улучшенныый противогаз атмоса в угоду комфорта и стиля.
   components:
   - type: Sprite
-    sprite: _StarHorizon/Clothing/Mask/gasatmos.rsi
+    sprite: _StarHorizon/Clothing/Masks/gasatmos.rsi
   - type: Clothing
-    sprite: _StarHorizon/Clothing/Mask/gasatmos.rsi
+    sprite: _StarHorizon/Clothing/Masks/gasatmos.rsi

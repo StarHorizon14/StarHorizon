@@ -1,18 +1,18 @@
-#- type: pointOfInterest
-#  id: TTIOutpost
-#  parent: BasePOI
-#  name: 'TTI Outpost'
-#  minimumDistance: 2500
-#  maximumDistance: 5400
-#  minimumClearance: 1000
-#  spawnGroup: Required
-#  gridPath: /Maps/_Horizon/POI/TraumaStation.yml
-#  addComponents:
-#  - type: IFF
-#    color: "#00ab86"
-  # - type: StationTransit
-  #   routes:
-  #     SpawnPoints: 60
+- type: pointOfInterest
+  id: TTIOutpost
+  parent: BasePOI
+  name: 'TTI Outpost'
+  minimumDistance: 2000
+  maximumDistance: 4000
+  minimumClearance: 1000
+  spawnGroup: Required
+  gridPath: /Maps/_Horizon/POI/TraumaStation.yml
+  addComponents:
+  - type: IFF
+    color: "#00ab86"
+  - type: StationTransit
+    routes:
+      SpawnPoints: 60
 
 - type: gameMap
   id: TTIOutpost

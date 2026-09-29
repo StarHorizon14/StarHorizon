@@ -1,0 +1,9 @@
+theend-connecting-in-progress = Connecting to server...
+theend-connecting-state-error = Error
+theend-connecting-no-exit = There is no exit
+theend-connecting-tip = Die.
+theend-connecting-window-tip = Tip ???
+theend-connecting-tip-body = What is reality?
+theend-connecting-reconnecting = Reconnecting: { $seconds }
+theend-connecting-state-connected = Connected
+theend-connecting-state-extraction = Emergency extraction

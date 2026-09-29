@@ -1,6 +1,6 @@
 - type: entity
   name: MP5
-  parent: NFBaseWeaponFrameSubMachineGun
+  parent: NFBaseWeaponFrameSubMachineGunNanotrasen
   id: WeaponSubMachineGunMP5
   suffix: Backman, Пистолет-пулемёт
   description: The RivArms SMG-5 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements.
@@ -53,7 +53,7 @@
 
 - type: entity
   name: MP7
-  parent: NFBaseWeaponFrameSubMachineGun
+  parent: NFBaseWeaponFrameSubMachineGunNanotrasen
   id: WeaponSubMachineGunMP7
   suffix: Backman, Пистолет-пулемёт
   description: An archaic design going back hundreds of years, the SMG-7 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms, though it somehow got into the hands of colonial rebels.
@@ -112,7 +112,7 @@
 
 - type: entity
   name: Vector
-  parent: NFBaseWeaponFrameSubMachineGun
+  parent: NFBaseWeaponFrameSubMachineGunCybersun
   id: WeaponSubMachineGunVectorSpecial
   suffix: Backman, Пистолет-пулемёт
   description: The Vector used by police special force.
@@ -129,13 +129,12 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -22
+    minAngle: -23.05
     maxAngle: -28
     angleIncrease: -4
   - type: Gun
     angleDecay: 40
-    angleIncrease: 9
-    cameraRecoilScalar: 5
+    angleIncrease: 7
     minAngle: 24
     maxAngle: 45
     fireRate: 10
@@ -174,7 +173,7 @@
 
 - type: entity
   name: Skorpion VZ-61
-  parent: NFBaseWeaponFrameSubMachineGun
+  parent: NFBaseWeaponFrameSubMachineGunCybersun
   id: WeaponSubMachineGunSkorpion
   suffix: Backman, Пистолет-пулемёт
   description: A robust, 20th century firearm that's a combination of pistol and submachinegun.
@@ -224,7 +223,7 @@
 
 - type: entity
   name: MP-38
-  parent: NFBaseWeaponFrameSubMachineGun
+  parent: NFBaseWeaponFrameSubMachineGunCybersun
   id: WeaponSubMachineGunMP38
   suffix: Backman, Пистолет-пулемёт
   description: The MP-38 is a old and cheap machinepistol used by rebels, it presents solid performance at longer ranges in a compact package, although suffers due to a slow rate of fire for its class.
@@ -283,7 +282,7 @@
 
 - type: entity
   name: Uzi
-  parent: NFBaseWeaponFrameSubMachineGun
+  parent: NFBaseWeaponFrameSubMachineGunGorlex
   id: WeaponSubMachineGunUzi
   suffix: Backman, Пистолет-пулемёт
   description: A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire selector to full auto for maximum firepower. Use two if you really want to go ham.
@@ -333,7 +332,7 @@
 
 - type: entity
   name: PPSH-41
-  parent: NFBaseWeaponFrameSubMachineGun
+  parent: NFBaseWeaponFrameSubMachineGunGorlex
   id: WeaponSubMachineGunPPSH41
   suffix: Backman, Пистолет-пулемёт
   description: The PPSh-41 or /"Papasha/" is a USSP model submachinegun that many terrorist organizations had copied all over the years. Despite its small-hitting firepower, its reliablity, extreme longevity and high firepower rate proves useful for the hands of the user.
@@ -394,7 +393,7 @@
 
 - type: entity
   name: P-90
-  parent: NFBaseWeaponFrameSubMachineGun
+  parent: NFBaseWeaponFrameSubMachineGunGorlex
   id: WeaponSubMachineGunP90
   suffix: Backman, Пистолет-пулемёт
   description: The P-90 is the EarthGov standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with.
@@ -449,7 +448,7 @@
 
 - type: entity
   name: ПП Витязь
-  parent: NFBaseWeaponFrameSubMachineGun
+  parent: NFBaseWeaponFrameSubMachineGunGorlex
   id: WeaponSmgVityazsssp
   suffix: Backman, Пистолет-пулемёт
   description: Пистолет пулемет витязь, стоит на вооружении у военных сил СССП. использует .20 калибр

@@ -1,0 +1,22 @@
+- type: entity
+  parent: [ClothingMaskPullableBase, BaseC3Contraband]
+  id: ClothingMaskEast
+  name: Маска ЧВК-ЧОП
+  description: Маска производства ЧВК-ЧОП
+  suffix: Sponsor
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Sponsor/Clothing/Mask/eastmask.rsi
+  - type: Clothing
+    sprite: _Horizon/_Sponsor/Clothing/Mask/eastmask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    layers:
+      Snout: Mask
+    hideOnToggle: true

@@ -88,7 +88,6 @@
     soundEmpty:
       path: /Audio/Weapons/Guns64/Rifles/m41a_empty.ogg
   - type: ChamberMagazineAmmoProvider
-  - type: BallisticAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns64/Snipers/tl-127_bolt.ogg
   - type: ItemSlots
@@ -106,7 +105,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      ballistic-ammo: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1

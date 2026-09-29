@@ -194,8 +194,11 @@
 - type: startingGear
   id: BaseSyndicateOperativeGear
   equipment:
-    pocket2: BaseUplinkRadio40TC
+    pocket2: OperativeUplinkRadio25TC
     eyes: ClothingEyesHudSyndicate
+  storage:
+    back:
+    - CoordinatesDiskSyndicate
 
 - type: startingGear
   id: BaseSyndicateCargoGear
@@ -203,17 +206,26 @@
     pocket1: Telecrystal10
     pocket2: UplinkImplanter
     eyes: ClothingEyesHudSyndicate
+  storage:
+    back:
+    - CoordinatesDiskSyndicate
 
 - type: startingGear
   id: BaseSyndicateOfficerTeleCommunicationGear
   equipment:
     pocket1: SyndicateEncryptionKeyMaster
-    pocket2: BaseUplinkRadio40TC
+    pocket2: TelecomOfficerUplinkRadio60TC
     eyes: ClothingEyesHudSyndicate
+  storage:
+    back:
+    - CoordinatesDiskSyndicate
 
 - type: startingGear
   id: BaseSyndicateMedicGear
   equipment:
     pocket1: SyndiHypo
-    pocket2: BaseUplinkRadio40TC
+    pocket2: OperativeUplinkRadio25TC
     eyes: ClothingEyesHudSyndicateAgent
+  storage:
+    back:
+    - CoordinatesDiskSyndicate

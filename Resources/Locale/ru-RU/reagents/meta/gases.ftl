@@ -34,3 +34,6 @@ reagent-name-anti-nob = анти-ноблиум
 reagent-desc-anti-nob = Мы до сих пор не знаем, что он делает, но стоит он дорого.
 reagent-name-frezon = фрезон
 reagent-desc-frezon = Высокоэффективный хладагент... и галлюциноген.
+
+reagent-name-seawater = морская вода
+reagent-desc-seawater = Солёная, холодная и совсем не предназначена для дыхания.
