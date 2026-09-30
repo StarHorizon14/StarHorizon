@@ -1,0 +1,90 @@
+- type: entity
+  id: StorePresetGSecUplink
+  abstract: true
+  components:
+  - type: Store
+    canWithdraw: true
+    currencyWhitelist:
+    - Speso
+    balance:
+      Speso: 0
+    categories:
+    - GSecUplinkHandguns
+    - GSecUplinkRevolvers
+    - GSecUplinkSMGs
+    - GSecUplinkRifles
+    - GSecUplinkSnipers
+    - GSecUplinkShotguns
+    - GSecUplinkLMGs
+    - GSecUplinkLaser
+    - GSecUplinkMags
+    - GSecUplinkAmmo
+    - GSecUplinkAttachments
+    - GSecUplinkOther
+
+# КАТЕГОРИИ
+
+- type: storeCategory
+  id: GSecUplinkHandguns
+  name: "Пистолеты"
+  priority: 0
+
+- type: storeCategory
+  id: GSecUplinkRevolvers
+  name: "Револьверы"
+  priority: 1
+
+- type: storeCategory
+  id: GSecUplinkSMGs
+  name: "Пистолеты-пулемёты"
+  priority: 2
+
+- type: storeCategory
+  id: GSecUplinkRifles
+  name: "Винтовки"
+  priority: 3
+
+- type: storeCategory
+  id: GSecUplinkSnipers
+  name: "Марксманское"
+  priority: 4
+
+- type: storeCategory
+  id: GSecUplinkShotguns
+  name: "Дробовики"
+  priority: 5
+
+- type: storeCategory
+  id: GSecUplinkLMGs
+  name: "Пулемёты"
+  priority: 6
+
+- type: storeCategory
+  id: GSecUplinkGrenades
+  name: "Гранатомёты"
+  priority: 7
+
+- type: storeCategory
+  id: GSecUplinkLaser
+  name: "Лазерное"
+  priority: 8
+
+- type: storeCategory
+  id: GSecUplinkMags
+  name: "Магазины"
+  priority: 9
+
+- type: storeCategory
+  id: GSecUplinkAmmo
+  name: "Боеприпасы"
+  priority: 10
+
+- type: storeCategory
+  id: GSecUplinkAttachments
+  name: "Обвесы"
+  priority: 11
+
+- type: storeCategory
+  id: GSecUplinkOther
+  name: "Разное"
+  priority: 12

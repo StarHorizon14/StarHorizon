@@ -1,0 +1,92 @@
+- type: entity
+  id: WeaponSubMechineGunGSecUMP
+  parent: [ BaseWeaponPistol, NFBaseGunMeleeAttackLow, BaseAttachableHolder, BaseGSecWeaponContraband]
+  name: GXMP Универсальный
+  description: "Мал, да удал. Не каждый может справиться с его сокрушающей отдачей."
+  suffix: GSec
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+    cameraRecoilScalar: 100
+    projectileSpeed: 60
+    minAngle: 6
+    maxAngle: 45
+    angleIncrease: 7
+    angleDecay: 14
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-ump.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-ump.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Back
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-saiga.rsi
+    size: Medium
+    shape:
+    - 0,0,3,1
+  - type: ChamberMagazineAmmoProvider
+    autoEject: false
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMPGSec
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMPGSec
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgeRifle25
+            - NFCartridgePistol35
+            - NFCartridgePistol45
+            - CartridgePistol45ACP
+            - CartridgePistol57x28
+            - CartridgeMagnum
+            - CartridgeMagnum345
+            - CartridgeRevolver44Magnum
+            - CartridgePistol50AE
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -3
+    maxAngle: -15
+  - type: NFWeaponDetails
+    class: weapon-details-class-submachine-gun
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-rail:
+        whitelist:
+          tags:
+          - AttachmentMagneticHarness
+          - AttachmentReflexSight
+          - AttachmentT2Miniscope
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-rail: 0.05375, -0.0575

@@ -1,0 +1,17 @@
+- type: entity
+  id: CigPackGSec
+  parent: [CigPackBase]
+  name: пачка травяных сигар Interdyne
+  suffix: GSec
+  description: Пачка сигарет, собранная по заказу ЧВК «Gorlex Securities LLC». Наполнены целебными травами для тех случаев, когда вам нужно больше, чем просто успокоить нервы.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Food/cigarettes.rsi
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Food/cigarettes.rsi
+  - type: StorageFill
+    contents:
+    - id: CigaretteSyndicate
+      amount: 10
+  - type: StaticPrice
+    price: 300

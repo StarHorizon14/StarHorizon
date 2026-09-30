@@ -1,0 +1,61 @@
+- type: entity
+  id: LockerGSec
+  parent: [NFLockerBaseSecure]
+  name: шкафчик Горлекс
+  suffix: GSec, Locked
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Storage/locker.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: generic
+    stateDoorOpen: generic_open
+    stateDoorClosed: generic_door
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 275
+  - type: AccessReader
+    access: [["AccessGSec"]]
+
+- type: entity
+  id: LockerGSecTech
+  parent: [LockerGSec, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseGSecContraband]
+  name: шкафчик техника Горлекс
+  suffix: GSec, Locked
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: gx_tech
+  - type: AccessReader
+    access: [["AccessGSecTech"]]
+
+- type: entity
+  id: LockerGSecMedic
+  parent: [LockerGSec, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseGSecContraband]
+  name: шкафчик техника Горлекс
+  suffix: GSec, Locked
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: gxm
+    stateDoorClosed: gx_medic
+  - type: AccessReader
+    access: [["AccessGSecMedic"]]
+
+- type: entity
+  id: LockerGSecOfficer
+  parent: [LockerGSec, BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseGSecContraband]
+  name: шкафчик офицера Горлекс
+  suffix: GSec, Locked
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: gx_officer
+  - type: AccessReader
+    access: [["AccessGSecOfficer"]]
+
+- type: entity
+  id: GunSafeBaseGSec
+  parent: [GunSafe, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  suffix: GSec, Locked
+  components:
+  - type: AccessReader
+    access: [["AccessGSecAgent"]]

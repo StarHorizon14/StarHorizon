@@ -1,0 +1,258 @@
+- type: entity
+  name: GXS-50 Депредатор
+  parent: [BaseWeaponPistol, NFBaseGunMeleeAttackMedium, BaseAttachableHolder, BaseGSecWeaponContraband]
+  id: WeaponRifleGSecDepredator
+  suffix: GSec, Снайперская винтовка
+  description: Разрушительная боевая винтовка, способная проглотить любой калибр достаточного размер. Может использовать большинство снайперских патронов и идеально подходит для обороны частной собственности.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/Depredator/gsec-depredator-big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/Depredator/gsec-depredator.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Back
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/Depredator/gsec-depredator.rsi
+    size: Large
+    shape:
+    - 0,0,5,2
+  - type: Gun
+    cameraRecoilScalar: 100
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Snipers/tl127.ogg
+      params:
+        volume: -5
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Rifles/m41a_empty.ogg
+    projectileSpeed: 70
+    minAngle: 0.4
+    maxAngle: 7
+    angleIncrease: 5.6
+    angleDecay: 2.7
+    fireRate: 1.5
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns64/Snipers/tl-127_bolt.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineSniperGSec
+        insertSound: /Audio/Weapons/Guns64/Rifles/m41a_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/m41a_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineSniperGSec
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge50BMG
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeRifle762UEG
+          - CartridgeRifle300win
+          - CartridgeRifle762
+          - CartridgeRifle50BMG
+          - NFCartridgeRifle60
+          - Cartridge70
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2
+    pvsIncrease: 1
+  - type: NFWeaponDetails
+    class: weapon-details-class-rifle
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-rail:
+        whitelist:
+          tags:
+          - AttachmentMagneticHarness
+          - AttachmentReflexSight
+          - AttachmentT2Miniscope
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-rail: -0.12975, 0.0025
+
+- type: entity
+  name: GXR Отбойник
+  parent: [BaseWeaponPistol, NFBaseGunMeleeAttackMedium, BaseAttachableHolder, BaseGSecWeaponContraband]
+  id: WeaponRifleGSecBluntstriker
+  suffix: GSec, Снайперская винтовка
+  description: Штурмовая винтовка, способная проглотить любой винтовочный калибр и даже боеприпасы для дробовика. Легается как пиздец и убивает любое желание использовать её повторно.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/Bluntstriker/gsec-bluntstriker-big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/Bluntstriker/gsec-bluntstriker.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Back
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/Bluntstriker/gsec-bluntstriker.rsi
+    size: Large
+    shape:
+    - 0,0,4,2
+  - type: Gun
+    cameraRecoilScalar: 100
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Snipers/tl127.ogg
+      params:
+        volume: -3
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Rifles/m41a_empty.ogg
+    projectileSpeed: 50
+    minAngle: 0.4
+    maxAngle: 26
+    angleIncrease: 4.6
+    angleDecay: 8.7
+    fireRate: 3.4
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleGSec
+        insertSound: /Audio/Weapons/Guns64/Rifles/m41a_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/m41a_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifleGSec
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgeRifle20
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeRifle762UEG
+          - CartridgeRifle300win
+          - CartridgeRifle762
+          - CartridgeRifle762x39
+          - NFCartridgeRifle30
+          - NFCartridgeRifle20
+          - NFCartridgeRifle25
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2
+    pvsIncrease: 1
+  - type: NFWeaponDetails
+    class: weapon-details-class-assault-rifle
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.80
+    sprintModifier: 0.80
+  - type: AttachableHolder
+    slots:
+      rmc-aslot-rail:
+        whitelist:
+          tags:
+          - AttachmentMagneticHarness
+          - AttachmentReflexSight
+          - AttachmentT2Miniscope
+  - type: AttachableHolderVisuals
+    offsets:
+      rmc-aslot-rail: -0.17575, -0.0575
+
+
+- type: entity
+  name: GX Преторианец
+  parent: [BaseWeaponPistol, BaseC3Contraband]
+  id: WeaponRifleGSecPraetor
+  description: Штурмовая винтовка с загаточной историей, обладает ужасной репутацией «Оружия военных преступлений».Не имеет серийной маркировкой. Дорогой, но надёжный.
+  suffix: GSec, AnCo
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-praetor.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-praetor.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Back
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-praetor.rsi
+    size: Large
+    shape:
+    - 0,0,3,2
+  - type: Gun
+    minAngle: 10
+    maxAngle: 30
+    projectileSpeed: 40
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleGSecPraetor
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - AnCoMagazineRifle30
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: BaseCartridgeRifleAnCoBuff
+        priority: 1
+        whitelist:
+          tags:
+            - AnCoBulletRifle20
+            - AnCoBulletRifle30
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: NFWeaponDetails
+    class: weapon-details-class-assault-rifle
+    manufacturer: "AnCo - MiliGalax"
+  - type: StaticPrice
+    price: 30000

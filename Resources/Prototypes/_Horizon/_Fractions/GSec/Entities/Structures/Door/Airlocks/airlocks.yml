@@ -1,0 +1,91 @@
+- type: entity
+  parent: AirlockSecurity # if you get syndie door somehow it counts as sec
+  id: AirlockGSec
+  name: шлюз Горлекс
+  suffix: GSec
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Doors/Airlocks/Strandart/gsec.rsi
+
+- type: entity
+  parent: [AirlockGSec, BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseGSecContraband]
+  id: AirlockGSecOfficer
+  name: шлюз командования Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Doors/Airlocks/Strandart/gsec_officer.rsi
+
+- type: entity
+  parent: AirlockGSec
+  id: AirlockGSecTech
+  name: технический шлюз Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Doors/Airlocks/Strandart/gsec_tech.rsi
+
+- type: entity
+  parent: AirlockGSec
+  id: AirlockGSecMedic
+  name: медицинский шлюз Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Doors/Airlocks/Strandart/gsec_medic.rsi
+
+# СТЕКЛЯННЫЕ
+# ================================================================================================================================
+
+- type: entity
+  parent: AirlockSecurityGlass # see standard
+  id: AirlockGSecGlass
+  name: стеклянный шлюз Горлекс
+  suffix: GSec
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Doors/Airlocks/Glass/gsec.rsi
+
+- type: entity
+  parent: [AirlockGSecGlass, BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseGSecContraband] # see standard
+  id: AirlockGSecGlassOfficer
+  name: стеклянный шлюз командования Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Doors/Airlocks/Glass/gsec_officer.rsi
+
+- type: entity
+  parent: AirlockGSecGlass # see standard
+  id: AirlockGSecGlassTech
+  name: стеклянный технический шлюз Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Doors/Airlocks/Glass/gsec_tech.rsi
+
+- type: entity
+  parent: AirlockGSecGlass # see standard
+  id: AirlockGSecGlassMedic
+  name: стеклянный медецинский шлюз Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Doors/Airlocks/Glass/gsec_medic.rsi
+
+# СТЫКОВОЧНЫЕ
+# ================================================================================================================================
+
+- type: entity
+  parent: AirlockShuttle
+  id: AirlockShuttleGSec
+  suffix: StarHorizon, Docking, GSec
+  name: стыковочный шлюз
+  description: Необходим для соединения двух космических шаттлов вместе.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Doors/Airlocks/Strandart/shuttle_gsec.rsi
+
+- type: entity
+  id: AirlockGlassShuttleGSec
+  parent: AirlockGlassShuttle
+  name: стыковочный шлюз
+  suffix: StarHorizon, Glass, Docking, GSec
+  description: Необходим для соединения двух космических шаттлов вместе.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Doors/Airlocks/Glass/shuttle_gsec.rsi

@@ -1,0 +1,2395 @@
+# ТЕРМИНАЛ ЗАКАЗОВ GSEC
+# ================================================================================================================================
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer, StorePresetGSecUplink]
+  id: ComputerGSecUplink
+  name: консоль заказов Горлекс
+  description: Используется для пополнения ассортимента и вооружения персонала.
+  suffix: GSec, Structure
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: generic
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: ActiveRadio
+    channels: [ GSec ]
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#2C5799"
+  - type: AnCoFactionAccess
+    allowedFactions:
+    - FactionGSec
+    - FactionSyndicate
+    unlockAccess: AccessGSecOfficer
+    deniedMessage: "gsec-faction-access-denied"
+    examinedEvent: "gsec-faction-access-denied"
+
+# ТОВАРЫ
+# ================================================================================================================================
+# 0. ПИСТОЛЕТЫ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecBaseWeaponMakarov
+  name: "Пистолет Макарова (T1)"
+  description: "Макаров Пистолет, по-настоящему классическое и надежное огнестрельное оружие, был создан для самообороны и военного использования. Разработанный в конце 1940-х годов Сергеем Макаровым, этот компактный пистолет использует патроны калибра 9x18 мм, сочетая в себе простоту, удобство ношения и непревзойденную надежность. Обладает модицирующимися частями - подствольной частью и стволом."
+  productEntity: BaseWeaponMakarov
+  cost:
+    Speso: 3000
+  categories:
+  - GSecUplinkHandguns
+
+
+- type: listing
+  id: GSecWeaponPistolACP14
+  name: "Пистолет ACP14 (T1)"
+  description: "Пистолет ACP-14 производства компании Earth Armories. Надежное вспомогательное оружие, использующее патроны калибра 9x19 мм."
+  productEntity: WeaponPistolACP14
+  cost:
+    Speso: 4500
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecWeaponPistolG22
+  name: "Пистолет G-22 (T1)"
+  description: "Популярное в современном полицейском применении огнестрельное оружие. Калибр 9x19 мм."
+  productEntity: WeaponPistolG22
+  cost:
+    Speso: 20000
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecWeaponPistolHIB88M4
+  name: "Пистолет HI Browning-88 M4 (T1)"
+  description: "Редкий пистолет, используемый для самообороны, но часто применяемый террористическими организациями."
+  productEntity: WeaponPistolHIB88M4
+  cost:
+    Speso: 25000
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecWeaponPistolM1911
+  name: "Пистолет M-1911 (T1)"
+  description: "Пистолет-пулемет M-1911 под патрон .45 ACP. Архаичное оружие, однако его популярный и чрезвычайно надежный механизм послужил образцом для многих последующих полуавтоматических пистолетов."
+  productEntity: WeaponPistolM1911
+  cost:
+    Speso: 1200
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecNFWeaponPistolUniversal
+  name: "Mk32 Универсальный (T1)"
+  description: "Штурмовой пистолет Mark 32."
+  productEntity: NFWeaponPistolUniversal
+  cost:
+    Speso: 3000
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecNFWeaponPistolUniversalNfsdLessLethal
+  name: "Пистолет Mk32-M (T2)"
+  description: "Служебный штурмовой пистолет Mark 32, заряженный резиной. На рукояти табличка: «Только для авторизованного использования»."
+  productEntity: NFWeaponPistolUniversalNfsdLessLethal
+  cost:
+    Speso: 3200
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecNFWeaponPistolMk58
+  name: "Пистолет Mk58 (T1)"
+  description: "Дешёвый полуавтоматический пистолет."
+  productEntity: NFWeaponPistolMk58
+  cost:
+    Speso: 1000
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecNFWeaponPistolN1984
+  name: "Пистолет N1984 (T2)"
+  description: "Пистолет M-1911 под патрон .45 ACP. Архаичное оружие, однако его популярный и чрезвычайно надежный механизм послужил образцом для многих последующих полуавтоматических пистолетов."
+  productEntity: NFWeaponPistolN1984
+  cost:
+    Speso: 1300
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecNFWeaponPistolPollock
+  name: "Пистолет поллок (T1)"
+  description: "Компактный и массово производимый боевой пистолет."
+  productEntity: NFWeaponPistolPollock
+  cost:
+    Speso: 4000
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecWeaponPistolG23
+  name: "Служебный пистолет G23 (T2)"
+  description: "Популярное в наше время оружие самообороны. Калибр 9x19 мм."
+  productEntity: WeaponPistolG23
+  cost:
+    Speso: 2000
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecWeaponPistolDEagle
+  name: "Пистолет Desert Eagle (T1)"
+  description: "Магнум под патрон .50AE, обладающий серьёзной отдачей. На этом экземпляре выгравирована надпись: «Мир через превосходную огневую мощь»."
+  productEntity: WeaponPistolDEagle
+  cost:
+    Speso: 5200
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecNFWeaponPistolViper
+  name: "Пистолет гадюка (T3)"
+  description: "Маленький, легко скрываемый автоматический пистолет. Незаконное огнестрельное оружие, часто используемое агентами Синдиката."
+  productEntity: NFWeaponPistolViper
+  cost:
+    Speso: 3700
+  categories:
+  - GSecUplinkHandguns
+
+- type: listing
+  id: GSecNFWeaponPistolCobra
+  name: "Пистолет кобра (T3)"
+  description: "Надёжный и крепкий пистолет оператора со встроенным глушителем. Запрещённое оружие, часто используемое агентами Синдиката."
+  productEntity: NFWeaponPistolCobra
+  cost:
+    Speso: 2000
+  categories:
+  - GSecUplinkHandguns
+
+# 1. РЕВОЛЬВЕРЫ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecWeaponRevolverCMB
+  name: "Авторевольвер CMB (T1)"
+  description: "Автоматический револьвер под патрон .45 Magnum. Обычно выдается сотрудникам службы безопасности Nanotrasen. Имеет режим стрельбы очередями. В настоящее время проходит испытания с другими револьверами на Терре и в других колониях."
+  productEntity: WeaponRevolverCMB
+  cost:
+    Speso: 1700
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecWeaponRevolverRebota
+  name: "Револьвер FFA 'Rebota' (T1)"
+  description: "Использует патроны .45 Magnum. Вневременной дизайн, от античности до будущего. Эта модель хорошо известна среди полиции как универсальное и неприхотливое оружие."
+  productEntity: WeaponRevolverRebota
+  cost:
+    Speso: 1000
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecWeaponRevolverNY
+  name: "Револьвер N-Y (T3)"
+  description: "8-и зарядный револьвер, использует патроны .45 Magnum."
+  productEntity: WeaponRevolverNY
+  cost:
+    Speso: 1500
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverArgenti
+  name: "Револьвер Ардженти (T1)"
+  description: "Гражданский револьвер Ардженти Type 35, произведённый компанией Silver Industries. Хотя дизайн с расширенным барабаном довольно древний, настоящий стрелок знает, как его использовать."
+  productEntity: NFWeaponRevolverArgenti
+  cost:
+    Speso: 1700
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverFitz
+  name: "Револьвер Фитц (T1)"
+  description: "Компактный и легко скрываемый укороченный револьвер для самообороны."
+  productEntity: NFWeaponRevolverFitz
+  cost:
+    Speso: 800
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverFaith
+  name: "Револьвер Вера (T1)"
+  description: "Несёт благословения в форме пуль."
+  productEntity: NFWeaponRevolverFaith
+  cost:
+    Speso: 800
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverDeckard
+  name: "Револьвер Декард (T1)"
+  description: "Редкий гражданский кастомный револьвер. Используйте, если нет времени на тест Фойгта-Кампа."
+  productEntity: NFWeaponRevolverDeckard
+  cost:
+    Speso: 2800
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecWeaponRevolverMatebaNew
+  name: "Револьвер Матеба (T1)"
+  description: "Знаменитый пистолет ужасных эскадронов смерти. Использует патроны калибра .44 Magnum."
+  productEntity: WeaponRevolverMatebaNew
+  cost:
+    Speso: 2600
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecWeaponRevolverR44
+  name: "Револьвер Р-44 САА (T1)"
+  description: "Редкий револьвер, иногда используемый гражданскими сотрудниками правоохранительных органов, явно созданный на основе модернизированной модели Single Action Army. Необходимо вручную взводить капсюль перед каждым выстрелом. Использует патроны .45 Magnum."
+  productEntity: WeaponRevolverR44
+  cost:
+    Speso: 2000
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverLucky
+  name: "Револьвер Счастливчик (T1)"
+  description: "Удача всегда сильнее мастерства, слизняк."
+  productEntity: NFWeaponRevolverLucky
+  cost:
+    Speso: 1700
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverSpearhead
+  name: "Револьвер Копьё (T1)"
+  description: "Большой и грозный револьвер. Часто используется военными комисарами."
+  productEntity: NFWeaponRevolverSpearhead
+  cost:
+    Speso: 1200
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverHeadfasher
+  name: "Револьвер Головорез (T1)"
+  description: "Довольной тяжелый и вместительный револьвер для бойцов горячих точек."
+  productEntity: NFWeaponRevolverHeadfasher
+  cost:
+    Speso: 1200
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverZrk72
+  name: "Револьвер ЗРК-72 (T1)"
+  description: "Массивный револьвер,получивший популярность у элитных подразделений наемников Синдиката."
+  productEntity: NFWeaponRevolverZrk72
+  cost:
+    Speso: 1700
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverInspector
+  name: "Револьвер Инспектор (T2)"
+  description: "Лучший друг детектива. На рукояти табличка: «Только для авторизованного использования»."
+  productEntity: NFWeaponRevolverInspector
+  cost:
+    Speso: 1700
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverWard45
+  name: "Револьвер Вард-45 (T2)"
+  description: "Знаменитое оружие грозных эскадронов смерти. На рукояти табличка: «Только для авторизованного использования»."
+  productEntity: NFWeaponRevolverWard45
+  cost:
+    Speso: 1700
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverRitland45
+  name: "Револьвер Ритланд-45 (T2)"
+  description: "Так-же известный как Питон, незаконный револьвер любимый агентами Синдиката."
+  productEntity: NFWeaponRevolverRitland45
+  cost:
+    Speso: 1500
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverAltruist
+  name: "Револьвер Альтруист (T2)"
+  description: "Легендарная классика на новых пулях. Лучше следите за руками."
+  productEntity: NFWeaponRevolverAltruist
+  cost:
+    Speso: 1800
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecWeaponRevolverWoyceh
+  name: "Револьвер РШ-60 (T2)"
+  description: "Револьвер Штурмовой, модернезированный под крупнокалиберный винтовочный патрон. Большая пушка, для больших мальчиков."
+  productEntity: WeaponRevolverWoyceh
+  cost:
+    Speso: 6700
+  categories:
+  - GSecUplinkRevolvers
+
+- type: listing
+  id: GSecNFWeaponRevolverRS9
+  name: "Револьвер РШ-9 (T3)"
+  description: "Боевой револьвер созданный для сотрудников секретных служб. Очень дорогой, но до безумия эффективный."
+  productEntity: NFWeaponRevolverRS9
+  cost:
+    Speso: 4700
+  categories:
+  - GSecUplinkRevolvers
+
+# 2. ПИСТОЛЕТЫ-ПУЛЕМЁТЫ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecWeaponSubMechineGunGSecUMP
+  name: "GXMP Универсальный (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Мал, да удал. Не каждый может справиться с его сокрушающей отдачей."
+  productEntity: WeaponSubMechineGunGSecUMP
+  cost:
+    Speso: 80000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecWeaponSubMachineGunSkorpion
+  name: "ПП Скорпион VZ-61 (T1)"
+  description: "Надежное огнестрельное оружие XX века, представляющее собой сочетание пистолета и пистолета-пулемета."
+  productEntity: WeaponSubMachineGunSkorpion
+  cost:
+    Speso: 17000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecWeaponSmgVityazsssp
+  name: "ПП Витязь (T1)"
+  description: "Пистолет пулемет витязь, стоит на вооружении у военных сил СССП. использует .20 калибр."
+  productEntity: WeaponSmgVityazsssp
+  cost:
+    Speso: 20000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecNFWeaponSubMachineGunFP9000
+  name: "ПП FP-9000 (T1)"
+  description: "Один из современнейших образцов пистолетов пулеметов на рынке. Используется специальными службами."
+  productEntity: NFWeaponSubMachineGunFP9000
+  cost:
+    Speso: 14000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecWeaponSubMachineGunVectorSpecial
+  name: "ПП Крисс Вектор (T1)"
+  description: "KRISS Vector, используемый спецподразделениями полиции."
+  productEntity: WeaponSubMachineGunVectorSpecial
+  cost:
+    Speso: 15000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecNFWeaponSubMachineGunType64
+  name: "ПП Type-64 (T1)"
+  description: "Часто используемый в военных конфликтах пистолет пулемет. Надежен и прост в обращении."
+  productEntity: NFWeaponSubMachineGunType64
+  cost:
+    Speso: 17000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecNFWeaponSubMachineGunType19
+  name: "ПП Type-19 (T1)"
+  description: "Легкий пистолет-пулемет который часто используют революционеры и бунтовщики."
+  productEntity: NFWeaponSubMachineGunType19
+  cost:
+    Speso: 12000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecNFWeaponSubMachineGunMP27
+  name: "MP-27 (T1)"
+  description: "Старый, но рабочий."
+  productEntity: NFWeaponSubMachineGunMP27
+  cost:
+    Speso: 10000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecWeaponSubMachineGunMP38
+  name: "MP-38 (T1)"
+  description: "MP-38 — это старый и недорогой пистолет-пулемет, используемый повстанцами. Он демонстрирует неплохие характеристики на больших дистанциях в компактном корпусе, хотя и страдает от низкой скорострельности для своего типа."
+  productEntity: WeaponSubMachineGunMP38
+  cost:
+    Speso: 20000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecWeaponSubMachineGunPPSH41
+  name: "ППШ-41 (T1)"
+  description: "ППШ-41, или «Папаша», — это пистолет-пулемет американской государственной службы, копируемые многими террористическими организациями. Несмотря на свою невысокую огневую мощь, он отличается надежностью, исключительной долговечностью и высокой скорострельностью, что делает его полезным в руках пользователя."
+  productEntity: WeaponSubMachineGunPPSH41
+  cost:
+    Speso: 15000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecNFWeaponSubMachineGunTypewriter
+  name: "ПП Печатная машинка (T1)"
+  description: "Современная интерпретация классического дизайна, используемого бандитами во всём космосе и во все времена."
+  productEntity: NFWeaponSubMachineGunTypewriter
+  cost:
+    Speso: 7000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecWeaponSubMachineGunMP5
+  name: "MP-5 (T1)"
+  description: "Пистолет-пулемет RivArms SMG-5 — это обновленная версия классической конструкции. Легкое огнестрельное оружие, эффективно используемое одной рукой, идеально подходит для боя на ближних и средних дистанциях."
+  productEntity: WeaponSubMachineGunMP5
+  cost:
+    Speso: 20000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecWeaponSubMachineGunMP7
+  name: "MP-7 (T1)"
+  description: "Пистолет-пулемет SMG-7, конструкция которого устарела на сотни лет, был распространен в свое время. Сегодня он используется в ограниченном количестве в виде дешевых компьютерных копий или семейных реликвий, хотя каким-то образом попал в руки колониальных повстанцев."
+  productEntity: WeaponSubMachineGunMP7
+  cost:
+    Speso: 27000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecWeaponSubMachineGunP90
+  name: "P90 (T1)"
+  description: "Дизайн опередил своё время, всё ещё является верным другом на поле боя."
+  productEntity: WeaponSubMachineGunP90
+  cost:
+    Speso: 30000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecNFWeaponSubMachineGunWt550
+  name: "WT-550 (T2)"
+  description: "Отличный пистолет-пулемёт. На ствольной коробке табличка: «Только для авторизованного использования»."
+  productEntity: NFWeaponSubMachineGunWt550
+  cost:
+    Speso: 13700
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecNFWeaponSubMachineGunDrozd
+  name: "ПП Дрозд (T2)"
+  description: "Полностью автоматический пистолет-пулемет. На ствольной коробке табличка: «Только для авторизованного использования»."
+  productEntity: NFWeaponSubMachineGunDrozd
+  cost:
+    Speso: 13700
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecNFWeaponSubMachineGunUsi
+  name: "ПП Узи (T3)"
+  description: "Легкий пистолет пулемет с высокой скорострельностью."
+  productEntity: NFWeaponSubMachineGunUsi
+  cost:
+    Speso: 25000
+  categories:
+  - GSecUplinkSMGs
+
+- type: listing
+  id: GSecNFWeaponSubMachineGunAtreides
+  name: "Атрейдес (T3)"
+  description: "Пля-кет-кет-кет-кет! Незаконное огнестрельное оружие, часто используемое агентами Синдиката."
+  productEntity: NFWeaponSubMachineGunAtreides
+  cost:
+    Speso: 13200
+  categories:
+  - GSecUplinkSMGs
+
+
+- type: listing
+  id: GSecNFWeaponSubMachineGunC20r
+  name: "ПП C-20r (T3)"
+  description: "Запрещенное огнестрельное оружие, которое часто используют печально известные ядерные оперативники."
+  productEntity: NFWeaponSubMachineGunC20r
+  cost:
+    Speso: 20700
+  categories:
+  - GSecUplinkSMGs
+
+# 3. ВИНТОВКИ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecWeaponRifleGSecDepredator
+  name: "GXS-50 Депредатор (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Разрушительная боевая винтовка, способная проглотить любой калибр достаточного размер. Может использовать большинство снайперских патронов и идеально подходит для обороны частной собственности."
+  productEntity: WeaponRifleGSecDepredator
+  cost:
+    Speso: 140000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecWeaponRifleGSecBluntstriker
+  name: "GXR Отбойник (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Штурмовая винтовка, способная проглотить любой винтовочный калибр и даже боеприпасы для дробовика. Легается как пиздец и убивает любое желание использовать её повторно."
+  productEntity: WeaponRifleGSecBluntstriker
+  cost:
+    Speso: 120000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecWeaponRifleAR18
+  name: "Карабин AR-18 (T1)"
+  description: "Карабин H&K AR-18 — одна из стандартных винтовок, используемых армией Земного Правительства. Её часто используют те, кто предпочитает большую мобильность в бою, например, разведчики и другие бойцы лёгкой пехоты."
+  productEntity: WeaponRifleAR18
+  cost:
+    Speso: 20000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecWeaponRifleG36
+  name: "Винтовка G36 (T1)"
+  description: "Штурмовая винтовка H&K G-36 ранее являлась стандартным оружием армии EarthGov."
+  productEntity: WeaponRifleG36
+  cost:
+    Speso: 17000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecWeaponRifleM28
+  name: "Винтовка M28 (T1)"
+  description: "Штурмовая винтовка М-28 ранее являлась стандартным оружием армии Земного правительства."
+  productEntity: WeaponRifleM28
+  cost:
+    Speso: 25000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecWeaponRifleSCARAB
+  name: "Винтовка SCARAB (T1)"
+  description: "Штурмовая винтовка Mk.21 Superior Combat Assault Rifle — это лёгкая специализированная разведывательная винтовка, используемая в основном лёгкой пехотой и разведчиками. Она разработана для использования на всех дистанциях и очень хорошо адаптируется к различным ситуациям."
+  productEntity: WeaponRifleSCARAB
+  cost:
+    Speso: 30000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecWeaponRifleAUG
+  name: "Винтовка AUG (T1)"
+  description: "Винтовка компоновки буллпап, использовавшаяся в качестве резервной штурмовой винтовки Объединенной англо-юнионистской армии. Она имеет встроенное цевье и прицел для повышения точности и уменьшения отдачи."
+  productEntity: WeaponRifleAUG
+  cost:
+    Speso: 25000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecWeaponRifleFamas
+  name: "Винтовка Famas (T1)"
+  description: "Легкая и универсальная штурмовая винтовка."
+  productEntity: WeaponRifleFamas
+  cost:
+    Speso: 32000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecWeaponAKMSRifle
+  name: "Винтовка АК-103 (T1)"
+  description: "Знаменитое оружие войны. Использует патроны 7,62x39."
+  productEntity: WeaponAKMSRifle
+  cost:
+    Speso: 7000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecWeaponRifleAKSU
+  name: "Винтовка АКС-74У (T1)"
+  description: "Знаменитое оружие войны. Использует патроны 7,62x39."
+  productEntity: WeaponRifleAKSU
+  cost:
+    Speso: 6000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecWeaponRifleSTG44
+  name: "Винтовка STG 44 (T1)"
+  description: "Эта признанная классика была названа первой успешной концепцией штурмовой винтовки, обычно называемой «штурмовой винтовкой». Обладает более высокой скорострельностью для своего типа."
+  productEntity: WeaponRifleSTG44
+  cost:
+    Speso: 32000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultVulcan
+  name: "Карабин Вулкан (T2)"
+  description: "Одно из самых тяжёлых стрелковых вооружений в арсенале службы безопасности — современное переосмысление классики, неофициально прозванное «Правой рукой свободного мира»."
+  productEntity: NFWeaponRifleAssaultVulcan
+  cost:
+    Speso: 10000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultGestio
+  name: "Карабин Гестио (T1)"
+  description: "Старая автоматическая винтовка с очередью, разработанная компанией Silver Industries, но так и не вышедшая из стадии испытаний."
+  productEntity: NFWeaponRifleAssaultGestio
+  cost:
+    Speso: 13700
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultNovaliteC1
+  name: "Карабин Новалит C1 (T1)"
+  description: "Гражданская полуавтоматическая винтовка с внутренним магазином."
+  productEntity: NFWeaponRifleAssaultNovaliteC1
+  cost:
+    Speso: 12700
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultMAR30
+  name: "Карабин MAR-30 (T1)"
+  description: "Старый боевой карабин, обычно его находят в руках преступников или бедных наемников."
+  productEntity: NFWeaponRifleAssaultMAR30
+  cost:
+    Speso: 15300
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultMAR40
+  name: "Карабин MAR-40 (T3)"
+  description: "Более продвинутая версия MAR-40 с такой же плохой репутацией."
+  productEntity: NFWeaponRifleAssaultMAR40
+  cost:
+    Speso: 17300
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecWeaponRifleV31
+  name: "Винтовка V-31 (T3)"
+  description: "Винтовка V-31 была основным оружием «Сынов Марса» до появления более совершенного энергетического оружия. Тем не менее, V-31 продолжает широко использоваться благодаря сравнительной простоте производства и обслуживания, а также благодаря встроенной низкоскоростной рельсовой пушке, предназначенной для так называемых «микрогранат». Обладает хорошей управляемостью благодаря компактной компоновке буллпап и, как правило, эффективна на всех дистанциях."
+  productEntity: WeaponRifleV31
+  cost:
+    Speso: 40000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultLecter
+  name: "Карабин Лектер (T2)"
+  description: "Штурмовая винтовка среднего класса военного образца. На ствольной коробке табличка: «Только для авторизованного использования»."
+  productEntity: NFWeaponRifleAssaultLecter
+  cost:
+    Speso: 13000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultM4SPR
+  name: "Винтовка M4SPR (T2)"
+  description: "Тяжелая винтовка, используемая пустынными бандитами."
+  productEntity: NFWeaponRifleAssaultM4SPR
+  cost:
+    Speso: 12700
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultM59A
+  name: "Карабин M59A (T2)"
+  description: "Продвинутая винтовка, используемая развитыми бандами."
+  productEntity: NFWeaponRifleAssaultM59A
+  cost:
+    Speso: 12330
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultM16
+  name: "Карабин M-16 (T2)"
+  description: "Военная винтовка с большим прошлым. Отличный выбор для опытного солдата."
+  productEntity: NFWeaponRifleAssaultM16
+  cost:
+    Speso: 12700
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultAR10
+  name: "Карабин AR-10 (T3)"
+  description: "Хороший штурмовой карабин на службе закона и против него."
+  productEntity: NFWeaponRifleAssaultAR10
+  cost:
+    Speso: 23000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultL83A2
+  name: "Карабин L83A2 (T3)"
+  description: "Гражданская винтовка,которую часто можно встретить у полицейских на планетойдах."
+  productEntity: NFWeaponRifleAssaultL83A2
+  cost:
+    Speso: 22700
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultAK4047
+  name: "Винтовка AK-4047 (T3)"
+  description: "Иконическое оружие всех войн, дешевое и легкодоступное."
+  productEntity: NFWeaponRifleAssaultAK4047
+  cost:
+    Speso: 9300
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultJackdaw
+  name: "Карабин Галка (T2)"
+  description: "Песнь галки возвещает начало конца."
+  productEntity: NFWeaponRifleAssaultJackdaw
+  cost:
+    Speso: 23200
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultXM40
+  name: "Карабин XM40 (T3)"
+  description: "Экспериментальная штурмовая винтовка созданная для элитных подразделений Горлекса."
+  productEntity: NFWeaponRifleAssaultXM40
+  cost:
+    Speso: 27500
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultM90GrenadeLauncher
+  name: "Карабин M-90gl (T3)"
+  description: "Старая модель карабина с компоновкой булл-пап, оснащённая подствольным гранатомётом. Незаконное огнестрельное оружие, часто используемое агентами Синдиката."
+  productEntity: NFWeaponRifleAssaultM90GrenadeLauncher
+  cost:
+    Speso: 30000
+  categories:
+  - GSecUplinkRifles
+
+- type: listing
+  id: GSecNFWeaponRifleAssaultType71
+  name: "Винтовка Type-71 (T2)"
+  description: "Штурмовая винтовка, специально поставляемая в сектор для ДШНФ."
+  productEntity: NNFWeaponRifleAssaultType71
+  cost:
+    Speso: 27300
+  categories:
+  - GSecUplinkRifles
+
+# 4. МАРКСМАНСКОЕ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecWeaponRifleBR64
+  name: "Винтовка BR-64 (T1)"
+  description: "Винтовка San Cristo Arms BR-64 является основной боевой винтовкой Корпуса морской пехоты. Она известна своей стабильно высокой эффективностью на большинстве дистанций и убойной силой на ближних дистанциях. Её чаще всего используют те, кто предпочитает патроны большего калибра, чем в среднем."
+  productEntity: WeaponRifleBR64
+  cost:
+    Speso: 25300
+  categories:
+  - GSecUplinkSnipers
+
+- type: listing
+  id: GSecWeaponRifleSR127
+  name: "Винтовка SR-127 Bauer (T1)"
+  description: "Винтовка Bauer SR-127 — это стандартная винтовка с продольно-скользящим затвором, используемая Правительством Объединенной Земли. Известна своей точностью на дальних дистанциях и востребованностью среди стрелков, несмотря на свой возраст и отсутствие системы «свой-чужой». Имеет несъемный оптический прицел. Использует магазины калибра .50 BMG."
+  productEntity: WeaponRifleSR127
+  cost:
+    Speso: 42700
+  categories:
+  - GSecUplinkSnipers
+
+- type: listing
+  id: GSecNFWeaponRifleRepeater
+  name: "Винтовка N2524 (T1)"
+  description: "Гражданское оружие с рычажным затвором, любимое космическими ковбоями Пограничья за надёжность."
+  productEntity: NFWeaponRifleRepeater
+  cost:
+    Speso: 22500
+  categories:
+  - GSecUplinkSnipers
+
+- type: listing
+  id: GSecNFWeaponRifleCeremonial
+  name: "Церемониальная винтовка (T1)"
+  description: "Церемониальный вариант винтовки Mark 1, в благородных сине-белых тонах."
+  productEntity: NFWeaponRifleCeremonial
+  cost:
+    Speso: 34300
+  categories:
+  - GSecUplinkSnipers
+
+- type: listing
+  id: GSecNFWeaponRifleSVS
+  name: "Винтовка СВС-42 (T1)"
+  description: "Изначально разработана Самоновым, эта старая армейская винтовка видавшая многое. Оснащена штыком."
+  productEntity: NFWeaponRifleSVS
+  cost:
+    Speso: 22700
+  categories:
+  - GSecUplinkSnipers
+
+- type: listing
+  id: GSecNFWeaponRifleBarlowsBolt
+  name: "Винтовка Барлоу (T3)"
+  description: "Оружие для охоты — или бесконечной окопной войны. Оснащена штыком."
+  productEntity: NFWeaponRifleBarlowsBolt
+  cost:
+    Speso: 21700
+  categories:
+  - GSecUplinkSnipers
+
+- type: listing
+  id: GSecNFWeaponRifleSniperHristov
+  name: "Винтовка Христов (T3)"
+  description: "Переносная анти-материальная снайперская винтовка."
+  productEntity: NFWeaponRifleSniperHristov
+  cost:
+    Speso: 40200
+  categories:
+  - GSecUplinkSnipers
+
+# 5. ДРОБОВИКИ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecNFWeaponShotgunDoubleBarreled
+  name: "Двуствольный дробовик (T1)"
+  description: "Бессмертная классика. Гражданское ружьё."
+  productEntity: NFWeaponShotgunDoubleBarreled
+  cost:
+    Speso: 1700
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecNFWeaponShotgunCustomBuilt
+  name: "Дробовик скрапера (T1)"
+  description: "Простой, но отлично работающий."
+  productEntity: NFWeaponShotgunCustomBuilt
+  cost:
+    Speso: 2600
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecNFWeaponShotgunKammerer
+  name: "Дробовик Камерер (T1)"
+  description: "Старый, но надежный дизайн, любимый нерегулярными силами во многих мирах."
+  productEntity: NFWeaponShotgunKammerer
+  cost:
+    Speso: 11200
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecWeaponShotguntrenchgun4034
+  name: "Окопное орудие L-4034 (T1)"
+  description: "Шестизарядное помповое ружье. Ружье, используемое для охоты, самообороны и в полицейских целях; существует множество его разновидностей, и им пользуется практически каждый."
+  productEntity: WeaponShotguntrenchgun4034
+  cost:
+    Speso: 10800
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecNFWeaponShotgunType23
+  name: "Дробовик Type-23 (T1)"
+  description: "Бессмертная классика. Бьет больно и метко."
+  productEntity: NFWeaponShotgunType23
+  cost:
+    Speso: 13800
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecNFWeaponShotgunHG3712
+  name: "Дробовик HG-3712 (T1)"
+  description: "Помповый дробовик, побывавший во множестве колониальных конфликтов."
+  productEntity: NFWeaponShotgunHG3712
+  cost:
+    Speso: 12800
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecNFWeaponShotgunXM38
+  name: "Дробовик XM-38 (T1)"
+  description: "Пару лет назад была проверена в колониальный конфликтах. Теперь же она в ваших руках."
+  productEntity: NFWeaponShotgunXM38
+  cost:
+    Speso: 17000
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecWeaponShotgun12
+  name: "Дробовик Spas-12 (T1)"
+  description: "Дробовик Earth Armories Spas-12 используется Корпусом морской пехоты Земного правительства. Он применяется в ближнем бою, когда требуется оружие, более подходящее для стрельбы на короткие дистанции, чем у большинства людей, или в качестве дополнительного оружия за спиной в экстренных случаях. Использует патроны 50-го калибра."
+  productEntity: WeaponShotgun12
+  cost:
+    Speso: 23500
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecWeaponShotgun39
+  name: "Дробовик XM1014 (T1)"
+  description: "Боевой дробовик Earth Armories XM1014 — это полуавтоматический дробовик, используемый штурмовиками и передовыми бойцами в составе отрядов Армии Земли. Использует патроны калибра .50."
+  productEntity: WeaponShotgun39
+  cost:
+    Speso: 20000
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecWeaponShotgunPaladin12
+  name: "Дробовик МР-133 (T1)"
+  description: "Девятизарядное помповое ружье. Ружье, используемое для охоты, самообороны и в полицейских целях; существует множество его разновидностей, и им пользуется практически каждый."
+  productEntity: WeaponShotgunPaladin12
+  cost:
+    Speso: 17000
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecNFWeaponShotgunM890
+  name: "Дробовик M-890 (T1)"
+  description: "Отличное оружие для подавления беспорядков и уничтожение ксеносов."
+  productEntity: NFWeaponShotgunM890
+  cost:
+    Speso: 28000
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecNFWeaponShotgunEnforcer
+  name: "Дробовик Силовик (T1)"
+  description: "Премиальное полуавтоматическое ружье с увеличенной емкостью магазина."
+  productEntity: NFWeaponShotgunEnforcer
+  cost:
+    Speso: 17200
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecWeaponShotgunAA12
+  name: "Дробовик AA-12 (T3)"
+  description: "Это дробовик с магазинным питанием, предназначенный для ближнего боя. Использует патроны 12 калибра."
+  productEntity: WeaponShotgunAA12
+  cost:
+    Speso: 53700
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecWeaponShotgunZauer
+  name: "Zauer (T3)"
+  description: "Это дробовик с магазинным питанием, предназначенный для ближнего боя. Использует патроны калибра .50."
+  productEntity: WeaponShotgunZauer
+  cost:
+    Speso: 32000
+  categories:
+  - GSecUplinkShotguns
+
+- type: listing
+  id: GSecNFWeaponShotgunBulldog
+  name: "Дробовик Бульдог (T3)"
+  description: "Автоматический дробовик с магазинной подачей для боя на коротких дистанциях. Пинает, как мул на стероидах."
+  productEntity: NFWeaponShotgunBulldog
+  cost:
+    Speso: 32000
+  categories:
+  - GSecUplinkShotguns
+
+# 6. ПУЛЕМЁТЫ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecWeaponLightMachineGunMG42
+  name: "Пулемёт MG-42 (T1)"
+  description: "Пулемёт ОПЗ периода Второй мировой войны. Разработан фирмой Metall-und Lackwarenfabrik Johannes Großfuß в 1942 году. После войны поставки данного пулемета возобновили в 2342 году."
+  productEntity: WeaponLightMachineGunMG42
+  cost:
+    Speso: 62050
+  categories:
+  - GSecUplinkLMGs
+
+- type: listing
+  id: GSecWeaponLightMachineGunMG60
+  name: "Пулемёт MG-60 (T2)"
+  description: "Универсальный пулемет Raummetall MG-60 является текущим стандартным пулеметом армии Земного правительства. Хотя обычно его можно увидеть установленным на технике, иногда его используют пехотинцы для удержания узких мест или подавления противника, а в редких случаях — для ведения огня во время движения."
+  productEntity: WeaponLightMachineGunMG60
+  cost:
+    Speso: 53250
+  categories:
+  - GSecUplinkLMGs
+
+- type: listing
+  id: GSecWeaponRifleM41
+  name: "Пулемёт M-41 (T2)"
+  description: "M-41 — это крупная переносная машина, позволяющая вести продолжительный и точный подавляющий огонь за счет мобильности и удобства в обращении. Часто используется там, где предпочтительная тактика быстрой и мобильной агрессии оказывается неэффективной."
+  productEntity: WeaponRifleM41
+  cost:
+    Speso: 52250
+  categories:
+  - GSecUplinkLMGs
+
+- type: listing
+  id: GSecWeaponLightMachineGunRPD
+  name: "Пулемёт РПД (T2)"
+  description: "Дешевый и надежный пулемет, иногда более известный как «РПД». Несмотря на отсутствие точек крепления, кроме подствольного, он остается популярным товаром на черном рынке благодаря своей низкой стоимости, большой емкости магазина и патронам большего, чем обычно, калибра."
+  productEntity: WeaponLightMachineGunRPD
+  cost:
+    Speso: 41850
+  categories:
+  - GSecUplinkLMGs
+
+- type: listing
+  id: GSecNFWeaponLightMachineGunL6
+  name: "Пулемёт GSW LMG-6 (T3)"
+  description: "Довольно традиционно изготовленный ручной пулемёт с приятно лакированной деревянной пистолетной рукояткой. Незаконное огнестрельное оружие, часто используемое агентами Синдиката."
+  productEntity: NFWeaponLightMachineGunL6
+  cost:
+    Speso: 32000
+  categories:
+  - GSecUplinkLMGs
+
+# 7. ГРАНАТОМЁТЫ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecWeaponLauncherM81
+  name: "Гранатомёт M-81 (T2)"
+  description: "Легкий однозарядный гранатомет, используемый НАТО для блокирования территорий и проведения крупных взрывов, а также подразделениями полиции по борьбе с беспорядками."
+  productEntity: WeaponLauncherM81
+  cost:
+    Speso: 1100
+  categories:
+  - GSecUplinkGrenades
+
+
+- type: listing
+  id: GSecNFWeaponLauncherGrenadeNfsd
+  name: "Гранатомёт NGP-40 (T2)"
+  description: "Однозарядный гранатомёт, способный запускать как гранаты, так и дротики!"
+  productEntity: NFWeaponLauncherGrenadeNfsd
+  cost:
+    Speso: 7140
+  categories:
+  - GSecUplinkGrenades
+
+- type: listing
+  id: GSecWeaponLauncherGL70
+  name: "Гранатомёт GL-70 (T2)"
+  description: "GL-70 — это стандартный гранатомет, используемый Земной Армией для контроля территории и проведения мощных взрывов."
+  productEntity: WeaponLauncherGL70
+  cost:
+    Speso: 62000
+  categories:
+  - GSecUplinkGrenades
+
+- type: listing
+  id: GSecNFWeaponLauncherChinaLake
+  name: "Гранатомёт GP-40 (T3)"
+  description: "БЛУП."
+  productEntity: NFWeaponLauncherChinaLake
+  cost:
+    Speso: 12700
+  categories:
+  - GSecUplinkGrenades
+
+- type: listing
+  id: GSecNFWeaponLauncherRocket
+  name: "Гранатомёт GSW mk4 (T3)"
+  description: "Модифицированный древний гранатомёт с реактивными снарядами."
+  productEntity: NFWeaponLauncherRocket
+  cost:
+    Speso: 34300
+  categories:
+  - GSecUplinkGrenades
+
+# 8. ЛАЗЕРЫ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecNFWeaponEnergyPistolLaserSvalinn
+  name: "Пистолет Свалинн (T1)"
+  description: "Дешёвый и широко распространённый лазерный пистолет."
+  productEntity: NFWeaponEnergyPistolLaserSvalinn
+  cost:
+    Speso: 1200
+  categories:
+  - GSecUplinkLaser
+
+- type: listing
+  id: GSecCyberWeaponEnergyPistolLaser
+  name: "Лазерный Пистолет (T1)"
+  description: "Энергетический кибернетический лазерный пистолет для боевого применения."
+  productEntity: CyberWeaponEnergyPistolLaser
+  cost:
+    Speso: 2400
+  categories:
+  - GSecUplinkLaser
+
+- type: listing
+  id: GSecNFWeaponEnergyPistolLaserAdvanced
+  name: "Продвинутый лазерный Пистолет (T1)"
+  description: "Экспериментальный лазерный пистолет гражданского класса с саморазряжающейся ядерной батареей и двумя режимами: оглушение и убийство."
+  productEntity: NFWeaponEnergyPistolLaserAdvanced
+  cost:
+    Speso: 7400
+  categories:
+  - GSecUplinkLaser
+
+- type: listing
+  id: GSecNFWeaponEnergyRifleCarbine
+  name: "Лазерный карабин (T1)"
+  description: "Простой лазерный карабин гражданского класса, рабочая лошадка многих частных охранных организаций."
+  productEntity: NFWeaponEnergyRifleCarbine
+  cost:
+    Speso: 12000
+  categories:
+  - GSecUplinkLaser
+
+- type: listing
+  id: GSecNFWeaponEnergyPistolDisabler
+  name: "Оглушающий пистолет (T1)"
+  description: "Гражданское оружие самообороны, которое истощает органические цели, ослабляя их до потери сознания."
+  productEntity: NFWeaponEnergyPistolDisabler
+  cost:
+    Speso: 4000
+  categories:
+  - GSecUplinkLaser
+
+- type: listing
+  id: GSecNFWeaponEnergySubMachineGunDisabler
+  name: "Оглушающий пистолет-пулемёт (T2)"
+  description: "Продвинутое оружие, которое истощает органические цели, ослабляя их до потери сознания. На рукоятке есть надпись: «Только для авторизованного использования»."
+  productEntity: NFWeaponEnergySubMachineGunDisabler
+  cost:
+    Speso: 21400
+  categories:
+  - GSecUplinkLaser
+
+- type: listing
+  id: GSecNFWeaponEnergyPistolLaserX01Multiphase
+  name: "Пистолет X-01 (T2)"
+  description: "Это дорогая, современная реплика антикварного лазерного пистолета. У этого оружия несколько уникальных режимов огня. На рукоятке есть надпись: «Только для авторизованного использования»."
+  productEntity: NFWeaponEnergyPistolLaserX01Multiphase
+  cost:
+    Speso: 31700
+  categories:
+  - GSecUplinkLaser
+
+# 9. МАГАЗИНЫ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecMagazinePistolCaselessRifleRubber
+  name: "Пистолетный магазин (Т3)"
+  description: "Калибр .25 резиновые, вместимость - 10 патроонов."
+  productEntity: MagazinePistolCaselessRifleRubber
+  cost:
+    Speso: 1870
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazinePistol35
+  name: "Пистолетный магазин"
+  description: "Калибр .35, вместимость - 10 патроонов."
+  productEntity: NFMagazinePistol35
+  cost:
+    Speso: 1300
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazineHighCapacityPistol35
+  name: "Расширенный пистолетный магазин"
+  description: "Калибр .35, вместимость - 16 патроонов."
+  productEntity: NFMagazineHighCapacityPistol35
+  cost:
+    Speso: 1360
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazinePistol45
+  name: "Пистолетный магазин"
+  description: "Калибр .45, вместимость - 8 патроонов."
+  productEntity: NFMagazinePistol45
+  cost:
+    Speso: 1300
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistol45ACP
+  name: "Пистолетный магазин"
+  description: "Калибр .45, вместимость - 12 патроонов."
+  productEntity: MagazinePistol45ACP
+  cost:
+    Speso: 1340
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistol50AE
+  name: "Пистолетный магазин"
+  description: "Калибр .50 AE, вместимость - 7 патроонов."
+  productEntity: MagazinePistol50AE
+  cost:
+    Speso: 1570
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistol57x28
+  name: "Пистолетный магазин"
+  description: "Калибр .5,5x28, вместимость - 10 патроонов."
+  productEntity: MagazinePistol57x28
+  cost:
+    Speso: 1470
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistol57x28Extd
+  name: "Расширенный пистолетный магазин"
+  description: "Калибр .5,5x28, вместимость - 19 патроонов."
+  productEntity: MagazinePistol57x28Extd
+  cost:
+    Speso: 1670
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazineSubMachineGun35
+  name: "Магазин для ПП"
+  description: "Калибр .35, вместимость - 30 патроонов."
+  productEntity: NFMagazineSubMachineGun35
+  cost:
+    Speso: 1460
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazineSubMachineGun45
+  name: "Магазин для ПП"
+  description: "Калибр .45, вместимость - 25 патроонов."
+  productEntity: NFMagazineSubMachineGun45
+  cost:
+    Speso: 1460
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolSubMachineGun57x28
+  name: "Магазин для MP7"
+  description: "Калибр .5,7x28, вместимость - 30 патроонов."
+  productEntity: MagazinePistolSubMachineGun57x28
+  cost:
+    Speso: 1460
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolSubMachineGunVector45ACP
+  name: "Магазин KRISS Vector"
+  description: "Калибр .45, вместимость - 20 патроонов."
+  productEntity: MagazinePistolSubMachineGunVector45ACP
+  cost:
+    Speso: 1530
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolSubMachineGunVector45ACPExt
+  name: "Расширенный магазин KRISS Vector"
+  description: "Калибр .45, вместимость - 40 патроонов."
+  productEntity: MagazinePistolSubMachineGunVector45ACPExt
+  cost:
+    Speso: 1830
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazineRifle20
+  name: "Винтовочный магазин"
+  description: "Калибр .20, вместимость - 25 патроонов."
+  productEntity: NFMagazineRifle20
+  cost:
+    Speso: 1530
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazineDrumRifle20
+  name: "Винтовочный барабанный магазин"
+  description: "Калибр .20, вместимость - 60 патроонов."
+  productEntity: NFMagazineDrumRifle20
+  cost:
+    Speso: 11130
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazineBoxRifle20
+  name: "Коробчатый магазин"
+  description: "Калибр .20, вместимость - 100 патроонов."
+  productEntity: NFMagazineBoxRifle20
+  cost:
+    Speso: 11260
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineCaselessRifleShortRubber
+  name: "Винтовочный магазин (Т3)"
+  description: "Калибр .25 резиновые, вместимость - 20 патроонов."
+  productEntity: MagazineCaselessRifleShortRubber
+  cost:
+    Speso: 11260
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineCaselessRifleRubber
+  name: "Винтовочный магазин (Т3)"
+  description: "Калибр .25 резиновые, вместимость - 30 патроонов."
+  productEntity: MagazineCaselessRifleRubber
+  cost:
+    Speso: 11260
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineHeavyMachineGunDrum
+  name: "Барабанный магазин"
+  description: "Калибр .25 резиновые, вместимость - 200 патроонов."
+  productEntity: MagazineHeavyMachineGunDrum
+  cost:
+    Speso: 13520
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazineLowCapacityRifle30
+  name: "Малый винтовочный магазин"
+  description: "Калибр .30, вместимость - 15 патроонов."
+  productEntity: NFMagazineLowCapacityRifle30
+  cost:
+    Speso: 1360
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazineRifle30
+  name: "Винтовочный магазин"
+  description: "Калибр .30, вместимость - 30 патроонов."
+  productEntity: NFMagazineRifle30
+  cost:
+    Speso: 1530
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineHeavyRifleBR64
+  name: "Винтовочный магазин"
+  description: "Калибр .308, вместимость - 18 патроонов."
+  productEntity: MagazineHeavyRifleBR64
+  cost:
+    Speso: 1530
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineRifleLight762x39
+  name: "Магазин АК"
+  description: "Калибр .7,62x39, вместимость - 30 патроонов."
+  productEntity: MagazineRifleLight762x39
+  cost:
+    Speso: 1530
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineRifleLight762x39Ext
+  name: "Расширенный магазин АК"
+  description: "Калибр .7,62x39, вместимость - 50 патроонов."
+  productEntity: MagazineRifleLight762x39Ext
+  cost:
+    Speso: 1730
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineLightMachineGun762x39
+  name: "Магазин РПД"
+  description: "Калибр .7,62x39, вместимость - 80 патроонов."
+  productEntity: MagazineLightMachineGun762x39
+  cost:
+    Speso: 11260
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineRifleLightSniper
+  name: "Винтовочный магазин"
+  description: "Калибр .7,62x54, вместимость - 20 патроонов."
+  productEntity: MagazineRifleLightSniper
+  cost:
+    Speso: 1430
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineRifle762UEG
+  name: "Магазин AR"
+  description: "Калибр .7,62x54, вместимость - 30 патроонов."
+  productEntity: MagazineRifle762UEG
+  cost:
+    Speso: 1560
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineAntiMaterielRifleSR
+  name: "Винтовочный магазин"
+  description: "Калибр .50 BMG, вместимость - 10 патроонов."
+  productEntity: MagazineAntiMaterielRifleSR
+  cost:
+    Speso: 1560
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineSniperBarrettM82
+  name: "Магазин Barrett M82"
+  description: "Калибр .70, вместимость - 50 патроонов."
+  productEntity: MagazineSniperBarrettM82
+  cost:
+    Speso: 1440
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazineShotgunDrum
+  name: "Барабанный магазин"
+  description: "Калибр .50 Дробь, вместимость - 8 патроонов."
+  productEntity: NFMagazineShotgunDrum
+  cost:
+    Speso: 1640
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFMagazineShotgunDrumSlug
+  name: "Барабанный магазин"
+  description: "Калибр .50 Пуля, вместимость - 8 патроонов."
+  productEntity: NFMagazineShotgunDrumSlug
+  cost:
+    Speso: 1640
+  categories:
+  - GSecUplinkMags
+
+
+- type: listing
+  id: GSecNFMagazineClipRifle20
+  name: "Обочма"
+  description: "Калибр .20, вместимость - 15 патроонов."
+  productEntity: NFMagazineClipRifle20
+  cost:
+    Speso: 240
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFSpeedLoaderPistol35
+  name: "Спидлоадер на .35"
+  description: "Калибр .35, вместимость - 8 патроонов."
+  productEntity: NFSpeedLoaderPistol35
+  cost:
+    Speso: 760
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecSpeedLoader357Magnum
+  name: "Спидлоадер на .357 Magnum"
+  description: "Калибр .357 Magnum, вместимость - 6 патроонов."
+  productEntity: SpeedLoader357Magnum
+  cost:
+    Speso: 760
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecSpeedLoader44Magnum
+  name: "Спидлоадер на .44 Magnum"
+  description: "Калибр .44 Magnum, вместимость - 6 патроонов."
+  productEntity: SpeedLoader44Magnum
+  cost:
+    Speso: 760
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecNFSpeedLoaderPistol45
+  name: "Спидлоадер на .45"
+  description: "Калибр .45, вместимость - 6 патроонов."
+  productEntity: NFSpeedLoaderPistol45
+  cost:
+    Speso: 760
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecSpeedLoaderRifleHeavy
+  name: "Спидлоадер на .20"
+  description: "Калибр .20, вместимость - 8 патроонов."
+  productEntity: SpeedLoaderRifleHeavy
+  cost:
+    Speso: 520
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineUniversalGSecEmpty
+  name: "Пустой универсальный короб боеприпасов (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Подходит под большинство калибров, вместимость - 120 патроонов."
+  productEntity: MagazineUniversalGSecEmpty
+  cost:
+    Speso: 4870
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineUniversalGSec20
+  name: "Универсальный короб боеприпасов (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Наполнен патроном .20, вместимость - 120 патроонов."
+  productEntity: MagazineUniversalGSec20
+  cost:
+    Speso: 6870
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineUniversalGSec30
+  name: "Универсальный короб боеприпасов (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Наполнен патроном .30, вместимость - 120 патроонов."
+  productEntity: MagazineUniversalGSec30
+  cost:
+    Speso: 8000
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineUniversalGSec60
+  name: "Универсальный короб боеприпасов (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Наполнен патроном .60, вместимость - 120 патроонов."
+  productEntity: MagazineUniversalGSec60
+  cost:
+    Speso: 10270
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazineRifleRocket20
+  name: "Стндартный магазин правительства земли для тяжелых винтовок."
+  description: "Стндартный магазин правительства земли для тяжелых винтовок."
+  productEntity: MagazineRifleRocket20
+  cost:
+    Speso: 15270
+  categories:
+  - GSecUplinkMags
+
+# 12. БОЕКОМПЛЕКТ
+# ===============================================================================================================================
+
+- type: listing
+  id: GSecMagazineSniperGSec
+  name: "крупнокалиберный магазин Горлекс"
+  description: "Разработанный Cybersun магазин для подачи множества калибров высокой убойной силы."
+  productEntity: MagazineSniperGSec
+  cost:
+    Speso: 20000
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecMagazineRifleGSec
+  name: "винтовочный магазин Горлекс"
+  description: "Разработанный Cybersun магазин для подачи того, что может валяться под ногами."
+  productEntity: MagazineRifleGSec
+  cost:
+    Speso: 15000
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecMagazineMPGSec
+  name: "магазин ПП Горлекс"
+  description: "Разработанный Cybersun магазин для подачи того, что может валяться под ногами."
+  productEntity: MagazineMPGSec
+  cost:
+    Speso: 12000
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecNFAmmunitionBoxRifle20
+  name: "коробка патронов .20"
+  description: "Короб на 60 винтовочных патронов калибра .20"
+  productEntity: NFAmmunitionBoxRifle20
+  cost:
+    Speso: 120
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecAnCoMagazineBox20
+  name: "коробка патронов .20 АнКо"
+  description: "Короб на 150 винтовочных патронов калибра .20 от «AnroxComputer's»"
+  productEntity: AnCoMagazineBox20
+  cost:
+    Speso: 450
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecNFAmmunitionBoxBigRifle20
+  name: "коробка патронов .20"
+  description: "Короб на 200 винтовочных патронов калибра .20"
+  productEntity: NFAmmunitionBoxBigRifle20
+  cost:
+    Speso: 400
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecMagazinePacketRifle762x39
+  name: "коробка патронов 7,62x39"
+  description: "Короб на 60 винтовочных патронов калибра 7,62x39"
+  productEntity: MagazinePacketRifle762x39
+  cost:
+    Speso: 240
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecMagazineBoxRifleLightSniper
+  name: "коробка патронов 7,62x54"
+  description: "Короб на 60 винтовочных патронов калибра 7,62x54"
+  productEntity: MagazineBoxRifleLightSniper
+  cost:
+    Speso: 300
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecMagazinePacketRifle762UEG
+  name: "коробка патронов 7,62 NATO"
+  description: "Короб на 60 винтовочных патронов калибра 7,62 NATO"
+  productEntity: MagazinePacketRifle762UEG
+  cost:
+    Speso: 360
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecNFAmmunitionBoxRifle30
+  name: "коробка патронов .30"
+  description: "Короб на 60 винтовочных патронов калибра .30"
+  productEntity: NFAmmunitionBoxRifle30
+  cost:
+    Speso: 120
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecAnCoMagazineBox30
+  name: "коробка патронов .30 АнКо"
+  description: "Короб на 150 винтовочных патронов калибра .30 от «AnroxComputer's»"
+  productEntity: AnCoMagazineBox30
+  cost:
+    Speso: 450
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecNFAmmunitionBoxBigRifle30
+  name: "коробка патронов .30"
+  description: "Короб на 200 винтовочных патронов калибра .30"
+  productEntity: NFAmmunitionBoxBigRifle30
+  cost:
+    Speso: 400
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecNFAmmunitionBoxPistol35
+  name: "коробка патронов .35"
+  description: "Короб на 80 пистолетных патронов калибра .35"
+  productEntity: NFAmmunitionBoxPistol35
+  cost:
+    Speso: 160
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecAnCoMagazineBox35
+  name: "коробка патронов .35 АнКо"
+  description: "Короб на 200 пистолетных патронов калибра .35 от «AnroxComputer's»"
+  productEntity: AnCoMagazineBox35
+  cost:
+    Speso: 600
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecMagazinePacketRevolver357Magnum
+  name: "коробка патронов .357"
+  description: "Короб на 60 пистолетных патронов калибра .357 Magnum"
+  productEntity: MagazinePacketRevolver357Magnum
+  cost:
+    Speso: 240
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecMagazinePacketRevolver44Magnum
+  name: "коробка патронов .44"
+  description: "Короб на 60 пистолетных патронов калибра .44 Magnum"
+  productEntity: MagazinePacketRevolver44Magnum
+  cost:
+    Speso: 240
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecMagazinePacketPistolACP
+  name: "коробка патронов .45 ACP"
+  description: "Короб на 60 пистолетных патронов калибра .45 ACP"
+  productEntity: MagazinePacketPistolACP
+  cost:
+    Speso: 240
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecNFAmmunitionBoxPistol45
+  name: "коробка патронов .45"
+  description: "Короб на 60 пистолетных патронов калибра .45"
+  productEntity: NFAmmunitionBoxPistol45
+  cost:
+    Speso: 120
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecMagazinePacketPistol57x28
+  name: "коробка патронов 5,7x28"
+  description: "Короб на 60 пистолетных патронов калибра 5,7x28"
+  productEntity: MagazinePacketPistol57x28
+  cost:
+    Speso: 240
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecMagazinePacketPistol50AE
+  name: "коробка патронов .50 AE"
+  description: "Короб на 60 пистолетных патронов калибра .50 Action Express"
+  productEntity: MagazinePacketPistol50AE
+  cost:
+    Speso: 360
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecNFAmmunitionBoxShellShotgunBuckshot
+  name: "коробка патронов .50 дробь"
+  description: "Короб на 20 патронов для дробовика калибра .50 дробь"
+  productEntity: NFAmmunitionBoxShellShotgunBuckshot
+  cost:
+    Speso: 240
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecAnCoMagazineBox50
+  name: "коробка патронов .50 дробь АнКо"
+  description: "Короб на 75 патронов для дробовика калибра .50 дробь «AnroxComputer's»"
+  productEntity: AnCoMagazineBox50
+  cost:
+    Speso: 1350
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecNFAmmunitionBoxShellShotgunSlug
+  name: "коробка патронов .50 пуля"
+  description: "Короб на 20 патронов для дробовика калибра .50 слаг"
+  productEntity: NFAmmunitionBoxShellShotgunSlug
+  cost:
+    Speso: 240
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecMagazinePacketHeavyRifle50BMG
+  name: "коробка патронов .50 BMG"
+  description: "Короб на 10 антиматериальных патронов калибра .50 BMG"
+  productEntity: MagazinePacketHeavyRifle50BMG
+  cost:
+    Speso: 250
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecNFAmmunitionBoxRifle60
+  name: "коробка патронов .60"
+  description: "Короб на 30 винтовочных патронов калибра .60"
+  productEntity: NFAmmunitionBoxRifle60
+  cost:
+    Speso: 600
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecNFAmmunitionBoxBigRifle60
+  name: "коробка патронов .60"
+  description: "Короб на 120 винтовочных патронов калибра .60"
+  productEntity: NFAmmunitionBoxBigRifle60
+  cost:
+    Speso: 2400
+  categories:
+  - GSecUplinkAmmo
+
+- type: listing
+  id: GSecAnCoMagazineBox
+  name: "коробка патронов .70 АнКо"
+  description: "Короб на 75 винтовочных патронов калибра .70 «AnroxComputer's»"
+  productEntity: AnCoMagazineBox
+  cost:
+    Speso: 1875
+  categories:
+  - GSecUplinkAmmo
+
+# 11. ОБВЕСЫ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecAttachmentMagneticHarness
+  name: "Магнитный ремень"
+  description: "Комплект из ремня и магнитных креплений, которые крепятся к верхней планке. В случае потери бойцом равновесия - оружие не падает на землю и остается с владельцем."
+  productEntity: AttachmentMagneticHarness
+  cost:
+    Speso: 2150
+  categories:
+  - GSecUplinkAttachments
+
+- type: listing
+  id: GSecAttachmentReflexSight
+  name: "Коллиматорный прицел"
+  description: "Коллиматорный прицел, повышающий меткость стрельбы с одной руки и из неустойчивых положений. Производства Shellguard Munitions."
+  productEntity: AttachmentReflexSight
+  cost:
+    Speso: 2350
+  categories:
+  - GSecUplinkAttachments
+
+- type: listing
+  id: GSecAttachmentT2Miniscope
+  name: "Оптический прицел"
+  description: "Оптический прицел малой кратности, подходящий для ведения боя в замкнутых пространствах. Производства Shellguard Munitions."
+  productEntity: AttachmentT2Miniscope
+  cost:
+    Speso: 2750
+  categories:
+  - GSecUplinkAttachments
+
+- type: listing
+  id: GSecAttachmentHristovScope
+  name: "Оптический прицел Христова"
+  description: "Штатный прицел для снайперской винтовки «Христов», с шестикратным увеличением."
+  productEntity: AttachmentHristovScope
+  cost:
+    Speso: 17050
+  categories:
+  - GSecUplinkAttachments
+
+- type: listing
+  id: GSecAttachmentAntiLyingWarrior
+  name: "Модуль коррекции огня"
+  description: "Особо продвинутый модуль со встроенными микро пИИ, анализирующим угрозы вокруг. С помощью электромагнита и магии блюспейс-технологий корректирует полет пули так, чтобы она точно попала в цель на своём пути, даже если она залегла под столом или в груде мусора."
+  productEntity: AttachmentAntiLyingWarrior
+  cost:
+    Speso: 12650
+  categories:
+  - GSecUplinkAttachments
+
+- type: listing
+  id: GSecAttachmentSuppressor
+  name: "Глушитель"
+  description: "Устанавлаемый на ствол универсальный мультикалиберный глушитель. Существенно снижает звук от стрельбы и скрывает дульную вспышку."
+  productEntity: AttachmentSuppressor
+  cost:
+    Speso: 15650
+  categories:
+  - GSecUplinkAttachments
+
+- type: listing
+  id: GSecAttachmentVerticalGrip
+  name: "Вертикальная рукоять"
+  description: "Вертикальная рукоять, помогающая контролировать разброс и повышающая общее удобство использования."
+  productEntity: AttachmentVerticalGrip
+  cost:
+    Speso: 750
+  categories:
+  - GSecUplinkAttachments
+
+- type: listing
+  id: GSecAttachmentLaserSight
+  name: "Лазерный целеуказатель"
+  description: "Устанавливаемый под ствол маленький лазер, позволяющий бойцу стрелять точнее даже без прицела и с одной руки."
+  productEntity: AttachmentLaserSight
+  cost:
+    Speso: 1350
+  categories:
+  - GSecUplinkAttachments
+
+- type: listing
+  id: GSecAttachmentM90GrenadeLauncher
+  name: "Подствольный гранатомёт GL90"
+  description: "Один из наиболее распространенных подствольных гранатомётов, изначально разработанный для карабина M-90gl. Заряжается 40-мм выстрелами."
+  productEntity: AttachmentM90GrenadeLauncher
+  cost:
+    Speso: 4350
+  categories:
+  - GSecUplinkAttachments
+
+- type: listing
+  id: GSecAttachmentM90UnderbarrelShotgun
+  name: "Подствольный дробовик US90"
+  description: "Трехзарядный подствольный дробовик, сделанный изначально для карабина М-90gl. Прекрасно подходит для вышибания дверей или мозгов зомби."
+  productEntity: AttachmentM90UnderbarrelShotgun
+  cost:
+    Speso: 3750
+  categories:
+  - GSecUplinkAttachments
+
+# 12. ДРУГОЕ
+# ================================================================================================================================
+
+- type: listing
+  id: GSecGSecHypo
+  name: "Гипоспрей Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "запасной экземпляр со складов ЧВК «Gorlex Securities LLC», верните утерянные образцы!."
+  productEntity: GSecHypo
+  cost:
+    Speso: 62000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecGSecWeaponTurretPacked
+  name: "Турель Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Упакованая турель ЧВК «Gorlex Securities LLC»."
+  productEntity: GSecWeaponTurretPacked
+  cost:
+    Speso: 62000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecFirethrowerGun
+  name: "Ручной огнемет М6 (T2)"
+  description: "Реактивный огнемёт Номадова — удивительная вещь, на оружии выгравирована надпись: «Смерть врагам человечества!»"
+  productEntity: FirethrowerGun
+  cost:
+    Speso: 35500
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecDuffelGSecEVABundle
+  name: "Набор EVA Горлекс (Т2)"
+  description: "Бюджетный вариант для обеспечения личной безопасности."
+  productEntity: DuffelGSecEVABundle
+  cost:
+    Speso: 8000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecClothingOuterHardsuitGSec
+  name: "Cкафандр Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Боевой скафандр, долговечен и прост в ремонте. Собственность ЧВК «Gorlex Securities LLC»."
+  productEntity: ClothingOuterHardsuitGSec
+  cost:
+    Speso: 55200
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecClothingOuterHardsuitMedicGSec
+  name: "Медецинский скафандр Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Боевой скафандр, дополнительно изолирован от химического воздействия. Собственность ЧВК «Gorlex Securities LLC»."
+  productEntity: ClothingOuterHardsuitMedicGSec
+  cost:
+    Speso: 75200
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecClothingOuterHardsuitGSecOfficer
+  name: "Офицерский скафандр Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Усиленный скафандр горлекса для использования в лобовых столкновениях. Собственность ЧВК «Gorlex Securities LLC»."
+  productEntity: ClothingOuterHardsuitGSecOfficer
+  cost:
+    Speso: 89200
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecClothingRadioBackpackGsec
+  name: "Радиорюкзак Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Переносной центр связи, зарядник прилагается. Собственность ЧВК «Gorlex Securities LLC»."
+  productEntity: ClothingRadioBackpackGsec
+  cost:
+    Speso: 75200
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecClothingEyesHudGSec
+  name: "Военный визор Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Визор с системой распознавания «свой-чужой». Собственность ЧВК «Gorlex Securities LLC»."
+  productEntity: ClothingEyesHudGSec
+  cost:
+    Speso: 5400
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecClothingEyesHudGSecMedical
+  name: "Медицинский визор Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Визор с системой распознавания «свой-чужой». Собственность ЧВК «Gorlex Securities LLC»."
+  productEntity: ClothingEyesHudGSecMedical
+  cost:
+    Speso: 7400
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecClothingEyesHudGSecSpecial
+  name: "Военный визор Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Визор с системой распознавания для особых операций. Собственность ЧВК «Gorlex Securities LLC»."
+  productEntity: ClothingEyesHudGSecSpecial
+  cost:
+    Speso: 7800
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecEncryptionKeyGSec
+  name: "Ключ шифрования Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Стандартный ключ шифрования ЧВК «Gorlex Securities LLC». Не для гражданского использования."
+  productEntity: EncryptionKeyGSec
+  cost:
+    Speso: 1250
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecIdGSecComputerCircuitboard
+  name: "Плата ID карт (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Плата терминала ID карт. Собственность ЧВК «Gorlex Securities LLC»."
+  productEntity: IdGSecComputerCircuitboard
+  cost:
+    Speso: 122000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecGSecVendingClothing
+  name: "ОдеждоМат Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Вендор с одежой ЧВК «Gorlex Securities LLC», прямо с завода. Не для гражданского использования."
+  productEntity: GSecGSecVendingClothing
+  cost:
+    Speso: 55700
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecGSecVendingMachineClothingRestock
+  name: "Коробка пополнения ОдеждоМата Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Товары для ОдеждоМата Горлекс."
+  productEntity: GSecVendingMachineClothingRestock
+  cost:
+    Speso: 25800
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecGSecVendingGear
+  name: "УниВенд Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Вендор со снаряжением ЧВК «Gorlex Securities LLC», прямо с завода. Не для гражданского использования."
+  productEntity: GSecVendingGear
+  cost:
+    Speso: 66700
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecGSecVendingMachineGearRestock
+  name: "Коробка пополнения УниВенда (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Товары для УниВенда Горлекс."
+  productEntity: GSecVendingMachineGearRestock
+  cost:
+    Speso: 32800
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecGSecVendingSupply
+  name: "Расход-О-Мат Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Вендор с расходниками ЧВК «Gorlex Securities LLC», прямо с завода. Не для гражданского использования."
+  productEntity: GSecVendingSupply
+  cost:
+    Speso: 45700
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecGSecVendingMachineSupplyRestock
+  name: "Коробка пополнения Расход-О-Мата (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Товары для Расход-О-Мата Горлекс."
+  productEntity: GSecVendingMachineSupplyRestock
+  cost:
+    Speso: 20800
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecFlippoGSecLighter
+  name: "Флиппо Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Сувенирная зажигалка ЧВК «Gorlex Securities LLC»."
+  productEntity: FlippoGSecLighter
+  cost:
+    Speso: 10800
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecSurplusBundle
+  name: "ящик припасов Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Содержит случайное снаряжение на 40 тысяч кредитов. «Всё, что не пригодилось нам»."
+  productEntity: CrateGSecSurplusBundle
+  cost:
+    Speso: 32000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecSuperSurplusBundle
+  name: "ящик суперприпасов Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Содержит случайное снаряжение на 100 тысяч кредитов. «Всё, что не пригодилось нам»."
+  productEntity: CrateGSecSuperSurplusBundle
+  cost:
+    Speso: 64000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecHeavyWeaponBundle
+  name: "Набор тяжелого оружия Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Набор тяжелого оружия ЧВК «Gorlex Securities LLC» по скидке."
+  productEntity: CrateGSecHeavyWeaponBundle
+  cost:
+    Speso: 600000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecSaigaBundle
+  name: "Премиальный набор Сайги Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Полная комплектация прямиком от ЧВК «Gorlex Securities LLC». Покажи им всепоглощающую мощь."
+  productEntity: CrateGSecSaigaBundle
+  cost:
+    Speso: 150000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecBlackWaterBundle
+  name: "Набор Блэкуотер (Т3)"
+  description: "Набор Blackwater от «AnCo - MiliGalax», патроны в комплект не входят. «Это не военное приступление, если тебя не поймали»."
+  productEntity: CrateGSecBlackWaterBundle
+  cost:
+    Speso: 70000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecPraetorBundle
+  name: "Набор Перторианца (Т3)"
+  description: "Набор Praetor от «AnCo - MiliGalax». «Это не военное приступление, если тебя не поймали»."
+  productEntity: CrateGSecBlackWaterBundle
+  cost:
+    Speso: 200000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecNorthStarBundle
+  name: "Премиальный набор НордСтар Горлекс (Т2)"
+  description: "Комплект тяжелого пистолета ЧВК «Gorlex Securities LLC». «Ты только что узнал, что нужно, чтобы стать легендой»."
+  productEntity: CrateGSecNorthStarBundle
+  cost:
+    Speso: 200000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecOldBundle
+  name: "Спиcанное снаряжение Горлекс"
+  description: "Мы не знаем зачем оно вам, но учтите: списанное снаряжение катируется как «не уставное»."
+  productEntity: CrateGSecOldBundle
+  cost:
+    Speso: 15000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecBoxGSecCodeSpeak
+  name: "Набор шифрования речи (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Три импланта кодового языка для не предвиденных обстоятельств, НЕ ПОТЕРЯЙТЕ."
+  productEntity: BoxGSecCodeSpeak
+  cost:
+    Speso: 30000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecPouchBundle
+  name: "Набор неортодоксального снаряжения Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Набор новаторских решений для сотрудников ЧВК «Gorlex Securities LLC»."
+  productEntity: CrateGSecPouchBundle
+  cost:
+    Speso: 10000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecFoodBundle
+  name: "Набор коммерческих закусок (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Часть рекламной компании ЧВК «Gorlex Securities LLC». Употребляйте в своё удовольствие."
+  productEntity: CrateGSecFoodBundle
+  cost:
+    Speso: 12000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecCaseBundle
+  name: "Набор кейсов Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Комплект оружейных кейсов разного размера, для хранения личного вооружения."
+  productEntity: CrateGSecCaseBundle
+  cost:
+    Speso: 30000
+  categories:
+  - GSecUplinkOther
+
+- type: listing
+  id: GSecCrateGSecIDBundle
+  name: "Набор ID карт Горлекс (ТОЛЬКО ДЛЯ ПЕРСОНАЛА)"
+  description: "Резерв карт аунтентификации, на случай непредвиденных остоятельств."
+  productEntity: CrateGSecIDBundle
+  cost:
+    Speso: 12000
+  categories:
+  - GSecUplinkOther

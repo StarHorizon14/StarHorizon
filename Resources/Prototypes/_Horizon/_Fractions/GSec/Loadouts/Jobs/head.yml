@@ -1,0 +1,23 @@
+- type: loadout
+  id: LoadoutBeretGSec
+  price: 300
+  equipment:
+    head: ClothingHeadHatBeretGSec
+
+- type: loadout
+  id: LoadoutBeretBlackGSec
+  price: 300
+  equipment:
+    head: ClothingHeadHatBeretBlackGSec
+
+- type: loadout
+  id: LoadoutBeretMedicGSec
+  price: 300
+  equipment:
+    head: ClothingHeadHatBeretMedicGSec
+
+- type: loadout
+  id: LoadoutBeretGSecOld
+  price: 300
+  equipment:
+    head: ClothingHeadHatBeretGSecOld

@@ -1,0 +1,101 @@
+- type: entity
+  parent: [BasePDA, BaseGSecContraband]
+  id: PDAGSec
+  suffix: GSec
+  name: КПК Горлекс
+  description: Неубиваемый металл-полимерный кирпич, наполненный электроникой. На задней крышке расположена гравировка «Gorlex Securities LLC».
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Devices/pda.rsi
+  - type: Pda
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    state: pda
+  - type: PdaBorderColor
+    borderColor: "#37373E"
+  - type: FactionClothing
+    faction: GSec
+  - type: StaticPrice
+    price: 100
+
+# КПК Рекрута
+
+- type: entity
+  parent: PDAGSec
+  id: PDARecruitGSec
+  suffix: GSec
+  name: КПК рекрута Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Devices/pda_recruit.rsi
+  - type: Pda
+    id: GSecRecruitID
+  - type: PdaBorderColor
+    borderColor: "#3B4714"
+
+# КПК Агента
+
+- type: entity
+  parent: PDAGSec
+  id: PDAAgentGSec
+  suffix: GSec
+  name: КПК агента Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Devices/pda.rsi
+  - type: Pda
+    id: GSecAgentID
+
+# КПК Техника
+
+- type: entity
+  parent: PDAGSec
+  id: PDATechGSec
+  suffix: GSec
+  name: КПК техника Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Devices/pda_tech.rsi
+  - type: Pda
+    id: GSecTechID
+  - type: PdaBorderColor
+    borderColor: "#C17305"
+
+# КПК Санитара
+
+- type: entity
+  parent: PDAGSec
+  id: PDAMedicGSec
+  suffix: GSec
+  name: КПК санитара Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Devices/pda_medic.rsi
+  - type: Pda
+    id: GSecMedicID
+  - type: PdaBorderColor
+    borderColor: "#1C605B"
+
+# Офицер
+
+- type: entity
+  parent: PDAGSec
+  id: PDAOfficerGSec
+  suffix: GSec
+  name: КПК офицера Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Devices/pda_officer.rsi
+  - type: Pda
+    penSlot:
+      startingItem: PenGSec
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    state: pda
+    id: GSecOfficerID

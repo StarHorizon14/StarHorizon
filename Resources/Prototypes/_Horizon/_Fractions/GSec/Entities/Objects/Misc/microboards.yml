@@ -1,0 +1,20 @@
+- type: entity
+  id: IdGSecComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseGSecContraband]
+  name: микросхема консоли ID
+  description: Плата промышленного формата. Громоздкая и уродлевая, но зато какая надёжная!
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Misc/circuitboard.rsi
+    state: prom
+  - type: Item
+    storedRotation: -90
+  - type: StaticPrice
+    price: 400
+  - type: ComputerBoard
+    prototype: ComputerIdGSec
+  - type: PhysicalComposition
+    materialComposition:
+      AdvancedCapacitorStockPart: 3
+      NanoManipulatorStockPart: 2
+      SheetSteel: 5

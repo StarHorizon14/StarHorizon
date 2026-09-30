@@ -1,0 +1,31 @@
+- type: contrabandSeverity
+  id: GSecItem
+  examineText: gsec-contraband-examine-text
+
+- type: contrabandSeverity
+  id: GSecWeapon
+  examineText: gsec-weapon-contraband-examine-text
+
+- type: entity
+  id: BaseGSecContraband
+  parent: BaseC3ExpeditionContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: GSecItem
+    turnInValues:
+      FrontierUplinkCoin: 0
+      Doubloon: 0
+    allowedDepartments: [ GSecDepartment ]
+
+- type: entity
+  id: BaseGSecWeaponContraband
+  parent: BaseC3ExpeditionContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: GSecWeapon
+    turnInValues:
+      FrontierUplinkCoin: 0
+      Doubloon: 0
+    allowedDepartments: [ GSecDepartment ]

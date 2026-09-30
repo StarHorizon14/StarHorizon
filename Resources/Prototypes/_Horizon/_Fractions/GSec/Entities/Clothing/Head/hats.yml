@@ -1,0 +1,55 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretGSec
+  suffix: GSec
+  name: берет Горлекс
+  description: Уставной элемент одежды офицеров и генералов ЧВК «Gorlex Securities LLC». Носи его с честью.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hats/beret.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hats/beret.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: StaticPrice
+    price: 300
+
+- type: entity
+  parent: ClothingHeadHatBeretGSec
+  id: ClothingHeadHatBeretMedicGSec
+  name: берет санитара Горлекс
+  suffix: GSec
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hats/beretmedic.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hats/beretmedic.rsi
+
+- type: entity
+  parent: ClothingHeadHatBeretGSec
+  id: ClothingHeadHatBeretBlackGSec
+  name: черный берет Горлекс
+  suffix: GSec
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hats/beretblack.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hats/beretblack.rsi
+
+- type: entity
+  parent: ClothingHeadHatBeretGSec
+  id: ClothingHeadHatBeretGSecOld
+  name: кроваво-красный берет
+  description: На бирке логотип "Голова питона". Прямиком из далёкого прошлого, где вы это нашли?
+  suffix: GSec
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hats/beretold.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hats/beretold.rsi

@@ -1,0 +1,44 @@
+# РЕКРУТ
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconRecruitGSec
+  icon:
+    sprite: /Textures/_Horizon/_Fractions/GSec/Interface/Misc/jobicon.rsi
+    state: recruit
+
+# АГЕНТ
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconAgentGSec
+  icon:
+    sprite: /Textures/_Horizon/_Fractions/GSec/Interface/Misc/jobicon.rsi
+    state: agent
+
+# МЕДИК
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedicGSec
+  icon:
+    sprite: /Textures/_Horizon/_Fractions/GSec/Interface/Misc/jobicon.rsi
+    state: medic
+
+# ТЕХНИК
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconTechGSec
+  icon:
+    sprite: /Textures/_Horizon/_Fractions/GSec/Interface/Misc/jobicon.rsi
+    state: tech
+
+# ОФИЦЕР
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconOfficerGSec
+  icon:
+    sprite: /Textures/_Horizon/_Fractions/GSec/Interface/Misc/jobicon.rsi
+    state: officer

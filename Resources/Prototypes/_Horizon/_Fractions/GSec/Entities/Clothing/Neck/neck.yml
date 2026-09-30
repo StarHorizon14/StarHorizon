@@ -1,0 +1,67 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakGSec
+  suffix: GSec
+  name: плащ Горлекс
+  description: Стильный плащ в цвете оливы, сделан на совесть.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Neck/Cloacks/cloack.rsi
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.98
+  - type: ExplosionResistance
+    damageCoefficient: 0.97
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.97
+        Heat: 0.95
+        Caustic: 0.95
+  - type: StaticPrice
+    price: 600
+
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingMantleGSec
+  suffix: GSec
+  name: мантия Горлекс
+  description: Оливковая мантия, на воротнике нашито "Gorlex Securities LLC". Сделана на совесть.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Neck/Mantles/mantle.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.97
+        Heat: 0.95
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  parent: ClothingMantleGSec
+  id: ClothingMantleMedicGSec
+  name: мантия санитара Горлекс
+  description: Изолирующая накида, на воротнике нашито "Gorlex Securities LLC". Сделана на совесть.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Neck/Mantles/mantlemedic.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.97
+        Caustic: 0.95
+  - type: StaticPrice
+    price: 700
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingBandGSec
+  suffix: GSec
+  name: кроваво-красная повязка
+  description: Повязка для опознания союзников.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Neck/Other/redband.rsi
+  - type: StaticPrice
+    price: 300

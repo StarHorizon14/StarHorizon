@@ -1,0 +1,118 @@
+- type: entity
+  name: GX Блэкуотер
+  parent: [BaseWeaponPistol, BaseC3Contraband]
+  id: WeaponPistolGSecBlackWater
+  description: Пистолет с загаточной историей, обладает ужасной репутацией «Оружия военных преступлений». Не имеет серийной маркировкой. Дорогой, но надёжный.
+  suffix: AnCo, GSec
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-blackwater.si
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 3.5
+    minAngle: 0
+    maxAngle: 20
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+  - type: ChamberMagazineAmmoProvider
+    autoEject: false
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineGSecPistol35
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - AnCoNewMagazinePistol35
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: BaseCartridgePistolAnCo
+        priority: 1
+        whitelist:
+          tags:
+            - AnCoBulletPistol35
+  - type: DualWield
+  - type: StaticPrice
+    price: 10000
+  - type: NFWeaponDetails
+    class: weapon-details-class-pistol
+    manufacturer: "AnCo - MiliGalax"
+
+- type: entity
+  parent: [ BaseC2Contraband, NFBaseWeaponFramePistol ]
+  id: WeaponPistolGSecNorthStar
+  name: GXHP Нордстар
+  suffix: GSec, Пистолет
+  description: Первый экземпляр возникла как результат пьянки мастеров из «Gorlex Steel Works». Комично сложная конструкция, комично высокая отдача, штучно собирается для тех, кто хочет выделяться.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-northstar.rsi
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-northstar.rsi
+    shape:
+    - 0,0,2,0
+    - 0,1,0,1
+  - type: Gun
+    projectileSpeed: 60
+    minAngle: 3.4
+    maxAngle: 32
+    angleIncrease: 7.5
+    angleDecay: 12
+    fireRate: 2.3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Snipers/tl127.ogg
+      params:
+        volume: -5
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Pistols/deagle_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineNorthStarGSec
+        insertSound: /Audio/Weapons/Guns64/Pistols/deagle_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/deagle_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineNorthStarGSec
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleLight762
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle762
+            - CartridgeRifleLight762
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: NFWeaponDetails
+    class: weapon-details-class-pistol
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works

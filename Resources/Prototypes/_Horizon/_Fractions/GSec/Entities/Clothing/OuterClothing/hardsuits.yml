@@ -1,0 +1,155 @@
+- type: entity
+  parent: [ClothingOuterEVASuitBase, BaseC2Contraband, ContrabandClothing] # Frontier: added BaseC3SyndicateContraband, ContrabandClothing as parent
+  id: ClothingOuterEVASuitGSec
+  name: скафандр EVA Горлекс
+  description: "Проверенное решение для защиты от невзгод космоса и вражеского огня"
+  suffix: GSec
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/OuterClothing/Suits/eva-gsec.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/OuterClothing/Suits/eva-gsec.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.6
+        Radiation: 0.6
+        Caustic: 0.75
+  - type: Tag
+    tags:
+    - SuitEVA
+    - MonkeyWearable
+    - WhitelistChameleon
+  - type: StaticPrice
+    price: 5000 # 2000 for Helmet
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseGSecContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  id: ClothingOuterHardsuitGSec
+  suffix: GSec
+  name: скафандр Горлекс
+  description: Боевой скафандр, долговечен и прост в в ремонте. Собственность "Gorlex Securities LLC".
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/OuterClothing/Hardsuits/basic.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/OuterClothing/Hardsuits/basic.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.75
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitGsec
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+  - type: StaticPrice
+    price: 15000
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseGSecContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  id: ClothingOuterHardsuitMedicGSec
+  suffix: GSec
+  name: скафандр санитара Горлекс
+  description: Боевой скафандр, дополнительно изолирован от химического воздействия. Собственность "Gorlex Securities LLC".
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/OuterClothing/Hardsuits/medic.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/OuterClothing/Hardsuits/medic.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.75
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.55
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+        Bleed: 0.5
+        Poison: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMedicGsec
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+  - type: StaticPrice
+    price: 20000
+
+#Syndicate Commander Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseGSecContraband, ContrabandClothing]
+  id: ClothingOuterHardsuitGSecOfficer
+  name: скафандр офицера Горлекс
+  suffix: GSec
+  description: Усиленный скафандр горлекса для использования в лобовых столкновениях.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/OuterClothing/Hardsuits/officer.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/OuterClothing/Hardsuits/officer.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.4
+        Radiation: 0.25
+        Caustic: 0.4
+        Bleed: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitGSecOfficer
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon

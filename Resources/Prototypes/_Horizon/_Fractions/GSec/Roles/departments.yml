@@ -1,0 +1,12 @@
+- type: department
+  id: GSecDepartment
+  name: Отдел Горлекс
+  description: Контракт превыше всего
+  color: "#35DB9E"
+  weight: -100
+  roles:
+  - GSecOfficer
+  - GSecTech
+  - GSecMedic
+  - GSecAgent
+  - GSecRecruit
