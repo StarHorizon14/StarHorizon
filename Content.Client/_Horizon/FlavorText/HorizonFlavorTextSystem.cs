@@ -14,8 +14,9 @@ public sealed partial class HorizonFlavorTextSystem : SharedHorizonFlavorTextSys
         base.OpenFlavorMenu(uid, user, description);
 
         var oocDesc = CompOrNull<OocDescriptionComponent>(uid)?.Description ?? string.Empty;
+        var erpDesc = CompOrNull<ERPDescriptionComponent>(uid)?.Description ?? string.Empty;
         var erpStatus = CompOrNull<ErpStatusComponent>(uid)?.Status ?? ErpStatus.No;
 
-        _ui.GetUIController<FlavorTextMenuUiController>().OpenMenu(uid, Identity.Name(uid, EntityManager), description, oocDesc, erpStatus);
+        _ui.GetUIController<FlavorTextMenuUiController>().OpenMenu(uid, Identity.Name(uid, EntityManager), description, erpDesc, oocDesc, erpStatus);
     }
 }

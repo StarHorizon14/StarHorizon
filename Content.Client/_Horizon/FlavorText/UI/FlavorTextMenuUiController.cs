@@ -7,7 +7,7 @@ public sealed partial class FlavorTextMenuUiController : UIController
 {
     private FlavorTextMenu? _menu;
 
-    public void OpenMenu(EntityUid? ent, string name, string icDesc, string oocDesc, ErpStatus erp)
+    public void OpenMenu(EntityUid? ent, string name, string icDesc, string erpDesc, string oocDesc, ErpStatus erp)
     {
         if (_menu == null)
         {
@@ -17,6 +17,6 @@ public sealed partial class FlavorTextMenuUiController : UIController
 
         _menu.OnClose += () => _menu = null;
 
-        _menu.Populate(ent, name, icDesc, oocDesc, erp);
+        _menu.Populate(ent, name, icDesc, erpDesc, oocDesc, erp);
     }
 }
