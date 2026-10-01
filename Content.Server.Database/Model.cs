@@ -46,6 +46,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<ErpOrganPreference> ErpOrganPreferences { get; set; } = default!; // Arcane-edit
         public DbSet<HorizonAdminLoadout> HorizonAdminLoadout { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -56,6 +57,11 @@ namespace Content.Server.Database
 
             modelBuilder.Entity<Profile>()
                 .HasIndex(p => new {p.Slot, PrefsId = p.PreferenceId})
+                .IsUnique();
+
+            // Arcane-edit
+            modelBuilder.Entity<ErpOrganPreference>()
+                .HasIndex(p => new { p.UserId, p.Slot })
                 .IsUnique();
 
             modelBuilder.Entity<Antag>()
@@ -1346,6 +1352,25 @@ namespace Content.Server.Database
         }
     }
 
+
+    // Arcane-Start
+    /// <summary>Per-character organ appearance preferences (variant, size).</summary>
+    public class ErpOrganPreference
+    {
+        [Key]
+        public int Id { get; set; }
+
+        /// <summary>Player user id.</summary>
+        public Guid UserId { get; set; }
+
+        /// <summary>Character slot index matching HumanoidCharacterProfile slot.</summary>
+        public int Slot { get; set; }
+
+        /// <summary>JSON-serialized ErpOrganPreferences.</summary>
+        [Required]
+        public string Data { get; set; } = "{}";
+    }
+    // Arcane-End
 
     /// <summary>
     ///  Cache for the IPIntel system

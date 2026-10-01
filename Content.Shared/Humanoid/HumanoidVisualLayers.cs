@@ -37,5 +37,9 @@ namespace Content.Shared.Humanoid
         UndergarmentBottom,
 
         Other,
+        Tracheas, // Arcane edit
+
+        ErpGroin, // Arcane-edit: covered by underwear/pants/jumpsuit
+        ErpChest, // Arcane-edit: covered by undershirt/shirt/jumpsuit
     }
 }

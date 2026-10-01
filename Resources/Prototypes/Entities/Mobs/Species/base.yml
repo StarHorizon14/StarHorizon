@@ -291,6 +291,28 @@
   - type: FireVisuals
     alternateState: Standing
   - type: StunVisuals
+  # Arcane-start
+  - type: ErpPanelOwner
+  - type: EroticOrgans
+    groinCommon:
+    - proto: OrganAnus
+      slot: anus
+    - proto: OrganButt
+      slot: butt
+    groinMale:
+    - proto: OrganPenisHuman
+      slot: penis
+    - proto: OrganTesticles
+      slot: testicles
+    groinFemale:
+    - proto: OrganVagina
+      slot: vagina
+    - proto: OrganUterus
+      slot: uterus
+    chestFemale:
+    - proto: OrganBreastsHuman
+      slot: breasts
+  # Arcane-end
 
 - type: entity
   save: false

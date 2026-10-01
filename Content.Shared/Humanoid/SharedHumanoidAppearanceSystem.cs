@@ -511,6 +511,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.AllMarkingsGradientDirection = profile.Appearance.AllMarkingsGradientDirection;
 
         Dirty(uid, humanoid);
+
+        RaiseLocalEvent(uid, new ProfileLoadedEvent());
     }
 
     /// <summary>

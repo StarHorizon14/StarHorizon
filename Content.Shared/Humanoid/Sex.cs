@@ -18,4 +18,9 @@ namespace Content.Shared.Humanoid
     ///     This doesn't handle gender changes.
     /// </summary>
     public record struct SexChangedEvent(Sex OldSex, Sex NewSex);
+
+    /// <summary>
+    ///     Raised after a humanoid character profile has been loaded onto an entity.
+    /// </summary>
+    public record struct ProfileLoadedEvent;
 }

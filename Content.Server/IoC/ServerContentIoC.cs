@@ -1,3 +1,4 @@
+using Content.Server._Arcane.ERP.Preferences;
 using Content.Server._Horizon;
 using Content.Server._Horizon.SponsorManager;
 using Content.Server._NF.Auth;
@@ -92,6 +93,8 @@ namespace Content.Server.IoC
             // Harmony Queue Start
             IoCManager.Register<IJoinQueueManager, JoinQueueManager>();
             // Harmony Queue End
+
+            IoCManager.Register<ErpOrganPreferencesManager>(); // Arcane
         }
     }
 }

@@ -31,6 +31,12 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+  # Arcane-start: hide erp organs under jumpsuit
+  - type: HideLayerClothing
+    layers:
+      ErpGroin: INNERCLOTHING
+      ErpChest: INNERCLOTHING
+  # Arcane-end
 
 - type: entity
   abstract: true

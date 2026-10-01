@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client.DisplacementMap;
+using Content.Shared._Arcane.ERP.OrgansAppearance;
 using Content.Shared.CCVar;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -35,6 +36,9 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
     private void OnHandleState(EntityUid uid, HumanoidAppearanceComponent component, ref AfterAutoHandleStateEvent args)
     {
         UpdateSprite((uid, component, Comp<SpriteComponent>(uid)));
+
+        var ev = new HumanoidVisualStateUpdatedEvent();
+        RaiseLocalEvent(uid, ref ev);
     }
 
     private void OnCvarChanged(bool value)
@@ -252,6 +256,9 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.AllMarkingsGradientDirection = profile.Appearance.AllMarkingsGradientDirection;
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
+
+        var ev = new HumanoidVisualStateUpdatedEvent();
+        RaiseLocalEvent(uid, ref ev);
     }
 
     private void ApplyMarkingSet(Entity<HumanoidAppearanceComponent, SpriteComponent> entity)

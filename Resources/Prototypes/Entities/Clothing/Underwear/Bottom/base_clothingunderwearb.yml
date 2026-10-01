@@ -32,3 +32,8 @@
       - ClothMade
       - UnderwearB
       - WhitelistChameleon
+  # Arcane-start: hide erp organs under underwear
+  - type: HideLayerClothing
+    layers:
+      ErpGroin: UNDERWEARB
+  # Arcane-end
