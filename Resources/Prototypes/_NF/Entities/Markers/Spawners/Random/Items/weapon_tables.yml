@@ -239,6 +239,14 @@
       - id: WeaponCaseShortSvalinnExpedition
       - id: WeaponCaseLongHristovExpedition
       - id: WeaponCaseLongMusketExpedition
+      - id: WeaponCaseLongWeaponSubMachineGunMP5
+      - id: WeaponCaseLongWeaponSubMachineGunMP7
+      - id: WeaponCaseLongWeaponSubMachineGunSkorpion
+      - id: WeaponCaseHeavyWeaponAKMSRifle
+      - id: WeaponCaseHeavyWeaponRifleAKSU
+      - id: WeaponCaseHeavyWeaponRifleM16A4
+      - id: WeaponCaseHeavyWeaponRifleSCARAB
+      - id: WeaponCaseHeavyWeaponRifleInteQAKM
     - !type:NestedSelector
       weight: 0.05
       tableId: TableDungeonLootWeaponsRangedTier4
