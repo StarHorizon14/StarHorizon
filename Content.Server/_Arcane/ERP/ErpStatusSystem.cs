@@ -21,7 +21,10 @@ public sealed class ErpStatusSystem : EntitySystem
     {
         var profile = _prefs.GetPreferencesOrNull(args.Player.UserId)?.SelectedCharacter as HumanoidCharacterProfile;
         // Arcane-edit: map the existing Horizon ErpStat consent flag onto the Arcane ERP preference.
-        var preference = profile?.ErpStat == ErpStatus.Consentual ? ErpPreference.Yes : ErpPreference.No;
+        // No = refuse ERP entirely, Consentual/NonCon both allow it (NonCon just skips the per-action ask).
+        var preference = profile?.ErpStat is ErpStatus.Consentual or ErpStatus.NonCon
+            ? ErpPreference.Yes
+            : ErpPreference.No;
 
         EnsureComp<ArousalComponent>(ent);
 

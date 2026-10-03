@@ -48,11 +48,23 @@ public sealed class ErpOrganVisualsSystem : EntitySystem
         SubscribeLocalEvent<ErpOrganVisualsComponent, AfterAutoHandleStateEvent>(OnOrganState);
         SubscribeLocalEvent<ErpOrganVisualsComponent, ComponentShutdown>(OnOrganShutdown);
 
-        SubscribeLocalEvent<HumanoidAppearanceComponent, HumanoidVisualStateUpdatedEvent>(OnHumanoidState);
+        // Handles both networked humanoids (OnHumanoidState) and client-side preview dummies
+        // (OnPreviewProfileLoaded) — RobustToolbox disallows two subscriptions for the same
+        // (component, event) pair, even with different handler methods.
+        SubscribeLocalEvent<HumanoidAppearanceComponent, HumanoidVisualStateUpdatedEvent>(OnHumanoidVisualStateUpdated);
         SubscribeLocalEvent<ArousalComponent, AfterAutoHandleStateEvent>(OnArousalState);
+    }
 
-        // Editor preview: client-side dummy entity, no server state.
-        SubscribeLocalEvent<HumanoidAppearanceComponent, HumanoidVisualStateUpdatedEvent>(OnPreviewProfileLoaded);
+    private void OnHumanoidVisualStateUpdated(Entity<HumanoidAppearanceComponent> ent, ref HumanoidVisualStateUpdatedEvent args)
+    {
+        if (IsClientSide(ent))
+        {
+            // Editor preview: client-side dummy entity, no server state.
+            OnPreviewProfileLoaded(ent, ref args);
+            return;
+        }
+
+        OnHumanoidState(ent, ref args);
     }
 
     private void BuildLookupTables()
