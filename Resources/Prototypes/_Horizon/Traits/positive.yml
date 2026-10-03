@@ -20,8 +20,16 @@
   effects:
   - !type:ModifyHealth
     healthChange:
-      Dead: 5
-      Critical: 5
+      Dead: 10
+      Critical: 10
+
+- type: trait
+  id: Polyglot
+  name: trait-polyglot-name
+  description: trait-polyglot-desc
+  category: HorizonPositive
+  cost: 3
+  extraLanguageSlots: 1
 
 - type: trait
   id: PryingArm
@@ -115,18 +123,10 @@
   category: HorizonPositive
   group: TraitTemperature
   cost: 1
-  components:
-  - type: Temperature
-    heatDamageThreshold: 335 # 325 base
-    coldDamageThreshold: 250 # 260 base
-    currentTemperature: 310.15 # 310,15 base
-    specificHeat: 42 # 42 base
-    coldDamage:
-      types:
-        Cold: 0.1 # 0.1 base
-    heatDamage:
-      types:
-        Heat: 1.5 # 1.5 base
+  effects: # Horizon: relative to species values, a TemperatureComponent would be skipped since mobs already have one
+  - !type:ModifyTemperature
+    heatThresholdChange: 10
+    coldThresholdChange: -10
 
 - type: trait
   id: TemperatureColdHearted
@@ -135,18 +135,11 @@
   category: HorizonPositive
   group: TraitTemperature
   cost: 3
-  components:
-  - type: Temperature
-    heatDamageThreshold: 335 # 325 base
-    coldDamageThreshold: 210 # 260 base
-    currentTemperature: 310.15 # 310,15 base
-    specificHeat: 42 # 42 base
-    coldDamage:
-      types:
-        Cold: 0.05 # 0.1 base
-    heatDamage:
-      types:
-        Heat: 1.5 # 1.5 base
+  effects: # Horizon: relative to species values, a TemperatureComponent would be skipped since mobs already have one
+  - !type:ModifyTemperature
+    heatThresholdChange: 10
+    coldThresholdChange: -50
+    coldDamageModifier: 0.5
 
 - type: trait
   id: TemperatureColdBlooded
@@ -155,18 +148,11 @@
   category: HorizonPositive
   group: TraitTemperature
   cost: 5
-  components:
-  - type: Temperature
-    heatDamageThreshold: 335 # 325 base
-    coldDamageThreshold: 160 # 260 base
-    currentTemperature: 310.15 # 310,15 base
-    specificHeat: 42 # 42 base
-    coldDamage:
-      types:
-        Cold: 0.05 # 0.1 base
-    heatDamage:
-      types:
-        Heat: 1.5 # 1.5 base
+  effects: # Horizon: relative to species values, a TemperatureComponent would be skipped since mobs already have one
+  - !type:ModifyTemperature
+    heatThresholdChange: 10
+    coldThresholdChange: -100
+    coldDamageModifier: 0.5
 
 - type: trait
   id: TemperatureFlameHearted
@@ -175,18 +161,11 @@
   category: HorizonPositive
   group: TraitTemperature
   cost: 3
-  components:
-  - type: Temperature
-    heatDamageThreshold: 375 # 325 base
-    coldDamageThreshold: 250 # 260 base
-    currentTemperature: 310.15 # 310,15 base
-    specificHeat: 42 # 42 base
-    coldDamage:
-      types:
-        Cold: 0.1 # 0.1 base
-    heatDamage:
-      types:
-        Heat: 1.0 # 1.5 base
+  effects: # Horizon: relative to species values, a TemperatureComponent would be skipped since mobs already have one
+  - !type:ModifyTemperature
+    heatThresholdChange: 50
+    coldThresholdChange: -10
+    heatDamageModifier: 0.67
 
 - type: trait
   id: TemperatureFlameBlooded
@@ -195,18 +174,11 @@
   category: HorizonPositive
   group: TraitTemperature
   cost: 5
-  components:
-  - type: Temperature
-    heatDamageThreshold: 425 # 325 base
-    coldDamageThreshold: 250 # 260 base
-    currentTemperature: 310.15 # 310,15 base
-    specificHeat: 42 # 42 base
-    coldDamage:
-      types:
-        Cold: 0.1 # 0.1 base
-    heatDamage:
-      types:
-        Heat: 0.5 # 1.5 base
+  effects: # Horizon: relative to species values, a TemperatureComponent would be skipped since mobs already have one
+  - !type:ModifyTemperature
+    heatThresholdChange: 100
+    coldThresholdChange: -10
+    heatDamageModifier: 0.33
 
 # region TraitCombat
 

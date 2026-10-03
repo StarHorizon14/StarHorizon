@@ -76,6 +76,12 @@ public sealed partial class TraitPrototype : IPrototype
     [DataField]
     public string? Group;
 
+    /// <summary>
+    /// Extra language slots this trait grants on top of the species limit.
+    /// </summary>
+    [DataField]
+    public int ExtraLanguageSlots;
+
     public bool RequirmentsMet(HumanoidCharacterProfile profile, IEntityManager entMan)
     {
         foreach (var requirement in Requirments)

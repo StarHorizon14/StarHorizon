@@ -1,7 +1,9 @@
 trait-will-to-live-name = Воля к жизни
 trait-will-to-live-desc = Ваш порог смерти увеличивается на 10 единиц.
 trait-tenacity-name = Крепкий орешек
-trait-tenacity-desc = Ваш порог критического состояния увеличивается на 5 единиц.
+trait-tenacity-desc = Ваш порог критического состояния увеличивается на 10 единиц.
+trait-polyglot-name = Полиглот
+trait-polyglot-desc = Вы можете выбрать на один язык больше.
 trait-prying-name = Сильные руки
 trait-prying-desc = Вы можете без особых усилий вскрывать незапитанные шлюзы голыми руками.
 trait-vigor-name = Выносливый

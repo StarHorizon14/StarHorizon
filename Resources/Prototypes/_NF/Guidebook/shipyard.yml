@@ -39,6 +39,7 @@
   - ShipyardGasbender
   - ShipyardGaslight
   - ShipyardGeode
+  - ShipyardGourd # Horizon
   - ShipyardHammer
   - ShipyardHauler
   - ShipyardHarbormaster
@@ -251,6 +252,11 @@
   id: ShipyardGeode
   name: guide-entry-shipyard-geode
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Geode.xml"
+
+- type: guideEntry # Horizon
+  id: ShipyardGourd
+  name: guide-entry-shipyard-gourd
+  text: "/ServerInfo/_NF/Guidebook/Shipyard/Gourd.xml"
 
 - type: guideEntry
   id: ShipyardHarbormaster

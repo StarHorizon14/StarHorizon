@@ -9,7 +9,6 @@ using Content.Server.Hands.Systems;
 using Content.Server.Interaction;
 using Content.Server.Mind;
 using Content.Server.Popups;
-using Content.Shared._NF.CCVar;
 using Content.Shared._NF.CryoSleep;
 using Content.Shared._NF.CryoSleep.Events;
 using Content.Shared._NF.Shipyard.Components;
@@ -475,22 +474,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
         if (cryo.CryosleepDoAfter != null && _doAfter.GetStatus(cryo.CryosleepDoAfter) == DoAfterStatus.Running)
             _doAfter.Cancel(cryo.CryosleepDoAfter);
 
-        if (deleteEntity)
-        {
-            QueueDel(bodyId);
-        }
-        else
-        {
-            // Start a timer. When it ends, the body needs to be deleted.
-            Timer.Spawn(TimeSpan.FromSeconds(_configurationManager.GetCVar(NFCCVars.CryoExpirationTime)), () =>
-            {
-                if (id != null)
-                    ResetCryosleepState(id.Value);
-
-                if (!Deleted(bodyId) && Transform(bodyId).ParentUid == _storageMap)
-                    QueueDel(bodyId);
-            });
-        }
+        // Horizon: bodies in cryo are never deleted, so players can always come back to them.
     }
 
     /// <param name="body">If not null, will not eject if the stored body is different from that parameter.</param>

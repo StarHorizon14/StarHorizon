@@ -147,6 +147,7 @@ public sealed partial class HumanoidProfileEditor
 
                     SetDirty();
                     RefreshQuirks();
+                    RefreshLanguages();
                     UpdateSaveButton();
                 };
                 QuirksList.AddChild(quirkButton);

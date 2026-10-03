@@ -39,7 +39,7 @@ public sealed class NFCCVars
         CVarDef.Create("nf14.uncryo.maxtime", 4320 * 60f, CVar.SERVER | CVar.REPLICATED); // StarHorizon
 
     public static readonly CVarDef<bool> CryoDeleteBodyOnRespawn =
-        CVarDef.Create("nf14.uncryo.delete_on_respawn", true, CVar.SERVER | CVar.REPLICATED); // StarHorizon
+        CVarDef.Create("nf14.uncryo.delete_on_respawn", false, CVar.SERVER | CVar.REPLICATED); // StarHorizon: cryo never deletes bodies
 
     /*
      *  Game
