@@ -234,6 +234,27 @@
   categories: [ HideSpawnMenu ]
   id: NFWeaponSubMachineGunC20rExpedition
 
+- type: entity
+  parent:
+  - BaseExpeditionWeaponTier2
+  - WeaponSubMachineGunMP5
+  categories: [ HideSpawnMenu ]
+  id: WeaponSubMachineGunMP5Expedition
+
+- type: entity
+  parent:
+  - BaseExpeditionWeaponTier2
+  - WeaponSubMachineGunMP7
+  categories: [ HideSpawnMenu ]
+  id: WeaponSubMachineGunMP7Expedition
+
+- type: entity
+  parent:
+  - BaseExpeditionWeaponTier2Syndicate
+  - WeaponSubMachineGunSkorpion
+  categories: [ HideSpawnMenu ]
+  id: WeaponSubMachineGunSkorpionExpedition
+
 ## Assault Rifles
 - type: entity
   parent:
@@ -255,6 +276,41 @@
   - NFWeaponRifleAssaultGestio
   categories: [ HideSpawnMenu ]
   id: NFWeaponRifleAssaultGestioExpedition
+
+- type: entity
+  parent:
+  - BaseExpeditionWeaponTier2
+  - WeaponAKMSRifle
+  categories: [ HideSpawnMenu ]
+  id: WeaponAKMSRifleExpedition
+
+- type: entity
+  parent:
+  - BaseExpeditionWeaponTier2
+  - WeaponRifleAKSU
+  categories: [ HideSpawnMenu ]
+  id: WeaponRifleAKSUExpedition
+
+- type: entity
+  parent:
+  - BaseExpeditionWeaponTier2
+  - WeaponRifleM16A4
+  categories: [ HideSpawnMenu ]
+  id: WeaponRifleM16A4Expedition
+
+- type: entity
+  parent:
+  - BaseExpeditionWeaponTier2
+  - WeaponRifleSCARAB
+  categories: [ HideSpawnMenu ]
+  id: WeaponRifleSCARABExpedition
+
+- type: entity
+  parent:
+  - BaseExpeditionWeaponTier2
+  - WeaponRifleInteQAKM
+  categories: [ HideSpawnMenu ]
+  id: WeaponRifleInteQAKMExpedition
 
 ## Rifles
 - type: entity
