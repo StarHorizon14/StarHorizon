@@ -222,21 +222,22 @@
     - id: LumaPlushina
     - id: AnCoopenbox
   - type: StaticPrice
-    price: 5000
+    price: 500
+    vendPrise: 5000
 
-- type: entity
-  categories: [ HideSpawnMenu ]
-  parent: AnCoBox
-  id: AnCoBoxStoreBug
-  components:
-  - type: SpawnItemsOnUse
-    items:
-    - id: SuitProtectiveAnCo
-    - id: AnCoDroneOff
-    - id: AnCoDroneOff
-    - id: AnCoDroneOff
-    - id: AnCoDroneOff
-    - id: AnCoopenbox
+# - type: entity
+#   categories: [ HideSpawnMenu ]
+#   parent: AnCoBox
+#   id: AnCoBoxStoreBug
+#   components:
+#   - type: SpawnItemsOnUse
+#     items:
+#     - id: SuitProtectiveAnCo
+#     - id: AnCoDroneOff
+#     - id: AnCoDroneOff
+#     - id: AnCoDroneOff
+#     - id: AnCoDroneOff
+#     - id: AnCoopenbox
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -324,6 +325,7 @@
       Kazmie: 300
   - type: StaticPrice
     price: 10
+    vendPrise: 10
   - type: Tag
     tags:
     - BoxCardboard

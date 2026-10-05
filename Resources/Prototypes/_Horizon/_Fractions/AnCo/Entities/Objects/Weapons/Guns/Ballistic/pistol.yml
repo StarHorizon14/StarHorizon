@@ -48,7 +48,9 @@
             - AnCoBulletPistol35
   - type: DualWield
   - type: StaticPrice
-    price: 5000
+    price: 500
+    vendPrise: 5000
+
 
 - type: entity
   name: Роевик
@@ -101,7 +103,8 @@
             - AnCoBulletPistol35
   - type: DualWield
   - type: StaticPrice
-    price: 7500
+    price: 500
+    vendPrise: 7500
 
 - type: entity
   name: Приказ

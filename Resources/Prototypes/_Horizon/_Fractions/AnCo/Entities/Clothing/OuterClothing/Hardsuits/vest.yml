@@ -21,7 +21,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: StaticPrice
-    price: 1000
+    price: 500
+    vendPrise: 1000
 
 - type: entity
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseMaxAnCoContraband, ClothingOuterCoatHoSTrench]
@@ -70,4 +71,5 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: StaticPrice
-    price: 1000
+    price: 500
+    vendPrise: 1000

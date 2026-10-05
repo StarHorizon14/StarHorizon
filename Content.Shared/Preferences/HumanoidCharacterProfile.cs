@@ -516,10 +516,12 @@ namespace Content.Shared.Preferences
             var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences);
             list.Remove(traitId);
 
-            return new(this)
+            var profile = new HumanoidCharacterProfile(this)
             {
                 _traitPreferences = list,
             };
+            profile.TrimLanguages(protoManager); // Horizon: the trait may have granted language slots
+            return profile;
         }
 
         public string Summary =>
@@ -760,6 +762,8 @@ namespace Content.Shared.Preferences
                 _languages.Remove(lang);
             }
 
+            TrimLanguages(prototypeManager);
+
             // Horizon end
         }
 
@@ -957,7 +961,7 @@ namespace Content.Shared.Preferences
                 return new(this);
             if (_languages.Contains(language))
                 return new(this);
-            if (_languages.Count >= species.MaxLanguages)
+            if (_languages.Count >= GetMaxLanguages(proto))
                 return new(this);
 
             HashSet<ProtoId<LanguagePrototype>> list = new(_languages);
@@ -987,6 +991,46 @@ namespace Content.Shared.Preferences
             {
                 _languages = list,
             };
+        }
+
+        /// <summary>
+        /// Species language limit plus any extra slots granted by selected traits.
+        /// </summary>
+        public int GetMaxLanguages(IPrototypeManager proto)
+        {
+            var max = proto.TryIndex(Species, out var species) ? species.MaxLanguages : 0;
+            foreach (var trait in _traitPreferences)
+            {
+                if (proto.TryIndex(trait, out var traitProto))
+                    max += traitProto.ExtraLanguageSlots;
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Drops languages over the limit, removing non-default ones first.
+        /// </summary>
+        private void TrimLanguages(IPrototypeManager proto)
+        {
+            var max = GetMaxLanguages(proto);
+            if (_languages.Count <= max)
+                return;
+
+            var defaults = proto.TryIndex(Species, out var species)
+                ? species.DefaultLanguages.ToHashSet()
+                : new HashSet<ProtoId<LanguagePrototype>>();
+
+            var list = new HashSet<ProtoId<LanguagePrototype>>(_languages);
+            foreach (var lang in _languages.OrderBy(x => defaults.Contains(x)))
+            {
+                if (list.Count <= Math.Max(max, 1))
+                    break;
+
+                list.Remove(lang);
+            }
+
+            _languages = list;
         }
         #endregion
 

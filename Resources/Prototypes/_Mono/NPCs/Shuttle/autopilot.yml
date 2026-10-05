@@ -1,0 +1,39 @@
+# Shuttle console autopilot. The destination is written into the console's HTN blackboard
+# by ShuttleConsoleAutopilotSystem when a pilot picks a point on the map screen.
+- type: htnCompound
+  id: AutopilotShuttleCompound
+  branches:
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: Target
+    tasks:
+    - !type:HTNCompoundTask
+      task: AutopilotMoveCompound
+
+- type: htnCompound
+  id: AutopilotMoveCompound
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipMoveToOperator
+        shutdownState: TaskFinished
+        removeKeyOnFinish: true
+        # Looser arrival band so large shuttles can brake/rotate and still finish.
+        inRangeMaxSpeed: 1.5
+        range: 120
+        leadingEnabled: false
+        targetKey: Target
+        angleKey: TargetRotation
+        maxRotateRate: 0.1
+        requireSolo: true
+        alwaysFaceTarget: true
+        maxTargetingRange: 60000
+        evasionSectorCount: 32
+        evasionSectorDepth: 3
+        brakeThreshold: 0.55
+        gridObstacleClearance: 28
+        # Horizon: never ignore obstacles near the destination, otherwise the autopilot rams
+        # the station the player is flying to. It stops at the obstacle's edge instead.
+        minObstructorDistance: 0
+        # Horizon: come to a full stop on arrival, and stop and disengage if the path is blocked
+        fullStop: true

@@ -2937,7 +2937,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-5.5
       parent: 2
-- proto: ComputerPalletConsoleNFVeryHighMarket
+- proto: ComputerPalletConsoleNFNormalMarket
   entities:
   - uid: 370
     components:

@@ -16,4 +16,10 @@ public sealed partial class MechRCDComponent : Component
 
     [AutoNetworkedField]
     public bool Active = false;
+
+    /// <summary>
+    /// Mech container to pull RCD cartridges from when the equipment runs low.
+    /// </summary>
+    [DataField]
+    public string AmmoContainerId = "storagebase";
 }

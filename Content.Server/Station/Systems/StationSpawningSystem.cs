@@ -1,3 +1,4 @@
+using Content.Server.Silicon.IPC; // Horizon
 using Content.Server.Access.Systems;
 using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
@@ -61,6 +62,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly TransformSystem _xformSystem = default!; // Frontier
     [Dependency] private readonly SharedContainerSystem _container = default!; // Frontier
     [Dependency] private readonly SharedImplanterSystem _implanter = default!; // Frontier
+    [Dependency] private readonly InternalEncryptionKeySpawner _internalKeys = default!; // Horizon
 
     /// <summary>
     /// Attempts to spawn a player character onto the given station.
@@ -220,6 +222,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     {
                         bankBalance -= int.Max(0, loadoutProto.Price); // Treat negatives as zero.
                         EquipStartingGear(entity.Value, loadoutProto, raiseEvent: false);
+                        _internalKeys.TryInsertEncryptionKeys(entity.Value, loadoutProto); // Horizon: headset keys for IPCs
                         CollectLoadout(loadoutProto, ref loadoutLast);
                         equippedItems.Add(loadoutProto.ID);
                     }
@@ -250,6 +253,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                         }
 
                         EquipStartingGear(entity.Value, loadoutProto, raiseEvent: false);
+                        _internalKeys.TryInsertEncryptionKeys(entity.Value, loadoutProto); // Horizon: headset keys for IPCs
                         CollectLoadout(loadoutProto, ref loadoutLast);
                         equippedItems.Add(fallback);
                         // Minimum number of items equipped, no need to load more prototypes.
@@ -264,6 +268,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             if (_prototypeManager.TryIndex(prototype?.StartingGear, out var startingGear))
             {
                 EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                _internalKeys.TryInsertEncryptionKeys(entity.Value, startingGear); // Horizon: headset keys for IPCs
                 CollectLoadout(startingGear, ref loadoutLast);
             }
 
@@ -354,6 +359,13 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     /// <param name="encryptionKeys">The encryption key prototype IDs to equip.</param>
     private void EquipEncryptionKeysIfPossible(EntityUid entity, List<EntProtoId> encryptionKeys)
     {
+        // Horizon: entities with a built-in radio (e.g. IPCs) get the keys directly
+        if (_internalKeys.UsesInternalKeys(entity, out var holder))
+        {
+            _internalKeys.TryInsertEncryptionKeys(entity, encryptionKeys, holder);
+            return;
+        }
+
         if (!InventorySystem.TryGetSlotEntity(entity, "ears", out var slotEnt))
         {
             DebugTools.Assert(false, $"Entity {entity} has a non-empty encryption key loadout, but doesn't have a headset!");
