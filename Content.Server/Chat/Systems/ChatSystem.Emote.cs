@@ -67,7 +67,9 @@ public partial class ChatSystem
         var localized = new List<string>(emote.ChatMessages) { emote.Name };
         foreach (var key in localized)
         {
-            if (!Loc.TryGetString(key, out var text))
+            // Pass a dummy entity so messages referencing $entity (e.g. via POSS-ADJ) resolve instead of
+            // throwing on an undefined variable; the result is discarded below if it still has placeholders.
+            if (!Loc.TryGetString(key, out var text, ("entity", EntityUid.Invalid)))
                 continue;
 
             text = TrimPunctuation(text.Trim()).ToLower();
