@@ -10,7 +10,7 @@
     - Wall
   components:
   - type: Anchorable
-    flags: 
+    flags:
     - Anchorable
   - type: Rotatable
   - type: RangedDamageSound
@@ -532,6 +532,9 @@
   components:
     - type: Sprite # Frontier
       color: "#ffffff" # Frontier
+    - type: Construction
+      graph: Girder
+      node: plastitaniumWall
     - type: Destructible
       thresholds:
         - trigger:
