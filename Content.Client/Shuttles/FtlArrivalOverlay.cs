@@ -57,23 +57,30 @@ public sealed class FtlArrivalOverlay : Overlay
         {
             var grid = comp.Grid;
 
-            if (!_entManager.TryGetComponent(grid, out MapGridComponent? mapGrid))
-                continue;
-
             var texture = _sprites.GetFrame(comp.Sprite, TimeSpan.FromSeconds(comp.Elapsed), loop: false);
             comp.Elapsed += (float) _timing.FrameTime.TotalSeconds;
 
             // Need to manually transform the viewport in terms of the visualizer entity as the grid isn't in position.
             var (_, _, worldMatrix, invMatrix) = _transforms.GetWorldPositionRotationMatrixWithInv(uid);
             args.WorldHandle.SetTransform(worldMatrix);
-            var localAABB = invMatrix.TransformBox(args.WorldBounds);
 
-            var tilesEnumerator = _maps.GetLocalTilesEnumerator(grid, mapGrid, localAABB);
-
-            while (tilesEnumerator.MoveNext(out var tile))
+            if (_entManager.TryGetComponent(grid, out MapGridComponent? mapGrid))
             {
-                var bounds = _lookups.GetLocalBounds(tile, mapGrid.TileSize);
+                var localAABB = invMatrix.TransformBox(args.WorldBounds);
+                var tilesEnumerator = _maps.GetLocalTilesEnumerator(grid, mapGrid, localAABB);
 
+                while (tilesEnumerator.MoveNext(out var tile))
+                {
+                    var bounds = _lookups.GetLocalBounds(tile, mapGrid.TileSize);
+
+                    args.WorldHandle.DrawTextureRect(texture, bounds);
+                }
+            }
+            else
+            {
+                // FTLing entity isn't a grid (e.g. a character or item) - just draw a single tile-sized
+                // marker centered on it instead of iterating (nonexistent) grid tiles.
+                var bounds = Box2.CenteredAround(Vector2.Zero, new Vector2(1f, 1f));
                 args.WorldHandle.DrawTextureRect(texture, bounds);
             }
         }

@@ -1,5 +1,6 @@
 
 - type: entity
+  abstract: true
   name: оружейный кейс АнКо
   parent: BaseStorageItem
   id: AnCoWeaponCaseBase
@@ -481,6 +482,39 @@
         amount: 4
 
 - type: entity
+  id: AnCoWeaponCaseCombatBot
+  parent: AnCoWeaponCaseExplosives
+  suffix: StarHorizon, AnCo, Grenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoGranadeSpawnCombat
+        amount: 4
+
+- type: entity
+  id: AnCoWeaponCaseSecurBot
+  parent: AnCoWeaponCaseExplosives
+  suffix: StarHorizon, AnCo, Grenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoGranadeSpawnSecure
+        amount: 4
+
+- type: entity
+  id: AnCoWeaponCaseCluster
+  parent: AnCoWeaponCaseExplosives
+  suffix: StarHorizon, AnCo, Grenade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeStingerAnCoTarget
+        amount: 4
+
+- type: entity
   id: AnCoWeaponCaseMachineGun
   parent: AnCoWeaponCaseLong
   suffix: StarHorizon, AnCo, MachineGun
@@ -641,11 +675,66 @@
         amount: 4
       - id: AnCoExtractImplanterCrystall
         amount: 2
-      - id: AnCoNanitsCapsule
-        amount: 4
-      - id: AnCohypocapsule
+      # - id: AnCoNanitsCapsule теперь без этой крутой штуки
+      #   amount: 4
+      # - id: AnCohypocapsule теперь без этой крутой штуки
+      #   amount: 1
+
+- type: entity
+  id: AnCoWeaponHeavyCaseNewWeaponShotgunAnCo
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: NewWeaponShotgunAnCo
+        amount: 1
+      - id: NewMagazineAnCoShotgun50
+        amount: 1
+      - id: NewMagazineAnCoShotgun50
         amount: 1
 
+- type: entity
+  id: AnCoWeaponHeavyCaseWeaponC20RAnCo
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponC20RAnCo
+        amount: 1
+      - id: NewMagazinePistolBig35
+        amount: 1
+      - id: NewMagazinePistolBig35
+        amount: 1
+
+- type: entity
+  id: AnCoWeaponHeavyCaseWeaponVectorAnCo
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponVectorAnCo
+        amount: 1
+      - id: NewMagazinePistolBig35
+        amount: 1
+      - id: NewMagazinePistolBig35
+        amount: 1
+
+- type: entity
+  id: AnCoWeaponHeavyCaseAnCoDrell
+  parent: AnCoWeaponCaseHeavy
+  suffix: StarHorizon, AnCo, Case
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoDrell
+        amount: 1
 # патроны
 
 - type: entity

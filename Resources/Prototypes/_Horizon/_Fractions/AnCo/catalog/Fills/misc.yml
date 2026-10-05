@@ -85,6 +85,14 @@
         weight: 2
       - id: CombatMedipenAnCo
         weight: 1
+      - id: AnCoMagazineBox20
+        weight: 1
+      - id: AnCoMagazineBox30
+        weight: 1
+      - id: AnCoMagazineBox35
+        weight: 1
+      - id: AnCoMagazineBox50
+        weight: 1
 
 - type: entityTable
   id: AnCoShoesTable

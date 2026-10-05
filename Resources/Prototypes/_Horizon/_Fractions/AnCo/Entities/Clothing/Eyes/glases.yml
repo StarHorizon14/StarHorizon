@@ -22,7 +22,7 @@
   name: прибор ночного видения АнКо
   id: ClothingEyesVisionAnCo
   suffix: StarHorizon, AnCo
-  parent: ClothingEyesVision
+  parent: [BaseTKAnCoContraband, ClothingEyesVision]
   description: Визор и прибор ночного видения в одном флаконе
   components:
   - type: Item

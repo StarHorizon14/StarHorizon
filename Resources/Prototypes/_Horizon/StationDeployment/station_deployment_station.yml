@@ -1,0 +1,33 @@
+- type: entity
+  id: DeployedStationBase
+  parent:
+  - StandardFrontierVessel
+  - BaseStationMail # Mail
+  - MarketFrontierOutpost
+  - BaseStationMagnet
+  - BaseStationGateway
+  - BaseStationSalvageJobs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationOrderDatabase
+  - type: StationDevelopment
+  - type: StationBankAccount
+
+- type: gameMap
+  id: DeployedStation
+  mapName: 'Развёрнутая станция'
+  mapPath: /Maps/_Horizon/CustomStation/station.yml
+  minPlayers: 0
+  stations:
+    DeployedStation:
+      stationProto: DeployedStationBase
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Развёрнутая станция {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Contractor: [ 0, 0 ]
+          MercenaryStation: [ 0, 0 ]

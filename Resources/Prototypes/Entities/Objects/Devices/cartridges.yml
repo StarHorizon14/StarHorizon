@@ -31,9 +31,9 @@
     icon:
       sprite: Interface/Misc/program_icons.rsi
       state: nano_task
-  - type: UIFragment  # Horizon - заменил фрагмент
-    ui: !type:GoalsListUi
-  - type: GoalsListCartridge  # Horizon - заменил компач на наш
+  - type: UIFragment
+    ui: !type:NanoTaskUi
+  - type: NanoTaskCartridge
 
 - type: entity
   parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge

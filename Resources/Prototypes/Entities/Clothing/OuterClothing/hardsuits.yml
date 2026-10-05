@@ -609,6 +609,9 @@
   - type: StaticPrice
     price: 5000
   - type: CatWearable
+  - type: Construction
+    graph: AnCoUpgradeSyndie
+    node: start
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -683,29 +686,32 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-  # - type: ContainerContainer #backmen-shield-start
-  #   containers:
-  #     cell_slot: !type:ContainerSlot
-  #     toggleable-clothing: !type:ContainerSlot
-  # - type: PowerCellSlot
-  #   cellSlotId: cell_slot
-  # - type: ItemSlots
-  #   slots:
-  #     cell_slot:
-  #       name: power-cell-slot-component-slot-name-default
-  #       startingItem: PowerCellHyper
-  #       whitelist:
-  #         tags:
-  #           - PowerCell
-  #           - PowerCellSmall
-  # - type: EnergyDomeGenerator
-  #   damageEnergyDraw: 4
-  #   domePrototype: EnergyDomeSmallPink
-  # - type: PowerCellDraw
-  #   drawRate: 0
-  #   useRate: 0
-  # - type: UseDelay
-  #   delay: 10.0 #backmen-shield-end
+#  - type: ContainerContainer #backmen-shield-start
+#    containers:
+#      cell_slot: !type:ContainerSlot
+#      toggleable-clothing: !type:ContainerSlot
+#  - type: PowerCellSlot
+#    cellSlotId: cell_slot
+#  - type: ItemSlots
+#    slots:
+#      cell_slot:
+#        name: power-cell-slot-component-slot-name-default
+#        startingItem: PowerCellHyper
+#        whitelist:
+#          tags:
+#            - PowerCell
+#            - PowerCellSmall
+#  - type: EnergyDomeGenerator
+#    damageEnergyDraw: 4
+#    domePrototype: EnergyDomeSmallPink
+#  - type: PowerCellDraw
+#    drawRate: 0
+#    useRate: 0
+#  - type: UseDelay
+#    delay: 10.0 #backmen-shield-end
+  - type: Construction
+    graph: AnCoUpgradeElite
+    node: start
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -714,6 +720,8 @@
   name: syndicate commander hardsuit
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
+  - type: Item
+    size: Huge
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
   - type: Clothing
@@ -785,6 +793,9 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: Construction
+    graph: AnCoUpgradeJuggernaut
+    node: start
 
 #Wizard Hardsuit
 - type: entity

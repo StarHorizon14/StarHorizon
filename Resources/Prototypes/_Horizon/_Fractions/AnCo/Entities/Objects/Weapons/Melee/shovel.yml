@@ -1,6 +1,6 @@
 - type: entity
   name: казмиевая лопата АнКо
-  parent: BaseAnCoWeapon
+  parent: [ManufacturerAnCo, BaseAnCoWeapon]
   id: AnCoShovel
   description: Универсальный инструмент для копания, скручивания, раскручивания, резания, нарезки, вскрытия. Да и в конце концов универсальный щит для защиты и оглушения.
   suffix: StarHorizon, AnCo, Weapon

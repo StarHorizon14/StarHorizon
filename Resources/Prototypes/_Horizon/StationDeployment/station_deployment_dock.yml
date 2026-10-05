@@ -1,0 +1,12 @@
+# A shuttle airlock pre-configured to be preferred by the cargo capsule when it FTLs in to dock.
+# Place this on the station's hull - the capsule will still dock at any other free port, or arrive
+# undocked nearby in space, if this port is unavailable (handled automatically by ShuttleSystem.FTLToDock).
+- type: entity
+  id: AirlockCargoCapsuleDock
+  parent: AirlockShuttle
+  suffix: Docking, Cargo Capsule Priority
+  name: cargo capsule dock
+  description: An external airlock preferred by cargo capsules when they dock with this station.
+  components:
+  - type: PriorityDock
+    tag: CargoCapsuleDock

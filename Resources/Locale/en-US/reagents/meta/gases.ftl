@@ -19,6 +19,9 @@ reagent-desc-nitrous-oxide = You know how everything seems funnier when you're t
 reagent-name-frezon = frezon
 reagent-desc-frezon = A highly effective coolant.. and hallucinogenic.
 
+reagent-name-seawater = seawater
+reagent-desc-seawater = Salty, cold, and not meant to be breathed.
+
 reagent-name-bz = bz
 reagent-desc-bz = A potent hallucinogenic that also puts slimes into stasis.
 

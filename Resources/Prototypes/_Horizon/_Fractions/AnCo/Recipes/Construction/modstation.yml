@@ -1,0 +1,55 @@
+- type: constructionGraph
+  id: AnCoUpgradeMaximPrototype
+  start: start
+  graph:
+    - node: start
+      entity: ClothingOuterHardsuitMaximPrototype
+      edges:
+        - to: done
+          steps:
+            - tag: AnCoUpgradeMaximPrototype
+              doAfter: 4
+    - node: done
+      entity: ClothingOuterHardsuitAnCoMaximPrototype
+
+- type: constructionGraph
+  id: AnCoUpgradeJuggernaut
+  start: start
+  graph:
+    - node: start
+      entity: ClothingOuterHardsuitJuggernaut
+      edges:
+        - to: done
+          steps:
+            - tag: AnCoUpgradeJuggernaut
+              doAfter: 4
+    - node: done
+      entity: ClothingOuterHardsuitAnCoJuggernaut
+
+- type: constructionGraph
+  id: AnCoUpgradeElite
+  start: start
+  graph:
+    - node: start
+      entity: ClothingOuterHardsuitSyndieElite
+      edges:
+        - to: done
+          steps:
+            - tag: AnCoUpgradeElite
+              doAfter: 4
+    - node: done
+      entity: ClothingOuterHardsuitAnCoElite
+
+- type: constructionGraph
+  id: AnCoUpgradeSyndie
+  start: start
+  graph:
+    - node: start
+      entity: ClothingOuterHardsuitSyndie
+      edges:
+        - to: done
+          steps:
+            - tag: AnCoUpgradeSyndie
+              doAfter: 4
+    - node: done
+      entity: ClothingOuterHardsuitAnCoSyndie

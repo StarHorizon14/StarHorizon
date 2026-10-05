@@ -1,4 +1,5 @@
 using Content.Shared._Horizon.RCD;
+using Content.Shared._NF.GridAccess;
 using Content.Shared.AdvancedRCD.Components;
 using Content.Shared.Audio;
 using Content.Shared.Construction;
@@ -188,6 +189,10 @@ public abstract class SharedAdvancedRCDSystem : EntitySystem
         if (args.Handled)
             return;
 
+        // Horizon: station-bound purchases disable board insertion entirely.
+        if (!component.AllowBoardInsertion)
+            return;
+
         // Check if it's a machine board
         if (!TryComp<MachineBoardComponent>(args.Used, out var board))
             return;
@@ -345,6 +350,17 @@ public abstract class SharedAdvancedRCDSystem : EntitySystem
 
         if (!unobstructed)
             return false;
+
+        // Horizon: grid-access restriction, same as regular RCDs bound to a ship/station.
+        if (TryComp<GridAccessComponent>(uid, out var gridAccessComponent))
+        {
+            if (!GridAccessSystem.IsAuthorized(gridUid, gridAccessComponent, out var popupMessage))
+            {
+                if (popMsgs && popupMessage != null)
+                    Popup.PopupClient(Loc.GetString("rcd-component-" + popupMessage), uid, user);
+                return false;
+            }
+        }
 
         // RCD prototype mode
         if (component.ProtoId != null)

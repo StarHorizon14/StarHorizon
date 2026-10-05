@@ -1,0 +1,12 @@
+- type: entity
+  id: StationDeploymentKit
+  parent: BaseItem
+  name: station deployment kit
+  description: Swipe an ID card on this to link it, then use it in a clear area to deploy a new station.
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    state: box
+  - type: Item
+    size: Normal
+  - type: StationDeploymentKit

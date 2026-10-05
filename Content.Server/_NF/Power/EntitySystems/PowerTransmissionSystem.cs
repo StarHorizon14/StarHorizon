@@ -1,12 +1,15 @@
 using Content.Server._NF.Bank;
 using Content.Server._NF.Power.Components;
 using Content.Server.Audio;
+using Content.Server.Cargo.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Power.Nodes;
 using Content.Shared._NF.Bank;
 using Content.Shared._NF.Bank.BUI;
+using Content.Shared._NF.BindToStation;
+using Content.Shared.Cargo.Components;
 using Content.Shared.Examine;
 using Content.Shared.NodeContainer;
 using Content.Shared.Power;
@@ -26,6 +29,7 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
     [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly CargoSystem _cargo = default!;
     [Dependency] private readonly NodeContainerSystem _node = default!;
     [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
     [Dependency] private readonly PointLightSystem _pointLight = default!;
@@ -100,7 +104,21 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
                 xmit.AccumulatedEnergy = 0.0f;
                 var depositSpesos = (int)depositValue;
                 if (depositSpesos > 0)
-                    _bank.TrySectorDeposit(xmit.Account, depositSpesos, LedgerEntryType.PowerTransmission);
+                {
+                    // Station-bound transmission points (purchased station upgrades) pay their own
+                    // station's bank account instead of a fixed sector account.
+                    if (TryComp<StationBoundObjectComponent>(uid, out var bound) &&
+                        bound.Enabled &&
+                        bound.BoundStation is { Valid: true } boundStation &&
+                        TryComp<StationBankAccountComponent>(boundStation, out var stationBank))
+                    {
+                        _cargo.UpdateBankAccount((boundStation, stationBank), depositSpesos, stationBank.PrimaryAccount);
+                    }
+                    else
+                    {
+                        _bank.TrySectorDeposit(xmit.Account, depositSpesos, LedgerEntryType.PowerTransmission);
+                    }
+                }
             }
 
             bool powered = power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0;

@@ -50,6 +50,12 @@ public sealed class TrashCleanupSystem : EntitySystem
     /// </summary>
     private const string TrashPrefix = "Trash";
 
+    /// <summary>
+    /// Теги сущностей, которые никогда не удаляются, даже если их прототип совпадает с префиксом мусора
+    /// (например, мусорные мешки TrashBag/TrashBagBlue).
+    /// </summary>
+    private static readonly string[] CleanupExemptTags = { "TrashBag" };
+
     public override void Initialize()
     {
         base.Initialize();
@@ -160,6 +166,20 @@ public sealed class TrashCleanupSystem : EntitySystem
         {
             // Пропускаем сущности в контейнерах (в руках, рюкзаках и т.д.)
             if (_container.IsEntityInContainer(uid))
+                continue;
+
+            // Пропускаем сущности, явно исключённые из очистки (например, мусорные мешки)
+            var isExempt = false;
+            foreach (var exemptTag in CleanupExemptTags)
+            {
+                if (_tag.HasTag(uid, exemptTag))
+                {
+                    isExempt = true;
+                    break;
+                }
+            }
+
+            if (isExempt)
                 continue;
 
             // Проверяем, есть ли у сущности какой-либо из тегов очистки

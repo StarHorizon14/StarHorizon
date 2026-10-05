@@ -1,13 +1,12 @@
-# бейс вейпон сас. Xigovir: скоро эта сборка набухнет от САС пушек
 - type: entity
   id: BaseWeaponAnCo
-  parent: [BaseItem, BaseAnCoContraband]
+  parent: [ManufacturerAnCo, BaseItem, BaseAnCoContraband]
   categories: [ HideSpawnMenu ]
   suffix: StarHorizon, AnCo, Weapon
   components:
   - type: Sprite
   - type: Item
-    size: large
+    size: Ginormous
   - type: AmmoCounter
   - type: Gun
     fireRate: 2
@@ -29,8 +28,17 @@
     price: 500
 
 - type: entity
+  id: ManufacturerAnCo
+  parent: [BaseAnCoContraband]
+  categories: [ HideSpawnMenu ]
+  suffix: StarHorizon, AnCo, Weapon
+  components:
+  - type: NFWeaponDetails
+    manufacturer: "AnroxComputer`s"
+
+- type: entity
   id: BaseWeaponPowerCellAnCo
-  parent: [BaseItem, BaseAnCoContraband]
+  parent: [ManufacturerAnCo, BaseItem, BaseAnCoContraband]
   categories: [ HideSpawnMenu ]
   suffix: StarHorizon, AnCo, Weapon
   components:
@@ -109,7 +117,7 @@
 
 - type: entity
   name: Ардониевый пулемет АнКо
-  parent: BaseWeaponAnCo
+  parent: [BaseOperAnCoContraband, BaseWeaponAnCo]
   id: WeaponLaserMinigunAnCo
   description: Первая попытка АнКо создать машину смерти, хоть и в форме пулемёта.
   suffix: StarHorizon, AnCo, Weapon
@@ -157,7 +165,7 @@
 
 - type: entity
   name: Ардониевый гранатомет АнКо
-  parent: BaseWeaponAnCo
+  parent: [BaseOperAnCoContraband, BaseWeaponAnCo]
   id: WeaponLaserGranadeAnCo
   description: Первая попытка АнКо создать машину смерти, хоть и в форме гранатомёта.
   suffix: StarHorizon, AnCo, Weapon
@@ -209,7 +217,7 @@
 
 - type: entity
   name: винтовка-дизейблер АнКо
-  parent: BaseWeaponAnCo
+  parent: [BaseOperAnCoContraband, BaseWeaponAnCo]
   id: WeaponDisablerSniperAnCo
   description: Энергоёмкое EFS-устройство, используемое только в крайних случаях.
   suffix: StarHorizon, AnCo, Weapon
@@ -254,7 +262,7 @@
 
 - type: entity
   name: рипсоидная винтовка АнКо
-  parent: BaseWeaponAnCo
+  parent: [BaseMaxAnCoContraband, BaseWeaponAnCo]
   id: AnCoRipsoidCannon
   description: Рипсоидная винтовка с расширенной батареей.
   suffix: StarHorizon, AnCo, Weapon
@@ -299,7 +307,7 @@
 
 - type: entity
   name: пистолет совета АнКо
-  parent: BaseWeaponAnCo
+  parent: [BaseMaxAnCoContraband, BaseWeaponAnCo]
   id: AnCoCounselorGun
   description: Особая модификация рипсоидной винтовки, созданная для защиты совета.
   suffix: StarHorizon, AnCo, Weapon
@@ -341,7 +349,7 @@
 
 - type: entity
   name: модифицированный ПП АнКо
-  parent: BaseWeaponPowerCellAnCo
+  parent: [BaseOperAnCoContraband, BaseWeaponPowerCellAnCo]
   id: PMLaserAnCoGun
   description: Лазерный ПП, модернизированный в сторону мощности, хоть и в ущерб автономному электроснабжению.
   suffix: StarHorizon, AnCo, Weapon
@@ -364,7 +372,7 @@
 
 - type: entity
   name: лазерная винтовка АнКо
-  parent: BaseWeaponPowerCellAnCo
+  parent: [BaseOperAnCoContraband, BaseWeaponPowerCellAnCo]
   id: LaserAnCoGun
   description: Специально созданная под Ардониевые ячейки, винтовка с высокой скорострельностью.
   suffix: StarHorizon, AnCo, Weapon
@@ -442,3 +450,49 @@
         Heat: 20
   - type: Wieldable
     unwieldOnUse: true
+
+- type: entity
+  name: лазерный бур АнКо
+  parent: [BaseOperAnCoContraband, BaseWeaponAnCo]
+  id: AnCoDrell
+  description: Специально созданный лазер под работу с астероидами.
+  suffix: StarHorizon, AnCo, Weapon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Battery/drell.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Gun
+    selectedMode: FullAuto
+    fireRate: 3
+    shotsPerBurst: 3
+    availableModes:
+      - Burst
+      - FullAuto
+    projectileSpeed: 25
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: LaserDrillAnCo
+    fireCost: 100
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: Appearance
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+  - type: MultiHandedItem
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Battery/drell.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage

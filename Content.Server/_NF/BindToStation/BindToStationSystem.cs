@@ -1,11 +1,14 @@
+using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Power.Nodes;
 using Content.Server.Station.Systems;
 using Content.Server.Construction.Components;
 using Content.Shared._NF.BindToStation;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
+using Content.Shared.NodeContainer;
 using Robust.Server.Containers;
 
 namespace Content.Server._NF.BindToStation;
@@ -13,6 +16,7 @@ namespace Content.Server._NF.BindToStation;
 public sealed class BindToStationSystem : EntitySystem
 {
     [Dependency] private readonly ExtensionCableSystem _extensionCable = default!;
+    [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
 
@@ -24,6 +28,24 @@ public sealed class BindToStationSystem : EntitySystem
         SubscribeLocalEvent<StationBoundObjectComponent, MapInitEvent>(OnBoundMapInit);
         SubscribeLocalEvent<StationBoundObjectComponent, GotEmaggedEvent>(OnBoundEmagged);
         SubscribeLocalEvent<StationBoundObjectComponent, GotUnEmaggedEvent>(OnBoundUnemagged);
+
+        // Horizon: machines wired directly into the HV power network (SMES, power transmission
+        // points, etc.) don't have ExtensionCableReceiver, so nothing re-checks their binding when
+        // they're re-anchored somewhere else. Cut their power the same way on every anchor change.
+        SubscribeLocalEvent<StationBoundObjectComponent, AnchorStateChangedEvent>(OnBoundAnchorStateChanged);
+        SubscribeLocalEvent<StationBoundObjectComponent, ReAnchorEvent>(OnBoundReAnchor);
+    }
+
+    // Horizon: re-run the node-disabling check below whenever a bound entity's anchor state changes.
+    private void OnBoundAnchorStateChanged(Entity<StationBoundObjectComponent> ent, ref AnchorStateChangedEvent args)
+    {
+        DisableOffGridCableDevices(ent, ent.Comp.BoundStation, ent.Comp.Enabled);
+    }
+
+    // Horizon
+    private void OnBoundReAnchor(Entity<StationBoundObjectComponent> ent, ref ReAnchorEvent args)
+    {
+        DisableOffGridCableDevices(ent, ent.Comp.BoundStation, ent.Comp.Enabled);
     }
 
     private void OnBoundItemExamined(EntityUid uid, StationBoundObjectComponent component, ExaminedEvent args)
@@ -44,6 +66,9 @@ public sealed class BindToStationSystem : EntitySystem
         {
             _extensionCable.Disconnect((ent.Owner, receiver));
         }
+
+        // Horizon
+        DisableOffGridCableDevices(ent.Owner, ent.Comp.BoundStation, ent.Comp.Enabled);
     }
 
     public void OnBoundEmagged(Entity<StationBoundObjectComponent> ent, ref GotEmaggedEvent args)
@@ -125,6 +150,31 @@ public sealed class BindToStationSystem : EntitySystem
             {
                 BindToStation(board, binding.BoundStation, binding.Enabled);
             }
+        }
+
+        // Horizon
+        DisableOffGridCableDevices(target, station, enabled);
+    }
+
+    /// <summary>
+    /// Horizon: cuts power to any CableDeviceNode on this entity if it's bound to a station but
+    /// currently sitting on a different one - the HV-network equivalent of what ExtensionCableSystem
+    /// already does for ExtensionCableReceiver. Only ever forces nodes off, never back on, so it
+    /// doesn't fight whatever normally turns a given device's power draw on and off.
+    /// </summary>
+    private void DisableOffGridCableDevices(EntityUid target, EntityUid? station, bool enabled)
+    {
+        var offBoundGrid = enabled && station != null && _station.GetOwningStation(target) != station;
+        if (!offBoundGrid || !TryComp<NodeContainerComponent>(target, out var nodeContainer))
+            return;
+
+        foreach (var node in nodeContainer.Nodes.Values)
+        {
+            if (node is not CableDeviceNode { Enabled: true } deviceNode)
+                continue;
+
+            deviceNode.Enabled = false;
+            _nodeGroup.QueueNodeRemove(deviceNode);
         }
     }
 }

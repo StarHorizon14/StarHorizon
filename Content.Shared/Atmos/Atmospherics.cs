@@ -99,6 +99,14 @@ namespace Content.Shared.Atmos
         public const float OxygenMolesGasMiner = MolesCellGasMiner * OxygenStandard;
         public const float NitrogenMolesGasMiner = MolesCellGasMiner * NitrogenStandard;
 
+        // Horizon: Water
+        public const float WaterStandard = 7.0f;
+        public const float TrenchStandard = 20.0f;
+
+        public const float WaterMolesStandard = MolesCellStandard * WaterStandard;
+        public const float TrenchMolesStandard = MolesCellStandard * TrenchStandard;
+        // Horizon end
+
         #endregion
 
         /// <summary>
@@ -208,7 +216,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 21; // Horizon
+        public const int TotalNumberOfGases = 22; // Horizon
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -436,6 +444,7 @@ namespace Content.Shared.Atmos
         Helium = 18,
         AntiNoblium = 19,
         // Horizon end
-        Respiron = 20 // Frontier
+        Respiron = 20, // Frontier
+        Water = 21 // Horizon
     }
 }

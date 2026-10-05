@@ -1,0 +1,18 @@
+- type: entity
+  parent: NFClothingBackpack
+  id: ClothingBackpackHoldingHorizon
+  name: блюспейс рюкзак
+  suffix: Sponsor
+  description: Рюкзак, открывающийся в локальный карман блюспейса.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Sponsor/Clothing/Back/Backpacks/back.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Horizon/_Sponsor/Clothing/Back/Backpacks/back.rsi
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,7,7

@@ -1,0 +1,24 @@
+- type: entity
+  id: ShiftStartShadowEcho
+  name: shadow echo
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Effects
+    sprite: Structures/Specific/Anomalies/shadow_anom.rsi
+    layers:
+    - state: anom
+      map: ["enum.AnomalyVisualLayers.Base"]
+    color: "#ffffffcc"
+  - type: PointLight
+    radius: 1.5
+    energy: 12.5
+    color: "#793a80"
+  - type: TimedDespawn
+    lifetime: 3
+  - type: EmitSoundOnSpawn
+    sound:
+      collection: RadiationPulse
+      params:
+        volume: -3

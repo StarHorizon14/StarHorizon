@@ -52,6 +52,14 @@
       visible: false
   - type: Item
     sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi
+  # SH-Tweak-Start
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 15
+  - type: UseDelay
+    delay: 0.5
+  # SH-Tweak-End
 
 - type: entity
   name: NTCS-103 hypospray

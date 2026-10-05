@@ -1,6 +1,6 @@
 - type: entity
   id: BaseImplantOnlyImplanterAnCo
-  parent: [BaseImplantOnlyImplanter, BaseAnCoContraband]
+  parent: [BaseImplantOnlyImplanter, BaseTKAnCoContraband]
   suffix: StarHorizon, AnCo
   name: ручной имплантер АнКо
   description: Имплантер для вживления нанитов в организм пользователя или их перепрограммирования.

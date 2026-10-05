@@ -10,7 +10,6 @@
     - !type:RoleTimeRequirement
       role: JobSeniorOfficer
       time: 10800 # 3 hours
-  whitelisted: true
   startingGear: NFPirateCaptainGear
   alwaysUseSpawner: true
   hideConsoleVisibility: true
@@ -49,6 +48,7 @@
     - AppraisalTool
     - PirateTechFabFlatpack
     - Multitool
+    - CoordinatesDiskPirate
 
 - type: chameleonOutfit
   id: NFPirateCaptainChameleonOutfit

@@ -1,5 +1,3 @@
-using Content.Shared._Horizon.Pain.Components;
-using Content.Shared._Horizon.Pain.Prototypes;
 using Content.Shared.Damage.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Events;
@@ -29,12 +27,6 @@ public sealed class PainNumbnessSystem : EntitySystem
 
     private void OnComponentInit(EntityUid uid, PainNumbnessComponent component, ComponentInit args)
     {
-        if (TryComp<PainComponent>(uid, out var pain))
-        {
-            pain.CurrentPain = 0;
-            pain.CurrentStage = PainStages.Nothing;
-        }
-
         if (!HasComp<MobThresholdsComponent>(uid))
             return;
 

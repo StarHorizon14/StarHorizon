@@ -1,6 +1,6 @@
 - type: entity
   name: Игла
-  parent: [BaseWeaponPistol, BaseAnCoContraband]
+  parent: [ManufacturerAnCo, BaseWeaponPistol, BaseAnCoContraband]
   id: WeaponPistolAnCo
   description: Небольшой, но эффективный полу-автоматический пистолет, выдается как штатное вооружение для офицеров.
   suffix: StarHorizon, AnCo, Weapon
@@ -52,7 +52,7 @@
 
 - type: entity
   name: Роевик
-  parent: [BaseWeaponPistol, BaseAnCoContraband]
+  parent: [ManufacturerAnCo, BaseWeaponPistol, BaseAnCoContraband]
   id: WeaponAutoPistolAnCo
   description: Модифицированная версия пистолета "Игла" с более эффективной подачей патронов.
   suffix: StarHorizon, AnCo, Weapon
@@ -102,3 +102,45 @@
   - type: DualWield
   - type: StaticPrice
     price: 7500
+
+- type: entity
+  name: Приказ
+  parent: [ManufacturerAnCo, BaseItem, BaseMaxAnCoContraband]
+  id: Weapon70PistolOrderAnCo
+  description: Модификация тяжелого револьвера, само наличие данного актива, наделяет вас властью над судьбами.
+  suffix: StarHorizon, AnCo, Weapon
+  components:
+  - type: Sprite # janky here, but mag is optional and tied with chamber
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/order-pistol.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineBarrel70
+        priority: 2
+        whitelist:
+          tags:
+          - AnCoMagazineBarrel70
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Appearance
+  - type: Item
+    size: Normal

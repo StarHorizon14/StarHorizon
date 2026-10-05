@@ -1,0 +1,45 @@
+# Информация об авторе шаттла
+# GitHub/Gitea: https://github.com/TheCorp-1
+# Discord: TheCorp
+
+# Информация о сопровождающем
+# GitHub/Gitea: https://github.com/lAstronautl
+# Discord: astr0laris
+
+# Прототип шаттла:
+#
+- type: vessel
+  id: Velvet
+  parent: BaseVessel
+  name: (Magnetic Orbital Transport Heavyworks) MOTH Velvet
+  description: "Один из первых типов шаттлов класса 'Бордель', допущенных на территорию ЦПСС и NanoTrasen. Произведён корпорацией Magnetic Orbital Transport Heavyworks. Шаттл обладает довольно обширными дормиториями, готовым сервисным отсеком с баром, кухней, а также баней. Имейте в виду расход топлива: генератор ДАМа оснащён тремя ядрами, что значительно увеличивает его потребление. Рекомендуемая численность экипажа для обслуживания данного шаттла - не менее 3-4 человек. Помимо этого, на шаттле имеется стойка обслуживания (ресепшен), а также отдельная кладовая уборщика, укомплектованная всем необходимым снаряжением. Базовая стоимость шаттла составляет порядка 1,5 миллиона кредитов. Однако из-за неприятного инцидента его цена внезапно снизилась до 550 тысяч. Что же случилось?"
+  price: 550000
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/velvet.yml
+  class:
+  - Civilian
+  - Kitchen
+  engine:
+  - AME
+
+
+- type: gameMap
+  id: Velvet
+  mapName: '(Magnetic Orbital Transport Heavyworks) MOTH Velvet'
+  mapPath: /Maps/_Horizon/Shuttles/Shipyard/velvet.yml
+  minPlayers: 0
+  stations:
+    Velvet:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Velvet {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

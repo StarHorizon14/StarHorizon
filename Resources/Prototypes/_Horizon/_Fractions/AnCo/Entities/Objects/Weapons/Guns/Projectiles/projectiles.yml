@@ -132,6 +132,33 @@
     color: "#F05A5A"
 
 - type: entity
+  name: AnCo Bullet
+  id: LaserDrillAnCo
+  parent: EmitterBolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Projectiles/proj.rsi
+    layers:
+    - state: Miner
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 5
+        Structural: 35
+  - type: PointLight
+    color: "#F05A5A"
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: GatheringProjectile
+  - type: MiningGatheringSoft
+  # - type: MiningGatheringHard
+  - type: Tracer
+    color: "#f05a5a"
+    length: 2
+
+- type: entity
   name: AnCo Bullet Disabler
   id: StandartDisablerAnCo
   parent: EmitterBolt

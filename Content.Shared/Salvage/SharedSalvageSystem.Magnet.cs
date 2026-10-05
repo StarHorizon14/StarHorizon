@@ -16,7 +16,10 @@ public abstract partial class SharedSalvageSystem
 
     private readonly Dictionary<ISalvageMagnetOffering, float> _offeringWeights = new()
     {
-        { new AsteroidOffering(), 4.5f },
+        // Horizon: AsteroidOffering disabled - every entry in _asteroidConfigs below points at a
+        // dungeonConfig commented out in Resources/Prototypes/Procedural/Magnet/asteroid.yml (their
+        // NoiseDunGen layers don't exist in this fork), so picking one always crashed the magnet UI.
+        // { new AsteroidOffering(), 4.5f },
         { new DebrisOffering(), 3.5f },
         { new SalvageOffering(), 2.0f },
     };

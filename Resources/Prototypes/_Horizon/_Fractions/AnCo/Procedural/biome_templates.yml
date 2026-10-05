@@ -48,6 +48,22 @@
         - CrystalBlackMedium
 
     - !type:BiomeEntityLayer
+      threshold: 0.92
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        frequency: 1
+      allowedTiles:
+        - FloorKazmie
+      entities:
+        - PlantAnCoGrass
+        - PlantAnCoBigMushroom
+        - PlantAnCoMushroom
+        - PlantAnCoMimic
+        - PlantAnCoBall
+        - PlantAnCoSliced
+
+    - !type:BiomeEntityLayer
       threshold: 0.95
       noise:
         seed: 0

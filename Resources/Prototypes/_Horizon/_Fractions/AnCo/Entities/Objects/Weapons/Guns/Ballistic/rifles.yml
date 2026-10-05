@@ -1,6 +1,6 @@
 - type: entity
   name: Шершень
-  parent: [BaseWeaponPistol, BaseAnCoContraband]
+  parent: [ManufacturerAnCo, BaseWeaponPistol, BaseAnCoContraband]
   id: WeaponRiflesAnCo
   description: Полу-автоматический карабин с ускорителем в стволе.
   suffix: StarHorizon, AnCo, Weapon
@@ -61,7 +61,7 @@
 
 - type: entity
   name: Жароплюй
-  parent: [BaseWeaponPistol, BaseAnCoContraband]
+  parent: [ManufacturerAnCo, BaseWeaponPistol, BaseAnCoContraband]
   id: WeaponAutoRiflesAnCo
   description: Скорорстрельная, но не точная автоматическая винтовка.
   suffix: StarHorizon, AnCo, Weapon
@@ -120,7 +120,7 @@
 
 - type: entity
   name: Стрела
-  parent: [BaseWeaponPistol, BaseAnCoContraband]
+  parent: [ManufacturerAnCo, BaseWeaponPistol, BaseTKAnCoContraband]
   id: WeaponRifles30AnCo
   description: Высокоточный полу-автоматический карабин.
   suffix: StarHorizon, AnCo, Weapon
@@ -182,7 +182,7 @@
 
 - type: entity
   name: Шторм
-  parent: [BaseWeaponPistol, BaseAnCoContraband]
+  parent: [ManufacturerAnCo, BaseWeaponPistol, BaseTKAnCoContraband]
   id: WeaponMachineGun30AnCo
   description: Скорострельный пулемет на .30 калибре от АнКо.
   suffix: StarHorizon, AnCo, Weapon
@@ -242,3 +242,103 @@
     maxAngle: -20
   - type: StaticPrice
     price: 30000
+
+- type: entity
+  name: Омикрон
+  parent: [ManufacturerAnCo, WeaponSubMachineGunVectorSpecial, BaseAnCoContraband]
+  id: WeaponVectorAnCo
+  description: Модификация привычного вектора, корпоративный дизайн побеждает.
+  suffix: StarHorizon, AnCo, Weapon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/vector.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/vector.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NewMagazinePistolBig35
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - AnCoNewMagazinePistol35
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: BaseCartridgePistolAnCo
+        priority: 1
+        whitelist:
+          tags:
+            - AnCoBulletPistol35
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/vector.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+
+- type: entity
+  name: Дельта
+  parent: [ManufacturerAnCo, NFWeaponSubMachineGunC20r, BaseAnCoContraband]
+  id: WeaponC20RAnCo
+  description: Модификация запрещенной модели вооружения C-20r. Смысл тот же, бумаги разные.
+  suffix: StarHorizon, AnCo, Weapon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/cr20.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/cr20.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NewMagazinePistolBig35
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - AnCoNewMagazinePistol35
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: BaseCartridgePistolAnCo
+        priority: 1
+        whitelist:
+          tags:
+            - AnCoBulletPistol35
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/cr20.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage

@@ -7041,7 +7041,7 @@
   cost: 1
   priority: 27
   state: telecrystal
-  prototypeId: SponsorShopTelecrystal2
+  prototypeId: Telecrystal1
 
 - type: sponsorShopListing
   id: SponsorShopCurrencyDoubloon

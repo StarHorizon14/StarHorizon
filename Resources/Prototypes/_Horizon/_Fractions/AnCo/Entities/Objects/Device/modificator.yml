@@ -1,0 +1,60 @@
+- type: entity
+  parent: [BaseTKAnCoContraband, BaseItem]
+  id: ModStationHardSuit
+  suffix: StarHorizon, AnCo
+  categories: [ HideSpawnMenu ]
+  name: станция модификации скафандров
+  description: Вершина инженерной мысли, станция автоматической модификации скафандров
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/modstation.rsi
+    layers:
+    - state: base
+    - state: base-unshaded
+      shader: unshaded
+    - state: outer-clothing
+  - type: Appearance
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: ModStationHardSuit
+  id: ModStationMaximPrototype
+  suffix: StarHorizon, AnCo
+  name: станция модификации эксперементального скафандра
+  components:
+  - type: Tag
+    tags:
+    - AnCoUpgradeMaximPrototype
+
+- type: entity
+  parent: ModStationHardSuit
+  id: ModStationJuggernaut
+  suffix: StarHorizon, AnCo
+  name: станция модификации джагернаута
+  components:
+  - type: Tag
+    tags:
+    - AnCoUpgradeJuggernaut
+
+- type: entity
+  parent: ModStationHardSuit
+  id: ModStationElite
+  suffix: StarHorizon, AnCo
+  name: станция модификации элитного скафандра
+  components:
+  - type: Tag
+    tags:
+    - AnCoUpgradeElite
+
+- type: entity
+  parent: ModStationHardSuit
+  id: ModStationSyndie
+  suffix: StarHorizon, AnCo
+  name: станция модификации кровавого скафандра
+  components:
+  - type: Tag
+    tags:
+    - AnCoUpgradeSyndie

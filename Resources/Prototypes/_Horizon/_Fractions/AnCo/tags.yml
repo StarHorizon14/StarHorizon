@@ -5,10 +5,16 @@
   id: AnCoMagazineShotgun50
 
 - type: Tag
+  id: NewAnCoMagazineShotgun50
+
+- type: Tag
   id: AnCoBulletShotgun50
 
 - type: Tag
   id: AnCoMagazinePistol35
+
+- type: Tag
+  id: AnCoNewMagazinePistol35
 
 - type: Tag
   id: AnCoBulletPistol35
@@ -27,6 +33,9 @@
 
 - type: Tag
   id: AnCoMagazineSniper70
+
+- type: Tag
+  id: AnCoMagazineBarrel70
 
 - type: Tag
   id: AnCoBulletSniper70
@@ -49,6 +58,10 @@
 - type: Tag
   id: TitanCapsule
 
+- type: Tag
+  id: AnCoCoin
+
+
 # Cryptominer
 
 - type: Tag
@@ -64,3 +77,38 @@
 
 - type: Tag
   id: MagazineAsmgtAnCo
+
+# upgrade
+
+- type: Tag
+  id: AnCoUpgradeMaximPrototype
+
+- type: Tag
+  id: AnCoUpgradeJuggernaut
+
+- type: Tag
+  id: AnCoUpgradeElite
+
+- type: Tag
+  id: AnCoUpgradeSyndie
+
+# plant
+
+- type: Tag
+  id: AnCoPlantSeedGrass
+
+- type: Tag
+  id: AnCoPlantSeedBigMushroom
+
+- type: Tag
+  id: AnCoPlantSeedMushroom
+
+- type: Tag
+  id: AnCoPlantSeedMimic
+
+- type: Tag
+  id: AnCoPlantSeedBall
+
+- type: Tag
+  id: AnCoPlantSeedSliced
+

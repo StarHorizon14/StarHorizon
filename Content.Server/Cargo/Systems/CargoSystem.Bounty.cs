@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._NF.Cargo.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.NameIdentifier;
 using Content.Shared._NF.Bank; // Frontier
@@ -43,6 +44,10 @@ public sealed partial class CargoSystem
         SubscribeLocalEvent<CargoBountyConsoleComponent, BountySkipMessage>(OnSkipBountyMessage);
         SubscribeLocalEvent<CargoBountyLabelComponent, PriceCalculationEvent>(OnGetBountyPrice);
         SubscribeLocalEvent<EntitySoldEvent>(OnSold);
+        // Horizon: the NF cargo pallet console (used by every Frontier-flavored sale computer,
+        // including the purchasable station upgrades) raises its own sold event instead of vanilla's
+        // EntitySoldEvent, so bounty completion never fired for anything sold through it.
+        SubscribeLocalEvent<NFEntitySoldEvent>(OnNFSold);
         SubscribeLocalEvent<StationCargoBountyDatabaseComponent, MapInitEvent>(OnMapInit);
 
         _stackQuery = GetEntityQuery<StackComponent>();
@@ -169,6 +174,30 @@ public sealed partial class CargoSystem
     }
 
     private void OnSold(ref EntitySoldEvent args)
+    {
+        foreach (var sold in args.Sold)
+        {
+            if (!TryGetBountyLabel(sold, out _, out var component))
+                continue;
+
+            if (component.AssociatedStationId is not { } station || !TryGetBountyFromId(station, component.Id, out var bounty))
+            {
+                continue;
+            }
+
+            if (!IsBountyComplete(sold, bounty.Value))
+            {
+                continue;
+            }
+
+            TryRemoveBounty(station, bounty.Value, false);
+            FillBountyDatabase(station);
+            _adminLogger.Add(LogType.Action, LogImpact.Low, $"Bounty \"{bounty.Value.Bounty}\" (id:{bounty.Value.Id}) was fulfilled");
+        }
+    }
+
+    // Horizon
+    private void OnNFSold(ref NFEntitySoldEvent args)
     {
         foreach (var sold in args.Sold)
         {
@@ -365,7 +394,7 @@ public sealed partial class CargoSystem
         return true;
     }
 
-    private HashSet<EntityUid> GetBountyEntities(EntityUid uid)
+    internal HashSet<EntityUid> GetBountyEntities(EntityUid uid)
     {
         var entities = new HashSet<EntityUid>
         {

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMachine, BaseAnCoContraband]
+  parent: [BaseMachine, BaseTKAnCoContraband]
   id: ArdonGenerator
   name: Ардониевый генератор
   description: генератор на основе распада ардония, долговечный и надежный.

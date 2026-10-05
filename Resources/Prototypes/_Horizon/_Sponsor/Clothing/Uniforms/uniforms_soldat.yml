@@ -1,0 +1,11 @@
+- type: entity
+  parent: [ClothingUniformBase, BaseC3Contraband]
+  id: ClothingUniformsSoldat
+  name: Форма ЧВК-ЧОП
+  description: Производства ЧВК-ЧОП
+  suffix: Sponsor
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Sponsor/Clothing/Uniforms/Jumpsuit/eastuniform.rsi
+  - type: Clothing
+    sprite: _Horizon/_Sponsor/Clothing/Uniforms/Jumpsuit/eastuniform.rsi

@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatbeigeSoldat
+  name: Бежевый берет
+  description: Для истинных бойцов
+  suffix: Sponsor
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Sponsor/Clothing/Head/Hats/red_beret.rsi
+  - type: Clothing
+    sprite: _Horizon/_Sponsor/Clothing/Head/Hats/red_beret.rsi

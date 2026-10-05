@@ -23,3 +23,17 @@
   copyright: "https://vsezvuki.com/"
   source: "https://vsezvuki.co.m/"
 
+- files: ["farscream.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from TG station, ported from Workbench-Team/space-station-14"
+  source: "https://github.com/tgstation/tgstation/commit/3be1e8bdfd832ffb76d21cd8dcd11628182875a9"
+
+- files: ["radio_static.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from TG station, ported from Workbench-Team/space-station-14"
+  source: "https://github.com/tgstation/tgstation/commit/2e6d27b81f7a0cedf3c2c411a76fc5efd01bdcbd"
+
+- files: ["pirce1.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from TG station, ported from Workbench-Team/space-station-14"
+  source: "https://github.com/tgstation/tgstation/commit/46dd89b07af7b0554e287073c82bad1028f7afba"

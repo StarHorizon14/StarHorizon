@@ -1,6 +1,6 @@
 - type: entity
   name: AKMS
-  parent: NFBaseWeaponFrameRifleAssault
+  parent: NFBaseWeaponFrameRifleAssaultCybersun
   id: WeaponAKMSRifle
   suffix: Backman, Штурмовая винтовка
   description: An iconic weapon of war. Uses 7.62x39 ammo.
@@ -17,11 +17,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tiny.rsi
   - type: Gun
-    minAngle: 1.5
+    minAngle: 0.05 #3 моа (1 моа это 1\60 градуса)
     maxAngle: 11
-    angleIncrease: 0.5
+    angleIncrease: 0.4
     angleDecay: 3
-    fireRate: 5.6
+    fireRate: 5 #скорострельность делаю по реальной то есть 600/60/2 и того 5
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
   - type: ChamberMagazineAmmoProvider
@@ -60,7 +60,7 @@
 
 - type: entity
   name: AK74-U
-  parent: NFBaseWeaponFrameRifleAssault
+  parent: NFBaseWeaponFrameRifleAssaultCybersun
   id: WeaponRifleAKSU
   suffix: Backman, Штурмовая винтовка
   description: An iconic weapon of war. Uses 7.62x39 ammo.
@@ -77,11 +77,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi
   - type: Gun
-    minAngle: 2.5
-    maxAngle: 15
+    minAngle: 0.08
+    maxAngle: 10
     angleIncrease: 0.8
     angleDecay: 3
-    fireRate: 5.6
+    fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
   - type: ChamberMagazineAmmoProvider
@@ -120,7 +120,7 @@
 
 - type: entity
   name: AR-18
-  parent: NFBaseWeaponFrameRifleAssault
+  parent: NFBaseWeaponFrameRifleAssaultNanotrasen
   id: WeaponRifleAR18
   suffix: Backman, Штурмовая винтовка
   description: The H&K AR-18 carbine is one of the standard rifles used by EarthGov army. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry.
@@ -137,11 +137,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
   - type: Gun
-    minAngle: 1.4
-    maxAngle: 12
-    angleIncrease: 0.8
+    minAngle: 0.03
+    maxAngle: 10
+    angleIncrease: 0.6
     angleDecay: 4
-    fireRate: 6.5
+    fireRate: 6.6
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/ar18.ogg
     soundEmpty:
@@ -182,7 +182,7 @@
 
 - type: entity
   name: G-36
-  parent: NFBaseWeaponFrameRifleAssault
+  parent: NFBaseWeaponFrameRifleAssaultNanotrasen
   id: WeaponRifleG36
   suffix: Backman, Штурмовая винтовка
   description: The H&K G-36 assault rifle used to be the EarthGov army standard issue rifle.
@@ -199,11 +199,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
   - type: Gun
-    minAngle: 0.8
+    minAngle: 0.02
     maxAngle: 6
-    angleIncrease: 0.6
+    angleIncrease: 0.5
     angleDecay: 4
-    fireRate: 5.8
+    fireRate: 6.25
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/g36.ogg
     soundEmpty:
@@ -244,7 +244,7 @@
 
 - type: entity
   name: M-28
-  parent: NFBaseWeaponFrameRifleAssault
+  parent: NFBaseWeaponFrameRifleAssaultNanotrasen
   id: WeaponRifleM28
   suffix: Backman, Штурмовая винтовка
   description: The M-28 assault rifle used to be the EarthGov army standard issue rifle.
@@ -261,9 +261,9 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tiny.rsi
   - type: Gun
-    minAngle: 1.2
+    minAngle: 0.0125
     maxAngle: 12
-    angleIncrease: 0.9
+    angleIncrease: 0.6
     angleDecay: 5
     fireRate: 5
     soundGunshot:
@@ -305,7 +305,7 @@
 
 - type: entity
   name: STG 44
-  parent: NFBaseWeaponFrameRifleAssault
+  parent: NFBaseWeaponFrameRifleAssaultCybersun
   id: WeaponRifleSTG44
   suffix: Backman, Штурмовая винтовка
   description: A certified classic, this design was hailed as the first successful assault rifle concept, generally termed a 'storm rifle'. Has a higher than usual firerate for it's class.
@@ -322,11 +322,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/tiny.rsi
   - type: Gun
-    minAngle: 2.2
+    minAngle: 0.07
     maxAngle: 16
     angleIncrease: 1
     angleDecay: 3
-    fireRate: 5.5
+    fireRate: 4.1
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
   - type: ChamberMagazineAmmoProvider
@@ -365,7 +365,7 @@
 
 - type: entity
   name: M16A4
-  parent: NFBaseWeaponFrameRifleAssault
+  parent: NFBaseWeaponFrameRifleAssaultNanotrasen
   id: WeaponRifleM16A4
   suffix: Backman, Штурмовая винтовка
   description: A light, versatile assault rifle. The 4th generation in the M16 platform, this FN variant has added automatic fire selection and retains relevance among mercenaries and militias thanks to its high customizability. it is incredibly good at rapid burst fire, but must be paced correctly."
@@ -382,11 +382,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/tiny.rsi
   - type: Gun
-    minAngle: 0.7
+    minAngle: 0.02
     maxAngle: 13
-    angleIncrease: 0.8
+    angleIncrease: 0.5
     angleDecay: 5
-    fireRate: 6.7
+    fireRate: 7.5
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/m16.ogg
   - type: ChamberMagazineAmmoProvider
@@ -425,7 +425,7 @@
 
 - type: entity
   name: Famas
-  parent: NFBaseWeaponFrameRifleAssault
+  parent: NFBaseWeaponFrameRifleAssaultNanotrasen
   id: WeaponRifleFamas
   suffix: Backman, Штурмовая винтовка
   description: A light, versatile assault rifle."
@@ -442,7 +442,7 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/tiny.rsi
   - type: Gun
-    minAngle: 1.2
+    minAngle: 0.2
     maxAngle: 10
     angleIncrease: 1.8
     angleDecay: 5
@@ -493,7 +493,7 @@
 
 - type: entity
   name: BR-64
-  parent: NFBaseWeaponFrameRifleAssault
+  parent: NFBaseWeaponFrameRifleAssaultNanotrasen
   id: WeaponRifleBR64
   suffix: Backman, Штурмовая винтовка
   description: The San Cristo Arms BR-64 is the Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average.
@@ -550,7 +550,7 @@
 
 - type: entity
   name: V-31 assault rifle
-  parent: NFBaseWeaponFrameRifleAssault
+  parent: NFBaseWeaponFrameRifleAssaultCybersun
   id: WeaponRifleV31
   suffix: Backman, Штурмовая винтовка
   description: The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. Nevertheless the V-31 continues to see common use due to it's comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. Has good handling due to its compact bullpup design, and is generally effective at all ranges.
@@ -625,11 +625,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aug/tiny.rsi
   - type: Gun
-    minAngle: 1.2
+    minAngle: 0.2
     maxAngle: 7
     angleIncrease: 0.5
     angleDecay: 3
-    fireRate: 6.9
+    fireRate: 5.6
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/famas.ogg
   - type: ChamberMagazineAmmoProvider
@@ -685,11 +685,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/scar/tiny.rsi
   - type: Gun
-    minAngle: 1.2
+    minAngle: 0.02
     maxAngle: 9
-    angleIncrease: 0.9
+    angleIncrease: 0.4
     angleDecay: 3
-    fireRate: 6.3
+    fireRate: 5.2
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/T64.ogg
   - type: ChamberMagazineAmmoProvider
@@ -728,7 +728,7 @@
 
 - type: entity
   name: UTAP Mark 1
-  parent: BaseWeaponRifle
+  parent: NFBaseWeaponFrameRifleAssaultCybersun
   id: WeaponRifleUTAPM1
   suffix: Backman, Штурмовая винтовка
   description: Штурмовая винтовка производства "Interdyne", облегченный вариант Марк 2, используется зачастую частными охранными организациями.

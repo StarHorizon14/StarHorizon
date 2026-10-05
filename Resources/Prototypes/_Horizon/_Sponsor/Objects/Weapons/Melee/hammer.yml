@@ -1,0 +1,36 @@
+- type: entity
+  name: молот синдиката
+  parent: BaseAnCoWeapon
+  id: SyndicateHammer
+  description: Тяжёлый молот, взятый у АнКо и дороботан, способный накапливать кинетическую энергию и при полном заполнений высвобождает её.
+  suffix: Sponsor
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Sponsor/Objects/Weapons/Melee/hammer.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 15
+        Structural: 15
+    soundHit:
+      path: /Audio/_Horizon/_Fractions/AnCo/bonk.ogg
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 15
+        Structural: 20
+  - type: Item
+    size: Ginormous
+    sprite: _Horizon/_Sponsor/Objects/Weapons/Melee/hammer.rsi
+  - type: UseDelay
+    delay: 5
+  - type: AnCoHammerRepulse
+    chargePerHit: 10
+    staminaDamagePercent: 0.5
+    throwStrength: 10
+    distance: 5
+  - type: StaticPrice
+    price: 4000

@@ -27,26 +27,28 @@
       - !type:Jitter
         conditions:
         - !type:ReagentThreshold
-          min: 30
+          min: 20.5
       - !type:AdjustReagent
         conditions:
         - !type:ReagentThreshold
-          min: 30
+          min: 20.5
         reagent: AnConanits
         amount: 1.5
 # "ускорение" если вы ускорились приняв медипен, скорее всего вы труп
       - !type:MovespeedModifier
         conditions:
         - !type:ReagentThreshold
-          min: 30
+          min: 20.5
         walkSpeedModifier: 1.3
         sprintSpeedModifier: 1.3
 # "крит масс" критическая масса нанитов в организме
-      - !type:Polymorph
+      - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
           min: 70
-        prototype: AnCoNanitAcidPoly
+        damage:
+          types:
+            Blunt: 15
 
 - type: reagent
   id: AnCoCompoundSpeed

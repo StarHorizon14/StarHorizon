@@ -1,6 +1,6 @@
 - type: entity
   id: Cryptominer
-  parent: [ BaseMachinePowered, ConstructibleMachine, BaseAnCoContraband ]
+  parent: [ BaseMachinePowered, ConstructibleMachine, BaseTKAnCoContraband ]
   name: Криптомайнер
   suffix: StarHorizon, AnCo, Structure
   description: Устройство для майнинга криптовалюты. Потребляет энергию и выделяет тепло. Заработанные кредиты необходимо вывести.

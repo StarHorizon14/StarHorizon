@@ -103,8 +103,8 @@
     Kazmie: 1500
 
 - type: latheRecipe
-  id: AnCoDroneOff
-  result: AnCoDroneOff
+  id: AnCoGranadeSpawnSecure
+  result: AnCoGranadeSpawnSecure
   completetime: 10
   materials:
     Ardon: 1500

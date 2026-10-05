@@ -37,6 +37,9 @@
     ClothingNeckScarfStripedLightBlue: 3
     ClothingMaskGasAtmos: 2
     ClothingShoesBootsWinterAtmos: 2 #Delta V: Add departmental winter boots
+    ClothingHeadHatBeretAtmos: 3 # SH
+    ClothingAtmosphericsOveralls: 3 # SH
+    ClothingHandsGlovesAtmos: 1 # SH
 # Senior:
     ClothingUniformJumpsuitSeniorEngineer: 1
     ClothingUniformJumpskirtSeniorEngineer: 1

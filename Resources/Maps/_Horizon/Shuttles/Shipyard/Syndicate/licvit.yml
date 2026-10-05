@@ -1155,7 +1155,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,0.5
       parent: 325
-- proto: ComputerTabletopShuttleAntagSyndicate
+- proto: ComputerShuttleSyndie
   entities:
   - uid: 64
     components:

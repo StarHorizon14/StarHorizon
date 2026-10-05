@@ -1,6 +1,7 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
+                      xmlns:distortion="clr-namespace:Content.Client._Horizon.Distortion.UI"
                       Title="{Loc 'radar-console-window-title'}"
                       SetSize="648 672"
                       MinSize="256 256">
@@ -9,5 +10,6 @@
         <ui:ShuttleNavControl Name="RadarScreen"
                          HorizontalExpand = "True"
                          VerticalExpand = "True"/>
+        <distortion:DistortionStaticControl Name="DistortionOverlay"/>
     </LayoutContainer>
 </controls:FancyWindow>

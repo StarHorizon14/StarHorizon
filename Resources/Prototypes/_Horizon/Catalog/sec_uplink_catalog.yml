@@ -1482,9 +1482,9 @@
     contents:
     - id: WeaponLauncherGL70
     - id: NFGrenadeFrag
-      amount: 6
+      amount: 3
     - id: NFGrenadeBlast
-      amount: 6
+      amount: 3
 
 - type: listing
   id: UplinkSecurityGrenadeLauncherM81Bundle
@@ -1669,6 +1669,22 @@
         amount: 1
       - id: MagazineShotgun # For Zauer and SPAS12
         amount: 3
+
+- type: listing
+  id: UplinkSecurityBackmanAmmoBlueprint
+  name: Чертеж боеприпасов
+  description: Чертеж для техфаба
+  icon: { sprite: _NF/Objects/Tools/blueprints.rsi, state: icon-base }
+  productEntity: BackmanAmmoBlueprint
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
 
 # - type: listing
 #   id: UplinkSecurityEnergyDomeGeneratorPersonalNSFD

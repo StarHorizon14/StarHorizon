@@ -2591,7 +2591,7 @@ entities:
     - type: Transform
       pos: 2.5,11.5
       parent: 1
-- proto: ComputerTabletopShuttleAntagSyndicate
+- proto: ComputerTabletopShuttleAntag
   entities:
   - uid: 432
     components:

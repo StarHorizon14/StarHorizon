@@ -1,6 +1,6 @@
 - type: entity
   name: леска АнКо
-  parent: BaseAnCoSharpWeapon
+  parent: [ManufacturerAnCo, BaseAnCoSharpWeapon]
   id: AnCoLine
   description: Сверх-легкий клинок, момент когда наука подеждает силу.
   suffix: StarHorizon, AnCo, Weapon

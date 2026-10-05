@@ -58936,30 +58936,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 130.5,115.5
       parent: 1
-- proto: ComputerExpeditionGoals
-  entities:
-  - uid: 19137
-    components:
-    - type: Transform
-      pos: 155.5,200.5
-      parent: 1
-  - uid: 19138
-    components:
-    - type: Transform
-      pos: 119.5,200.5
-      parent: 1
-  - uid: 19139
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 119.5,82.5
-      parent: 1
-  - uid: 19140
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 155.5,82.5
-      parent: 1
 - proto: ComputerFrame
   entities:
   - uid: 3905

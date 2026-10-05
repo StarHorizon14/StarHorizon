@@ -171,7 +171,6 @@
     - Maintenance
     - AnCo
 
-# Рипсоид, не спрашивайте кто это такой, это трансбот. Xigovir очень крутой и.. боже он черный!! В шахту его!!!
 - type: entity
   parent: AnCoStandartID
   id: AnCoRipsoidID

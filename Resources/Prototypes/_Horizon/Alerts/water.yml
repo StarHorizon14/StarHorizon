@@ -1,0 +1,8 @@
+- type: alert
+  id: Drowning
+  category: Breathing
+  icons:
+  - sprite: /Textures/Interface/Alerts/breathing.rsi
+    state: drowning
+  name: alerts-drowning-name
+  description: alerts-drowning-desc

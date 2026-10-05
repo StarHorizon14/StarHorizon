@@ -1,7 +1,7 @@
 - type: entity
   id: AnCoTurretFlash
   name: УБТ Вспышка
-  parent: [BallisticArtillery, BaseAnCoContraband]
+  parent: [BallisticArtillery, BaseOperAnCoContraband]
   suffix: StarHorizon, AnCo
   description: Управляемая Боевая Турель, способная выплескивать энергетический заряд способный перегрузить электорнику противника.
   components:
@@ -60,7 +60,7 @@
 - type: entity
   id: AnCoTurretJumper
   name: УБТ Попрыгунчик
-  parent: [BallisticArtillery, BaseAnCoContraband]
+  parent: [BallisticArtillery, BaseOperAnCoContraband]
   suffix: StarHorizon, AnCo
   description: Управляемая Боевая Турель, скорострельная и мощная, то что нужно для быстрых шаттлов.
   components:
@@ -119,7 +119,7 @@
 - type: entity
   id: AnCoTurretGargantua
   name: УБТ Гаргантюа
-  parent: [BallisticArtillery, BaseAnCoContraband]
+  parent: [BallisticArtillery, BaseOperAnCoContraband]
   suffix: StarHorizon, AnCo
   description: Управляемая Боевая Турель, медленная но смертоносная.
   components:
@@ -178,7 +178,7 @@
 - type: entity
   id: AnCoTurretLightbolt
   name: УБТ Молния
-  parent: [BallisticArtillery, BaseAnCoContraband]
+  parent: [BallisticArtillery, BaseOperAnCoContraband]
   suffix: StarHorizon, AnCo
   description: Управляемая Боевая Турель, удар молнии и перегрузка.
   components:

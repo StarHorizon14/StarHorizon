@@ -1,6 +1,6 @@
 - type: entity
   name: шоковая дубинка АнКо
-  parent: [BaseItem, BaseAnCoContraband]
+  parent: [ManufacturerAnCo, BaseItem, BaseAnCoContraband]
   id: WeaponStunprodAnCo
   description: Шоковая дубинка, разработанная с использованием утекшей технологии NanoTrasen. Имеет улучшенную систему энергопотребления.
   suffix: StarHorizon, AnCo, Weapon

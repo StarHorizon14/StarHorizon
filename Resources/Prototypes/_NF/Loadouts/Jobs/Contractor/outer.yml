@@ -245,6 +245,18 @@
     outerClothing: ClothingOuterBioScientist
 
 - type: loadout
+  id: ContractorClothingAtmosphericsOveralls
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
+  price: 800
+  equipment:
+    outerClothing: ClothingAtmosphericsOveralls
+
+- type: loadout
   id: ContractorClothingOuterWinterCoat
   effects:
   - !type:GroupLoadoutEffect

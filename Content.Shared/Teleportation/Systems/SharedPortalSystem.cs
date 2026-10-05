@@ -209,11 +209,31 @@ public abstract class SharedPortalSystem : EntitySystem
 
         _transform.SetCoordinates(subject, target);
 
+        if (portalComponent.OneUse)
+            DeleteOneUsePortal(portal);
+
         if (!playSound)
             return;
 
         _audio.PlayPredicted(departureSound, portal, subject);
         _audio.PlayPredicted(arrivalSound, subject, subject);
+    }
+
+    /// <summary>
+    ///     Deletes a one-use portal and any portals linked to it.
+    /// </summary>
+    private void DeleteOneUsePortal(EntityUid portal)
+    {
+        if (TryComp<LinkedEntityComponent>(portal, out var link))
+        {
+            foreach (var linked in link.LinkedEntities)
+            {
+                if (HasComp<PortalComponent>(linked))
+                    QueueDel(linked);
+            }
+        }
+
+        QueueDel(portal);
     }
 
     private void TeleportRandomly(EntityUid portal, EntityUid subject, PortalComponent? component = null)

@@ -1,0 +1,32 @@
+- type: entity
+  name: многоцелевая аптечка
+  description: укрепленная аптечка для хранения медикаментов.
+  parent: Medkit
+  id: MedkitAnCo
+  suffix: StarHorizon, AnCo
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Specific/Medical/firstaidkits.rsi
+    state: kit
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Objects/Specific/Medical/firstaidkits.rsi
+    heldPrefix: kit
+  - type: PhysicalComposition
+    materialComposition:
+      Kazmie: 100
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,3,2
+
+- type: entity
+  id: MedkitAnCoFilledElect
+  suffix: StarHorizon, AnCo, Filled
+  parent: MedkitAnCo
+  components:
+  - type: StorageFill
+    contents:
+      - id: BaseAutomenderBruteAnCo
+      - id: BaseAutomenderPirsAnCo
+      - id: CombatMedipenAnCo
+      - id: CombatMedipenAnCo

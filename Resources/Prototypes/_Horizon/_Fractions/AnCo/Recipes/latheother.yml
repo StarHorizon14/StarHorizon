@@ -1,7 +1,7 @@
 
 - type: entity
   id: AnCoOtherFabricator
-  parent: [BaseLatheLube, BaseAnCoContraband]
+  parent: [BaseLatheLube, BaseTKAnCoContraband]
   name: фабрикатор снаряжения АнКо
   description: Как вы его собрали?
   suffix: StarHorizon, AnCo, Structure

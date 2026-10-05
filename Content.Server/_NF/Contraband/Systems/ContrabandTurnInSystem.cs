@@ -16,7 +16,6 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
 using Content.Server._NF.Cargo.Systems;
 using Content.Server.Hands.Systems;
-using Content.Server._Horizon.Expeditions;
 
 namespace Content.Server._NF.Contraband.Systems;
 
@@ -155,18 +154,12 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
                     if (!comp.TurnInValues.ContainsKey(console.RewardType))
                         continue;
 
-                    //toSell.Add(ent);  // Horizon commented
+                    toSell.Add(ent);
                     var value = comp.TurnInValues[console.RewardType];
                     if (value <= 0)
                         continue;
                     amount += value;
                 }
-
-                // Horizon start
-                amount += EntityManager.System<ExpeditionGoalsSystem>().GetContrabandBonus(actor, ent, console.RewardType);
-                if (amount > 0)
-                    toSell.Add(ent);
-                // Horizon end
             }
         }
     }

@@ -1,0 +1,64 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+               Title="{Loc 'station-control-console-window-title'}"
+               MinSize="360 420"
+               SetSize="360 480">
+    <BoxContainer Orientation="Vertical" Margin="5">
+        <Label Text="{Loc 'station-control-console-name-info'}" />
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 10">
+            <LineEdit Name="NameSelector" HorizontalExpand="True" />
+            <Button Name="NameSelectorSet" Text="{Loc 'station-control-console-name-set'}" />
+        </BoxContainer>
+
+        <customControls:HSeparator StyleClasses="LowDivider" Margin="0 0 0 5"/>
+
+        <GridContainer Columns="2" HorizontalExpand="True">
+            <Label Text="{Loc 'bank-atm-menu-balance-label'}"
+                   StyleClasses="LabelKeyText"
+                   HorizontalAlignment="Right" />
+            <Label Name="BalanceLabel" Text="{Loc 'bank-atm-menu-no-bank'}" />
+
+            <Label Text="{Loc 'bank-atm-menu-amount-label'}"
+                   HorizontalAlignment="Right" />
+            <BoxContainer Orientation="Horizontal">
+                <LineEdit Name="WithdrawEdit" MinSize="80 0" HorizontalExpand="True"/>
+                <Button Name="WithdrawButton" Text="{Loc 'bank-atm-menu-withdraw-button'}"/>
+            </BoxContainer>
+
+            <Label Text="{Loc 'bank-atm-menu-deposit-label'}"
+                   StyleClasses="LabelKeyText"
+                   HorizontalAlignment="Right" />
+            <BoxContainer Orientation="Horizontal">
+                <Label Name="DepositLabel" Text="{Loc 'bank-atm-menu-no-deposit'}" HorizontalExpand="True"/>
+                <Button Name="DepositButton" Text="{Loc 'bank-atm-menu-deposit-button'}"/>
+            </BoxContainer>
+        </GridContainer>
+
+        <customControls:HSeparator StyleClasses="LowDivider" Margin="0 5 0 5"/>
+
+        <BoxContainer Orientation="Horizontal">
+            <Label Text="{Loc 'station-control-console-iff-color-label'}" VerticalAlignment="Center" Margin="0 0 5 0"/>
+            <LineEdit Name="IffColorEdit" MinSize="90 0" HorizontalExpand="True"/>
+            <PanelContainer Name="IffColorPreview" MinSize="24 24" Margin="5 0 5 0">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#FFFFFF"/>
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
+            <Button Name="IffColorSetButton" Text="{Loc 'station-control-console-iff-color-set'}"/>
+        </BoxContainer>
+
+        <customControls:HSeparator StyleClasses="LowDivider" Margin="0 5 0 5"/>
+
+        <Label Text="{Loc 'station-control-console-upgrades-header'}" HorizontalAlignment="Center"/>
+        <PanelContainer VerticalExpand="True">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+            </PanelContainer.PanelOverride>
+            <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Name="UpgradesContainer" Orientation="Vertical" VerticalExpand="True"/>
+            </ScrollContainer>
+        </PanelContainer>
+    </BoxContainer>
+</controls:FancyWindow>

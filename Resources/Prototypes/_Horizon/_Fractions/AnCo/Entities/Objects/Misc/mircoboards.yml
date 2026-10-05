@@ -69,7 +69,7 @@
 
 - type: entity
   id: AnCoOtherCircuitboard
-  parent: [BaseItem, BaseAnCoContraband]
+  parent: [BaseItem, BaseTKAnCoContraband]
   name: микросхема фабрикатора снаряжения АнКо
   suffix: StarHorizon, AnCo
   description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
@@ -92,7 +92,7 @@
 
 - type: entity
   id: CryptominerMachineCircuitboard
-  parent: [BaseItem, BaseAnCoContraband]
+  parent: [BaseItem, BaseTKAnCoContraband]
   name: микросхема криптомайнера АнКо
   description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
   components:
@@ -245,7 +245,7 @@
 
 - type: entity
   id: AnCoMachineGCSHighCircuitboard
-  parent: [BaseItem, BaseAnCoContraband]
+  parent: [BaseItem, BaseTKAnCoContraband]
   name: микросхема сервера контроля орудий АнКо
   description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
   components:

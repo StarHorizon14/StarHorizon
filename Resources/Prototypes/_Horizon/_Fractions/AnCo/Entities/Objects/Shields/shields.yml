@@ -50,7 +50,7 @@
 
 - type: entity
   id: AnCoKazmieShield
-  parent: [ BaseAnCoContraband, RiotBulletShield ]
+  parent: [ BaseMaxAnCoContraband, RiotBulletShield ]
   name: тяжелый казмиевый щит
   description: комплексная казмиевая защита, все ровно что защищаться броней танка.
   suffix: StarHorizon, AnCo, Weapon
@@ -104,7 +104,7 @@
 
 - type: entity
   id: AnCoBulletShield
-  parent: [ BaseAnCoContraband, RiotBulletShield ]
+  parent: [ BaseTKAnCoContraband, RiotBulletShield ]
   name: комплексный щит АнКо
   description: серийный щит стандартной конструкции, в основном используемый ОтКБ.
   suffix: StarHorizon, AnCo, Weapon

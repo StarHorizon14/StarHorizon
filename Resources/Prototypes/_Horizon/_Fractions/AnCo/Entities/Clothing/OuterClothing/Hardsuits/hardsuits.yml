@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseAnCoContraband, BaseToggleClothing]
+  parent: [ClothingOuterHardsuitBase, BaseOperAnCoContraband, BaseToggleClothing]
   id: ClothingOuterHardsuitSpider
   suffix: StarHorizon, AnCo, HardSuit
   name: скафандр офицера Паука АнКо
@@ -69,7 +69,7 @@
 
 # титан
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseAnCoContraband]
+  parent: [ClothingOuterHardsuitBase, BaseMaxAnCoContraband]
   id: ClothingOuterHardsuitTitan
   suffix: StarHorizon, AnCo, HardSuit
   name: cкафандр офицера Титана АнКо
@@ -78,9 +78,9 @@
   - type: AnCoLiftStrength
     liftStrength: 5
   - type: Sprite
-    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/titan.rsi
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/titan-atlant.rsi
   - type: Clothing
-    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/titan.rsi
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/titan-atlant.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
@@ -97,6 +97,11 @@
         Heat: 0.1
         Radiation: 0.4
         Caustic: 0.3
+      flatReductions:
+        Blunt: 2
+        Slash: 2
+        Piercing: 5
+        Heat: 7
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.9
@@ -110,22 +115,22 @@
     - FactionDFI
     - FactionTTI
     - FactionSIU
-  - type: TitanSuitInjector
-    cartridgeSlotId: titan_capsule
-  - type: ContainerContainer
-    containers:
-      titan_capsule: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      titan_capsule:
-        name: Капсула с реагентами
-        whitelist:
-          tags:
-          - TitanCapsule
+  # - type: TitanSuitInjector
+  #   cartridgeSlotId: titan_capsule
+  # - type: ContainerContainer
+  #   containers:
+  #     titan_capsule: !type:ContainerSlot
+  # - type: ItemSlots
+  #   slots:
+  #     titan_capsule:
+  #       name: Капсула с реагентами
+  #       whitelist:
+  #         tags:
+  #         - TitanCapsule
 
 # рыцарь
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseAnCoContraband]
+  parent: [ClothingOuterHardsuitBase, BaseOperAnCoContraband]
   id: ClothingOuterHardsuitKnight
   suffix: StarHorizon, AnCo, HardSuit
   name: cкафандр офицера Рыцаря АнКо
@@ -273,9 +278,26 @@
   - type: CatWearable
   - type: AnCoFactionAccess
     allowedFactions: []
+  - type: ContainerContainer
+    containers:
+      Webbing: !type:ContainerSlot
+  - type: Matchbox
+  - type: ItemSlots
+    slots:
+      Webbing:
+        priority: 1
+        insertVerbText: Прикрепить сумку к скафандру
+        ejectVerbText: Открепить сумку к скафандру
+        name: Скафандр
+        swap: false
+        whitelist:
+          components:
+          - Storage
+
+
 
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseAnCoContraband]
+  parent: [ClothingOuterHardsuitBase, BaseTKAnCoContraband]
   id: ClothingOuterHardsuitClifs
   suffix: StarHorizon, AnCo, HardSuit
   name: Скала
@@ -303,7 +325,7 @@
         Slash: 0.9
         Heat: 0.2
         Cold: 0.2
-        Radiation: 0.5
+        Radiation: 0.2
         Caustic: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.9
@@ -311,3 +333,138 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHardsuitClifs
+
+- type: entity
+  parent: [BaseTKAnCoContraband, ClothingOuterHardsuitMaximPrototype]
+  id: ClothingOuterHardsuitAnCoMaximPrototype
+  suffix: StarHorizon, AnCo, HardSuit
+  name: корпоративный скафандр утилизатора
+  description: Казмий. Ардоний. Эти вещи куют великое оружие, они также куют великих спасателей.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/Modificate/maxim_prototype.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/Modificate/maxim_prototype.rsi
+  - type: Tag
+    tags:
+    - GasTank
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAnCoMaximPrototype
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.5
+        Radiation: 0.1 # Horizon
+        Caustic: 0.5
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      # 31 minutes
+      volume: 10
+      moles:
+        - 4.102758100 # oxygen
+      temperature: 293.15
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
+  - type: Jetpack
+    moleUsage: 0.00045
+
+- type: entity
+  parent: [BaseTKAnCoContraband, ClothingOuterHardsuitJuggernaut]
+  id: ClothingOuterHardsuitAnCoJuggernaut
+  suffix: StarHorizon, AnCo, HardSuit
+  name: корпоративный скафандр джагернаута
+  description: Узнаваемая расцветка по всей галактике, теперь и на тяжелой броне.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/Modificate/jaggernaut.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/Modificate/jaggernaut.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAnCoCybersun
+  - type: ClothingSpeedModifier
+    walkModifier: 0.70
+    sprintModifier: 0.70
+
+- type: entity
+  parent: [BaseTKAnCoContraband, ClothingOuterHardsuitSyndie]
+  id: ClothingOuterHardsuitAnCoElite
+  suffix: StarHorizon, AnCo, HardSuit
+  name: корпоративный скафандр Феникса
+  description: Вы восстали из пламени Ардония, что бы нести его свет по всей галактике.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/Modificate/elite.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/Modificate/elite.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAnCoSyndieElite
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.2
+        Radiation: 0.01
+        Caustic: 0.5
+  - type: Item
+    size: Huge
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+
+- type: entity
+  parent: [BaseTKAnCoContraband, ClothingOuterHardsuitSyndie]
+  id: ClothingOuterHardsuitAnCoSyndie
+  suffix: StarHorizon, AnCo, HardSuit
+  name: корпоративный скафандр Отшельника
+  description: Вы привыкли действовать один? Вы опасаетесь предательства? Этот скафандр ваш выбор!
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/Modificate/blood.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/Modificate/blood.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAnCoSyndie
+  - type: ExplosionResistance
+    damageCoefficient: 0.30
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.70
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.4
+        Radiation: 0.5
+        Caustic: 0.5

@@ -86,7 +86,7 @@
     fireRate: 4
   - type: HitscanMechAmmoProvider
     proto: NFRedLightLaser # Heat 14
-    fireCost: 15
+    fireCost: 30
   - type: Tag
     tags:
     - MechEquipmentSecLLazer
@@ -106,7 +106,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanMechAmmoProvider
     proto: NFRedMediumLaser # Heat 28
-    fireCost: 30
+    fireCost: 60
   - type: Tag
     tags:
     - MechEquipmentSecHLazer
@@ -129,7 +129,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanMechAmmoProvider
     proto: NFPulse # Heat 35
-    fireCost: 50
+    fireCost: 100
   - type: Tag
     tags:
     - MechEquipmentSecExperim
@@ -152,7 +152,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanMechAmmoProvider
     proto: NFXrayLaser # Heat: 10 Radiation: 10
-    fireCost: 40
+    fireCost: 80
   - type: Tag
     tags:
     - MechEquipmentSecExperim
@@ -175,7 +175,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanMechAmmoProvider
     proto: HRZNCryoLazer # Shock: 10 Cold: 15
-    fireCost: 30
+    fireCost: 60
   - type: Tag
     tags:
     - MechEquipmentSecExperim
@@ -198,7 +198,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanMechAmmoProvider
     proto: HRZNPyroLazer # Shock: 10 Heat: 15
-    fireCost: 30
+    fireCost: 60
   - type: Tag
     tags:
     - MechEquipmentSecExperim
@@ -221,7 +221,7 @@
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: BatteryMechAmmoProvider
     proto: NFBulletDisablerSmg # Stamina 30, Heat 5
-    fireCost: 30
+    fireCost: 60
   - type: Tag
     tags:
     - MechEquipmentSecLLazer
@@ -247,7 +247,7 @@
         variation: 0.2
   - type: BatteryMechAmmoProvider
     proto: NFTeslaGunBullet
-    fireCost: 100
+    fireCost: 200
   - type: Tag
     tags:
     - MechEquipmentSecHLazer
@@ -406,6 +406,36 @@
 # Ракетницы
 
 - type: entity
+  parent: NFBulletRocket
+  id: MechBulletRocket
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Explosive
+    maxIntensity: 20
+    intensitySlope: 3
+    totalIntensity: 100
+
+- type: entity
+  parent: NFBulletWeakRocket
+  id: MechBulletWeakRocket
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Explosive
+    maxIntensity: 1
+    intensitySlope: 0.5
+    totalIntensity: 2
+
+- type: entity
+  parent: NFBulletGrenadeBlast
+  id: MechBulletGrenadeBlast
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Explosive
+    totalIntensity: 75
+    intensitySlope: 2.5
+    maxIntensity: 5
+
+- type: entity
   name: LRM-6 Missile Rack
   parent: BaseMechGun
   id: MechGunMissileLRM6
@@ -424,7 +454,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: BallisticMechAmmoProvider
-    proto: NFBulletRocket
+    proto: MechBulletRocket
     shots: 1
     capacity: 6
     ammoType: granade
@@ -454,7 +484,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: BallisticMechAmmoProvider
-    proto: NFBulletWeakRocket
+    proto: MechBulletWeakRocket
     shots: 2
     capacity: 8
     ammoType: granade
@@ -484,7 +514,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: BallisticMechAmmoProvider
-    proto: NFBulletGrenadeBlast
+    proto: MechBulletGrenadeBlast
     shots: 2
     capacity: 8
     ammoType: granade
@@ -513,7 +543,7 @@
     fireRate: 2
   - type: BatteryMechAmmoProvider
     proto: NFBulletKinetic
-    fireCost: 3
+    fireCost: 6
   - type: Tag
     tags:
     - MechEquipmentSecProt
@@ -534,7 +564,7 @@
     fireRate: 2
   - type: BatteryMechAmmoProvider
     proto: NFBulletKineticShuttleHard
-    fireCost: 5
+    fireCost: 10
   - type: Tag
     tags:
     - MechEquipmentSecProt

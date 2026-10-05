@@ -1,6 +1,6 @@
 - type: entity
   name: ардонивоё копьё АнКо
-  parent: BaseAnCoSharpWeapon
+  parent: [ManufacturerAnCo, BaseAnCoSharpWeapon]
   id: AnCoSpearPlasma
   description: Копьё с горящим ардонием что бы испепелить врага АнКо!
   suffix: StarHorizon, AnCo, Weapon

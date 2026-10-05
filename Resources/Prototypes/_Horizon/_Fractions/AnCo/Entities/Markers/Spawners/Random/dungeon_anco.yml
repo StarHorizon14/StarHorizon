@@ -65,6 +65,7 @@
     offset: 0.0
     rarePrototypes:
     - JetpackAnCo
+    - ClothingOuterHardsuitClifs
     rareChance: 0.10
 
 - type: entity
@@ -128,7 +129,7 @@
     - CombatMedipenAnCo
     - AnCoDeathAcidifierImplanter
     - AnCoImplanterTreker
-    - AnCoNanitsCapsule
+    # - AnCoNanitsCapsule теперь без этой крутой штуки
     - AnCoExtractImplanterCrystall
     chance: 0.5
     offset: 0.0
@@ -139,8 +140,9 @@
     - NanitMedipenAnCo
     - NanitMedipenAnCo
     - AnCohypoNerf
-    - AnCohypocapsule
-    rareChance: 0.10
+    - MedkitAnCoFilledElect
+    # - AnCohypocapsule теперь без этой крутой штуки
+    rareChance: 0.30
 
 - type: entity
   name: спавнер плюшек АнКо
@@ -215,10 +217,34 @@
     - AnCoWeaponHeavyCaseKnight
     - AnCoWeaponHeavyCaseKazmie
     - AnCoWeaponHeavyCaseArdon
+    - AnCoWeaponHeavyCaseNewWeaponShotgunAnCo
+    - AnCoWeaponHeavyCaseWeaponC20RAnCo
+    - AnCoWeaponHeavyCaseWeaponVectorAnCo
+    - AnCoWeaponHeavyCaseAnCoDrell
     # - AnCoWeaponHeavyCaseDome
     - AnCoWeaponHeavyCaseGuardian
     rareChance: 0.33
 
+- type: entity
+  name: спавнер станций модификаций АнКо
+  id: SpawnAnCoModStationRandom
+  parent: MarkerBasePlaceFree
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _Horizon/_Fractions/AnCo/Objects/Misc/modstation.rsi
+        state: base
+  - type: RandomSpawner
+    prototypes:
+    - ModStationMaximPrototype
+    - ModStationJuggernaut
+    - ModStationElite
+    - ModStationSyndie
+    chance: 0.25
+    offset: 0.0
 
 - type: entity
   name: спавнер кейсов с оружием АнКо
@@ -248,6 +274,9 @@
     - AnCoWeaponCaseMeleeSplah
     - AnCoWeaponCaseMeleeKnife
     - AnCoWeaponCaseGrenade
+    - AnCoWeaponCaseSecurBot
+    - AnCoWeaponCaseCombatBot
+    - AnCoWeaponCaseCluster
     - AnCoWeaponCaseMachineGun
     - AnCoWeaponCaseCarabine
     - AnCoWeaponCaseShotGun

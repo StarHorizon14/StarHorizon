@@ -1,0 +1,59 @@
+- type: parallax
+  id: AnCoParallax
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/_Fractions/AnCo/parallax/back-1.png"
+      slowness: 0.998046875
+      scale: "1, 1"
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_AnCo"
+        configPath: "/Prototypes/_Horizon/_Fractions/AnCo/Parallaxes/parallax_config_stars.toml"
+      slowness: 0.986625
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim_AnCo"
+        configPath: "/Prototypes/_Horizon/_Fractions/AnCo/Parallaxes/parallax_config_stars_dim.toml"
+      slowness: 0.979375
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/_Fractions/AnCo/parallax/back-2.png"
+      slowness: 0.867046875
+      scale: "0.5, 0.5"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/_Fractions/AnCo/parallax/back-3.png"
+      slowness: 1
+      scale: "1.2, 1.2"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/_Fractions/AnCo/parallax/back-4.png"
+      slowness: 0.9
+      scale: "0.2, 0.2"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/_Fractions/AnCo/parallax/back-5.png"
+      slowness: 0.7
+      scale: "0.4, 0.4"
+    # - texture:
+    #     !type:ImageParallaxTextureSource
+    #     path: "/Textures/_Horizon/_Fractions/AnCo/parallax/back-6.png"
+    #   slowness: 0.5
+    #   scale: "0.6, 0.6"
+    # - texture:
+    #     !type:ImageParallaxTextureSource
+    #     path: "/Textures/_Horizon/_Fractions/AnCo/parallax/back-7.png"
+    #   slowness: 0.3
+    #   scale: "0.8, 0.8"
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_faster_AnCo"
+        configPath: "/Prototypes/_Horizon/_Fractions/AnCo/Parallaxes/parallax_config_stars-2.toml"
+      slowness: 0.457265625
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim_faster_AnCo"
+        configPath: "/Prototypes/_Horizon/_Fractions/AnCo/Parallaxes/parallax_config_stars_dim-2.toml"
+      slowness: 0.354352

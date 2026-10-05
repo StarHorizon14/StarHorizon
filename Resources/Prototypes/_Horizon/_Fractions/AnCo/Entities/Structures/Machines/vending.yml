@@ -1,5 +1,5 @@
 - type: entity
-  parent: [VendingMachine, BaseAnCoContraband]
+  parent: [VendingMachine, BaseTKAnCoContraband]
   suffix: StarHorizon, AnCo, Structure
   id: AnCoVending
   name: униформат АнКо
@@ -75,6 +75,7 @@
    HydrosuitAnCo: 3
    AnCoVests: 3
    AnCosatchel: 1
+   AnCoBackpackDuffel: 1
    AnCoGloves: 5
    AnCoGlovesIsolate: 5
    ClothingNeckCloakAnCo: 1
@@ -86,12 +87,19 @@
    KnightPlushin: 3
    CyclopPlushin: 3
    RipsiPlushin: 3
+   ClothingUnderwearBigBraAnCo: 3
+   ClothingUnderwearBottomBigPantiesAnCo: 3
+   ClothingUnderwearMediumBraAnCo: 3
+   ClothingUnderwearBottomMediumPantiesAnCo: 3
+   ClothingUnderwearSocksAnCo: 3
   contrabandInventory:
     LumaPlushina: 1
     EngiPlushin: 1
+    ClothingUnderwearSmallBraAnCo: 1
+    ClothingUnderwearBottomSmallPantiesAnCo: 1
 
 - type: entity
-  parent: [VendingMachine, BaseAnCoContraband]
+  parent: [VendingMachine, BaseTKAnCoContraband]
   suffix: StarHorizon, AnCo, Structure
   id: AnCoVendingWeapon
   name: боемат АнКо

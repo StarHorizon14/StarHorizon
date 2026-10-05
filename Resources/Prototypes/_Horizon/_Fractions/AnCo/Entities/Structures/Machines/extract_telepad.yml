@@ -1,6 +1,6 @@
 - type: entity
   id: AnCoExtractTelepad
-  parent: BaseMachinePowered
+  parent: [BaseTKAnCoContraband, BaseMachinePowered]
   name: Приёмник для аварийного телепорта
   suffix: StarHorizon, AnCo, Structure
   description: Аварийный телепортер на который телепортируется владелец аварийного импланта
