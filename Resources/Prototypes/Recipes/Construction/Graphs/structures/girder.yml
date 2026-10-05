@@ -307,15 +307,17 @@
           conditions:
             - !type:EntityAnchored { }
           steps:
-            - material: MetalRod
-              amount: 4
+            - material: Titan
+              amount: 2
               doAfter: 1
+            - tool: Welding
+              doAfter: 4
             - material: Titan
               amount: 2
               doAfter: 1
             - tool: Screwing
               doAfter: 2
-            - material: Titan
+            - material: Plasteel
               amount: 2
               doAfter: 1
 
