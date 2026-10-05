@@ -96,6 +96,9 @@ station-order-description-smg-magazines = На арсенале не хвата�
 station-order-item-smg-mag-35 = магазин для ПП (.35 авто)
 station-order-item-smg-mag-45 = магазин для ПП (.45 магнум)
 
+station-order-description-gun = Пополнение склада оружия - пушки, пистолеты, автоматы.
+station-order-item-gun = оружие
+
 # Наука - большие/разнообразные заказы
 
 station-order-description-pill-canisters = Лаборатории нужно пополнить запас баночек для таблеток и самих таблеток.
@@ -144,3 +147,9 @@ station-order-item-plushie-ghost = плюшевый призрак
 
 station-order-description-full-pantry-restock = Полное пополнение кладовой - овощи, фрукты, хлеб и мясо.
 station-order-item-meat = мясо
+
+station-order-description-mechdrill = Бур для мехов для роботехников.
+station-order-item-mechdrill = бур
+
+station-order-description-healing = Бинты, Наборы от ушибов, Мрази.
+station-order-item-healing = предметы лечения

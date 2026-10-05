@@ -144,3 +144,6 @@ station-order-item-plushie-ghost = ghost plushie
 
 station-order-description-full-pantry-restock = A full pantry restock - vegetables, fruit, bread, and meat.
 station-order-item-meat = meat
+
+station-order-description-full-pantry-restock = A full pantry restock - vegetables, fruit, bread, and meat.
+station-order-item-meat = meat

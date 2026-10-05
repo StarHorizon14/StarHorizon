@@ -4,7 +4,7 @@
   category: NFEngineering
   entries:
   - name: station-order-item-toolbox
-    amount: 3
+    amount: 5
     whitelist:
       tags:
       - Toolbox
@@ -537,3 +537,59 @@
     whitelist:
       tags:
       - Meat
+      - type: stationOrder
+
+- type: stationOrder
+  id: StationOrderToolboxes
+  description: station-order-description-toolbox
+  category: NFArsenalMercenary
+  entries:
+  - name: station-order-item-toolbox
+    amount: 12
+    whitelist:
+      components:
+      - Toolbox
+
+- type: stationOrder
+  id: StationOrderGun
+  description: station-order-description-gun
+  category: NFArsenalMercenary
+  entries:
+  - name: station-order-item-gun
+    amount: 5
+    whitelist:
+      components:
+      - Gun
+
+- type: stationOrder
+  id: StationOrderResarhDisk
+  description: station-order-description-researhdisk
+  category: NFScience
+  entries:
+  - name: station-order-item-researhdisk
+    amount: 10
+    whitelist:
+      components:
+      - ResearhDisk
+
+- type: stationOrder
+  id: StationOrderMechDrill
+  description: station-order-description-mechdrill
+  category: NFEngineering
+  entries:
+  - name: station-order-item-mechdrill
+    amount: 6
+    whitelist:
+      components:
+      - MechDrill
+
+- type: stationOrder
+  id: StationOrderHealing
+  description: station-order-description-healing
+  category: NFService
+  entries:
+  - name: station-order-item-healing
+    amount: 35
+    whitelist:
+      components:
+      - Healing
