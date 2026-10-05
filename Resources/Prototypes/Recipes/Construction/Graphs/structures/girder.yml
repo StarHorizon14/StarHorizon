@@ -300,6 +300,25 @@
               amount: 2
               doAfter: 1
 
+        - to: plastitaniumWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: MetalRod
+              amount: 4
+              doAfter: 1
+            - material: Titan
+              amount: 2
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 2
+            - material: Titan
+              amount: 2
+              doAfter: 1
+
         - to: diagonalshuttleWall
           conditions:
             - !type:EntityAnchored { }
@@ -506,26 +525,20 @@
               doAfter: 10
             - tool: Cutting
               doAfter: 1
-              completed:
             - tool: Screwing
               doAfter: 2
             - tool: Welding
               doAfter: 5
-              completed:
             - tool: Prying
               doAfter: 2
             - tool: Anchoring
               doAfter: 1
-              completed:
             - tool: Welding
               doAfter: 10
-              completed:
             - tool: Prying
               doAfter: 1
-              completed:
             - tool: Screwing
               doAfter: 1
-              completed:
             - tool: Cutting
               doAfter: 4
 
