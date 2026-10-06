@@ -236,16 +236,31 @@
   table: !type:GroupSelector
     children:
     - id: ClothingOuterHardsuitMercenary
-      weight: 0.15
+      weight: 0.1
     - id: ClothingOuterHardsuitPrivateSecurity
-      weight: 0.3
+      weight: 0.24
     - id: ClothingOuterHardsuitScaf
-      weight: 0.35
+      weight: 0.24
     - id: ClothingOuterHardsuitSurplus
-      weight: 0.15
+      weight: 0.05
     - id: ClothingOuterHardsuitNoble
       weight: 0.05
-
+    - id: ClothingOuterFight
+      weight: 0.05
+    - id: ClothingOuterIndeep2
+      weight: 0.05
+    - id: ClothingOuterIndeep1
+      weight: 0.05
+    - id: ClothingOuterHardsuitIanchik
+      weight: 0.01
+    - id: ClothingOuterHardsuitSecurityRed
+      weight: 0.05
+    - id: ClothingOuterNukeDark
+      weight: 0.05
+    - id: ClothingOuterHunter
+      weight: 0.05
+    - id: ClothingOuterHardsuitInteQElite
+      weight: 0.01
 # region Lockers
 - type: entityTable
   id: TableDungeonLootMercenaryLockers
