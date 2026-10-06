@@ -56,11 +56,10 @@
   name: trait-will-to-die-name
   description: trait-will-to-die-desc
   category: HorizonNegative
-  cost: -5
+  cost: -3
   effects:
   - !type:ModifyHealth
     healthChange:
-      Critical: -20
       Dead: -20
 
 - type: trait
@@ -68,7 +67,7 @@
   name: trait-glass-jaw-name
   description: trait-glass-jaw-desc
   category: HorizonNegative
-  cost: -3
+  cost: -5
   effects:
   - !type:ModifyHealth
     healthChange:
@@ -115,7 +114,6 @@
   effects:
   - !type:ModifyHealth
     healthChange:
-      Critical: -5
       Dead: -100
 
 - type: trait

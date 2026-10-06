@@ -11,6 +11,9 @@ using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
+using Robust.Shared.Physics; // Horizon
+using Robust.Shared.Physics.Components; // Horizon
+using Robust.Shared.Physics.Systems; // Horizon
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using System.Diagnostics.CodeAnalysis;
@@ -34,6 +37,7 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Horizon
 
     public override void Initialize()
     {
@@ -159,11 +163,36 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
 
         var xform = Transform(uid);
         if (xform.Anchored)
-            _xform.Unanchor(uid, xform);
+        {
+            UnanchorUser(uid, xform);
+        }
         else
+        {
+            // Horizon: remember the body type so unanchoring doesn't leave the player as a Dynamic body
+            if (TryComp<ChameleonDisguisedComponent>(uid, out var disguised) && TryComp<PhysicsComponent>(uid, out var physics))
+            {
+                disguised.PreviousBodyType = physics.BodyType;
+                Dirty(uid, disguised);
+            }
+
             _xform.AnchorEntity((uid, xform));
+        }
 
         args.Handled = true;
+    }
+
+    /// <summary>
+    /// Horizon: unanchors the disguised player and restores their original body type.
+    /// </summary>
+    private void UnanchorUser(EntityUid uid, TransformComponent xform)
+    {
+        if (!xform.Anchored)
+            return;
+
+        _xform.Unanchor(uid, xform, setPhysics: false);
+
+        var bodyType = CompOrNull<ChameleonDisguisedComponent>(uid)?.PreviousBodyType ?? BodyType.Dynamic;
+        _physics.TrySetBodyType(uid, bodyType, xform: xform);
     }
 
     private void OnDeselected(Entity<ChameleonProjectorComponent> ent, ref HandDeselectedEvent args)
@@ -254,7 +283,7 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
 
         var xform = Transform(ent);
         xform.NoLocalRotation = false;
-        _xform.Unanchor(ent, xform);
+        UnanchorUser(ent, xform); // Horizon: restore body type
 
         Del(ent.Comp.Disguise);
         RemComp<ChameleonDisguisedComponent>(ent);

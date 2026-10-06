@@ -1,0 +1,27 @@
+# Port of the tgstation mirage border.
+# Place a MirageBorder where the mirage should be seen and a MirageAnchor with the same id on the other side.
+
+- type: entity
+  parent: MarkerBase
+  id: MirageBorder
+  name: mirage border
+  description: Shows the area around the linked mirage anchor on top of this area.
+  suffix: Mirage
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+  - type: MirageBorder
+
+- type: entity
+  parent: MarkerBase
+  id: MirageAnchor
+  name: mirage anchor
+  description: The other side of a mirage border.
+  suffix: Mirage
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: MirageAnchor
+    id: Default

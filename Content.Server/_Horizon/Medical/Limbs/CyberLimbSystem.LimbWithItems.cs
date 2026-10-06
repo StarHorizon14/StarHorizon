@@ -1,7 +1,12 @@
 using System.Linq;
 using Content.Shared._Horizon.Medical.Limbs;
 using Content.Shared.Armor;
+using Content.Server.Body.Systems;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.Cuffs;
+using Content.Shared.Cuffs.Components;
+using Content.Shared.Popups;
 using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
@@ -19,6 +24,8 @@ public sealed partial class CyberLimbSystem
 {
     [Dependency] private readonly MovementSpeedModifierSystem _moveSystem = null!;
     [Dependency] private readonly SharedArmorSystem _armorSystem = null!;
+    [Dependency] private readonly BodySystem _body = null!;
+    [Dependency] private readonly SharedPopupSystem _popup = null!;
 
     private readonly Dictionary<EntityUid, (BaseSpeed, List<float>)> _speedCoefficients = new();
     private readonly Dictionary<EntityUid, List<DamageModifierSet>> _armorCoefficients = new();
@@ -45,20 +52,41 @@ public sealed partial class CyberLimbSystem
         base.Initialize();
         SubscribeLocalEvent<LimbWithItemsComponent, ComponentInit>(OnLimbWithItemsInit);
         SubscribeLocalEvent<LimbWithItemsComponent, ToggleLimbEvent>(OnLimbToggle);
+        SubscribeLocalEvent<BodyComponent, TargetHandcuffedEvent>(OnBodyHandcuffed);
     }
 
     private void OnLimbToggle(Entity<LimbWithItemsComponent> ent, ref ToggleLimbEvent args)
     {
-        ent.Comp.Toggled = !ent.Comp.Toggled;
+        if (!ent.Comp.Toggled && TryComp<CuffableComponent>(args.Performer, out var cuffable) && cuffable.CuffedHandCount > 0)
+        {
+            _popup.PopupEntity(Loc.GetString("cuffable-component-cannot-interact-message"), args.Performer, args.Performer);
+            return;
+        }
+
+        SetLimbToggled(ent, args.Performer, !ent.Comp.Toggled);
+    }
+
+    private void OnBodyHandcuffed(Entity<BodyComponent> ent, ref TargetHandcuffedEvent args)
+    {
+        foreach (var part in _body.GetBodyChildren(ent, ent.Comp))
+        {
+            if (TryComp<LimbWithItemsComponent>(part.Id, out var limb) && limb.Toggled)
+                SetLimbToggled((part.Id, limb), ent, false);
+        }
+    }
+
+    private void SetLimbToggled(Entity<LimbWithItemsComponent> ent, EntityUid performerUid, bool toggled)
+    {
+        ent.Comp.Toggled = toggled;
 
         if (ent.Comp.Toggled)
         {
             foreach (var item in ent.Comp.ItemEntities)
             {
                 var handId = $"{ent.Owner}_{item}";
-                var hands = EnsureComp<HandsComponent>(args.Performer);
-                _hands.AddHand(args.Performer, handId, HandLocation.Functional);
-                _hands.DoPickup(args.Performer, handId, item, hands);
+                var hands = EnsureComp<HandsComponent>(performerUid);
+                _hands.AddHand(performerUid, handId, HandLocation.Functional);
+                _hands.DoPickup(performerUid, handId, item, hands);
                 EnsureComp<UnremoveableComponent>(item);
             }
         }
@@ -69,17 +97,17 @@ public sealed partial class CyberLimbSystem
             {
                 var handId = $"{ent.Owner}_{item}";
                 RemComp<UnremoveableComponent>(item);
-                var hands = EnsureComp<HandsComponent>(args.Performer);
+                var hands = EnsureComp<HandsComponent>(performerUid);
                 _container.Insert(_slEnt.Entity<TransformComponent, MetaDataComponent, PhysicsComponent>(item), container, force: true);
-                _hands.RemoveHand(args.Performer, handId);
+                _hands.RemoveHand(performerUid, handId);
             }
         }
 
         if (_slEnt.TryEntity<BaseLayerIdComponent, BaseLayerIdToggledComponent, BodyPartComponent>(ent.Owner, out var limb, false)
-            && _slEnt.TryEntity<HumanoidAppearanceComponent>(args.Performer, out var performer, false))
+            && _slEnt.TryEntity<HumanoidAppearanceComponent>(performerUid, out var performer, false))
             _limb.ToggleLimbVisual(performer.Value, limb.Value, ent.Comp.Toggled);
 
-        _audio.PlayPvs(ent.Comp.Sound, args.Performer);
+        _audio.PlayPvs(ent.Comp.Sound, performerUid);
 
         Dirty(ent);
     }

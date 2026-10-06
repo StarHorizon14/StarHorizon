@@ -32,4 +32,5 @@
     throwStrength: 10
     distance: 5
   - type: StaticPrice
-    price: 8000
+    price: 500
+    vendPrise: 8000

@@ -16,7 +16,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: StaticPrice
-    price: 2500
+    price: 500
+    vendPrise: 2500
 
 - type: entity
   parent: [ClothingBackpack, BaseAnCoContraband]
@@ -36,7 +37,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: StaticPrice
-    price: 5000
+    price: 500
+    vendPrise: 5000
 
 - type: entity
   parent: [ClothingBackpack, BaseAnCoContraband]

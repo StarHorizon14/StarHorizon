@@ -222,7 +222,23 @@ namespace Content.Server.GameTicking
                     ev.Offset,
                     ev.Rotation))
             {
-                throw new Exception($"Failed to load game map {ev.GameMap.ID}");
+                // The file might actually be a grid rather than a map (e.g. isGrid wasn't set on the prototype).
+                // Fall back to loading it as a grid, same as the mapping command does.
+                var mapUid = _map.CreateMap(out mapId, runMapInit: options?.InitializeMaps ?? false);
+                if (!_loader.TryLoadGrid(mapId,
+                        ev.GameMap.MapPath,
+                        out var grid,
+                        ev.Options,
+                        ev.Offset,
+                        ev.Rotation))
+                {
+                    throw new Exception($"Failed to load game map {ev.GameMap.ID}");
+                }
+
+                _metaData.SetEntityName(mapUid, proto.MapName);
+                var g = new List<EntityUid> { grid.Value.Owner };
+                RaiseLocalEvent(new PostGameMapLoad(proto, mapId, g, stationName));
+                return g;
             }
 
             mapId = map.Value.Comp.MapId;
@@ -274,7 +290,23 @@ namespace Content.Server.GameTicking
                     ev.Offset,
                     ev.Rotation))
             {
-                throw new Exception($"Failed to load map");
+                // The file might actually be a grid rather than a map (e.g. isGrid wasn't set on the prototype).
+                // Fall back to loading it as a grid, same as the mapping command does.
+                var mapUid = _map.CreateMap(mapId);
+                if (!_loader.TryLoadGrid(mapId,
+                        ev.GameMap.MapPath,
+                        out var grid,
+                        ev.Options,
+                        ev.Offset,
+                        ev.Rotation))
+                {
+                    throw new Exception($"Failed to load map");
+                }
+
+                _metaData.SetEntityName(mapUid, proto.MapName);
+                var g = new List<EntityUid> { grid.Value.Owner };
+                RaiseLocalEvent(new PostGameMapLoad(proto, mapId, g, stationName));
+                return g;
             }
 
             _metaData.SetEntityName(map.Value.Owner, proto.MapName);
@@ -323,7 +355,22 @@ namespace Content.Server.GameTicking
                     ev.Offset,
                     ev.Rotation))
             {
-                throw new Exception($"Failed to load map");
+                // The file might actually be a grid rather than a map (e.g. isGrid wasn't set on the prototype).
+                // Fall back to loading it as a grid, same as the mapping command does.
+                if (!_loader.TryLoadGrid(targetMap,
+                        ev.GameMap.MapPath,
+                        out var grid,
+                        ev.Options,
+                        ev.Offset,
+                        ev.Rotation))
+                {
+                    throw new Exception($"Failed to load map");
+                }
+
+                var g = new List<EntityUid> { grid.Value.Owner };
+                // TODO MAP LOADING use a new event?
+                RaiseLocalEvent(new PostGameMapLoad(proto, targetMap, g, stationName));
+                return g;
             }
 
             var gridUids = grids.Select(x => x.Owner).ToList();

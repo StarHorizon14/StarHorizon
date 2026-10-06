@@ -53,7 +53,8 @@
     unwieldOnUse: false
   - type: GunRequiresWield
   - type: StaticPrice
-    price: 15000
+    price: 500
+    vendPrise: 15000
 
 - type: entity
   name: Звездочет
@@ -110,7 +111,8 @@
     unwieldOnUse: false
   - type: GunRequiresWield
   - type: StaticPrice
-    price: 15000
+    price: 500
+    vendPrise: 15000
 
 - type: entity
   name: Эпсилон
@@ -166,7 +168,8 @@
     unwieldOnUse: false
   - type: GunRequiresWield
   - type: StaticPrice
-    price: 15000
+    price: 500
+    vendPrise: 15000
   - type: Clothing
     sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/Guns/Ballistic/shotgun-barrel.rsi
     quickEquip: false

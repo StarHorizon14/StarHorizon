@@ -43,7 +43,7 @@
     - id: AnCoBox
     - id: AnCoopenbox
     - id: AnCoBoxStoreUniform
-    - id: AnCoBoxStoreBug
+    # - id: AnCoBoxStoreBug
     - id: AnCoBoxStoreAccessory
     - id: AnCoBoxStoreHack
     - id: AnCoBoxStoreLasGun

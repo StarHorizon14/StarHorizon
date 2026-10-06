@@ -32,7 +32,8 @@
   id: AnCoPlasticExplode
   components:
   - type: StaticPrice
-    price: 625
+    price: 500
+    vendPrise: 1000
   - type: TriggerOnActivate
   - type: TriggerOnSignal
   - type: TriggerOnStuck

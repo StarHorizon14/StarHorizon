@@ -12,7 +12,8 @@
   - type: Clothing
     sprite: _Horizon/_Fractions/AnCo/Clothing/Neck/Cloaks/cloak.rsi
   - type: StaticPrice
-    price: 1000
+    price: 500
+    vendPrise: 1000
 
 - type: entity
   parent: ClothingNeckCloakAnCo

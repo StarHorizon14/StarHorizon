@@ -1,4 +1,5 @@
 using Content.Client.Shuttles.UI;
+using Content.Shared._Mono.Shuttles;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;
 using JetBrains.Annotations;
@@ -25,6 +26,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
 
         _window.RequestFTL += OnFTLRequest;
         _window.RequestBeaconFTL += OnFTLBeaconRequest;
+        _window.RequestAutopilot += OnAutopilotRequest; // Mono
         _window.DockRequest += OnDockRequest;
         _window.UndockRequest += OnUndockRequest;
         _window.UndockAllRequest += OnUndockAllRequest;
@@ -50,6 +52,16 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         { SendMessage(new ShuttleConsoleRefreshFireControlMessage()); };
         // End Lua
         NfOpen(); // Frontier
+    }
+
+    // Mono
+    private void OnAutopilotRequest(MapCoordinates coords, Angle angle)
+    {
+        SendMessage(new ShuttleConsoleAutopilotPositionMessage()
+        {
+            Coordinates = coords,
+            Angle = angle,
+        });
     }
 
     private void OnUndockAllRequest(List<NetEntity> dockEntities)
