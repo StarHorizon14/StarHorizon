@@ -59,7 +59,7 @@
       energy: 5
       color: "#d9ce00"
     - type: Explosive
-      explosionType: HardBomb
+      explosionType: Supermatter
       maxIntensity: 10000
       intensitySlope: 10
       totalIntensity: 10000
