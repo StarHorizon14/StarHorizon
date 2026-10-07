@@ -117,6 +117,7 @@
   - type: BankAccount # Frontier
   - type: ExplosionResistance
     damageCoefficient: 0
+  - type: SupermatterImmune # Goobstation
 
 - type: entity
   abstract: true
