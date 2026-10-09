@@ -1,0 +1,39 @@
+- type: entity
+  name: гипоспрей Горлекс
+  parent: [BaseItem, BaseGSecContraband]
+  description: "Новейшая разработка Cybersun, использует редкую технологию ввода медикоментов, является обсалютно оригинальной и изготавливается штучно для её партнёров ."
+  id: GSecHypo
+  suffix: GSec
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Specific/Medcial/hypo.rsi
+    layers:
+      - state: hypo
+        map: ["enum.SolutionContainerLayers.Base"]
+      - state: hypo_fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Specific/Medcial/hypo.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+    exactVolume: true
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 0.3
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: hypo_fill
+    solutionName: hypospray
+  - type: Contraband
+    turnInValues:
+      FrontierUplinkCoin: 4
+      Doubloon: 4

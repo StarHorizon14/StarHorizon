@@ -1,0 +1,13 @@
+- type: npcFaction
+  id: GSec
+  hostile:
+  - Xeno
+  - Revolutionary
+  - Dragon
+  - SimpleNeutral
+  - Passive
+  - Mouse
+  - SimpleHostile
+  - NanoTrasen
+  - PetsNT
+  - Zombie

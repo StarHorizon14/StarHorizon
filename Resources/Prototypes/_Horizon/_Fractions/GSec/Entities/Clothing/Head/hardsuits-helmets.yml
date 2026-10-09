@@ -1,0 +1,106 @@
+- type: entity
+  parent: [ClothingHeadEVAHelmetBase, BaseC2Contraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  id: ClothingHeadHelmetGSec
+  name: шлем EVA Горлекс
+  description: A simple, stylish EVA helmet. Designed for maximum humble space-badassery.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Helmets/eva-gsec.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Helmets/eva-gsec.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
+  - type: EyeProtection
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitGsec
+  suffix: GSec
+  name: шлем скафандра Горлекс
+  description: Армированный шлем, долговечен и прост в ремонте. Собственность "Gorlex Securities LLC".
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hardsuits/basic.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hardsuits/basic.rsi
+  - type: PointLight
+    color: "#35DB9E"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: EyeProtection
+  - type: FlashImmunity
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitMedicGsec
+  suffix: GSec
+  name: шлем санитара Горлекс
+  description: Армированный шлем, долговечен и прост в ремонте. Собственность "Gorlex Securities LLC".
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hardsuits/medic.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hardsuits/medic.rsi
+  - type: PointLight
+    color: "#8EBBFF"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: EyeProtection
+  - type: FlashImmunity
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitGSecOfficer
+  name: шлем офицера Горлекс
+  suffix: GSec
+  description: Усиленный скафандр горлекса для использования в лобовых столкновениях.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hardsuits/officer.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Head/Hardsuits/officer.rsi
+  - type: PointLight
+    color: "#FF5664"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: EyeProtection
+  - type: FlashImmunity
+  - type: Tag
+    tags:
+    - WhitelistChameleon

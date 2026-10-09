@@ -1,0 +1,241 @@
+# ОФИЦЕР
+
+- type: job
+  id: GSecOfficer
+  name: Офицер Горлекс
+  description: Полевой командир агентов ЧВК «Gorlex Securities LLC».
+  playTimeTracker: JobGSecOfficerOld
+  forceFaction: FactionGSec
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 288000 # 80 hours # Horizon
+    - !type:RoleTimeRequirement
+     role: JobGSecAgentOld
+     time: 144000 # 40 hours
+  startingGear: BaseGSecOfficerGear
+  whitelisted: true
+  alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  canBeAntag: false
+  icon: JobIconOfficerGSec
+  supervisors: Офицеру теле-коммуникаций
+  weight: 50
+  displayWeight: 50
+  setPreference: true
+  newPlayerMessage: false
+  access:
+   - AccessGSec
+   - AccessGSecAgent
+   - AccessGSecTech
+   - AccessGSecOfficer
+   - SyndicateAgent
+   - NuclearOperative
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:RemoveComponentSpecial
+    components:
+    - type: NpcFactionMember
+  - !type:AddComponentSpecial
+    components:
+    - type: NukeOperative
+    - type: NpcFactionMember
+      factions:
+      - GSec
+    - type: SpecialSectorStationRecord # must be given on spawn
+      recordGeneration: FalseRecord
+    - type: DisableSuitSensors
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddImplantSpecial
+    implants: [ CodeSpeakTranslatorImplant ]
+
+# АГЕНТ
+
+- type: job
+  id: GSecAgent
+  name: Агент Горлекс
+  description: Сотрудник ЧВК «Gorlex Securities LLC».
+  playTimeTracker: JobGSecAgentOld
+  forceFaction: FactionGSec
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: GSecDepartment
+      time: 43200 # 12 hours
+  startingGear: BaseGSecAgentGear
+  whitelisted: false
+  alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  canBeAntag: false
+  icon: JobIconAgentGSec
+  supervisors: Офицеру Горлекс
+  weight: 20
+  displayWeight: 20
+  setPreference: true
+  newPlayerMessage: false
+  access:
+   - AccessGSec
+   - AccessGSecAgent
+   - SyndicateAgent
+   - NuclearOperative
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:RemoveComponentSpecial
+    components:
+    - type: NpcFactionMember
+  - !type:AddComponentSpecial
+    components:
+    - type: NukeOperative
+    - type: NpcFactionMember
+      factions:
+      - GSec
+    - type: SpecialSectorStationRecord # must be given on spawn
+      recordGeneration: FalseRecord
+    - type: DisableSuitSensors
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddImplantSpecial
+    implants: [ CodeSpeakTranslatorImplant ]
+
+# ТЕХНИК
+
+- type: job
+  id: GSecTech
+  name: Техник Горлекс
+  description: Специалист по решению практических задач.
+  playTimeTracker: JobGSecTechOld
+  forceFaction: FactionGSec
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobGSecAgentOld
+    time: 43200 # 12 hours
+  startingGear: BaseGSecTechGear
+  whitelisted: false
+  alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  canBeAntag: false
+  icon: JobIconTechGSec
+  supervisors: Офицеру Горлекс
+  weight: 30
+  displayWeight: 30
+  setPreference: true
+  newPlayerMessage: false
+  access:
+   - AccessGSec
+   - AccessGSecTech
+   - SyndicateAgent
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:RemoveComponentSpecial
+    components:
+    - type: NpcFactionMember
+  - !type:AddComponentSpecial
+    components:
+    - type: NukeOperative
+    - type: NpcFactionMember
+      factions:
+      - GSec
+    - type: SpecialSectorStationRecord # must be given on spawn
+      recordGeneration: FalseRecord
+    - type: DisableSuitSensors
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddImplantSpecial
+    implants: [ CodeSpeakTranslatorImplant ]
+
+# МЕДИК
+
+- type: job
+  id: GSecMedic
+  name: Санитар Горлекс
+  description: Спасай жизни тех, кого надо.
+  playTimeTracker: JobGSecMedicOld
+  forceFaction: FactionGSec
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobGSecAgentOld
+    time: 43200 # 12 hours
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 36000 #10 hrs
+  startingGear: BaseGSecMedicGear
+  whitelisted: false
+  alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  canBeAntag: false
+  icon: JobIconMedicGSec
+  supervisors: Офицеру Горлекс
+  weight: 40
+  displayWeight: 40
+  setPreference: true
+  newPlayerMessage: false
+  access:
+   - AccessGSec
+   - AccessGSecMedic
+   - SyndicateAgent
+   - NuclearOperative
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:RemoveComponentSpecial
+    components:
+    - type: NpcFactionMember
+  - !type:AddComponentSpecial
+    components:
+    - type: NukeOperative
+    - type: NpcFactionMember
+      factions:
+      - GSec
+    - type: SpecialSectorStationRecord # must be given on spawn
+      recordGeneration: FalseRecord
+    - type: DisableSuitSensors
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddImplantSpecial
+    implants: [ CodeSpeakTranslatorImplant ]
+
+# РЕКРУТ
+
+- type: job
+  id: GSecRecruit
+  name: Рекрут Горлекс
+  description: Новый сотрудник ЧВК «Gorlex Securities LLC».
+  playTimeTracker: JobGSecRecruitOld
+  forceFaction: FactionGSec
+  startingGear: BaseGSecRecruitGear
+  whitelisted: true
+  alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  canBeAntag: false
+  icon: JobIconRecruitGSec
+  supervisors: Вышестоящим сотрудникам Горлекс
+  weight: 10
+  displayWeight: 10
+  setPreference: true
+  newPlayerMessage: false
+  access:
+   - AccessGSec
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:RemoveComponentSpecial
+    components:
+    - type: NpcFactionMember
+  - !type:AddComponentSpecial
+    components:
+    - type: NukeOperative
+    - type: NpcFactionMember
+      factions:
+      - GSec
+    - type: SpecialSectorStationRecord # must be given on spawn
+      recordGeneration: FalseRecord
+    - type: DisableSuitSensors
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift

@@ -1,0 +1,14 @@
+- type: entity
+  id: SpawnMobWeaponGSecWeaponTurret
+  parent: MarkerBase
+  name: спавнер баллистической турели Горлекс
+  suffix: GSec, Hostile
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+      state: syndie_lethal
+  - type: ConditionalSpawner
+    prototypes:
+    - GSecWeaponTurretFill60

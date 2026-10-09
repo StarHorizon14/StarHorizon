@@ -1,0 +1,29 @@
+- type: loadout
+  id: LoadoutSuitGSec
+  price: 0
+  equipment:
+    jumpsuit: SuitGSec
+
+- type: loadout
+  id: LoadoutSuitGSecOfficer
+  price: 0
+  equipment:
+    jumpsuit: SuitGSecOfficer
+
+- type: loadout
+  id: LoadoutSuitGSecRecruit
+  price: 0
+  equipment:
+    jumpsuit: SuitGSecRecruit
+
+- type: loadout
+  id: LoadoutSuitGSecMedic
+  price: 0
+  equipment:
+    jumpsuit: SuitGSecMedic
+
+- type: loadout
+  id: LoadoutSuitGSecTech
+  price: 0
+  equipment:
+    jumpsuit: SuitGSecTech

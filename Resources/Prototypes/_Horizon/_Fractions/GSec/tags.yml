@@ -1,0 +1,23 @@
+- type: Tag
+  id: MagazineUniversalGSec
+
+- type: Tag
+  id: GSecTin
+
+- type: Tag
+  id: MagazineSniperGSec
+
+- type: Tag
+  id: MagazineRifleGSec
+
+- type: Tag
+  id: MagazineMPGSec
+
+- type: Tag
+  id: MagazineShotgunGSec
+
+- type: Tag
+  id: MagazineNorthStarGSec
+
+#- type: Tag
+#  id: ShuttleGSecDestinationCoordinates

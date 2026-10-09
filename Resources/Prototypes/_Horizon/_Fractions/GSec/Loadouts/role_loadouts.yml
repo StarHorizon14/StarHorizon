@@ -1,0 +1,79 @@
+- type: roleLoadout
+  id: JobGSecOfficer
+  groups:
+  - GSecTop
+  - GSecBottom
+  - GSecSocks
+  - GSecOfficerJumpsuit
+  - GSecBackpack
+  - GSecShoes
+  - GSecHeadOfficer
+  - GSecEars
+  - GSecGloves
+  - GSecPDAOfficer
+  - GSecFace
+  - GSecBeltOfficer
+
+- type: roleLoadout
+  id: JobGSecMedic
+  groups:
+  - GSecTopMedic
+  - GSecBottomMedic
+  - GSecSocksMedic
+  - GSecMedicJumpsuit
+  - GSecBackpack
+  - GSecShoes
+  - GSecHeadMedic
+  - GSecEarsMedic
+  - GSecGlovesMedic
+  - GSecPDAMedic
+  - GSecFaceMedic
+  - GSecBeltMedic
+
+- type: roleLoadout
+  id: JobGSecTech
+  groups:
+  - GSecTop
+  - GSecBottom
+  - GSecSocks
+  - GSecTechJumpsuit
+  - GSecBackpack
+  - GSecShoes
+  - GSecHeadTech
+  - GSecEars
+  - GSecGloves
+  - GSecPDATech
+  - GSecFace
+  - GSecBelt
+
+- type: roleLoadout
+  id: JobGSecAgent
+  groups:
+  - GSecTop
+  - GSecBottom
+  - GSecSocks
+  - GSecAgentJumpsuit
+  - GSecBackpack
+  - GSecShoes
+  - GSecHead
+  - GSecEars
+  - GSecGloves
+  - GSecPDAAgent
+  - GSecFace
+  - GSecBelt
+
+- type: roleLoadout
+  id: JobGSecRecruit
+  groups:
+  - GSecTop
+  - GSecBottom
+  - GSecSocks
+  - GSecRecruitJumpsuit
+  - GSecBackpack
+  - GSecShoes
+  - GSecHead
+  - GSecEars
+  - GSecGloves
+  - GSecPDARecruit
+  - GSecFace
+  - GSecBelt

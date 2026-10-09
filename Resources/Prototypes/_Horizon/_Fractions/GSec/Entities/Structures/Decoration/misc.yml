@@ -1,0 +1,12 @@
+- type: entity
+  id: BannerGSec
+  parent: BannerBase
+  name: знамя Горлекс
+  description: Знамя сотканное из кевлара, выполненное в цветах ЧВК «Gorlex Securities LLC».
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Decorations/banner.rsi
+    state: banner
+  - type: Construction
+    graph: BannersGraph
+    node: BannerSecurityNode

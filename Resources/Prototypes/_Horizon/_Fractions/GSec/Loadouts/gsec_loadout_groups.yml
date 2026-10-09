@@ -1,0 +1,414 @@
+# СТАРТОВОЕ СНАРЯЖЕНИЕ
+#=============================================================================================
+# ОФИЦЕР
+#=============================================================================================
+- type: startingGear
+  id: BaseGSecOfficerGear
+  equipment:
+    outerClothing: ClothingOuterHardsuitGSecOfficer
+    pocket2: CigPackGSec
+#    pocket: CoordinatesDiskGSec
+    eyes: ClothingEyesHudGSecSpecial
+
+
+# МЕДИК
+#=============================================================================================
+
+- type: startingGear
+  id: BaseGSecMedicGear
+  equipment:
+    outerClothing: ClothingOuterHardsuitMedicGSec
+    pocket2: PouchGSecMedical
+    eyes: ClothingEyesHudGSecMedical
+
+# ТЕХНИК
+#=============================================================================================
+
+- type: startingGear
+  id: BaseGSecTechGear
+  equipment:
+    outerClothing: ClothingOuterHardsuitGSec
+    pocket2: NFPouchUtility
+    eyes: ClothingEyesHudGSecBallistic
+
+# АГЕНТ
+#=============================================================================================
+
+- type: startingGear
+  id: BaseGSecAgentGear
+  equipment:
+    outerClothing: ClothingOuterHardsuitGSec
+    pocket2: NFPouchMercenary
+    eyes: ClothingEyesHudGSec
+
+# РЕКРУТ
+#=============================================================================================
+
+- type: startingGear
+  id: BaseGSecRecruitGear
+  equipment:
+    outerClothing: ClothingOuterHardsuitGSec
+    pocket2: NFHyperlinkBookSpaceLaw
+    eyes: ClothingEyesHudGSecBallistic
+
+# СНАРЯЖЕНИЕ
+#=============================================================================================
+
+#УНИФОРМА
+#=============================================================================================
+
+- type: loadoutGroup
+  id: GSecOfficerJumpsuit
+  name: униформа
+  loadouts:
+  - LoadoutSuitGSecOfficer
+  - LoadoutSuitGSec
+  - MercenaryClothingUniformJumpsuitMercenary
+  - MercenaryClothingUniformJumpskirtMercenary
+  - MercenaryClothingUniformJumpsuitMilitaryTurtleneckMercenaryCaptain
+  fallbacks:
+  - LoadoutSuitGSecOfficer
+
+- type: loadoutGroup
+  id: GSecTechJumpsuit
+  name: униформа
+  loadouts:
+  - LoadoutSuitGSecTech
+  - LoadoutSuitGSec
+  - MercenaryClothingUniformJumpsuitMercenary
+  - MercenaryClothingUniformJumpskirtMercenary
+  - MercenaryClothingUniformJumpsuitMilitaryTurtleneckMercenary
+  fallbacks:
+  - LoadoutSuitGSecTech
+
+- type: loadoutGroup
+  id: GSecMedicJumpsuit
+  name: униформа
+  loadouts:
+  - LoadoutSuitGSecMedic
+  - LoadoutSuitGSec
+  - MercenaryClothingUniformJumpsuitMercenary
+  - MercenaryClothingUniformJumpskirtMercenary
+  - MercenaryClothingUniformJumpsuitMilitaryTurtleneckMercenaryMedic
+  fallbacks:
+  - LoadoutSuitGSecMedic
+
+- type: loadoutGroup
+  id: GSecAgentJumpsuit
+  name: униформа
+  loadouts:
+  - LoadoutSuitGSec
+  - MercenaryClothingUniformJumpsuitMercenary
+  - MercenaryClothingUniformJumpskirtMercenary
+  - MercenaryClothingUniformJumpsuitMilitaryTurtleneckMercenary
+  fallbacks:
+  - LoadoutSuitGSec
+
+- type: loadoutGroup
+  id: GSecRecruitJumpsuit
+  name: униформа
+  loadouts:
+  - LoadoutSuitGSecRecruit
+  - MercenaryClothingUniformJumpsuitMercenary
+  - MercenaryClothingUniformJumpskirtMercenary
+  - MercenaryClothingUniformJumpsuitMilitaryTurtleneckMercenary
+  fallbacks:
+  - LoadoutSuitGSecRecruit
+
+#РЮКЗАК
+#=============================================================================================
+- type: loadoutGroup
+  id: GSecBackpack
+  name: рюкзак
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutMessengerGsec
+  - LoadoutBackpackGSec
+  - LoadoutBackpackDuffelGSec
+  fallbacks:
+  - LoadoutBackpackGSec
+
+#ОБУВЬ
+#=============================================================================================
+
+- type: loadoutGroup
+  id: GSecShoes
+  name: обувь
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MercenaryClothingShoesBootsCombat
+  - MercenaryClothingShoesBootsJack
+  - ContractorClothingShoesBootsWork
+  fallbacks:
+  - MercenaryClothingShoesBootsCombat
+
+#ГОЛОВА
+#=============================================================================================
+- type: loadoutGroup
+  id: GSecHead
+  name: головные уборы
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutBeretGSec
+  - ContractorClothingHeadHatCorpsoft
+
+- type: loadoutGroup
+  id: GSecHeadTech
+  name: головные уборы
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingHeadHatHardhatOrange
+  - ContractorClothingHeadHatCorpsoft
+
+- type: loadoutGroup
+  id: GSecHeadOfficer
+  name: головные уборы
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutBeretGSec
+  - LoadoutBeretBlackGSec
+
+- type: loadoutGroup
+  id: GSecHeadMedic
+  name: головные уборы
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutBeretMedicGSec
+  - LoadoutBeretGSecOld
+
+#ГАРНИТУРА
+#=============================================================================================
+
+- type: loadoutGroup
+  id: GSecEars
+  name: гарнитура
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutHeadsetAltGSec
+  - LoadoutHeadsetGSec
+  fallbacks:
+  -  LoadoutHeadsetGSec
+
+- type: loadoutGroup
+  id: GSecEarsMedic
+  name: гарнитура
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutHeadsetAltGSec
+  - LoadoutHeadsetGSec
+  - LoadoutHeadsetMedicGSec
+  fallbacks:
+  - LoadoutHeadsetGSec
+
+#ПЕРЧАТКИ
+#=============================================================================================
+
+- type: loadoutGroup
+  id: GSecGloves
+  name: перчатки
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutGlovesGSec
+  - MercenaryClothingHandsGlovesMercFingerless
+  - MercenaryClothingHandsMercenaryGlovesCombat
+  - MercenaryClothingHandsGlovesCombat
+
+- type: loadoutGroup
+  id: GSecGlovesMedic
+  name: перчатки
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutGlovesGSec
+  - LoadoutGlovesGSecMedic
+  - MercenaryClothingHandsGlovesMercFingerless
+  - MercenaryClothingHandsMercenaryGlovesCombat
+  - MercenaryClothingHandsGlovesCombat
+
+#КПК
+#=============================================================================================
+
+- type: loadoutGroup
+  id: GSecPDAOfficer
+  name: КПК
+  loadouts:
+  - LoadoutPDAGSecOfficer
+  fallbacks:
+  - LoadoutPDAGSecOfficer
+
+- type: loadoutGroup
+  id: GSecPDAMedic
+  name: КПК
+  loadouts:
+  - LoadoutPDAGSecMedic
+  fallbacks:
+  - LoadoutPDAGSecMedic
+
+- type: loadoutGroup
+  id: GSecPDATech
+  name: КПК
+  loadouts:
+  - LoadoutPDAGSecTech
+  fallbacks:
+  - LoadoutPDAGSecTech
+
+- type: loadoutGroup
+  id: GSecPDAAgent
+  name: КПК
+  loadouts:
+  - LoadoutPDAGSecAgent
+  fallbacks:
+  - LoadoutPDAGSecAgent
+
+- type: loadoutGroup
+  id: GSecPDARecruit
+  name: КПК
+  loadouts:
+  - LoadoutPDAGSecRecruit
+  fallbacks:
+  - LoadoutPDAGSecRecruit
+
+#ЛИЦО
+#=============================================================================================
+
+- type: loadoutGroup
+  id: GSecFace
+  name: лицо
+  minLimit: 0
+  loadouts:
+  - MercenaryClothingMaskGasMercenary
+  - MercenaryClothingMaskGasSecurity
+  - LoadoutMaskBalaclavaTactical
+  - LoadoutMaskGSecAgent
+  fallbacks:
+  - LoadoutMaskGSecAgent
+
+- type: loadoutGroup
+  id: GSecFaceMedic
+  name: лицо
+  minLimit: 0
+  loadouts:
+  - MercenaryClothingMaskGasMercenary
+  - MercenaryClothingMaskGasSecurity
+  - LoadoutMaskBalaclavaTactical
+  - LoadoutMaskGSecAgent
+  - LoadoutMaskGSecMedic
+  fallbacks:
+  - LoadoutMaskGSecMedic
+
+#ПОЯС
+#=============================================================================================
+
+- type: loadoutGroup
+  id: GSecBelt
+  name: пояс
+  loadouts:
+  - SecurityWebbing
+  - MercenaryClothingBeltMercenaryWebbing
+  - MercenaryClothingBeltMilitaryWebbing
+  - LoadoutBeltGSecWebbing
+
+- type: loadoutGroup
+  id: GSecBeltMedic
+  name: пояс
+  loadouts:
+  - SecurityWebbing
+  - MercenaryClothingBeltMercenaryWebbing
+  - MercenaryClothingBeltMilitaryWebbing
+  - LoadoutBeltGSecWebbing
+  - LoadoutBeltWebbingMedic
+
+- type: loadoutGroup
+  id: GSecBeltOfficer
+  name: пояс
+  loadouts:
+  - SecurityWebbing
+  - MercenaryClothingBeltMercenaryWebbing
+  - MercenaryClothingBeltMilitaryWebbing
+  - LoadoutBeltGSecWebbing
+  - LoadoutBeltWebbingOld
+
+
+#ВЕРХ
+#=============================================================================================
+- type: loadoutGroup
+  id: GSecTop
+  name: нижнее белье (верх)
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutTopGSec
+  subgroups:
+  - Top
+
+- type: loadoutGroup
+  id: GSecTopMedic
+  name: нижнее белье (верх)
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutTopGSec
+  - LoadoutTopGSecMedic
+  subgroups:
+  - Top
+
+#НИЗ
+#=============================================================================================
+- type: loadoutGroup
+  id: GSecBottom
+  name: нижнее белье (низ)
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutBottomBoxersGSec
+  - LoadoutBottomPantiesGSec
+  subgroups:
+  - Bottom
+
+- type: loadoutGroup
+  id: GSecBottomMedic
+  name: нижнее белье (низ)
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutBottomBoxersGSec
+  - LoadoutBottomPantiesGSec
+  - LoadoutBottomBoxersGSecMedic
+  - LoadoutBottomPantiesGSecMedic
+  subgroups:
+  - Bottom
+
+#НОСКИ
+#=============================================================================================
+- type: loadoutGroup
+  id: GSecSocks
+  name: носки
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutSocksGSec
+  - LoadoutThighGSec
+  subgroups:
+  - Socks
+
+- type: loadoutGroup
+  id: GSecSocksMedic
+  name: носки
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutSocksGSec
+  - LoadoutThighGSec
+  - LoadoutSocksGSecMedic
+  - LoadoutThighGSecMedic
+  subgroups:
+  - Socks

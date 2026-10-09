@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "copyright": "Moddified by TheDark_, Taken from tgstation",
+  "license": "CC-BY-SA-3.0",
+  "states": [
+    {
+      "name": "generic"
+    },
+    {
+      "name": "gxm"
+    },
+    {
+      "name": "generic_door"
+    },
+    {
+      "name": "gx_officer"
+    },
+    {
+      "name": "gx_tech"
+    },
+    {
+      "name": "gx_medic"
+    },
+    {
+      "name": "generic_open"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "unlocked"
+    },
+    {
+      "name": "welded"
+    }
+     ]
+}

@@ -1,0 +1,25 @@
+- type: radioChannel
+  id: GSecRadio
+  name: Горлекс
+  keycode: 'g'
+  frequency: 6653
+  color: "#35DB9E"
+  longRange: false
+
+- type: entity
+  id: EncryptionKeyGSec
+  parent: [BaseItem, BaseGSecContraband]
+  suffix: GSec
+  name: ключ шифрования Горлекс
+  description: Стандартный ключ шифрования ЧВК "Gorlex Securities LLC". Не для гражданского использования.
+  components:
+  - type: Item
+    size: Tiny
+    sprite: _Horizon/_Fractions/GSec/Objects/Devices/encryptionkeys.rsi
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Devices/encryptionkeys.rsi
+    state: crypto-base
+  - type: EncryptionKey
+    channels:
+    - GSecRadio
+    defaultChannel: GSecRadio

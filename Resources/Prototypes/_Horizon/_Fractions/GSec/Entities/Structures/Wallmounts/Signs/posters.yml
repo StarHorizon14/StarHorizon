@@ -1,0 +1,74 @@
+- type: entity
+  parent: PosterBase
+  id: GSecPosterEnlist
+  name: "Вступай!"
+  suffix: GSec
+  description: "Вступайте в ряды «Gorlex Securities LLC» уже сегодня! Повидайте галактику, обеспечивайте безопасность, получайте деньги!"
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Wallmounts/posters.rsi
+    state: poster1_enlist
+
+- type: entity
+  parent: PosterBase
+  id: GSecPosterBuy
+  name: "Покупай!"
+  suffix: GSec
+  description: "ЧВК «Gorlex Securities LLC» является самым надёжным ретейлером оружия в известной галактике! Успей купить гарантию своей безопасности."
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Wallmounts/posters.rsi
+    state: poster2_buy
+
+- type: entity
+  parent: PosterBase
+  id: GSecPosterDefend
+  name: "Защити себя!"
+  suffix: GSec
+  description: "Защити себя и своих близких вместе с ЧВК «Gorlex Securities LLC», давно ставшей образцом качества. Для молодых семей скидка 12%!"
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Wallmounts/posters.rsi
+    state: poster3_defend
+
+- type: entity
+  parent: PosterBase
+  id: GSecPosterEdge
+  name: "На острие!"
+  suffix: GSec
+  description: "Уже более 100 лет ЧВК «Gorlex Securities LLC» следует в ногу со временем, используя передовые средства защиты и обороны!"
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Wallmounts/posters.rsi
+    state: poster4_edge
+
+- type: entity
+  parent: PosterBase
+  id: GSecPosterMusculine
+  name: "Мускулы!"
+  suffix: GSec
+  description: "Агенты ЧВК «Gorlex Securities LLC» - НАСТОЯЩАЯ СТАЛЬ! Теперь в журнале BIG-IRON."
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Wallmounts/posters.rsi
+    state: poster5_musculine
+
+- type: entity
+  parent: MarkerBase
+  id: RandomPosterGSec
+  name: спавнер случайного плаката Горлекс
+  suffix: GSec
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Wallmounts/posters.rsi
+        state: random_contraband
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - GSecPosterEnlist
+      - GSecPosterBuy
+      - GSecPosterDefend
+      - GSecPosterEdge
+      - GSecPosterMusculine

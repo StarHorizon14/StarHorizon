@@ -1,0 +1,26 @@
+- type: entity
+  name: флиппо Горлекс
+  parent: FlippoLighter
+  id: FlippoGSecLighter
+  suffix: GSec
+  description: "Трофейная зажигалка сделанная по заказу ЧВК «Gorlex Securities LLC»."
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Tools/Lighters
+    layers:
+    - state: icon
+      map: ["base"]
+    - state: top
+      map: ["top"]
+      visible: false
+    - state: open
+      map: ["open"]
+      visible: false
+    - state: flame
+      map: ["flame"]
+      visible: false
+      shader: unshaded
+  - type: StealTarget
+    stealGroup: FlippoGSecLighter
+  - type: StaticPrice
+    price: 700

@@ -1,0 +1,195 @@
+- type: entity
+  suffix: GSec
+  description: Старый армейский комбинезон для планетарных опираций.
+  name: архаичный военный комбинезон
+  parent: [ClothingUniformBase]
+  id: SuitGSecOld
+  components:
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: Sprite
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/uniformold.rsi
+  - type: Clothing
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/uniformold.rsi
+  - type: StaticPrice
+    price: 800
+
+- type: entity
+  suffix: GSec
+  description: Стандартный комбинезон Горлекса. Соткан из кевлара и изолирующего филлера.
+  name: комбинезон Горлекс
+  parent: [ClothingUniformBase]
+  id: SuitGSec
+  components:
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: Sprite
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/olive.rsi
+  - type: Clothing
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/olive.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.97
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.97
+        Piercing: 0.99
+        Heat: 0.95
+        Caustic: 0.98
+  - type: StaticPrice
+    price: 800
+
+- type: entity
+  suffix: GSec
+  description: Комбинезон командиров Горлекса, имеет армидные вставки.
+  name: комбинезон офицера Горлекс
+  parent: [SuitGSec, BaseGSecContraband]
+  id: SuitGSecOfficer
+  components:
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: Sprite
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/officer.rsi
+  - type: Clothing
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/officer.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.95
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.98
+        Caustic: 0.98
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  suffix: GSec
+  description: Комбинезон специалиста Горлекса. Оснащен дополнительной изоляцией.
+  name: комбинезон техника Горлекс
+  parent: [ClothingUniformBase, BaseGSecContraband, ClothingOuterStorageBase]
+  id: SuitGSecTech
+  components:
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: Sprite
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/tech.rsi
+  - type: Clothing
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/tech.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.95
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.97
+        Heat: 0.90
+        Caustic: 0.90
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  suffix: GSec
+  description: Комбинезон специалиста Горлекса. Оснащен дополнительной изоляцией.
+  name: комбинезон санитара Горлекс
+  parent: [ClothingUniformBase, BaseGSecContraband, ClothingOuterStorageBase]
+  id: SuitGSecMedic
+  components:
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: Sprite
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/medic.rsi
+  - type: Clothing
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/medic.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Bleed: 0.97
+        Radiation: 0.95
+        Caustic: 0.90
+  - type: StaticPrice
+    price: 1000
+
+
+- type: entity
+  suffix: GSec
+  description: Комбинезон рекрута Горлекса. Обеспечивает минимальную защиту груди и торса.
+  name: комбинезон ректрута Горлекс
+  parent: [ClothingUniformBase, BaseGSecContraband]
+  id: SuitGSecRecruit
+  components:
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: Sprite
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/recruit.rsi
+  - type: Clothing
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/recruit.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.97
+        Slash: 0.95
+        Piercing: 0.95
+  - type: StaticPrice
+    price: 700
+
+- type: entity
+  suffix: GSec
+  description: Комбинезон Горлекс, модифицированный для повышения мобильности. Удобный и тактильно приятный, а ещё хорошо горит.
+  name: облегченный комбинезон Горлекс
+  parent: [SuitGSec, BaseGSecContraband]
+  id: SuitGSecSleevless
+  components:
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: Sprite
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/sleevless.rsi
+  - type: Clothing
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/sleevless.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 1.05
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 1.05
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 1.05
+        Caustic: 1.05
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  suffix: GSec
+  description: Комбинезон Горлекс, модифицированный для повышения мобильности. Содержит только самое необходимое.
+  name: штаны Горлекс
+  parent: [SuitGSec, BaseGSecContraband]
+  id: SuitGSecTopless
+  components:
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: Sprite
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/topless.rsi
+  - type: Clothing
+    sprite:  _Horizon/_Fractions/GSec/Clothing/Uniforms/Jumpsuits/topless.rsi
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 1.05
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 1.05
+        Bleed: 1.05
+        Caustic: 1.05
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: StaticPrice
+    price: 1000

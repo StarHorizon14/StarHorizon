@@ -1,0 +1,109 @@
+# РАДИОРЮКЗАК
+
+- type: entity
+  parent: [ClothingBackpack, BaseGSecContraband]
+  id: ClothingRadioBackpackGsec
+  name: радиорюкзак Горлекс
+  suffix: Gsec
+  description: Переносная система коммуникации со встроенным зарядником.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Back/Specific/radiopack.rsi
+  - type: Storage
+    grid:
+    - 0,0,1,1
+    - 0,3,1,4
+    - 3,0,6,3
+    - 8,0,9,1
+    - 8,3,9,4
+  - type: AmbientSound
+    volume: -15
+    range: 3
+    enabled: true
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: EncryptionKeyHolder
+    keysExtractionMethod: Prying
+    keySlots: 3
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 1
+  - type: TelecomServer
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+  - type: Charger
+    chargeRate: 50
+    slotId: charger_slot
+    portable: true
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        whitelist:
+          components:
+          - HitscanBatteryAmmoProvider
+          - ProjectileBatteryAmmoProvider
+          - Stunbaton
+          - PowerCell
+        blacklist:
+          components:
+          - WizardStaffRechargeable
+          - BloodCultStaffRechargeable
+          tags:
+          - PotatoBattery
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyGSec
+      - EncryptionKeyCommon
+
+# РЮКЗАК
+
+- type: entity
+  parent: NFClothingBackpack
+  id: ClothingBackpackGSec
+  name: рюкзак Горлекс
+  suffix: Gsec
+  description: Тактикульный и эргономичный. Пошит на века.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Back/Backpacks/backpackgsec.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: StaticPrice
+    price: 300
+
+# ВЕЩМЕШОК
+
+- type: entity
+  parent: NFClothingDuffel
+  id: ClothingBackpackDuffelGSec
+  name: вещмешок Горлекс
+  suffix: Gsec
+  description: Объёмный вещмешок для хранения военного снаряжения.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Back/Duffels/duffelgsec.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: StaticPrice
+    price: 300
+
+# МЕССЕНДЖЕР
+
+- type: entity
+  parent: NFClothingMessenger
+  id: ClothingMessengerGsec
+  name: мессенджер Горлекс
+  suffix: Gsec
+  description: Надёжный мессенджер, на который можно расчитывать.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Back/Satchels/satchelgsec.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: StaticPrice
+    price: 300

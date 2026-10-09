@@ -1,0 +1,148 @@
+- type: entity
+  parent: [ComputerId, BaseGSecContraband]
+  id: ComputerIdGSec
+  name: ID терменал Горлекс
+  suffix: GSec
+  description: Станция для программирования ID-карт сотрудников ЧВК «Gorlex Securities LLC».
+  components:
+  - type: Computer
+    board: IdGSecComputerCircuitboard
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: IdCardConsole
+    accessLevels:
+    - AccessGSec
+    - AccessGSecAgent
+    - AccessGSecTech
+    - AccessGSecMedic
+    - AccessGSecOfficer
+    - Maintenance
+    - External
+    - Service
+    - Medical
+    - Engineering
+    - Janitor
+    - Captain
+    privilegedIdSlot:
+      name: id-card-console-privileged-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - IdCard
+    targetIdSlot:
+      name: id-card-console-target-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - IdCard
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#2C5799"
+  - type: AnCoFactionAccess
+    allowedFactions:
+    - FactionGSec
+    - FactionSyndicate
+    deniedMessage: "gsec-faction-access-denied"
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardGlass:
+              min: 1
+              max: 2
+            SheetSteel:
+              min: 3
+              max: 5
+
+- type: entity
+  parent: BaseComputerTabletopStationAdminBankATM
+  id: ComputerTabletopStationAdminBankATMGSec
+  description: Переводит деньги с и на защищенный счет внутреннего банка ЧВК «Gorlex Securities LLC».
+  categories: [DoNotMap]
+  suffix: GSec, Tabletop, НЕ МАППИТЬ
+  components:
+  - type: StationBankATM
+    account: GSecBank
+  - type: AccessReader
+    access: [["AccessGSecOfficer"], ["SyndicateOfficerTeleCommunication"]]
+
+- type: entity
+  parent: ComputerShuttle
+  id: ComputerShuttleGSec
+  name: консоль управения шаттла Горлекс
+  suffix: GSec, Disk, НЕ МАППИТЬ
+  categories: [DoNotMap]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ItemSlots
+    slots:
+      disk_slot:
+        name: Disk
+        insertSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        whitelist:
+          components:
+          - ShuttleDestinationCoordinates
+#          - ShuttleGSecDestinationCoordinates
+  - type: AnCoFactionAccess
+    allowedFactions:
+    - FactionGSec
+    deniedMessage: "gsec-faction-access-denied"
+
+#- type: entity
+#  parent: CoordinatesDisk
+#  id: CoordinatesDiskGSec
+#  name: диск с данными
+#  suffix: GSec, Disk, НЕ МАППИТЬ
+#  categories: [DoNotMap]
+#  description: Стариный диск с неизвестными данными. Кто вообще пользуется дисководами?
+#  components:
+#  - type: Sprite
+#    sprite: Objects/Misc/cd.rsi
+#    layers:
+#    - state: icon
+#      color: "#37373e"
+#  - type: ShuttleDestinationCoordinates
+#  - type: AutoLinkCoordinatesDisk
+#    targetStationId: #GSecOutpost
+#  - type: Tag
+#    tags:
+#    - ShuttleGSecDestinationCoordinates

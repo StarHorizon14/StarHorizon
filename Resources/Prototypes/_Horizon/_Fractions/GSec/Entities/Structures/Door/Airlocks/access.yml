@@ -1,0 +1,121 @@
+- type: entity
+  parent: [AirlockGSec, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockGSecLocked
+  suffix: GSec, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSec ]
+  - type: DisableToolUse
+    cutting: true
+    prying: true
+
+- type: entity
+  parent: [AirlockGSecOfficer, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockGSecOfficerLocked
+  suffix: GSec, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSecOfficer ]
+
+- type: entity
+  parent: [AirlockGSecTech, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockGSecTechLocked
+  suffix: GSec, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSecTech ]
+
+- type: entity
+  parent: [AirlockGSecMedic, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockGSecMedicLocked
+  suffix: GSec, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSecMedic ]
+
+# СТЕКЛЯННЫЕ
+
+- type: entity
+  parent: [AirlockGSecGlass, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockGSecGlassLocked
+  suffix: GSec, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSec ]
+  - type: DisableToolUse
+    cutting: true
+    prying: true
+
+- type: entity
+  parent: [AirlockGSecGlassOfficer, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockGSecGlassOfficerLocked
+  suffix: GSec, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSecOfficer ]
+
+- type: entity
+  parent: [AirlockGSecGlassTech, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockGSecGlassTechLocked
+  suffix: GSec, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSecTech ]
+
+- type: entity
+  parent: [AirlockGSecGlassMedic, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockGSecGlassMedicLocked
+  suffix: GSec, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSecMedic ]
+
+# СТЫКОВОЧНЫЕ
+
+- type: entity
+  parent: [AirlockExternal, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockExternalGSecLocked
+  suffix: External, GSec, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSec ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: [AirlockExternalGlass, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockExternalGlassGSecLocked
+  suffix: External, Glass, GSec, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSec ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: [AirlockShuttleGSec, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockExternalShuttleGSecLocked
+  suffix: External, Docking, GSec, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSec ]
+
+- type: entity
+  parent: [AirlockGlassShuttleGSec, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: AirlockExternalGlassShuttleGSecLocked
+  suffix: GSec, Locked, Glass
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSec ]
