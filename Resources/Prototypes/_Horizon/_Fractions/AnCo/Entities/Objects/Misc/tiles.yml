@@ -1,0 +1,45 @@
+- type: entity
+  id: FloorTileItemKazmieTech
+  parent: FloorTileItemBase
+  name: технический пол
+  description: прозрачным оказывается не только стол.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Tiles/tile.rsi
+    layers:
+      - state: tech
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Tiles/tile.rsi
+    layers:
+      - state: tech
+  - type: FloorTile
+    outputs:
+    - FloorKazmieShuttleTech
+  - type: Stack
+    stackType: FloorTileItemKazmieTech
+  - type: Construction
+    graph: TileAnCo
+    node: techtile
+
+- type: entity
+  id: FloorTileItemProcessorArdon
+  parent: FloorTileItemBase
+  name: процессорный пол
+  description: вы можете увидеть большой процессор. Он бесполезен.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Tiles/tile.rsi
+    layers:
+      - state: processor
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Tiles/tile.rsi
+    layers:
+      - state: processor
+  - type: FloorTile
+    outputs:
+    - FloorProcessorArdon
+  - type: Stack
+    stackType: FloorTileItemProcessorArdon
+  - type: Construction
+    graph: TileAnCo
+    node: processortile

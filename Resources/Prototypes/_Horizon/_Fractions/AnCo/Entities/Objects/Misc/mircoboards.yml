@@ -134,6 +134,27 @@
       Capacitor: 2
 
 - type: entity
+  id: AnCoGyroscopeMachineCircuitboard
+  parent: [BaseItem, BaseAnCoContraband]
+  name: микросхема гироскопа
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+    state: boardengine
+  - type: Item
+    storedRotation: -90
+  - type: StaticPrice
+    price: 100
+  - type: MachineBoard
+    prototype: AnCoGyroscope
+    requirements: 
+      Manipulator: 1
+      Capacitor: 1 
+    stackRequirements:
+      KazmieSheetStack: 4
+
+- type: entity
   id: IdAnCoComputerCircuitboard
   parent: [BaseComputerCircuitboard, BaseAnCoContraband]
   name: микросхема консоли ID
