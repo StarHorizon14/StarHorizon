@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "license": "CLA with hosting restrictions",
+  "copyright": "Sprited by Xigovir DS:623559319543349268",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+        {
+            "name": "base"
+        },
+        {
+            "name": "thrust"
+        },
+        {
+            "name": "thrust_burn",
+            "directions": 1,
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1                    
+                ]
+            ]
+        },
+        {
+            "name": "thrust_burn_unshaded",
+            "directions": 1,
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        }
+    ]
+}

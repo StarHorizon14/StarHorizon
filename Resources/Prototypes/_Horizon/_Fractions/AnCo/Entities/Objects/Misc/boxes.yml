@@ -232,10 +232,10 @@
   - type: SpawnItemsOnUse
     items:
     - id: SuitProtectiveAnCo
-    - id: AnCoDroneOff
-    - id: AnCoDroneOff
-    - id: AnCoDroneOff
-    - id: AnCoDroneOff
+    - id: AnCoGranadeSpawnSecure
+    - id: AnCoGranadeSpawnSecure
+    - id: AnCoGranadeSpawnSecure
+    - id: AnCoGranadeSpawnSecure
     - id: AnCoopenbox
 
 - type: entity

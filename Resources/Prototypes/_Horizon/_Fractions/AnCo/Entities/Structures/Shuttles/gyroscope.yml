@@ -1,0 +1,75 @@
+- type: entity
+  id: AnCoGyroscope
+  parent: [ BaseThruster, ConstructibleMachine ]
+  name: гироскоп АнКо
+  description: Огромный шар крутится и крутится и крутится.
+  components:
+  - type: Thruster
+    thrusterType: Angular
+    requireSpace: false
+    baseThrust: 2000
+    thrust: 2000
+    machinePartThrust: Manipulator
+    thrustPerPartLevel: [2000, 3000, 4000, 5000] # Frontier: upgradable gyroscopes
+  - type: Sprite
+    # Listen I'm not the biggest fan of the sprite but it was the most appropriate thing I could find.
+    sprite: _Horizon/_Fractions/AnCo/Structures/Machines/gyroscope.rsi # Frontier: add _NF prefix
+    snapCardinals: true
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn
+      map: [ "enum.ThrusterVisualLayers.Thrusting" ]
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+  - type: PointLight
+    radius: 1.3
+    energy: 0.8
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.1" # shine from the top, not bottom of the computer
+    color: "#4246b3"
+  - type: Machine
+    board: AnCoGyroscopeMachineCircuitboard
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+  - type: UpgradePowerDraw
+    powerDrawMultiplier: 0.75
+    scaling: Exponential
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Electronic
+  - type: StaticPrice
+    price: 300 # Frontier - 2000<300
+  - type: PirateBountyItem # Frontier
+    id: Gyroscope # Frontier
+  - type: DeviceLinkSink # Frontier: makes gyroscopes able to recieve signals
+    ports:
+      - On # Frontier
+      - Off # Frontier
+      - Toggle # Frontier
