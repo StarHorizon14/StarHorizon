@@ -26,7 +26,8 @@
     containers:
       entity_storage: !type:Container
   - type: StaticPrice
-    price: 35
+    price: 100
+    vendPrise: 500
   - type: AccessReader
     access: [["AnCo"]]
   - type: InteractionOutline
@@ -79,7 +80,8 @@
     containers:
       entity_storage: !type:Container
   - type: StaticPrice
-    price: 35
+    price: 100
+    vendPrise: 500
   - type: AccessReader
     access: [["AnCo"]]
   - type: InteractionOutline

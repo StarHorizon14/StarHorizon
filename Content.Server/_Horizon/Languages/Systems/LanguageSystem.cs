@@ -37,7 +37,10 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     private void OnMapInit(EntityUid uid, LanguageSpeakerComponent component, MapInitEvent args)
     {
         if (component.CurrentLanguage == null)
+        {
             component.CurrentLanguage = component.Languages.Keys.Where(x => (int)component.Languages[x] > 0).FirstOrDefault("Universal");
+            Dirty(uid, component);
+        }
         UpdateUi(uid);
     }
 
@@ -46,15 +49,18 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         Seed = _random.Next();
     }
 
-    private void OnLanguageSwitch(LanguageChosenMessage args)
+    private void OnLanguageSwitch(LanguageChosenMessage args, EntitySessionEventArgs session)
     {
         var uid = GetEntity(args.Uid);
+        if (session.SenderSession.AttachedEntity != uid)
+            return;
         if (!TryComp<LanguageSpeakerComponent>(uid, out var component))
             return;
         if (!GetLanguagesKnowledged(uid, LanguageKnowledge.BadSpeak, out var langs, out _) || !langs.ContainsKey(args.SelectedLanguage))
             return;
 
         component.CurrentLanguage = args.SelectedLanguage;
+        Dirty(uid, component);
 
         UpdateUi(uid);
     }

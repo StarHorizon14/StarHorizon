@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Immutable; // DeltaV
+using System.Linq; // Horizon
 using Content.Server.Popups;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Emoting;
@@ -29,7 +30,7 @@ public partial class ChatSystem
         var emotes = _prototypeManager.EnumeratePrototypes<EmotePrototype>();
         foreach (var emote in emotes)
         {
-            foreach (var word in emote.ChatTriggers)
+            foreach (var word in GetEmoteTriggers(emote)) // Horizon: include localized name and action text
             {
                 var lowerWord = word.ToLower();
                 if (dict.TryGetValue(lowerWord, out var value))
@@ -48,6 +49,36 @@ public partial class ChatSystem
         }
 
         _wordEmoteDict = dict.ToFrozenDictionary();
+    }
+
+    /// <summary>
+    /// Horizon: chat triggers are English-only, so also accept the emote's localized name and action text
+    /// (e.g. "*мяукает", "*прыгает"). Only for emotes that are meant to be triggered from chat at all.
+    /// </summary>
+    private IEnumerable<string> GetEmoteTriggers(EmotePrototype emote)
+    {
+        if (emote.ChatTriggers.Count == 0)
+            yield break;
+
+        var triggers = new HashSet<string>(emote.ChatTriggers.Select(x => x.ToLower()));
+        foreach (var trigger in emote.ChatTriggers)
+            yield return trigger;
+
+        var localized = new List<string>(emote.ChatMessages) { emote.Name };
+        foreach (var key in localized)
+        {
+            // Pass a dummy entity so messages referencing $entity (e.g. via POSS-ADJ) resolve instead of
+            // throwing on an undefined variable; the result is discarded below if it still has placeholders.
+            if (!Loc.TryGetString(key, out var text, ("entity", EntityUid.Invalid)))
+                continue;
+
+            text = TrimPunctuation(text.Trim()).ToLower();
+            // Skip texts with arguments (they depend on the entity) and anything already covered
+            if (text.Length == 0 || text.Contains('{') || text.Contains('$') || !triggers.Add(text))
+                continue;
+
+            yield return text;
+        }
     }
 
     /// <summary>

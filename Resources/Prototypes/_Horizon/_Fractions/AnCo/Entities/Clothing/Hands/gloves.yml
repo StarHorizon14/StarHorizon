@@ -16,6 +16,7 @@
     fiberMaterial: красные переливающиеся
   - type: StaticPrice
     price: 500
+    vendPrise: 500
 
 - type: entity
   parent: AnCoGlovesIsolate
@@ -30,6 +31,7 @@
     sprite: _Horizon/_Fractions/AnCo/Clothing/Hands/Gloves/gloves.rsi
   - type: StaticPrice
     price: 500
+    vendPrise: 500
 
 - type: entity
   parent: AnCoGlovesIsolate

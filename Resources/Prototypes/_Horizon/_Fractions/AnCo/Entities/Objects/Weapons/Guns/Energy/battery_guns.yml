@@ -113,7 +113,7 @@
     steps: 6
     zeroVisible: true
   - type: StaticPrice
-    price: 260
+    price: 500
 
 - type: entity
   name: Ардониевый пулемет АнКо
@@ -368,7 +368,8 @@
     steps: 1
     zeroVisible: true
   - type: StaticPrice
-    price: 15000
+    price: 500
+    vendPrise: 15000
 
 - type: entity
   name: лазерная винтовка АнКо
@@ -432,7 +433,8 @@
     autoRecharge: true
     autoRechargeRate: 50
   - type: StaticPrice
-    price: 10000
+    price: 500
+    vendPrise: 10000
   - type: ProjectileBatteryAmmoProvider
     proto: StandartLaserAnCo
     fireCost: 50

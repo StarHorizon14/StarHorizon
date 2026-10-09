@@ -73,7 +73,8 @@
     stateDoorOpen: ancocloset_open
     stateDoorClosed: ancocloset_door
   - type: StaticPrice
-    price: 75
+    price: 100
+    vendPrise: 500
   - type: Construction
     graph: ClosetAnCo
     node: closet

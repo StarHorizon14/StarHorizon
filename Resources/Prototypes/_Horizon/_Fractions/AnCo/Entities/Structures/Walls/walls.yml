@@ -153,6 +153,7 @@
       sprite: Structures/Windows/cracks.rsi
   - type: StaticPrice
     price: 100
+    vendPrise: 500
   - type: BlockWeather
   - type: RadiationBlocker
     resistance: 4

@@ -76,7 +76,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
             return;
 
         OpenJob(ent);
-        ev.DeleteEntity = true;
+        // Horizon: cryo never deletes bodies; the job slot is still reopened
     }
 
     public void OpenJob(Entity<JobTrackingComponent> ent)

@@ -46,3 +46,13 @@
     damage:
       types:
         Blunt: 5
+
+- type: trait
+  id: NoirVision
+  name: trait-noir-vision-name
+  description: trait-noir-vision-desc
+  category: HorizonNeutral
+  group: TraitVision
+  cost: 0
+  components:
+  - type: NoirOverlay
