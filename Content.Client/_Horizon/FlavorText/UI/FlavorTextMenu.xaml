@@ -15,7 +15,16 @@
                     <RichTextLabel Name="ICDescriptionLabel" HorizontalExpand="True" VerticalAlignment="Top" Margin="2" />
                 </ScrollContainer>
             </BoxContainer>
-
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="4">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SetHeight="70">
+                    <SpriteView Name="ErpSprite" SetSize="64 64" VerticalAlignment="Center" HorizontalAlignment="Left" OverrideDirection="South" Scale="2 2"/>
+                    <RichTextLabel Name="ErpNameLabel" HorizontalExpand="True" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                </BoxContainer>
+                <customControls:HSeparator Margin="2"/>
+                <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" >
+                    <RichTextLabel Name="ErpDescriptionLabel" HorizontalExpand="True" VerticalAlignment="Top" Margin="2" />
+                </ScrollContainer>
+            </BoxContainer>
             <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="4">
                 <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SetHeight="70">
                     <SpriteView Name="OocSprite" SetSize="64 64" VerticalAlignment="Center" HorizontalAlignment="Left" OverrideDirection="South" Scale="2 2"/>
