@@ -1,0 +1,14 @@
+
+- type: pointOfInterest
+  id: GSecDeport
+  parent: BasePOI
+  name: Торговый аутпост Горлекс
+  minimumDistance: 12000
+  maximumDistance: 17000
+  spawnGroup: Required
+  gridPath: /Maps/_Horizon/_Fraction/GSec/POI/gsec-deport.yml
+  addComponents:
+  - type: IFF
+    color: "#3b4714"
+    readOnly: false
+  - type: FTLBeacon

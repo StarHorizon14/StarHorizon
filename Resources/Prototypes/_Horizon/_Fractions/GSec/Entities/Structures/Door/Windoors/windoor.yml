@@ -1,0 +1,10 @@
+- type: entity
+  parent: [WindoorSecurePlasma, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  id: PlasmaWindoorSecureGSecLocked
+  name: плазменное раздвижное бронеокно
+  description: Это и прочное розовое окно *и* раздвижная дверь. Впечатляюще!
+  suffix: GSec, Locked, Plasma
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGSec ]

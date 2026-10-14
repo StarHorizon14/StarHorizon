@@ -1,0 +1,17 @@
+- type: loadout
+  id: LoadoutMessengerGsec
+  price: 0
+  equipment:
+    back: ClothingMessengerGsec
+
+- type: loadout
+  id: LoadoutBackpackGSec
+  price: 0
+  equipment:
+    back: ClothingBackpackGSec
+
+- type: loadout
+  id: LoadoutBackpackDuffelGSec
+  price: 0
+  equipment:
+    back: ClothingBackpackDuffelGSec

@@ -1,0 +1,19 @@
+- type: accessLevel
+  id: AccessGSec
+  name: id-card-access-level-gsec
+
+- type: accessLevel
+  id: AccessGSecAgent
+  name: id-card-access-level-gsec-agent
+
+- type: accessLevel
+  id: AccessGSecTech
+  name: id-card-access-level-gsec-tech
+
+- type: accessLevel
+  id: AccessGSecMedic
+  name: id-card-access-level-gsec-medic
+
+- type: accessLevel
+  id: AccessGSecOfficer
+  name: id-card-access-level-gsec-officer

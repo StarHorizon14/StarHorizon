@@ -1,0 +1,31 @@
+- type: loadout
+  id: LoadoutSocksGSec
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    socks: ClothingUnderwearSocksNormGSec
+
+- type: loadout
+  id: LoadoutSocksGSecMedic
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    socks: ClothingUnderwearSocksMedicGSec
+
+- type: loadout
+  id: LoadoutThighGSec
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    socks: ClothingUnderwearSocksThighGSec
+
+- type: loadout
+  id: LoadoutThighGSecMedic
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    socks: ClothingUnderwearSocksMedicThighGSec
