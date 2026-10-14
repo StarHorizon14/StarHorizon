@@ -296,6 +296,68 @@
               min: 3
               max: 5
 
+- type: entity
+  id: AnCoComputerTextConsole
+  parent: [BaseComputerText, BaseAnCoContraband]
+  name: консоль отображения текста
+  description: терминал для вывода текста
+  suffix: StarHorizon, AnCo, Structure
+  components:
+  - type: Computer
+    board: TextAnCoComputerCircuitboard
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Machines/Computers/computer.rsi
+    layers:
+    - state: monitor
+    - state: base
+    - map: ["computerLayerKeyboard"]
+      state: key
+    - map: ["computerLayerScreen"]
+      state: text_screen
+    - map: ["computerLayerKeys"]
+      state: key
+    - state: text_screen_null
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            KazmieSheet1:
+              min: 1
+              max: 5
+            ArdonSheet1:
+              min: 3
+              max: 5
+  - type: Paper
+    editingDisabled: True
+    content: "[color=#f05a5a][/color]" 
+    # красний нада
+  - type: PaperLabelType
+  - type: ActivatableUI
+    key: enum.PaperUiKey.Key
+    requiresComplex: false
+  - type: UserInterface
+    interfaces:
+      enum.PaperUiKey.Key:
+        type: PaperBoundUserInterface
+  - type: FaxableObject
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/Interface/Paper/anco_computer_background.png"
+    backgroundPatchMargin: 4.0, 4.0, 4.0, 4.0
+    contentMargin: 4.0, 4.0, 4.0, 4.0
+    maxWritableArea: 460.0, 250.0
+
+
 # - type: entity
 #   parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase ]
 #   id: AnCoShipyardConsole
@@ -435,6 +497,27 @@
       state: control_screen
     - map: ["computerLayerKeys"]
       state: key
+
+- type: entity
+  id: AnCoComputerTextConsoleTable
+  parent: [BaseStructureComputerTabletop, AnCoComputerTextConsole]
+  suffix: StarHorizon, AnCo, Structure
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _Horizon/_Fractions/AnCo/Structures/Machines/Computers/computer.rsi
+    layers:
+    - state: monitor
+    - state: base_table
+    - map: ["computerLayerKeyboard"]
+      state: key
+    - map: ["computerLayerScreen"]
+      state: text_screen
+    - map: ["computerLayerKeys"]
+      state: key
+    - state: text_screen_null
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
 
 # - type: entity
 #   id: AnCoShipyardConsoleTable

@@ -199,6 +199,28 @@
       Kazmie: 10
 
 - type: entity
+  id: TextAnCoComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseAnCoContraband]
+  name: микросхема текстовой консоли 
+  description: Красная прозрачная микросхема. Вы ощущаете исходящее от неё тепло.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/ciruitboard.rsi
+    state: boardconsole
+  - type: Item
+    storedRotation: -90
+  - type: StaticPrice
+    price: 100
+  - type: ComputerBoard
+    prototype: AnCoComputerTextConsole
+  - type: ComputerTabletopBoard
+    prototype: AnCoComputerTextConsoleTable
+  - type: PhysicalComposition
+    materialComposition:
+      Ardon: 100
+      Kazmie: 10
+
+- type: entity
   id: IFFAnCoComputerCircuitboard
   parent: [BaseComputerCircuitboard, BaseAnCoContraband]
   name: микросхема консоли опознования
