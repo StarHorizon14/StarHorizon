@@ -1,0 +1,296 @@
+# Horizon: jukebox tracks for the media player, so both share one playlist.
+# Keep in sync with the jukebox prototypes (same sound paths).
+
+- type: MediaFile
+  id: FlipFlap
+  songName: "Flip Flap"
+  author: "X-CEED"
+  soundPath:
+    path: "/Audio/Jukebox/flip-flap.ogg"
+
+- type: MediaFile
+  id: Tintin
+  songName: "Tintin on the Moon"
+  author: "Jeroen Tel"
+  soundPath:
+    path: "/Audio/Jukebox/title3.ogg"
+
+- type: MediaFile
+  id: Thunderdome
+  songName: "Sector 11"
+  author: "MashedByMachines"
+  soundPath:
+    path: "/Audio/Jukebox/sector11.ogg"
+
+- type: MediaFile
+  id: Constellations
+  songName: "Constellations"
+  author: "Qwertyquerty"
+  soundPath:
+    path: "/Audio/Jukebox/constellations.ogg"
+
+- type: MediaFile
+  id: Drifting
+  songName: "Drifting"
+  author: "Qwertyquerty"
+  soundPath:
+    path: "/Audio/Jukebox/drifting.ogg"
+
+- type: MediaFile
+  id: starlight
+  songName: "Starlight"
+  author: "Qwertyquerty"
+  soundPath:
+    path: "/Audio/Jukebox/starlight.ogg"
+
+- type: MediaFile
+  id: marchmar
+  songName: "Marriage"
+  author: "March"
+  soundPath:
+    path: "/Audio/_Horizon/Jukebox/marchmar.ogg"
+
+- type: MediaFile
+  id: marriage1
+  songName: "Marriage Music 1"
+  author: "Unknown"
+  soundPath:
+    path: "/Audio/_Horizon/Jukebox/marriage1.ogg"
+
+- type: MediaFile
+  id: marriage2
+  songName: "Marriage Music 2"
+  author: "Unknown"
+  soundPath:
+    path: "/Audio/_Horizon/Jukebox/marriage2.ogg"
+
+- type: MediaFile
+  id: marriage3
+  songName: "Marriage Music 3"
+  author: "Unknown"
+  soundPath:
+    path: "/Audio/_Horizon/Jukebox/marriage3.ogg"
+
+- type: MediaFile
+  id: marriage4
+  songName: "Marriage Music 4"
+  author: "Unknown"
+  soundPath:
+    path: "/Audio/_Horizon/Jukebox/marriage4.ogg"
+
+- type: MediaFile
+  id: marriage5
+  songName: "Marriage Music 5"
+  author: "Unknown"
+  soundPath:
+    path: "/Audio/_Horizon/Jukebox/marriage5.ogg"
+
+- type: MediaFile
+  id: ADiffReal
+  songName: "A.D.R (Lagoona rmx)"
+  author: "Andreas Viklund"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/a_different_reality_lagoona_remix.xm-MONO.ogg"
+
+- type: MediaFile
+  id: AutEqu
+  songName: "Autumnal Equinox"
+  author: "lemonade"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/autumnal_equinox.xm-MONO.ogg"
+
+- type: MediaFile
+  id: DosHighUmb
+  songName: "DOS=HIGH, UMB"
+  author: "MASTER BOOT RECORD"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/DOS=HIGH,_UMB.ogg"
+
+- type: MediaFile
+  id: DeckTheHalls
+  songName: "Deck The Halls"
+  author: "Kevin Macleod"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/deck_the_halls_b-MONO.ogg"
+
+- type: MediaFile
+  id: DrozAlone
+  songName: "Alone"
+  author: "Drozerix"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/drozerix_-_alone.xm-MONO.ogg"
+
+- type: MediaFile
+  id: DrozLeisure
+  songName: "Leisurely Voice"
+  author: "Drozerix"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/drozerix_-_leisurely_voice.xm-MONO.ogg"
+
+- type: MediaFile
+  id: KCHaxors
+  songName: "Hackers"
+  author: "Karl Casey @ White Bat Audio"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/hackers-MONO.ogg"
+
+- type: MediaFile
+  id: NymphsForest
+  songName: "Nymphs of the Forest"
+  author: "Psirius"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/psirius_-_nymphs_of_the_forest.mptm-MONO.ogg"
+
+- type: MediaFile
+  id: GhirScratch
+  songName: "Scratch Post"
+  author: "ghirardelli7"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/Scratch_Post_-_OST_MONO.ogg"
+
+- type: MediaFile
+  id: JukeShiba
+  songName: "Shibamata"
+  author: "Dot Nigou"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/shibamata-MONO.ogg"
+
+- type: MediaFile
+  id: SpaceAsshowl
+  songName: "Space Asshole"
+  author: "Chris Remo"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/space_asshole-MONO.ogg"
+
+- type: MediaFile
+  id: AmieSuperpos
+  songName: "Superposition"
+  author: "Amie Waters"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/superposition-MONO.ogg"
+
+- type: MediaFile
+  id: LoneDigger
+  songName: "Lone Digger"
+  author: "Caravan Palace"
+  soundPath:
+    path: "/Audio/_DV/Jukebox/Caravan_Palace_Lone_Digger-MONO.ogg"
+
+- type: MediaFile
+  id: victory
+  songName: "Victory"
+  author: "Koruu Chan"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/victory.ogg"
+
+- type: MediaFile
+  id: lateraligator
+  songName: "Later Alligator"
+  author: "Silverman Sound Studios"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/lateraligator.ogg"
+
+- type: MediaFile
+  id: singuloose
+  songName: "Singuloose"
+  author: "Janis Schiedkova"
+  soundPath:
+    path: "/Audio/Lobby/singuloose.ogg"
+
+- type: MediaFile
+  id: retrofunky
+  songName: "Retro Funky (SUNDANCE remix)"
+  author: "Persephone"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/Persephone - Retro Funky (SUNDANCE remix).ogg"
+
+- type: MediaFile
+  id: sinner
+  songName: "Sinner"
+  author: "Beat Mekanik"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/Beat Mekanik - Sinner.ogg"
+
+- type: MediaFile
+  id: sensless
+  songName: "Sensless"
+  author: "Beat Mekanik"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/Beat Mekanik - Senseless.ogg"
+
+- type: MediaFile
+  id: lifeisgreat
+  songName: "Life is Great"
+  author: "Ketsa"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/Ketsa - Life is Great.ogg"
+
+- type: MediaFile
+  id: dreadpirateroberts
+  songName: "Dread Pirate Roberts"
+  author: "Xennial"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/Xennial - Dread Pirate Roberts.ogg"
+
+- type: MediaFile
+  id: caffeinated
+  songName: "Caffeinated"
+  author: "Laughing Manny & The Swinging Dicks"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/Laughing Manny & The Swinging Dicks - Caffeinated.ogg"
+
+- type: MediaFile
+  id: bringinthehorns
+  songName: "Bring In The Horns"
+  author: "Laughing Manny & The Swinging Dicks"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/Laughing Manny & The Swinging Dicks - Bring In The Horns.ogg"
+
+- type: MediaFile
+  id: meanwhilebackatthesaloon
+  songName: "Meanwhile Back At The Saloon"
+  author: "Brett Van Donsel"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/Meanwhile Back at the Saloon.ogg"
+
+- type: MediaFile
+  id: murderonthebayou
+  songName: "Murder On The Bayou"
+  author: "Bryan Teoh"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/Murder On The Bayou.ogg"
+
+- type: MediaFile
+  id: dustsucker
+  songName: "Dustsucker"
+  author: "Jens Kiilstofte"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/Dustsucker.ogg"
+
+- type: MediaFile
+  id: threesheetstothewind
+  songName: "Three Sheets to the Wind"
+  author: "Scott Buckley"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/ThreeSheetsToTheWind.ogg"
+
+- type: MediaFile
+  id: skubstep
+  songName: "SKUBSTEP"
+  author: "Finket"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/finket_ss14skubstep.ogg"
+
+- type: MediaFile
+  id: rattlesnakerailroad
+  songName: "Rattlesnake Railroad"
+  author: "Brett Van Donsel"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/rattlesnake railroad.ogg"
+
+- type: MediaFile
+  id: thewizard
+  songName: "The Wizard"
+  author: "Chris Remo"
+  soundPath:
+    path: "/Audio/_NF/Jukebox/the_wizard_MONO.ogg"
