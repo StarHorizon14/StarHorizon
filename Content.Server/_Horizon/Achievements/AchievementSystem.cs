@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Text.Json;
-using Content.Shared.Examine;
+using Content.Shared._Horizon.Achievements;
 using Robust.Server.Player;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
@@ -10,7 +10,7 @@ using Robust.Shared.Utility;
 namespace Content.Server._Horizon.Achievements;
 
 /// <summary>
-/// Admin-granted achievements, stored per player account and shown when examining any character they play.
+/// Admin-granted achievements, stored per player account and shown in the character info window of any character they play.
 /// Saved to a JSON file in the server's data directory so they persist between rounds without a database migration.
 /// </summary>
 public sealed class AchievementSystem : EntitySystem
@@ -38,7 +38,6 @@ public sealed class AchievementSystem : EntitySystem
         Load();
 
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<AchievementHolderComponent, ExaminedEvent>(OnExamined);
     }
 
     public IReadOnlyList<string> GetAchievements(NetUserId user)
@@ -57,7 +56,7 @@ public sealed class AchievementSystem : EntitySystem
 
         list.Add(name);
         Save();
-        EnsureHolder(user);
+        RefreshHolders(user);
         return true;
     }
 
@@ -72,32 +71,37 @@ public sealed class AchievementSystem : EntitySystem
             _achievements.Remove(user.UserId);
 
         Save();
+        RefreshHolders(user);
         return true;
     }
 
     private void OnPlayerAttached(PlayerAttachedEvent args)
     {
-        var holder = EnsureComp<AchievementHolderComponent>(args.Entity);
-        holder.UserId = args.Player.UserId;
+        SetHolder(args.Entity, args.Player.UserId);
+    }
+
+    private void SetHolder(EntityUid uid, NetUserId user)
+    {
+        var holder = EnsureComp<AchievementHolderComponent>(uid);
+        holder.UserId = user;
+        holder.Achievements = GetAchievements(user).ToList();
+        Dirty(uid, holder);
     }
 
     /// <summary>
-    /// Make sure the player's current body shows a freshly granted achievement right away.
+    /// Update every body this player has inhabited so a change shows up right away.
     /// </summary>
-    private void EnsureHolder(NetUserId user)
+    private void RefreshHolders(NetUserId user)
     {
+        var query = EntityQueryEnumerator<AchievementHolderComponent>();
+        while (query.MoveNext(out var uid, out var holder))
+        {
+            if (holder.UserId == user)
+                SetHolder(uid, user);
+        }
+
         if (_players.TryGetSessionById(user, out var session) && session.AttachedEntity is { } entity)
-            EnsureComp<AchievementHolderComponent>(entity).UserId = user;
-    }
-
-    private void OnExamined(Entity<AchievementHolderComponent> ent, ref ExaminedEvent args)
-    {
-        var list = GetAchievements(ent.Comp.UserId);
-        if (list.Count == 0)
-            return;
-
-        var names = string.Join(", ", list.Select(FormattedMessage.EscapeText));
-        args.PushMarkup(Loc.GetString("achievement-examine", ("achievements", names)), -1);
+            SetHolder(entity, user);
     }
 
     private void Load()

@@ -1,6 +1,4 @@
-achievement-examine = [color=gold]Achievements:[/color] {$achievements}
-
-cmd-addachievement-desc = Grants a player an achievement shown when examining any of their characters.
+cmd-addachievement-desc = Grants a player an achievement shown in the Achievements tab of the character info window for any of their characters.
 cmd-addachievement-help = Usage: addachievement <ckey> <achievement name>
 cmd-removeachievement-desc = Removes an achievement from a player.
 cmd-removeachievement-help = Usage: removeachievement <ckey> <achievement name>
@@ -17,3 +15,7 @@ achievement-command-list = {$player}'s achievements: {$achievements}
 achievement-command-list-empty = {$player} has no achievements.
 achievement-command-hint-player = <ckey>
 achievement-command-hint-name = <achievement name>
+
+flavor-menu-tab-achievements = Achievements
+flavor-no-achievements = No achievements yet.
+flavor-achievement-entry = [color=gold]•[/color] { $name }

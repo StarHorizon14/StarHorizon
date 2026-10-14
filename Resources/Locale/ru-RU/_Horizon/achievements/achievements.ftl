@@ -1,6 +1,4 @@
-achievement-examine = [color=gold]Достижения:[/color] {$achievements}
-
-cmd-addachievement-desc = Выдаёт игроку достижение, которое видно при осмотре любого его персонажа.
+cmd-addachievement-desc = Выдаёт игроку достижение, которое видно во вкладке «Достижения» окна «О персонаже» у любого его персонажа.
 cmd-addachievement-help = Использование: addachievement <ckey> <название достижения>
 cmd-removeachievement-desc = Забирает у игрока достижение.
 cmd-removeachievement-help = Использование: removeachievement <ckey> <название достижения>

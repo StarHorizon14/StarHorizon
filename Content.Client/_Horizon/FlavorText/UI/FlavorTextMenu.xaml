@@ -30,6 +30,17 @@
                     </BoxContainer>
                 </ScrollContainer>
             </BoxContainer>
+            <!-- Horizon: achievements -->
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="4">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SetHeight="70">
+                    <SpriteView Name="AchievementsSprite" SetSize="64 64" VerticalAlignment="Center" HorizontalAlignment="Left" OverrideDirection="South" Scale="2 2"/>
+                    <RichTextLabel Name="AchievementsNameLabel" HorizontalExpand="True" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                </BoxContainer>
+                <customControls:HSeparator Margin="2"/>
+                <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" >
+                    <RichTextLabel Name="AchievementsLabel" HorizontalExpand="True" VerticalAlignment="Top" Margin="2" />
+                </ScrollContainer>
+            </BoxContainer>
         </TabContainer>
         <Button Name="BottomCloseButton" Text="{Loc 'character-setup-gui-character-setup-close-button'}" SetSize="250 42" HorizontalAlignment="Center"/>
     </BoxContainer>

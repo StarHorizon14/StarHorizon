@@ -1,4 +1,5 @@
 using Content.Client._Horizon.FlavorText.UI;
+using Content.Shared._Horizon.Achievements;
 using Content.Shared._Horizon.FlavorText;
 using Content.Shared.IdentityManagement;
 using Robust.Client.UserInterface;
@@ -15,7 +16,8 @@ public sealed partial class HorizonFlavorTextSystem : SharedHorizonFlavorTextSys
 
         var oocDesc = CompOrNull<OocDescriptionComponent>(uid)?.Description ?? string.Empty;
         var erpStatus = CompOrNull<ErpStatusComponent>(uid)?.Status ?? ErpStatus.No;
+        var achievements = CompOrNull<AchievementHolderComponent>(uid)?.Achievements ?? new List<string>();
 
-        _ui.GetUIController<FlavorTextMenuUiController>().OpenMenu(uid, Identity.Name(uid, EntityManager), description, oocDesc, erpStatus);
+        _ui.GetUIController<FlavorTextMenuUiController>().OpenMenu(uid, Identity.Name(uid, EntityManager), description, oocDesc, erpStatus, achievements);
     }
 }

@@ -7,3 +7,6 @@ flavor-no-ooc-desc = OOC заметки отсутствуют.
 flavor-menu-tab-ic = Описание
 flavor-menu-tab-ooc = OOC заметки
 ooc-flavor-text-placeholder = OOC заметки, которые смогут прочитать другие игроки вместе с внешним описанием.
+flavor-menu-tab-achievements = Достижения
+flavor-no-achievements = Достижений пока нет.
+flavor-achievement-entry = [color=gold]•[/color] { $name }
