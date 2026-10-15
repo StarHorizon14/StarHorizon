@@ -996,3 +996,107 @@
   - StorageFillAmmoBoxUranium45
   id: WeaponCaseShortAmmoBoxUranium45
   categories: [ HideSpawnMenu ]
+#Horizon
+- type: entity
+  parent: [WeaponCaseLong, RareWeaponCase]
+  id: WeaponCaseLongWeaponSubMachineGunMP5
+  suffix: Dungeon, MP5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunMP5Expedition
+      amount: 1
+    - id: MagazinePistolSubMachineGun9x17
+      amount: 6
+
+- type: entity
+  parent: [WeaponCaseLong, RareWeaponCase]
+  id: WeaponCaseLongWeaponSubMachineGunMP7
+  suffix: Dungeon, MP7
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunMP7Expedition
+      amount: 1
+    - id: MagazinePistolSubMachineGun57x28
+      amount: 6
+
+- type: entity
+  parent: [WeaponCaseLong, RareWeaponCase]
+  id: WeaponCaseLongWeaponSubMachineGunSkorpion
+  suffix: Dungeon, MP7
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunSkorpionExpedition
+      amount: 1
+    - id: MagazinePistolSubMachineGunScorpion9x17
+      amount: 6
+
+- type: entity
+  parent: [WeaponCaseHeavy, RareWeaponCase]
+  id: WeaponCaseHeavyWeaponAKMSRifle
+  suffix: Dungeon, MP7
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponAKMSRifleExpedition
+      amount: 1
+    - id: MagazineRifleLight762x39
+      amount: 6
+
+- type: entity
+  parent: [WeaponCaseHeavy, RareWeaponCase]
+  id: WeaponCaseHeavyWeaponRifleAKSU
+  suffix: Dungeon, MP7
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleAKSUExpedition
+      amount: 1
+    - id: MagazineRifleLight762x39
+      amount: 6
+
+- type: entity
+  parent: [WeaponCaseHeavy, RareWeaponCase]
+  id: WeaponCaseHeavyWeaponRifleM16A4
+  suffix: Dungeon, m16a4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleM16A4Expedition
+      amount: 1
+    - id: MagazineRifle556UEG
+      amount: 6
+
+- type: entity
+  parent: [WeaponCaseHeavy, RareWeaponCase]
+  id: WeaponCaseHeavyWeaponRifleSCARAB
+  suffix: Dungeon, scarab
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleSCARABExpedition
+      amount: 1
+    - id: MagazineRifle762UEG
+      amount: 6
+
+- type: entity
+  parent: [WeaponCaseHeavy, RareWeaponCase]
+  id: WeaponCaseHeavyWeaponRifleInteQAKM
+  suffix: Dungeon, AK-103 InteQ
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleInteQAKMExpedition
+      amount: 1
+    - id: MagazineRifleLight762x39
+      amount: 6

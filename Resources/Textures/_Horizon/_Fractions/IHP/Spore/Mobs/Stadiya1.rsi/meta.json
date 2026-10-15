@@ -1,0 +1,225 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "by Amirya Discord: amir7036",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+    {
+      "name": "mayac",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "spore_egg2",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "spore_egg",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "mayac2",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+        {
+            "name": "dead_egg"
+        },
+        {
+            "name": "dead1"
+        },
+        {
+            "name": "dead2"
+        },
+        {
+            "name": "dead3"
+        },
+        {
+            "name": "dead4"
+        },
+        {
+            "name": "dead5"
+        },
+        {
+            "name": "dead6"
+        },
+        {
+            "name": "dead7"
+        },
+        {
+            "name": "dead8"
+        },
+        {
+            "name": "dead9"
+        },
+        {
+            "name": "dead10"
+        },
+        {
+            "name": "dead11"
+        },
+        {
+            "name": "dead12"
+        },
+        {
+            "name": "dead13"
+        },
+        {
+            "name": "dead14"
+        },
+        {
+            "name": "dead15"
+        },
+        {
+            "name": "dead16"
+        },
+        {
+            "name": "dead17"
+        },
+        {
+            "name": "dead18"
+        },
+        {
+            "name": "mobs1",
+            "directions": 4
+        },
+        {
+            "name": "mobs2",
+            "directions": 4
+        },
+        {
+            "name": "mobs3",
+            "directions": 4
+        },
+        {
+            "name": "mobs4",
+            "directions": 4
+        },
+        {
+            "name": "mobs5",
+            "directions": 4
+        },
+
+    {
+      "name": "mobs6",
+      "directions": 4,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "mobs7",
+      "directions": 4,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+        {
+            "name": "mobs8",
+            "directions": 4
+        },
+        {
+            "name": "mobs9",
+            "directions": 4
+        },
+        {
+            "name": "mobs10",
+            "directions": 4
+        },
+        {
+            "name": "mobs11",
+            "directions": 4
+        },
+        {
+            "name": "mobs12",
+            "directions": 4
+        },
+        {
+            "name": "mobs13",
+            "directions": 4
+        },
+        {
+            "name": "mobs14",
+            "directions": 4
+        },
+        {
+            "name": "mobs15",
+            "directions": 4
+        },
+        {
+            "name": "mobs16",
+            "directions": 4
+        },
+        {
+            "name": "mobs17",
+            "directions": 4
+        },
+        {
+            "name": "mobs18",
+            "directions": 4
+        }
+    ]
+}

@@ -21,6 +21,43 @@
   indestructible: true
 
 - type: tile
+  id: FloorProcessorArdon
+  name: Процессорный блок
+  sprite: /Textures/_Horizon/_Fractions/AnCo/Tiles/processor.png
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: FloorTileItemProcessorArdon
+  heatCapacity: 15000
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+
+- type: tile
+  id: FloorKazmieShuttle
+  name: Пол из казмия
+  sprite: /Textures/_Horizon/_Fractions/AnCo/Tiles/floor-kazmie.png
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: KazmieSheet1
+  heatCapacity: 15000
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+
+
+- type: tile
+  id: FloorKazmieShuttleTech
+  name: Технический пол из казмия
+  sprite: /Textures/_Horizon/_Fractions/AnCo/Tiles/floor-kazmie-tech.png
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: FloorTileItemKazmieTech
+  heatCapacity: 15000
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+
+- type: tile
   id: FloorArdon
   name: Ардониевый стеклянный пол
   sprite: /Textures/_Horizon/_Fractions/AnCo/Tiles/ardon-floor.png

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-NC-4.0",
+  "copyright": "by Amirya Discord: amir7036",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "spore_toxic"
+    },
+    {
+      "name": "spore_toxic2"
+    },
+    {
+      "name": "spore_fireball",
+      "delays": [
+        [
+          0.095,
+          0.095,
+          0.095,
+          0.095,
+          0.095
+        ]
+      ]
+    }
+  ]
+}

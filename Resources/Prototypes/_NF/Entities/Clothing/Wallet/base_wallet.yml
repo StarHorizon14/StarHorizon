@@ -35,6 +35,8 @@
       - NFShipyardVoucher
       - Card # single cards
       - NFEmagPass
+      tags: # Horizon
+      - Telecrystal
     blacklist:
       tags:
       - Book

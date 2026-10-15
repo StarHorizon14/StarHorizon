@@ -6,8 +6,6 @@
   suffix: StarHorizon, AnCo, Structure
   components:
   - type: ResistLocker
-  - type: Transform
-    anchored: true
     noRot: true
   - type: Sprite
     noRot: true

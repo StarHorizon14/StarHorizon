@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "by Amirya Discord: amir7036",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+    
+    {
+      "name": "base01",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+      {
+        "name": "base06"
+      },
+      {
+        "name": "base02"
+      },
+      {
+        "name": "base09"
+      },
+      {
+        "name": "base08"
+      },
+      {
+        "name": "base07"
+      },
+      {
+        "name": "base03"
+      },
+      {
+        "name": "base04"
+      },
+    {
+      "name": "base05",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+    ]
+  }

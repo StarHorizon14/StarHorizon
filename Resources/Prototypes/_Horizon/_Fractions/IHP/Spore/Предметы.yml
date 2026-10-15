@@ -1,0 +1,1054 @@
+# region Лут Спор 
+
+
+
+
+
+
+
+
+
+# region Реагенты Продвинутые
+
+
+
+
+
+
+
+# region Люменол 
+- type: reagent
+  id: SporeLumenol 
+  name: Люменол
+  group: Medicine
+  desc: Необычное вещество на базе Мицеливой Инфекции, требует сильной обработки для синтеза. Обладает крайне необычными свойствами нарастаемого временного усиления организма носителя, единственное ограничение в мощности реагента время его действия. При больших количествах смертельно опасно. 
+  physicalDesc: любопытное
+  flavor: medicine
+  color: "#da2f386f"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+# 1 - 9
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 1
+          max: 9
+        damage:
+          types:
+            Asphyxiation: -0.5
+            Poison: -0.5
+            Slash: -0.5
+            Piercing: -0.5
+            Blunt: -0.5
+            Heat: -0.5
+      - !type:MovespeedModifier
+        conditions:
+        - !type:ReagentThreshold
+          min: 1
+          max: 9
+        walkSpeedModifier: 1.10
+        sprintSpeedModifier: 1.10
+# 10 - 15
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+          max: 15
+        damage:
+          types:
+            Asphyxiation: -1.5
+            Poison: -1.5
+            Slash: -1.5
+            Piercing: -1.5
+            Blunt: -1.5
+            Bloodloss: -1.5
+            Heat: -1.5
+      - !type:MovespeedModifier
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+          max: 15
+        walkSpeedModifier: 1.25
+        sprintSpeedModifier: 1.25
+# 15 - 25
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+          max: 25
+        damage:
+          types:
+            Asphyxiation: -2.5
+            Poison: -2.5
+            Slash: -2.5
+            Piercing: -2.5
+            Blunt: -2.5
+            Bloodloss: -2.5
+            Heat: -2.5
+      - !type:MovespeedModifier
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+          max: 25
+        walkSpeedModifier: 1.30
+        sprintSpeedModifier: 1.30
+# 25 
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 25
+          max: 45
+        damage:
+          types:
+            Asphyxiation: -4.5
+            Poison: -4.5
+            Slash: -4.5
+            Piercing: -4.5
+            Blunt: -4.5
+            Bloodloss: -4.5
+            Heat: -4.5
+            Radiation: -4.5 
+      - !type:MovespeedModifier
+        conditions:
+        - !type:ReagentThreshold
+          min: 25
+          max: 45
+        walkSpeedModifier: 1.50
+        sprintSpeedModifier: 1.50
+
+
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 45
+          max: 45
+        damage:
+          types:
+            Cellular: 0.5
+            Poison: 0.5
+      - !type:MovespeedModifier
+        conditions:
+        - !type:ReagentThreshold
+          min: 45
+          max: 45
+        walkSpeedModifier: 1.30
+        sprintSpeedModifier: 1.30
+
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 45
+        damage:
+          types:
+            Cellular: 500
+            Poison: 5
+      - !type:MovespeedModifier
+        conditions:
+        - !type:ReagentThreshold
+          min: 45
+        walkSpeedModifier: 0.50
+        sprintSpeedModifier: 0.50
+
+      - !type:AdjustReagent            
+        conditions:                
+        - !type:ReagentThreshold     
+          reagent: SporeLumenol 
+          min: 0.1
+          max: 35
+        reagent: SporeLumenol 
+        amount: 0.55
+
+      - !type:AdjustReagent            
+        conditions:                
+        - !type:ReagentThreshold     
+          reagent: SporeLumenol 
+          min: 35
+        reagent: SporeLumenol 
+        amount: 0.75
+
+  pricePerUnit: 50 # Horizon
+
+# SporeBicaridine SporeDylovene SporeDermaline SporeDexalin
+
+- type: reaction
+  id: SporeLumenolReact
+  impact: Medium
+  minTemp: 335
+  reactants:
+    Ichor: 
+      amount: 5
+    SporeExctrate:
+      amount: 10
+    SporeDexalin: 
+      amount: 5
+    SporeArithrazine:
+      amount: 5
+    SporeBicaridine: 
+      amount: 5
+    SporeDylovene: 
+      amount: 5
+    SporeDermaline:
+      amount: 5
+  effects:
+  - !type:CreateGas
+    gas: Plasma
+  - !type:PopupMessage
+    visualType: LargeCaution
+    messages: [ "phlogiston-plasma-created" ]
+    type: Pvs
+  products:
+    SporeLumenol: 1
+
+# region Эктра-Аритразин
+
+- type: reagent
+  id: SporeArithrazine
+  name: Эктра-Аритразин
+  group: Medicine
+  desc: Усиленный раствор аритразина совмещённый с Экстрактом спор, при этом сам реагент более не способен заразить гуманоида инфекцией. При передозе зеркально меняет свои свойства. 
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: medicine
+  color: "#d6a274"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: -5
+          groups:
+            Brute: 3.5
+
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold
+            min: 15
+        damage:
+          types:
+            Radiation: 5
+          groups:
+            Brute: -3.5
+
+  pricePerUnit: 10 # Horizon
+
+
+- type: reaction
+  id: SporeArithrazineReaction
+  impact: Medium
+  minTemp: 335
+  reactants:
+    Arithrazine: # Аритразин
+      amount: 1
+    SporeExctrate: # Экстракт Спор
+      amount: 1
+  products:
+    SporeArithrazine: 2
+
+# region Эктра-Дексалин
+
+- type: reagent
+  id: SporeDexalin
+  name: Экстра-Дексалин
+  group: Medicine
+  desc: Усиленный раствор дексалина совмещённый с Экстрактом спор, при этом сам реагент более не способен заразить гуманоида инфекцией. Выполняет все те же функции лекарства, при передозе более усиленно. 
+  physicalDesc: Облачное
+  flavor: medicine
+  color: "#92afdd"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: -4.5
+            Bloodloss: -4.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: HeartbreakerToxin
+          min: 1
+        reagent: HeartbreakerToxin
+        amount: -3
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold
+            min: 20
+        damage:
+          types:
+            Asphyxiation: -5
+            Bloodloss: -5
+            Cold: 2.5
+  pricePerUnit: 5 # Horizon
+
+- type: reaction
+  id: SporeDexalinReaction
+  impact: Medium
+  minTemp: 335
+  reactants: 
+    Dexalin: # Дексалин
+      amount: 1
+    SporeExctrate: # Экстракт Спор
+      amount: 1
+  products:
+    SporeDexalin: 2
+
+
+# region Эктра-Дермалин
+- type: reagent
+  id: SporeDermaline
+  name: Эктра-Дермалин
+  group: Medicine
+  desc: Усиленный раствор дермалина совмещённый с Экстрактом спор, при этом сам реагент более не способен заразить гуманоида инфекцией.
+  physicalDesc: скучное
+  flavor: medicine
+  color: "#7683ca"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -2.5
+            Shock: -2.5
+            Cold: -2.5
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold
+            min: 15
+        damage:
+          types:
+            Radiation: 2.5
+            Heat: -3.5
+            Shock: -3.5
+            Cold: -3.5
+
+  pricePerUnit: 10 # Horizon
+
+- type: reaction
+  id: SporeDermalineReaction
+  impact: Medium
+  minTemp: 335
+  reactants: 
+    Dermaline: # Дермалин
+      amount: 1
+    SporeExctrate: # Экстракт Спор
+      amount: 1
+  products:
+    SporeDermaline: 2
+
+# region Эктра-Диловен
+- type: reagent
+  id: SporeDylovene
+  name: Экстра-Диловен
+  group: Medicine
+  desc: Усиленный раствор диловена совмещённый с Экстрактом Спор, при этом сам реагент более не способен заразить гуманоида инфекцией. 
+  physicalDesc: увлекательное
+  flavor: medicine
+  color: "#6a3ee0"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -2.5
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        damage:
+          types:
+            Poison: -5
+            Slash: 0.5
+            Piercing: 1
+            Blunt: 0.5
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        type: Local
+        visualType: Medium
+        messages: [ "generic-reagent-effect-nauseous" ]
+        probability: 0.2
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+        probability: 0.02
+      - !type:Drunk
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: -25
+  - !type:PlantAdjustHealth
+    amount: 5
+
+  pricePerUnit: 5 # Horizon
+
+- type: reaction
+  id: SporeDyloveneReaction
+  impact: Medium
+  minTemp: 335
+  reactants: 
+    Dylovene: # Диловен
+      amount: 1
+    SporeExctrate: # Экстракт Спор
+      amount: 1
+  products:
+    SporeDylovene: 2
+
+
+# region Эктра-Бикаридин
+
+- type: reagent
+  id: SporeBicaridine
+  name: Экстра-Бикаридин
+  group: Medicine
+  desc: Усиленный раствор Бикаридина совмещённый с Экстрактом Спор, при этом сам реагент более не способен заразить гуманоида инфекцией. 
+  physicalDesc: любопытное
+  flavor: medicine
+  color: "#bb8f38"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Brute: -5
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        damage:
+          types:
+            Asphyxiation: 0.5
+            Poison: 0.5
+            Slash: -6
+            Piercing: -3.5 
+            Blunt: -6
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          min: 45
+        probability: 0.02
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+
+  pricePerUnit: 5 # Horizon
+
+- type: reaction
+  id: SporeBicaridineReaction
+  impact: Medium
+  minTemp: 335
+  reactants: 
+    Bicaridine: # Бикаридин
+      amount: 1
+    SporeExctrate: # Экстракт Спор
+      amount: 1
+  products:
+    SporeBicaridine: 2
+
+# region Экстракт Спор
+- type: reagent
+  id: SporeExctrate
+  name: Экстракт Спор
+  group: Medicine
+  desc: Выделенный экстракт грибного заражения, представляет собой микроскопический Мицелий представляющий из себя обычно сгустки и небольшие корешки, на изначальных стадиях может вызывать рвоту головокружение и потерю сознания. Сам по себе не страшен если не является более сильной версией вируса, в небольших количествах почти безвреден для обычных гуманоидов. 
+  physicalDesc: непривычное
+  flavor: medicine
+  color: "#803d3d"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 2.5
+            Cellular: 0.5
+            Heat: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        damage:
+          types:
+            Asphyxiation: 0.5
+            Poison: 1.5
+            Heat: 1.5 
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+        probability: 0.02
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+      - !type:Drunk
+  pricePerUnit: 3 # Horizon
+
+# Получение Экстракта 
+- type: reaction
+  id: SporeExctrateCentrifuge
+  source: true
+  requiredMixerCategories:
+  - Centrifuge
+  reactants:
+    SporeMycelium:
+      amount: 10
+  products:
+    Iron: 4 # Железо
+    SporeExctrate: 1 # Экстракт
+    Silicon: 5 # Кремний 
+
+- type: reaction
+  id: SporeMyceliumCentrifuge
+  source: true
+  requiredMixerCategories:
+  - Centrifuge
+  reactants:
+    SporeBlood:
+      amount: 10
+  products:
+    UncookedAnimalProteins: 4 
+    SporeMycelium: 1 # Инфекция Мицелия
+    Fat: 5 
+
+
+# region Реагенты Базовые 
+- type: reagent
+  id: SporePoison
+  name: Мицелиальный ядовитый агент
+  desc: Салатовая разъедающая жидкость вызывающее при попадании на кожу сильные ожоги в последствии приводящее к отмиранию тканей, по большей части используется заражёнными Мицелием. 
+  physicalDesc: ужасающее
+  flavor: bitter
+  color: "#95e485"
+  boilingPoint: 55.5
+  meltingPoint: -50.0
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 5 
+            Cellular: 0.5
+            Heat: 2.5 
+  pricePerUnit: 5
+
+- type: reagent
+  id: SporeBlood
+  name: Заражённая кровь 
+  desc: Необычная довольно вязкая жидкость выкущая по сосудам заражённых Мицелием существ, обладает крайне необычными свойствами что характеризуется в нестандартных реакциях на температуру и общее использование реагента
+  physicalDesc: ужасающее
+  flavor: bitter
+  color: "#503131"
+  boilingPoint: 55.5
+  meltingPoint: -50.0
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.5
+            Cellular: 0.5
+      - !type:MovespeedModifier
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+          max: 35
+        walkSpeedModifier: 0.50
+        sprintSpeedModifier: 0.50
+  pricePerUnit: 1
+
+- type: reagent
+  id: SporeMycelium
+  name: Мицеливая Инфекция
+  desc: Инфекция в жидком виде, представляет собой микроскопический Мицелий представляющий из себя обычно сгустки и небольшие корешки, на изначальных стадиях может вызывать рвоту головокружение и потерю сознания. Сам по себе не страшен если не является более сильной версией вируса, почти безвреден для обычных гуманоидов. 
+  physicalDesc: грибное
+  flavor: bitter
+  color: "#6e4332"
+  boilingPoint: 55.5
+  meltingPoint: -50.0
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.5 
+            Cellular: 0.5
+      - !type:MovespeedModifier
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+          max: 35
+        walkSpeedModifier: 0.80
+        sprintSpeedModifier: 0.80
+
+      - !type:AdjustReagent            
+        conditions:                
+        - !type:ReagentThreshold     
+          reagent: SporeMycelium
+          min: 10
+          max: 15
+        reagent: Cryptobiolin
+        amount: 0.6 
+
+      - !type:AdjustReagent            
+        conditions:                
+        - !type:ReagentThreshold     
+          reagent: SporeMycelium
+          min: 0.1
+          max: 75
+        reagent: SporeMycelium
+        amount: 0.2
+  pricePerUnit: 5
+
+# region Предметы 
+- type: entity
+  parent: [BaseItem, FoodMeatRawBase]
+  id: BaseSporeItems
+  name: Базовый Предмет Лута Спор
+  description: ...
+  suffix: НЕ СПАУНИТЬ
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StaticPrice
+    price: 150
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+        - ReagentId: Fat
+          Quantity: 9
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: BaseSporeItems
+  id: SporeOrganKishki
+  name: Изменённые Кишки 
+  description: Изменённый орган что выделяется прежде всего своим размером и строением, заметно то что сами кишки имеют большое количество дополнительных камер и небольшие выпуклости раскиданные по поверхности. Так же они всё ещё пульсируют.. 
+  suffix: Споры | Лут с мобов
+  components:
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Item/items.rsi
+    state: base01
+  - type: StaticPrice
+    price: 500
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+        - ReagentId: SporeBlood
+          Quantity: 5
+        - ReagentId: SporeMycelium
+          Quantity: 10
+
+- type: entity
+  parent: BaseSporeItems
+  id: SporeOrganSoedTkan
+  name: Изменённая Ткань 
+  description: Небольшие кусочки мышц и кожи, не характеризуются ничем необычным в отличии от стандартных разновидностей видов, но при этом заметно что кусочек ткани пропитан изнутри мицелием тонкими белыми нитями, а артерии и пускают по себе крайне вязкую жидкость. 
+  suffix: Споры | Лут с мобов
+  components:
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Item/items.rsi
+    state: base02
+  - type: StaticPrice
+    price: 100
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+        - ReagentId: Fat
+          Quantity: 5
+        - ReagentId: SporeMycelium
+          Quantity: 5
+
+- type: entity
+  parent: BaseItem
+  id: SporeOrganKogti
+  name: Фрагменты Когтей
+  description: Костяные наросты на месте пальцев или же ногтей заражённых, уникальны своей структурой и строением с небольшими режущими наростами, а так же маленькими крючками на концах. 
+  suffix: Споры | Лут с мобов
+  components:
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Item/items.rsi
+    state: base03
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  parent: BaseItem
+  id: SporeOrganJalo
+  name: Мицеливое Жало
+  description: Острое словно игла жало по своей форме представляющее орган для стрельбы небольшими иголочками схожие с Фрагментами Когтей. 
+  suffix: Споры | Лут с мобов
+  components:
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Item/items.rsi
+    state: base04
+  - type: StaticPrice
+    price: 1500
+
+
+- type: entity
+  parent: BaseSporeItems
+  id: SporeOrganSerdce
+  name: Изменённое Сердце
+  description: Крайне необычный орган заражённого, сильно искажённое сердце имеющее больший размер, при этом сам орган оснащён большим количеством камер и необычными эластичными костяными наростами на поверхности сердца. Так же сердце всё ещё бьётся.. Не смотря на то что уже, как бы вне тела, можно заметить всё ещё двигающиеся небольшие белые жгутики выходящие по всей поверхности сердца. 
+  suffix: Споры | Лут с мобов
+  components:
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Item/items.rsi
+    state: base05
+  - type: StaticPrice
+    price: 750
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+        - ReagentId: SporeBlood
+          Quantity: 20
+        - ReagentId: SporeMycelium
+          Quantity: 15
+
+- type: entity
+  parent: BaseSporeItems
+  id: SporeOrganBronePlast
+  name: Фрагмент Бронепластины
+  description: Твёрдая словно чешуйка размером примерно 2-5 см, примечательно что по прочности этот фрагмент не уступает стали, при этом это простое костное образование на поверхности тела заражённых, по большей части состоит из костей, изменённых затвердевших тканей и небольших твёрдных мицеливых трубочек. 
+  suffix: Споры | Лут с мобов
+  components:
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Item/items.rsi
+    state: base06
+  - type: StaticPrice
+    price: 750
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 10
+        - ReagentId: SporeBlood
+          Quantity: 5
+        - ReagentId: SporeMycelium
+          Quantity: 5
+
+- type: entity
+  parent: BaseSporeItems
+  id: SporeOrganPoiJel
+  name: Ядовитая Железа 
+  description: Раздутый орган наполненный неизвестной жидкостью, сами паразиты его скорее всего используют для производства внутреннего яда как одного из видов своего оружия.. 
+  suffix: Споры | Лут с мобов
+  components:
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Item/items.rsi
+    state: base07
+  - type: StaticPrice
+    price: 1750
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 2.5
+        - ReagentId: SporePoison
+          Quantity: 10
+        - ReagentId: SporeMycelium
+          Quantity: 2.5
+
+- type: entity
+  parent: BaseItem
+  id: SporeLootEgg
+  name: Остатки Мицеливого Кокона
+  description: Остатки биомассы некогда ранее было живым существом, на удивление вы видите небольшую черную жемчужену внутри, кажется или ваш сервер НИО способен её обработать? 
+  suffix: Споры | Лут с мобов
+  components:
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Item/items.rsi
+    state: base08
+  - type: StaticPrice
+    price: 5000
+  - type: ResearchDisk
+    points: 2500
+
+- type: entity
+  parent: BaseSporeItems
+  id: SporeLootLighthouse
+  name: Остатки Мицеливого Кургана
+  description: Любопытная структура корней Мицеливого Кургана, по всей своей сути похожа на Остатки Мицеливого Кокона
+  suffix: Споры | Лут с мобов
+  components:
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Item/items.rsi
+    state: base09
+  - type: StaticPrice
+    price: 7500
+  - type: ResearchDisk
+    points: 5000
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 2.5
+        - ReagentId: SporeExtractGribnitsy
+          Quantity: 5
+        - ReagentId: SporeMycelium
+          Quantity: 5
+
+# region Реагенты способностей
+
+- type: reaction
+  id: SporeAgentReaction
+  reactants: 
+    SporeMycelium: 
+      amount: 1.5 
+    SporeExtractGribnitsy: 
+      amount: 0.5
+  products:
+    SporeAgent: 2
+
+- type: reagent
+  id: SporeAgent
+  name: Жидкий Агент
+  group: Toxins
+  desc: Вещество с крайне необычными свойствами, способно на крайне большие изменения и мутации. 
+  physicalDesc: Изменяющееся
+  flavor: sharp
+  color: "#5c4f4f"
+  boilingPoint: 55.5
+  meltingPoint: -50.0
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:Jitter
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 2.5
+            Cellular: 0.5
+      - !type:Emote
+        emote: Scream
+        probability: 0.7
+
+- type: reaction
+  id: SporeArmoredAgentReaction
+  impact: Medium
+  minTemp: 335
+  reactants: 
+    SporeBicaridine: 
+      amount: 1.5 
+    PolytrinicAcid: 
+      amount: 2.5
+    SporeAgent: 
+      amount: 2.5
+  products:
+    SporeArmoredAgent: 0.2
+
+- type: reagent
+  id: SporeArmoredAgent
+  name: Укрепляющий Агент
+  group: Toxins
+  desc: Необычное кристальнообразное вещество состоящее из небольших кусочкой и иголочек, фактически является полужидкой субстанцией больше похожее на лёгкую и крайне тонкую ткань.
+  physicalDesc: Крепкое
+  flavor: sharp
+  color: "#a87171"
+  boilingPoint: 55.5
+  meltingPoint: -50.0
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 2.5
+            Cellular: 0.5
+      - !type:Emote
+        emote: Scream
+        probability: 0.7
+
+- type: reaction
+  id: SporePowerAgentReaction
+  impact: Medium
+  minTemp: 335
+  reactants: 
+    Diphenhydramine: 
+      amount: 1.5 
+    SulfuricAcid: 
+      amount: 2.5
+    SporeAgent: 
+      amount: 2.5
+  products:
+    SporePowerAgent: 0.2
+
+- type: reagent
+  id: SporePowerAgent
+  name: Силовой Агент
+  group: Toxins
+  desc: Вещество схожее с адреналином, временно увеличивает физические способности, правда увеличивает исключительно для зараженных организмов.. 
+  physicalDesc: Пылающее
+  flavor: sharp
+  color: "#b64d4d"
+  boilingPoint: 55.5
+  meltingPoint: -50.0
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 2.5
+
+- type: reaction
+  id: SporeTemperedAgentReaction
+  impact: Medium
+  minTemp: 335
+  reactants: 
+    Epinephrine: 
+      amount: 1.5 
+    Ephedrine: 
+      amount: 2.5
+    SporeAgent: 
+      amount: 2.5
+  products:
+    SporeTemperedAgent: 0.2
+
+- type: reagent
+  id: SporeTemperedAgent
+  name: Закалённый Агент
+  group: Toxins
+  desc: Необычное полужидкое вещество вызывающее средний прилив сил исключительно у зараженных. 
+  physicalDesc: Энергичное 
+  flavor: sharp
+  color: "#8d7979"
+  boilingPoint: 55.5
+  meltingPoint: -50.0
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.5
+
+
+# region Выращивание Курганов
+
+
+
+
+
+# region Синтез Кургана уровня 1 
+- type: reagent
+  id: SporeExtractGribnitsy
+  name: Экстракт Грибницы
+  desc: Слизистое и вязкое вещество добываемое из Мицеливых Курганов, при особой смеси способно создать живое существо. 
+  physicalDesc: ужасающее
+  flavor: bitter
+  color: "#503131"
+  boilingPoint: 55.5
+  meltingPoint: -50.0
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.5
+            Cellular: 0.5
+
+- type: reaction
+  id: ReactionSporeCreateLighthouse
+  impact: Low
+  quantized: true
+  minTemp: 374
+  reactants:
+    SporeExtractGribnitsy: # Экстракт Грибницы 
+      amount: 5 
+    SporeExctrate: # Экстракт Спор
+      amount: 1
+    SporeBlood: # Зараженная Кровь
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: SporeLighthouseI
+
+
+# region Синтез Кургана уровня 2 
+- type: reaction
+  id: SporeExtractIIGribnitsyReaction
+  impact: Medium
+  minTemp: 335
+  reactants: 
+    SporeExtractGribnitsy: # Грибница 
+      amount: 2.5
+    UnstableMutagen: # Нестабильный мутаген
+      amount: 1
+  products:
+    SporeExtractIIGribnitsy: 1
+
+- type: reagent
+  id: SporeExtractIIGribnitsy
+  name: Мутированный Экстракт Грибницы
+  desc: Крайне вязкое вещество синтезируемое из простого Экстракта, при особой смеси способно создать мутированное живое существо. 
+  physicalDesc: ужасающее
+  flavor: bitter
+  color: "#724545"
+  boilingPoint: 55.5
+  meltingPoint: -50.0
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.5
+            Cellular: 0.5
+
+- type: reaction
+  id: ReactionSporeCreateLighthouseII
+  impact: Low
+  quantized: true
+  minTemp: 374
+  reactants:
+    SporeExtractIIGribnitsy: # Мутированный Экстракт Грибницы
+      amount: 5 
+    SporeExctrate: # Экстракт Спор
+      amount: 5
+    SporeBlood: # Зараженная Кровь
+      amount: 10
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: SporeLighthouseII

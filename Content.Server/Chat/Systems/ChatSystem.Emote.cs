@@ -6,6 +6,8 @@ using Content.Shared.Chat.Prototypes;
 using Content.Shared.Emoting;
 using Content.Shared.Speech;
 using Robust.Shared.Audio;
+using Robust.Shared.ContentPack; // Horizon
+using Robust.Shared.Utility; // Horizon
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -15,6 +17,7 @@ namespace Content.Server.Chat.Systems;
 public partial class ChatSystem
 {
     [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly IResourceManager _resourceManager = default!; // Horizon
     private FrozenDictionary<string, ImmutableList<EmotePrototype>> _wordEmoteDict = FrozenDictionary<string, ImmutableList<EmotePrototype>>.Empty; // DeltaV - Multiple emotes
 
     protected override void OnPrototypeReload(PrototypesReloadedEventArgs obj)
@@ -28,9 +31,10 @@ public partial class ChatSystem
     {
         var dict = new Dictionary<string, ImmutableList<EmotePrototype>>(); // DeltaV - Multiple triggers for the same emote
         var emotes = _prototypeManager.EnumeratePrototypes<EmotePrototype>();
+        var plainLocKeys = GetPlainEmoteLocKeys(); // Horizon
         foreach (var emote in emotes)
         {
-            foreach (var word in GetEmoteTriggers(emote)) // Horizon: include localized name and action text
+            foreach (var word in GetEmoteTriggers(emote, plainLocKeys)) // Horizon: include localized name and action text
             {
                 var lowerWord = word.ToLower();
                 if (dict.TryGetValue(lowerWord, out var value))
@@ -55,7 +59,7 @@ public partial class ChatSystem
     /// Horizon: chat triggers are English-only, so also accept the emote's localized name and action text
     /// (e.g. "*мяукает", "*прыгает"). Only for emotes that are meant to be triggered from chat at all.
     /// </summary>
-    private IEnumerable<string> GetEmoteTriggers(EmotePrototype emote)
+    private IEnumerable<string> GetEmoteTriggers(EmotePrototype emote, HashSet<string> plainLocKeys)
     {
         if (emote.ChatTriggers.Count == 0)
             yield break;
@@ -67,18 +71,64 @@ public partial class ChatSystem
         var localized = new List<string>(emote.ChatMessages) { emote.Name };
         foreach (var key in localized)
         {
-            // Pass a dummy entity so messages referencing $entity (e.g. via POSS-ADJ) resolve instead of
-            // throwing on an undefined variable; the result is discarded below if it still has placeholders.
-            if (!Loc.TryGetString(key, out var text, ("entity", EntityUid.Invalid)))
+            // Texts with arguments depend on the entity (POSS-ADJ etc.), and resolving them without one logs errors
+            if (!plainLocKeys.Contains(key) || !Loc.TryGetString(key, out var text))
                 continue;
 
             text = TrimPunctuation(text.Trim()).ToLower();
-            // Skip texts with arguments (they depend on the entity) and anything already covered
-            if (text.Length == 0 || text.Contains('{') || text.Contains('$') || !triggers.Add(text))
+            if (text.Length == 0 || !triggers.Add(text))
                 continue;
 
             yield return text;
         }
+    }
+
+    /// <summary>
+    /// Horizon: emote locale keys whose text has no placeables, read straight from the emote .ftl files
+    /// so we never have to resolve a message that needs an entity.
+    /// </summary>
+    private HashSet<string> GetPlainEmoteLocKeys()
+    {
+        var plain = new HashSet<string>();
+        var withArgs = new HashSet<string>();
+
+        foreach (var path in _resourceManager.ContentFindFiles(new ResPath("/Locale/")))
+        {
+            if (path.Extension != "ftl" || !path.Filename.Contains("emote"))
+                continue;
+
+            using var reader = _resourceManager.ContentFileReadText(path);
+            string? currentKey = null;
+            while (reader.ReadLine() is { } line)
+            {
+                if (line.Length == 0 || line.StartsWith('#'))
+                    continue;
+
+                if (char.IsWhiteSpace(line[0]))
+                {
+                    // Continuation of a multiline value
+                    if (currentKey != null && line.Contains('{'))
+                        withArgs.Add(currentKey);
+                    continue;
+                }
+
+                var eq = line.IndexOf('=');
+                if (eq <= 0)
+                {
+                    currentKey = null;
+                    continue;
+                }
+
+                currentKey = line[..eq].Trim();
+                if (line.IndexOf('{', eq) >= 0)
+                    withArgs.Add(currentKey);
+                else
+                    plain.Add(currentKey);
+            }
+        }
+
+        plain.ExceptWith(withArgs);
+        return plain;
     }
 
     /// <summary>
