@@ -61,6 +61,10 @@ public sealed class GasDepositScannerSystem : EntitySystem
     /// </summary>
     private void OnAfterInteract(Entity<GasDepositScannerComponent> entity, ref AfterInteractEvent args)
     {
+        // Horizon: only react to deposits, so a gas analyzer with this component keeps analyzing everything else
+        if (!HasComp<GasDepositComponent>(args.Target))
+            return;
+
         var target = args.Target;
         if (target != null && !_interactionSystem.InRangeUnobstructed((args.User, null), (target.Value, null)))
         {

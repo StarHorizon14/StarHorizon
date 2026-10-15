@@ -10,3 +10,6 @@ flavor-menu-tab-ooc = OOC заметки
 flavor-menu-tab-erp = NSFW описание
 ooc-flavor-text-placeholder = OOC заметки, которые смогут прочитать другие игроки вместе с внешним описанием.
 erp-flavor-text-placeholder = Внешнее описание пикантных деталей персонажа (NSFW).
+flavor-menu-tab-achievements = Достижения
+flavor-no-achievements = Достижений пока нет.
+flavor-achievement-entry = [color=gold]•[/color] { $name }

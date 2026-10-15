@@ -15,6 +15,7 @@
   name: trait-lightweight-name
   description: trait-lightweight-desc
   category: HorizonNegative # Horizon tweak
+  group: TraitAlcohol # Horizon: exclusive with IronStomach
   cost: -1 # Horizon tweak
   components:
   - type: LightweightDrunk

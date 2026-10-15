@@ -95,6 +95,7 @@
 - type: roleLoadout
   id: JobValet
   groups:
+  - ContractorHead # Horizon: same clothing choices as contractors
   - ContractorNeck
   - ValetJumpsuit
   # Horizon start
@@ -102,6 +103,7 @@
   - Bottom
   - Socks
   # Horizon end
+  - ContractorGloves # Horizon
   - ContractorBackpack
   - ValetOuterClothing
   - ValetForcedOuterClothing

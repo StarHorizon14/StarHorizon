@@ -151,7 +151,7 @@ public abstract class SharedBountyContractSystem : EntitySystem
 {
     public const int MaxNameLength = 32;
     public const int MaxVesselLength = 32;
-    public const int MaxDescriptionLength = 256;
+    public const int MaxDescriptionLength = 5000; // Horizon: 256<5000, room for proper ads
     public const int DefaultReward = 5000;
 
     // TODO: move this to prototypes?
