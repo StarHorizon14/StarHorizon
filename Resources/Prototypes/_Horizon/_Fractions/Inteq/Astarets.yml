@@ -1,0 +1,186 @@
+- type: entity
+  save: false
+  name: Урист МакАстартес
+  parent: BaseMobHuman
+  id: MobHumanAstartes
+  components:
+  # Horizon
+  - type: SampleSource
+    availableCellSamples:
+    - protoID: CellSampleHuman
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 4000
+      behaviors:
+      - !type:GibBehavior { }
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical
+      400: Dead
+  - type: Sprite
+    scale: 1.225, 1.225
+  - type: Oni
+    modifiers:
+      coefficients:
+        Blunt: 2
+        Slash: 2
+        Piercing: 2
+        Heat: 2
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    damageCap: 299
+    damage:
+      types:
+        Heat: -0.1
+        Shock: -0.1
+        Cold: -0.1
+      groups:
+        Brute: -0.3
+  - type: Body
+    prototype: Astartes
+    requiredLegs: 2
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      75: 0.95
+      100: 0.9
+      150: 0.8
+      200: 0.6
+      250: 0.5
+  - type: TemperatureSpeed
+    thresholds:
+      293: 0.95
+      280: 0.9
+      260: 0.85
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.2
+
+- type: entity
+  save: false
+  name: Урист МакПримарис
+  parent: BaseMobHuman
+  id: MobHumanPrimaris
+  components:
+  # Horizon
+  - type: SampleSource
+    availableCellSamples:
+    - protoID: CellSampleHuman
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 4000
+      behaviors:
+      - !type:GibBehavior { }
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Critical
+      700: Dead
+  - type: Sprite
+    scale: 1.3, 1.3
+  - type: Oni
+    modifiers:
+      coefficients:
+        Blunt: 5
+        Slash: 5
+        Piercing: 5
+        Heat: 5
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    damageCap: 499
+    damage:
+      types:
+        Heat: -1
+        Shock: -1
+        Cold: -1
+        Poison: -3
+      groups:
+        Brute: -6
+  - type: Body
+    prototype: Astartes
+    requiredLegs: 2
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      175: 0.95
+      200: 0.9
+      350: 0.8
+      400: 0.6
+      450: 0.5
+  - type: TemperatureSpeed
+    thresholds:
+      293: 0.95
+      280: 0.9
+      260: 0.85
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.2
+
+- type: body
+  id: Astartes
+  name: "astartes"
+  root: torso
+  slots:
+    head:
+      part: HeadHuman
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+        tongue: OrganHumanTongue
+        eye_implant: null # Horizon
+        cyberdeka_implant: null # Horizon
+    torso:
+      part: TorsoHuman
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganBsHeart
+        lungs: OrganBsLungs
+        stomach: OrganBsStomach
+        liver: OrganBsLiver
+        kidneys: OrganBsKidneys
+        vessels_implant: VesselsImplant
+        blood_pump_implant: BloodPumpImplant
+        skin_implant: UpgradedSubcutaneousArmor
+        bone_implant: BoneHeavyImplant
+        cavity: null # Horizon
+    right arm:
+      part: RightArmHuman
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmHuman
+      connections:
+      - left hand
+
+    right hand:
+      part: RightHandHuman
+      organs:
+        hands_implant: null # _Horizon
+    left hand:
+      part: LeftHandHuman
+      organs:
+        hands_implant: null # _Horizon
+
+    right leg:
+      part: RightLegHuman
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegHuman
+      connections:
+      - left foot
+    right foot:
+      part: RightFootHuman
+    left foot:
+      part: LeftFootHuman

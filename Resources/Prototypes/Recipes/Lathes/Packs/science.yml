@@ -127,6 +127,7 @@
   - HamtrPeripheralsElectronics
 
 - type: latheRecipePack
+  parent: SecurityBoards # Frontier: spammable shuttle guns
   id: ShuttleBoards
   recipes:
   - ShuttleConsoleCircuitboard

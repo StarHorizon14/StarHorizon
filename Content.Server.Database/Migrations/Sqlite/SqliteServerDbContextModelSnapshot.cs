@@ -898,6 +898,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("char_name");
 
+                    b.Property<string>("ERPFlavorText")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("erpflavor_text");
+
                     b.Property<int>("ErpStatus")
                         .HasColumnType("INTEGER")
                         .HasColumnName("erp_status");

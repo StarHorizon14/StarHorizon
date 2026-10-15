@@ -98,3 +98,29 @@
   - type: Wires
     boardName: wires-board-name-computer
     layoutId: ComputerAi
+
+- type: entity
+  parent: BaseComputer
+  id: BaseComputerText
+  name: компьютер
+  # abstract: true
+  # categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    editingDisabled: True
+    content: "[color=#00ff00][/color]" 
+    # зеленый нада
+  - type: PaperLabelType
+  - type: ActivatableUI
+    key: enum.PaperUiKey.Key
+    requiresComplex: false
+  - type: UserInterface
+    interfaces:
+      enum.PaperUiKey.Key:
+        type: PaperBoundUserInterface
+  - type: FaxableObject
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/Interface/Paper/computer_background.png"
+    backgroundPatchMargin: 4.0, 4.0, 4.0, 4.0
+    contentMargin: 4.0, 4.0, 4.0, 4.0
+    maxWritableArea: 460.0, 250.0

@@ -1,0 +1,48 @@
+{
+    "version": 1,
+  "license": "CLA with hosting restrictions",
+  "copyright": "Sprited by Xigovir DS:623559319543349268",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "flame",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "icon"
+        },
+        {
+            "name": "open"
+        },
+        {
+            "name": "top"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-lit",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left-lit",
+            "directions": 4
+        }
+    ]
+}

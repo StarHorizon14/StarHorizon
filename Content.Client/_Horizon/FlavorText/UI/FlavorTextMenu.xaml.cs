@@ -17,22 +17,26 @@ public sealed partial class FlavorTextMenu : FancyWindow
         BottomCloseButton.OnPressed += args => Close();
 
         TabContainer.SetTabTitle(0, Loc.GetString("flavor-menu-tab-ic"));
-        TabContainer.SetTabTitle(1, Loc.GetString("flavor-menu-tab-ooc"));
-        TabContainer.SetTabTitle(2, Loc.GetString("flavor-menu-tab-achievements")); // Horizon
+        TabContainer.SetTabTitle(1, Loc.GetString("flavor-menu-tab-erp"));
+        TabContainer.SetTabTitle(2, Loc.GetString("flavor-menu-tab-ooc"));
+        TabContainer.SetTabTitle(3, Loc.GetString("flavor-menu-tab-achievements")); // Horizon
     }
 
-    public void Populate(EntityUid? ent, string name, string icDesc, string oocDesc, ErpStatus erp, IReadOnlyList<string> achievements)
+    public void Populate(EntityUid? ent, string name, string icDesc, string erpDesc, string oocDesc, ErpStatus erp, IReadOnlyList<string> achievements)
     {
         IcSprite.SetEntity(ent);
         OocSprite.SetEntity(ent);
+        ErpSprite.SetEntity(ent);
         AchievementsSprite.SetEntity(ent); // Horizon
 
         IcNameLabel.SetMarkup(name);
         OocNameLabel.SetMarkup(name);
+        ErpNameLabel.SetMarkup(name);
         AchievementsNameLabel.SetMarkup(name); // Horizon
 
         ICDescriptionLabel.SetMarkup(icDesc != string.Empty ? icDesc : Loc.GetString("flavor-no-ic-desc"));
         OOCDescriptionLabel.SetMarkup(oocDesc != string.Empty ? oocDesc : Loc.GetString("flavor-no-ooc-desc"));
+        ErpDescriptionLabel.SetMarkup(erpDesc != string.Empty ? erpDesc : Loc.GetString("flavor-no-erp-desc"));
         ErpStatusLabel.SetMarkup(Loc.GetString($"erp-status-{erp}-flavor"));
 
         // Horizon: achievements are admin-granted and carried over between rounds
