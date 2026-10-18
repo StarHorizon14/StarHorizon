@@ -867,6 +867,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (listing is null)
             TryComp(uid, out listing);
 
+        // If the ID card's job is restricted from shipyard purchases, treat every vessel as if access were denied.
+        var jobPurchaseRestricted = TryComp<IdCardComponent>(targetId, out var idCardComponent)
+            && idCardComponent.JobPrototype is { } jobProtoId
+            && _prototypeManager.TryIndex(jobProtoId, out var jobPrototype)
+            && jobPrototype.ShipyardPurchaseRestricted;
+
         // Construct access set from input type (voucher or ID card)
         IDShipAccesses accesses;
         bool initialHasAccess = true;
@@ -897,9 +903,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
-            bool hasAccess = initialHasAccess;
+            bool hasAccess = initialHasAccess && !jobPurchaseRestricted;
             // If the vessel needs access to be bought, check the user's access.
-            if (!string.IsNullOrEmpty(vessel.Access))
+            if (!jobPurchaseRestricted && !string.IsNullOrEmpty(vessel.Access))
             {
                 hasAccess = false;
                 // Check tags
