@@ -91,7 +91,7 @@
   productEntity: ClothingOuterHardsuitNfsdCommand
   icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_command.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 10
+    FrontierUplinkCoin: 15
   categories:
     - UplinkSecurityHardsuits
   conditions:
@@ -104,6 +104,8 @@
         - Bailiff
         - SeniorOfficer
         - Sheriff
+    - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: UplinkSecurityHardsuitSheriff
@@ -112,7 +114,7 @@
   productEntity: ClothingOuterHardsuitNfsdSheriff
   icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 3
+    FrontierUplinkCoin: 15
   categories:
     - UplinkSecurityHardsuits
   conditions:
@@ -123,6 +125,8 @@
     - !type:BuyerJobCondition
       whitelist:
         - Sheriff
+    - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: UplinkSecurityHardsuitSyndieReverseEngineered
