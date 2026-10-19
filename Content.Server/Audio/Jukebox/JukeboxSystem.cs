@@ -1,3 +1,4 @@
+using System.Linq; // Horizon
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Audio.Jukebox;
@@ -73,25 +74,10 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             // Frontier: Shuffling feature.
             if (component.PlaybackMode == JukeboxPlaybackMode.Shuffle && !component.FirstPlay)
             {
-                if (!TryComp<ContainerManagerComponent>(uid, out var containers))
-                    return;
-
-                // Build a list of music available in the jukebox
-                HashSet<ProtoId<JukeboxPrototype>> availableMusic = new();
-
-                foreach (var container in containers.Containers.Values)
-                {
-                    foreach (var ent in container.ContainedEntities)
-                    {
-                        if (!TryComp(ent, out JukeboxContainerComponent? tracklist))
-                            continue;
-
-                        foreach (var trackID in tracklist.Tracks)
-                        {
-                            availableMusic.Add(trackID);
-                        }
-                    }
-                }
+                // Horizon: every track is available, records are no longer needed
+                var availableMusic = _protoManager.EnumeratePrototypes<JukeboxPrototype>()
+                    .Select(proto => new ProtoId<JukeboxPrototype>(proto.ID))
+                    .ToHashSet();
 
                 // prevent repeats
                 availableMusic.Remove(component.SelectedSongId!.Value);

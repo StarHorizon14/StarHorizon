@@ -70,6 +70,7 @@
             StationRepresentative: [ -1, -1 ]
             StationTrafficController: [ -1, -1 ]
             MailCarrier: [ -1, -1 ]
+            AnCoMercenary: [ -1, -1 ]
             Valet: [ -1, -1 ]
             NFJanitor: [ -1, -1 ]
             # NF — NFSD

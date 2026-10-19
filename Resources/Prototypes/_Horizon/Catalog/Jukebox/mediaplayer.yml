@@ -1,0 +1,19 @@
+# Horizon: media player tracks for the jukebox, so both share one playlist.
+
+- type: jukebox
+  id: Callista
+  name: "Saki Kaska - Callista"
+  path:
+    path: /Audio/_Horizon/Jukebox/Saki-Kaska-Callista.ogg
+
+- type: jukebox
+  id: TechnoMadness
+  name: "Jesse Allen - Techno Madness"
+  path:
+    path: /Audio/_Horizon/Jukebox/Jesse-Allen-Techno-Madness.ogg
+
+- type: jukebox
+  id: SweetGingerGreen
+  name: "Boss Battle Records - Sweet Ginger Green"
+  path:
+    path: /Audio/_Horizon/Jukebox/SweetGingerGreen.ogg

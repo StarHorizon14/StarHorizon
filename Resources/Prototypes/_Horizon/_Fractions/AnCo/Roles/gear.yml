@@ -78,3 +78,12 @@
     shoes: AnCoBoots
     id: PDACounselorAnCo
     ears: ClothingHeadsetAnCo
+
+- type: startingGear
+  id: BaseAnCoGear
+  equipment:
+    pocket1: AnCoJobUplink
+    pocket2: AnCoFlippo
+    eyes: ClothingEyesGlassesAnCoAgent
+    wallet: ClothingWalletAnCo
+    id: PDAContractorAnCo

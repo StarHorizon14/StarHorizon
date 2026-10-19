@@ -32,6 +32,17 @@
   extraLanguageSlots: 1
 
 - type: trait
+  id: IronStomach
+  name: trait-iron-stomach-name
+  description: trait-iron-stomach-desc
+  category: HorizonPositive
+  group: TraitAlcohol
+  cost: 1
+  components:
+  - type: LightweightDrunk # same mechanic as the lightweight trait, but weaker booze
+    boozeStrengthMultiplier: 0.5
+
+- type: trait
   id: PryingArm
   name: trait-prying-name
   description: trait-prying-desc

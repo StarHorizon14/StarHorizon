@@ -589,3 +589,6 @@
 
 - type: Tag
   id: SpeedLoader44Magnum
+
+- type: Tag
+  id: Telecrystal # Horizon: lets telecrystals go in wallets

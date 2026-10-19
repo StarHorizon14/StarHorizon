@@ -117,6 +117,11 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
             return;
         }
 
+        // The category dropdown's default selection is applied programmatically and never
+        // fires OnItemSelected, so the recipe selection bitset may not exist yet.
+        if (clientLathe.CurrentRecipes == null)
+            clientLathe.CurrentRecipes = new int[recipeBitset.Length];
+
         // Find bits in the bitset, add recipes for our current blueprint type.
         for (int i = 0; i < recipeBitset.Length; i++)
         {

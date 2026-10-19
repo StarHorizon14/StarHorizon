@@ -265,7 +265,7 @@
     - MaintenanceJack
     - JawsOfLife
     - PowerDrill
-    - MaintenanceJack
+    - GasAnalyzer # Horizon: was a duplicate maintenance jack
 
 - type: entity
   id: RightArmCyberEngi
@@ -292,7 +292,7 @@
     - MaintenanceJack
     - JawsOfLife
     - PowerDrill
-    - MaintenanceJack
+    - GasAnalyzer # Horizon: was a duplicate maintenance jack
 
 # region Atmospheric
 

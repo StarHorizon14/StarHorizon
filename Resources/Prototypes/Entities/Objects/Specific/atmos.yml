@@ -19,6 +19,9 @@
     interfaces:
       enum.GasAnalyzerUiKey.Key:
         type: GasAnalyzerBoundUserInterface
+      enum.GasDepositScannerUiKey.Key: # Horizon: scan gas deposits
+        type: GasDepositScannerBoundUserInterface
+  - type: GasDepositScanner # Horizon
   - type: Appearance
   - type: GenericVisualizer
     visuals:

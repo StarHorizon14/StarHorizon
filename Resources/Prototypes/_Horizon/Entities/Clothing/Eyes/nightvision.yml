@@ -24,7 +24,7 @@
 - type: entity
   name: прибор ночного видения синдиката
   id: ClothingEyesVisionSyndicate
-  parent: ClothingEyesVision
+  parent: [ClothingEyesVision, BaseC3SyndicateContraband] # Horizon: syndicate gear
   description: Прибор ночного видения, использующийся оперативниками Синдиката.
   components:
   - type: Item

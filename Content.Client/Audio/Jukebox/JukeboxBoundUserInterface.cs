@@ -79,30 +79,8 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 
     public void PopulateMusic()
     {
-        //_menu?.Populate(_protoManager.EnumeratePrototypes<JukeboxPrototype>());
-        // Frontier: Music Discs
-        if (!EntMan.TryGetComponent<ContainerManagerComponent>(Owner, out var containers))
-            return;
-
-        HashSet<JukeboxPrototype> availableMusic = new();
-
-        foreach (var container in containers.Containers.Values)
-        {
-            foreach (var ent in container.ContainedEntities)
-            {
-                if (!EntMan.TryGetComponent(ent, out JukeboxContainerComponent? tracklist))
-                    continue;
-
-                foreach (var trackID in tracklist.Tracks)
-                {
-                    if (_protoManager.TryIndex<JukeboxPrototype>(trackID, out var track))
-                        availableMusic.Add(track);
-                }
-            }
-        }
-
-        _menu?.Populate(availableMusic);
-        // End Frontier: Music Discs
+        // Horizon: every track is available, records are no longer needed
+        _menu?.Populate(_protoManager.EnumeratePrototypes<JukeboxPrototype>());
     }
 
     public void SelectSong(ProtoId<JukeboxPrototype> songid)
