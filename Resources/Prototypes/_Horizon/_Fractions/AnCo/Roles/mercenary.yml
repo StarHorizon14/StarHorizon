@@ -1,0 +1,42 @@
+- type: playTimeTracker
+  id: JobAnCoMercenary
+
+- type: job
+  id: AnCoMercenary
+  name: job-name-anco-mercenary
+  description: job-description-anco-mercenary
+  playTimeTracker: JobAnCoMercenary
+  salary: 5000
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10 # бугагага
+  icon: "JobIconContractorAnCo"
+  supervisors: job-supervisors-hire
+  weight: 3 # Prioritize station & department jobs
+  displayWeight: 20 # Second from the bottom
+  shipyardPurchaseRestricted: true
+  access:
+  - Mercenary
+  - AnCo
+  accessGroups:
+  - GeneralAccess
+  forceFaction: FactionAnCo
+  startingGear: BaseAnCoGear
+  whitelisted: false # бугагага
+  alwaysUseSpawner: true
+  setPreference: true
+  newPlayerMessage: false
+  special:
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddImplantSpecial
+    implants: [ AnCoImplantCorpLang ]
+
+- type: entity
+  id: SpawnPointAnCoMercenary
+  parent: SpawnPointPassenger
+  name: наемник АнКо
+  components:
+  - type: SpawnPoint
+    job_id: AnCoMercenary

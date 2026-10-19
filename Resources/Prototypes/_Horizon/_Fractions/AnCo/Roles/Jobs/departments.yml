@@ -1,0 +1,8 @@
+- type: department
+  id: Anrox
+  name: Корпоративные силы
+  description: Выполняйте контракты внешних клиентов.
+  color: "#f05a5a"
+  weight: 90 # accounted for in jobs
+  roles:
+  - AnCoMercenary
