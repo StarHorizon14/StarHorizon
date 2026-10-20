@@ -429,11 +429,11 @@
             - MagazinePistolTopSubMachineGun
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol9x17
+        startingItem: CartridgePistol57x28
         priority: 1
         whitelist:
           tags:
-            - CartridgePistol9x17
+            - CartridgePistol57x28
   - type: MagazineVisuals
     magState: mag
     steps: 6
