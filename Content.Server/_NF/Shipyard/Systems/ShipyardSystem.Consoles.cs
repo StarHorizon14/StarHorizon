@@ -47,6 +47,7 @@ using Content.Server._Horizon.Shipyard;
 using Content.Shared._Lua.Shipyard.BUIStates;
 using Content.Shared.Stacks;
 using Content.Server._Horizon.SponsorManager;
+using Content.Shared.Roles;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -110,14 +111,24 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (idCard is not null
-            && idCard.JobPrototype is { } purchaseJobProtoId
-            && _prototypeManager.TryIndex(purchaseJobProtoId, out var purchaseJobPrototype)
-            && purchaseJobPrototype.ShipyardPurchaseRestricted)
+        if (idCard is not null)
         {
-            ConsolePopup(player, Loc.GetString("comms-console-permission-denied"));
-            PlayDenySound(player, shipyardConsoleUid, component);
-            return;
+            string purchaseJobProtoId = idCard.JobPrototype ?? string.Empty;
+            if (TryComp<StationRecordKeyStorageComponent>(targetId, out var purchaseKeyStorage)
+                && purchaseKeyStorage.Key is { } purchaseRecordKey
+                && _records.TryGetRecord<GeneralStationRecord>(purchaseRecordKey, out var purchaseRecord))
+            {
+                purchaseJobProtoId = purchaseRecord.JobPrototype;
+            }
+
+            if (!string.IsNullOrEmpty(purchaseJobProtoId)
+                && _prototypeManager.TryIndex<JobPrototype>(purchaseJobProtoId, out var purchaseJobPrototype)
+                && purchaseJobPrototype.ShipyardPurchaseRestricted)
+            {
+                ConsolePopup(player, Loc.GetString("comms-console-permission-denied"));
+                PlayDenySound(player, shipyardConsoleUid, component);
+                return;
+            }
         }
 
         if (component.ParkingConsole) // Lua
