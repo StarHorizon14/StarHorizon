@@ -45886,22 +45886,6 @@ entities:
     - type: Transform
       pos: 21.5,31.5
       parent: 1
-- proto: Telecrystal
-  entities:
-  - uid: 5051
-    components:
-    - type: Transform
-      parent: 5050
-    - type: Physics
-      canCollide: False
-- proto: Telecrystal10
-  entities:
-  - uid: 5057
-    components:
-    - type: Transform
-      parent: 5056
-    - type: Physics
-      canCollide: False
 - proto: TeslaToy
   entities:
   - uid: 5754
