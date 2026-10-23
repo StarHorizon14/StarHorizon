@@ -105,7 +105,7 @@
         - SeniorOfficer
         - Sheriff
     - !type:ListingLimitedStockCondition
-    stock: 1
+      stock: 1
 
 - type: listing
   id: UplinkSecurityHardsuitSheriff
@@ -126,7 +126,7 @@
       whitelist:
         - Sheriff
     - !type:ListingLimitedStockCondition
-    stock: 1
+      stock: 1
 
 - type: listing
   id: UplinkSecurityHardsuitSyndieReverseEngineered

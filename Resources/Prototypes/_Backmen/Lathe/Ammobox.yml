@@ -14,13 +14,6 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazinePistolTopSubMachineGun
-  result: MagazinePistolTopSubMachineGun
-  materials:
-    Steel: 500
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
   id: MagazinePistolSubMachineGunVector45ACP
   result: MagazinePistolSubMachineGunVector45ACP
   materials:
@@ -141,27 +134,6 @@
   parent: BaseAmmoRecipe
   id: MagazineBoxHeavyRifle
   result: MagazineBoxHeavyRifle
-  materials:
-    Steel: 900
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxRifle762x39
-  result: MagazineBoxRifle762x39
-  materials:
-    Steel: 900
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxRifle556UEG
-  result: MagazineBoxRifle556UEG
-  materials:
-    Steel: 900
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxRifle762UEG
-  result: MagazineBoxRifle762UEG
   materials:
     Steel: 900
 
@@ -352,13 +324,6 @@
   parent: BaseAmmoRecipe
   id: MagazineBoxRifle762x39
   result: MagazineBoxRifle762x39
-  materials:
-    Steel: 1500
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxRifle762UEG
-  result: MagazineBoxRifle762UEG
   materials:
     Steel: 1500
 
