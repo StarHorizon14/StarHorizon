@@ -13,23 +13,26 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
   - type: PressureProtection
-    highPressureMultiplier: 0.01 #horizon
+    highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: FireProtection
-    reduction: 0.1 #horizon
+    reduction: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
     modifiers:
-      coefficients:#horizon
+      coefficients:
         Blunt: 0.9
-        Heat: 0.1
-        Radiation: 0.25
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.8
+        Radiation: 0.5
   - type: ClothingSpeedModifier
-    sprintModifier: 0.1 #horizon
+    walkModifier: 0.7
+    sprintModifier: 0.7
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitAtmos
@@ -57,14 +60,16 @@
     damageCoefficient: 0.5
   - type: Armor
     modifiers:
-      coefficients: #horizon
-        Blunt: 0.8
-        Slash: 0.8
-        Shock: 0.2
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Shock: 0.8
+        Caustic: 0.5
         Radiation: 0.2
   - type: ClothingSpeedModifier
-    walkModifier: 0.2
-    sprintModifier: 0.2
+    walkModifier: 0.7
+    sprintModifier: 0.7
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitEngineering
@@ -212,10 +217,10 @@
     damageCoefficient: 0.8
   - type: Armor
     modifiers:
-      coefficients: #horizon
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.6
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
         Heat: 0.3
         Radiation: 0.1
         Caustic: 0.8 # Horizon
@@ -390,10 +395,11 @@
     damageCoefficient: 0.2
   - type: Armor
     modifiers:
-      coefficients: #horizon
-        Blunt: 0.9
-        Slash: 0.9
-        Heat: 0.7
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.4
         Radiation: 0.01 # 95 процентов маловато от рады, учитывая что элитка в общей доступности
         Caustic: 0.7
   - type: ClothingSpeedModifier
@@ -427,7 +433,11 @@
     lowPressureMultiplier: 1000
   - type: Armor # Frontier: Goal of changing armor values of CMO suit is for it to act as an upgrade to the Merc Bio-Suit, specialized for fighting zombies
     modifiers:
-      coefficients: #horizon
+      coefficients:
+        Blunt: 0.9 # Frontier: Added
+        Slash: 0.75 # Frontier: Added
+        Piercing: 0.95 # Frontier: Added
+        Heat: 0.9 # Frontier: Added
         Caustic: 0.1
         Poison: 0.5 # Frontier: Added
   - type: ZombificationResistance
@@ -460,18 +470,18 @@
     lowPressureMultiplier: 1000
   - type: Armor
     modifiers:
-      coefficients: #horizon
-        Blunt: 0.5
+      coefficients:
+        Blunt: 0.6
         Slash: 0.8
         Piercing: 0.9
-        Heat: 0.5
-        Radiation: 0.08
+        Heat: 0.3
+        Radiation: 0.1
         Caustic: 0.2
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: ClothingSpeedModifier
-    walkModifier: 0.8 #horizon
-    sprintModifier: 0.8 #horizon
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: HeldSpeedModifier
   - type: Item
     size: Huge
@@ -553,7 +563,7 @@
         Slash: 0.8
         Piercing: 0.9
         Heat: 0.9
-        Radiation: 0.25 #horizon
+        Radiation: 0.5
         Caustic: 0.8
   - type: ClothingSpeedModifier
     walkModifier: 0.9
@@ -594,7 +604,7 @@
         Caustic: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.9
-    sprintModifier: 0.85 # боевой бронированный пусть хоть чувствуется замедление
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndie
@@ -660,23 +670,23 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: FireProtection
-    reduction: 0.9 # в целом скафандр под такого огнеметчика
-  - type: StaminaResistance 
-    damageCoefficient: 0.5
+    reduction: 0.8
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.6
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.6
         Slash: 0.6
-        Piercing: 0.65
+        Piercing: 0.6
         Heat: 0.2
         Radiation: 0.01
         Caustic: 0.5
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
-    walkModifier: 0.95 #без замедла слишком жирно
-    sprintModifier: 0.9 
+    walkModifier: 1.0
+    sprintModifier: 1.0
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
@@ -737,9 +747,9 @@
     damageCoefficient: 0.6
   - type: Armor
     modifiers:
-      coefficients: # horizon
-        Blunt: 0.5
-        Slash: 0.5
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
         Piercing: 0.3
         Heat: 0.5
         Radiation: 0.25
@@ -1120,9 +1130,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.5
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.6
         Heat: 0.1
         Cold: 0.1
         Shock: 0.1
@@ -1157,10 +1167,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.95
-        Caustic: 0.85
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Caustic: 0.8
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
