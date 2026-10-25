@@ -1,0 +1,10 @@
+- type: entity
+  name: hub spawn point
+  id: HubSpawnPoint
+  parent: MarkerBase
+  suffix: Horizon Hub Spawn
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    state: green
+  - type: HubSpawnPoint

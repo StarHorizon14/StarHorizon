@@ -3,6 +3,10 @@ using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
 using Content.Client.Lobby;
 using Content.Client.RoundEnd;
+// StarHorizon-Start
+using Content.Client._Horizon.Hub;
+using Content.Shared._Horizon.Hub;
+// StarHorizon-End
 using Content.Shared.GameTicking;
 using Content.Shared.GameWindow;
 using JetBrains.Annotations;
@@ -60,6 +64,10 @@ namespace Content.Client.GameTicking.Managers
 
             SubscribeNetworkEvent<TickerJoinLobbyEvent>(JoinLobby);
             SubscribeNetworkEvent<TickerJoinGameEvent>(JoinGame);
+            // StarHorizon-Start
+            SubscribeNetworkEvent<HubEnteredEvent>(HubEntered);
+            SubscribeNetworkEvent<HubLeftEvent>(HubLeft);
+            // StarHorizon-End
             SubscribeNetworkEvent<TickerConnectionStatusEvent>(ConnectionStatus);
             SubscribeNetworkEvent<TickerLobbyStatusEvent>(LobbyStatus);
             SubscribeNetworkEvent<TickerLobbyInfoEvent>(LobbyInfo);
@@ -140,6 +148,18 @@ namespace Content.Client.GameTicking.Managers
         {
             _stateManager.RequestStateChange<GameplayState>();
         }
+
+        // StarHorizon-Start
+        private void HubEntered(HubEnteredEvent message)
+        {
+            _stateManager.RequestStateChange<HubGameplayState>();
+        }
+
+        private void HubLeft(HubLeftEvent message)
+        {
+            _stateManager.RequestStateChange<GameplayState>();
+        }
+        // StarHorizon-End
 
         private void LobbyCountdown(TickerLobbyCountdownEvent message)
         {

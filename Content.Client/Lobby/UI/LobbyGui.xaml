@@ -52,7 +52,7 @@
                     <Control VerticalExpand="True" />
                     <!-- Left Bot Panel -->
                     <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                        <info:DevInfoBanner Name="DevInfoBanner" VerticalExpand="false" Margin="3 3 3 3" />
+                        <info:DevInfoBanner Name="DevInfoBanner" Access="Public" VerticalExpand="false" Margin="3 3 3 3" />
                         <PanelContainer StyleClasses="AngleRect">
                             <RichTextLabel Name="LobbySong" Access="Public" HorizontalAlignment="Center" />
                         </PanelContainer>
@@ -103,6 +103,7 @@
                     <widgets:ChatBox Name="Chat" Access="Public" VerticalExpand="True" Margin="3 3 3 3" MinHeight="50" />
                 </BoxContainer>
                 <TextureButton Name="CollapseButton"
+                                Access="Public"
                                 TexturePath="filled_right_arrow.svg.192dpi"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
@@ -118,6 +119,7 @@
                         Margin="0 2 2 0"
                         Visible="False">
             <TextureButton Name="ExpandButton"
+                        Access="Public"
                         TexturePath="filled_left_arrow.svg.192dpi"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"

@@ -143,7 +143,7 @@ public sealed partial class ContentAudioSystem
     /// <summary>
     /// Re-starts playing lobby music from playlist, last sent from server. if there is currently none - does nothing.
     /// </summary>
-    private void StartLobbyMusic()
+    public void StartLobbyMusic() // StarHorizon
     {
         if (_lobbyPlaylist == null || _lobbyPlaylist.Length == 0)
         {
@@ -199,7 +199,7 @@ public sealed partial class ContentAudioSystem
         _lobbySoundtrackChanged?.Invoke(lobbySongChangedEvent);
     }
 
-    private void EndLobbyMusic()
+    public void EndLobbyMusic() // StarHorizon
     {
         if (_lobbySoundtrackInfo == null)
         {

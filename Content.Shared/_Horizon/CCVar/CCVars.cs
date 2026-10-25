@@ -138,5 +138,29 @@ namespace Content.Shared._Horizon.CCVar
         public static readonly CVarDef<bool> EvacBlocked =
             CVarDef.Create("shuttle.evac_blocked", true, CVar.SERVERONLY);
 
+        // StarHorizon-Start
+        /*
+         * Хаб в лобби
+         */
+
+        /// <summary>
+        /// Включает интерактивный хаб вместо статичного фона в главном меню/лобби.
+        /// </summary>
+        public static readonly CVarDef<bool> HubEnabled =
+            CVarDef.Create("lobbyhub.enabled", true, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Одевать ли куклу игрока на хабе по её текущему лоадауту.
+        /// </summary>
+        public static readonly CVarDef<bool> HubEnableGear =
+            CVarDef.Create("lobbyhub.enable_gear", true, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Общий ли хаб для всех игроков (одна карта на всех вместо приватных инстансов).
+        /// </summary>
+        public static readonly CVarDef<bool> HubShared =
+            CVarDef.Create("lobbyhub.shared", false, CVar.SERVERONLY);
+        // StarHorizon-End
+
     }
 }

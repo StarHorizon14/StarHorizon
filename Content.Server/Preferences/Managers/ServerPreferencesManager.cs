@@ -9,6 +9,7 @@ using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -80,6 +81,11 @@ namespace Content.Server.Preferences.Managers
             {
                 await _db.SaveSelectedCharacterIndexAsync(message.MsgChannel.UserId, message.SelectedCharacterIndex);
             }
+
+            // StarHorizon-Start
+            if (_playerManager.TryGetSessionById(userId, out var selectSession) && curPrefs.Characters.TryGetValue(index, out var selectedProfile))
+                _entityManager.EventBus.RaiseEvent(EventSource.Local, new PlayerProfileUpdatedEvent(selectSession, index, selectedProfile));
+            // StarHorizon-End
         }
 
         private async void HandleUpdateCharacterMessage(MsgUpdateCharacter message)
@@ -141,6 +147,11 @@ namespace Content.Server.Preferences.Managers
 
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
+
+            // StarHorizon-Start
+            if (slot == curPrefs.SelectedCharacterIndex)
+                _entityManager.EventBus.RaiseEvent(EventSource.Local, new PlayerProfileUpdatedEvent(session, slot, profile));
+            // StarHorizon-End
         }
 
         public async Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites)
@@ -456,4 +467,20 @@ namespace Content.Server.Preferences.Managers
         }
     }
     // End Frontier
+
+    // StarHorizon-Start
+    public sealed class PlayerProfileUpdatedEvent : EntityEventArgs
+    {
+        public readonly ICommonSession Session;
+        public readonly int Slot;
+        public readonly ICharacterProfile Profile;
+
+        public PlayerProfileUpdatedEvent(ICommonSession session, int slot, ICharacterProfile profile)
+        {
+            Session = session;
+            Slot = slot;
+            Profile = profile;
+        }
+    }
+    // StarHorizon-End
 }
