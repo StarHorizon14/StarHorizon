@@ -1,0 +1,34 @@
+- type: entity
+  id: ComputerDerelictYard
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
+  name: derelict yard console
+  description: Sells abandoned shuttles to be taken apart. The wreck is gone when the lease runs out.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_scrap
+    - map: ["computerLayerKeyboard"]
+      state: scrap_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_scrap
+    - map: ["computerLayerKeys"]
+      state: scrap_key
+  - type: DerelictYardConsole
+    vessels:
+    - DerelictSmallShip
+    - DerelictMiner
+    - DerelictSyndicate
+    - DerelictCargo
+    - DerelictCrashed
+    - DerelictHauler
+    - DerelictEmergency
+    - DerelictWhiteship
+    - DerelictKvazar
+  - type: ActivatableUI
+    key: enum.DerelictYardUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.DerelictYardUiKey.Key:
+        type: DerelictYardBoundUserInterface

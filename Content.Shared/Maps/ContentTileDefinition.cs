@@ -1,5 +1,6 @@
 using Content.Shared.Atmos;
 using Content.Shared.Light.Components;
+using Content.Shared.Materials; // Horizon: tile material composition
 using Content.Shared.Movement.Systems;
 using Content.Shared.Tools;
 using Robust.Shared.Audio;
@@ -8,6 +9,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary; // Horizon: tile material composition
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Maps
@@ -123,6 +125,14 @@ namespace Content.Shared.Maps
         /// Is this tile immune to RCD deconstruct.
         /// </summary>
         [DataField("indestructible")] public bool Indestructible = false;
+
+        // Horizon: ported from space-wizards/space-station-14#43651
+        /// <summary>
+        /// The materials this tile is made of, used when the tile is reclaimed (e.g. by a tile reclaimer).
+        /// </summary>
+        [DataField("materialComposition", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<int, MaterialPrototype>))]
+        public Dictionary<string, int> MaterialComposition = new();
+        // End Horizon
 
         public void AssignTileId(ushort id)
         {

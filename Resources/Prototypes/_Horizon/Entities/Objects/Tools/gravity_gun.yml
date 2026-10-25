@@ -1,0 +1,42 @@
+# Shipbreaking gravity gun: the tether gun, strong enough for scrap. It does not drag grids, see WeaponGridGravityGun.
+- type: entity
+  id: WeaponGravityGun
+  parent: WeaponTetherGun
+  name: gravity gun
+  description: Manipulates gravity to move scrap and hulls.
+  components:
+  - type: TetherGun
+    massLimit: 5000
+    maxForce: 3000
+  - type: Clothing
+    sprite: _Horizon/Objects/Tools/gravity_gun.rsi
+    quickEquip: false
+    slots:
+    - belt
+  - type: Sprite
+    sprite: _Horizon/Objects/Tools/gravity_gun.rsi
+    layers:
+    - state: icon
+    - state: grav_pull
+      map: [ "unshaded" ]
+      shader: unshaded
+      visible: false
+  - type: ToggleableVisuals
+    spriteLayer: unshaded
+    inhandVisuals:
+      left:
+      - state: inhand-left-flame
+        shader: unshaded
+      right:
+      - state: inhand-right-flame
+        shader: unshaded
+
+# The gravity gun that drags whole grids: everything the gravity gun does, and holding the use key over a grid moves it
+# with the cursor, the way the griddrag command does.
+- type: entity
+  id: WeaponGridGravityGun
+  parent: WeaponGravityGun
+  name: grid gravity gun
+  description: A heavy gravity gun that takes whole hulls and drags them where you point.
+  components:
+  - type: GridDragGun

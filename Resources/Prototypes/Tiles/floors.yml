@@ -15,6 +15,8 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteel
   heatCapacity: 10000
+  materialComposition: # Horizon: #43651
+    Steel: 100
 
 - type: tile
   id: FloorSteelCheckerLight

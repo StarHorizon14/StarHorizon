@@ -1,0 +1,43 @@
+# Breaching charge: hang it on the edge of a tile (also next to a wall) and it cuts a line of 5 seams along that edge
+# after 10 seconds. It breaks nothing: walls and furniture stay, the floor gets a gap that shows over them too.
+# Sprites are placeholders (C-4).
+- type: entity
+  id: BreachCharge
+  parent: BaseItem
+  name: breaching charge
+  description: A shaped charge that cuts a line of seams in the floor along the edge it is hung on.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/c4.rsi
+    state: icon
+  - type: BreachCharge
+
+# The charge when it hangs on an edge. Not an item: it cannot be picked up.
+- type: entity
+  id: BreachChargeArmed
+  name: breaching charge
+  description: A shaped charge that is about to cut a line of seams in the floor.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/c4.rsi
+    state: primed
+    drawdepth: Mobs
+  - type: ArmedBreachCharge
+    keysIn: [ timer ] # the output of the timer below
+  - type: TimerTrigger
+    delay: 10
+    beepInterval: 1
+    initialBeepDelay: 0
+    popup: null
+    examinable: false
+    beepSound:
+      path: /Audio/Machines/Nuke/general_beep.ogg
+  - type: EmitSoundOnTrigger
+    positional: true
+    sound:
+      path: /Audio/Effects/explosion1.ogg

@@ -1,0 +1,10 @@
+grid-welding-same-grid = Нельзя сварить грид с самим собой!
+grid-welding-no-tile = Здесь нет корпуса для сварки.
+grid-welding-invalid-target = Это нельзя сваривать.
+grid-welding-too-far = Корпуса слишком далеко друг от друга для сварки!
+grid-welding-not-aligned = Корабли недостаточно точно выровнены для сварки!
+grid-welding-not-facing = Эти точки не обращены друг к другу!
+grid-welding-too-large = Объединённый корпус получится слишком большим!
+grid-welding-obstructed = Что-то мешает соединению корпусов в этом месте!
+grid-welding-out-of-range = Нужно подойти ближе к обеим точкам, чтобы их сварить!
+grid-welding-edge-not-open = К другому корпусу можно приварить только край, за которым открытый космос.
