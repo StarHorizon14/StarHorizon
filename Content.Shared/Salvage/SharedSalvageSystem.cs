@@ -32,7 +32,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         return $"{Loc.GetString(dataset.Values[random.Next(dataset.Values.Count)])}-{random.Next(10, 100)}-{(char) (65 + random.Next(26))}";
     }
 
-    public SalvageMission GetMission(SalvageMissionType config, SalvageDifficultyPrototype difficulty, int seed) // Frontier: add config
+    public SalvageMission GetMission(SalvageMissionType config, SalvageDifficultyPrototype difficulty, int seed, string? biomeOverride = null) // Frontier: add config; Horizon: biomeOverride
     {
         // This is on shared to ensure the client display for missions and what the server generates are consistent
         var modifierBudget = difficulty.ModifierBudget;
@@ -43,7 +43,18 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         // - Lighting
         // - Atmos
         // Frontier: filter biomes by difficulty
-        var biome = GetBiomeModForDifficulty(difficulty.ID, rand, ref modifierBudget);
+        // Horizon: an expedition planet forces its own biome
+        SalvageBiomeModPrototype biome;
+        if (biomeOverride != null && _proto.TryIndex<SalvageBiomeModPrototype>(biomeOverride, out var forcedBiome))
+        {
+            modifierBudget = MathF.Max(0f, modifierBudget - forcedBiome.Cost);
+            biome = forcedBiome;
+        }
+        else
+        {
+            biome = GetBiomeModForDifficulty(difficulty.ID, rand, ref modifierBudget);
+        }
+        // End Horizon
         var light = GetBiomeMod<SalvageLightMod>(biome.ID, rand, ref modifierBudget);
         var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref modifierBudget);
         var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget);

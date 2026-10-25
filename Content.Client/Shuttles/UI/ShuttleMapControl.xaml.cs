@@ -1,6 +1,9 @@
 using System.Buffers;
 using System.Numerics;
 using Content.Client.Shuttles.Systems;
+using Content.Client._Horizon.Shuttles; // Horizon
+using Content.Shared._Horizon.SpaceHazards; // Horizon
+using Content.Shared._Horizon.Shuttles; // Horizon
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.UI.MapObjects;
@@ -44,6 +47,16 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     private EntityUid? _shuttleEntity;
 
     private readonly Font _font;
+    private bool _planetCameraActive;
+    private bool _planetCameraRequested;
+    private Vector2 _planetCameraSent;
+    private TimeSpan _planetCameraNextSend;
+    private const float PlanetCameraRange = 15f; // the camera sees 30 x 30 tiles
+    private const float PlanetCameraMaxPan = 256f; // the camera never looks further than this from the shuttle
+    private float? _defaultMinRange;
+    private float? _defaultMaxRange;
+    private readonly PlanetMapCamera _planetCamera = new(); // Horizon: far-away camera instead of the parallax on planets
+    private readonly SectorMapIcons _sectorIcons = new(); // Horizon: planet and threat icons
 
     private readonly EntityQuery<PhysicsComponent> _physicsQuery;
 
@@ -96,6 +109,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     private readonly Dictionary<Color, List<Vector2>> _edges = new();
     private readonly Dictionary<Color, List<(Vector2, string)>> _strings = new();
     private readonly List<(Vector2 Position, string Icon, Color Color)> _glyphs = new();
+    private readonly List<(Vector2 Position, string Name, Color Color)> _beaconLabels = new(); // Horizon: beacon names under their markers
     private readonly List<ShuttleExclusionObject> _viewportExclusions = new();
 
     public ShuttleMapControl() : base(256f, 6144f, 6144f) // Lua 512f, 512f<6144f, 6144f
@@ -261,8 +275,14 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
     private void DrawTacticalMapBackground(DrawingHandleScreen handle, Matrix3x2 mapTransform, Box2 viewBox)
     {
-        DrawParallax(handle);
         var bounds = UIBox2.FromDimensions(Vector2.Zero, PixelSize);
+
+        // Horizon: on a planet show a far-away top-down camera (terrain + structures, no creatures) instead of the parallax.
+        _planetCameraActive = _planetCamera.TryDraw(handle, ViewingMap, _shuttleEntity, viewBox, p => MapToScreen(p, mapTransform), MinimapScale, bounds);
+        if (!_planetCameraActive)
+            DrawParallax(handle);
+        // End Horizon
+
         handle.DrawRect(bounds, Color.FromHex("#243041").WithAlpha(0.7f), filled: false);
 
         DrawCoordinateGrid(handle, mapTransform, viewBox);
@@ -471,8 +491,69 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         return results;
     }
 
+    /// <summary>Asks the server to load the ground around the camera while the planet camera is shown.</summary>
+    private void UpdatePlanetCameraRequest()
+    {
+        var now = _timing.RealTime;
+        if (!_planetCameraActive)
+        {
+            if (_planetCameraRequested)
+            {
+                _planetCameraRequested = false;
+                EntManager.System<PlanetCameraClientSystem>().Send(null);
+            }
+
+            return;
+        }
+
+        if (now < _planetCameraNextSend && (Offset - _planetCameraSent).LengthSquared() < 64f)
+            return;
+
+        _planetCameraRequested = true;
+        _planetCameraSent = Offset;
+        _planetCameraNextSend = now + TimeSpan.FromSeconds(2);
+        EntManager.System<PlanetCameraClientSystem>().Send(Offset);
+    }
+
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+
+        if (_planetCameraRequested)
+        {
+            _planetCameraRequested = false;
+            EntManager.System<PlanetCameraClientSystem>().Send(null);
+        }
+    }
+
     protected override void Draw(DrawingHandleScreen handle)
     {
+        // Horizon: on a planet don't zoom out past the area the game has loaded
+        _defaultMinRange ??= WorldMinRange;
+        _defaultMaxRange ??= WorldMaxRange;
+        UpdatePlanetCameraRequest();
+
+        if (_planetCameraActive)
+        {
+            // Zoom is locked to a 30 x 30 tile view, and the view stays within reach of the shuttle.
+            WorldMinRange = PlanetCameraRange;
+            WorldMaxRange = PlanetCameraRange;
+
+            if (_shuttleEntity is { } camShuttle && EntManager.TryGetComponent(camShuttle, out TransformComponent? camXform))
+            {
+                var fromShuttle = Offset - _xformSystem.GetWorldPosition(camXform);
+                if (fromShuttle.Length() > PlanetCameraMaxPan)
+                    Offset = _xformSystem.GetWorldPosition(camXform) + Vector2.Normalize(fromShuttle) * PlanetCameraMaxPan;
+            }
+        }
+        else
+        {
+            WorldMinRange = _defaultMinRange.Value;
+            WorldMaxRange = _defaultMaxRange.Value;
+        }
+
+        ActualRadarRange = Math.Clamp(ActualRadarRange, WorldMinRange, WorldMaxRange);
+
         base.Draw(handle);
 
         if (ViewingMap == MapId.Nullspace)
@@ -493,6 +574,9 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         var realTime = _timing.RealTime;
         var viewBox = GetVisibleWorldBox();
         DrawTacticalMapBackground(handle, matty, viewBox);
+        // Horizon: border rings of stars (solar boost zone) and black holes (pull / hazard / event horizon)
+        SectorBodyRings.Draw(handle, EntManager, _xformSystem, ViewingMap, worldPoint => MapToScreen(worldPoint, matty), MinimapScale, PixelRect);
+        _sectorIcons.Draw(handle, EntManager, _xformSystem, ViewingMap, worldPoint => MapToScreen(worldPoint, matty), MinimapScale, PixelRect);
         var viewportObjects = GetViewportMapObjects(matty, mapObjects);
         _viewportExclusions.Clear();
 
@@ -546,6 +630,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         _edges.Clear();
         _strings.Clear();
         _glyphs.Clear();
+        _beaconLabels.Clear();
 
         // Add beacons if relevant.
         var beaconsOnly = _shuttles.IsBeaconMap(viewedMapUid);
@@ -570,7 +655,12 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
                 AddMapObject(existingEdges, existingVerts, mapObject);
                 _beacons.Add(mapO);
-                _glyphs.Add((beaconUiPos, "◎", displayColor));
+                // Horizon: expedition planets already have a planet icon, and the beacon glyph is missing from the font
+                if (!(mapO is ShuttleBeaconObject beaconObject && EntManager.TryGetEntity(beaconObject.Entity, out var beaconEnt) && EntManager.HasComponent<ExpeditionPlanetComponent>(beaconEnt)))
+                {
+                    _glyphs.Add((beaconUiPos, "◎", displayColor));
+                    _beaconLabels.Add((beaconUiPos, beaconName, displayColor)); // Horizon: planets draw their own name next to their icon
+                }
             }
         }
 
@@ -628,6 +718,16 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         foreach (var (color, sendEdges) in _edges)
         {
             handle.DrawPrimitives(DrawPrimitiveTopology.LineList, sendEdges, color.WithAlpha(0.78f));
+        }
+
+        foreach (var (position, name, color) in _beaconLabels)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                continue;
+
+            var nameSize = handle.GetDimensions(_font, name, 1f);
+            var labelPos = position + new Vector2(-nameSize.X / 2f, GetMapObjectRadius() * 2f * UIScale + 4f);
+            DrawSoftMapText(handle, name, labelPos, 1f, color.WithAlpha(0.92f), Color.Black.WithAlpha(0.55f));
         }
 
         foreach (var (position, icon, color) in _glyphs)

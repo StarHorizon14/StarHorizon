@@ -62,6 +62,13 @@ public sealed partial class FTLComponent : Component
         Params = AudioParams.Default.WithVolume(-3f).WithLoop(true),
     };
 
+    /// <summary>
+    /// Horizon: map to travel through instead of the shared hyperspace map (e.g. the singularity transit map,
+    /// which has its own parallax and hazards).
+    /// </summary>
+    [DataField]
+    public EntityUid? TransitMap;
+
     [DataField]
     public EntityUid? StartupStream;
 
