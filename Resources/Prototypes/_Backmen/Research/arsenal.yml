@@ -12,3 +12,157 @@
 #   position: 5, 68 # Horizon
 #   researchTargets:
 #   - TechnologyDiscArsenalDome
+
+ - type: technology
+   id: MilitaryAmmonation
+   name: Военные боеприпасы
+   entityIcon: MagazinePacketPistol50AE
+   discipline: NFArsenalNfsd
+   tier: 3
+   cost: 10000
+   recipeUnlocks:
+   - MagazinePacketHeavyRifle50BMG
+   - MagazinePacketPistol9x17
+   - MagazinePacketPistolACP
+   - MagazinePacketPistol57x28
+   - MagazinePacketPistol50AE
+   - MagazinePistolSubMachineGun57x28
+   - MagazinePistolSubMachineGunVector45ACP
+   - MagazinePistolSubMachineGun9x17
+   - MagazinePistolTopSubMachineGun
+   - MagazineRifleFamas556UEG
+   - MagazineRifle556UEG
+   - MagazineRifle762UEG
+   - MagazinePistol45ACP
+   - MagazinePistol57x28
+   - MagazinePistol9x17
+   - MagazinePistol57x28Extd
+   - MagazineRifleLight762x39
+   - MagazineBoxHeavyRifle
+   - MagazinePacketRifle762x39
+   - MagazinePacketRifle762UEG
+   - MagazinePacketRifle556UEG
+   - MagazinePacketPistolACP
+   - MagazinePacketPistol9x17
+   - MagazinePacketPistol57x28
+   - MagazinePacketPistol50AE
+   - SpeedLoader357Magnum
+   - SpeedLoader38Special
+   - SpeedLoader44Magnum
+   - MagazinePacketRevolver357Magnum
+   - MagazinePacketRevolver44Magnum
+   - MagazinePacketRevolver38Special
+   technologyPrerequisites:
+   - NFBulkRifleAmmo
+   position: 4, 68 # Horizon
+   researchTargets:
+   - TechnologyDiscGunsmith
+
+ - type: technology
+   id: MilitaryAmmonationAdvanced
+   name: Продвинутые военные боеприпасы
+   entityIcon: MagazineBoxRifle556UEG
+   discipline: NFArsenalNfsd
+   tier: 3
+   cost: 15000
+   recipeUnlocks:
+   - MagazinePacketRifle762x39AP
+   - MagazinePacketRifle556UEGAP
+   - MagazinePacketRifle762UEGAP
+   - MagazinePacketPistolACPIncendiary
+   - MagazinePacketPistol9x17Incendiary
+   - MagazinePacketRifle762x39Incendiary
+   - MagazinePacketRifle556UEGIncendiary
+   - MagazinePacketRifle762UEGIncendiary
+   - MagazinePacketPistol57x28Incendiary
+   - MagazineRifle762UEGIncendiary
+   - MagazineRifleFamas556UEGIncendiary
+   - MagazineRifle556UEGIncendiary
+   - MagazinePistol45ACPincendiary
+   - MagazinePistol57x28Incendiary
+   - MagazinePistol9x17Incendiary
+   - MagazineBoxRifle556UEG
+   - MagazineBoxRifle762UEG
+   - MagazineBoxRifle762x39
+   technologyPrerequisites:
+   - MilitaryAmmonation
+   position: 5, 68 # Horizon
+
+ - type: technology
+   id: MilitaryGunsmith
+   name: Военное оружие самообороны
+   entityIcon: WeaponPistolG22
+   discipline: NFArsenalNfsd
+   tier: 3
+   cost: 42000
+   recipeUnlocks:
+   - WeaponPistolG22
+   - WeaponPistolG23
+   - WeaponPistolACP14
+   - WeaponPistolVP78
+   - WeaponRevolverR44
+   technologyPrerequisites:
+   - MilitaryAmmonation
+   position: 5, 69 # Horizon
+
+ - type: technology
+   id: MilitaryGunsmithSMG
+   name: Военные ПП
+   entityIcon: WeaponSubMachineGunP90
+   discipline: NFArsenalNfsd
+   tier: 3
+   cost: 19840
+   recipeUnlocks:
+   - WeaponSubMachineGunMP5
+   - WeaponSubMachineGunP90
+   - WeaponSubMachineGunUzi
+   - WeaponSubMachineGunMP7
+   technologyPrerequisites:
+   - MilitaryGunsmith
+   position: 6, 69 # Horizon
+
+ - type: technology
+   id: MilitaryGunsmithShotgun
+   name: Военные дробовики
+   entityIcon: WeaponShotgun12
+   discipline: NFArsenalNfsd
+   tier: 3
+   cost: 25000
+   recipeUnlocks:
+   - WeaponShotgun12
+   - WeaponShotgun39
+   technologyPrerequisites:
+   - MilitaryGunsmith
+   position: 6, 68 # Horizon
+
+ - type: technology
+   id: MilitaryGunsmithRifle
+   name: Военные штурмовые винтовки
+   entityIcon: WeaponRifleSCARAB
+   discipline: NFArsenalNfsd
+   tier: 3
+   cost: 30000
+   recipeUnlocks:
+   - WeaponRifleG36
+   - WeaponRifleFamas
+   - WeaponRifleM28
+   - WeaponRifleAR18
+   - WeaponRifleSCARAB
+   - WeaponRifleAKSU
+   technologyPrerequisites:
+   - MilitaryGunsmithSMG
+   position: 6, 70 # Horizon
+
+ - type: technology
+   id: MilitaryGunsmithSniperRifle
+   name: Военные снайперские винтовки винтовки
+   entityIcon: WeaponSniperRemington700
+   discipline: NFArsenalNfsd
+   tier: 3
+   cost: 40000
+   recipeUnlocks:
+   - WeaponSniperRemington700
+   - WeaponRifleSR127
+   technologyPrerequisites:
+   - MilitaryGunsmithRifle
+   position: 6, 71 # Horizon

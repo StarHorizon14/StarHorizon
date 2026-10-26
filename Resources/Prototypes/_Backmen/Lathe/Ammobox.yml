@@ -135,14 +135,21 @@
   id: MagazineBoxHeavyRifle
   result: MagazineBoxHeavyRifle
   materials:
-    Steel: 900
+    Steel: 1500
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazinePacketRifle762x39
   result: MagazinePacketRifle762x39
   materials:
-    Steel: 900
+    Steel: 750
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle762UEG
+  result: MagazineBoxRifle762UEG
+  materials:
+    Steel: 1500
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
