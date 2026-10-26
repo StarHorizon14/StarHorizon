@@ -18,7 +18,7 @@ public sealed class ShiftStartIntroSystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
-        _overlayMan.RemoveOverlay<ShiftStartIntroOverlay>();
+        RemoveOverlay();
     }
 
     public override void FrameUpdate(float frameTime)
@@ -26,13 +26,22 @@ public sealed class ShiftStartIntroSystem : EntitySystem
         if (_overlay is not { Finished: true })
             return;
 
+        RemoveOverlay();
+    }
+
+    private void RemoveOverlay()
+    {
+        if (_overlay == null)
+            return;
+
         _overlayMan.RemoveOverlay(_overlay);
+        _overlay.Cleanup();
         _overlay = null;
     }
 
     private void OnIntro(ShiftStartIntroEvent ev)
     {
-        _overlayMan.RemoveOverlay<ShiftStartIntroOverlay>();
+        RemoveOverlay();
         _overlay = new ShiftStartIntroOverlay(ev);
         _overlayMan.AddOverlay(_overlay);
     }

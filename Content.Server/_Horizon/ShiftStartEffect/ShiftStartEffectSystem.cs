@@ -47,9 +47,13 @@ public sealed class ShiftStartEffectSystem : EntitySystem
         var groups = new Dictionary<string, List<ShiftStartIntroEntry>>();
         var total = 0;
 
-        if (_station.GetOwningStation(ev.Mob) is { } station)
+        // При первом спавне владеющая станция у моба ещё может не определиться, поэтому берём станцию из события.
+        EntityUid? stationUid = ev.Station.IsValid() ? ev.Station : _station.GetOwningStation(ev.Mob);
+
+        if (stationUid is { } station)
         {
-            var (name, entries) = _crewManifest.GetCrewManifest(station);
+            var name = MetaData(station).EntityName;
+            var (_, entries) = _crewManifest.GetCrewManifest(station);
             if (!string.IsNullOrEmpty(name))
                 title = name;
 
@@ -73,13 +77,16 @@ public sealed class ShiftStartEffectSystem : EntitySystem
                 g.Value.Take(MaxEntriesPerColumn).ToArray()))
             .ToArray();
 
-        var lines = new[]
+        var lines = new List<string>
         {
             Loc.GetString("shift-start-intro-line-corp", ("round", _ticker.RoundId)),
             Loc.GetString("shift-start-intro-line-pop", ("sessions", _players.PlayerCount)),
             Loc.GetString("shift-start-intro-line-threat", ("level", threat)),
-            Loc.GetString("shift-start-intro-line-manifest"),
         };
+
+        // Если в манифесте никого нет, строку про него не показываем.
+        if (total > 0)
+            lines.Add(Loc.GetString("shift-start-intro-line-manifest"));
 
         var terminalLine = Loc.GetString("shift-start-intro-terminal", ("id", $"NT-{_random.Next(100, 1000)}"));
         var recordLine = Loc.GetString("shift-start-intro-record",
@@ -87,7 +94,7 @@ public sealed class ShiftStartEffectSystem : EntitySystem
         var subjectLine = Loc.GetString("shift-start-intro-subject", ("name", MetaData(ev.Mob).EntityName));
 
         RaiseNetworkEvent(
-            new ShiftStartIntroEvent(title, Loc.GetString("shift-start-intro-company"), lines, threatColor, _ticker.RoundDuration(), terminalLine, recordLine, subjectLine, columns),
+            new ShiftStartIntroEvent(title, Loc.GetString("shift-start-intro-company"), lines.ToArray(), threatColor, _ticker.RoundDuration(), terminalLine, recordLine, subjectLine, columns),
             ev.Player);
     }
 
