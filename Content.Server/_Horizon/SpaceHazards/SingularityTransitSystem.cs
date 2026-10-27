@@ -30,7 +30,7 @@ public sealed class SingularityTransitSystem : EntitySystem
     private const float HullDamageScale = 0.25f;
     private const float MobDamageScale = 0.5f;
     private const int TransitHits = 5;
-    private const int TransitTileClears = 2;
+    private const int TransitTileClears = 4;
 
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly IRobustRandom _random = default!;

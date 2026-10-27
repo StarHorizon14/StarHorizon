@@ -1,3 +1,4 @@
+using Content.Shared._Horizon.Shuttles.Components;
 using System.Buffers;
 using System.Numerics;
 using Content.Client.Shuttles.Systems;
@@ -48,11 +49,31 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
     private readonly Font _font;
     private bool _planetCameraActive;
+    private bool _planetViewReported;
+    private PlanetViewMode _planetMode = PlanetViewMode.Relief;
+
+    /// <summary>The real camera view is switched off for now: its button is shown but cannot be used.</summary>
+    public const bool PlanetCameraModeAvailable = false;
+
+    /// <summary>Raised when the map starts or stops showing a planet, so the console can offer the view switch.</summary>
+    public event Action<bool>? PlanetViewChanged;
+
+    public PlanetViewMode PlanetMode => _planetMode;
+
+    public void SetPlanetMode(PlanetViewMode mode)
+    {
+        if (mode == PlanetViewMode.Camera && !PlanetCameraModeAvailable)
+            return;
+
+        _planetMode = mode;
+    }
     private bool _planetCameraRequested;
     private Vector2 _planetCameraSent;
     private TimeSpan _planetCameraNextSend;
     private const float PlanetCameraRange = 15f; // the camera sees 30 x 30 tiles
-    private const float PlanetCameraMaxPan = 256f; // the camera never looks further than this from the shuttle
+    private const float PlanetCameraMaxPan = 256f; // the view never looks further than this from the shuttle
+    private const float PlanetReliefMinRange = 32f;
+    private const float PlanetReliefMaxRange = 256f;
     private float? _defaultMinRange;
     private float? _defaultMaxRange;
     private readonly PlanetMapCamera _planetCamera = new(); // Horizon: far-away camera instead of the parallax on planets
@@ -278,7 +299,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         var bounds = UIBox2.FromDimensions(Vector2.Zero, PixelSize);
 
         // Horizon: on a planet show a far-away top-down camera (terrain + structures, no creatures) instead of the parallax.
-        _planetCameraActive = _planetCamera.TryDraw(handle, ViewingMap, _shuttleEntity, viewBox, p => MapToScreen(p, mapTransform), MinimapScale, bounds);
+        _planetCameraActive = _planetCamera.TryDraw(handle, _planetMode, ViewingMap, _shuttleEntity, viewBox, p => MapToScreen(p, mapTransform), MinimapScale, bounds);
         if (!_planetCameraActive)
             DrawParallax(handle);
         // End Horizon
@@ -495,7 +516,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     private void UpdatePlanetCameraRequest()
     {
         var now = _timing.RealTime;
-        if (!_planetCameraActive)
+        if (!_planetCameraActive || _planetMode != PlanetViewMode.Camera)
         {
             if (_planetCameraRequested)
             {
@@ -533,11 +554,18 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         _defaultMaxRange ??= WorldMaxRange;
         UpdatePlanetCameraRequest();
 
+        if (_planetViewReported != _planetCameraActive)
+        {
+            _planetViewReported = _planetCameraActive;
+            PlanetViewChanged?.Invoke(_planetCameraActive);
+        }
+
         if (_planetCameraActive)
         {
-            // Zoom is locked to a 30 x 30 tile view, and the view stays within reach of the shuttle.
-            WorldMinRange = PlanetCameraRange;
-            WorldMaxRange = PlanetCameraRange;
+            // The camera is locked to a 30 x 30 tile view; the relief outline zooms within a limited range. Either way
+            // the view stays within reach of the shuttle.
+            WorldMinRange = _planetMode == PlanetViewMode.Camera ? PlanetCameraRange : PlanetReliefMinRange;
+            WorldMaxRange = _planetMode == PlanetViewMode.Camera ? PlanetCameraRange : PlanetReliefMaxRange;
 
             if (_shuttleEntity is { } camShuttle && EntManager.TryGetComponent(camShuttle, out TransformComponent? camXform))
             {
@@ -582,7 +610,8 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
         // Draw our FTL range + no FTL zones
         // Do it up here because we want this layered below most things.
-        if ((FtlMode || ShowFTLRangeOnly) && ShowFTLRange)
+        var concentrating = _shuttleEntity != null && EntManager.HasComponent<FtlConcentrationComponent>(_shuttleEntity);
+        if ((FtlMode || ShowFTLRangeOnly || concentrating) && ShowFTLRange)
         {
             if (EntManager.TryGetComponent<TransformComponent>(_shuttleEntity, out var shuttleXform))
             {
@@ -598,6 +627,18 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
                 var range = _shuttles.GetFTLRange(gridUid);
                 range *= MinimapScale;
                 handle.DrawCircle(gridUiPos, range, Color.Gold, filled: false);
+
+                // Horizon: while concentrating, also the clear radius around the shuttle that a jump needs
+                if (EntManager.TryGetComponent(gridUid, out FtlConcentrationComponent? concentration)
+                    && EntManager.TryGetComponent(gridUid, out MapGridComponent? concentrationGrid))
+                {
+                    var clear = concentrationGrid.LocalAABB.Size.Length() / 2f
+                        + FtlProximity.Range * concentration.GetRangeFactor(_timing.CurTime);
+                    var progress = concentration.GetProgress(_timing.CurTime);
+                    var clearColor = Color.InterpolateBetween(Color.FromHex("#FFB020"), Color.FromHex("#5BD27A"), progress);
+                    handle.DrawCircle(gridUiPos, clear * MinimapScale, clearColor.WithAlpha(0.08f));
+                    handle.DrawCircle(gridUiPos, clear * MinimapScale, clearColor.WithAlpha(0.8f), filled: false);
+                }
             }
         }
 
