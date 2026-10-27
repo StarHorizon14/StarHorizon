@@ -422,7 +422,7 @@ namespace Content.Server.GameTicking
         /// <param name="station">The station they're spawning on</param>
         /// <param name="jobId">An optional job for them to spawn as</param>
         /// <param name="silent">Whether or not the player should be greeted upon joining</param>
-        public void MakeJoinGame(ICommonSession player, EntityUid station, string? jobId = null, bool silent = false, bool lateJoin = true) // StarHorizon
+        public void MakeJoinGame(ICommonSession player, EntityUid station, string? jobId = null, bool silent = false)
         {
             if (!_playerGameStatuses.ContainsKey(player.UserId))
                 return;
@@ -430,7 +430,7 @@ namespace Content.Server.GameTicking
             if (!_userDb.IsLoadComplete(player))
                 return;
 
-            SpawnPlayer(player, station, jobId, lateJoin, silent); // StarHorizon
+            SpawnPlayer(player, station, jobId, silent: silent);
         }
 
         /// <summary>

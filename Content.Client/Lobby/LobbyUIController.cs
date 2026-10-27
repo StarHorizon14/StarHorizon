@@ -36,6 +36,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private readonly IStateManager _stateManager = default!;
     [Dependency] private readonly JobRequirementsManager _requirements = default!;
     [Dependency] private readonly MarkingManager _markings = default!;
     [UISystemDependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
@@ -46,10 +47,6 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
     private CharacterSetupGuiSavePanel? _savePanel;
-
-    // StarHorizon-Start
-    public LobbyGui? ActiveLobbyGui;
-    // StarHorizon-End
 
     /// <summary>
     /// This is the characher preview panel in the chat. This should only update if their character updates.
@@ -82,7 +79,12 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
     private LobbyCharacterPreviewPanel? GetLobbyPreview()
     {
-        return ActiveLobbyGui?.CharacterPreview; // StarHorizon
+        if (_stateManager.CurrentState is LobbyState lobby)
+        {
+            return lobby.Lobby?.CharacterPreview;
+        }
+
+        return null;
     }
 
     private void OnRequirementsUpdated()
@@ -139,7 +141,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     {
         PreviewPanel?.SetLoaded(true);
 
-        if (ActiveLobbyGui == null) // StarHorizon
+        if (_stateManager.CurrentState is not LobbyState)
             return;
 
         ReloadCharacterSetup();
@@ -147,42 +149,19 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
     public void OnStateEntered(LobbyState state)
     {
-        // StarHorizon-Start
-        if (state.Lobby != null)
-            ActivateLobbyGui(state.Lobby);
-        // StarHorizon-End
-    }
-
-    public void OnStateExited(LobbyState state)
-    {
-        // StarHorizon-Start
-        if (state.Lobby != null)
-            DeactivateLobbyGui(state.Lobby);
-        // StarHorizon-End
-    }
-
-    // StarHorizon-Start
-    public void ActivateLobbyGui(LobbyGui lobby)
-    {
-        ActiveLobbyGui = lobby;
         PreviewPanel?.SetLoaded(_preferencesManager.ServerDataLoaded);
         ReloadCharacterSetup();
     }
 
-    public void DeactivateLobbyGui(LobbyGui lobby)
+    public void OnStateExited(LobbyState state)
     {
-        if (ActiveLobbyGui != lobby)
-            return;
-
         PreviewPanel?.SetLoaded(false);
         _profileEditor?.Dispose();
         _characterSetup?.Dispose();
 
         _characterSetup = null;
         _profileEditor = null;
-        ActiveLobbyGui = null;
     }
-    // StarHorizon-End
 
     /// <summary>
     /// Reloads every single character setup control.
@@ -253,7 +232,10 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         _profileEditor.SetProfile(null, null);
         _profileEditor.Visible = false;
 
-        ActiveLobbyGui?.SwitchState(LobbyGui.LobbyGuiState.Default); // StarHorizon
+        if (_stateManager.CurrentState is LobbyState lobbyGui)
+        {
+            lobbyGui.SwitchState(LobbyGui.LobbyGuiState.Default);
+        }
     }
 
     private void OpenSavePanel()
@@ -288,15 +270,6 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         {
             _characterSetup.Visible = true;
             _profileEditor.Visible = true;
-
-            // StarHorizon-Start
-            if (ActiveLobbyGui != null && _characterSetup.Parent != ActiveLobbyGui.CharacterSetupState)
-            {
-                _characterSetup.Parent?.RemoveChild(_characterSetup);
-                ActiveLobbyGui.CharacterSetupState.AddChild(_characterSetup);
-            }
-            // StarHorizon-End
-
             return (_characterSetup, _profileEditor);
         }
 
@@ -354,7 +327,10 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             }
         };
 
-        ActiveLobbyGui?.CharacterSetupState.AddChild(_characterSetup); // StarHorizon
+        if (_stateManager.CurrentState is LobbyState lobby)
+        {
+            lobby.Lobby?.CharacterSetupState.AddChild(_characterSetup);
+        }
 
         return (_characterSetup, _profileEditor);
     }
