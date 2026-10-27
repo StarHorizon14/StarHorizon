@@ -17,4 +17,10 @@ public sealed partial class CytologySampleContainerComponent : Component
     /// </summary>
     [DataField]
     public int MaxSamples = 5;
+
+    /// <summary>
+    ///     Horizon: chance that a virus gets into each sample collected by this object
+    /// </summary>
+    [DataField]
+    public float VirusChance = 0.15f;
 }

@@ -1,0 +1,11 @@
+slime-appearance-window-title = Изменение облика
+slime-appearance-window-sex = Пол
+slime-appearance-window-skin = Цвет тела
+slime-appearance-window-eyes = Цвет глаз
+slime-appearance-window-apply = Применить
+slime-appearance-window-hint = Изменения применятся, если две минуты стоять неподвижно.
+slime-appearance-start = Ваше тело начинает медленно перестраиваться...
+slime-appearance-interrupted = Вы сбились, и тело вернулось к прежней форме.
+slime-appearance-done = Вы закончили перестраивать своё тело.
+slime-appearance-already-changing = Вы уже меняете облик.
+slime-appearance-cooldown = Тело ещё не готово к новым изменениям. Осталось около { $minutes } мин.

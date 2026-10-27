@@ -19,6 +19,8 @@ public sealed partial class CellSampleItemsControl : Control
         DisplayName.Text = info.DisplayName;
         GrowthRateInSeconds.Text = info.GrowthRateInSeconds.ToString();
         ViralSusceptibility.Text = info.ViralSusceptibility.ToString();
+        Viruses.Text = Loc.GetString("cell-samples-window-viruses", ("count", info.Viruses));
+        Viruses.FontColorOverride = info.Viruses > 0 ? Color.Red : Color.LimeGreen;
 
         RequiredChemicals.Text = string.Join(" ", GetLocalizedNames(info.RequiredChemicals));
         SupplementaryChemicals.Text = string.Join(" ", GetLocalizedNames(info.SupplementaryChemicals));

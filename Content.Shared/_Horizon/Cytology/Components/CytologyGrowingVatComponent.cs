@@ -1,3 +1,4 @@
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -43,5 +44,17 @@ public sealed partial class CytologyGrowingVatComponent : Component
 
     [DataField, AutoPausedField]
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(1f);
+
+    /// <summary>
+    ///     Horizon: reagents that kill viruses in the samples. Each virus takes 1u of them
+    /// </summary>
+    [DataField]
+    public List<ProtoId<ReagentPrototype>> Antivirals = new() { "Ultravasculine", "Stellibinin", "Dylovene" };
+
+    /// <summary>
+    ///     Horizon: how much each virus slows the growth down, multiplied by the cell's viral susceptibility
+    /// </summary>
+    [DataField]
+    public float VirusGrowthPenalty = 0.25f;
 
 }

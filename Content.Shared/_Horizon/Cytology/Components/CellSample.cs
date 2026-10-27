@@ -28,6 +28,12 @@ public sealed partial class CellSample
     [DataField]
     public List<string>? SelectedDiskPrototypes;
 
+    /// <summary>
+    /// Horizon: how many viruses got into the sample. Each one slows the growth down unless the vat has an antiviral
+    /// </summary>
+    [DataField]
+    public int Viruses;
+
     public CellSample(string protoID, float growProgress = 0f, HumanoidCharacterProfile? storedProfile = null, List<string>? selectedDiskPrototypes = null)
     {
         ProtoID = protoID;
@@ -43,7 +49,8 @@ public sealed partial class CellSample
             ProtoID = this.ProtoID,
             GrowProgress = this.GrowProgress,
             StoredProfile = this.StoredProfile,
-            SelectedDiskPrototypes = this.SelectedDiskPrototypes
+            SelectedDiskPrototypes = this.SelectedDiskPrototypes,
+            Viruses = this.Viruses
         };
     }
 }

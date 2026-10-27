@@ -477,9 +477,10 @@ public sealed class AtmosMonitorSystem : EntitySystem
     {
         SetThreshold(uid, AtmosMonitorThresholdType.Temperature, allThresholdData.TemperatureThreshold);
         SetThreshold(uid, AtmosMonitorThresholdType.Pressure, allThresholdData.PressureThreshold);
-        foreach (var gas in Enum.GetValues<Gas>())
+        // Horizon: only copy the gases that have a threshold, a gas without one threw KeyNotFoundException
+        foreach (var (gas, threshold) in allThresholdData.GasThresholds)
         {
-            SetThreshold(uid, AtmosMonitorThresholdType.Gas, allThresholdData.GasThresholds[gas], gas);
+            SetThreshold(uid, AtmosMonitorThresholdType.Gas, threshold, gas);
         }
     }
 }

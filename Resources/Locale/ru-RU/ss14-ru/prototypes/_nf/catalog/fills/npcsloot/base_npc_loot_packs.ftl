@@ -1,6 +1,6 @@
 ent-NFBaseNpcLootBackpack = { ent-BaseItem }
-    .desc = A bundle containing items of dubious purpose or value.
-    .suffix = NPC Loot
+    .desc = Свёрток с вещами сомнительного назначения или ценности.
+    .suffix = Лут НПЦ
 ent-NFBaseNpcLootBelt = { ent-NFBaseNpcLootBackpack }
     .desc = { ent-NFBaseNpcLootBackpack.desc }
 ent-NFBaseNpcLootWallet = { ent-NFBaseNpcLootBackpack }

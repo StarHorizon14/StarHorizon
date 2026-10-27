@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseAction
+  id: ActionSlimeChangeAppearance
+  name: Изменить облик
+  description: "Перестроить своё тело — волосы, метки, цвет тела и глаз. Нужно две минуты стоять неподвижно."
+  components:
+  - type: Action
+    icon:
+      sprite: Mobs/Species/Slime/parts.rsi
+      state: full
+    priority: -10
+  - type: InstantAction
+    event: !type:SlimeChangeAppearanceActionEvent

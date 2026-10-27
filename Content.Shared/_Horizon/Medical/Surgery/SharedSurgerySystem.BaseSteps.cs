@@ -77,6 +77,7 @@ public abstract partial class SharedSurgerySystem
         var progress = Comp<SurgeryProgressComponent>(args.Part);
         progress.CompletedSteps.Clear();
         progress.CompletedSurgeries.Clear();
+        Dirty(args.Part, progress); // Horizon: steps the client can't predict (e.g. organ insertion) never reached it
     }
     private void OnStepComplete(Entity<SurgeryStepComponent> ent, ref SurgeryStepCompleteEvent args)
     {
@@ -99,6 +100,10 @@ public abstract partial class SharedSurgerySystem
         }
         if (args.IsFinal)
             progress.CompletedSurgeries.Add(args.SurgeryProto);
+
+        // Horizon: send the progress to clients. Steps the client can't predict (e.g. organ insertion, which only
+        // happens on the server) otherwise stayed incomplete in the surgery UI until something else dirtied it.
+        Dirty(args.Part, progress);
     }
     private void OnStep(Entity<SurgeryStepComponent> ent, ref SurgeryStepEvent args)
     {
