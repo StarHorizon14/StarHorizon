@@ -155,7 +155,7 @@
 
  - type: technology
    id: MilitaryGunsmithSniperRifle
-   name: Военные снайперские винтовки винтовки
+   name: Военные снайперские винтовки
    entityIcon: WeaponSniperRemington700
    discipline: NFArsenalNfsd
    tier: 3
