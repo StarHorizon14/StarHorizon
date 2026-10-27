@@ -1,12 +1,12 @@
-ent-NFBaseNpcLootPackSyndicate = набор флотского оперативника Синдиката
+ent-NFBaseNpcLootPackSyndicate = набор оперативника синдиката
     .desc = { ent-NFBaseNpcLootBackpack.desc }
-ent-NFBaseNpcLootPackSyndicateAlt = набор флотского оперативника Синдиката
+ent-NFBaseNpcLootPackSyndicateAlt = набор оперативника синдиката
     .desc = { ent-NFBaseNpcLootBackpack.desc }
-ent-NFBaseNpcLootBeltSyndicate = подсумок с патронами флотского оперативника Синдиката
+ent-NFBaseNpcLootBeltSyndicate = подсумок с патронами оперативника синдиката
     .desc = { ent-NFBaseNpcLootBelt.desc }
-ent-NFBaseNpcLootBeltSyndicateAlt = подсумок с патронами флотского оперативника Синдиката
+ent-NFBaseNpcLootBeltSyndicateAlt = подсумок с патронами оперативника синдиката
     .desc = { ent-NFBaseNpcLootBelt.desc }
-ent-NFBaseNpcLootWalletSyndicate = кошелёк флотского оперативника Синдиката
+ent-NFBaseNpcLootWalletSyndicate = кошелёк оперативника синдиката
     .desc = { ent-NFBaseNpcLootWallet.desc }
 ent-ClothingWalletSyndicateT1 = { ent-NFBaseNpcLootWalletSyndicate }
     .desc = { ent-NFBaseNpcLootWalletSyndicate.desc }

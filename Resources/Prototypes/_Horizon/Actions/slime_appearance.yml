@@ -2,7 +2,7 @@
   parent: BaseAction
   id: ActionSlimeChangeAppearance
   name: Изменить облик
-  description: "Перестроить своё тело — волосы, метки, цвет тела и глаз. Нужно две минуты стоять неподвижно."
+  description: "Перестроить своё тело по вашему вкусу."
   components:
   - type: Action
     icon:

@@ -8,7 +8,6 @@ using Content.Server.Stack;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Construction;
 using Content.Shared.Database;
-using Content.Shared.Destructible; // Horizon
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -34,24 +33,12 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
     {
         base.Initialize();
         SubscribeLocalEvent<MaterialStorageComponent, MachineDeconstructedEvent>(OnDeconstructed);
-        SubscribeLocalEvent<MaterialStorageComponent, DestructionEventArgs>(OnDestruction); // Horizon
         SubscribeLocalEvent<MaterialStorageComponent, PriceCalculationEvent>(OnPriceCalculation); // Frontier
 
         SubscribeAllEvent<EjectMaterialMessage>(OnEjectMessage);
     }
 
     private void OnDeconstructed(EntityUid uid, MaterialStorageComponent component, MachineDeconstructedEvent args)
-    {
-        DropStoredMaterials(uid, component); // Horizon: shared with destruction
-    }
-
-    // Horizon start
-    private void OnDestruction(EntityUid uid, MaterialStorageComponent component, DestructionEventArgs args)
-    {
-        DropStoredMaterials(uid, component);
-    }
-
-    private void DropStoredMaterials(EntityUid uid, MaterialStorageComponent component)
     {
         if (!component.DropOnDeconstruct)
             return;
@@ -61,7 +48,6 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
             SpawnMultipleFromMaterial(amount, material, Transform(uid).Coordinates);
         }
     }
-    // Horizon end
 
     // Start Frontier: add value of contents to appraisal price
     private void OnPriceCalculation(EntityUid uid, MaterialStorageComponent component, ref PriceCalculationEvent ev)

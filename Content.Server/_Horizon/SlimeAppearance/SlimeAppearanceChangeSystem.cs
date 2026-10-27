@@ -4,6 +4,7 @@ using Content.Server.Humanoid;
 using Content.Server.Popups;
 using Content.Shared._Horizon.SlimeAppearance;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;

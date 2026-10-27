@@ -1,4 +1,4 @@
-ent-RogueSiliconGiftBox = набор взбесившегося юнита
+ent-RogueSiliconGiftBox = набор дрона-предателя
     .desc = { ent-NFBaseNpcLootBackpack.desc }
 ent-ClothingBackpackRogueSiliconT0 = { ent-RogueSiliconGiftBox }
     .desc = { ent-RogueSiliconGiftBox.desc }

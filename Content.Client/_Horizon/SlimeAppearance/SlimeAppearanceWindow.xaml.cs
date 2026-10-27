@@ -58,7 +58,6 @@ public sealed partial class SlimeAppearanceWindow : FancyWindow
             MarkingPickerWidget.SetData(_markings, _species, _sex, _skinColorSelector.Color, _eyeColor);
         };
 
-        HintLabel.Text = Loc.GetString("slime-appearance-window-hint");
         ApplyButton.OnPressed += _ => OnApply?.Invoke(_markings, _sex, _skinColorSelector.Color, _eyeColor);
     }
 
