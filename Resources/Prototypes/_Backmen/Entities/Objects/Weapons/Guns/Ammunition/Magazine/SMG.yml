@@ -196,7 +196,7 @@
 
 - type: entity
   id: MagazinePistolTopSubMachineGun
-  name: SMG top mounted magazine (9x17 mm)
+  name: SMG top mounted magazine (5,7x28)
   parent: BaseItem
   components:
   - type: Tag
@@ -204,10 +204,10 @@
       - MagazinePistolTopSubMachineGun
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistol9x17
+    proto: CartridgePistol57x28
     whitelist:
       tags:
-        - CartridgePistol9x17
+        - CartridgePistol57x28
     capacity: 50
   - type: Item
     size: Small
