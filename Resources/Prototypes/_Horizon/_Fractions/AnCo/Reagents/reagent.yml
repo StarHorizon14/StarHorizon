@@ -209,3 +209,25 @@
       - !type:MovespeedModifier
         walkSpeedModifier: 1
         sprintSpeedModifier: 2
+
+- type: reagent
+  id: ArdonReagent
+  name: Ардон
+  group: Elements
+  desc: Горячий, вязкий словно ардоновая лава, погодите, она и есть.
+  physicalDesc: Горячая
+  flavor: medicine
+  color: "#f05a5a"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.1
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+          Piercing: -1
+          Heat: 3
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.1
+        sprintSpeedModifier: 1.1

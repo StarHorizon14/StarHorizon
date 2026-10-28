@@ -17,7 +17,7 @@
   shipyardPurchaseRestricted: true
   access:
   - Mercenary
-  - AnCo
+  - AccessAnCoCadet
   accessGroups:
   - GeneralAccess
   forceFaction: FactionAnCo

@@ -1,0 +1,15 @@
+- type: reagent
+  id: Ardon
+  name: reagent-name-ardon
+  group: Narcotics
+  desc: reagent-desc-ardon
+  flavor: metallic
+  color: "#7fd6ff"
+  physicalDesc: reagent-physical-desc-shiny
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 0.1
