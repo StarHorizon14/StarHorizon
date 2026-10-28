@@ -42,6 +42,12 @@ public sealed partial class DerelictVesselPrototype : IPrototype
     /// </summary>
     [DataField]
     public int MinRank;
+
+    /// <summary>
+    /// How the preview of the wreck is coloured.
+    /// </summary>
+    [DataField]
+    public ProtoId<ShuttleMinimapPrototype> Minimap = "Default";
 }
 
 /// <summary>
@@ -191,15 +197,6 @@ public sealed class DerelictPreviewRequestMessage : BoundUserInterfaceMessage
     }
 }
 
-public enum DerelictPreviewKind : byte
-{
-    Floor,
-    Window,
-    Machine,
-    Door,
-    Wall,
-}
-
 /// <summary>
 /// A view from above on the shuttle: one coloured cell per tile.
 /// </summary>
@@ -208,12 +205,12 @@ public sealed class DerelictPreviewMessage : BoundUserInterfaceMessage
 {
     public string Id;
     public Vector2i[] Tiles;
-    public DerelictPreviewKind[] Kinds;
+    public Color[] Colors;
 
-    public DerelictPreviewMessage(string id, Vector2i[] tiles, DerelictPreviewKind[] kinds)
+    public DerelictPreviewMessage(string id, Vector2i[] tiles, Color[] colors)
     {
         Id = id;
         Tiles = tiles;
-        Kinds = kinds;
+        Colors = colors;
     }
 }

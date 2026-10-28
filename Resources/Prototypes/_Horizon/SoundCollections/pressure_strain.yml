@@ -1,0 +1,20 @@
+# Creaking of structures under too much pressure or wind, see DeltaPressure strainSound.
+- type: soundCollection
+  id: PressureStrainWall
+  files:
+  - /Audio/Effects/metal_scrape1.ogg
+  - /Audio/Effects/metal_scrape2.ogg
+  - /Audio/Effects/metal_scrape3.ogg
+
+- type: soundCollection
+  id: PressureStrainGlass
+  files:
+  - /Audio/Effects/glass_crack1.ogg
+  - /Audio/Effects/glass_crack2.ogg
+  - /Audio/Effects/glass_crack3.ogg
+  - /Audio/Effects/glass_crack4.ogg
+
+- type: soundCollection
+  id: PressureStrainDoor
+  files:
+  - /Audio/Machines/airlock_creaking.ogg

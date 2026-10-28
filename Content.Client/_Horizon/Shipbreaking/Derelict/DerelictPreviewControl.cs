@@ -13,35 +13,23 @@ public sealed class DerelictPreviewControl : Control
     private static readonly Color Background = Color.FromHex("#0b0b10");
 
     private Vector2i[] _tiles = Array.Empty<Vector2i>();
-    private DerelictPreviewKind[] _kinds = Array.Empty<DerelictPreviewKind>();
+    private Color[] _colors = Array.Empty<Color>();
 
     public DerelictPreviewControl()
     {
         RectClipContent = true;
     }
 
-    public void SetPreview(Vector2i[] tiles, DerelictPreviewKind[] kinds)
+    public void SetPreview(Vector2i[] tiles, Color[] colors)
     {
         _tiles = tiles;
-        _kinds = kinds;
+        _colors = colors;
     }
 
     public void Clear()
     {
         _tiles = Array.Empty<Vector2i>();
-        _kinds = Array.Empty<DerelictPreviewKind>();
-    }
-
-    private static Color ColorOf(DerelictPreviewKind kind)
-    {
-        return kind switch
-        {
-            DerelictPreviewKind.Wall => Color.FromHex("#8a8f99"),
-            DerelictPreviewKind.Door => Color.FromHex("#d9a441"),
-            DerelictPreviewKind.Window => Color.FromHex("#5fb4d9"),
-            DerelictPreviewKind.Machine => Color.FromHex("#58a36a"),
-            _ => Color.FromHex("#2d3340"),
-        };
+        _colors = Array.Empty<Color>();
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -74,7 +62,7 @@ public sealed class DerelictPreviewControl : Control
             var x = _tiles[i].X - min.X;
             var y = max.Y - _tiles[i].Y;
             var box = UIBox2.FromDimensions(origin + new Vector2(x, y) * cell, new Vector2(cell, cell));
-            handle.DrawRect(box, ColorOf(_kinds[i]));
+            handle.DrawRect(box, _colors[i]);
         }
     }
 }

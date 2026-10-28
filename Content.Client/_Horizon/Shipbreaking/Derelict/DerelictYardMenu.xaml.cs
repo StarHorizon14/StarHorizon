@@ -145,6 +145,6 @@ public sealed partial class DerelictYardMenu : FancyWindow
     public void SetPreview(DerelictPreviewMessage message)
     {
         if (message.Id == _selected)
-            Preview.SetPreview(message.Tiles, message.Kinds);
+            Preview.SetPreview(message.Tiles, message.Colors);
     }
 }

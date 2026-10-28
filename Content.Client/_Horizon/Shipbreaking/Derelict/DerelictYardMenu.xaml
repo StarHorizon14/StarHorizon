@@ -22,7 +22,6 @@
             <PanelContainer VerticalExpand="True" HorizontalExpand="True" MinSize="400 360">
                 <derelict:DerelictPreviewControl Name="Preview" VerticalExpand="True" HorizontalExpand="True"/>
             </PanelContainer>
-            <Label Name="LegendLabel" FontColorOverride="Silver" Text="{Loc 'derelict-yard-legend'}" Margin="0 2"/>
             <BoxContainer Orientation="Horizontal">
                 <Label Name="PriceLabel" HorizontalExpand="True"/>
                 <Button Name="BuyButton" Text="{Loc 'derelict-yard-buy'}" Disabled="True"/>

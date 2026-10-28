@@ -7,7 +7,6 @@ derelict-yard-money = ${$amount}
 derelict-yard-row = {$name} - ${$price}
 derelict-yard-price = Цена: ${$price}. Аренда: {$minutes} мин.
 derelict-yard-buy = Купить
-derelict-yard-legend = Пол, стена, дверь, окно, оборудование
 derelict-yard-no-station = Консоль не подключена к станции.
 derelict-yard-no-funds = Счёт станции не может это оплатить.
 derelict-yard-failed = Остов не удалось доставить, деньги возвращены.

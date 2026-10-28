@@ -7,7 +7,6 @@ derelict-yard-money = ${$amount}
 derelict-yard-row = {$name} - ${$price}
 derelict-yard-price = Price: ${$price}. Lease: {$minutes} min.
 derelict-yard-buy = Buy
-derelict-yard-legend = Floor, wall, door, window, equipment
 derelict-yard-no-station = The console is not connected to a station.
 derelict-yard-no-funds = The station account can not pay for that.
 derelict-yard-failed = The wreck could not be delivered, the money is returned.

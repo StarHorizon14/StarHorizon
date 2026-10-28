@@ -1,16 +1,15 @@
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
+using System.Linq;
 using Content.Server.Station.Systems;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Shipyard.Systems;
 using Content.Shared._Horizon.Shipbreaking.Derelict;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Bank.Components;
-using Content.Shared.Doors.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization.Systems;
@@ -33,9 +32,6 @@ public sealed class DerelictYardSystem : EntitySystem
     private const float ExtendPriceShare = 0.15f;
     private static readonly TimeSpan ExtendTime = TimeSpan.FromMinutes(10);
 
-    private static readonly ProtoId<TagPrototype> WallTag = "Wall";
-    private static readonly ProtoId<TagPrototype> WindowTag = "Window";
-
     private static readonly TimeSpan FirstWarning = TimeSpan.FromMinutes(5);
     private static readonly TimeSpan LastWarning = TimeSpan.FromMinutes(1);
 
@@ -52,7 +48,7 @@ public sealed class DerelictYardSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShipyardSystem _shipyard = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly ITileDefinitionManager _tileDefs = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     /// <summary>
@@ -74,7 +70,7 @@ public sealed class DerelictYardSystem : EntitySystem
 
     private readonly Dictionary<EntityUid, Job> _jobs = new();
 
-    private readonly Dictionary<string, (Vector2i[] Tiles, DerelictPreviewKind[] Kinds)> _previews = new();
+    private readonly Dictionary<string, (Vector2i[] Tiles, Color[] Colors)> _previews = new();
 
     public override void Initialize()
     {
@@ -424,15 +420,18 @@ public sealed class DerelictYardSystem : EntitySystem
         }
 
         _ui.ServerSendUiMessage(ent.Owner, DerelictYardUiKey.Key,
-            new DerelictPreviewMessage(vessel.ID, preview.Tiles, preview.Kinds), args.Actor);
+            new DerelictPreviewMessage(vessel.ID, preview.Tiles, preview.Colors), args.Actor);
     }
 
     /// <summary>
-    /// Loads the wreck on a map of its own, reads which tile holds what, and throws the map away.
+    /// Loads the wreck on a map of its own, colours each tile by the minimap rules, and throws the map away.
     /// </summary>
-    private bool TryBuildPreview(DerelictVesselPrototype vessel, out (Vector2i[] Tiles, DerelictPreviewKind[] Kinds) preview)
+    private bool TryBuildPreview(DerelictVesselPrototype vessel, out (Vector2i[] Tiles, Color[] Colors) preview)
     {
         preview = default;
+
+        if (!_proto.TryIndex(vessel.Minimap, out var minimap))
+            return false;
 
         _map.CreateMap(out var mapId, runMapInit: false);
         try
@@ -441,23 +440,37 @@ public sealed class DerelictYardSystem : EntitySystem
                 return false;
 
             var tiles = new List<Vector2i>();
-            var kinds = new List<DerelictPreviewKind>();
+            var colors = new List<Color>();
 
             foreach (var tile in _map.GetAllTiles(grid.Value.Owner, grid.Value.Comp))
             {
-                var kind = DerelictPreviewKind.Floor;
-                foreach (var anchored in _map.GetAnchoredEntities(grid.Value.Owner, grid.Value.Comp, tile.GridIndices))
+                var color = Color.Black;
+
+                // The rules are laid over each other, the last one that fits gives the colour.
+                var tileId = _tileDefs[tile.Tile.TypeId].ID;
+                foreach (var rule in minimap.Tiles)
                 {
-                    var found = Classify(anchored);
-                    if (found > kind)
-                        kind = found;
+                    if (rule.Fits(tileId))
+                        color = rule.Color;
                 }
 
+                // The same for what stands on the tile, the rule that comes last among all of it wins.
+                var best = -1;
+                foreach (var anchored in _map.GetAnchoredEntities(grid.Value.Owner, grid.Value.Comp, tile.GridIndices))
+                {
+                    var rule = LastRule(minimap.Entities, Prototype(anchored));
+                    if (rule > best)
+                        best = rule;
+                }
+
+                if (best >= 0)
+                    color = minimap.Entities[best].Color;
+
                 tiles.Add(tile.GridIndices);
-                kinds.Add(kind);
+                colors.Add(color);
             }
 
-            preview = (tiles.ToArray(), kinds.ToArray());
+            preview = (tiles.ToArray(), colors.ToArray());
             return true;
         }
         finally
@@ -466,17 +479,44 @@ public sealed class DerelictYardSystem : EntitySystem
         }
     }
 
-    private DerelictPreviewKind Classify(EntityUid uid)
+    private EntityPrototype? Prototype(EntityUid uid) => MetaData(uid).EntityPrototype;
+
+    /// <summary>
+    /// The index of the last rule that fits the prototype or one of the prototypes it comes from, so a pattern for
+    /// a base prototype takes in everything made from it. -1 if none fits.
+    /// </summary>
+    private int LastRule(List<ShuttleMinimapRule> rules, EntityPrototype? proto)
     {
-        if (_tag.HasTag(uid, WallTag))
-            return DerelictPreviewKind.Wall;
+        if (proto == null)
+            return -1;
 
-        if (HasComp<DoorComponent>(uid))
-            return DerelictPreviewKind.Door;
+        var ids = new HashSet<string>();
+        CollectIds(proto, ids);
 
-        if (_tag.HasTag(uid, WindowTag))
-            return DerelictPreviewKind.Window;
+        for (var i = rules.Count - 1; i >= 0; i--)
+        {
+            if (ids.Any(rules[i].Fits))
+                return i;
+        }
 
-        return DerelictPreviewKind.Machine;
+        return -1;
+    }
+
+    /// <summary>
+    /// The id of the prototype and of what it comes from. Abstract bases can not be looked up any more, so for them
+    /// only the id is known, and what they come from is not.
+    /// </summary>
+    private void CollectIds(EntityPrototype proto, HashSet<string> ids)
+    {
+        if (!ids.Add(proto.ID) || proto.Parents == null)
+            return;
+
+        foreach (var parent in proto.Parents)
+        {
+            if (_proto.TryIndex<EntityPrototype>(parent, out var parentProto))
+                CollectIds(parentProto, ids);
+            else
+                ids.Add(parent);
+        }
     }
 }
