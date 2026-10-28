@@ -1,0 +1,49 @@
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksNormGSec
+  name: носки Горлекс
+  suffix: GSec
+  description: Прочные носки из влагоотводящей ткани.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Underwear/Socks/gsecnorm.rsi
+  - type: StaticPrice
+    price: 170
+
+- type: entity
+  parent: ClothingUnderwearSocksNormGSec
+  id: ClothingUnderwearSocksMedicGSec
+  name: носки санитара Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Underwear/Socks/gsecmedic.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksThighGSec
+  name: чулки Горлекс
+  suffix: GSec
+  description: Боевые чулки выполненные в приятном глазу дизайне. Покрыты влагоотводящей эмалью
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Underwear/Socks/gsecthigh.rsi
+  - type: StaticPrice
+    price: 170
+  - type: Armor
+    modifiers:
+      coefficients:
+        Bleed: 0.97
+
+- type: entity
+  parent: ClothingUnderwearSocksThighGSec
+  id: ClothingUnderwearSocksMedicThighGSec
+  name: чулки санитара Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Underwear/Socks/gsecmedicthigh.rsi
+  - type: StaticPrice
+    price: 200
+  - type: Armor
+    modifiers:
+      coefficients:
+        Bleed: 0.95

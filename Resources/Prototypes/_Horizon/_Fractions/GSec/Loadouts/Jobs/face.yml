@@ -1,0 +1,17 @@
+- type: loadout
+  id: LoadoutMaskGSecAgent
+  price: 0
+  equipment:
+    face: ClothingMaskGasAgent
+
+- type: loadout
+  id: LoadoutMaskGSecMedic
+  price: 0
+  equipment:
+    face: ClothingMaskGasMedic
+
+- type: loadout
+  id: LoadoutMaskBalaclavaTactical
+  price: 0
+  equipment:
+    face: ClothingMaskBalaclavaTactical

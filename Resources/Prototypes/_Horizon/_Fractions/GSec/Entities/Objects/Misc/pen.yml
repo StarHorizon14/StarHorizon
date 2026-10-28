@@ -1,0 +1,26 @@
+- type: entity
+  id: PenGSec
+  parent: [PenEmbeddable, BaseGSecContraband]
+  name: ручка Горлекс
+  description: Надёжная ручка надёжной ЧВК, её удобно держать в руке, а трёх-гранный носик обеспечивает ей статус «холодного оружия».
+  suffix: GSec
+  components:
+  - type: Sprite
+    state: pen-gsec
+  - type: Tag
+    tags:
+    - Write
+    - Pickaxe
+    - Pen
+  - type: MeleeWeapon
+    wideAnimationRotation: -45
+    damage:
+      types:
+        Piercing: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Tool
+    qualities:
+    - Screwing
+    useSound:
+      collection: Screwdriver

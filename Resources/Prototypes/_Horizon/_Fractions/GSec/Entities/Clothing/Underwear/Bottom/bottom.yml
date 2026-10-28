@@ -1,0 +1,39 @@
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomBoxersGSec
+  name: трусы Горлекс
+  suffix: GSec
+  description: Нижнее бельё из приятного материала.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Underwear/Bottom/gsecboxers.rsi
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  parent: ClothingUnderwearBottomBoxersGSec
+  id: ClothingUnderwearBottomBoxersMedicGSec
+  name: трусы санитара Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Underwear/Bottom/gsecmedicboxers.rsi
+
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: ClothingUnderwearBottomPantiesGSec
+  name: трусики Горлекс
+  suffix: GSec
+  description: Нижнее бельё из приятного материала.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Underwear/Bottom/gsecpanties.rsi
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  parent: ClothingUnderwearBottomBoxersGSec
+  id: ClothingUnderwearBottomPantiesMedicGSec
+  name: трусики санитара Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Underwear/Bottom/gsecmedicpanties.rsi

@@ -1,0 +1,17 @@
+- type: loadout
+  id: LoadoutBeltGSecWebbing
+  price: 600
+  equipment:
+    belt: ClothingBeltGSecWebbing
+
+- type: loadout
+  id: LoadoutBeltWebbingMedic
+  price: 600
+  equipment:
+    belt: ClothingBeltWebbingMedic
+
+- type: loadout
+  id: LoadoutBeltWebbingOld
+  price: 600
+  equipment:
+    belt: ClothingBeltWebbingOld
