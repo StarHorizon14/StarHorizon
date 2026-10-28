@@ -1,0 +1,30 @@
+- type: entity
+  name: печать Горлекс
+  parent: BaseItem
+  id: RubberStampGSec
+  description: Штемпель из резины для проставления печатей на важных документах.
+  categories: [DoNotMap]
+  suffix: GSec, НЕ МАППИТЬ
+  components:
+  - type: Stamp
+    stampedName: "Горлекс"
+    stampState: "paper_stamp-gsec"
+    stampedColor: "#586429"
+    sound:
+      path: /Audio/Items/Stamp/thick_stamp_sub.ogg
+      params:
+        volume: -2
+        maxDistance: 5
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Misc/stamps.rsi
+    state: stamp-gsec
+  - type: Item
+    size: Tiny
+  - type: StealTarget
+    stealGroup: Stamp
+  - type: UseDelay # Frontier
+    delays: # Frontier
+      stamp:
+        length: 1.0 # Frontier: 1 second between stampings, avoid spam for reapplied stamps
+  - type: StaticPrice
+    price: 2000

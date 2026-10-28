@@ -1,0 +1,72 @@
+# Информация об авторе карты
+# GitHub: Dark4-42
+# Discord: 80darkness08
+
+- type: pointOfInterest
+  id: GSecTaipan
+  parent: BasePOI
+  name: Оперативная база «Тайпан» Горлекс
+  mapName: Оперативная база «Тайпан» Горлекс
+  minimumDistance: 12000
+  maximumDistance: 17000
+  spawnGroup: Required
+  anotherMap: true
+  gridPath: /Maps/_Horizon/_Fraction/GSec/POI/gsec-taipan.yml
+  hideWarp: true
+  addMapComponents:
+  - type: FTLDestination
+    requireCoordinateDisk: true
+  - type: Parallax
+    parallax: Sky
+  - type: MapAtmosphere
+    space: False
+    mixture:
+      volume: 2500
+      immutable: True
+      temperature: 248.15
+      moles:
+      - 21.824879
+      - 82.10312
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+  addComponents:
+  - type: IFF
+    color: "#3b4714"
+    flags: [HideLabel]
+    readOnly: false
+  - type: FTLBeacon
+
+- type: gameMap
+  id: GSecTaipan
+  mapName: "Оперативная база «Тайпан»"
+  mapPath: /Maps/_Horizon/_Fraction/GSec/POI/gsec-taipan.yml
+  minPlayers: 0
+  stations:
+    GSecTaipan:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Оперативная база Горлекс"
+        - type: ExtraStationInformation
+          iconPath: /Textures/_Horizon/_Fractions/GSec/Structures/Decorations/banner.rsi
+          stationSubtext: 'frontier-lobby-gsec-subtext'
+          stationDescription: 'frontier-lobby-gsec-description'
+          lobbySortOrder: 8
+        - type: StationJobs
+          availableJobs:
+            GSecOfficer: [ 1, 1 ]
+            GSecAgent: [ 3, 3 ]
+            GSecRecruit: [ 3, 3 ]
+            GSecMedic: [ 1, 1 ]
+            GSecTech: [ 2, 2 ]
+        - type: StationDeadDropHintExempt
+        - type: BindToStationVariationPassExemption
+        - type: NoMailStation

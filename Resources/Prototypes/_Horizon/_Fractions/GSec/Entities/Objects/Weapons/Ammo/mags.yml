@@ -1,0 +1,300 @@
+- type: entity
+  id: MagazineSniperGSec
+  name: крупнокалиберный магазин Горлекс
+  description: Разработанный Cybersun магазин для подачи множества калибров высокой убойной силы.
+  suffix: GSec
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineSniperGSec
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 7
+    proto: Cartridge50BMG
+    whitelist:
+      tags:
+        - CartridgeRifle762UEG
+        - CartridgeRifle300win
+        - CartridgeRifle762
+        - CartridgeRifle50BMG
+        - NFCartridgeRifle60
+        - Cartridge70
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/sniper-mag-gsec.rsi
+    size: Small
+    shape:
+    - 0,0,1,1
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+  - type: Sprite
+    netsync: false
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/sniper-mag-gsec.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-2
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineRifleGSec
+  name: винтовочный магазин Горлекс
+  description: Разработанный Cybersun магазин для подачи того, что может валяться под ногами.
+  suffix: GSec
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineRifleGSec
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 17
+    proto: NFCartridgeRifle20
+    whitelist:
+      tags:
+        - CartridgeRifle762UEG
+        - CartridgeRifle300win
+        - CartridgeRifle762
+        - CartridgeRifle762x39
+        - NFCartridgeRifle30
+        - NFCartridgeRifle20
+        - NFCartridgeRifle25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/rifle-mag-gsec.rsi
+    size: Small
+    shape:
+    - 0,0,1,1
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+  - type: Sprite
+    netsync: false
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/rifle-mag-gsec.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-2
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineMPGSec
+  name: магазин для ПП Горлекс
+  description: Разработанный Cybersun магазин для подачи того, что может валяться под ногами.
+  suffix: GSec
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineMPGSec
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 20
+    proto: NFCartridgePistol45
+    whitelist:
+      tags:
+      - NFCartridgeRifle25
+      - NFCartridgePistol35
+      - NFCartridgePistol45
+      - CartridgePistol45ACP
+      - CartridgePistol57x28
+      - CartridgeMagnum
+      - CartridgeMagnum345
+      - CartridgeRevolver44Magnum
+      - CartridgePistol50AE
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/smg-mag-gsec.rsi
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+  - type: Sprite
+    netsync: false
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/smg-mag-gsec.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineShotgunGSec
+  name: магазин для Сайги Горлекс
+  description: Адаптированный образец реликтового снаряжения, производимый мастерами «Gorlex Steel Works».
+  suffix: GSec
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineShotgunGSec
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 5
+    proto: NFShellShotgunBuckshot
+    whitelist:
+      tags:
+      - ShellShotgun
+      - CartridgePistol50AE
+      - CartridgeRifle50BMG
+      - NFCartridgeRifle60
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/shotgun-mag-gsec.rsi
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+  - type: Sprite
+    netsync: false
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/shotgun-mag-gsec.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-5
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineNorthStarGSec
+  name: магазин для Нордстар
+  description: Магазин для иконического пистолета, спроектирован на основе коробчатых магазинов для снайперских винтовок.
+  suffix: GSec
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineNorthStarGSec
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 5
+    proto: CartridgeRifleLight762
+    whitelist:
+      tags:
+      - CartridgeRifle762
+      - CartridgeRifleLight762
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/northstar-mag-gsec.rsi
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+  - type: Sprite
+    netsync: false
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/northstar-mag-gsec.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-2
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineGSecPistol35
+  name: магазин .35
+  parent: [BaseMagazinePistol35]
+  suffix: GSec, AnCo
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/blackwater-mag-gsec.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Tag
+    tags:
+      - AnCoNewMagazinePistol35
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+  - type: BallisticAmmoProvider
+    proto: BaseCartridgePistolAnCo
+    mayTransfer: true
+    whitelist:
+      tags:
+        - AnCoBulletPistol35
+    capacity: 25
+
+- type: entity
+  id: MagazineRifleGSecPraetor
+  name: магазин для винтовки
+  parent: [BaseItem, BaseGSecContraband]
+  suffix: GSec, AnCo
+  components:
+  - type: Tag
+    tags:
+      - AnCoMagazineRifle30
+      - AnCoMagazineRifle20
+  - type: BallisticAmmoProvider
+    proto: BaseCartridgeRifleAnCoBuff
+    mayTransfer: true
+    whitelist:
+      tags:
+        - AnCoBulletRifle30
+        - AnCoBulletRifle20
+    capacity: 70
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/praetor-mag-gsec.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Appearance
+
