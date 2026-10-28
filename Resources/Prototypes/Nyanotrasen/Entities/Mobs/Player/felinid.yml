@@ -26,12 +26,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-felinid-name
-    description: Вы фелинид, выращенный в цитологической ванне. Кошачья грация и охотничий инстинкт - ваше оружие. Исследуйте этот новый мир!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

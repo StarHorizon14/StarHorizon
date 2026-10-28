@@ -19,6 +19,9 @@
                         <Label Name="ViralSusceptibility" />
                     </BoxContainer>
                 </BoxContainer>
+                <BoxContainer Align="Center">
+                    <Label Name="Viruses" />
+                </BoxContainer>
                 <BoxContainer Orientation="Vertical">
                     <BoxContainer Align="Center">
                         <Label Text="{Loc 'cell-samples-window-required-chemicals'}" />

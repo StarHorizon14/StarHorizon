@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseAction
+  id: ActionSlimeChangeAppearance
+  name: Изменить облик
+  description: "Перестроить своё тело по вашему вкусу."
+  components:
+  - type: Action
+    icon:
+      sprite: Mobs/Species/Slime/parts.rsi
+      state: full
+    priority: -10
+  - type: InstantAction
+    event: !type:SlimeChangeAppearanceActionEvent

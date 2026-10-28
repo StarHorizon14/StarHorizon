@@ -31,15 +31,6 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-diona-name
-    description: Вы диона, растительный организм, выращенный в цитологической ванне. Вы чувствуете связь с природой. Осторожно исследуйте окружающий мир!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable
 
 # Reformed Diona
 - type: entity

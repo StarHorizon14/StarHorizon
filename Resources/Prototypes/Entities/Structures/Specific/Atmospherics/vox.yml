@@ -17,6 +17,19 @@
       Frezon: danger
       Respiron: ignore # Frontier
       Helium: stationHe # Frontier
+# Horizon start
+      BZ: danger
+      Pluoxium: unwanted
+      Hydrogen: danger
+      Nitrium: unwanted
+      Healium: danger
+      HyperNoblium: unwanted
+      ProtoNitrate: danger
+      Zauker: danger
+      Halon: danger
+      AntiNoblium: danger
+      Water: unwanted
+# Horizon end
 
 - type: entity
   parent: [AirSensorVoxBase, AirSensor]
