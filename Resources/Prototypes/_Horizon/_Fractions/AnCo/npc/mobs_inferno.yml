@@ -255,3 +255,25 @@
         30
       AggroVisionRadius: !type:Single
         30
+
+- type: entity
+  parent: [AnCoMechPredatorDungeon, BaseAnCoIfterno]
+  id: AnCoMechPredatorInferno
+  name: АМЕ Охотник
+  suffix: Inferno
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg

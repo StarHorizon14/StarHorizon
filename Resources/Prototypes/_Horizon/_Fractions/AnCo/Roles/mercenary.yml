@@ -22,9 +22,7 @@
   - GeneralAccess
   forceFaction: FactionAnCo
   startingGear: BaseAnCoGear
-  whitelisted: false # бугагага
-  alwaysUseSpawner: true
-  setPreference: true
+  whitelisted: true # бугагага
   newPlayerMessage: false
   special:
   - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
@@ -36,7 +34,12 @@
 - type: entity
   id: SpawnPointAnCoMercenary
   parent: SpawnPointPassenger
-  name: наемник АнКо
+  name: спавнер наемник АнКо
   components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: cadet
+        sprite: _Horizon/_Fractions/AnCo/Markers/markers.rsi
   - type: SpawnPoint
     job_id: AnCoMercenary
