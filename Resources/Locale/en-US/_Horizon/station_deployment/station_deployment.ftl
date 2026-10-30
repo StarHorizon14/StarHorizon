@@ -20,10 +20,15 @@ station-control-console-iff-color-set = Apply
 station-control-console-iff-color-invalid = That's not a valid hex color code.
 station-control-console-iff-color-success = Station IFF color changed.
 
+station-control-console-balance-label = Balance: [color=limegreen]{ $balance }[/color]
+station-control-console-balance-label-none = Balance: [color=gray]No Bank Account![/color]
+
 station-control-console-upgrades-header = Station Upgrades
 station-control-console-upgrade-buy-button = Buy
-station-control-console-upgrade-level-req = Requires { $category } level { $level }
-station-control-console-upgrade-price = Price: { $price }
+station-control-console-upgrade-name-label = [color=white]{ $name }[/color]
+station-control-console-upgrade-level-req = Requires [color=orange]{ $category } level { $level }[/color]
+station-control-console-upgrade-price = Price: [color=limegreen]{ $price }[/color]
+station-control-console-upgrade-description-label = [color=gray]{ $description }[/color]
 station-control-console-upgrade-locked = The required development level hasn't been reached yet.
 station-control-console-upgrade-limit = Bought: { $purchased }/{ $limit }
 station-control-console-upgrade-limit-reached = This station has already bought the maximum number of these.

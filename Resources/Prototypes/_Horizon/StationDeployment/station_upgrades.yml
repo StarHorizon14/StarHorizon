@@ -61,7 +61,7 @@
   description: station-upgrade-withdraw-atm-description
   category: NFService
   requiredLevel: 3
-  price: 5000
+  price: 50000
   entity: StationUpgradeWithdrawAtmFlatpack
   limit: 5
 
@@ -71,7 +71,7 @@
   description: station-upgrade-blackmarket-atm-description
   category: NFService
   requiredLevel: 5
-  price: 8000
+  price: 80000
   entity: StationUpgradeBlackMarketAtmFlatpack
   limit: 5
 
@@ -81,7 +81,7 @@
   description: station-upgrade-full-atm-description
   category: NFService
   requiredLevel: 10
-  price: 15000
+  price: 150000
   entity: StationUpgradeFullAtmFlatpack
   limit: 5
 
@@ -328,7 +328,7 @@
   description: station-upgrade-salvage-magnet-description
   category: NFEngineering
   requiredLevel: 4
-  price: 12000
+  price: 120000
   entity: StationUpgradeSalvageMagnetFlatpack
   limit: 1
 
@@ -349,7 +349,7 @@
   description: station-upgrade-energy-air-converter-description
   category: NFEngineering
   requiredLevel: 5
-  price: 20000
+  price: 200000
   entity: StationUpgradeEnergyAirConverterFlatpack
   limit: 1
 
@@ -359,7 +359,7 @@
   description: station-upgrade-antimatter-fabricator-description
   category: NFEngineering
   requiredLevel: 8
-  price: 40000
+  price: 400000
   entity: StationUpgradeAntiMatterFabricatorFlatpack
   limit: 1
 
@@ -369,7 +369,7 @@
   description: station-upgrade-power-transmission-point-description
   category: NFEngineering
   requiredLevel: 3
-  price: 15000
+  price: 150000
   entity: StationUpgradePowerTransmissionPointFlatpack
   limit: 2
 
@@ -379,7 +379,7 @@
   description: station-upgrade-smes-big-description
   category: NFEngineering
   requiredLevel: 2
-  price: 8000
+  price: 80000
   entity: StationUpgradeSMESBigFlatpack
   limit: 4
 
@@ -389,7 +389,7 @@
   description: station-upgrade-cryo-pod-description
   category: NFService
   requiredLevel: 2
-  price: 6000
+  price: 60000
   entity: StationUpgradeCryoPodFlatpack
   limit: 2
 
@@ -399,7 +399,7 @@
   description: station-upgrade-flatpack-vend-description
   category: NFService
   requiredLevel: 1
-  price: 3000
+  price: 30000
   entity: StationUpgradeFlatpackVendFlatpack
   limit: 4
 
@@ -409,7 +409,7 @@
   description: station-upgrade-gas-sale-point-description
   category: NFEngineering
   requiredLevel: 3
-  price: 5000
+  price: 50000
   entity: StationUpgradeGasSalePointFlatpack
   limit: 1
 
@@ -429,7 +429,7 @@
   description: station-upgrade-ammo-vend-description
   category: NFArsenalMercenary
   requiredLevel: 3
-  price: 7000
+  price: 70000
   entity: StationUpgradeAmmoVendFlatpack
   limit: 1
 
@@ -439,7 +439,7 @@
   description: station-upgrade-picknpack-vend-description
   category: NFService
   requiredLevel: 2
-  price: 5000
+  price: 50000
   entity: StationUpgradePickNPackVendFlatpack
   limit: 1
 
@@ -449,7 +449,7 @@
   description: station-upgrade-pallet-console-low-description
   category: NFService
   requiredLevel: 1
-  price: 4000
+  price: 40000
   entity: StationUpgradePalletConsoleLowMarketFlatpack
   limit: 1
 
@@ -459,7 +459,7 @@
   description: station-upgrade-pallet-console-normal-description
   category: NFService
   requiredLevel: 4
-  price: 10000
+  price: 100000
   entity: StationUpgradePalletConsoleNormalMarketFlatpack
   limit: 1
 
@@ -513,7 +513,7 @@
   description: station-upgrade-rcd-description
   category: NFEngineering
   requiredLevel: 2
-  price: 6000
+  price: 60000
   entity: StationRCDFlatpack
   limit: 4
 
@@ -523,6 +523,6 @@
   description: station-upgrade-advanced-rcd-description
   category: NFEngineering
   requiredLevel: 5
-  price: 15000
+  price: 150000
   entity: StationAdvancedRCDFlatpack
   limit: 1
