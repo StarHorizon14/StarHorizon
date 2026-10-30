@@ -179,7 +179,6 @@ public sealed partial class MechSystem : SharedMechSystem
         if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery))
         {
             InsertBattery(uid, args.Used, component, battery);
-            _actionBlocker.UpdateCanMove(uid);
             return;
         }
 
@@ -204,7 +203,7 @@ public sealed partial class MechSystem : SharedMechSystem
         component.MaxEnergy = battery.MaxCharge;
 
         Dirty(uid, component);
-        _actionBlocker.UpdateCanMove(uid);
+        UpdateMechMovement(uid, component);
     }
 
     private void OnRemoveBattery(EntityUid uid, MechComponent component, RemoveBatteryEvent args)
@@ -213,7 +212,6 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
 
         RemoveBattery(uid, component);
-        _actionBlocker.UpdateCanMove(uid);
 
         args.Handled = true;
     }
@@ -232,7 +230,7 @@ public sealed partial class MechSystem : SharedMechSystem
         component.Integrity = component.MaxIntegrity;
         component.Energy = component.MaxEnergy;
 
-        _actionBlocker.UpdateCanMove(uid);
+        UpdateMechMovement(uid, component);
         Dirty(uid, component);
     }
 
@@ -367,7 +365,7 @@ public sealed partial class MechSystem : SharedMechSystem
         // End Frontier
 
         TryInsert(uid, args.Args.User, component);
-        _actionBlocker.UpdateCanMove(uid);
+        UpdateMechMovement(uid, component);
 
         args.Handled = true;
     }
@@ -484,7 +482,7 @@ public sealed partial class MechSystem : SharedMechSystem
         base.BreakMech(uid, component);
 
         _ui.CloseUi(uid, MechUiKey.Key);
-        _actionBlocker.UpdateCanMove(uid);
+        UpdateMechMovement(uid, component);
     }
 
     public override bool TryChangeEnergy(EntityUid uid, FixedPoint2 delta, MechComponent? component = null)
@@ -509,7 +507,7 @@ public sealed partial class MechSystem : SharedMechSystem
             component.Energy = batteryComp.CurrentCharge;
             Dirty(uid, component);
         }
-        _actionBlocker.UpdateCanMove(uid);
+        UpdateMechMovement(uid, component);
         return true;
     }
 
@@ -525,7 +523,7 @@ public sealed partial class MechSystem : SharedMechSystem
         component.Energy = battery.CurrentCharge;
         component.MaxEnergy = battery.MaxCharge;
 
-        _actionBlocker.UpdateCanMove(uid);
+        UpdateMechMovement(uid, component);
 
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
@@ -540,7 +538,7 @@ public sealed partial class MechSystem : SharedMechSystem
         component.Energy = 0;
         component.MaxEnergy = 0;
 
-        _actionBlocker.UpdateCanMove(uid);
+        UpdateMechMovement(uid, component);
 
         Dirty(uid, component);
         UpdateUserInterface(uid, component);

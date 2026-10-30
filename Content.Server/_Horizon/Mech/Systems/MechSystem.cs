@@ -58,7 +58,7 @@ public sealed partial class MechSystem
             UpdateUserInterface(uid, mech);
 
             if (wasEmpty != mech.Energy <= 0)
-                _actionBlocker.UpdateCanMove(uid);
+                UpdateMechMovement(uid, mech);
         }
     }
 
