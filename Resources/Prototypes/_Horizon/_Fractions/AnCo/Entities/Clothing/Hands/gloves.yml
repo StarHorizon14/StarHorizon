@@ -19,7 +19,7 @@
     vendPrise: 500
 
 - type: entity
-  parent: AnCoGlovesIsolate
+  parent: [ClothingHandsGlovesSyntheticBase, BaseAnCoContraband]
   id: AnCoGloves
   suffix: StarHorizon, AnCo
   name: Ардониевые перчатки
@@ -32,9 +32,11 @@
   - type: StaticPrice
     price: 500
     vendPrise: 500
+  - type: Fiber
+    fiberMaterial: красные переливающиеся
 
 - type: entity
-  parent: AnCoGlovesIsolate
+  parent: [ClothingHandsGlovesSyntheticBase, BaseAnCoContraband]
   id: AnCoGlovesKazmie
   suffix: StarHorizon, AnCo
   name: казмиевые перчатки
@@ -46,6 +48,8 @@
     sprite: _Horizon/_Fractions/AnCo/Clothing/Hands/Gloves/kazmie-gloves.rsi
   - type: StaticPrice
     price: 500
+  - type: Fiber
+    fiberMaterial: темные металлические
 
 - type: entity
   parent: [ClothingHandsGlovesSyntheticBase, BaseMaxAnCoContraband]
@@ -62,7 +66,7 @@
     sprite: _Horizon/_Fractions/AnCo/Clothing/Hands/Gloves/titan-gloves.rsi
   - type: Insulated
   - type: Fiber
-    fiberMaterial: красные переливающиеся
+    fiberMaterial: грубые царапины и темные
   - type: StaticPrice
     price: 500
   - type: AnCoWeaponWeight
