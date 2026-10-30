@@ -1,40 +1,28 @@
-<Control xmlns="https://spacestation14.io"
-         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls">
-    <BoxContainer Name="MainContainer" Orientation="Vertical" Margin="10 0 10 10">
-        <PanelContainer Name="Background"
-                        Access="Public"
-                        StyleClasses="PdaBackground"
-                        MinHeight="15"
-                        VerticalExpand="False"
-                        HorizontalExpand="True"
-                        Margin="0 0 0 -5"/>
-        <Button Name="MainButton"
-                Disabled="True"
-                HorizontalExpand="True"
-                VerticalExpand="True"
-                StyleClasses="ButtonSquare"
-                Margin="0">
-            <BoxContainer Orientation="Vertical"
-                          VerticalExpand="True"
-                          Margin="5">
-                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                    <TextureRect Name="OrderTexture"
-                                 TextureScale="2 2"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Center"/>
-                    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center" Margin="10 0 0 0">
-                        <BoxContainer Orientation="Horizontal">
-                            <Label Name="TitleLabel" StyleClasses="LabelKeyText" HorizontalExpand="True"/>
-                            <TextureRect Name="CategoryTexture" TextureScale="2 2" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-                        </BoxContainer>
-                        <customControls:HSeparator StyleClasses="LowDivider" Margin="0 5 0 5"/>
-                        <BoxContainer Orientation="Horizontal">
-                            <RichTextLabel Name="RequirementsLabel" HorizontalAlignment="Left" StyleClasses="LabelSubText" HorizontalExpand="True"/>
-                            <Button Name="CancelButton" Text="{Loc 'station-task-console-cancel-button'}"/>
-                        </BoxContainer>
-                    </BoxContainer>
-                </BoxContainer>
+<BoxContainer xmlns="https://spacestation14.io"
+              xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+              Margin="10 10 10 0"
+              HorizontalExpand="True"
+              Visible="True">
+    <PanelContainer StyleClasses="AngleRect" HorizontalExpand="True">
+        <BoxContainer Orientation="Vertical"
+                      HorizontalExpand="True"
+                      Margin="5">
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                <TextureRect Name="CategoryTexture"
+                             TextureScale="2 2"
+                             VerticalAlignment="Center"
+                             Margin="0 0 8 0"/>
+                <RichTextLabel Name="CategoryLabel" VerticalAlignment="Center" HorizontalExpand="True"/>
+                <Control MinWidth="10"/>
+                <Button Name="CancelButton"
+                        Text="{Loc 'station-task-console-cancel-button'}"
+                        VerticalAlignment="Center"/>
             </BoxContainer>
-        </Button>
-    </BoxContainer>
-</Control>
+            <customControls:HSeparator Margin="5 10 5 10"/>
+            <BoxContainer Name="ManifestContainer" Orientation="Vertical" HorizontalExpand="True"/>
+            <BoxContainer Margin="0 6 0 0">
+                <RichTextLabel Name="DescriptionLabel"/>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</BoxContainer>

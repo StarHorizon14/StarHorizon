@@ -3,88 +3,64 @@
   description: station-order-description-toolboxes
   category: NFEngineering
   entries:
-  - name: station-order-item-toolbox
+  - item: ToolboxElectricalFilled
     amount: 3
-    whitelist:
-      tags:
-      - Toolbox
 
 - type: stationOrder
   id: StationOrderBlades
   description: station-order-description-blades
   category: NFArsenalMercenary
   entries:
-  - name: station-order-item-blade
+  - item: Machete
     amount: 5
-    whitelist:
-      components:
-      - Sharp
 
 - type: stationOrder
   id: StationOrderSyringes
   description: station-order-description-syringes
   category: NFScience
   entries:
-  - name: station-order-item-syringe
+  - item: Syringe
     amount: 6
-    whitelist:
-      tags:
-      - Syringe
 
 - type: stationOrder
   id: StationOrderMedkits
   description: station-order-description-medkits
   category: NFService
   entries:
-  - name: station-order-item-medkit
+  - item: MedkitFilled
     amount: 3
-    whitelist:
-      tags:
-      - Medkit
 
 - type: stationOrder
   id: StationOrderCables
   description: station-order-description-cables
   category: NFEngineering
   entries:
-  - name: station-order-item-cable
+  - item: CableApcStack
     amount: 8
-    whitelist:
-      tags:
-      - CableCoil
 
 - type: stationOrder
   id: StationOrderGrenades
   description: station-order-description-grenades
   category: NFArsenalMercenary
   entries:
-  - name: station-order-item-grenade
+  - item: GrenadeFrag
     amount: 4
-    whitelist:
-      tags:
-      - Grenade
 
 - type: stationOrder
   id: StationOrderBeakers
   description: station-order-description-beakers
   category: NFScience
   entries:
-  - name: station-order-item-beaker
+  - item: Beaker
     amount: 5
-    whitelist:
-      tags:
-      - GlassBeaker
 
 - type: stationOrder
   id: StationOrderVegetables
   description: station-order-description-vegetables
   category: NFService
   entries:
-  - name: station-order-item-vegetable
+  - item: FoodCarrot
     amount: 6
-    whitelist:
-      tags:
-      - Vegetable
 
 # Engineering - bulk/varied orders
 
@@ -93,111 +69,66 @@
   description: station-order-description-power-cells
   category: NFEngineering
   entries:
-  - name: station-order-item-powercell
+  - item: PowerCellMedium
     amount: 10
-    whitelist:
-      tags:
-      - PowerCell
-  - name: station-order-item-powercell-small
+  - item: PowerCellSmall
     amount: 15
-    whitelist:
-      tags:
-      - PowerCellSmall
 
 - type: stationOrder
   id: StationOrderLightingRestock
   description: station-order-description-lighting-restock
   category: NFEngineering
   entries:
-  - name: station-order-item-lightbulb
+  - item: LightBulb
     amount: 20
-    whitelist:
-      tags:
-      - LightBulb
-  - name: station-order-item-cable
+  - item: CableApcStack
     amount: 10
-    whitelist:
-      tags:
-      - CableCoil
 
 - type: stationOrder
   id: StationOrderHandToolSet
   description: station-order-description-hand-tool-set
   category: NFEngineering
   entries:
-  - name: station-order-item-wrench
+  - item: Wrench
     amount: 4
-    whitelist:
-      tags:
-      - Wrench
-  - name: station-order-item-screwdriver
+  - item: Screwdriver
     amount: 4
-    whitelist:
-      tags:
-      - Screwdriver
-  - name: station-order-item-crowbar
+  - item: Crowbar
     amount: 4
-    whitelist:
-      tags:
-      - Crowbar
-  - name: station-order-item-wirecutter
+  - item: Wirecutter
     amount: 4
-    whitelist:
-      tags:
-      - Wirecutter
 
 - type: stationOrder
   id: StationOrderGasCanisters
   description: station-order-description-gas-canisters
   category: NFEngineering
   entries:
-  - name: station-order-item-gastank
+  - item: OxygenTank
     amount: 8
-    whitelist:
-      tags:
-      - GasTank
-  - name: station-order-item-flamethrower-tank
+  - item: FuelTankFirethrower
     amount: 4
-    whitelist:
-      tags:
-      - TankFlamethrower
 
 - type: stationOrder
   id: StationOrderMultitoolShipment
   description: station-order-description-multitool-shipment
   category: NFEngineering
   entries:
-  - name: station-order-item-multitool
+  - item: Multitool
     amount: 6
-    whitelist:
-      tags:
-      - Multitool
-  - name: station-order-item-wirecutter
+  - item: Wirecutter
     amount: 6
-    whitelist:
-      tags:
-      - Wirecutter
 
 - type: stationOrder
   id: StationOrderFullEngineeringRestock
   description: station-order-description-full-engineering-restock
   category: NFEngineering
   entries:
-  - name: station-order-item-toolbox
+  - item: ToolboxElectricalFilled
     amount: 6
-    whitelist:
-      tags:
-      - Toolbox
-  - name: station-order-item-cable
+  - item: CableApcStack
     amount: 15
-    whitelist:
-      tags:
-      - CableCoil
-  - name: station-order-item-lightbulb
+  - item: LightBulb
     amount: 10
-    whitelist:
-      tags:
-      - LightBulb
 
 # Arsenal - bulk/varied orders
 
@@ -206,101 +137,62 @@
   description: station-order-description-pistol-magazines
   category: NFArsenalMercenary
   entries:
-  - name: station-order-item-pistol-mag-35
+  - item: NFMagazinePistol35
     amount: 8
-    whitelist:
-      tags:
-      - NFMagazinePistol35
-  - name: station-order-item-pistol-mag-45
+  - item: NFMagazinePistol45
     amount: 6
-    whitelist:
-      tags:
-      - NFMagazinePistol45
 
 - type: stationOrder
   id: StationOrderRifleMagazines
   description: station-order-description-rifle-magazines
   category: NFArsenalMercenary
   entries:
-  - name: station-order-item-rifle-mag-20
+  - item: NFMagazineRifle20
     amount: 6
-    whitelist:
-      tags:
-      - NFMagazineRifle20
-  - name: station-order-item-rifle-mag-30
+  - item: NFMagazineRifle30
     amount: 6
-    whitelist:
-      tags:
-      - NFMagazineRifle30
 
 - type: stationOrder
   id: StationOrderCombatBlades
   description: station-order-description-combat-blades
   category: NFArsenalMercenary
   entries:
-  - name: station-order-item-combat-knife
+  - item: CombatKnife
     amount: 5
-    whitelist:
-      tags:
-      - CombatKnife
-  - name: station-order-item-knife
+  - item: KitchenKnife
     amount: 5
-    whitelist:
-      tags:
-      - Knife
 
 - type: stationOrder
   id: StationOrderTacticalGear
   description: station-order-description-tactical-gear
   category: NFArsenalMercenary
   entries:
-  - name: station-order-item-handcuffs
+  - item: Handcuffs
     amount: 8
-    whitelist:
-      tags:
-      - Handcuffs
-  - name: station-order-item-taser
+  - item: WeaponTaser
     amount: 3
-    whitelist:
-      tags:
-      - Taser
 
 - type: stationOrder
   id: StationOrderGrenadeCache
   description: station-order-description-grenade-cache
   category: NFArsenalMercenary
   entries:
-  - name: station-order-item-hand-grenade
+  - item: ExGrenade
     amount: 5
-    whitelist:
-      tags:
-      - HandGrenade
-  - name: station-order-item-flashbang
+  - item: GrenadeFlashBang
     amount: 5
-    whitelist:
-      tags:
-      - GrenadeFlashBang
-  - name: station-order-item-grenade-mag
+  - item: MagazineGrenadeFrag
     amount: 3
-    whitelist:
-      tags:
-      - MagazineGrenade
 
 - type: stationOrder
   id: StationOrderSMGMagazines
   description: station-order-description-smg-magazines
   category: NFArsenalMercenary
   entries:
-  - name: station-order-item-smg-mag-35
+  - item: NFMagazineSubMachineGun35
     amount: 6
-    whitelist:
-      tags:
-      - NFMagazineSubMachineGunPistol35
-  - name: station-order-item-smg-mag-45
+  - item: NFMagazineSubMachineGun45
     amount: 4
-    whitelist:
-      tags:
-      - NFMagazineSubMachineGunPistol45
 
 # Science - bulk/varied orders
 
@@ -309,106 +201,62 @@
   description: station-order-description-pill-canisters
   category: NFScience
   entries:
-  - name: station-order-item-pill-canister
+  - item: PillCanister
     amount: 8
-    whitelist:
-      tags:
-      - PillCanister
-  - name: station-order-item-pill
+  - item: PillBicaridine
     amount: 20
-    whitelist:
-      tags:
-      - Pill
 
 - type: stationOrder
   id: StationOrderChemGlassware
   description: station-order-description-chem-glassware
   category: NFScience
   entries:
-  - name: station-order-item-beaker
+  - item: Beaker
     amount: 12
-    whitelist:
-      tags:
-      - GlassBeaker
-  - name: station-order-item-bottle
+  - item: ChemistryEmptyBottle01
     amount: 12
-    whitelist:
-      tags:
-      - Bottle
 
 - type: stationOrder
   id: StationOrderCryoSupplies
   description: station-order-description-cryo-supplies
   category: NFScience
   entries:
-  - name: station-order-item-cryobeaker
+  - item: CryostasisBeaker
     amount: 5
-    whitelist:
-      tags:
-      - Cryobeaker
-  - name: station-order-item-syringe
+  - item: Syringe
     amount: 10
-    whitelist:
-      tags:
-      - Syringe
 
 - type: stationOrder
   id: StationOrderAnomalyMaterials
   description: station-order-description-anomaly-materials
   category: NFScience
   entries:
-  - name: station-order-item-anomaly-core
-    amount: 4
-    whitelist:
-      tags:
-      - BluespaceAnomalyCore
-  - name: station-order-item-bluespace-core
-    amount: 4
-    whitelist:
-      tags:
-      - BluespaceCore
+  - item: AnomalyCoreBluespace
+    amount: 8
 
 - type: stationOrder
   id: StationOrderSyringeGunAmmo
   description: station-order-description-syringe-gun-ammo
   category: NFScience
   entries:
-  - name: station-order-item-syringe-gun-ammo
+  - item: MiniSyringe
     amount: 15
-    whitelist:
-      tags:
-      - SyringeGunAmmo
-  - name: station-order-item-syringe
+  - item: Syringe
     amount: 10
-    whitelist:
-      tags:
-      - Syringe
 
 - type: stationOrder
   id: StationOrderFullLabRestock
   description: station-order-description-full-lab-restock
   category: NFScience
   entries:
-  - name: station-order-item-beaker
+  - item: Beaker
     amount: 8
-    whitelist:
-      tags:
-      - GlassBeaker
-  - name: station-order-item-syringe
+  - item: Syringe
     amount: 8
-    whitelist:
-      tags:
-      - Syringe
-  - name: station-order-item-pill-canister
+  - item: PillCanister
     amount: 6
-    whitelist:
-      tags:
-      - PillCanister
-  - name: station-order-item-bottle
+  - item: ChemistryEmptyBottle01
     amount: 6
-    whitelist:
-      tags:
-      - Bottle
 
 # Service - bulk/varied orders
 
@@ -417,123 +265,69 @@
   description: station-order-description-fresh-produce
   category: NFService
   entries:
-  - name: station-order-item-vegetable
+  - item: FoodCarrot
     amount: 10
-    whitelist:
-      tags:
-      - Vegetable
-  - name: station-order-item-fruit
+  - item: FoodApple
     amount: 10
-    whitelist:
-      tags:
-      - Fruit
 
 - type: stationOrder
   id: StationOrderBakedGoods
   description: station-order-description-baked-goods
   category: NFService
   entries:
-  - name: station-order-item-bread
+  - item: FoodBreadCorn
     amount: 8
-    whitelist:
-      tags:
-      - Bread
-  - name: station-order-item-cake
+  - item: FoodCakePlain
     amount: 4
-    whitelist:
-      tags:
-      - Cake
-  - name: station-order-item-pancake
+  - item: FoodBakedPancake
     amount: 10
-    whitelist:
-      tags:
-      - Pancake
 
 - type: stationOrder
   id: StationOrderDrinksRestock
   description: station-order-description-drinks-restock
   category: NFService
   entries:
-  - name: station-order-item-drink-bottle
+  - item: DrinkVodkaBottleFull
     amount: 10
-    whitelist:
-      tags:
-      - DrinkBottle
-  - name: station-order-item-drink-can
+  - item: DrinkColaCan
     amount: 15
-    whitelist:
-      tags:
-      - DrinkCan
-  - name: station-order-item-drink-glass
+  - item: DrinkGlass
     amount: 10
-    whitelist:
-      tags:
-      - DrinkGlass
 
 - type: stationOrder
   id: StationOrderMedicalSupplies
   description: station-order-description-medical-supplies
   category: NFService
   entries:
-  - name: station-order-item-brutepack
+  - item: Brutepack
     amount: 8
-    whitelist:
-      tags:
-      - Brutepack
-  - name: station-order-item-ointment
+  - item: Ointment
     amount: 8
-    whitelist:
-      tags:
-      - Ointment
-  - name: station-order-item-gauze
+  - item: Gauze
     amount: 10
-    whitelist:
-      tags:
-      - Gauze
 
 - type: stationOrder
   id: StationOrderPlushieShipment
   description: station-order-description-plushie-shipment
   category: NFService
   entries:
-  - name: station-order-item-plushie-carp
+  - item: PlushieCarp
     amount: 5
-    whitelist:
-      tags:
-      - PlushieCarp
-  - name: station-order-item-plushie-lizard
+  - item: PlushieLizard
     amount: 5
-    whitelist:
-      tags:
-      - PlushieLizard
-  - name: station-order-item-plushie-ghost
+  - item: PlushieGhost
     amount: 5
-    whitelist:
-      tags:
-      - PlushieGhost
 
 - type: stationOrder
   id: StationOrderFullPantryRestock
   description: station-order-description-full-pantry-restock
   category: NFService
   entries:
-  - name: station-order-item-vegetable
+  - item: FoodCarrot
     amount: 8
-    whitelist:
-      tags:
-      - Vegetable
-  - name: station-order-item-fruit
+  - item: FoodApple
     amount: 8
-    whitelist:
-      tags:
-      - Fruit
-  - name: station-order-item-bread
+  - item: FoodBreadCorn
     amount: 6
-    whitelist:
-      tags:
-      - Bread
-  - name: station-order-item-meat
+  - item: FoodMeat
     amount: 6
-    whitelist:
-      tags:
-      - Meat
