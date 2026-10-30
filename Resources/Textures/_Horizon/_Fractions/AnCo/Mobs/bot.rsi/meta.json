@@ -62,7 +62,14 @@
         "name": "mush-icon"
     },
     {
+        "name": "predator-icon"
+    },
+    {
       "name": "mush-bot",
+      "directions": 4
+    },
+    {
+      "name": "predator-bot",
       "directions": 4
     },
     {
@@ -76,6 +83,9 @@
     },
     {
         "name": "cyclop-death"
+    },
+    {
+        "name": "predator-death"
     },
     {
         "name": "evil-larry"
