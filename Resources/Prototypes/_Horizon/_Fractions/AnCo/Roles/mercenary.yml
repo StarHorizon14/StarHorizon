@@ -6,7 +6,7 @@
   name: job-name-anco-mercenary
   description: job-description-anco-mercenary
   playTimeTracker: JobAnCoMercenary
-  salary: 5000
+  salary: 12500
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10 # бугагага
