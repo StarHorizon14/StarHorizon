@@ -331,3 +331,169 @@
     amount: 6
   - item: FoodMeat
     amount: 6
+
+- type: stationOrder
+  id: StationOrderScienceNFTreasureTrophyXenoQueen
+  description: Ученым необходим материал для исследований.
+  category: NFScience
+  entries:
+  - item: NFTreasureTrophyXenoQueen
+    amount: 1
+
+- type: stationOrder
+  id: StationOrderScienceLaserAnCoGun
+  description: Ученые решили занятся обратной инженерией, и им требуется ценный экземпляр.
+  category: NFScience
+  entries:
+  - item: LaserAnCoGun
+    amount: 1
+
+- type: stationOrder
+  id: StationOrderScienceMobCockroach
+  description: Ученые захотели себе таракана на радио-управлении.
+  category: NFScience
+  entries:
+  - item: MobCockroach
+    amount: 1
+
+- type: stationOrder
+  id: StationOrderScienceProtolatheHyperConvection
+  description: Ученым стало необходимо экономить свои ресурсы.
+  category: NFScience
+  entries:
+  - item: ProtolatheHyperConvection
+    amount: 1
+
+- type: stationOrder
+  id: StationOrderScienceMachineArtifactCrusher
+  description: Ученые решили узнать необходимое давление для превращения человека в куб.
+  category: NFScience
+  entries:
+  - item: MachineArtifactCrusher
+    amount: 1
+
+- type: stationOrder
+  id: StationOrderEngineeringMaterialBluespace1
+  description: Центральному командованию не хватает кристалла для запуска БС двигателя.
+  category: NFEngineering
+  entries:
+  - item: MaterialBluespace1
+    amount: 1
+
+- type: stationOrder
+  id: StationOrderEngineeringAmeController
+  description: Инженеры потеряли очень важную деталь на станции.
+  category: NFEngineering
+  entries:
+  - item: AmeController
+    amount: 1
+
+- type: stationOrder
+  id: StationOrderEngineeringThruster
+  description: Инженеры захотели покататься на обломке без водительских прав.
+  category: NFEngineering
+  entries:
+  - item: Gyroscope
+    amount: 1
+  - item: Thruster
+    amount: 4
+
+- type: stationOrder
+  id: StationOrderEngineeringClosetSmallAnCo
+  description: Инженерам необходимы крутые черные шкафы для хранения алкоголя
+  category: NFEngineering
+  entries:
+  - item: ClosetSmallAnCo
+    amount: 4
+
+- type: stationOrder
+  id: StationOrderEngineeringTechnologyDiscDurandTechnology
+  description: Инженеры захотели покататься внутри механоидов. Не революция.
+  category: NFEngineering
+  entries:
+  - item: TechnologyDiscDurandTechnology
+    amount: 4
+
+- type: stationOrder
+  id: StationOrderArsenalClothingOuterHardsuitKnight
+  description: Высокопоставлену офицеру требуется защита.
+  category: NFArsenalMercenary
+  entries:
+  - item: ClothingOuterHardsuitKnight
+    amount: 1
+
+- type: stationOrder
+  id: StationOrderArsenalNFMagazineDrumRifle20Empty
+  description: Отделу безопасности требуются расширенные магазины.
+  category: NFArsenalMercenary
+  entries:
+  - item: NFMagazineDrumRifle20Empty
+    amount: 10
+
+- type: stationOrder
+  id: StationOrderArsenalWeaponTurretAsmgtNtPacked
+  description: Отделу безопасности требуется турель для клоуна.
+  category: NFArsenalMercenary
+  entries:
+  - item: WeaponTurretAsmgtNtPacked
+    amount: 1
+
+- type: stationOrder
+  id: StationOrderArsenalBoxAmmoGranade
+  description: Отделу безопасности требуется наборы ракет. Они смогли засунуть ЭТО в пистолет.
+  category: NFArsenalMercenary
+  entries:
+  - item: BoxAmmoGranade
+    amount: 4
+
+- type: stationOrder
+  id: StationOrderArsenalClothingUniformJumpsuitSec
+  description: Отделу безопасности требуются новые комбенизоны. Прошлые были утеряны в борьбе с клоуном.
+  category: NFArsenalMercenary
+  entries:
+  - item: ClothingUniformJumpsuitSec
+    amount: 6
+
+- type: stationOrder
+  id: StationOrderServiceFoodCucumber
+  description: Один из ученых превратил себя в огурец, и требуется его спрятать от СБ.
+  category: NFService
+  entries:
+  - item: FoodCucumber
+    amount: 20
+
+- type: stationOrder
+  id: StationOrderServiceTrashBananaPeel
+  description: Одному из клоунов требуются банановые кожурки для революции.
+  category: NFService
+  entries:
+  - item: TrashBananaPeel
+    amount: 7
+
+- type: stationOrder
+  id: StationOrderServiceMechDurand
+  description: Отправьте мне это быстрее пока краснопузые не проснулись.
+  category: NFService
+  entries:
+  - item: MechDurand
+    amount: 1
+  - item: MechGunMissileLRM6
+    amount: 2
+  - item: BoxAmmoGranade
+    amount: 6
+
+- type: stationOrder
+  id: StationOrderServiceFoodGatfruit
+  description: Ботаник, спрашивает какой то гат.. Гатфрукт да. Два? Две штуки пожалуйста.
+  category: NFService
+  entries:
+  - item: FoodGatfruit
+    amount: 2
+
+- type: stationOrder
+  id: StationOrderServiceSyringe
+  description: Только медику и СБ не говорите, тссс.
+  category: NFService
+  entries:
+  - item: Syringe
+    amount: 5

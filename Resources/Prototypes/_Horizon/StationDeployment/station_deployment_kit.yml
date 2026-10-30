@@ -1,8 +1,8 @@
 - type: entity
   id: StationDeploymentKit
   parent: BaseItem
-  name: station deployment kit
-  description: Swipe an ID card on this to link it, then use it in a clear area to deploy a new station.
+  name: упакованный развертыватель станции
+  description: Проведите по этому устройству идентификационной картой, чтобы привязать её, а затем используйте на свободном пространстве, чтобы развернуть новую станцию.
   components:
   - type: Sprite
     sprite: Objects/Storage/boxes.rsi
@@ -10,3 +10,13 @@
   - type: Item
     size: Normal
   - type: StationDeploymentKit
+
+- type: cargoProduct
+  id: CargoStationDeploymentKit
+  icon:
+    sprite: Objects/Storage/boxes.rsi
+    state: box
+  product: StationDeploymentKit
+  cost: 500000 # Horizon
+  category: cargoproduct-category-name-shuttle
+  group: market
