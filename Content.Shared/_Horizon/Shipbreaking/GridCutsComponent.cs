@@ -2,29 +2,14 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._Horizon.Shipbreaking;
 
-/// <summary>
-/// Stores the cuts made along the seams between tiles of a grid with a <see cref="ShipCutterComponent"/>.
-/// A cut lets air through (the tiles next to it leak to space), is drawn as a thin gap, and stops the
-/// two tiles from counting as connected, so the grid falls apart once a part has no connections left.
-/// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class GridCutsComponent : Component
 {
-    /// <summary>
-    /// Cut edges per tile. Every cut is stored on both tiles it separates.
-    /// </summary>
     [DataField, AutoNetworkedField]
     public Dictionary<Vector2i, CutEdges> Cuts = new();
 
-    /// <summary>
-    /// Width of a drawn cut, in pixels (one tile is 32 pixels).
-    /// </summary>
     public const float CutWidthPixels = 3f;
 
-    /// <summary>
-    /// Whether the edge of the tile is cut, as recorded on the tile or on the tile across the edge. A cut along a split
-    /// of the grid is recorded on one side only, the other side is not part of this grid any more.
-    /// </summary>
     public bool IsCut(Vector2i tile, CutEdges edge)
     {
         return Cuts.GetValueOrDefault(tile).HasFlag(edge) ||
@@ -58,17 +43,12 @@ public static class CutEdgesExtensions
         };
     }
 
-    /// <summary>
     /// The direction the seam of this edge runs in: a horizontal seam (north, south) runs along x, a vertical one along y.
-    /// </summary>
     public static Vector2i Along(this CutEdges edge)
     {
         return edge is CutEdges.North or CutEdges.South ? new Vector2i(1, 0) : new Vector2i(0, 1);
     }
 
-    /// <summary>
-    /// The edge that faces the tile at the given offset (one of the four cardinal offsets).
-    /// </summary>
     public static CutEdges FromOffset(Vector2i offset)
     {
         if (offset == new Vector2i(0, 1))
@@ -83,12 +63,8 @@ public static class CutEdgesExtensions
         return CutEdges.None;
     }
 
-    // Counter-clockwise order, so a quarter turn moves an edge one step along it.
     private static readonly CutEdges[] CounterClockwise = { CutEdges.North, CutEdges.West, CutEdges.South, CutEdges.East };
 
-    /// <summary>
-    /// Rotates a set of edges counter-clockwise by the given number of quarter turns.
-    /// </summary>
     public static CutEdges Rotate(this CutEdges edges, int quarterTurns)
     {
         quarterTurns = ((quarterTurns % 4) + 4) % 4;
@@ -105,9 +81,6 @@ public static class CutEdgesExtensions
         return result;
     }
 
-    /// <summary>
-    /// The rectangle of a cut along the given edge of a tile, in grid local coordinates.
-    /// </summary>
     public static Box2 GetRect(this CutEdges edge, Vector2i tile, float tileSize, float halfWidth)
     {
         var x = tile.X * tileSize;
@@ -122,9 +95,6 @@ public static class CutEdgesExtensions
         };
     }
 
-    /// <summary>
-    /// The indices offset to the tile on the other side of the edge.
-    /// </summary>
     public static Vector2i Offset(this CutEdges edge)
     {
         return edge switch

@@ -4,14 +4,14 @@
                       Title="{Loc 'derelict-yard-title'}"
                       MinSize="900 560">
     <BoxContainer Orientation="Horizontal" Margin="6 3">
-        <BoxContainer Orientation="Vertical" MinWidth="320" Margin="0 0 6 0">
+        <BoxContainer Orientation="Vertical" MinWidth="400" Margin="0 0 6 0">
             <BoxContainer Orientation="Horizontal">
                 <Label Text="{Loc 'derelict-yard-balance'}" FontColorOverride="Silver"/>
                 <Label Name="BalanceLabel"/>
             </BoxContainer>
             <Label Name="RankLabel" FontColorOverride="Silver"/>
-            <ScrollContainer VerticalExpand="True" HorizontalExpand="True" Margin="0 4 0 0">
-                <BoxContainer Name="VesselList" Orientation="Vertical" HorizontalExpand="True"/>
+            <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False" Margin="0 4 0 0">
+                <BoxContainer Name="VesselList" Orientation="Vertical" HorizontalExpand="True" Margin="0 0 12 0"/>
             </ScrollContainer>
             <Label Text="{Loc 'derelict-yard-leases'}" FontColorOverride="Silver" Margin="0 4 0 0"/>
             <BoxContainer Name="LeaseList" Orientation="Vertical" HorizontalExpand="True" MinHeight="80"/>

@@ -127,9 +127,6 @@ namespace Content.Shared.Maps
         [DataField("indestructible")] public bool Indestructible = false;
 
         // Horizon: ported from space-wizards/space-station-14#43651
-        /// <summary>
-        /// The materials this tile is made of, used when the tile is reclaimed (e.g. by a tile reclaimer).
-        /// </summary>
         [DataField("materialComposition", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<int, MaterialPrototype>))]
         public Dictionary<string, int> MaterialComposition = new();
         // End Horizon

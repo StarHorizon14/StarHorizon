@@ -10,9 +10,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Horizon.Shipbreaking;
 
-/// <summary>
-/// Handles <see cref="ScrapPalletComponent"/>: buys what is left on the pallet.
-/// </summary>
 public sealed class ScrapPalletSystem : EntitySystem
 {
     [Dependency] private readonly BankSystem _bank = default!;
@@ -48,7 +45,6 @@ public sealed class ScrapPalletSystem : EntitySystem
         var sold = false;
         foreach (var other in _found)
         {
-            // Only what is loose: nothing that is part of the grid, nobody alive, and what the pallet is not for.
             if (other == ent.Owner || TerminatingOrDeleted(other) || Transform(other).Anchored || HasComp<MobStateComponent>(other))
                 continue;
 

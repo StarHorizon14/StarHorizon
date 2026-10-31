@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using Content.Shared.Conveyor;
 using Content.Shared.Maps;
 using Content.Shared.Materials;
@@ -12,10 +13,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Horizon.Materials;
 
-/// <summary>
-/// Handles logic related to <see cref="TileReclaimerComponent"/>.
-/// Ported from space-wizards/space-station-14#43651.
-/// </summary>
 public abstract class TileReclaimerSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -69,8 +66,6 @@ public abstract class TileReclaimerSystem : EntitySystem
         if (!reclaimer.Enabled || reclaimer.Broken)
             return;
 
-        // TODO: The recycler is hardcoded to rely on the conveyor component for its powered state, and this system is based on the same functionality.
-        // That should be fixed into a more general solution for both systems.
         if (!_conveyorQuery.TryComp(uid, out var conveyor) || conveyor.State == ConveyorState.Off)
             return;
 
@@ -95,7 +90,6 @@ public abstract class TileReclaimerSystem : EntitySystem
             if (!_whitelist.CheckBoth(grid, reclaimer.Blacklist, reclaimer.Whitelist))
                 continue;
 
-            // Materialize: tiles are removed while iterating.
             foreach (var tile in _mapSystem.GetTilesIntersecting(grid.Owner, grid.Comp, bounds).ToList())
             {
                 var tileDef = _turf.GetContentTileDefinition(tile);
@@ -109,12 +103,10 @@ public abstract class TileReclaimerSystem : EntitySystem
                 {
                     if (!_physicsQuery.TryComp(entityOnTile, out var physicsComp))
                     {
-                        // Marker/spawn entities and similar don't have physics, so we just plain remove them.
                         QueueDel(entityOnTile);
                         continue;
                     }
 
-                    // Unanchored and thrown off the grid that is about to lose its floor.
                     _physics.SetCanCollide(entityOnTile, true, body: physicsComp);
                     _physics.ApplyLinearImpulse(entityOnTile,
                         _physics.GetLinearVelocity(grid.Owner, Transform(entityOnTile).LocalPosition),
@@ -122,18 +114,22 @@ public abstract class TileReclaimerSystem : EntitySystem
                 }
 
                 _mapSystem.SetTile(grid.Owner, grid.Comp, tile.GridIndices, Tile.Empty);
-                // TODO: Ideally this should use tile stacking to get materials from every tile in the stack, not only the top one.
                 SpawnMaterialsFromComposition((uid, null, xform), tileDef, reclaimer.Efficiency, grid.Owner); // Horizon: grid for shipbreaking jobs
                 shredded = true;
 
-                // If it was the last tile, the grid is probably gone.
                 if (TerminatingOrDeleted(grid))
                     break;
 
-                // We suck in the grid slurrrrp.
-                // TODO: This applies a stacking speed which could get out of hand if a grid is very long.
-                _physics.ApplyLinearImpulse(grid.Owner,
-                    reclaimer.SlurpStrength * _transform.GetWorldRotation(xform).ToWorldVec());
+                // Horizon: towards the machine from the middle of the box, so a box on either side of it pulls inwards.
+                var pull = -reclaimer.RecyclingBox.Center;
+                if (pull != Vector2.Zero && _physicsQuery.TryComp(grid.Owner, out var gridPhysics) && gridPhysics.Mass > 0f)
+                {
+                    var direction = _transform.GetWorldRotation(xform).RotateVec(Vector2.Normalize(pull));
+                    var speed = Vector2.Dot(gridPhysics.LinearVelocity, direction);
+                    var gain = MathF.Min(reclaimer.SlurpStrength / gridPhysics.Mass, reclaimer.SlurpMaxSpeed - speed);
+                    if (gain > 0f)
+                        _physics.ApplyLinearImpulse(grid.Owner, direction * gain * gridPhysics.Mass, body: gridPhysics);
+                }
             }
         }
 
@@ -141,18 +137,10 @@ public abstract class TileReclaimerSystem : EntitySystem
             _audio.PlayPvs(reclaimer.Sound, uid);
     }
 
-    /// <summary>
-    /// Spawns materials from the <see cref="ContentTileDefinition.MaterialComposition"/> of the given tile.
-    /// </summary>
-    /// <param name="ent">Entity performing the spawning action.</param>
-    /// <param name="tileDefinition">Tile definition of the tile being reclaimed.</param>
-    /// <param name="efficiency">Multiplier of the material amount.</param>
-    /// <param name="sourceGrid">The grid the tile was reclaimed from.</param>
     protected virtual void SpawnMaterialsFromComposition(Entity<MaterialStorageComponent?, TransformComponent?> ent,
         ContentTileDefinition tileDefinition,
         float efficiency,
         EntityUid sourceGrid)
     {
-        // Handled on the server because that's where MaterialStorageSystem is.
     }
 }

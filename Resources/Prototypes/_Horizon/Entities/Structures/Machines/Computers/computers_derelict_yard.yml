@@ -17,7 +17,25 @@
       state: scrap_key
   - type: DerelictYardConsole
     vessels:
-    - DerelictSmallShip
+    - ScrapBison
+    - ScrapCanister
+    - ScrapConstruct
+    - ScrapDisciple
+    - ScrapGeode
+    - ScrapMayflower
+    - ScrapNugget
+    - ScrapOrange
+    - ScrapPoint
+    - ScrapRusty
+    - ScrapBarge
+    - ScrapComet
+    - ScrapCourserX
+    - ScrapCrescent
+    - ScrapHauler
+    - ScrapInvestigator
+    - ScrapSparrow
+    - ScrapSprinter
+    - ScrapTide
     - DerelictMiner
     - DerelictSyndicate
     - DerelictCargo
@@ -25,7 +43,8 @@
     - DerelictHauler
     - DerelictEmergency
     - DerelictWhiteship
-    - DerelictKvazar
+    - DerelictDuranihp
+    - DerelictVelvet
   - type: ActivatableUI
     key: enum.DerelictYardUiKey.Key
   - type: UserInterface

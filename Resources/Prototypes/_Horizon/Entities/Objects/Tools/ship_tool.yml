@@ -1,11 +1,3 @@
-# Shipbreaking tool: a battery powered cutter and seam welder in one item. Use it in hand to switch the mode,
-# the name of the item follows the mode.
-# Cut: click a wall to cut it loose (then move it with a gravity gun), click the seam between two floor tiles to cut a
-# slit along it: the slit leaks air, shows as a gap, and a part with no connections left breaks off into its own grid.
-# Weld: pick an edge of one hull and an edge of another to join them, click a seam or a cut to weld it shut.
-# A ghost of the target is shown under the cursor while it is held.
-# The look follows the mode like on the omnitool: cutSprite / weldSprite change the icon, cutHeldPrefix / weldHeldPrefix
-# the in-hand states ({prefix}-inhand-left ...). The sprites are ship_tool.rsi: the flame on the icon and in the hands shows while the tool has charge and follows the mode.
 - type: entity
   id: ShipTool
   parent:
@@ -38,7 +30,6 @@
           True: { visible: true }
           False: { visible: false }
   - type: ShipCutter
-    # The look of the item is the same in both modes, only the flame under it (see the client ShipCutterSystem) changes.
     cutSprite:
       sprite: _Horizon/Objects/Tools/ship_tool.rsi
       state: icon
@@ -51,3 +42,10 @@
       tags:
       - Wall
   - type: SeamWelder
+
+- type: entity
+  id: ShipToolUtilization
+  parent: ShipTool
+  components:
+  - type: ShipCutter
+    requireUtilization: true

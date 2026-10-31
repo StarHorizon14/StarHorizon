@@ -11,3 +11,5 @@ ship-cutter-no-charge = The tool is out of charge.
 
 ship-tool-status-cut = Mode: [color=cyan]cutting[/color]
 ship-tool-status-weld = Mode: [color=orange]welding[/color]
+ent-ShipToolUtilization = utilization cutter
+    .desc = A ship cutter that works only with utilization shuttles. Use it in hand to switch to welding.

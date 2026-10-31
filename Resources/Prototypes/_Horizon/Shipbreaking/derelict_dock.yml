@@ -1,0 +1,19 @@
+- type: entity
+  parent: ShuttleMagnet
+  id: ShuttleMagnetDerelict
+  name: Магнит для заброшенных шаттлов
+  description: Сюда стыкуются купленные на верфи заброшенные шаттлы, прежде чем искать другой порт.
+  components:
+  - type: PriorityDock
+    tag: DerelictDock
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleDerelict
+  suffix: External, Derelict, Glass, Docking
+  components:
+  - type: PriorityDock
+    tag: DerelictDock
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]

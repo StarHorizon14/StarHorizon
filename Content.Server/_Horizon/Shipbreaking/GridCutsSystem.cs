@@ -4,11 +4,6 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server._Horizon.Shipbreaking;
 
-/// <summary>
-/// Adds, removes and moves the cuts stored in <see cref="GridCutsComponent"/>, keeping atmos in sync.
-/// Shared by the ship cutter (cuts a seam), the grid welder (seals one, and creates them where grids are welded)
-/// and grid splitting.
-/// </summary>
 public sealed class GridCutsSystem : EntitySystem
 {
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
@@ -18,13 +13,10 @@ public sealed class GridCutsSystem : EntitySystem
     {
         base.Initialize();
 
-        // The engine split a grid on its own (damage), so the cuts of the part that left have to follow it.
         SubscribeLocalEvent<GridCutsComponent, PostGridSplitEvent>(OnGridSplit);
+        SubscribeLocalEvent<GridCutsComponent, TileChangedEvent>(OnTileChanged);
     }
 
-    /// <summary>
-    /// Cuts the given edge of the tile. The same cut is stored on the tile on the other side.
-    /// </summary>
     public void AddCut(EntityUid gridUid, Vector2i tile, CutEdges edge)
     {
         var cuts = EnsureComp<GridCutsComponent>(gridUid);
@@ -34,15 +26,10 @@ public sealed class GridCutsSystem : EntitySystem
         cuts.Cuts[other] = cuts.Cuts.GetValueOrDefault(other) | edge.Opposite();
         Dirty(gridUid, cuts);
 
-        // The tiles on both sides now leak to space, see AtmosphereSystem.UpdateTileData.
         _atmos.InvalidateTile(gridUid, tile);
         _atmos.InvalidateTile(gridUid, other);
     }
 
-    /// <summary>
-    /// Welds a cut shut, whichever side of it holds the record. Removes the component once the grid has no cuts left.
-    /// </summary>
-    /// <returns>True if there was a cut to seal.</returns>
     public bool RemoveCut(EntityUid gridUid, Vector2i tile, CutEdges edge)
     {
         if (!TryComp<GridCutsComponent>(gridUid, out var cuts) || !cuts.IsCut(tile, edge))
@@ -64,8 +51,42 @@ public sealed class GridCutsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Whether the grid still has any unsealed cuts.
+    /// A tile that is gone takes its cuts with it, on both sides of every edge, so no cut is left hanging in space.
     /// </summary>
+    private void OnTileChanged(Entity<GridCutsComponent> ent, ref TileChangedEvent args)
+    {
+        var changed = false;
+
+        foreach (var change in args.Changes)
+        {
+            if (!change.NewTile.IsEmpty)
+                continue;
+
+            var tile = change.GridIndices;
+            if (!ent.Comp.Cuts.Remove(tile, out var flags))
+                continue;
+
+            changed = true;
+            foreach (var edge in CutEdgesExtensions.All)
+            {
+                if (!flags.HasFlag(edge))
+                    continue;
+
+                var other = tile + edge.Offset();
+                ClearEdge(ent.Comp, other, edge.Opposite());
+                _atmos.InvalidateTile(ent.Owner, other);
+            }
+        }
+
+        if (!changed)
+            return;
+
+        if (ent.Comp.Cuts.Count == 0)
+            RemComp<GridCutsComponent>(ent);
+        else
+            Dirty(ent);
+    }
+
     public bool HasCuts(EntityUid gridUid)
     {
         return TryComp<GridCutsComponent>(gridUid, out var cuts) && cuts.Cuts.Count > 0;
@@ -83,10 +104,6 @@ public sealed class GridCutsSystem : EntitySystem
             cuts.Cuts[tile] = flags;
     }
 
-    /// <summary>
-    /// Moves the cuts of the moved part to the new grid. The cuts along the split stay on both halves, as gaps on
-    /// their edges.
-    /// </summary>
     public void MoveCuts(EntityUid oldUid, GridCutsComponent oldCuts, EntityUid newUid, HashSet<Vector2i> moved)
     {
         var newCuts = EnsureComp<GridCutsComponent>(newUid);
@@ -97,7 +114,6 @@ public sealed class GridCutsSystem : EntitySystem
                 newCuts.Cuts[indices] = flags;
         }
 
-        // Tiles with cuts leak to space, see AtmosphereSystem.UpdateTileData: both grids have to look at them again.
         foreach (var tile in newCuts.Cuts.Keys)
         {
             _atmos.InvalidateTile(newUid, tile);
@@ -124,9 +140,6 @@ public sealed class GridCutsSystem : EntitySystem
         if (!TryComp<MapGridComponent>(ent, out var oldGrid) || !TryComp<MapGridComponent>(args.Grid, out var newGrid))
             return;
 
-        // The engine split the grid on its own: its old tiles are already cleared here. (On the cutter path the tiles
-        // are cleared after the event and ShipCutterSystem moves the cuts itself.)
-        // Tiles that are gone from the old grid but exist on the new one went along with the split.
         var moved = new HashSet<Vector2i>();
         foreach (var tile in ent.Comp.Cuts.Keys)
         {

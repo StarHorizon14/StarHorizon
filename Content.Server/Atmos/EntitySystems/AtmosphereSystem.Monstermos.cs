@@ -709,7 +709,6 @@ namespace Content.Server.Atmos.EntitySystems
         }
 
         // Horizon: a very strong wind breaks what stands on the tile it goes through and the structures around the tile
-        // (walls, doors, windows and anything else that can take structural damage).
         private static readonly Vector2i[] WindDamageOffsets =
         {
             Vector2i.Zero, new(1, 0), new(-1, 0), new(0, 1), new(0, -1),

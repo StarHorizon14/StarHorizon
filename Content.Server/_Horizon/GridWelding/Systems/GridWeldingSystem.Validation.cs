@@ -11,13 +11,6 @@ namespace Content.Server._Horizon.GridWelding.Systems;
 
 public sealed partial class GridWeldingSystem
 {
-    /// <summary>
-    /// Runs the full validation checklist for welding <paramref name="tileA"/> on grid A to
-    /// <paramref name="tileB"/> on grid B, and if everything checks out, returns the offset+rotation
-    /// <see cref="Robust.Server.Physics.GridFixtureSystem.Merge"/> needs. Always re-run this right
-    /// before actually calling Merge, not just at the initial click, since the two grids can
-    /// move/change during the DoAfter.
-    /// </summary>
     private bool TryValidateWeld(
         SeamWelderComponent comp,
         EntityUid user,
@@ -71,11 +64,6 @@ public sealed partial class GridWeldingSystem
             return false;
         }
 
-        // Full-footprint overlap check: transform every tile of B into A's local frame. Nothing is allowed to land on
-        // an occupied tile of A or on a hard structure of A. Structures of B are part of B and only matter where
-        // they land on A, which is the same check.
-        // If the grids fit almost but not quite (a snug notch), B may be nudged by a tile along the seam: the
-        // straight position is tried first, then one tile either way.
         var half = gridA.TileSizeHalfVector;
         var tilesB = _maps.GetAllTiles(gridBUid, gridB).ToList();
         var direction = targetTileA - tileA;
@@ -100,8 +88,6 @@ public sealed partial class GridWeldingSystem
             return false;
         }
 
-        // The tolerance above is grid-to-grid alignment, not player reach - the player still
-        // needs to actually be able to touch both points, not just whichever one they clicked.
         var coordsA = _maps.GridTileToLocal(gridAUid, gridA, tileA);
         var coordsB = _maps.GridTileToLocal(gridBUid, gridB, tileB);
         if (!_interaction.InRangeUnobstructed(user, coordsA, popup: false) ||

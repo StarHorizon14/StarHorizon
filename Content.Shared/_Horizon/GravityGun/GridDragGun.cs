@@ -1,49 +1,71 @@
-using System.Numerics;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
+using Robust.Shared.Map.Components;
 
 namespace Content.Shared._Horizon.GravityGun;
 
-/// <summary>
-/// Lets a held gun drag whole grids with the mouse, the way the admin griddrag command does: hold the use key over a
-/// grid and it follows the cursor, let go and it keeps the speed of the hand.
-/// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class GridDragGunComponent : Component
 {
-    /// <summary>
-    /// How far from the user the grabbed point of the grid may be, in metres.
-    /// </summary>
     [DataField]
     public float MaxDistance = 15f;
+
+    [DataField]
+    public int MaxTiles = 9;
+
+    [DataField]
+    public bool RequireUtilization;
+
+    [DataField]
+    public float Gain = 4f;
+
+    [DataField]
+    public float Blend = 0.08f;
+
+    [DataField]
+    public float MaxSpeed = 20f;
+
+    [DataField]
+    public Color LineColor = Color.Orange;
 }
 
-/// <summary>
-/// The client starts dragging a grid by the point of it under the cursor.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class GridDragGunStartRequest : EntityEventArgs
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+public sealed partial class GridDraggedComponent : Component
 {
-    public NetEntity Grid;
-    public Vector2 LocalPoint;
+    [DataField, AutoNetworkedField]
+    public EntityUid Gun;
+
+    public TimeSpan LastRequest;
+
+    public EntityUid? Stream;
 }
 
-/// <summary>
-/// The client asks for the origin of the grid to be at a position.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class GridDragGunPositionRequest : EntityEventArgs
+public abstract class SharedGridDragGunSystem : EntitySystem
 {
-    public NetEntity Grid;
-    public Vector2 WorldPosition;
-}
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedMapSystem _maps = default!;
 
-/// <summary>
-/// The client let go: the grid goes on with this velocity.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class GridDragGunStopRequest : EntityEventArgs
-{
-    public NetEntity Grid;
-    public Vector2 LinearVelocity;
+    public bool CanGrab(EntityUid user, GridDragGunComponent gun, EntityUid grid)
+    {
+        if (TerminatingOrDeleted(grid) || !TryComp<MapGridComponent>(grid, out var comp) || Transform(user).GridUid == grid ||
+            (gun.RequireUtilization && !HasComp<Shipbreaking.Derelict.ShuttleUtilizationComponent>(grid)))
+            return false;
+
+        var tiles = 0;
+        foreach (var _ in _maps.GetAllTiles(grid, comp))
+        {
+            if (++tiles > gun.MaxTiles)
+                return false;
+        }
+
+        var mobs = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
+        while (mobs.MoveNext(out var uid, out var mob, out var xform))
+        {
+            if (xform.GridUid == grid && _mobState.IsAlive(uid, mob))
+                return false;
+        }
+
+        return true;
+    }
 }

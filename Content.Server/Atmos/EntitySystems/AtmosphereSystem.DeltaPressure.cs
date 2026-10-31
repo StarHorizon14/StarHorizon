@@ -237,9 +237,7 @@ public sealed partial class AtmosphereSystem
         PlayStrainSound(ent.Owner, ent.Comp); // Horizon
     }
 
-    /// <summary>
     /// Horizon: the creaking of a structure that is under too much pressure or wind, at most once per interval.
-    /// </summary>
     private void PlayStrainSound(EntityUid uid, DeltaPressureComponent? comp = null)
     {
         if (!Resolve(uid, ref comp, false) || comp.StrainSound == null || _gameTiming.CurTime < comp.NextStrainSound)

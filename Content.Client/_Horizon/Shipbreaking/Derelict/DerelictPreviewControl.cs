@@ -5,9 +5,6 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._Horizon.Shipbreaking.Derelict;
 
-/// <summary>
-/// A view from above on a wreck, one coloured cell per tile.
-/// </summary>
 public sealed class DerelictPreviewControl : Control
 {
     private static readonly Color Background = Color.FromHex("#0b0b10");
@@ -58,7 +55,6 @@ public sealed class DerelictPreviewControl : Control
 
         for (var i = 0; i < _tiles.Length; i++)
         {
-            // The grid goes up with y, the screen goes down.
             var x = _tiles[i].X - min.X;
             var y = max.Y - _tiles[i].Y;
             var box = UIBox2.FromDimensions(origin + new Vector2(x, y) * cell, new Vector2(cell, cell));

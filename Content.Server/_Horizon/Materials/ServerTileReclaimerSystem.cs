@@ -8,10 +8,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Horizon.Materials;
 
-/// <summary>
-/// Server side of <see cref="TileReclaimerSystem"/>: pays the station bank account for the materials
-/// a reclaimed tile is made of, instead of producing the materials themselves.
-/// </summary>
 public sealed class ServerTileReclaimerSystem : TileReclaimerSystem
 {
     [Dependency] private readonly BankSystem _bank = default!;

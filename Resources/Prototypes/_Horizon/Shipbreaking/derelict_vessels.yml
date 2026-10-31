@@ -1,11 +1,126 @@
-# Wrecks the derelict yard sells. The price is taken from the station account, what the wreck is scrapped for with the
-# shipbreaking machines pays into the same account. After the lifetime the wreck and everything cut off it is deleted.
 - type: derelictVessel
-  id: DerelictSmallShip
-  name: derelict-vessel-small-ship
-  description: derelict-vessel-small-ship-desc
-  price: 4000
-  shuttlePath: /Maps/_Horizon/Lostvoid/Shuttle/small-ship-1.yml
+  id: ScrapBison
+  minRank: 2
+  name: derelict-vessel-scrap-bison
+  price: 41534
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/bison.yml
+
+- type: derelictVessel
+  id: ScrapCanister
+  name: derelict-vessel-scrap-canister
+  price: 2000
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/canister.yml
+
+- type: derelictVessel
+  id: ScrapConstruct
+  name: derelict-vessel-scrap-construct
+  price: 2625
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/construct.yml
+
+- type: derelictVessel
+  id: ScrapDisciple
+  name: derelict-vessel-scrap-disciple
+  price: 3750
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/disciple.yml
+
+- type: derelictVessel
+  id: ScrapGeode
+  minRank: 1
+  name: derelict-vessel-scrap-geode
+  price: 12750
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/geode.yml
+
+- type: derelictVessel
+  id: ScrapNugget
+  name: derelict-vessel-scrap-nugget
+  price: 3987
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/nugget.yml
+
+- type: derelictVessel
+  id: ScrapOrange
+  name: derelict-vessel-scrap-orange
+  price: 4500
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/orange.yml
+
+- type: derelictVessel
+  id: ScrapPoint
+  name: derelict-vessel-scrap-point
+  price: 4025
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/point.yml
+
+- type: derelictVessel
+  id: ScrapRusty
+  name: derelict-vessel-scrap-rusty
+  price: 2125
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/rusty.yml
+
+- type: derelictVessel
+  id: ScrapBarge
+  minRank: 1
+  name: derelict-vessel-scrap-barge
+  price: 13500
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-barge.yml
+
+- type: derelictVessel
+  id: ScrapComet
+  minRank: 1
+  name: derelict-vessel-scrap-comet
+  price: 15500
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-comet.yml
+
+- type: derelictVessel
+  id: ScrapCourserX
+  minRank: 1
+  name: derelict-vessel-scrap-courserx
+  price: 17162
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-courserx.yml
+
+- type: derelictVessel
+  id: ScrapCrescent
+  minRank: 2
+  name: derelict-vessel-scrap-crescent
+  price: 75000
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-crescent.yml
+
+- type: derelictVessel
+  id: ScrapHauler
+  minRank: 1
+  name: derelict-vessel-scrap-hauler
+  price: 18750
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-hauler.yml
+
+- type: derelictVessel
+  id: ScrapInvestigator
+  minRank: 1
+  name: derelict-vessel-scrap-investigator
+  price: 11250
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-investigator.yml
+
+- type: derelictVessel
+  id: ScrapSparrow
+  name: derelict-vessel-scrap-sparrow
+  price: 8750
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-sparrow.yml
+
+- type: derelictVessel
+  id: ScrapSprinter
+  minRank: 1
+  name: derelict-vessel-scrap-sprinter
+  price: 15000
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/scrap-sprinter.yml
+
+- type: derelictVessel
+  id: ScrapTide
+  name: derelict-vessel-scrap-tide
+  price: 2425
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/tide.yml
+
+- type: derelictVessel
+  id: ScrapMayflower
+  minRank: 1
+  name: derelict-vessel-scrap-mayflower
+  price: 12500
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shipyard/Shuttles/Scrap/mayflower.yml
 
 - type: derelictVessel
   id: DerelictMiner
@@ -59,11 +174,16 @@
   price: 24000
   shuttlePath: /Maps/_Horizon/Lostvoid/Shuttle/whiteship-bluespacejumper.yml
 
+- type: derelictVessel
+  id: DerelictDuranihp
+  minRank: 1
+  name: derelict-vessel-duranihp
+  price: 20000
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shuttle/duranihp-destroyed.yml
 
 - type: derelictVessel
-  id: DerelictKvazar
+  id: DerelictVelvet
   minRank: 2
-  name: derelict-vessel-kvazar
-  description: derelict-vessel-kvazar-desc
-  price: 40000
-  shuttlePath: /Maps/_Horizon/Lostvoid/Shuttle/kvazar.yml
+  name: derelict-vessel-velvet
+  price: 60000
+  shuttlePath: /Maps/_Horizon/Lostvoid/Shuttle/velvet.yml

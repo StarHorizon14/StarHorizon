@@ -1,52 +1,36 @@
 # Colours of the shuttle preview of the derelict yard, in the format of starhorizon-map-render.
 - type: shuttleMinimap
   id: Default
-  # Работает по системе наложения
-  # То есть самый последний тайл налаживается на первый
 
   tiles:
-    # Цвет пола по умолчанию.
-    # Поскольку в условие не добавлены другие тайлы то считаются все тайлы
     - color: "#22b14c"
-    # Покрытие и решётка
     - color: "#847e87"
       match:
       - "Lattice"
       - "Plating"
 
-  # Энтити работают как и тайлы по системе наложения
-  # Будет отображатся самая последняя сущность
-  # То есть если например на 1 тайле будет пожарный и обычный шлюз то по приоретету будет отображатся только обычный шлюз
-  # Обратите особое внимание на звёздочки (*)
-  # из них.
   entities:
-    # Стена - Самый не приорететный
     - color: "#595652"
       match:
       - "*Wall"
-    # Пожарные шлюзы
     - color: "#08862d"
       match:
       - "Firelock"
       - "FirelockGlass"
-    # Ставни и гермозавторы
     - color: "#df7126"
       match:
       - "Shutters*"
       - "BlastDoor*"
-    # Окна
     - color: "#639bff"
       match:
       - "*Window*"
       exclude:
       - "Shutters*"
-    # Шлюзы
     - color: "#df7126"
       match:
       - "Airlock*"
       - "Windoor*"
       - "Gaslock"
-    # Двигатели - Самый приорететный
     - color: "#fbf236"
       match:
       - "Thruster*"

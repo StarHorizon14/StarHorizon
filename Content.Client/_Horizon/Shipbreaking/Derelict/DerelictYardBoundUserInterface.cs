@@ -18,7 +18,7 @@ public sealed class DerelictYardBoundUserInterface : BoundUserInterface
         _menu = this.CreateWindow<DerelictYardMenu>();
         _menu.OnSelected += id => SendMessage(new DerelictPreviewRequestMessage(id));
         _menu.OnBuy += id => SendMessage(new DerelictPurchaseMessage(id));
-        _menu.OnExtend += group => SendMessage(new DerelictExtendMessage(group));
+        _menu.OnFinish += group => SendMessage(new DerelictFinishMessage(group));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

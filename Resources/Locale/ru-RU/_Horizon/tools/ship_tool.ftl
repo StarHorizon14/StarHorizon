@@ -11,3 +11,5 @@ ship-cutter-no-charge = У инструмента села батарея.
 
 ship-tool-status-cut = Режим: [color=cyan]резка[/color]
 ship-tool-status-weld = Режим: [color=orange]сварка[/color]
+ent-ShipToolUtilization = утилизационный резак
+    .desc = Корабельный резак, который работает только с шаттлами на утилизации. Использование в руке переключает на сварку.

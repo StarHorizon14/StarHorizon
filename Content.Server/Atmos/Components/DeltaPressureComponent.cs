@@ -104,6 +104,17 @@ public sealed partial class DeltaPressureComponent : Component
     [DataField]
     public float ScalingPower = 1;
 
+    /// Horizon: played while the entity is under pressure it can not stand, the creaking of the structure.
+    [DataField]
+    public SoundSpecifier? StrainSound;
+
+    /// Horizon: how often <see cref="StrainSound"/> may play.
+    [DataField]
+    public TimeSpan StrainSoundInterval = TimeSpan.FromSeconds(3);
+
+    /// Horizon: when the next strain sound may play.
+    public TimeSpan NextStrainSound;
+
     /// <summary>
     /// Horizon: played while the entity is under pressure it can not stand, the creaking of the structure.
     /// </summary>

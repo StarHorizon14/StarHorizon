@@ -6,8 +6,6 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server._Horizon.GridWelding.Systems;
 
-// A welded border is not sealed: it is recorded as cuts (see GridCutsComponent), which leak air,
-// show up as gaps and have to be welded shut one by one.
 public sealed partial class GridWeldingSystem
 {
     private static readonly Vector2i[] CardinalDirections =
@@ -15,10 +13,6 @@ public sealed partial class GridWeldingSystem
         new(1, 0), new(-1, 0), new(0, 1), new(0, -1),
     };
 
-    /// <summary>
-    /// After a successful merge, cuts every border between what used to be grid A and what used to be grid B,
-    /// besides the single explicit weld point, and carries the cuts grid B already had over to grid A.
-    /// </summary>
     private void ApplyMergeSeams(
         EntityUid gridAUid,
         MapGridComponent gridA,
@@ -43,7 +37,6 @@ public sealed partial class GridWeldingSystem
                 if (!originalAFootprint.Contains(neighbor))
                     continue;
 
-                // This is the one pair the player deliberately welded - it's already sealed.
                 if (transformed == weldedTransformedB && neighbor == tileA)
                     continue;
 
@@ -54,8 +47,6 @@ public sealed partial class GridWeldingSystem
         if (originalBCuts == null)
             return;
 
-        // Grid B is gone, so its own cuts move over: tile indices are transformed like the tiles were,
-        // and the edges turn by the same number of quarter turns.
         var quarterTurns = (int) Math.Round(rotation.Theta / (Math.PI / 2));
         foreach (var (tile, edges) in originalBCuts)
         {

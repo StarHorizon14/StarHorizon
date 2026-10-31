@@ -1,0 +1,16 @@
+- type: roleLoadout
+  id: JobShipCutter
+  groups:
+  - GroupTankHarness
+  - SalvageSpecialistBackpack
+  - SalvageSpecialistOuterClothing
+  - SalvageSpecialistShoes
+  - Glasses
+  - Survival
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - GroupSpeciesBreathTool
+  - Top
+  - Bottom
+  - Socks

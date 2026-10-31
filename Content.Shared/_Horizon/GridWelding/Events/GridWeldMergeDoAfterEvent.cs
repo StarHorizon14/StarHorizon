@@ -4,10 +4,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Horizon.GridWelding.Events;
 
-/// <summary>
-/// Raised once the welder's initial grid-merging weld (the one that joins two separate grids
-/// into one) finishes its DoAfter.
-/// </summary>
 [Serializable, NetSerializable]
 public sealed partial class GridWeldMergeDoAfterEvent : DoAfterEvent
 {

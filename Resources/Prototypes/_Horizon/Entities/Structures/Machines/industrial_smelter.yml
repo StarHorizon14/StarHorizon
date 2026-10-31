@@ -1,7 +1,4 @@
-# Shipbreaking machines. All pay the station bank account. Sprites are placeholders (recycler).
-# Ported TileReclaimer from space-wizards/space-station-14#43651.
 
-# Furnace: burns loose floor tile items and pipes (paid), and the tiles of grids pushed into it (not paid).
 - type: entity
   id: ShipbreakingFurnace
   parent: BaseScrapProcessor
@@ -24,17 +21,28 @@
           Off: { visible: false }
           Forward: { visible: true }
           Reverse: { visible: true }
-  # Burns the tiles of a grid pushed into it, for nothing.
   - type: TileReclaimer
     pay: false
+    recyclingBox: -0.35,-1,0.35,-0.5
     whitelist:
       components:
       - Shuttle
+    blacklist:
+      components:
+      - StationMember
+      - CargoShuttle
+      - ArrivalsShuttle
+      - EmergencyShuttle
     sound:
       path: /Audio/Effects/saw.ogg
       params:
         volume: -3
   - type: ScrapProcessor
+    burnDamage:
+      types:
+        Heat: 5
+    burnSound:
+      path: /Audio/Effects/sizzle.ogg
     sound:
       path: /Audio/Effects/saw.ogg
       params:
@@ -44,7 +52,6 @@
       - FloorTile
       - AtmosPipeLayers
 
-# Processor: eats whole grids (shuttle tiles) pulled into it and buys loose walls and cable coils.
 - type: entity
   id: ShipbreakingProcessor
   parent: BaseScrapProcessor
@@ -68,15 +75,23 @@
           Forward: { visible: true }
           Reverse: { visible: true }
   - type: TileReclaimer
-    efficiency: 5 # tiles are paid for in money, see ServerTileReclaimerSystem
+    recyclingBox: -0.35,-1,0.35,-0.5
+    efficiency: 5
     whitelist:
       components:
       - Shuttle
+    blacklist:
+      components:
+      - StationMember
+      - CargoShuttle
+      - ArrivalsShuttle
+      - EmergencyShuttle
     sound:
       path: /Audio/Effects/saw.ogg
       params:
         volume: -3
   - type: ScrapProcessor
+    gibLiving: true
     sound:
       path: /Audio/Effects/saw.ogg
       params:
@@ -86,7 +101,6 @@
       - Wall
       - CableCoil
 
-# No grid whitelist: eats any grid pushed into it, including stations. Admin only.
 - type: entity
   id: ShipbreakingProcessorAdmeme
   parent: BaseScrapProcessor
@@ -111,14 +125,13 @@
           Forward: { visible: true }
           Reverse: { visible: true }
   - type: TileReclaimer
+    recyclingBox: -0.35,-1,0.35,-0.5
     efficiency: 5
     sound:
       path: /Audio/Effects/saw.ogg
       params:
         volume: -3
 
-# Shipbreaking scrap processors: buy loose entities (fed in by conveyors) and pay the station bank account.
-# Sprites: furnace.rsi (crusher), processor.rsi (shredder), barge.rsi; the base machine keeps the recycler as a fallback.
 - type: entity
   id: BaseScrapProcessor
   parent: BaseMachinePowered
@@ -129,10 +142,14 @@
       brrt:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.15,-0.15,0.15,0.15"
+          bounds: "-0.5, -0.75, 0.5, 0.15"
         hard: false
         layer:
         - FullTileLayer
+        - DoorPassable
+        mask:
+        - FullTileMask
+        - TabletopMachineLayer
       collision:
         shape:
           !type:PhysShapeAabb
@@ -169,6 +186,8 @@
     layers:
     - state: grinder-o0
   - type: Conveyor
+    angle: 90
+    state: Forward
   - type: Rotatable
   - type: ApcPowerReceiver
     powerLoad: 500
@@ -184,14 +203,10 @@
         sound:
           collection: MetalBreak
 
-# Barge: a pallet that buys everything left on it (furniture, crates, parts), except walls, floor tiles and the living.
-# Like the selling pallets of the cargo console, without the console. Sprite: barge.rsi, smoothed like the cargo pallets.
 - type: entity
   id: ShipbreakingBarge
   parent: BaseCargoPallet
   components:
-  # No layers on the sprite (the empty list drops the catwalk layer of the cargo pallet): IconSmooth adds the corner
-  # layers itself, a layer of its own would show under them.
   - type: Sprite
     drawdepth: FloorTiles
     sprite: _Horizon/Structures/Machines/shipbreaking/barge.rsi

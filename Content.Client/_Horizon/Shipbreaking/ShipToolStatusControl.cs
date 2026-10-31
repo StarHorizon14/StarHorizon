@@ -7,9 +7,6 @@ using Content.Client.Message;
 
 namespace Content.Client._Horizon.Shipbreaking;
 
-/// <summary>
-/// The line under the hand that says which mode the ship tool is in, like the one of the omnitool.
-/// </summary>
 public sealed class ShipToolStatusControl : Control
 {
     private readonly ShipCutterComponent _tool;

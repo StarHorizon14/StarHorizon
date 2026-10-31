@@ -13,9 +13,6 @@ public partial class BaseShuttleControl
 
     private Vector2[] _cutVertices = new Vector2[64];
 
-    /// <summary>
-    /// Draws the cuts of <see cref="GridCutsComponent"/> over the grid, so a cut seam shows on the radar.
-    /// </summary>
     private void DrawGridCuts(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid)
     {
         if (!EntManager.TryGetComponent(grid.Owner, out GridCutsComponent? cuts) || cuts.Cuts.Count == 0)
@@ -26,7 +23,6 @@ public partial class BaseShuttleControl
 
         foreach (var (tile, edges) in cuts.Cuts)
         {
-            // Every cut is stored on both tiles it separates, so the north and east edges are enough.
             foreach (var edge in CutEdgesDrawn)
             {
                 if (!edges.HasFlag(edge))

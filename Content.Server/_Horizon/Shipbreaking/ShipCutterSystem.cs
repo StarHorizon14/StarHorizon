@@ -16,10 +16,6 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Server._Horizon.Shipbreaking;
 
-/// <summary>
-/// Handles <see cref="ShipCutterComponent"/>: cutting walls loose and cutting slits between floor tiles,
-/// which leak air and eventually split the grid. Each cut takes charge from the power cell of the cutter.
-/// </summary>
 public sealed partial class ShipCutterSystem : SharedShipCutterSystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -47,9 +43,6 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
         UpdateName(ent);
     }
 
-    /// <summary>
-    /// Using the tool in hand switches between cutting and welding.
-    /// </summary>
     private void OnUseInHand(Entity<ShipCutterComponent> ent, ref UseInHandEvent args)
     {
         if (args.Handled)
@@ -73,7 +66,6 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
         _meta.SetEntityName(ent, Loc.GetString(cut ? ent.Comp.CutName : ent.Comp.WeldName));
         _meta.SetEntityDescription(ent, Loc.GetString(cut ? ent.Comp.CutDescription : ent.Comp.WeldDescription));
 
-        // What is held in hand looks different too, if the prototype has a look for the mode.
         var prefix = cut ? ent.Comp.CutHeldPrefix : ent.Comp.WeldHeldPrefix;
         if (prefix != null)
             _item.SetHeldPrefix(ent, prefix);
@@ -123,9 +115,6 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
             _audio.PlayPvs(ent.Comp.Sound, ent);
     }
 
-    /// <summary>
-    /// Checks the target can still be cut, and gives the entity to do-after on with the delay and charge it takes.
-    /// </summary>
     private bool TryResolve(ShipCutterComponent cutter, ShipCutterTarget target, out EntityUid entity, out float delay, out float charge)
     {
         entity = default;
@@ -143,7 +132,6 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
                 !TryGetWallTile(entity, out var wallGrid, out var wallGridComp, out var wallTile))
                 return false;
 
-            // The edge has to still hold the wall; a wall that is free already just comes loose.
             var held = WallHeldEdges(cutter, wallGrid, wallGridComp, wallTile, entity);
             if (target.Edge == CutEdges.None ? held != CutEdges.None : !held.HasFlag(target.Edge))
                 return false;
@@ -201,10 +189,6 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
         return true;
     }
 
-    /// <summary>
-    /// Cuts one edge of the wall, on the wall next to it as well. With no edge given the wall comes loose, which is what
-    /// the click after the last cut does.
-    /// </summary>
     public void CutWall(ShipCutterComponent cutter, EntityUid wall, CutEdges edge)
     {
         if (edge != CutEdges.None && TryGetWallTile(wall, out var gridUid, out var grid, out var tile))
@@ -212,7 +196,6 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
             EnsureComp<WallCutsComponent>(wall).Cuts |= edge;
             Dirty(wall, Comp<WallCutsComponent>(wall));
 
-            // The cut is between two walls, so the other one is cut off just the same.
             foreach (var other in MapSystem.GetAnchoredEntities((gridUid, grid), tile + edge.Offset()).ToList())
             {
                 if (other == wall || !Whitelist.IsWhitelistPass(cutter.WallWhitelist, other))
@@ -223,16 +206,12 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
                 Dirty(other, otherCuts);
             }
 
-            // The last cut leaves the wall in place; one more click unscrews it.
             return;
         }
 
         CutLoose(wall);
     }
 
-    /// <summary>
-    /// Detaches an anchored entity from the grid, turning it into a loose body that can be moved around.
-    /// </summary>
     private void CutLoose(EntityUid wall)
     {
         TransformSystem.Unanchor(wall);
@@ -245,9 +224,6 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
         _physics.WakeBody(wall, body: body);
     }
 
-    /// <summary>
-    /// Cuts the seam and, if that cuts a part of the grid off, splits it into its own grid.
-    /// </summary>
     public void CutSeam(EntityUid gridUid, Vector2i tile, CutEdges edge)
     {
         if (!TryComp<MapGridComponent>(gridUid, out var grid))
@@ -255,15 +231,10 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
 
         _cuts.AddCut(gridUid, tile, edge);
 
-        // GridCutsComponent exists now.
         var other = tile + edge.Offset();
         TrySplit(gridUid, grid, Comp<GridCutsComponent>(gridUid), tile, other);
     }
 
-    /// <summary>
-    /// Cuts several seams at once. All the cuts are made first and only then it is checked what they cut off, so the
-    /// order of the seams does not matter.
-    /// </summary>
     public void CutSeams(EntityUid gridUid, IReadOnlyList<(Vector2i Tile, CutEdges Edge)> seams)
     {
         if (!TryComp<MapGridComponent>(gridUid, out var grid))
@@ -276,7 +247,6 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
 
         foreach (var (tile, edge) in seams)
         {
-            // A split can take the cuts of the part that left with it.
             if (!TryComp<GridCutsComponent>(gridUid, out var cuts))
                 break;
 

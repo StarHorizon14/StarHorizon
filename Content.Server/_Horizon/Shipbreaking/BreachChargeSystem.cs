@@ -11,10 +11,6 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server._Horizon.Shipbreaking;
 
-/// <summary>
-/// Handles <see cref="BreachChargeComponent"/>: hanging a charge on the edge of a tile, and cutting a line of seams
-/// along that edge when the fuse is out.
-/// </summary>
 public sealed class BreachChargeSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -40,7 +36,6 @@ public sealed class BreachChargeSystem : EntitySystem
         if (args.Handled || !args.CanReach)
             return;
 
-        // The edge nearest to the click. A wall on the tile does not matter, only the floor does.
         if (!_seams.TryGetSeam(_transform.ToMapCoordinates(args.ClickLocation), ent.Comp.EdgeTolerance,
                 out var gridUid, out var grid, out var tile, out var edge))
             return;
@@ -78,7 +73,6 @@ public sealed class BreachChargeSystem : EntitySystem
             return;
         }
 
-        // Hang it in the middle of the edge, lying along it.
         var size = grid.TileSize;
         var centre = new Vector2(args.Tile.X + 0.5f, args.Tile.Y + 0.5f) + new Vector2(args.Edge.Offset().X, args.Edge.Offset().Y) * 0.5f;
         var armed = Spawn(ent.Comp.ArmedPrototype, new EntityCoordinates(gridUid, centre * size));
@@ -90,16 +84,12 @@ public sealed class BreachChargeSystem : EntitySystem
         comp.Edge = args.Edge;
         comp.Segments = ent.Comp.Segments;
 
-        // The prototype has the timer trigger that counts the fuse down.
         _trigger.ActivateTimerTrigger(armed, args.User);
 
         _audio.PlayPvs(ent.Comp.PlaceSound, armed);
         QueueDel(ent);
     }
 
-    /// <summary>
-    /// Cuts the seams of a line along the edge, centred on the charge. Walls and furniture are not touched, only the floor.
-    /// </summary>
     private void OnTrigger(Entity<ArmedBreachChargeComponent> ent, ref TriggerEvent args)
     {
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
@@ -114,7 +104,6 @@ public sealed class BreachChargeSystem : EntitySystem
         var armed = ent.Comp;
         var gridUid = armed.Grid;
 
-        // If the grid was split since, the charge is on another one and the line is gone with its place.
         if (TryComp<MapGridComponent>(gridUid, out var grid) && Transform(ent).GridUid == gridUid)
         {
             var along = armed.Edge.Along();

@@ -1,4 +1,3 @@
-# Creaking of structures under too much pressure or wind, see DeltaPressure strainSound.
 - type: soundCollection
   id: PressureStrainWall
   files:

@@ -4,10 +4,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Horizon.GridWelding.Events;
 
-/// <summary>
-/// Raised once the welder finishes sealing a single already-joined seam point tracked by a
-/// <see cref="GridCutsComponent"/> seam.
-/// </summary>
 [Serializable, NetSerializable]
 public sealed partial class GridWeldSealDoAfterEvent : DoAfterEvent
 {
