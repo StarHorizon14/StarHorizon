@@ -56,6 +56,12 @@
       allowedTiles:
         - FloorKazmie
       entities:
+        - SpawnAnCoFaunaRandom
+        - SpawnAnCoFaunaRandom
+        - SpawnAnCoFaunaRandom
+        - SpawnAnCoFaunaRandom
+        - SpawnAnCoFaunaRandom
+        - SpawnAnCoFaunaRandom
         - PlantAnCoGrass
         - PlantAnCoBigMushroom
         - PlantAnCoMushroom

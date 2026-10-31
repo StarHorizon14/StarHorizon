@@ -56,7 +56,7 @@
         - type: StationNameSetup
           mapNameTemplate: "Оперативная база Горлекс"
         - type: ExtraStationInformation
-          iconPath: /Textures/_Horizon/_Fractions/GSec/Structures/Decorations/banner.rsi
+          iconPath: /Textures/_Horizon/Interface/banner_gsec.png
           stationSubtext: 'frontier-lobby-gsec-subtext'
           stationDescription: 'frontier-lobby-gsec-description'
           lobbySortOrder: 8

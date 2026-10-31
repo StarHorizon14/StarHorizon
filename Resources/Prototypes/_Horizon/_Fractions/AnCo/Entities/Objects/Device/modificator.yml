@@ -59,3 +59,20 @@
   - type: Tag
     tags:
     - AnCoUpgradeSyndie
+
+- type: entity
+  parent: ModStationHardSuit
+  id: ModStationDurand
+  suffix: StarHorizon, AnCo
+  name: станция модификации дюранда Эшелон
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/modstation.rsi
+    layers:
+    - state: base
+    - state: base-unshaded
+      shader: unshaded
+    - state: mech
+  - type: Tag
+    tags:
+    - AnCoUpgradeDurand

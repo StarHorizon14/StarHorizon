@@ -1,0 +1,98 @@
+# region Dependencies
+# Withdrawal stages are cumulative and are counted from the last dose (time is in seconds).
+
+- type: trait
+  id: AlcoholDependency
+  name: trait-alcohol-dependency-name
+  description: trait-alcohol-dependency-desc
+  category: HorizonNegative
+  group: TraitDependency
+  cost: -5
+  components:
+  - type: SubstanceDependency
+    metabolismGroups:
+    - Alcohol
+    reliefMessage: dependency-alcohol-relief
+    cravingMessages:
+    - dependency-alcohol-craving-1
+    - dependency-alcohol-craving-2
+    - dependency-alcohol-craving-3
+    - dependency-alcohol-craving-4
+    stages:
+    - time: 600
+      effects: [ Slowdown ]
+      message: dependency-alcohol-stage-1
+    - time: 900
+      effects: [ Clouding ]
+      message: dependency-alcohol-stage-2
+    - time: 1200
+      effects: [ AimPenalty ]
+      message: dependency-alcohol-stage-3
+    - time: 1800
+      effects: [ Vomit, Sleep ]
+      message: dependency-alcohol-stage-4
+    - time: 3600
+      effects: [ Poison ]
+      message: dependency-alcohol-stage-5
+
+- type: trait
+  id: NarcoticDependency
+  name: trait-narcotic-dependency-name
+  description: trait-narcotic-dependency-desc
+  category: HorizonNegative
+  group: TraitDependency
+  cost: -7
+  components:
+  - type: SubstanceDependency
+    metabolismGroups:
+    - Narcotic
+    reliefMessage: dependency-narcotic-relief
+    cravingMessages:
+    - dependency-narcotic-craving-1
+    - dependency-narcotic-craving-2
+    - dependency-narcotic-craving-3
+    - dependency-narcotic-craving-4
+    stages:
+    - time: 600
+      effects: [ AimPenalty ]
+      message: dependency-narcotic-stage-1
+    - time: 900
+      effects: [ Clouding ]
+      message: dependency-narcotic-stage-2
+    - time: 1200
+      effects: [ Jitter ]
+      message: dependency-narcotic-stage-3
+    - time: 1800
+      effects: [ Vomit, Poison ]
+      message: dependency-narcotic-stage-4
+
+- type: trait
+  id: ArdonDependency
+  name: trait-ardon-dependency-name
+  description: trait-ardon-dependency-desc
+  category: HorizonNegative
+  group: TraitDependency
+  cost: -8
+  components:
+  - type: SubstanceDependency
+    reagents:
+    - Ardon
+    reliefMessage: dependency-ardon-relief
+    cravingMessages:
+    - dependency-ardon-craving-1
+    - dependency-ardon-craving-2
+    - dependency-ardon-craving-3
+    - dependency-ardon-craving-4
+    stages:
+    - time: 600
+      effects: [ AimPenalty ]
+      message: dependency-ardon-stage-1
+    - time: 900
+      effects: [ Clouding ]
+      message: dependency-ardon-stage-2
+    - time: 1200
+      effects: [ Jitter ]
+      message: dependency-ardon-stage-3
+    - time: 1800
+      effects: [ Vomit, Cellular ]
+      message: dependency-ardon-stage-4

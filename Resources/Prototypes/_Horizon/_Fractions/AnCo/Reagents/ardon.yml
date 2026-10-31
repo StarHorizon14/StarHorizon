@@ -1,0 +1,95 @@
+- type: reagent
+  id: Ardon
+  name: Ардон
+  group: Narcotics
+  desc: Горячий, вязкий словно ардоновая лава, погодите, она и есть.
+  physicalDesc: Горячая
+  flavor: metallic
+  color: "#f05a5a"
+  worksOnTheDead: true
+  metamorphicSprite:
+    sprite: _Horizon/_Fractions/AnCo/Objects/Food/ardonwater.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.1
+        sprintSpeedModifier: 1.1
+      - !type:AdjustTemperature
+        amount: 17500
+
+- type: reagent
+  id: ArdonVodka
+  name: Эпицентр
+  parent: BaseAlcohol
+  desc: Два огня, один коктейль.
+  physicalDesc: Горячая с едким запахом.
+  flavor: metallic
+  color: "#f05a5a"
+  worksOnTheDead: true
+  metamorphicSprite:
+    sprite: _Horizon/_Fractions/AnCo/Objects/Food/ardonvodka.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.4
+      - !type:AdjustReagent
+        reagent: Ardon
+        amount: 0.70
+
+- type: reaction
+  id: ArdonVodka
+  reactants:
+    Ardon:
+      amount: 1
+    Vodka:
+      amount: 1
+  products:
+    ArdonVodka: 2
+
+- type: reagent
+  id: ArdonWine
+  name: Распад
+  parent: BaseAlcohol
+  desc: Словно тлеющие угли разорванной звезды,
+  physicalDesc: Горячая с едким запахом.
+  flavor: metallic
+  color: "#f05a5a"
+  worksOnTheDead: true
+  metamorphicSprite:
+    sprite: _Horizon/_Fractions/AnCo/Objects/Food/ardonwine.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:AdjustReagent
+        reagent: Ardon
+        amount: 0.25
+
+- type: reaction
+  id: ArdonWine
+  reactants:
+    Ardon:
+      amount: 1
+    Wine:
+      amount: 1
+  products:
+    ArdonWine: 2

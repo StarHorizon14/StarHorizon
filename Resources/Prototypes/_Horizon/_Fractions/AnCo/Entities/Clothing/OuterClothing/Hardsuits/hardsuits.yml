@@ -468,3 +468,49 @@
         Heat: 0.4
         Radiation: 0.5
         Caustic: 0.5
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseOperAnCoContraband]
+  id: ClothingOuterHardsuitCerberus
+  suffix: StarHorizon, AnCo, HardSuit
+  name: cкафандр Цербера
+  description: Это конечно не тот пес из ада, но тоже не плохо.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/cerberus.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/OuterClothing/Hardsuits/cerberus.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.4
+        Piercing: 0.15
+        Heat: 0.4
+        Cold: 0.4
+        Shock: 0.5
+        Caustic: 0.5
+        Radiation: 0.2
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitCerberus
+  - type: AnCoFactionAccess
+    allowedFactions:
+    - FactionAnCo
+    blacklistedFactions:
+    - FactionDFI
+    - FactionTTI
+    - FactionSIU
+  - type: CatWearable
