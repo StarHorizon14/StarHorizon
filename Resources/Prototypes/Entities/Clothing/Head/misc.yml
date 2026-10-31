@@ -403,3 +403,6 @@
     - Hair
     - HeadTop
     - HeadSide
+  - type: StaticPrice # Horizon
+    price: 30
+    vendPrice: 300

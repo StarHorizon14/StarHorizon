@@ -1,0 +1,35 @@
+# Parallax of "Danger FTL", the hyperspace map shuttles are flung into by a black hole.
+# back-1 is the dark backdrop, back-2 stars, back-3 a far-off dot, back-4..7 amber veins from far to near.
+# Slowness: 1.0 pins a layer to the camera (far away, barely moves), 0.0 pins it to the world (fastest).
+- type: parallax
+  id: SingularityTransit
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/Parallaxes/singularity_transit/back-1.png"
+      slowness: 0.99
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/Parallaxes/singularity_transit/back-2.png"
+      slowness: 0.95
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/Parallaxes/singularity_transit/back-3.png"
+      slowness: 0.9
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/Parallaxes/singularity_transit/back-4.png"
+      slowness: 0.7
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/Parallaxes/singularity_transit/back-5.png"
+      slowness: 0.5
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/Parallaxes/singularity_transit/back-6.png"
+      slowness: 0.3
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Horizon/Parallaxes/singularity_transit/back-7.png"
+      slowness: 0.12
+  layersLQUseHQ: true

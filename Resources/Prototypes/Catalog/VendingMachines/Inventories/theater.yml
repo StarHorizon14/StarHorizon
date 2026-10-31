@@ -1,6 +1,7 @@
 - type: vendingMachineInventory
   id: AutoDrobeInventory
   startingInventory:
+    ClothingHeadPerformerWig: 4294967295 # Horizon: Infinite
     ClothingHeadHatJester: 8
     ClothingUniformJumpsuitJester: 8
     ClothingHeadHatJesterAlt: 8

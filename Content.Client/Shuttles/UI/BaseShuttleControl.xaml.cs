@@ -437,6 +437,7 @@ public partial class BaseShuttleControl : MapGridControl
             handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(_allVertices, start, count), fillColor.WithAlpha(fillAlpha)); // Lua
         }
         handle.DrawPrimitives(DrawPrimitiveTopology.LineList, new Span<Vector2>(_allVertices, gridData.EdgeIndex, edgeCount), edgeColor); // Lua
+        DrawGridCuts(handle, gridToView, grid); // Horizon: cuts of the shipbreaking cutter show on the radar
     }
 
     private record struct GridDrawJob : IParallelRobustJob

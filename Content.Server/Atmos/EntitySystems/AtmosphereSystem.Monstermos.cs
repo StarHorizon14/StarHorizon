@@ -4,7 +4,10 @@ using Content.Server.Atmos.Components;
 using Content.Server.Doors.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Damage;
 using Content.Shared.Database;
+using Content.Shared.FixedPoint;
+using Content.Shared.Mobs.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
@@ -693,14 +696,46 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void HandleDecompressionFloorRip(Entity<MapGridComponent> mapGrid, TileAtmosphere tile, float sum)
         {
+            HandleDecompressionStructureDamage(mapGrid, tile, sum); // Horizon
+
             if (!MonstermosRipTiles)
                 return;
 
-            var chance = MathHelper.Clamp(0.01f + (sum / SpacingMaxWind) * 0.3f, 0.003f, 0.3f);
+            // Horizon: the chance is scaled by atmos.monstermos_rip_strength (half of the original by default)
+            var chance = MathHelper.Clamp(0.01f + (sum / SpacingMaxWind) * 0.3f, 0.003f, 0.3f) * MonstermosRipStrength;
 
             if (sum > 20 && _random.Prob(chance))
                 PryTile(mapGrid, tile.GridIndices);
         }
+
+        // Horizon: a very strong wind breaks what stands on the tile it goes through and the structures around the tile
+        // (walls, doors, windows and anything else that can take structural damage).
+        private static readonly Vector2i[] WindDamageOffsets =
+        {
+            Vector2i.Zero, new(1, 0), new(-1, 0), new(0, 1), new(0, -1),
+        };
+
+        private void HandleDecompressionStructureDamage(Entity<MapGridComponent> mapGrid, TileAtmosphere tile, float sum)
+        {
+            if (sum <= WindDamageThreshold || WindDamageScale <= 0f)
+                return;
+
+            var damage = new DamageSpecifier();
+            damage.DamageDict["Structural"] = FixedPoint2.New((sum - WindDamageThreshold) * WindDamageScale);
+
+            foreach (var offset in WindDamageOffsets)
+            {
+                foreach (var anchored in _map.GetAnchoredEntities(mapGrid.Owner, mapGrid.Comp, tile.GridIndices + offset).ToList())
+                {
+                    if (!HasComp<DamageableComponent>(anchored) || HasComp<MobStateComponent>(anchored))
+                        continue;
+
+                    _damage.TryChangeDamage(anchored, damage, ignoreResistances: true, interruptsDoAfters: false);
+                    PlayStrainSound(anchored);
+                }
+            }
+        }
+        // End Horizon
 
         private sealed class TileAtmosphereComparer : IComparer<TileAtmosphere?>
         {

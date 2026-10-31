@@ -1,0 +1,133 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: SectorCelestialStar
+  name: star
+  description: A distant sun.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: SpaceHazardActivity
+    activationRange: 1024
+    idleTimeout: 600
+    active: true
+  - type: SectorCelestialBody
+    kind: Star
+    spriteRadius: 32
+    pixels: 1024
+    hazardRadius: 350
+    solarBoostRadius: 2048
+    solarBoostMultiplier: 4
+  - type: PointLight
+    enabled: true
+    color: "#77D6C1"
+    radius: 480
+    energy: 9
+    softness: 1.2
+    castShadows: false
+  - type: RadarBlip
+    radarColor: "#FFB020"
+    highlightedRadarColor: "#FFE080"
+    scale: 1
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+  # Nobody can FTL into the star's danger zone (keep equal to hazardRadius).
+  - type: FTLExclusion
+    range: 350
+
+- type: entity
+  id: SectorCelestialBlackHole
+  name: black hole
+  description: A gravitational anomaly bending the light around it.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: SpaceHazardActivity
+    activationRange: 1024
+    idleTimeout: 600
+    active: true
+  - type: SectorCelestialBody
+    kind: BlackHole
+    spriteRadius: 29
+    pixels: 1024
+    hazardRadius: 200
+    radiationRange: 500
+    pullRadius: 350
+    eventHorizonRadius: 45
+    # Shuttles reaching the center are FTLed to a random point within transitRange of the map origin (Frontier),
+    # through a separate transit map ("Danger FTL") that has its own parallax and damages the hull and crew like a star.
+    transitRange: 25000
+    transitTime: 25
+    transitParallax: SingularityTransit
+    horizonDamage:
+      types:
+        Structural: 800
+        Blunt: 300
+        Heat: 200
+    mobHazardDamage:
+      types:
+        Heat: 10
+        Slash: 8
+    mobRadiationDamage:
+      types:
+        Radiation: 10
+  - type: PointLight
+    enabled: true
+    color: "#F5F540"
+    radius: 336
+    energy: 5
+    softness: 1.2
+    castShadows: false
+  - type: SingularityDistortion
+    intensity: 18000
+    falloffPower: 1.55
+    maxDistance: 96
+  - type: RadiationSource
+    intensity: 10
+    slope: 0.02
+  - type: RadarBlip
+    radarColor: "#A040FF"
+    highlightedRadarColor: "#D080FF"
+    scale: 1
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+  - type: FTLExclusion
+    range: 350
+
+- type: entity
+  id: SectorBackgroundPlanet
+  name: distant planet
+  description: A far-off world visible across the sector. Decorative.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: SectorBackgroundPlanet
+    spriteRadius: 9
+    pixels: 1024
+
+# Planets expeditions can be started from. Salvage consoles only work within `range` of one and the expedition
+# uses the planet's biome. The ExpeditionPlanetPlacerController in the worldgen config places one per biome.
+- type: entity
+  id: ExpeditionPlanet
+  name: expedition planet
+  description: A planet that expeditions can be launched to. Fly close to it to use the expedition console.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  # A beacon: the planet shows up as a labelled marker on the shuttle console MAP tab.
+  - type: FTLBeacon
+  - type: ExpeditionPlanet
+    spriteRadius: 10
+    range: 250
+    pixels: 1024
+  - type: RadarBlip
+    radarColor: "#6BCB77"
+    highlightedRadarColor: "#B8F2BD"
+    scale: 1.4
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true

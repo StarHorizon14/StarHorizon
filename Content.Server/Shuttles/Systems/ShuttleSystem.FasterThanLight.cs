@@ -12,6 +12,7 @@ using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Maps;
 using Content.Shared.Parallax;
+using Content.Server._Horizon.SpaceHazards; // Horizon
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.StatusEffect;
@@ -142,6 +143,10 @@ public sealed partial class ShuttleSystem
 
         while (query.MoveNext(out var uid, out _))
         {
+            // Horizon: transit maps (singularity) are separate hyperspace maps, not the shared one.
+            if (HasComp<SingularityTransitMapComponent>(uid))
+                continue;
+
             return uid;
         }
 
@@ -285,13 +290,16 @@ public sealed partial class ShuttleSystem
         Angle angle,
         float? startupTime = null,
         float? hyperspaceTime = null,
-        string? priorityTag = null)
+        string? priorityTag = null,
+        EntityUid? transitMap = null) // Horizon: optional custom hyperspace map
     {
         if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
             return;
 
         startupTime ??= DefaultStartupTime;
         hyperspaceTime ??= DefaultTravelTime;
+
+        hyperspace.TransitMap = transitMap; // Horizon
 
         hyperspace.StartupTime = startupTime.Value;
         hyperspace.TravelTime = hyperspaceTime.Value;
@@ -415,7 +423,8 @@ public sealed partial class ShuttleSystem
         var fromRotation = _transform.GetWorldRotation(xform);
 
         var (width, shuttleCenter) = GetFTLBounds(uid);
-        var ftlMap = EnsureFTLMap();
+        // Horizon: a custom transit map (singularity) replaces the shared hyperspace map
+        var ftlMap = comp.TransitMap is { } customMap && Exists(customMap) ? customMap : EnsureFTLMap();
         var body = _physicsQuery.GetComponent(entity);
 
         // Leave audio at the old spot

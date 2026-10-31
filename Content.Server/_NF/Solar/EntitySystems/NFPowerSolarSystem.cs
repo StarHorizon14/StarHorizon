@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Power.Components;
+using Content.Server._Horizon.SpaceHazards; // Horizon
 using Content.Server._NF.Solar.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Physics;
@@ -20,6 +21,7 @@ namespace Content.Server._NF.Solar.EntitySystems;
 internal sealed class NFPowerSolarSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private readonly StarSolarBoostSystem _starBoost = default!; // Horizon
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!; // Frontier
@@ -109,7 +111,7 @@ internal sealed class NFPowerSolarSystem : EntitySystem
                     continue;
 
                 var poweredGridComp = EnsureComp<SolarPoweredGridComponent>(xform.GridUid.Value);
-                poweredGridComp.TotalPanelPower += panel.MaxSupply * panel.Coverage;
+                poweredGridComp.TotalPanelPower += panel.MaxSupply * panel.Coverage * _starBoost.GetBoost(uid); // Horizon: star boost
                 poweredGridComp.LastUpdatedTick = _gameTiming.CurTick.Value;
                 _transformSystem.SetWorldRotation(xform, poweredGridComp.TargetPanelRotation);
                 _updateQueue.Enqueue((uid, panel));
@@ -201,6 +203,6 @@ internal sealed class NFPowerSolarSystem : EntitySystem
         if (!Resolve(uid, ref solar, ref supplier, false))
             return;
 
-        supplier.MaxSupply = (int)(solar.MaxSupply * solar.Coverage);
+        supplier.MaxSupply = (int)(solar.MaxSupply * solar.Coverage * _starBoost.GetBoost(uid)); // Horizon: panels near a star work better
     }
 }

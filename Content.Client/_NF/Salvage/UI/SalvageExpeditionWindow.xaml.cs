@@ -73,6 +73,12 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
         Container.AddChild(option);
     }
 
+    /// <summary>Horizon: puts a plain control (e.g. a centered message) into the offer area.</summary>
+    public void AddMessage(Robust.Client.UserInterface.Control control)
+    {
+        Container.AddChild(control);
+    }
+
     public void ClearOptions()
     {
         Container.DisposeAllChildren();

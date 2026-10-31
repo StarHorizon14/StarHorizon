@@ -15,6 +15,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Research.Prototypes;
+using Content.Shared.Stacks;
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
@@ -42,6 +43,8 @@ public sealed class StationOrderSystem : EntitySystem
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly ShipyardSystem _shipyard = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+
+    private EntityQuery<StackComponent> _stackQuery;
 
     private const string CargoCapsuleDockTag = "CargoCapsuleDock";
 
@@ -73,6 +76,8 @@ public sealed class StationOrderSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
+        _stackQuery = GetEntityQuery<StackComponent>();
 
         SubscribeLocalEvent<StationOrderDatabaseComponent, MapInitEvent>(OnOrderDbMapInit);
         SubscribeLocalEvent<StationTaskConsoleComponent, BoundUIOpenedEvent>(OnUiOpened);
@@ -322,7 +327,7 @@ public sealed class StationOrderSystem : EntitySystem
             if (!_protoMan.TryIndex(order.Order, out var prototype))
                 continue;
 
-            if (!_cargo.IsBountyComplete(entities, prototype.Entries, out var usedEntities))
+            if (!IsOrderComplete(entities, prototype.Entries, out var usedEntities))
                 continue;
 
             // Don't let the same physical items satisfy more than one order in this pass.
@@ -337,6 +342,45 @@ public sealed class StationOrderSystem : EntitySystem
 
         FillOrderDatabase((station, orderDb));
         return fulfilled;
+    }
+
+    /// <summary>
+    /// Checks whether <paramref name="entities"/> contains enough of each exact item prototype
+    /// an order's entries require. Matched entities are removed from <paramref name="entities"/>
+    /// so they can't also satisfy a later order in the same evaluation pass.
+    /// </summary>
+    private bool IsOrderComplete(HashSet<EntityUid> entities, IReadOnlyList<StationOrderItemEntry> entries, out HashSet<EntityUid> usedEntities)
+    {
+        usedEntities = new();
+
+        foreach (var entry in entries)
+        {
+            var count = 0;
+            var temp = new HashSet<EntityUid>();
+
+            foreach (var entity in entities)
+            {
+                if (MetaData(entity).EntityPrototype?.ID != entry.Item.Id)
+                    continue;
+
+                count += _stackQuery.CompOrNull(entity)?.Count ?? 1;
+                temp.Add(entity);
+
+                if (count >= entry.Amount)
+                    break;
+            }
+
+            if (count < entry.Amount)
+                return false;
+
+            foreach (var ent in temp)
+            {
+                entities.Remove(ent);
+                usedEntities.Add(ent);
+            }
+        }
+
+        return true;
     }
 
     /// <summary>

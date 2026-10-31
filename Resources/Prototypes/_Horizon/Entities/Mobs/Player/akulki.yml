@@ -24,12 +24,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-akulki-name
-    description: Вы акулки, выращенный в цитологической ванне. Мощные челюсти и острые зубы - ваше оружие. Исследуйте этот новый мир!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

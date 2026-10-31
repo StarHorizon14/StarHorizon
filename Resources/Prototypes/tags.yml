@@ -1184,6 +1184,11 @@
 - type: Tag
   id: Recyclable
 
+# Horizon: ported from space-wizards/space-station-14#43651
+- type: Tag
+  id: SmeltingImmune
+# End Horizon
+
 - type: Tag
   id: ReinforcedGlassShard
 

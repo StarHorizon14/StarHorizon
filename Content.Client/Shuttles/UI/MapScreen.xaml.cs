@@ -1,3 +1,6 @@
+using Content.Shared._Horizon.Shuttles;
+using Content.Shared._Horizon.Shuttles.Components;
+using Content.Client._Horizon.Shuttles;
 using Content.Client.Shuttles.Systems;
 using Content.Client.Stylesheets;
 using Content.Shared._NF.Shuttles.Components;
@@ -68,6 +71,10 @@ public sealed partial class MapScreen : BoxContainer
     public event Action<NetEntity, Angle>? RequestBeaconFTL;
     public event Action<NetEntity?, NetEntity>? RequestTrackEntity; // Frontier
     public event Action<MapCoordinates>? RequestTargetMark; // Lua
+    public event Action<bool>? FtlConcentrationToggled; // Horizon: start or cancel FTL concentration
+    private TimeSpan _concentrationStateIgnoredUntil;
+    private bool _concentrationShown;
+    private int _concentrationRangeShown = -1;
     public event Action<MapCoordinates, Angle>? RequestAutopilot; // Mono
 
     private readonly Dictionary<MapId, BoxContainer> _mapHeadings = new();
@@ -101,6 +108,22 @@ public sealed partial class MapScreen : BoxContainer
         MapFTLButton.OnToggled += FtlPreviewToggled;
         MapAutopilotButton.OnToggled += AutopilotPreviewToggled; // Mono
         MapMarkButton.OnToggled += obj => MapRadar.MarkMode = obj.Pressed; // Lua
+        MapFtlConcentrateButton.OnToggled += obj =>
+        {
+            // Keep the pressed state the player chose until the server's answer has had time to arrive.
+            _concentrationStateIgnoredUntil = _timing.CurTime + TimeSpan.FromSeconds(1);
+            FtlConcentrationToggled?.Invoke(obj.Pressed);
+        }; // Horizon
+
+        // Horizon: the planet view switch only exists while the map shows a planet; the camera mode is not available yet.
+        MapRadar.PlanetViewChanged += onPlanet => PlanetViewPanel.Visible = onPlanet;
+        PlanetReliefButton.OnPressed += _ =>
+        {
+            MapRadar.SetPlanetMode(PlanetViewMode.Relief);
+            PlanetReliefButton.Pressed = true;
+            PlanetCameraButton.Pressed = false;
+        };
+        PlanetCameraButton.Disabled = !ShuttleMapControl.PlanetCameraModeAvailable;
         MapRadar.MarkPlaced += coords => // Lua
         {
             RequestTargetMark?.Invoke(coords);
@@ -761,6 +784,43 @@ public sealed partial class MapScreen : BoxContainer
 
         var progress = _ftlTime.ProgressAt(curTime);
         FTLBar.SetProgress(float.IsFinite(progress) ? progress : 1);
+
+        // Horizon: FTL concentration button follows the shuttle's state, and the status bar above turns into the
+        // concentration bar while it runs.
+        FtlConcentrationComponent? concentration = null;
+        var concentrating = _shuttleEntity != null && _entManager.TryGetComponent(_shuttleEntity, out concentration);
+        if (curTime >= _concentrationStateIgnoredUntil)
+            MapFtlConcentrateButton.Pressed = concentrating;
+
+        if (concentrating)
+        {
+            var concentrationProgress = concentration!.GetProgress(curTime);
+            var range = (int) MathF.Round(_shuttles.GetFTLRange(_shuttleEntity!.Value)); // the jump radius, growing x3
+
+            FTLBar.SetProgress(concentrationProgress);
+            FTLBar.SetColor(Color.InterpolateBetween(Color.FromHex("#FFB020"), Color.FromHex("#80C71F"), concentrationProgress));
+
+            if (!_concentrationShown)
+            {
+                _concentrationShown = true;
+                MapDisplayLabel.Text = Loc.GetString("shuttle-console-ftl-concentration-label");
+            }
+
+            if (range != _concentrationRangeShown)
+            {
+                _concentrationRangeShown = range;
+                MapFTLState.Text = Loc.GetString("shuttle-console-ftl-concentration-jump-radius", ("range", range));
+            }
+        }
+        else if (_concentrationShown)
+        {
+            // Back to the usual FTL status.
+            _concentrationShown = false;
+            _concentrationRangeShown = -1;
+            FTLBar.SetColor(Color.FromHex("#80C71F"));
+            MapDisplayLabel.Text = Loc.GetString("shuttle-console-ftl-label");
+            MapFTLState.Text = Loc.GetString($"shuttle-console-ftl-state-{_state.ToString()}");
+        }
     }
 
     protected override void Draw(DrawingHandleScreen handle)
