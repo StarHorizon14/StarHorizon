@@ -45,7 +45,8 @@
     qualities:
     - Slicing
   - type: StaticPrice
-    price: 5000
+    price: 500
+    vendPrise: 5000
 
 - type: entity
   name: Продвинутый ардонивый нож АнКо

@@ -69,7 +69,7 @@
     count: 20
     stackType: CitadelCoin
   - type: StaticPrice
-    price: 0
+    price: 10
   - type: StackPrice
     price: 200
   - type: Currency
@@ -485,19 +485,19 @@
   categories:
   - AnCoUplinkDisruption
 
-- type: listing
-  id: AnCoBoxStoreBug
-  name: Набор с жуками
-  description: Ящик, содержащий набор из 4 жуков и комбинезон.
-  productEntity: AnCoBoxStoreBug
-  icon: { sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi, state: crab-icon }
-  discountCategory: rareDiscounts
-  discountDownTo:
-    CitadelCoin: 0
-  cost:
-    CitadelCoin: 10
-  categories:
-  - AnCoUplinkDisruption
+# - type: listing
+#   id: AnCoBoxStoreBug
+#   name: Набор с жуками
+#   description: Ящик, содержащий набор из 4 жуков и комбинезон.
+#   productEntity: AnCoBoxStoreBug
+#   icon: { sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi, state: crab-icon }
+#   discountCategory: rareDiscounts
+#   discountDownTo:
+#     CitadelCoin: 0
+#   cost:
+#     CitadelCoin: 10
+#   categories:
+#   - AnCoUplinkDisruption
 
 # - type: listing
 #   id: AnCoBoxStoreStun

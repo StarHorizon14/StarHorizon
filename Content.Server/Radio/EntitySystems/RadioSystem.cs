@@ -95,172 +95,181 @@ public sealed class RadioSystem : EntitySystem
         if (!_messages.Add(message))
             return;
 
-        // Horizon start
-        var language = languageOverride ?? _language.GetCurrentLanguage(messageSource);
-        if (language.LanguageType is not Generic gen)
-            return;
-        // Horizon end
-
-        var evt = new TransformSpeakerNameEvent(messageSource, MetaData(messageSource).EntityName);
-        RaiseLocalEvent(messageSource, evt);
-
-        // Frontier: add name transform event
-        var transformEv = new RadioTransformMessageEvent(channel, radioSource, evt.VoiceName, message, messageSource);
-        RaiseLocalEvent(radioSource, ref transformEv);
-        message = transformEv.Message;
-        messageSource = transformEv.MessageSource;
-        // End Frontier
-
-        var name = transformEv.Name; // Frontier: evt.VoiceName<transformEv.Name
-        name = FormattedMessage.EscapeText(name);
-
-        SpeechVerbPrototype speech;
-        if (evt.SpeechVerb != null && _prototype.TryIndex(evt.SpeechVerb, out var evntProto))
-            speech = evntProto;
-        else
-            speech = _chat.GetSpeechVerb(messageSource, message);
-
-        var content = escapeMarkup
-            ? FormattedMessage.EscapeText(message)
-            : message;
-
-        // Frontier: append frequency if the channel requests it
-        string channelText;
-        if (channel.ShowFrequency)
-            channelText = $"\\[{channel.LocalizedName} ({frequency})\\]";
-        else
-            channelText = $"\\[{channel.LocalizedName}\\]";
-        // End Frontier
-
-        // Horizon Languages start
-        var languageEncodedContent = _language.ObfuscateMessage(messageSource, content, gen.Replacement, gen.ObfuscateSyllables);
-
-        if (gen.Color != null)
+        // Horizon: always release the original text, even on early returns or when the message was transformed.
+        // Otherwise it stays in the set and that exact message can never be sent over radio again.
+        var originalMessage = message;
+        try
         {
-            content = $"[color={gen.Color.Value.ToHex()}]{FormattedMessage.EscapeText(content)}[/color]";
-            languageEncodedContent = $"[color={gen.Color.Value.ToHex()}]{FormattedMessage.EscapeText(languageEncodedContent)}[/color]";
-        }
+            // Horizon start
+            var language = languageOverride ?? _language.GetCurrentLanguage(messageSource);
+            if (language.LanguageType is not Generic gen)
+                return;
+            // Horizon end
 
-        List<string> verbStrings = speech.SpeechVerbStrings;
-        bool verbsReplaced = false;
-        foreach (var str in ILanguageType.SpeechSuffixes)
-        {
-            if (message.EndsWith(Loc.GetString(str)) && gen.SuffixSpeechVerbs.TryGetValue(str, out var strings) && strings.Count > 0)
+            var evt = new TransformSpeakerNameEvent(messageSource, MetaData(messageSource).EntityName);
+            RaiseLocalEvent(messageSource, evt);
+
+            // Frontier: add name transform event
+            var transformEv = new RadioTransformMessageEvent(channel, radioSource, evt.VoiceName, message, messageSource);
+            RaiseLocalEvent(radioSource, ref transformEv);
+            message = transformEv.Message;
+            messageSource = transformEv.MessageSource;
+            // End Frontier
+
+            var name = transformEv.Name; // Frontier: evt.VoiceName<transformEv.Name
+            name = FormattedMessage.EscapeText(name);
+
+            SpeechVerbPrototype speech;
+            if (evt.SpeechVerb != null && _prototype.TryIndex(evt.SpeechVerb, out var evntProto))
+                speech = evntProto;
+            else
+                speech = _chat.GetSpeechVerb(messageSource, message);
+
+            var content = escapeMarkup
+                ? FormattedMessage.EscapeText(message)
+                : message;
+
+            // Frontier: append frequency if the channel requests it
+            string channelText;
+            if (channel.ShowFrequency)
+                channelText = $"\\[{channel.LocalizedName} ({frequency})\\]";
+            else
+                channelText = $"\\[{channel.LocalizedName}\\]";
+            // End Frontier
+
+            // Horizon Languages start
+            var languageEncodedContent = _language.ObfuscateMessage(messageSource, content, gen.Replacement, gen.ObfuscateSyllables);
+
+            if (gen.Color != null)
             {
-                verbStrings = strings;
-                verbsReplaced = true;
+                content = $"[color={gen.Color.Value.ToHex()}]{FormattedMessage.EscapeText(content)}[/color]";
+                languageEncodedContent = $"[color={gen.Color.Value.ToHex()}]{FormattedMessage.EscapeText(languageEncodedContent)}[/color]";
             }
-        }
 
-        if (!verbsReplaced && gen.SuffixSpeechVerbs.TryGetValue("Default", out var defaultStrings) && defaultStrings.Count > 0)
-            verbStrings = defaultStrings;
-
-        /*
-        var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
-            ("color", channel.Color),
-            ("fontType", speech.FontId),
-            ("fontSize", speech.FontSize),
-            ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-            ("channel", channelText), // Frontier: $"\\[{channel.LocalizedName}\\]"<channelText
-            ("name", name),
-            ("message", content));
-        */
-
-        var wrappedMessage = Loc.GetString("chat-radio-message-wrap",
-            ("color", channel.Color),
-            ("fontType", gen.Font ?? speech.FontId),
-            ("fontSize", gen.FontSize ?? speech.FontSize),
-            ("verb", Loc.GetString(_random.Pick(verbStrings))),
-            ("defaultFont", speech.FontId),
-            ("defaultSize", speech.FontSize),
-            ("channel", $"\\[{channel.LocalizedName}\\]"),
-            ("name", name),
-            ("message", content));
-
-        var wrappedEncodedMessage = Loc.GetString("chat-radio-message-wrap",
-            ("color", channel.Color),
-            ("fontType", gen.Font ?? speech.FontId),
-            ("fontSize", gen.FontSize ?? speech.FontSize),
-            ("verb", Loc.GetString(_random.Pick(verbStrings))),
-            ("defaultFont", speech.FontId),
-            ("defaultSize", speech.FontSize),
-            ("channel", $"\\[{channel.LocalizedName}\\]"),
-            ("name", name),
-            ("message", languageEncodedContent));
-
-        var encodedChat = new ChatMessage(
-            ChatChannel.Radio,
-            message,
-            wrappedEncodedMessage,
-            NetEntity.Invalid,
-            null);
-
-        var encodedChatMsg = new MsgChatMessage { Message = encodedChat };
-
-        // Horizon Languages end
-
-        // most radios are relayed to chat, so lets parse the chat message beforehand
-        var chat = new ChatMessage(
-            ChatChannel.Radio,
-            message,
-            wrappedMessage,
-            NetEntity.Invalid,
-            null);
-        var chatMsg = new MsgChatMessage { Message = chat };
-        var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg, encodedChatMsg, language);    // Horizon Languages
-
-        var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
-        RaiseLocalEvent(ref sendAttemptEv);
-        RaiseLocalEvent(radioSource, ref sendAttemptEv);
-        var canSend = !sendAttemptEv.Cancelled;
-
-        var sourceMapId = Transform(radioSource).MapID;
-        var hasActiveServer = HasActiveServer(sourceMapId, channel.ID);
-        var sourceServerExempt = _exemptQuery.HasComp(radioSource);
-
-        var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
-
-        if (frequency == null) // Nuclear-14
-            frequency = GetFrequency(messageSource, channel); // Nuclear-14
-
-        while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
-        {
-            if (!radio.ReceiveAllChannels)
+            List<string> verbStrings = speech.SpeechVerbStrings;
+            bool verbsReplaced = false;
+            foreach (var str in ILanguageType.SpeechSuffixes)
             {
-                if (!radio.Channels.Contains(channel.ID) || (TryComp<IntercomComponent>(receiver, out var intercom) &&
-                                                             !intercom.SupportedChannels.Contains(channel.ID)))
+                if (message.EndsWith(Loc.GetString(str)) && gen.SuffixSpeechVerbs.TryGetValue(str, out var strings) && strings.Count > 0)
+                {
+                    verbStrings = strings;
+                    verbsReplaced = true;
+                }
+            }
+
+            if (!verbsReplaced && gen.SuffixSpeechVerbs.TryGetValue("Default", out var defaultStrings) && defaultStrings.Count > 0)
+                verbStrings = defaultStrings;
+
+            /*
+            var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
+                ("color", channel.Color),
+                ("fontType", speech.FontId),
+                ("fontSize", speech.FontSize),
+                ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
+                ("channel", channelText), // Frontier: $"\\[{channel.LocalizedName}\\]"<channelText
+                ("name", name),
+                ("message", content));
+            */
+
+            var wrappedMessage = Loc.GetString("chat-radio-message-wrap",
+                ("color", channel.Color),
+                ("fontType", gen.Font ?? speech.FontId),
+                ("fontSize", gen.FontSize ?? speech.FontSize),
+                ("verb", Loc.GetString(_random.Pick(verbStrings))),
+                ("defaultFont", speech.FontId),
+                ("defaultSize", speech.FontSize),
+                ("channel", $"\\[{channel.LocalizedName}\\]"),
+                ("name", name),
+                ("message", content));
+
+            var wrappedEncodedMessage = Loc.GetString("chat-radio-message-wrap",
+                ("color", channel.Color),
+                ("fontType", gen.Font ?? speech.FontId),
+                ("fontSize", gen.FontSize ?? speech.FontSize),
+                ("verb", Loc.GetString(_random.Pick(verbStrings))),
+                ("defaultFont", speech.FontId),
+                ("defaultSize", speech.FontSize),
+                ("channel", $"\\[{channel.LocalizedName}\\]"),
+                ("name", name),
+                ("message", languageEncodedContent));
+
+            var encodedChat = new ChatMessage(
+                ChatChannel.Radio,
+                message,
+                wrappedEncodedMessage,
+                NetEntity.Invalid,
+                null);
+
+            var encodedChatMsg = new MsgChatMessage { Message = encodedChat };
+
+            // Horizon Languages end
+
+            // most radios are relayed to chat, so lets parse the chat message beforehand
+            var chat = new ChatMessage(
+                ChatChannel.Radio,
+                message,
+                wrappedMessage,
+                NetEntity.Invalid,
+                null);
+            var chatMsg = new MsgChatMessage { Message = chat };
+            var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg, encodedChatMsg, language);    // Horizon Languages
+
+            var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
+            RaiseLocalEvent(ref sendAttemptEv);
+            RaiseLocalEvent(radioSource, ref sendAttemptEv);
+            var canSend = !sendAttemptEv.Cancelled;
+
+            var sourceMapId = Transform(radioSource).MapID;
+            var hasActiveServer = HasActiveServer(sourceMapId, channel.ID);
+            var sourceServerExempt = _exemptQuery.HasComp(radioSource);
+
+            var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
+
+            if (frequency == null) // Nuclear-14
+                frequency = GetFrequency(messageSource, channel); // Nuclear-14
+
+            while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
+            {
+                if (!radio.ReceiveAllChannels)
+                {
+                    if (!radio.Channels.Contains(channel.ID) || (TryComp<IntercomComponent>(receiver, out var intercom) &&
+                                                                 !intercom.SupportedChannels.Contains(channel.ID)))
+                        continue;
+                }
+
+                if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency) // Nuclear-14
+                    continue; // Nuclear-14
+
+                if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
                     continue;
+
+                // don't need telecom server for long range channels or handheld radios and intercoms
+                var needServer = !channel.LongRange && !sourceServerExempt;
+                if (needServer && !hasActiveServer)
+                    continue;
+
+                // check if message can be sent to specific receiver
+                var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);
+                RaiseLocalEvent(ref attemptEv);
+                RaiseLocalEvent(receiver, ref attemptEv);
+                if (attemptEv.Cancelled)
+                    continue;
+
+                // send the message
+                RaiseLocalEvent(receiver, ref ev);
             }
 
-            if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency) // Nuclear-14
-                continue; // Nuclear-14
+            if (name != Name(messageSource))
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
+            else
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
 
-            if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
-                continue;
-
-            // don't need telecom server for long range channels or handheld radios and intercoms
-            var needServer = !channel.LongRange && !sourceServerExempt;
-            if (needServer && !hasActiveServer)
-                continue;
-
-            // check if message can be sent to specific receiver
-            var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);
-            RaiseLocalEvent(ref attemptEv);
-            RaiseLocalEvent(receiver, ref attemptEv);
-            if (attemptEv.Cancelled)
-                continue;
-
-            // send the message
-            RaiseLocalEvent(receiver, ref ev);
+            _replay.RecordServerMessage(chat);
         }
-
-        if (name != Name(messageSource))
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
-        else
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
-
-        _replay.RecordServerMessage(chat);
-        _messages.Remove(message);
+        finally
+        {
+            _messages.Remove(originalMessage);
+        }
     }
 
     /// <inheritdoc cref="TelecomServerComponent"/>

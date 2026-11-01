@@ -2977,7 +2977,7 @@ entities:
     - type: Transform
       pos: 4.5,10.5
       parent: 10
-- proto: ComputerPalletConsoleNFVeryHighMarket
+- proto: ComputerPalletConsoleNFNormalMarket
   entities:
   - uid: 367
     components:

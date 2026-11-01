@@ -13,7 +13,7 @@
   category: Medium
   group: Expedition
   shuttlePath: /Maps/_Mono/Shuttles/Expedition/judiciary.yml
-  guidebookPage: ShipyardJudiciary
+  guidebookPage: null
   class:
   - Expedition
   engine:

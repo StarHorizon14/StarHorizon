@@ -18,10 +18,8 @@ public abstract partial class SharedLanguageSystem
     {
         foreach (var (key, value) in component.Languages)
         {
-            if (args.Translator.TryGetValue(key, out var currentKnowledge) && currentKnowledge < value)
+            if (!args.Translator.TryGetValue(key, out var currentKnowledge) || currentKnowledge < value)
                 args.Translator[key] = value;
-            else
-                args.Translator.Add(key, value);
         }
     }
 

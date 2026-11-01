@@ -46,7 +46,8 @@
     stateDoorOpen: ancocrate_open
     stateDoorClosed: ancocrate_door
   - type: StaticPrice
-    price: 75
+    price: 100
+    vendPrise: 500
 
 
 
@@ -54,7 +55,7 @@
   id: CrateBaseAnCoPetal
   parent: CrateBaseAnCo
   suffix: StarHorizon, AnCo, Structure, Petal
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -67,7 +68,7 @@
   id: CrateBaseAnCoDusk
   parent: CrateBaseAnCo
   suffix: StarHorizon, AnCo, Structure, Dusk
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -80,7 +81,7 @@
   id: CrateBaseAnCoGranite
   parent: CrateBaseAnCo
   suffix: StarHorizon, AnCo, Structure, Granite
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -93,7 +94,7 @@
   id: CrateBaseAnCoHumanities
   parent: CrateBaseAnCo
   suffix: StarHorizon, AnCo, Structure, Humanities
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -108,7 +109,7 @@
   id: CrateBaseAnCoPistol
   parent: CrateBaseAnCo
   suffix: StarHorizon, AnCo, Structure, Pistol
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -119,10 +120,98 @@
   id: CrateBaseAnCoAmmo35
   parent: CrateBaseAnCo
   suffix: StarHorizon, AnCo, Structure, Ammo35
-  category: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
       - id: MagazinePistol35
         amount: 2
 
+- type: entity
+  id: ClosetSmallAnCoJobMiliGalax
+  parent: ClosetSmallAnCo
+  suffix: StarHorizon, AnCo, Structure
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoKnife
+        amount: 1
+      - id: CitadelCoin
+        amount: 1
+      - id: JetpackAnCoFilled
+        amount: 1
+      - id: ClothingOuterHardsuitGranite
+        amount: 1
+      - id: AnCoClothingMaskCombat
+        amount: 1
+      - id: WeaponAutoRiflesAnCo
+        amount: 1
+      - id: MagazineRifle20
+        amount: 3
+      - id: ClothingBeltWebbingAnCo
+        amount: 1
+      - id: AnCoBusinessCard
+        amount: 1
+
+- type: entity
+  id: ClosetSmallAnCoJobStarDust
+  parent: ClosetSmallAnCo
+  suffix: StarHorizon, AnCo, Structure
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoKnife
+        amount: 1
+      - id: CitadelCoin
+        amount: 1
+      - id: AnCoBusinessCard
+        amount: 1
+      - id: GasTankAnCo
+        amount: 1
+      - id: ClothingOuterHardsuitDusk
+        amount: 1
+      - id: AnCoDrell
+        amount: 1
+      - id: MagazinePistol35
+        amount: 2
+      - id: WeaponAutoPistolAnCo
+        amount: 1
+      - id: ArdonSheet
+        amount: 1
+      - id: KazmieSheet
+        amount: 1
+      - id: AnCoDrillCircuitboard
+        amount: 3
+
+- type: entity
+  id: ClosetSmallAnCoJobSubea
+  parent: ClosetSmallAnCo
+  suffix: StarHorizon, AnCo, Structure
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: AnCoKnife
+        amount: 1
+      - id: CitadelCoin
+        amount: 1
+      - id: AnCoBusinessCard
+        amount: 1
+      - id: GasTankAnCo
+        amount: 1
+      - id: ClothingOuterHardsuitPetal
+        amount: 1
+      - id: AnCohypoNerf
+        amount: 1
+      - id: MagazinePistol35
+        amount: 2
+      - id: WeaponAutoPistolAnCo
+        amount: 1
+      - id: MedkitAnCoFilledElect
+        amount: 1
+      - id: NanitMedipenAnCo
+        amount: 2
+      - id: ReliableContainerAnConanits
+        amount: 1

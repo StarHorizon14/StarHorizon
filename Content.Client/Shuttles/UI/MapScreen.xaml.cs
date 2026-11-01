@@ -62,11 +62,13 @@ public sealed partial class MapScreen : BoxContainer
     private readonly Font _mapObjectFont;
 
     private bool _settingTargeting;
+    private bool _autopilotTargeting; // Mono
 
     public event Action<MapCoordinates, Angle>? RequestFTL;
     public event Action<NetEntity, Angle>? RequestBeaconFTL;
     public event Action<NetEntity?, NetEntity>? RequestTrackEntity; // Frontier
     public event Action<MapCoordinates>? RequestTargetMark; // Lua
+    public event Action<MapCoordinates, Angle>? RequestAutopilot; // Mono
 
     private readonly Dictionary<MapId, BoxContainer> _mapHeadings = new();
     private readonly Dictionary<MapId, List<IMapObject>> _mapObjects = new();
@@ -97,6 +99,7 @@ public sealed partial class MapScreen : BoxContainer
         OnVisibilityChanged += OnVisChange;
 
         MapFTLButton.OnToggled += FtlPreviewToggled;
+        MapAutopilotButton.OnToggled += AutopilotPreviewToggled; // Mono
         MapMarkButton.OnToggled += obj => MapRadar.MarkMode = obj.Pressed; // Lua
         MapRadar.MarkPlaced += coords => // Lua
         {
@@ -112,11 +115,22 @@ public sealed partial class MapScreen : BoxContainer
         // Just pass it on up.
         MapRadar.RequestFTL += (coords, angle) =>
         {
+            // Mono: in autopilot mode the clicked point is an autopilot destination
+            if (_autopilotTargeting)
+            {
+                RequestAutopilot?.Invoke(coords, angle);
+                SetTargeting(false, true);
+                return;
+            }
+
             RequestFTL?.Invoke(coords, angle);
         };
 
         MapRadar.RequestBeaconFTL += (ent, angle) =>
         {
+            if (_autopilotTargeting) // Mono
+                return;
+
             RequestBeaconFTL?.Invoke(ent, angle);
         };
 
@@ -212,8 +226,11 @@ public sealed partial class MapScreen : BoxContainer
         else
         {
             MapFTLButton.Pressed = false;
-            MapRadar.FtlMode = false;
-            MapRadar.ShowFTLRangeOnly = false;
+            if (!_autopilotTargeting) // Mono: autopilot is sublight and doesn't depend on FTL
+            {
+                MapRadar.FtlMode = false;
+                MapRadar.ShowFTLRangeOnly = false;
+            }
             MapFTLButton.Disabled = true;
 
             MapMarkButton.Pressed = false;
@@ -224,10 +241,16 @@ public sealed partial class MapScreen : BoxContainer
 
     private void FtlPreviewToggled(BaseButton.ButtonToggledEventArgs obj)
     {
-        SetTargeting(obj.Pressed);
+        SetTargeting(obj.Pressed, false);
     }
 
-    private void SetTargeting(bool pressed)
+    // Mono
+    private void AutopilotPreviewToggled(BaseButton.ButtonToggledEventArgs obj)
+    {
+        SetTargeting(obj.Pressed, true);
+    }
+
+    private void SetTargeting(bool pressed, bool isAutopilot) // Mono: isAutopilot
     {
         if (_settingTargeting)
             return;
@@ -239,9 +262,11 @@ public sealed partial class MapScreen : BoxContainer
             {
                 MapRadar.FtlMode = true;
                 MapRadar.ShowFTLRangeOnly = false;
-                MapRadar.ShowFTLRange = true;
-                MapRadar.NoFTLRange = false;
-                MapFTLButton.Pressed = true;
+                MapRadar.ShowFTLRange = !isAutopilot; // Mono
+                MapRadar.NoFTLRange = isAutopilot; // Mono
+                MapFTLButton.Pressed = !isAutopilot; // Mono
+                MapAutopilotButton.Pressed = isAutopilot; // Mono
+                _autopilotTargeting = isAutopilot; // Mono
 
                 MapMarkButton.Pressed = false;
                 MapRadar.MarkMode = false;
@@ -253,6 +278,8 @@ public sealed partial class MapScreen : BoxContainer
                 MapRadar.ShowFTLRange = true;
                 MapRadar.NoFTLRange = false;
                 MapFTLButton.Pressed = false;
+                MapAutopilotButton.Pressed = false; // Mono
+                _autopilotTargeting = false; // Mono
 
                 if (!IsFTLBlocked())
                     MapMarkButton.Disabled = false;

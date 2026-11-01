@@ -6,8 +6,6 @@
   suffix: StarHorizon, AnCo, Structure
   components:
   - type: ResistLocker
-  - type: Transform
-    anchored: true
     noRot: true
   - type: Sprite
     noRot: true
@@ -73,7 +71,8 @@
     stateDoorOpen: ancocloset_open
     stateDoorClosed: ancocloset_door
   - type: StaticPrice
-    price: 75
+    price: 100
+    vendPrise: 500
   - type: Construction
     graph: ClosetAnCo
     node: closet

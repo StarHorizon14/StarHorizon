@@ -17,7 +17,8 @@
     - state: outer-clothing
   - type: Appearance
   - type: StaticPrice
-    price: 5000
+    price: 500
+    vendPrise: 5000
 
 - type: entity
   parent: ModStationHardSuit

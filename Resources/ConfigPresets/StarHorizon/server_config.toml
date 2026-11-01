@@ -79,7 +79,7 @@ wiki = "https://wiki.starhorizon.ru/"
 
 [atmos]
 space_wind = true
-monstermos_rip_tiles = true
+monstermos_rip_tiles = false
 mmos_spacing_speed = 0.95
 mmos_max_wind = 1000.0
 
@@ -95,7 +95,7 @@ map_enabled = true
 restart_not_allowed_when_admin_online = false
 
 [shuttle]
-auto_call_time = 4320 # 72 hours
+auto_call_time = 2880 # 48 hours
 emergency_authorize_time = 30
 impact.enabled = true
 impact.tile_break_energy = 3000.0

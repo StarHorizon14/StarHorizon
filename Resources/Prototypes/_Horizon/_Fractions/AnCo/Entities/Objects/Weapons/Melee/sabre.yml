@@ -30,7 +30,8 @@
     - Slicing
   - type: AnCoSabre
   - type: StaticPrice
-    price: 6000
+    price: 500
+    vendPrise: 6000
   - type: Tag
     tags:
       - AnCoSheathable

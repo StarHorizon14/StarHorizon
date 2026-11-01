@@ -23,3 +23,68 @@
     netsync: false
   - type: TimedDespawn
     lifetime: 1.55
+
+- type: entity
+  parent: [BluespaceAnCoTeleport]
+  id: BluespaceAnCoTeleportBox
+  categories: [ HideSpawnMenu ]
+  name: Блюспейс телепортация
+  suffix: StarHorizon, AnCo
+  description: Телепортирует объект к вам, не знаю почему. БСС?
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - ClosetSmallAnCo
+    chance: 1
+    intervalSeconds: 1.3
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
+  parent: [BluespaceAnCoTeleportBox]
+  id: BluespaceAnCoTeleportBoxMiliGalax
+  categories: [ HideSpawnMenu ]
+  name: Блюспейс телепортация
+  suffix: StarHorizon, AnCo
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - ClosetSmallAnCoJobMiliGalax
+    chance: 1
+    intervalSeconds: 1.3
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
+  parent: [BluespaceAnCoTeleportBox]
+  id: BluespaceAnCoTeleportBoxStarDust
+  categories: [ HideSpawnMenu ]
+  name: Блюспейс телепортация
+  suffix: StarHorizon, AnCo
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - ClosetSmallAnCoJobStarDust
+    chance: 1
+    intervalSeconds: 1.3
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
+  parent: [BluespaceAnCoTeleportBox]
+  id: BluespaceAnCoTeleportBoxSubea
+  categories: [ HideSpawnMenu ]
+  name: Блюспейс телепортация
+  suffix: StarHorizon, AnCo
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - ClosetSmallAnCoJobSubea
+    chance: 1
+    intervalSeconds: 1.3
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1

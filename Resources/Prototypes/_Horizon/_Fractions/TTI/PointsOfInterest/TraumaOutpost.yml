@@ -6,7 +6,7 @@
   maximumDistance: 4000
   minimumClearance: 1000
   spawnGroup: Required
-  gridPath: /Maps/_Horizon/POI/TraumaStation.yml
+  gridPath: /Maps/_Horizon/_Fraction/TTI/TraumaStation.yml
   addComponents:
   - type: IFF
     color: "#00ab86"
@@ -17,7 +17,7 @@
 - type: gameMap
   id: TTIOutpost
   mapName: 'TTI Outpost'
-  mapPath: /Maps/_Horizon/POI/TraumaStation.yml
+  mapPath: /Maps/_Horizon/_Fraction/TTI/TraumaStation.yml
   minPlayers: 0
   stations:
     TTIOutpost:

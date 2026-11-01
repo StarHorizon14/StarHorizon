@@ -1,0 +1,2764 @@
+- type: Tag
+  id: SporeWebMobs
+
+# region Способности и Патерны
+
+# Импланты Способок 
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BaseImplantSpore
+  name: Способность 
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnSporeLighthouseI  
+    - type: Tag
+      tags:
+        - SubdermalImplant
+        - HideContextMenu
+        - Flashlight
+    - type: UnpoweredFlashlight  
+# .................................. 
+
+# region Создание кургана
+- type: entity
+  parent: BaseImplantSpore 
+  id: SporeCreateLighthouse # Сама способность - Это копируем. 
+  name: Сотворить Курган 
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnSporeLighthouseI
+
+- type: entity
+  id: ActionSpawnSporeLighthouseI # Способность на создание КУРГАНОВ. 
+  name: Сотворить Курган
+  noSpawn: true
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+      state: mayac
+    itemIconStyle: BigAction
+    useDelay: 1800
+  - type: TargetAction # Перезарядка способности 
+    range: 2 # Как далеко можно поставить
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: SporeLighthouseI
+        amount: 1
+      offset: 0, 1
+      speech: 
+
+# region Создание Стены Плоти
+- type: entity
+  parent: BaseWall
+  id: SporeWall
+  suffix: Споры | Строения 
+  name: Мицеливая стена
+  description: Довольно крепкое сооружение сотворённое из переплетённых мицеливых корней и бронепластин. 
+  components:
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/spore_wall.rsi
+    layers:
+    - state: full
+  - type: Icon
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/spore_wall.rsi
+    state: full
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeOrganSoedTkan:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: ice
+
+- type: entity
+  parent: BaseImplantSpore 
+  id: SporeCreateWall # Сама способность - Это копируем. 
+  name: Сотворить Стену
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnSporeWall
+
+- type: entity
+  id: ActionSpawnSporeWall # Способность на создание стены
+  name: Сотворить Стену
+  noSpawn: true
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/_Horizon/_Fractions/IHP/Spore/spore_wall.rsi
+      state: full
+    itemIconStyle: BigAction
+    useDelay: 60 # Перезарядка способности 
+  - type: TargetAction # Перезарядка способности 
+    range: 2 # Как далеко можно поставить
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: SporeWall
+        amount: 1
+      offset: 0, 1
+      speech: 
+
+# region Создание Кокона
+- type: entity
+  parent: BaseImplantSpore 
+  id: SporeCreateSporeEgg # Сама способность - Это копируем. 
+  name: Сотворить кокон
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnSporeEgg
+
+
+- type: entity
+  id: ActionSpawnSporeEgg # Способность на создание коконов
+  name: Сотворить кокон
+  noSpawn: true
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+      state: spore_egg
+    itemIconStyle: BigAction
+    useDelay: 360 # Перезарядка способности 
+  - type: TargetAction # Перезарядка способности 
+    range: 2 # Как далеко можно поставить
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: SporeEgg
+        amount: 1
+      offset: 0, 1
+      speech: 
+
+# region Создание напольного мицелия
+- type: entity
+  parent: BaseImplantSpore 
+  id: SporeCreateSporeSpiderWeb # Сама способность - Это копируем. 
+  name: Сотворить покров Мицелия
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnSporeSpiderWeb
+
+- type: entity
+  id: ActionSpawnSporeSpiderWeb # # Способность на создание Мицелия
+  name: Сотворить покров Мицелия
+  noSpawn: true
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/SporeWeb.rsi
+      state: spider_web_1
+    itemIconStyle: BigAction
+    useDelay: 30 # Перезарядка способности 
+  - type: TargetAction 
+    range: 2 # Как далеко можно поставить
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: SporeSpiderWeb
+        amount: 1
+      offset: 0, 1
+      speech: 
+
+
+#  - type: AutoImplant
+#    implants:
+#    - LightImplantALFLittle 
+#    - LightImplantSpiderWallMeat 
+
+- type: entity
+  name: Базовый моб Спор
+  id: MobBaseSpores
+  parent: MobSpaceBasic # MobHumanoidHostileAISimpleRanged 
+  description: Ы) Бля не трогайте базовую хуету она всё равно не спаунится
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Мицеливый Зараженный
+    description: Вы являетесь частью Улья, работайте на благо его роста.. 
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: mobs1
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs1
+      Dead:
+        Base: mobs1
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 2
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.3
+#  - type: ReplacementAccent
+#    accent: genericAggressive
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - WizFedFaction
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: Stamina
+    critThreshold: 200
+  - type: Puller
+    needsHands: false
+  - type: IgnoreSpiderWeb
+  - type: Tag
+    tags:
+      - CannotSuicide
+      - DoorBumpOpener
+      - FootstepSound
+      - SporeWebMobs
+  - type: PointLight
+    radius: 1.2
+    energy: 2
+    color: "#692c2ca6"
+  - type: NoSlip
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 100
+    damage:
+      types:
+        Heat: -0.2
+      groups:
+        Toxin: -5
+        Airloss: -5
+        Brute: -0.2
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 700
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeOrganSerdce:
+            min: 1
+            max: 1
+          SporeOrganSoedTkan:
+            min: 1
+            max: 5
+          SporeOrganKishki:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 1.2
+        Cold: 1.2
+  - type: MobPrice
+    price: 2500
+  # Horizon start
+  - type: LanguageSpeaker
+    languages:
+      SporeSpeak: Speak
+  - type: SpamEmitSound
+    minInterval: 10
+    maxInterval: 180
+    sound:
+      path: /Audio/_NF/Ambience/monster-flange.ogg
+  - type: NightVision
+    isToggle: true
+    color: "#5e4040"
+  # Horizon end
+
+- type: language
+  id: SporeSpeak
+  uiColor: Crimson
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    obfuscateSyllables: true
+    color: Crimson
+    whisperColor: Crimson
+    replacement:
+    - Ррр..
+    - РАР!.. 
+    - Рр.. 
+    - Рхп...
+    - РХАаа!.. 
+    - РЗААХ!.. 
+    - РРра!.. 
+    - Рааар!.. 
+    - Ррр!.. 
+    - РРРР!..
+    - РЗз!..
+
+# region Заражённый Человек 
+ # Тир 1
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIHuman
+  name: Заражённый Человек
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs1
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 2
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.3
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.5
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs1
+      Dead:
+        Base: dead1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 4.5
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 15
+        Structural: 50
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 200
+
+ # Тир 2 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIIHuman
+  name: Мутированный заражённый Человек
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs2
+
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 1.2
+        Cold: 1.2
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganKogti
+      amount: 2
+    - id: SporeOrganSoedTkan
+      amount: 3
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.4
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.6
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs2
+      Dead:
+        Base: dead2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 12.5
+        Slash: 2.5 
+        Structural: 50
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 250
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: SporeMycelium
+          Quantity: 50
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 0.1
+
+ # Тир 3 - 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIIIHuman 
+  name: Асимилированный заражённый Человек
+  description: Асимилированный организм под властью мицелия, представляет наибольшую опасность своим непредсказуемым, даже неадекватным поведением и силой. 
+  suffix: НЕ СПАУНИТЬ | Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya2.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs1
+
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 1.5
+        Cold: 1.5
+        Radiation: 1.5
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganBronePlast
+      amount: 3
+    - id: SporeOrganKogti
+      amount: 3
+    - id: SporeOrganSoedTkan
+      amount: 2
+    - id: SporeOrganSerdce
+      amount: 2
+      prob: 0.4
+    - id: SporeOrganKishki
+      amount: 2
+      prob: 0.6
+    - id: SporeOrganPoiJel
+      amount: 1
+      prob: 0.2
+  - type: Bloodstream
+    bloodMaxVolume: 150
+    bloodReagent: SporeBlood
+
+  - type: ContentEye
+    maxZoom: 2.0,2.0
+  - type: Reflect
+    reflectProb: 0.4
+    reflects:
+      - Energy
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs1
+      Dead:
+        Base: dead1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 4.5
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    attackRate: 0.7
+    damage:
+      types:
+        Blunt: 7.5
+        Piercing: 7.5
+        Slash: 5
+        Structural: 250
+    range: 1.3
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 500
+  - type: AutoImplant
+    implants:
+    - SporeCreateSporeSpiderWeb # Создание Мицелия Покров
+    - SporeCreateSporeEgg # Создание Кокона 
+    - SporeCreateWall # Создание Стены
+
+# region Заражённые пауки
+
+
+- type: entity
+  id: SporeSpiderWeb
+  name: Мицелий
+  description: Склизкие небольшие темно-красные толи серые корни из которых во все стороны отходят белые шёлковые ниточки. 
+  suffix: Споры | Структуры
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: DamageContacts
+      damage:
+        groups:
+          Brute: 0.05
+      ignoreWhitelist:
+        tags:
+        - SporeWebMobs
+        - CannotSuicide
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/genhit3.ogg"
+
+    - type: Sprite
+      sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/SporeWeb.rsi
+      layers:
+      - state: spider_web_1
+        map: ["random"]
+    - type: RandomSprite
+      available:
+      - random:
+          spider_web_1: ""
+          spider_web_2: ""
+          spider_web_3: ""
+          spider_web_4: ""
+          spider_web_5: ""
+
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+
+    - type: Slippery
+    - type: StepTrigger
+      intersectRatio: 0.2
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        slips:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.4,-0.3,0.4,0.3"
+          hard: false
+          layer:
+          - SlipLayer
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.4,-0.3,0.4,0.3"
+          density: 1000
+          mask:
+          - ItemMask
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger: # Excess damage, don't spawn entities
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+      - trigger:
+          !type:DamageTrigger
+          damage: 10
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SporeOrganSoedTkan:
+              min: 0
+              max: 1
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 5
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 5
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        tags:
+        - SporeWebMobs
+    - type: FlavorProfile
+      flavors:
+        - sweet
+    - type: Food
+      delay: 2
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          reagents:
+          - ReagentId: Sugar
+            Quantity: 2
+
+- type: entity
+  parent: BaseAction
+  id: ActionSporeSpidernAction
+  categories: [ HideSpawnMenu ]
+  name: Распространить мицелий
+  description: Распространение мицелия - распространение ваших корней, сил, и улья. 
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/SporeWeb.rsi
+      state: spider_web_1
+    useDelay: 60
+  - type: InstantAction
+    event: !type:SpiderWebActionEvent
+
+# Способность для пауков плевунов. 
+
+- type: entity
+  id: SporePoisonDum
+  name: Дымовой Агент 
+  description: То что убивает дымом.. 
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 20
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletPartyNade
+    capacity: 1
+    count: 1
+  - type: Gun
+    minAngle: 5
+    maxAngle: 15
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Items/bow_pull.ogg
+    soundEmpty: null
+    projectileSpeed: 15
+  - type: UseDelay
+    delay: 20
+
+- type: entity
+  id: ActionSporeGun
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Выстрелить Дымовым Агентом[/color]"
+  description: "Выстреляете Дымовым агентом синтезированным из ваших желёз. [color=yellow]Перезарядка 30 секунд[/color]"
+  components:
+  - type: Action
+    icon: { sprite : /Textures/_Horizon/_Fractions/IHP/Spore/spore_toxic.rsi, state: spore_toxic }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 20
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+ # Тир 1
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaISpiderSpace
+  name: Заражённый Космический Паук
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs4
+
+  - type: Spider
+    webAction: ActionSporeSpidernAction
+    webPrototype: SporeSpiderWeb
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 5
+    - id: SporeOrganJalo
+      amount: 1
+      prob: 0.4
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.2
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.5
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs4
+      Dead:
+        Base: dead4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 250
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 2.5
+        Structural: 25
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: SporeMycelium
+          Quantity: 50
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 0.5
+
+
+ # Тир 1
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaISpider
+  name: Заражённый Тарантул
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs3
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 6
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.2
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.3
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: Spider
+    webAction: ActionSporeSpidernAction
+    webPrototype: SporeSpiderWeb
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs3
+      Dead:
+        Base: dead3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 4.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 100
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 7.5
+        Structural: 25
+
+
+
+ # Тир 2 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIISpider
+  name: Мутированный Тарантул 
+  description: Крайне опасный и быстрый мутировавший организм. Обладает повышеными физическими характеристиками и в отличии от остальных заражённых имеет хитиновую броню.
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs5
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 4
+    - id: SporeOrganJalo
+      amount: 1
+      prob: 0.4
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.6
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.6
+  - type: Bloodstream
+    bloodMaxVolume: 100
+    bloodReagent: SporeBlood
+
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.95
+        Heat: 1.5
+        Cold: 1.5
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs5
+      Dead:
+        Base: dead5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 350
+
+  - type: ActionGun
+    action: ActionIISporeMedical
+    gunProto: ActionSporeMedical
+  - type: Spider
+    webAction: ActionSporeSpidernAction
+    webPrototype: SporeSpiderWeb
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 2.5
+        Structural: 75
+        Piercing: 7.5
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: SporeMycelium
+          Quantity: 50
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 1
+
+ # Тир 3
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIIISpider 
+  name: Асимилированная Арахнида 
+  description: Асимилированный организм под властью мицелия, представляет наибольшую опасность своим непредсказуемым, даже неадекватным поведением и силой. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya2.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs2
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganBronePlast
+      amount: 5
+    - id: SporeOrganKogti
+      amount: 2
+    - id: SporeOrganSoedTkan
+      amount: 2
+    - id: SporeOrganSerdce
+      amount: 2
+      prob: 0.4
+    - id: SporeOrganKishki
+      amount: 2
+      prob: 0.3
+    - id: SporeOrganPoiJel
+      amount: 2
+      prob: 0.5
+  - type: Bloodstream
+    bloodMaxVolume: 150
+    bloodReagent: SporeBlood
+    
+  - type: Spider
+    webAction: ActionSporeSpidernAction
+    webPrototype: SporeSpiderWeb
+  - type: Reflect
+    reflectProb: 0.1
+    reflects:
+      - Energy
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.2
+        Heat: 1.5
+        Cold: 1.5
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs2
+      Dead:
+        Base: dead2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.9
+  - type: Stamina
+    critThreshold: 500
+  - type: ContentEye
+    maxZoom: 2.0,2.0
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 7.5
+        Structural: 250
+        Piercing: 5
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: SporePoison
+          Quantity: 150
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 1
+  - type: ActionGun
+    action: ActionIISporeMedical
+    gunProto: ActionSporeMedical
+  - type: AutoImplant
+    implants:
+    - SporeCreateSporeSpiderWeb # Создание Мицелия Покров
+    - SporeCreateSporeEgg # Создание Кокона 
+    - SporeCreateWall # Создание Стены
+    - SporeCreateLighthouse # Создание Курганов
+
+# region Заражённые карпы
+
+
+
+
+# Способка стрелять карпам
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletTrigger
+  id: ProjectileSporeBreath
+  name: Ядовитый разрывной Агент
+  description: Необычная синтезированная кислота с высоким шансом взрыва
+  components:
+  - type: PointLight
+    color: "#6cb15e"
+    radius: 3.0
+    energy: 5.0
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/spore_toxic.rsi
+    layers:
+    - state: spore_fireball
+      shader: unshaded
+  - type: IgnitionSource
+    temperature: 1000
+    ignited: true
+  - type: RepeatingTrigger
+    delay: 0.1
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Radioactive
+    totalIntensity: 30
+    intensitySlope: 0.5
+    maxIntensity: 15
+    canCreateVacuum: false
+    deleteAfterExplosion: false
+    repeatable: true
+  - type: TimedDespawn
+    lifetime: 5
+ 
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: ActionProjectileSporeBreath
+  name: Выстрелить Ядовитый разрывной Агент
+  description: Вы плюётесь во врагов своей необычной синтезированной кислотой с высоким шансом взрыва
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 30
+    rechargeSound:
+      path: /Audio/Effects/break_stone.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileSporeBreath
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Effects/break_stone.ogg
+    soundEmpty: null
+    projectileSpeed: 15
+
+- type: entity
+  id: ActionSporeBreath
+  name: Выстрелить Ядовитый разрывной Агент
+  description: Вы плюётесь во врагов своей необычной синтезированной кислотой с высоким шансом взрыва
+  components:
+  - type: Action
+    icon: { sprite : /Textures/_Horizon/_Fractions/IHP/Spore/spore_toxic.rsi, state: spore_fireball }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 32
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+# Лечебная штука. 
+- type: entity
+  id: BulletSporeMedical
+  name: Мицелиальный лечащий агент
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Bloodloss: -15
+        Slash: -25
+        Piercing: -25
+        Blunt: -25
+        Cold: -15
+        Shock: -15
+        Heat: -15
+        Poison: -7.5
+        Cellular: -7.5
+        Caustic: -5 
+        Radiation: -5
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/spore_toxic.rsi
+    layers:
+    - state: spore_toxic2
+  - type: Ammo
+    muzzleFlash: null
+
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: ActionSporeMedical
+  name: Выстрелить Мицелиальным лечащим агентом
+  description: Вы лечите своих союзников
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 25
+    rechargeSound:
+      path: /Audio/Effects/break_stone.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletSporeMedical
+    capacity: 3
+    count: 3
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Effects/break_stone.ogg
+    soundEmpty: null
+    projectileSpeed: 10
+
+- type: entity
+  id: ActionIISporeMedical
+  name: Выстрелить Мицелиальным лечащим агентом
+  description: Вы лечите своих союзников
+  components:
+  - type: Action
+    icon: { sprite : /Textures/_Horizon/_Fractions/IHP/Spore/spore_toxic.rsi, state: spore_toxic2 }
+    priority: 2
+    itemIconStyle: BigAction
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+# Способка стрелять карпам
+
+- type: entity
+  id: BulletSporePoison
+  name: Мицелиальный ядовитый агент
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 15
+        Heat: 15
+        Structural: 100
+  - type: Sprite
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/spore_toxic.rsi
+    layers:
+    - state: spore_toxic
+  - type: Ammo
+    muzzleFlash: null
+    
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: ActionSporePoison
+  name: Выстрелить Мицелиальным Агентом
+  description: Вы плюётесь во врагов своей кислотой
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Effects/break_stone.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletSporePoison
+    capacity: 5
+    count: 5
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Effects/break_stone.ogg
+    soundEmpty: null
+    projectileSpeed: 25
+
+- type: entity
+  id: ActionIISporePoison
+  name: Выстрелить Мицелиальным Агентом
+  description: Вы плюётесь во врагов своей кислотой
+  components:
+  - type: Action
+    icon: { sprite : /Textures/_Horizon/_Fractions/IHP/Spore/spore_toxic.rsi, state: spore_toxic }
+    priority: 2
+    itemIconStyle: BigAction
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+ # Тир 1
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaISpaceCarp
+  name: Заражённый Космический Карп
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs6
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 2
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.2
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.2
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs6
+      Dead:
+        Base: dead6
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 3.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 100
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+        Structural: 25
+
+ # Тир 2
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIISpaceCarp 
+  name: Мутированный Космический Карп
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs7
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganKogti
+      amount: 3
+    - id: SporeOrganSoedTkan
+      amount: 4
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.2
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.2
+  - type: Bloodstream
+    bloodMaxVolume: 75
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs7
+      Dead:
+        Base: dead7
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      175: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 4.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      175: 0.9
+  - type: Stamina
+    critThreshold: 250
+  - type: Spider
+    webAction: ActionSporeSpidernAction
+    webPrototype: SporeSpiderWeb
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 10
+        Structural: 50
+
+
+
+ # Тир 3
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIIISpaceCarp 
+  name: Асимилированный Карп
+  description: Асимилированный организм под властью мицелия, представляет наибольшую опасность своим непредсказуемым, даже неадекватным поведением и силой. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya2.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs3
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganKogti
+      amount: 5
+    - id: SporeOrganSoedTkan
+      amount: 6
+    - id: SporeOrganSerdce
+      amount: 3
+      prob: 0.3
+    - id: SporeOrganKishki
+      amount: 2
+      prob: 0.3
+  - type: Bloodstream
+    bloodMaxVolume: 150
+    bloodReagent: SporeBlood
+
+  - type: ContentEye
+    maxZoom: 2.0,2.0
+  - type: Reflect
+    reflectProb: 0.5
+    reflects:
+      - Energy
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 1.8
+        Slash: 1.8
+        Piercing: 0.2
+        Heat: 0.2
+        Cold: 0.2
+  - type: Spider
+    webAction: ActionSporeSpidernAction
+    webPrototype: SporeSpiderWeb
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs3
+      Dead:
+        Base: dead3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      350: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 4.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.9
+  - type: Stamina
+    critThreshold: 500
+
+  - type: ActionGun
+    action: ActionIISporePoison
+    gunProto: ActionSporePoison 
+  - type: NPCUseActionOnTarget
+    actionId: ActionIISporePoison
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Cold: 2.5
+        Slash: 5.5
+        Structural: 75
+  - type: AutoImplant
+    implants:
+    - SporeCreateSporeSpiderWeb # Создание Мицелия Покров
+    - SporeCreateWall # Создание Стены
+
+# region Заражённые Млекопитающие
+
+ # Тир 1 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaISpaceBeer 
+  name: Заражённый Космический Медведь
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs8
+  - type: Spider
+    webAction: ActionSporeSpidernAction
+    webPrototype: SporeSpiderWeb
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 5
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.2
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.5
+  - type: Bloodstream
+    bloodMaxVolume: 75
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs8
+      Dead:
+        Base: dead8
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 3.0
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 250
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 7.5
+        Structural: 50
+
+ # Тир 1 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIKoza
+  name: Заражённая коза
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs14
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 5
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.2
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.5
+  - type: Bloodstream
+    bloodMaxVolume: 75
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs14
+      Dead:
+        Base: dead14
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 3.0
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 100 
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+        Structural: 50
+
+ # Тир 1 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIfox
+  name: Заражённая Лиса
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs15
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 2
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.3
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.4
+  - type: Bloodstream
+    bloodMaxVolume: 75
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs15
+      Dead:
+        Base: dead15
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 4.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 150
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+        Structural: 25
+
+ # Тир 1 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIcow
+  name: Заражённая корова
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs16
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganBronePlast
+      amount: 2
+    - id: SporeOrganSoedTkan
+      amount: 5
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.2
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.5
+  - type: Bloodstream
+    bloodMaxVolume: 125
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs16
+      Dead:
+        Base: dead16
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.0
+    baseSprintSpeed: 2.0
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 250
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+        Structural: 75
+
+ # Тир 2
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIIfox
+  name: Мутированная Лиса
+  description: Мутированный организм пронизанный мицелием, на первый взгляд кажется простым волком. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs17
+  - type: Spider
+    webAction: ActionSporeSpidernAction
+    webPrototype: SporeSpiderWeb
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganBronePlast
+      amount: 5
+    - id: SporeOrganSoedTkan
+      amount: 3
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.5
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.4
+  - type: Bloodstream
+    bloodMaxVolume: 100
+    bloodReagent: SporeBlood
+
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 1.2
+        Slash: 1.2
+        Piercing: 0.5
+        Heat: 1.5
+        Cold: 1.5
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs17
+      Dead:
+        Base: dead17
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 150
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 4.5
+        Piercing: 3.5
+        Slash: 3.5
+        Structural: 75
+  - type: AutoImplant
+    implants:
+    - SporeCreateSporeSpiderWeb # Создание Мицелия Покров
+    - SporeCreateWall # Создание Стены
+
+ # Тир 3
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIIIfox
+  name: Асимилированный Зверь
+  description: Массивный и укреплённый организм, вся его спина покрыта острыми до боли шипами с черными кончиками, во всей красе олицетворяет власть и силу. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya2.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs4
+  - type: Spider
+    webAction: ActionSporeSpidernAction
+    webPrototype: SporeSpiderWeb
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganBronePlast
+      amount: 6
+    - id: SporeOrganSoedTkan
+      amount: 3
+    - id: SporeOrganSerdce
+      amount: 2
+      prob: 0.9
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.5
+  - type: Bloodstream
+    bloodMaxVolume: 100
+    bloodReagent: SporeBlood
+  - type: ActionGun
+    action: ActionIISporePoison
+    gunProto: ActionSporePoison 
+  - type: NPCUseActionOnTarget
+    actionId: ActionIISporePoison
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.35
+        Slash: 0.35
+        Piercing: 0.35
+        Heat: 1.75
+        Cold: 1.75
+        Radiation: 1.75
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs4
+      Dead:
+        Base: dead4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 3.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.5
+  - type: Stamina
+    critThreshold: 500
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 7.5
+        Slash: 7.5
+        Structural: 150
+  - type: AutoImplant
+    implants:
+    - SporeCreateSporeSpiderWeb # Создание Мицелия Покров
+    - SporeCreateSporeEgg # Создание Кокона 
+    - SporeCreateWall # Создание Стены
+
+
+# region Заражённые Маленькие Мобы
+
+ # Тир 1 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIMonke
+  name: Заражённая Обезъяна
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs9
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 2
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.2
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.2
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs9
+      Dead:
+        Base: dead9
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      45: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 3.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 100
+
+#  - type: Body
+#    prototype: Primate
+#    requiredLegs: 1
+#  - type: Hands
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+        Structural: 50
+
+ # Тир 1 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIMoose
+  name: Заражённая Мышь
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs10
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 2
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.2
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.2
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs10
+      Dead:
+        Base: dead10
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 50
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 1
+        Structural: 5
+
+ # Тир 1 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaITarMol
+  name: Заражённая Тараканомоль
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs11
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 1
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.1
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.1
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs11
+      Dead:
+        Base: dead11
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 100
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 5
+        Structural: 10
+
+
+ # Тир 1 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIchiken
+  name: Заражённая Курица
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs12
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 1
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.1
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.1
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs12
+      Dead:
+        Base: dead12
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      75: 0.8
+  - type: Stamina
+    critThreshold: 100
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 5
+        Structural: 10
+
+ # Тир 1 
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaISpaceCobra
+  name: Заражённая Космическая Змея
+  description: По всей видимости заражённый мицелием организм, вероятнее всего он не представляет особой опасности. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs13
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 1
+    - id: SporeOrganSerdce
+      amount: 1
+      prob: 0.1
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.1
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs13
+      Dead:
+        Base: dead13
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 4.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      75: 0.8
+  - type: Stamina
+    critThreshold: 100
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Piercing: 5
+        Structural: 25
+  - type: Stealth
+    enabledOnDeath: false
+    maxVisibility: 1.2
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.25
+    movementVisibilityRate: 0.25
+
+
+ # Тир 2
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIIhimera
+  name: Мутированная Химера
+  description: Крайне опасный и быстрый мутировавший организм. Обладает повышеными физическими характеристиками и в отличии от остальных заражённых имеет небольшой прозрачный покров
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs18
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganSoedTkan
+      amount: 4
+    - id: SporeOrganSerdce
+      amount: 2
+      prob: 0.9
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.9
+  - type: Bloodstream
+    bloodMaxVolume: 75
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs18
+      Dead:
+        Base: dead18
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      175: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      75: 0.8
+  - type: Stamina
+    critThreshold: 100
+
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Bloodloss: 2.5
+        Piercing: 5
+        Structural: 75
+  - type: Stealth
+    enabledOnDeath: false
+    maxVisibility: 1.2
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.25
+    movementVisibilityRate: 0.25
+    
+
+ # Тир 3
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStadiyaIIIhimera 
+  name: Ассимилированный Мираж
+  description: Огромная нестабильная куча явно собранная из множество существ чья сила явно была ниже вашей, до этого времени. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya2.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs5
+  - type: Spider
+    webAction: ActionSporeSpidernAction
+    webPrototype: SporeSpiderWeb
+  - type: Butcherable
+    spawned:
+    - id: MobSporeStadiyaIMoose
+      amount: 1
+    - id: MobSporeStadiyaITarMol
+      amount: 2
+    - id: MobSporeStadiyaISpaceCobra
+      amount: 1
+      prob: 0.5
+    - id: MobSporeStadiyaIchiken
+      amount: 2
+      prob: 0.2
+    - id: SporeOrganSerdce
+      amount: 3
+      prob: 0.9
+    - id: SporeOrganKishki
+      amount: 1
+      prob: 0.9
+  - type: Bloodstream
+    bloodMaxVolume: 150
+    bloodReagent: SporeBlood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 251
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobSporeStadiyaIMoose:
+            min: 1
+            max: 5
+          SporeOrganSoedTkan:
+            min: 1
+            max: 15
+          SporeOrganKishki:
+            min: 1
+            max: 5
+          MobSporeStadiyaITarMol: 
+            min: 1
+            max: 5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs5
+      Dead:
+        Base: dead5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 3.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      75: 0.8
+  - type: Stamina
+    critThreshold: 250
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Bloodloss: 2.5
+        Piercing: 5
+        Structural: 95
+  - type: ActionGun
+    action: ActionIISporePoison
+    gunProto: ActionSporePoison 
+  - type: NPCUseActionOnTarget
+    actionId: ActionIISporePoison
+  - type: AutoImplant
+    implants:
+    - SporeCreateSporeSpiderWeb # Создание Мицелия Покров
+    - SporeCreateSporeEgg # Создание Кокона 
+    - SporeCreateWall # Создание Стены
+
+# region Т4 - Т5 МОБЫ
+
+
+
+
+# Ниже находятся просто ебнутые мобы. 
+# region Способности
+
+- type: entity
+  parent: BaseImplantSpore 
+  id: SporeCreateMobsII # Сама способность - Это копируем. 
+  name: Отколоть часть себя
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnSporeMobsII
+
+- type: entity
+  id: ActionSpawnSporeMobsII # Способность на создание существ (Т2)
+  name: Отколоть часть себя
+  noSpawn: true 
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+      state: dead2
+    itemIconStyle: BigAction
+    useDelay: 120 # Перезарядка способности 
+  - type: TargetAction # Перезарядка способности 
+    range: 3 # Как далеко можно поставить
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: SporeRandomMobsIIAll
+        amount: 1
+      offset: 0, 1
+      speech: 
+
+
+
+# region Моб - Титан (Т4) 
+ # Тир 4 
+- type: entity
+  parent: MobBaseSpores 
+  id: MobSporeStadiyaIVHuman 
+  name: Приспособленный Титан
+  description: Приспособленный огромный организм состоящий из множества отдельных кусочков, является воплощением страха и силы. 
+  suffix: НЕ СПАУНИТЬ | Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya3.rsi
+    scale: 0.8,0.8
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.9
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+
+  - type: ExplosionResistance
+    damageCoefficient: 0.01
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 1.5
+        Cold: 1.5
+        Radiation: 0.4 
+
+  - type: Butcherable
+    spawned:
+    - id: SporeOrganBronePlast
+      amount: 5
+    - id: SporeOrganKogti
+      amount: 5
+    - id: SporeOrganSoedTkan
+      amount: 5
+    - id: SporeOrganSerdce
+      amount: 3
+      prob: 0.4
+    - id: SporeOrganKishki
+      amount: 3
+      prob: 0.6
+    - id: SporeOrganPoiJel
+      amount: 3
+      prob: 0.2
+  - type: Bloodstream
+    bloodMaxVolume: 250
+    bloodReagent: SporeBlood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1501
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeRandomMobsIIAll:
+            min: 1
+            max: 5
+          SporeOrganSoedTkan:
+            min: 1
+            max: 15
+          MobSporeStypTitan:
+            min: 1
+            max: 2
+          MobSporeHandTitan:
+            min: 1
+            max: 1
+          MobSporeHeadTitan:
+            min: 1
+            max: 2           
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+  - type: ContentEye
+    maxZoom: 2.0,2.0
+  - type: Reflect
+    reflectProb: 0.5
+    reflects:
+      - Energy
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs1
+      Dead:
+        Base: dead1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1500: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 4.5
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    attackRate: 0.7
+    damage:
+      types:
+        Blunt: 15
+        Piercing: 2.5
+        Slash: 15
+        Structural: 500
+    range: 2.5
+  - type: ActionGun
+    action: ActionSporeBreath
+    gunProto: ActionProjectileSporeBreath
+
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      900: 0.9
+
+  - type: Stamina
+    critThreshold: 1500
+
+  - type: AutoImplant
+    implants:
+    - SporeCreateSporeSpiderWeb # Создание Мицелия Покров
+    - SporeCreateSporeEgg # Создание Кокона 
+    - SporeCreateWall # Создание Стены
+    - SporeCreateMobsII # Создание Т2 заражённых. 
+
+# region Остатки Титана 
+
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeHandTitan
+  name: Рука Титана 
+  description: Осколок былого величия.. Но всё ещё живое. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/SporeOrgans.rsi
+    scale: 0.8,0.8
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs1
+
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs1
+      Dead:
+        Base: mobs1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeRandomMobsIIAll:
+            min: 1
+            max: 2
+          SporeOrganSoedTkan:
+            min: 1
+            max: 15
+          SporeOrganKishki:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 250
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 15
+        Structural: 25
+
+
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeHeadTitan
+  name: Голова Титана 
+  description: Осколок былого величия.. Но всё ещё живое. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/SporeOrgans.rsi
+    scale: 0.8,0.8
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs3
+
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs3
+      Dead:
+        Base: mobs3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeRandomMobsIIAll:
+            min: 1
+            max: 1
+          SporeOrganSoedTkan:
+            min: 1
+            max: 5
+          SporeOrganKishki:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.2
+    baseSprintSpeed: 1.2
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 250
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 7.5
+        Structural: 25
+
+
+- type: entity
+  parent: MobBaseSpores
+  id: MobSporeStypTitan
+  name: Ступня
+  description: Осколок былого величия.. Но всё ещё живое. 
+  suffix: Споры | Мобы
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/SporeOrgans.rsi
+    scale: 0.8,0.8
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mobs2
+
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mobs2
+      Dead:
+        Base: mobs2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeOrganSoedTkan:
+            min: 1
+            max: 7
+          SporeOrganKishki:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 1.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 250
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 7.5
+        Structural: 25

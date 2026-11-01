@@ -4,6 +4,7 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
+using Robust.Shared.Network; // Horizon
 using Robust.Shared.Timing;
 
 namespace Content.Shared.RCD.Systems;
@@ -13,6 +14,7 @@ public sealed class RCDAmmoSystem : EntitySystem
     [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly INetManager _net = default!; // Horizon
 
     public override void Initialize()
     {
@@ -75,5 +77,30 @@ public sealed class RCDAmmoSystem : EntitySystem
         // prevent having useless ammo with 0 charges
         if (comp.Charges <= 0)
             QueueDel(uid);
+    }
+
+    /// <summary>
+    /// Horizon: moves charges from an ammo cartridge into an entity with limited charges, without user interaction.
+    /// Used by mech RCD equipment to reload from the mech's storage.
+    /// </summary>
+    /// <returns>The amount of charges transferred.</returns>
+    public int TryTransferCharges(Entity<RCDAmmoComponent> ammo, Entity<LimitedChargesComponent> target, bool shipyard)
+    {
+        if (ammo.Comp.IsShipyardRCDAmmo != shipyard || ammo.Comp.Charges <= 0)
+            return 0;
+
+        var current = _sharedCharges.GetCurrentCharges((target.Owner, target.Comp));
+        var count = Math.Min(target.Comp.MaxCharges - current, ammo.Comp.Charges);
+        if (count <= 0)
+            return 0;
+
+        _sharedCharges.AddCharges(target.Owner, count);
+        ammo.Comp.Charges -= count;
+        Dirty(ammo);
+
+        if (ammo.Comp.Charges <= 0 && _net.IsServer)
+            QueueDel(ammo);
+
+        return count;
     }
 }

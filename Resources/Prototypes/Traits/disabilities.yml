@@ -52,9 +52,10 @@
 
 - type: trait
   id: Monochromancy
-  name: trait-monochromancy-name
-  description: trait-monochromancy-desc
+  name: trait-monochromacy-name  # Horizon tweak
+  description: trait-monochromacy-desc  # Horizon tweak
   category: HorizonNeutral  # Horizon tweak
+  group: TraitVision # Horizon: screen shaders don't stack
   components:
   - type: BlackAndWhiteOverlay
 

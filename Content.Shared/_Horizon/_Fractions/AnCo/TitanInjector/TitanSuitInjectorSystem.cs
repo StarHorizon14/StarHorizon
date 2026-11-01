@@ -64,7 +64,6 @@ public sealed class TitanSuitInjectorSystem : EntitySystem
         if (!_bloodstream.TryAddToChemicals((user, bloodstream), removed))
             return;
 
-        Dirty(cartridgeUid, cartridgeComp);
         args.Handled = true;
         _popup.PopupClient(Loc.GetString("titan-suit-injector-inject"), user, user);
     }

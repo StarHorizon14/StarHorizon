@@ -79,4 +79,5 @@
     equippedFillBaseName: -fill-
     equippedMaxFillLevels: 1
   - type: StaticPrice
-    price: 6000
+    price: 500
+    vendPrise: 6000

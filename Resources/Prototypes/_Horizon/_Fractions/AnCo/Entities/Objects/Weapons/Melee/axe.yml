@@ -93,4 +93,5 @@
   - type: IgnitionSource
     temperature: 700
   - type: StaticPrice
-    price: 10000
+    price: 500
+    vendPrise: 10000

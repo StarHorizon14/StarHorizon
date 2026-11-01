@@ -70,7 +70,8 @@
           Complete: { state: pod_0 }
           Idle: { state: pod_0 }
   - type: StaticPrice
-    price: 5000
+    price: 500
+    vendPrise: 5000
 
 - type: entity
   parent: BaseMachine

@@ -48,6 +48,9 @@ public sealed class MechDrillSystem : EntitySystem
         if (mech.Energy + component.DrillEnergyDelta < 0)
             return;
 
+        if (IsInsideMech(target, args.User))
+            return;
+
         if (!_interaction.InRangeUnobstructed(args.User, target))
             return;
 
@@ -82,6 +85,9 @@ public sealed class MechDrillSystem : EntitySystem
 
         var owner = equipmentComponent.EquipmentOwner.Value;
 
+        if (IsInsideMech(target, owner))
+            return;
+
         // Same as pickaxe / PKA: supercompacted and some asteroids only break via Gather when the tool passes whitelist.
         if (TryComp<GatherableComponent>(target, out var gatherable)
             && !_whitelist.IsWhitelistFailOrNull(gatherable.ToolWhitelist, uid))
@@ -95,5 +101,19 @@ public sealed class MechDrillSystem : EntitySystem
         _damageable.TryChangeDamage(target, component.DamageToDrilled, ignoreResistances: true);
         _mech.UpdateUserInterface(owner);
         args.Repeat = Comp<MechComponent>(owner).Energy > 0;
+    }
+
+    private bool IsInsideMech(EntityUid target, EntityUid mech)
+    {
+        var current = target;
+        while (current.IsValid())
+        {
+            if (current == mech)
+                return true;
+
+            current = Transform(current).ParentUid;
+        }
+
+        return false;
     }
 }

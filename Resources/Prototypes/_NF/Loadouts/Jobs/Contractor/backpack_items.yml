@@ -412,6 +412,13 @@
     back:
     - SaxophoneInstrument
 
+- type: loadout # Horizon: plays the percussion channel, otherwise near impossible to get
+  id: ContractorSuperSynthesizerInstrument
+  price: 30000
+  storage:
+    back:
+    - SuperSynthesizerInstrument
+
 - type: loadout
   id: ContractorAcousticGuitarInstrument
   effects:

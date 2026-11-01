@@ -3,6 +3,7 @@ using Content.Server.Atmos.Components;
 using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
+using Content.Shared._NF.Atmos.Components; // Horizon
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Interaction;
@@ -64,6 +65,10 @@ public sealed class GasAnalyzerSystem : EntitySystem
     /// </summary>
     private void OnAfterInteract(Entity<GasAnalyzerComponent> entity, ref AfterInteractEvent args)
     {
+        // Horizon: gas deposits are handled by GasDepositScannerSystem, which shows their composition
+        if (HasComp<GasDepositScannerComponent>(entity) && HasComp<GasDepositComponent>(args.Target))
+            return;
+
         var target = args.Target;
         if (target != null && !_interactionSystem.InRangeUnobstructed((args.User, null), (target.Value, null)))
         {

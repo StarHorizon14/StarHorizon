@@ -6,7 +6,8 @@
   description: Управляемая Боевая Турель, способная выплескивать энергетический заряд способный перегрузить электорнику противника.
   components:
   - type: StaticPrice
-    price: 3500
+    price: 500
+    vendPrise: 3500
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/ShuttleWeapon/flash.rsi
     layers:
@@ -65,7 +66,8 @@
   description: Управляемая Боевая Турель, скорострельная и мощная, то что нужно для быстрых шаттлов.
   components:
   - type: StaticPrice
-    price: 3500
+    price: 500
+    vendPrise: 3500
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/ShuttleWeapon/jumper.rsi
     layers:
@@ -124,7 +126,8 @@
   description: Управляемая Боевая Турель, медленная но смертоносная.
   components:
   - type: StaticPrice
-    price: 3500
+    price: 500
+    vendPrise: 3500
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/ShuttleWeapon/gargantua.rsi
     layers:
@@ -183,7 +186,8 @@
   description: Управляемая Боевая Турель, удар молнии и перегрузка.
   components:
   - type: StaticPrice
-    price: 3500
+    price: 500
+    vendPrise: 3500
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Objects/Weapons/ShuttleWeapon/lightbolt.rsi
     layers:

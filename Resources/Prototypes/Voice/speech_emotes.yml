@@ -55,6 +55,8 @@
     - chortles
     - chortling
     - chortled # Frontier
+    - смеётся # Horizon-Start
+    - смеется # Horizon-End
 
 - type: emote
   id: Honk
@@ -91,6 +93,7 @@
     - sighs
     - sighed
     - sighing # Frontier
+    - вздыхает # Horizon
 
 - type: emote
   id: Whistle
@@ -131,6 +134,7 @@
     - sobbing
     - sobbed # Frontier
     - cried # Frontier
+    - плачет # Horizon
 
 - type: emote
   id: Squish
@@ -313,6 +317,9 @@
     - salutes
     - saluted # Frontier
     - saluting # Frontier
+    - салютует # Horizon
+    - отдаёт честь # Horizon-Start
+    - отдает честь # Horizon-End
 
 - type: emote
   id: Gasp

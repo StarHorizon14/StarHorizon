@@ -329,6 +329,7 @@
     - NFEngineeringBoardsCircuitImprinter # Frontier
     - HorizonTradeFabricatorBoardsPack # Horizon - платы торговых фабрикаторов
     - StarshineThrusterBoards # Starshine
+    - ReactorCircuitboards # # Horizon - платы ядерных реакторов
   - type: EmagLatheRecipes
     emagDynamicPacks: [] # Frontier: empty list
     # - SecurityBoards # Frontier

@@ -16,7 +16,8 @@
   - type: IdentityBlocker
     coverage: EYES
   - type: StaticPrice
-    price: 2500
+    price: 500
+    vendPrise: 2500
 
 - type: entity
   name: прибор ночного видения АнКо

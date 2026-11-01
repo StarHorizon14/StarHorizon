@@ -35,11 +35,15 @@ public abstract partial class SharedHorizonFlavorTextSystem : EntitySystem
         var oocComp = EnsureComp<OocDescriptionComponent>(args.Mob);
         oocComp.Description = args.Profile.OOCFlavorText;
 
+        var erpDescComp = EnsureComp<ERPDescriptionComponent>(args.Mob);
+        erpDescComp.Description = args.Profile.ERPFlavorText;
+
         var erpComp = EnsureComp<ErpStatusComponent>(args.Mob);
         erpComp.Status = args.Profile.ErpStat;
 
         Dirty(args.Mob, factionComp);
         Dirty(args.Mob, oocComp);
+        Dirty(args.Mob, erpDescComp);
         Dirty(args.Mob, erpComp);
     }
 

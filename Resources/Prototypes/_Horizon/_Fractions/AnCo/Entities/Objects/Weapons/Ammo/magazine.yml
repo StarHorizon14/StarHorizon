@@ -115,7 +115,8 @@
     zeroVisible: false
   - type: Appearance
   - type: StaticPrice
-    price: 4000
+    price: 500
+    vendPrise: 4000
 
 - type: entity
   id: BaseNewMagazinePistolBig35
@@ -233,7 +234,8 @@
     zeroVisible: false
   - type: Appearance
   - type: StaticPrice
-    price: 4000
+    price: 500
+    vendPrise: 4000
 
 - type: entity
   id: MagazineRifle20

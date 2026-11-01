@@ -1,5 +1,6 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using Content.Server.Physics.Components; // Mono
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Friction;
@@ -10,6 +11,7 @@ using Content.Shared.Shuttles.Systems;
 using Content.Shared.Ghost; // Frontier
 using Prometheus;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Events; // Mono
 using Robust.Shared.Player;
 using DroneConsoleComponent = Content.Server.Shuttles.DroneConsoleComponent;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
@@ -28,6 +30,8 @@ public sealed class MoverController : SharedMoverController
 
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
 
+    private readonly List<EntityUid> _removedInputSources = new(); // Mono
+
     public override void Initialize()
     {
         base.Initialize();
@@ -35,6 +39,54 @@ public sealed class MoverController : SharedMoverController
         SubscribeLocalEvent<RelayInputMoverComponent, PlayerDetachedEvent>(OnRelayPlayerDetached);
         SubscribeLocalEvent<InputMoverComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<InputMoverComponent, PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<PilotedShuttleComponent, StartCollideEvent>(PilotedShuttleRelayEvent); // Mono
+    }
+
+    // Mono
+    private void PilotedShuttleRelayEvent<TEvent>(Entity<PilotedShuttleComponent> entity, ref TEvent args)
+    {
+        foreach (var source in entity.Comp.InputSources)
+        {
+            var relayEv = new PilotedShuttleRelayedEvent<TEvent>(args);
+            RaiseLocalEvent(source, ref relayEv);
+        }
+    }
+
+    /// <summary>
+    /// Mono: registers a non-player entity as an input source for a shuttle.
+    /// It will be queried with <see cref="GetShuttleInputsEvent"/> every tick until it stops responding.
+    /// </summary>
+    public void AddPilot(EntityUid shuttleUid, EntityUid source)
+    {
+        var piloted = EnsureComp<PilotedShuttleComponent>(shuttleUid);
+        piloted.InputSources.Add(source);
+    }
+
+    /// <summary>
+    /// Mono: shuttle angular acceleration from its angular thrust.
+    /// </summary>
+    public float GetAngularAcceleration(ShuttleComponent shuttle, PhysicsComponent body)
+    {
+        return shuttle.AngularThrust * body.InvI;
+    }
+
+    /// <summary>
+    /// Mono: shuttle thrust force in a given local direction.
+    /// </summary>
+    public Vector2 GetDirectionThrust(Vector2 dir, ShuttleComponent shuttle)
+    {
+        if (dir.LengthSquared() == 0f)
+            return Vector2.Zero;
+
+        dir = dir.Normalized();
+
+        var horizIndex = dir.X > 0 ? 1 : 3; // east else west
+        var vertIndex = dir.Y > 0 ? 2 : 0; // north else south
+        var horizScale = MathF.Abs(shuttle.LinearThrust[horizIndex] / dir.X);
+        var vertScale = MathF.Abs(shuttle.LinearThrust[vertIndex] / dir.Y);
+
+        // prevent NaNs
+        return dir * (dir.X == 0 ? vertScale : dir.Y == 0 ? horizScale : MathF.Min(horizScale, vertScale));
     }
 
     private void OnRelayPlayerAttached(Entity<RelayInputMoverComponent> entity, ref PlayerAttachedEvent args)
@@ -310,6 +362,20 @@ public sealed class MoverController : SharedMoverController
             pilots.Item2.Add((uid, pilot, mover, xform));
         }
 
+        // Mono: shuttles steered only by non-player input sources (autopilot) get processed with no player pilots
+        var aiQuery = EntityQueryEnumerator<PilotedShuttleComponent, ShuttleComponent>();
+        while (aiQuery.MoveNext(out var aiUid, out var aiPiloted, out var aiShuttle))
+        {
+            if (aiPiloted.InputSources.Count == 0)
+            {
+                aiPiloted.ActiveSources = 0;
+                continue;
+            }
+
+            if (aiShuttle.Enabled && !newPilots.ContainsKey(aiUid))
+                newPilots[aiUid] = (aiShuttle, new List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>());
+        }
+
         // Reset inputs for non-piloted shuttles.
         foreach (var (shuttleUid, (shuttle, _)) in _shuttlePilots)
         {
@@ -338,10 +404,14 @@ public sealed class MoverController : SharedMoverController
             var linearCount = 0;
             var brakeCount = 0;
             var angularCount = 0;
+            var activeSources = 0; // Mono
 
             foreach (var (pilotUid, pilot, _, consoleXform) in pilots)
             {
                 var (strafe, rotation, brakes) = GetPilotVelocityInput(pilot);
+
+                if (brakes > 0f || strafe.Length() > 0f || rotation != 0f) // Mono
+                    activeSources++;
 
                 if (brakes > 0f)
                 {
@@ -362,6 +432,59 @@ public sealed class MoverController : SharedMoverController
                     angularCount++;
                 }
             }
+
+            // Mono: gather input from non-player sources such as autopilots
+            if (TryComp<PilotedShuttleComponent>(shuttleUid, out var piloted))
+            {
+                _removedInputSources.Clear();
+                foreach (var source in piloted.InputSources)
+                {
+                    var inputsEv = new GetShuttleInputsEvent(frameTime, shuttleUid);
+                    RaiseLocalEvent(source, ref inputsEv);
+
+                    if (!inputsEv.GotInput)
+                    {
+                        _removedInputSources.Add(source);
+                        continue;
+                    }
+
+                    if (inputsEv.Input is not { } input)
+                        continue;
+
+                    activeSources++;
+
+                    // AI input is already in the shuttle's local frame.
+                    var strafe = input.Strafe.LengthSquared() > 1f ? input.Strafe.Normalized() : input.Strafe;
+                    var brakes = MathF.Min(input.Brakes, 1f);
+                    var rotation = Math.Clamp(input.Rotation, -1f, 1f);
+
+                    if (brakes > 0f)
+                    {
+                        brakeInput += brakes;
+                        brakeCount++;
+                    }
+
+                    if (strafe.Length() > 0f)
+                    {
+                        linearInput += strafe;
+                        linearCount++;
+                    }
+
+                    if (rotation != 0f)
+                    {
+                        angularInput += rotation;
+                        angularCount++;
+                    }
+                }
+
+                foreach (var source in _removedInputSources)
+                {
+                    piloted.InputSources.Remove(source);
+                }
+
+                piloted.ActiveSources = activeSources;
+            }
+            // End Mono
 
             // Don't slow down the shuttle if there's someone just looking at the console
             linearInput /= Math.Max(1, linearCount);

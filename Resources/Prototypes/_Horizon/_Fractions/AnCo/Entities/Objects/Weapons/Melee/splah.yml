@@ -30,7 +30,8 @@
     qualities:
     - Slicing
   - type: StaticPrice
-    price: 5000
+    price: 500
+    vendPrise: 6000
   - type: Tag
     tags:
       - AnCoSheathable

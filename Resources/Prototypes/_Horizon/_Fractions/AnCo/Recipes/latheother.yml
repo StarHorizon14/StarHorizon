@@ -38,6 +38,7 @@
   - IFFAnCoComputerCircuitboard
   - AnCoShuttleComputerCircuitboard
   - EngineMachineCircuitboard
+  - AnCoGyroscopeMachineCircuitboard
   - ArdonSheet1
   - KazmieSheet1
   - MagazinePistol35
@@ -151,6 +152,14 @@
 - type: latheRecipe
   id: EngineMachineCircuitboard
   result: EngineMachineCircuitboard
+  completetime: 10
+  materials:
+    Ardon: 500
+    Kazmie: 200
+
+- type: latheRecipe
+  id: AnCoGyroscopeMachineCircuitboard
+  result: AnCoGyroscopeMachineCircuitboard
   completetime: 10
   materials:
     Ardon: 500

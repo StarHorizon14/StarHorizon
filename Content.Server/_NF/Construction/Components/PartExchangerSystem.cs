@@ -91,14 +91,25 @@ public sealed class PartExchangerSystem : EntitySystem
     {
         var board = machine.BoardContainer.ContainedEntities.FirstOrNull();
 
-        if (board == null || !TryComp<MachineBoardComponent>(board, out var macBoardComp))
+        if (board == null)
             return;
+
+        // Horizon: machines built through custom construction graphs (e.g. large/huge thrusters) have boards
+        // without a MachineBoardComponent; use the parts currently installed as the requirements instead.
+        Dictionary<ProtoId<MachinePartPrototype>, int> requirements;
+        if (TryComp<MachineBoardComponent>(board, out var macBoardComp))
+            requirements = macBoardComp.Requirements;
+        else
+            requirements = new();
 
         // Add all components in the machine to form a complete set of available components.
         foreach (var item in new ValueList<EntityUid>(machine.PartContainer.ContainedEntities)) //clone so don't modify during enumeration
         {
             if (_construction.GetMachinePartState(item, out var partState))
             {
+                if (macBoardComp == null)
+                    requirements[partState.Part.PartType] = requirements.GetValueOrDefault(partState.Part.PartType) + partState.Quantity();
+
                 UpgradePartState upgrade;
                 upgrade.Part = partState.Part;
                 upgrade.Stack = partState.Stack;
@@ -118,7 +129,7 @@ public sealed class PartExchangerSystem : EntitySystem
             partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
         var updatedParts = new List<(EntityUid id, MachinePartState state, int index)>();
-        foreach (var (type, amount) in macBoardComp.Requirements)
+        foreach (var (type, amount) in requirements)
         {
             if (partsByType.ContainsKey(type))
             {

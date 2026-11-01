@@ -10,40 +10,51 @@
       organs:
         brain: OrganShelegBrain
         eyes: OrganShelegEyes
+        eye_implant: null # Horizon
+        cyberdeka_implant: null # Horizon
     torso:
       part: TorsoSheleg
       connections:
-      - right_arm
-      - left_arm
-      - right_leg
-      - left_leg
+      - right arm
+      - left arm
+      - right leg
+      - left leg
       organs:
         heart: OrganShelegHeart
         lungs: OrganShelegLungs
         stomach: OrganShelegStomach
         liver: OrganShelegLiver
         kidneys: OrganShelegKidneys
-    right_arm:
+        vessels_implant: null # Horizon
+        blood_pump_implant: null # Horizon
+        skin_implant: null # Horizon
+        bone_implant: null # Horizon
+        cavity: null # Horizon
+    right arm:
       part: RightArmSheleg
       connections:
-      - right_hand
-    left_arm:
+      - right hand
+    left arm:
       part: LeftArmSheleg
       connections:
-      - left_hand
-    right_hand:
+      - left hand
+    right hand:
       part: RightHandSheleg
-    left_hand:
+      organs:
+        hands_implant: null # Horizon
+    left hand:
       part: LeftHandSheleg
-    right_leg:
+      organs:
+        hands_implant: null # Horizon
+    right leg:
       part: RightLegSheleg
       connections:
-      - right_foot
-    left_leg:
+      - right foot
+    left leg:
       part: LeftLegSheleg
       connections:
-      - left_foot
-    right_foot:
+      - left foot
+    right foot:
       part: RightFootSheleg
-    left_foot:
+    left foot:
       part: LeftFootSheleg

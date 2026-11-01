@@ -15,4 +15,5 @@
       types:
         Piercing: 15
   - type: StaticPrice
-    price: 750
+    price: 500
+    vendPrise: 1000

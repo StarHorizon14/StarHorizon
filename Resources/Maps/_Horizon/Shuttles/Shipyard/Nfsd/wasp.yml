@@ -4165,7 +4165,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,-17.5
       parent: 1
-- proto: BorgBeaker
+- proto: Beaker
   entities:
   - uid: 378
     components:

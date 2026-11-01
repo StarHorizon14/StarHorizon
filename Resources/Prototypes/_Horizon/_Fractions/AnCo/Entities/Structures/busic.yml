@@ -516,7 +516,7 @@
         - 0 # Frezon
       temperature: 293.15
   - type: StaticPrice
-    price: 1250
+    price: 1000
   - type: Item
     size: Ginormous
     shape:

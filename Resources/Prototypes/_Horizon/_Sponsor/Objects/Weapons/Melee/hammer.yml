@@ -25,6 +25,10 @@
   - type: Item
     size: Ginormous
     sprite: _Horizon/_Sponsor/Objects/Weapons/Melee/hammer.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
   - type: UseDelay
     delay: 5
   - type: AnCoHammerRepulse

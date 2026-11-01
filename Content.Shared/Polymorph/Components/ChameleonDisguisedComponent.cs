@@ -1,5 +1,6 @@
 using Content.Shared.Polymorph.Systems;
 using Robust.Shared.GameStates;
+using Robust.Shared.Physics; // Horizon
 
 namespace Content.Shared.Polymorph.Components;
 
@@ -22,4 +23,11 @@ public sealed partial class ChameleonDisguisedComponent : Component
     /// </summary>
     [DataField]
     public bool WasVisible;
+
+    /// <summary>
+    /// Horizon: the player's body type before anchoring, restored on unanchor.
+    /// Unanchoring always sets the body to Dynamic otherwise, which makes mobs crawl.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public BodyType? PreviousBodyType;
 }

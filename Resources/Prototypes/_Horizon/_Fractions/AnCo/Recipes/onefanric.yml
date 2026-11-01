@@ -37,6 +37,39 @@
         type: AnCoDisposableFabricatorBoundUserInterface
   - type: InteractionOutline
 
+- type: entity
+  id: AnCoJobUplink
+  parent: [BaseItem, BaseAnCoContraband]
+  name: должностной передатчик
+  description: Одноразовый фабрикатор для экстренного получения снаряжения. Выберите нужные наборы и подтвердите выбор.
+  suffix: StarHorizon, AnCo, Structure
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Structures/Machines/onefabticitem.rsi
+    layers:
+    - state: icon
+      map: ["enum.AnCoDisposableFabricatorVisualLayers.IsWorking"]
+  - type: AnCoDisposableFabricator
+    possibleSets:
+    - SampleClosetSmallAnCoJobMiliGalax
+    - SampleClosetSmallAnCoJobStarDust
+    - SampleClosetSmallAnCoJobSubea
+    maxSelectedSets: 1
+    workDuration: 3.1
+    idleState: icon
+    workingState: work
+  - type: AnCoDisposableFabricatorVisuals
+    idleState: icon
+    workingState: work
+  - type: Appearance
+  - type: ActivatableUI
+    key: enum.AnCoDisposableFabricatorUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.AnCoDisposableFabricatorUIKey.Key:
+        type: AnCoDisposableFabricatorBoundUserInterface
+  - type: InteractionOutline
+
 - type: anCoDisposableFabricatorSet
   id: SampleHardSuitPetal
   name: Шаблон скафандра Лепесток
@@ -96,3 +129,33 @@
     state: icon
   content:
   - CrateBaseAnCoAmmo35
+
+- type: anCoDisposableFabricatorSet
+  id: SampleClosetSmallAnCoJobMiliGalax
+  name: Экипировка специалиста МилиГалакс
+  description: запрос экипировки специалиста безопасности.
+  sprite:
+    sprite: _Horizon/_Fractions/AnCo/Interface/Misc/fabricator.rsi
+    state: miligalax
+  content:
+  - BluespaceAnCoTeleportBoxMiliGalax
+
+- type: anCoDisposableFabricatorSet
+  id: SampleClosetSmallAnCoJobStarDust
+  name: Экипировка специалиста СтарДаст
+  description: запрос экипировки специалиста утилизации.
+  sprite:
+    sprite: _Horizon/_Fractions/AnCo/Interface/Misc/fabricator.rsi
+    state: stardust
+  content:
+  - BluespaceAnCoTeleportBoxStarDust
+
+- type: anCoDisposableFabricatorSet
+  id: SampleClosetSmallAnCoJobSubea
+  name: Экипировка специалиста Сабеи
+  description: запрос экипировки специалиста медицины.
+  sprite:
+    sprite: _Horizon/_Fractions/AnCo/Interface/Misc/fabricator.rsi
+    state: subea
+  content:
+  - BluespaceAnCoTeleportBoxSubea

@@ -78,6 +78,9 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #Spationaut Hardsuit
 - type: entity
@@ -397,7 +400,7 @@
         Slash: 0.8
         Piercing: 0.8
         Heat: 0.4
-        Radiation: 0.05 # Frontier - 0<0.05
+        Radiation: 0.01 # 95 процентов маловато от рады, учитывая что элитка в общей доступности
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.8
@@ -410,6 +413,9 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -495,6 +501,9 @@
     stealGroup: ClothingOuterHardsuitRd
   - type: PirateBountyItem # Frontier
     id: ClothingOuterHardsuitRd # Frontier
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #Head of Security's Hardsuit
 - type: entity
@@ -712,6 +721,9 @@
   - type: Construction
     graph: AnCoUpgradeElite
     node: start
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -753,6 +765,9 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 
 #Cybersun Juggernaut Hardsuit
@@ -796,6 +811,9 @@
   - type: Construction
     graph: AnCoUpgradeJuggernaut
     node: start
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #Wizard Hardsuit
 - type: entity
@@ -948,6 +966,9 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -962,6 +983,9 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTChaplain
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -978,6 +1002,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
   - type: FireProtection
     reduction: 0.8
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #ERT Medic Hardsuit
 - type: entity
@@ -992,6 +1019,9 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #ERT Security Hardsuit
 - type: entity
@@ -1010,6 +1040,9 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -1024,6 +1057,9 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTJanitor
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #Deathsquad
 - type: entity
@@ -1057,12 +1093,18 @@
         Heat: 0.1
         Radiation: 0.1
         Caustic: 0.1
+        Cellular: 0
+        Cold: 0.1
+        Shock: 0.1 
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
+  - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
+    component:
+    - type: SupermatterImmune
 
 #CBURN Hardsuit
 - type: entity

@@ -1,0 +1,687 @@
+# region Курганы / Маяки
+
+# Тир 1 
+
+- type: entity
+  id: SporeLighthouseI
+  parent: BaseStructure
+  name: Мицеливый курган
+  suffix: Споры | Мобы
+  description: Необычный нарост плоти овальной плоти, от него идут множественные небольшие и крупные корни во все стороны. 
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.5
+    baseSprintSpeed: 0.5
+  - type: Anchorable
+    delay: 2
+  - type: PointLight
+    radius: 5
+    energy: 2
+    color: "#642626cc"
+  - type: InteractionOutline
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: Sprite
+    noRot: true
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - state: mayac
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 190
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeOrganSerdce:
+            min: 1
+            max: 3
+          SporeOrganSoedTkan:
+            min: 1
+            max: 5
+          SporeLootLighthouse:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: SporeLighthouseII
+  - type: TimedSpawner
+    prototypes:
+    - SporeEgg
+    intervalSeconds: 200
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
+# Тир 2
+- type: entity
+  id: SporeLighthouseII
+  parent: BaseStructure
+  suffix: Споры | Мобы
+  name: Мутированный Мицеливый курган
+  description: Массивный нарост плоти представляющей из себя сердце Мицеливого улья. 
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.1
+    baseSprintSpeed: 0.1
+  - type: Anchorable
+    delay: 2
+  - type: PointLight
+    radius: 7
+    energy: 2
+    color: "#642626cc"
+  - type: InteractionOutline
+  - type: Sprite
+    noRot: true
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - state: mayac2
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 190
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeLootLighthouse:
+            min: 1
+            max: 2
+          SporeOrganSoedTkan:
+            min: 1
+            max: 10
+          SporeOrganKishki:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 1800
+  - type: SpawnOnDespawn
+    prototype: SporeLighthouseIII 
+  - type: TimedSpawner
+    prototypes:
+    - SporeEggII
+    - SporeEgg
+    - SporeRandomMobsIIAll
+    intervalSeconds: 175
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
+
+
+- type: entity
+  id: SporeLighthouseIII 
+  parent: BaseStructure
+  suffix: Споры | Мобы
+  name: Ассимилированный Мицеливый курган
+  description: Массивный нарост плоти представляющей из себя сердце Мицеливого улья. 
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.1
+    baseSprintSpeed: 0.1
+  - type: PointLight
+    radius: 15
+    energy: 3
+    color: "#642626cc"
+  - type: InteractionOutline
+  - type: Sprite
+    noRot: true
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya2.rsi
+    layers:
+    - state: mayac
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 190
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeLootLighthouse:
+            min: 1
+            max: 3
+          SporeOrganSoedTkan:
+            min: 1
+            max: 15
+          SporeOrganKishki:
+            min: 1
+            max: 5
+          SporeLootEgg: 
+            min: 1
+            max: 5 
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SporeEggIII
+    - SporeEggII
+    - SporeEgg
+    intervalSeconds: 250
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 3
+
+
+
+
+
+# region Спавнеры 
+
+- type: entity
+  parent: MarkerBase
+  id: SporeRandomMobsAll
+  name: (Тир 1) Мобы Кургана | Все
+  suffix: Споры | Спавнер
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+      state: spore_egg
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+# Милишники (Урон + Броня)
+      - id: MobSporeStadiyaIHuman
+        weight: 25
+# Ассасины (Яд + Скорость)
+      - id: MobSporeStadiyaISpiderSpace
+        weight: 25
+      - id: MobSporeStadiyaISpider
+        weight: 25
+# Дальники (Плевок + Урон)
+      - id: MobSporeStadiyaISpaceCarp
+        weight: 25
+# Танки (Урон + Сильная Броня)
+      - id: MobSporeStadiyaISpaceBeer 
+        weight: 25
+      - id: MobSporeStadiyaIKoza
+        weight: 25
+      - id: MobSporeStadiyaIfox
+        weight: 25
+      - id: MobSporeStadiyaIcow
+        weight: 25
+# Маленькие Мобы (Скорость + Особенности животного)
+      - id: MobSporeStadiyaIMonke
+        weight: 25
+      - id: MobSporeStadiyaIMoose
+        weight: 25
+      - id: MobSporeStadiyaITarMol
+        weight: 25
+      - id: MobSporeStadiyaIchiken
+        weight: 25
+      - id: MobSporeStadiyaISpaceCobra
+        weight: 25
+
+- type: entity
+  parent: MarkerBase
+  id: SporeRandomMobsMal
+  name: (Тир 1) Мобы Кургана | Маленькие мобы
+  suffix: Споры | Спавнер
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+      state: spore_egg
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+# Маленькие Мобы (Скорость + Особенности животного)
+      - id: MobSporeStadiyaIMonke
+        weight: 25
+      - id: MobSporeStadiyaIMoose
+        weight: 25
+      - id: MobSporeStadiyaITarMol
+        weight: 25
+      - id: MobSporeStadiyaIchiken
+        weight: 25
+      - id: MobSporeStadiyaISpaceCobra
+        weight: 25
+
+- type: entity
+  parent: MarkerBase
+  id: SporeRandomMobsAssasin
+  name: (Тир 1) Мобы Кургана | Ассасины
+  suffix: Споры | Спавнер
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+      state: spore_egg
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+# Ассасины (Яд + Скорость)
+      - id: MobSporeStadiyaISpiderSpace
+        weight: 25
+      - id: MobSporeStadiyaISpider
+        weight: 25
+
+- type: entity
+  parent: MarkerBase
+  id: SporeRandomMobsTank
+  name: (Тир 1) Мобы Кургана | Танки
+  suffix: Споры | Спавнер
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+      state: spore_egg
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+# Танки (Урон + Сильная Броня)
+      - id: MobSporeStadiyaISpaceBeer 
+        weight: 25
+      - id: MobSporeStadiyaIKoza
+        weight: 25
+      - id: MobSporeStadiyaIfox
+        weight: 25
+      - id: MobSporeStadiyaIcow
+        weight: 25
+
+- type: entity
+  parent: MarkerBase
+  id: SporeRandomMobsDals
+  name: (Тир 1) Мобы Кургана | Дальники + Милишники
+  suffix: Споры | Спавнер
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+      state: spore_egg
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+# Милишники (Урон + Броня)
+      - id: MobSporeStadiyaIHuman
+        weight: 25
+# Дальники (Плевок + Урон)
+      - id: MobSporeStadiyaISpaceCarp
+        weight: 25
+
+
+
+- type: entity
+  parent: MarkerBase
+  id: SporeRandomMobsIIAll
+  name: (Тир 2) Мобы Кургана | Все
+  suffix: Споры | Спавнер
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+      state: spore_egg
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+# Маленькие Мобы (Скорость + Особенности животного)
+      - id: MobSporeStadiyaIIhimera
+        weight: 25
+      - id: MobSporeStadiyaIIfox
+        weight: 25
+      - id: MobSporeStadiyaIIHuman
+        weight: 25
+      - id: MobSporeStadiyaIISpider
+        weight: 25
+
+- type: entity
+  parent: MarkerBase
+  id: SporeRandomMobsIIIAll 
+  name: (Тир 3) Мобы Кургана | Все
+  suffix: Споры | Спавнер
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+      state: spore_egg
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+
+      - id: MobSporeStadiyaIIhimera
+        weight: 15
+      - id: MobSporeStadiyaIIfox
+        weight: 15
+      - id: MobSporeStadiyaIIHuman
+        weight: 15
+      - id: MobSporeStadiyaIISpider
+        weight: 15
+  
+      - id: MobSporeStadiyaIIIHuman
+        weight: 30
+      - id: MobSporeStadiyaIIISpider
+        weight: 50
+      - id: MobSporeStadiyaIIISpaceCarp
+        weight: 60
+      - id: MobSporeStadiyaIIIfox
+        weight: 30
+      - id: MobSporeStadiyaIIIhimera 
+        weight: 45
+
+# region Яйца Мобов 
+# Кто смеётся с названий тому 3 года. 
+
+ # Тир 1
+
+ # Яйцо спаунит милишников
+
+- type: entity
+  parent: MobBaseSpores
+  id: SporeEgg
+  name: Мицеливый Кокон
+  description: Мутироваший Мицеливый Кокон, довольно крупный и вам кажется что он растёт даже на глазах, иногда вздрагивает, но из-за хаотичных движений его корней способен перемещаться
+  suffix: Споры | Мобы
+  components:
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: spore_egg
+  - type: Bloodstream
+    bloodMaxVolume: 25
+    bloodReagent: SporeBlood
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: spore_egg
+      Dead:
+        Base: dead_egg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      139: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.1
+    baseSprintSpeed: 0.1
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 100
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 1.8
+        Cold: 1.8
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 140
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeLootEgg:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 121
+  - type: TimedSpawner
+    prototypes:
+    - SporeRandomMobsDals
+    - SporeRandomMobsTank
+    - SporeRandomMobsAssasin
+    - SporeRandomMobsMal 
+    intervalSeconds: 120.9
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+
+- type: entity
+  parent: MobBaseSpores
+  id: SporeEggII 
+  name: Мутировавший Мицеливый Кокон
+  description: Мутироваший Мицеливый Кокон, довольно крупный и вам кажется что он растёт даже на глазах, иногда вздрагивает, но из-за хаотичных движений его корней способен перемещаться
+  suffix: Споры | Мобы
+  components:
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: spore_egg2
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: SporeBlood
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: spore_egg2
+      Dead:
+        Base: dead_egg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      199: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.1
+    baseSprintSpeed: 0.1
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 100
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 1.5
+        Cold: 1.5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeLootEgg:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 121
+  - type: TimedSpawner
+    prototypes:
+    - SporeRandomMobsIIAll
+    intervalSeconds: 120.9
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+
+- type: entity
+  parent: MobBaseSpores
+  id: SporeEggIII 
+  name: Ассимилированный Мицеливый Кокон
+  description: Ассимилированный Мицеливый Кокон, довольно крупный и вам кажется что он растёт даже на глазах, иногда вздрагивает, но из-за хаотичных движений его корней способен перемещаться
+  suffix: Споры | Мобы
+  components:
+  - type: HeldSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/_Horizon/_Fractions/IHP/Spore/Mobs/Stadiya2.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: spore_egg
+  - type: Bloodstream
+    bloodMaxVolume: 75
+    bloodReagent: SporeBlood
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: spore_egg
+      Dead:
+        Base: dead_egg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.1
+    baseSprintSpeed: 0.1
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.8
+  - type: Stamina
+    critThreshold: 150
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    altDisarm: false   
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 1.1
+        Cold: 1.1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 251
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SporeLootEgg:
+            min: 2
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 121
+  - type: TimedSpawner
+    prototypes:
+    - SporeRandomMobsIIIAll 
+    - SporeRandomMobsIIAll
+    intervalSeconds: 120.9
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+

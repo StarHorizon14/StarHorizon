@@ -464,11 +464,12 @@
       - HVCableMech
       - CableTerminalMech
       - DeconstructMech
+      isShipyardRCD: true # Horizon: uses shipyard RCD cartridges from the mech's storage
     - type: MechRCD
-  - type: LimitedCharges
+  - type: LimitedCharges # Horizon: charges come from cartridges, no free recharge
     maxCharges: 100
-  - type: AutoRecharge
-    rechargeDuration: 1
+    lastCharges: -1
+  - type: GridAccess # Horizon: swipe an ID card on the module to lock it to your shuttle
   - type: Tag
     tags:
       - MechEquipmentGeneral
@@ -491,11 +492,12 @@
       - HVCableMechFast
       - CableTerminalMechFast
       - DeconstructMech
+      isShipyardRCD: true # Horizon: uses shipyard RCD cartridges from the mech's storage
     - type: MechRCD
-  - type: LimitedCharges
+  - type: LimitedCharges # Horizon: charges come from cartridges, no free recharge
     maxCharges: 100
-  - type: AutoRecharge
-    rechargeDuration: 1
+    lastCharges: -1
+  - type: GridAccess # Horizon: swipe an ID card on the module to lock it to your shuttle
   - type: Tag
     tags:
       - MechEquipmentGeneral

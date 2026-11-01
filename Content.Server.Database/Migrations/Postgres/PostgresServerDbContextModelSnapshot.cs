@@ -951,6 +951,11 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("char_name");
 
+                    b.Property<string>("ERPFlavorText")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("erpflavor_text");
+
                     b.Property<int>("ErpStatus")
                         .HasColumnType("integer")
                         .HasColumnName("erp_status");

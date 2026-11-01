@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
@@ -77,12 +78,31 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         Entry("kek", "chatsan-laughs"),
         Entry("rofl", "chatsan-laughs"),
         Entry("o7", "chatsan-salutes"),
+        Entry("о7", "chatsan-salutes"), // Horizon: Cyrillic "о" for the Russian keyboard layout
         Entry(";_;7", "chatsan-tearfully-salutes"),
         Entry("idk", "chatsan-shrugs"),
         Entry(";)", "chatsan-winks"),
         Entry(";]", "chatsan-winks"),
         Entry("(;", "chatsan-winks"),
         Entry("[;", "chatsan-winks"),
+        // Horizon: Cyrillic variants for the Russian keyboard layout
+        Entry(":Д", "chatsan-smiles-widely"),
+        Entry("Д:", "chatsan-frowns-deeply"),
+        Entry(":О", "chatsan-surprised"),
+        Entry(":З", "chatsan-smiles"),
+        Entry(":р", "chatsan-stick-out-tongue"),
+        Entry(";р", "chatsan-stick-out-tongue"),
+        Entry("о-о", "chatsan-wide-eyed"),
+        Entry("о.о", "chatsan-wide-eyed"),
+        Entry("о/", "chatsan-waves"),
+        Entry("хД", "chatsan-laughs"),
+        Entry("лол", "chatsan-laughs"),
+        Entry("лел", "chatsan-laughs"),
+        Entry("кек", "chatsan-laughs"),
+        Entry("рофл", "chatsan-laughs"),
+        Entry("лмао", "chatsan-laughs"),
+        Entry("хз", "chatsan-shrugs"),
+        // Horizon end
         Entry(":')", "chatsan-tearfully-smiles"),
         Entry(":']", "chatsan-tearfully-smiles"),
         Entry("=')", "chatsan-tearfully-smiles"),
@@ -143,9 +163,49 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
             message = r.Replace(message, string.Empty);
         }
 
+        // Horizon: Russian-style trailing brackets, "привет)" or "ну(((". Always the last thing in the message, so it wins.
+        if (TryTrimTrailingBrackets(ref message, out var bracketEmoteKey))
+            emote = _loc.GetString(bracketEmoteKey, ("ent", speaker));
+
         sanitized = message.Trim();
         return emote is not null;
     }
+
+    // Horizon start
+    /// <summary>
+    ///     Strip a run of ")" or "(" glued to the end of the message.
+    ///     Closing brackets that balance an earlier "(" are left alone, so "(вот так)" stays as is.
+    /// </summary>
+    private static bool TryTrimTrailingBrackets(ref string message, [NotNullWhen(true)] out string? emoteKey)
+    {
+        emoteKey = null;
+
+        var trimmed = message.TrimEnd();
+        if (trimmed.Length == 0)
+            return false;
+
+        var bracket = trimmed[^1];
+        if (bracket != ')' && bracket != '(')
+            return false;
+
+        var start = trimmed.Length;
+        while (start > 0 && trimmed[start - 1] == bracket)
+            start--;
+
+        if (bracket == ')')
+        {
+            var rest = trimmed[..start];
+            var unclosed = rest.Count(c => c == '(') - rest.Count(c => c == ')');
+            start += Math.Max(0, unclosed);
+            if (start >= trimmed.Length)
+                return false;
+        }
+
+        message = trimmed[..start];
+        emoteKey = bracket == ')' ? "chatsan-smiles" : "chatsan-frowns";
+        return true;
+    }
+    // Horizon end
 
     private static (Regex regex, string emoteKey) Entry(string shorthand, string emoteKey)
     {

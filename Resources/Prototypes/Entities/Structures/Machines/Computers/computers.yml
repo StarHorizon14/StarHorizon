@@ -157,6 +157,10 @@
     guides:
     - ShuttleCraft
   - type: NoSignalOnLink
+  # Mono: autopilot. The NPC sleeps until a destination is set.
+  - type: HTN
+    rootTask:
+      task: AutopilotShuttleCompound
 
 - type: entity
   parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom

@@ -1,0 +1,39 @@
+
+- type: entity
+  id: GoblinSpeakTranslatorImplanter
+  name: GoblinSpeak Translator implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: GoblinSpeakTranslatorImplant
+
+- type: entity
+  parent: BaseTranslatorImplant
+  id: GoblinSpeakTranslatorImplant
+  name: translator implant
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    languages:
+      SporeSpeak: Speak
+
+- type: language
+  id: SporeSpeak
+  uiColor: Crimson
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    obfuscateSyllables: true
+    color: Crimson
+    whisperColor: Crimson
+    replacement:
+    - Ррр..
+    - РАР!.. 
+    - Рр.. 
+    - Рхп...
+    - РХАаа!.. 
+    - РЗААХ!.. 
+    - РРра!.. 
+    - Рааар!.. 
+    - Ррр!.. 
+    - РРРР!..
+    - РЗз!..

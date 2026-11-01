@@ -42,7 +42,7 @@ namespace Content.Shared.Construction.Steps // NOTE: currently exists under base
         public override void DoExamine(ExaminedEvent examinedEvent)
         {
             var part = IoCManager.Resolve<IPrototypeManager>().Index(PartPrototypeId);
-            var partName = Loc.GetString(part.ID, ("amount", Amount));
+            var partName = Loc.GetString(part.Name, ("amount", Amount)); // Horizon: part.ID<part.Name
 
             examinedEvent.PushMarkup(Loc.GetString("construction-insert-material-entity", ("amount", Amount), ("materialName", partName)));
         }

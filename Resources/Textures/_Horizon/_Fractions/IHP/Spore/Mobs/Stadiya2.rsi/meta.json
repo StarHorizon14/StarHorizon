@@ -1,0 +1,93 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "by Amirya Discord: amir7036",
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+    "states": [
+    {
+      "name": "mayac",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "spore_egg",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+        {
+            "name": "dead_egg"
+        },
+        {
+            "name": "dead1"
+        },
+
+        {
+            "name": "mobs1",
+            "directions": 4
+        },
+        {
+            "name": "dead2"
+        },
+
+        {
+            "name": "mobs2",
+            "directions": 4
+        },
+        {
+            "name": "dead3"
+        },
+    {
+      "name": "mobs3",
+      "directions": 4,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+        {
+            "name": "dead4"
+        },
+        {
+            "name": "mobs4",
+            "directions": 4
+        },
+        {
+            "name": "dead5"
+        },
+        {
+            "name": "mobs5",
+            "directions": 4
+        }
+    ]
+}

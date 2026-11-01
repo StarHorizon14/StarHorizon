@@ -47,3 +47,17 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
+
+- type: construction
+  id: ShuttleMagnet
+  name: Магнит для шаттлов
+  graph: GraphShuttleMagnet
+  startNode: start
+  targetNode: complete
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

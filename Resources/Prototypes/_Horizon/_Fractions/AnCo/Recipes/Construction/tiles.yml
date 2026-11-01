@@ -1,0 +1,44 @@
+- type: constructionGraph
+  id: TileAnCo
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: techtile
+          completed:
+            - !type:SetStackCount
+              amount: 4
+          steps:
+            - material: KazmieSheetStack
+              amount: 1
+            - material: ArdonSheetStack
+              amount: 1
+        - to: processortile
+          completed:
+            - !type:SetStackCount
+              amount: 4
+          steps:
+            - material: KazmieSheetStack
+              amount: 1
+            - material: ArdonSheetStack
+              amount: 2
+    - node: techtile
+      entity: FloorTileItemKazmieTech
+    - node: processortile
+      entity: FloorTileItemProcessorArdon
+
+- type: construction
+  id: TileItemTech
+  graph: TileAnCo
+  startNode: start
+  targetNode: techtile
+  category: construction-category-tiles
+  objectType: Item
+
+- type: construction
+  id: TileItemProcessor
+  graph: TileAnCo
+  startNode: start
+  targetNode: processortile
+  category: construction-category-tiles
+  objectType: Item

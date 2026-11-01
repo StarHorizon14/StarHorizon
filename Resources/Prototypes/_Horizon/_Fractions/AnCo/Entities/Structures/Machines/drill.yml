@@ -49,6 +49,7 @@
       storedRotation: -90
     - type: StaticPrice
       price: 100
+      vendPrise: 500
     - type: MachineBoard
       prototype: AnCoMiningDrill
       stackRequirements:

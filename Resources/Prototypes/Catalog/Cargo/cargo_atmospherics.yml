@@ -99,6 +99,16 @@
   category: cargoproduct-category-name-atmospherics
   group: market
 
+- type: cargoProduct # Horizon
+  id: AtmosphericsNitrousOxide
+  icon:
+    sprite: _NF/Structures/Storage/canister.rsi
+    state: nitrous_oxide
+  product: NitrousOxideCanister
+  cost: 6500 # Horizon: 2769 mol at 2/mol sells for ~5.5k + 125 canister, keep it above that
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
 #- type: cargoProduct
 #  id: AtmosphericsTritium
 #  icon:

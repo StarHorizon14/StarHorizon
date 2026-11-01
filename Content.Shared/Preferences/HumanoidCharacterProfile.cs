@@ -120,6 +120,9 @@ namespace Content.Shared.Preferences
         public string OOCFlavorText { get; set; } = string.Empty;
 
         [DataField]
+        public string ERPFlavorText { get; set; } = string.Empty;
+
+        [DataField]
         private HashSet<ProtoId<LanguagePrototype>> _languages = new();
 
         public IReadOnlySet<ProtoId<LanguagePrototype>> Languages => _languages;
@@ -167,6 +170,7 @@ namespace Content.Shared.Preferences
             ErpStatus erp,
             ProtoId<CharacterFactionPrototype> faction,
             string oocFlavor,
+            string erpFlavor,
             BarkData bark,
             HashSet<ProtoId<LanguagePrototype>> languages) // Horizon end
         {
@@ -188,6 +192,7 @@ namespace Content.Shared.Preferences
             ErpStat = erp;
             Faction = faction;
             OOCFlavorText = oocFlavor;
+            ERPFlavorText = erpFlavor;
             Bark = bark;
             _languages = languages;
             // Horizon end
@@ -218,6 +223,7 @@ namespace Content.Shared.Preferences
                 other.ErpStat,
                 other.Faction,
                 other.OOCFlavorText,
+                other.ERPFlavorText,
                 other.Bark,
                 other.Languages.ToHashSet()) // Horizon end
         {
@@ -243,6 +249,7 @@ namespace Content.Shared.Preferences
                 other.ErpStat,
                 other.Faction,
                 other.OOCFlavorText,
+                other.ERPFlavorText,
                 other.Bark,
                 other.Languages.ToHashSet()) // Horizon end
         {
@@ -516,10 +523,12 @@ namespace Content.Shared.Preferences
             var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences);
             list.Remove(traitId);
 
-            return new(this)
+            var profile = new HumanoidCharacterProfile(this)
             {
                 _traitPreferences = list,
             };
+            profile.TrimLanguages(protoManager); // Horizon: the trait may have granted language slots
+            return profile;
         }
 
         public string Summary =>
@@ -554,6 +563,7 @@ namespace Content.Shared.Preferences
             if (ErpStat != other.ErpStat) return false;
             if (Faction != other.Faction) return false;
             if (OOCFlavorText != other.OOCFlavorText) return false;
+            if (ERPFlavorText != other.ERPFlavorText) return false;
             if (!_languages.SequenceEqual(other._languages)) return false;
             // Horizon end
             return Appearance.MemberwiseEquals(other.Appearance);
@@ -760,6 +770,8 @@ namespace Content.Shared.Preferences
                 _languages.Remove(lang);
             }
 
+            TrimLanguages(prototypeManager);
+
             // Horizon end
         }
 
@@ -946,6 +958,11 @@ namespace Content.Shared.Preferences
             return new(this) { OOCFlavorText = flavorText };
         }
 
+        public HumanoidCharacterProfile WithERPFlavorText(string flavorText)
+        {
+            return new(this) { ERPFlavorText = flavorText };
+        }
+
         #endregion
 
         #region Languages
@@ -957,7 +974,7 @@ namespace Content.Shared.Preferences
                 return new(this);
             if (_languages.Contains(language))
                 return new(this);
-            if (_languages.Count >= species.MaxLanguages)
+            if (_languages.Count >= GetMaxLanguages(proto))
                 return new(this);
 
             HashSet<ProtoId<LanguagePrototype>> list = new(_languages);
@@ -987,6 +1004,46 @@ namespace Content.Shared.Preferences
             {
                 _languages = list,
             };
+        }
+
+        /// <summary>
+        /// Species language limit plus any extra slots granted by selected traits.
+        /// </summary>
+        public int GetMaxLanguages(IPrototypeManager proto)
+        {
+            var max = proto.TryIndex(Species, out var species) ? species.MaxLanguages : 0;
+            foreach (var trait in _traitPreferences)
+            {
+                if (proto.TryIndex(trait, out var traitProto))
+                    max += traitProto.ExtraLanguageSlots;
+            }
+
+            return max;
+        }
+
+        /// <summary>
+        /// Drops languages over the limit, removing non-default ones first.
+        /// </summary>
+        private void TrimLanguages(IPrototypeManager proto)
+        {
+            var max = GetMaxLanguages(proto);
+            if (_languages.Count <= max)
+                return;
+
+            var defaults = proto.TryIndex(Species, out var species)
+                ? species.DefaultLanguages.ToHashSet()
+                : new HashSet<ProtoId<LanguagePrototype>>();
+
+            var list = new HashSet<ProtoId<LanguagePrototype>>(_languages);
+            foreach (var lang in _languages.OrderBy(x => defaults.Contains(x)))
+            {
+                if (list.Count <= Math.Max(max, 1))
+                    break;
+
+                list.Remove(lang);
+            }
+
+            _languages = list;
         }
         #endregion
 
