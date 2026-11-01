@@ -1,0 +1,11 @@
+slime-appearance-window-title = Reshape appearance
+slime-appearance-window-sex = Sex
+slime-appearance-window-skin = Body color
+slime-appearance-window-eyes = Eye color
+slime-appearance-window-apply = Apply
+slime-appearance-window-hint = Changes apply after standing still for two minutes.
+slime-appearance-start = Your body slowly starts to reshape...
+slime-appearance-interrupted = You lose focus and your body settles back into its old shape.
+slime-appearance-done = You finish reshaping your body.
+slime-appearance-already-changing = You are already reshaping yourself.
+slime-appearance-cooldown = Your body isn't ready for another change yet. About { $minutes } min left.

@@ -48,6 +48,7 @@ public sealed class RCDSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private readonly GridAccessSystem _gridAccess = default!;
 
     private readonly int _instantConstructionDelay = 0;
     private readonly EntProtoId _instantConstructionFx = "EffectRCDConstruct0";
@@ -188,7 +189,7 @@ public sealed class RCDSystem : EntitySystem
         // Frontier - Grid access restriction
         if (TryComp<GridAccessComponent>(GetResourceEntity(uid), out var gridAccessComponent)) // Horizon: resource entity
         {
-            if (!GridAccessSystem.IsAuthorized(gridUid.Value, gridAccessComponent, out var popupMessage))
+            if (!_gridAccess.IsAuthorized(gridUid.Value, gridAccessComponent, out var popupMessage))
             {
                 if (popupMessage != null)
                 {

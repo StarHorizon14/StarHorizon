@@ -9,6 +9,8 @@
     collection: FootstepPlating
   friction: 1.5
   heatCapacity: 10000
+  materialComposition: # Horizon: #43651
+    Steel: 75
 
 - type: tile
   id: PlatingDamaged
@@ -78,6 +80,8 @@
   itemDrop: PartRodMetal1
   heatCapacity: 10000
   mass: 200
+  materialComposition: # Horizon: #43651
+    Steel: 50
 
 - type: tile
   id: TrainLattice

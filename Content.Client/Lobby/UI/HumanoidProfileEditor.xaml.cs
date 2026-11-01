@@ -1520,6 +1520,7 @@ namespace Content.Client.Lobby.UI
             if (_flavorTextEdit != null)
             {
                 _flavorTextEdit.TextRope = new Rope.Leaf(Profile?.FlavorText ?? "");
+                _flavorText?.UpdateFlavorTextCounter(); // Horizon
             }
 
             // Horizon start

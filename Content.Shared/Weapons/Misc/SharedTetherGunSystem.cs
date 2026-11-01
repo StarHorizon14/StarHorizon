@@ -111,7 +111,8 @@ public abstract partial class SharedTetherGunSystem : EntitySystem
         if (user == null)
             return;
 
-        if (!TryGetTetherGun(user.Value, out var gunUid, out var gun) || gun.TetherEntity == null)
+        if (!TryGetTetherGun(user.Value, out var gunUid, out var gun) || gun.TetherEntity == null ||
+            !Exists(gun.TetherEntity.Value)) // Horizon: the predicted client may not have the tether entity yet
         {
             return;
         }

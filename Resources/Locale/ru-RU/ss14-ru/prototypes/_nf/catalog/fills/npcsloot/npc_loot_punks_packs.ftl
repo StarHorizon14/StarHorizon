@@ -1,12 +1,12 @@
-ent-NFBaseNpcLootPackPunk = punk bundle
+ent-NFBaseNpcLootPackPunk = набор панка
     .desc = { ent-NFBaseNpcLootBackpack.desc }
-ent-NFBaseNpcLootBeltPunk = punk's ammo pack
+ent-NFBaseNpcLootBeltPunk = подсумок с патронами панка
     .desc = { ent-NFBaseNpcLootBelt.desc }
-ent-NFBaseNpcLootWalletPunk = punk's wallet
+ent-NFBaseNpcLootWalletPunk = кошелёк панка
     .desc = { ent-NFBaseNpcLootWallet.desc }
 ent-ClothingWalletPunkT1 = { ent-NFBaseNpcLootWalletPunk }
     .desc = { ent-NFBaseNpcLootWalletPunk.desc }
-ent-ClothingBackpackPunkMeleeT1 = punk gear bundle
+ent-ClothingBackpackPunkMeleeT1 = набор снаряжения панка
     .desc = { ent-NFBaseNpcLootPackPunk.desc }
 ent-ClothingBackpackPunkRangedT1 = { ent-NFBaseNpcLootPackPunk }
     .desc = { ent-NFBaseNpcLootPackPunk.desc }

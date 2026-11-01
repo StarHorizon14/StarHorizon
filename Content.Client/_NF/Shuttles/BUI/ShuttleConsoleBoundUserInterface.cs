@@ -20,6 +20,7 @@ namespace Content.Client.Shuttles.BUI
             _window.RequestTrackEntity += OnTrackEntity;
             _window.OnMaxShuttleSpeedChanged += OnMaxShuttleSpeedChanged;
             _window.OnNetworkPortButtonPressed += OnNetworkPortButtonPressed;
+            _window.RequestFtlConcentration += enable => SendMessage(new Content.Shared._Horizon.Shuttles.Events.FtlConcentrationRequest(enable)); // Horizon
         }
         private void OnInertiaDampeningModeChanged(NetEntity? entityUid, InertiaDampeningMode mode)
         {

@@ -98,6 +98,14 @@
   - type: PhysicalComposition
     materialComposition:
       RawArdon: 100
+  - type: Extractable
+    grindableSolutionName: ardonore
+  - type: SolutionContainerManager
+    solutions:
+      ardonore:
+        reagents:
+        - ReagentId: Ardon
+          Quantity: 10
   - type: Sprite
     sprite: _Horizon/_Fractions/AnCo/Objects/Materials/material.rsi
     state: ardonore

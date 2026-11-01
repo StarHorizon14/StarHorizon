@@ -1,0 +1,28 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:humanoid="clr-namespace:Content.Client.Humanoid"
+                      Title="{Loc 'slime-appearance-window-title'}"
+                      MinSize="700 600"
+                      SetSize="760 680">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="8">
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 8">
+            <Label Text="{Loc 'slime-appearance-window-sex'}" Margin="0 0 8 0" />
+            <OptionButton Name="SexButton" MinWidth="150" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="0 0 8 0">
+                <Label Text="{Loc 'slime-appearance-window-skin'}" />
+                <BoxContainer Name="SkinColorContainer" Orientation="Vertical" HorizontalExpand="True" />
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <Label Text="{Loc 'slime-appearance-window-eyes'}" />
+                <humanoid:EyeColorPicker Name="EyeColorPickerWidget" HorizontalExpand="True" />
+            </BoxContainer>
+        </BoxContainer>
+        <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" Margin="0 8">
+            <humanoid:MarkingPicker Name="MarkingPickerWidget" HorizontalExpand="True" />
+        </ScrollContainer>
+        <Label Name="HintLabel" HorizontalAlignment="Center" FontColorOverride="#a0a0a0" />
+        <Button Name="ApplyButton" Text="{Loc 'slime-appearance-window-apply'}" HorizontalAlignment="Center" MinWidth="200" Margin="0 6 0 0" />
+    </BoxContainer>
+</controls:FancyWindow>

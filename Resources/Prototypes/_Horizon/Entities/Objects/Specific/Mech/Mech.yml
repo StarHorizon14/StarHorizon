@@ -191,6 +191,7 @@
       - MechEquipmentSecHLazer
       - MechEquipmentSecExperim
       - MechEquipmentSecMissile
+      - MechEquipmentSecCC # Horizon: close combat weapons are unlocked right after the Durand
   - type: MeleeWeapon
     hidden: true
     attackRate: 1.2

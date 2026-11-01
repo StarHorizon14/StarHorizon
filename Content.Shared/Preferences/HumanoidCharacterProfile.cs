@@ -644,16 +644,12 @@ namespace Content.Shared.Preferences
                 name = GetName(Species, gender);
             }
 
-            string flavortext;
+            // Horizon: strip markup before measuring. Measuring the raw text and then slicing the stripped one
+            // could slice past the end and throw when the text had markup.
             var maxFlavorTextLength = configManager.GetCVar(CCVars.MaxFlavorTextLength);
-            if (FlavorText.Length > maxFlavorTextLength)
-            {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxFlavorTextLength];
-            }
-            else
-            {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
-            }
+            var flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
+            if (flavortext.Length > maxFlavorTextLength)
+                flavortext = flavortext[..maxFlavorTextLength];
 
             // Frontier
             //make sure theres no funny bank stuff going on

@@ -28,12 +28,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-dwarf-name
-    description: Вы гном, выращенный в цитологической ванне. Коротыш, но крепкий! Исследуйте этот мир с достоинством истинного гнома!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

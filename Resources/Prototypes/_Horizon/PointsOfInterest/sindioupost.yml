@@ -22,6 +22,8 @@
   addMapComponents:
   - type: FTLDestination
     requireCoordinateDisk: true
+  - type: SecretTunnelMap
+    id: syndicate
   - type: Parallax
     parallax: Sky
   - type: MapAtmosphere

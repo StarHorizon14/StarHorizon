@@ -51,12 +51,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-vulpkanin-name
-    description: Вы вулпканин, выращенный в цитологической ванне. Острые чувства и лисья хитрость - ваши подарки. Исследуйте этот мир!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

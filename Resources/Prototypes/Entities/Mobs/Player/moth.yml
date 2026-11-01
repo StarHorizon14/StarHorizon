@@ -24,12 +24,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-moth-name
-    description: Вы мотылек, выращенный в цитологической ванне. Крылья трепещут с легкостью, и свет привлекает вас. Исследуйте этот новый мир!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

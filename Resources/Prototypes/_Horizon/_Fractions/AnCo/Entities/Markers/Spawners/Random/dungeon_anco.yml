@@ -226,6 +226,32 @@
     rareChance: 0.33
 
 - type: entity
+  name: спавнер статуэток
+  id: SpawnAnCoDildo
+  parent: MarkerBasePlaceFree
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _Horizon/_Fractions/AnCo/Objects/Misc/dildo.rsi
+        state: falos
+  - type: RandomSpawner
+    prototypes:
+    - ArdonOre1
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - StatueCorall
+    - StatueTentacle
+    - StatueFalos
+    - StatueBalls
+    - StatueProbkaA
+    - StatueProbkaK
+    rareChance: 0.33
+
+- type: entity
   name: спавнер станций модификаций АнКо
   id: SpawnAnCoModStationRandom
   parent: MarkerBasePlaceFree
@@ -243,6 +269,7 @@
     - ModStationJuggernaut
     - ModStationElite
     - ModStationSyndie
+    - ModStationDurand
     chance: 0.25
     offset: 0.0
 

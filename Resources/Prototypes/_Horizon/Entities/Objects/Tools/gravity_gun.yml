@@ -1,0 +1,46 @@
+- type: entity
+  id: WeaponGravityGun
+  parent: WeaponTetherGun
+  name: gravity gun
+  description: Manipulates gravity to move scrap and hulls.
+  components:
+  - type: TetherGun
+    massLimit: 5000
+    maxForce: 3000
+  - type: Clothing
+    sprite: _Horizon/Objects/Tools/gravity_gun.rsi
+    quickEquip: false
+    slots:
+    - belt
+  - type: Sprite
+    sprite: _Horizon/Objects/Tools/gravity_gun.rsi
+    layers:
+    - state: icon
+    - state: grav_pull
+      map: [ "unshaded" ]
+      shader: unshaded
+      visible: false
+  - type: ToggleableVisuals
+    spriteLayer: unshaded
+    inhandVisuals:
+      left:
+      - state: inhand-left-flame
+        shader: unshaded
+      right:
+      - state: inhand-right-flame
+        shader: unshaded
+
+- type: entity
+  id: WeaponGridGravityGun
+  parent: WeaponGravityGun
+  name: grid gravity gun
+  description: A heavy gravity gun that takes whole hulls and drags them where you point.
+  components:
+  - type: GridDragGun
+
+- type: entity
+  id: WeaponGridGravityGunUtilization
+  parent: WeaponGridGravityGun
+  components:
+  - type: GridDragGun
+    requireUtilization: true

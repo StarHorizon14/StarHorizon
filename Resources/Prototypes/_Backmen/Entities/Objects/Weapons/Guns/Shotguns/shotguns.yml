@@ -210,15 +210,3 @@
     cameraRecoilScalar: 1
     soundGunshot:
       path: /Audio/Weapons/Guns64/Shotguns/t35.ogg
-
-- type: entity
-  parent: [WeaponShotgunZauer, BaseC3Contraband]
-  id: WeaponShotgunInteQBulldog
-  name: Bulldog
-  suffix: Shothun
-  description: Magazine-fed shotgun designed for close quarters combat. Uses .50 shotgun shells. It is painted in the InteQ brand color.
-  components:
-  - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Shotguns/inteq_bulldog.rsi
-  - type: Clothing
-    sprite: Backmen/Objects/Weapons/Guns/Shotguns/inteq_bulldog.rsi
