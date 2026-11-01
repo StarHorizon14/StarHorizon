@@ -2318,7 +2318,7 @@
   id: GSecCrateGSecPraetorBundle
   name: "Набор Перторианца (Т3)"
   description: "Набор Praetor от «AnCo - MiliGalax». «Это не военное приступление, если тебя не поймали»."
-  productEntity: CrateGSecBlackWaterBundle
+  productEntity: CrateGSecPraetorBundle
   cost:
     Speso: 200000
   categories:
