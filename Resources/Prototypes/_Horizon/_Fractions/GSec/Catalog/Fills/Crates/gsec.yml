@@ -174,7 +174,7 @@
     sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/saiga-case.rsi
   - type: StorageFill
     contents:
-      - id: WeaponSubMechineGunGSecSaiga
+      - id: WeaponShotgunGSecSaiga
       - id: MagazineShotgunGSec
         amount: 2
       - id: NFAmmunitionBoxShellShotgunBuckshot
