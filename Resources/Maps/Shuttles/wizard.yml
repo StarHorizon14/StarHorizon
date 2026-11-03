@@ -2040,7 +2040,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-10.5
       parent: 768
-- proto: ComputerIFFSyndicate
+- proto: ComputerIFF
   entities:
   - uid: 208
     components:
