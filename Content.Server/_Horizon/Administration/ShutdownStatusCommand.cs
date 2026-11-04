@@ -23,12 +23,22 @@ public sealed class ShutdownStatusCommand : IConsoleCommand
             return;
         }
 
-        var timeUntilRestart = status.RestartTimeMsk!.Value - status.CurrentTimeMsk!.Value;
-        var timeUntilShuttle = status.ShuttleCallTimeMsk!.Value - status.CurrentTimeMsk!.Value;
+        if (status.RestartUtc == null)
+        {
+            shell.WriteLine("Таймер рестарта: ВКЛЮЧЕН (раунд не идёт, ожидание старта раунда)");
+            return;
+        }
 
-        shell.WriteLine($"Текущее время МСК:    {status.CurrentTimeMsk:dd.MM.yyyy HH:mm:ss}");
-        shell.WriteLine($"Время рестарта:   {status.RestartTimeMsk:dd.MM.yyyy HH:mm:ss}");
-        shell.WriteLine($"Вызов шаттла:     {status.ShuttleCallTimeMsk:dd.MM.yyyy HH:mm:ss}");
+        var now = status.NowUtc!.Value;
+        var elapsed = now - status.RoundStartUtc!.Value;
+        var timeUntilRestart = status.RestartUtc.Value - now;
+        var timeUntilShuttle = status.ShuttleCallUtc!.Value - now;
+
+        // Формат как в лаунчере: Ч:ММ
+        shell.WriteLine($"Таймер раунда:    {(int)elapsed.TotalHours}:{elapsed.Minutes:00}");
+        shell.WriteLine($"Старт раунда UTC: {status.RoundStartUtc:dd.MM.yyyy HH:mm:ss}");
+        shell.WriteLine($"Рестарт UTC:      {status.RestartUtc:dd.MM.yyyy HH:mm:ss}");
+        shell.WriteLine($"Вызов шаттла UTC: {status.ShuttleCallUtc:dd.MM.yyyy HH:mm:ss}");
         shell.WriteLine($"До рестарта:      {FormatTimeSpan(timeUntilRestart)}");
         shell.WriteLine($"До вызова шаттла: {(status.ShuttleCalled ? "вызван" : FormatTimeSpan(timeUntilShuttle))}");
     }

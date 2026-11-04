@@ -1,4 +1,5 @@
 using Content.Client.GameTicking.Managers;
+using Content.Shared._Horizon.ShiftTime;
 using Content.Shared.PDA;
 using Robust.Shared.Utility;
 using Content.Shared.CartridgeLoader;
@@ -132,7 +133,7 @@ namespace Content.Client.PDA
             StationTimeButton.OnPressed += _ =>
             {
                 var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-                _clipboard.SetText((stationTime.ToString("hh\\:mm\\:ss")));
+                _clipboard.SetText(ShiftTimeFormatter.Format(stationTime));
             };
 
             StationAlertLevelInstructionsButton.OnPressed += _ =>
@@ -191,7 +192,7 @@ namespace Content.Client.PDA
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+                ("time", ShiftTimeFormatter.Format(stationTime))));
 
             // Frontier
             if (state.RoundEndTime is not null)
@@ -202,7 +203,7 @@ namespace Content.Client.PDA
 
                 var remainingTime = _roundEndTime.Value.Subtract(_gameTiming.CurTime);
                 RemainingTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-remaining-time",
-                    ("time", remainingTime.ToString("hh\\:mm\\:ss"))));
+                    ("time", ShiftTimeFormatter.Format(remainingTime))));
             }
             else
             {
@@ -384,14 +385,14 @@ namespace Content.Client.PDA
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+                ("time", ShiftTimeFormatter.Format(stationTime))));
 
             // Frontier
             if (_roundEndTime is not null)
             {
                 var remainingTime = _roundEndTime.Value.Subtract(_gameTiming.CurTime);
                 RemainingTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-remaining-time",
-                    ("time", remainingTime.ToString("hh\\:mm\\:ss"))));
+                    ("time", ShiftTimeFormatter.Format(remainingTime))));
                 if (remainingTime < TimeSpan.Zero){
                     RemainingTimeLabel.Visible = false;
                     _roundEndTime = null;
