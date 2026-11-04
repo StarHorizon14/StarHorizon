@@ -7,6 +7,7 @@ using Content.Client.Message;
 using Content.Client.Playtime;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
+using Content.Shared._Horizon.ShiftTime;
 using Content.Shared.CCVar;
 using Robust.Client;
 using Robust.Client.Console;
@@ -133,7 +134,11 @@ namespace Content.Client.Lobby
             {
                 Lobby!.StartTime.Text = string.Empty;
                 var roundTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-                Lobby!.StationTime.Text = Loc.GetString("lobby-state-player-status-round-time", ("hours", roundTime.Hours), ("minutes", roundTime.Minutes));
+                var roundDays = ShiftTimeFormatter.Days(roundTime);
+                Lobby!.StationTime.Text = roundDays > 0
+                    ? Loc.GetString("lobby-state-player-status-round-time-days",
+                        ("days", roundDays), ("hours", roundTime.Hours), ("minutes", roundTime.Minutes))
+                    : Loc.GetString("lobby-state-player-status-round-time", ("hours", roundTime.Hours), ("minutes", roundTime.Minutes));
                 return;
             }
 

@@ -772,7 +772,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,0.5
       parent: 325
-- proto: ComputerIFFSyndicate
+- proto: ComputerIFF
   entities:
   - uid: 40
     components:

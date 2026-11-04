@@ -23,6 +23,11 @@ namespace Content.Server.GameTicking
         private DateTime _roundStartDateTime;
 
         /// <summary>
+        ///     Round start time in UTC, the same value launchers see as <c>round_start_time</c>.
+        /// </summary>
+        public DateTime RoundStartDateTimeUtc => _roundStartDateTime;
+
+        /// <summary>
         ///     For access to CVars in status responses.
         /// </summary>
         [Dependency] private readonly IConfigurationManager _cfg = default!;
