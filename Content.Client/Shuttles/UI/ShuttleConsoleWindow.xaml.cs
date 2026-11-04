@@ -21,6 +21,7 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
     public event Action<NetEntity, Angle>? RequestBeaconFTL;
     public event Action<NetEntity?, NetEntity>? RequestTrackEntity; // Frontier
     public event Action<MapCoordinates, Angle>? RequestAutopilot; // Mono
+    public event Action<bool>? RequestFtlConcentration; // Horizon
 
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
@@ -81,6 +82,9 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
             NavModeButton.Pressed = true;
             SwitchMode(ShuttleConsoleMode.Nav);
         };
+
+        // Horizon: the MAP tab button starts or cancels FTL concentration
+        MapContainer.FtlConcentrationToggled += on => RequestFtlConcentration?.Invoke(on);
 
         DockContainer.DockRequest += (entity, netEntity) =>
         {

@@ -202,6 +202,16 @@
             - tag: MechDurUnathiUpgrade
               doAfter: 10
 
+        - to: upgraded
+          completed:
+            - !type:SpawnPrototype
+              prototype: MechDurEshelon
+              amount: 1
+            - !type:TransferMechComponents {}
+          steps:
+            - tag: AnCoUpgradeDurand
+              doAfter: 10
+
 - type: constructionGraph
   id: UpgradeMechOdysseus
   start: start

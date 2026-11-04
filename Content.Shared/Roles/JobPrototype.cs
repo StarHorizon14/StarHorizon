@@ -193,6 +193,13 @@ namespace Content.Shared.Roles
         [DataField]
         public ProtoId<CharacterFactionPrototype>? ForceFaction = null;
         // Horizon end
+
+        /// <summary>
+        /// If true, holders of this job are blocked from purchasing any shuttle from a shipyard console,
+        /// regardless of their access tags/groups.
+        /// </summary>
+        [DataField]
+        public bool ShipyardPurchaseRestricted { get; private set; } = false;
     }
 
     /// <summary>

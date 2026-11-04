@@ -35,6 +35,9 @@
         "name": "welcome"
       },
       {
+        "name": "contractor"
+      },
+      {
         "name": "default_world"
       },
       {
@@ -60,6 +63,9 @@
       },
       {
         "name": "welcome_world"
+      },
+      {
+        "name": "contractor_world"
       }
     ]
   }

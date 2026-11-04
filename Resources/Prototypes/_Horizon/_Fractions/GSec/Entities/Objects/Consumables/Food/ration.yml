@@ -1,0 +1,49 @@
+- type: entity
+  name: консерва с мясом
+  parent: [FoodTinBase, BaseAnCoContraband]
+  id: FoodGSecMeatTin
+  description: Часть рекламной компании ЧВК «Gorlex Securities LLC». На 60% из натурального мяса!
+  suffix: GSec, Food, Meat
+  components:
+  - type: Tag
+    tags:
+    - GSecTin
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - chewy
+      - spicy
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Food/snacks.rsi
+    state: icon
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 10
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Protein
+          Quantity: 20
+  - type: Food
+    trash:
+    - FoodGSecTinTrash
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: FoodTinBaseTrash
+  id: FoodGSecTinTrash
+  name: Пустая консерва
+  categories: [HideSpawnMenu]
+  description: Как жаль, что она пустая.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Food/snacks.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 2

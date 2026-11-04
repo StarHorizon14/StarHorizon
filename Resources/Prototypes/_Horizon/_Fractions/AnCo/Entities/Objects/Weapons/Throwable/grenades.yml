@@ -23,8 +23,6 @@
         volume: 5
     initialBeepDelay: 0
     beepInterval: 1
-  - type: ActiveTimerTrigger
-    timeRemaining: -5
 
 - type: entity
   name: Ардониевый заряд

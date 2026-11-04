@@ -36,6 +36,7 @@ public abstract class SharedAdvancedRCDSystem : EntitySystem
     [Dependency] protected readonly TurfSystem Turf = default!;
     [Dependency] private readonly MachinePartSystem _machinePart = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly GridAccessSystem _gridAccess = default!;
 
     private static readonly EntProtoId ConstructionEffectProto = "EffectRCDConstruct3";
 
@@ -354,7 +355,7 @@ public abstract class SharedAdvancedRCDSystem : EntitySystem
         // Horizon: grid-access restriction, same as regular RCDs bound to a ship/station.
         if (TryComp<GridAccessComponent>(uid, out var gridAccessComponent))
         {
-            if (!GridAccessSystem.IsAuthorized(gridUid, gridAccessComponent, out var popupMessage))
+            if (!_gridAccess.IsAuthorized(gridUid, gridAccessComponent, out var popupMessage))
             {
                 if (popMsgs && popupMessage != null)
                     Popup.PopupClient(Loc.GetString("rcd-component-" + popupMessage), uid, user);

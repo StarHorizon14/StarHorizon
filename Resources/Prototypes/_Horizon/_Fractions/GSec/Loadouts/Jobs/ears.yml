@@ -1,0 +1,17 @@
+- type: loadout
+  id: LoadoutHeadsetAltGSec
+  price: 0
+  equipment:
+    ears: ClothingHeadsetAltGSec
+
+- type: loadout
+  id: LoadoutHeadsetGSec
+  price: 0
+  equipment:
+    ears: ClothingHeadsetGSec
+
+- type: loadout
+  id: LoadoutHeadsetMedicGSec
+  price: 200
+  equipment:
+    ears: ClothingHeadsetMedicGSec

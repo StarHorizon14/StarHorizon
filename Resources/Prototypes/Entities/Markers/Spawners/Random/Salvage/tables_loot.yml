@@ -195,6 +195,9 @@
       weight: 0.005 # Horizon - 5 in 1000
     - !type:GroupSelector
       children:
+      - id: BackmanShotgunWeaponBlueprint
+      - id: BackmanPistolWeaponBlueprint
+      - id: BackmanAmmoBlueprint
       - id: WeaponProtoKineticPistol
       - id: WeaponProtoKineticRepeater
       - id: WeaponProtoKineticRailgun
@@ -234,6 +237,13 @@
       weight: 0.01 # Horizon - 1 in 100
     - !type:GroupSelector
       children:
+      - id: BackmanShotgunWeaponBlueprint
+      - id: BackmanRifleWeaponBlueprint
+      - id: BackmanSmgWeaponBlueprint
+      - id: BackmanSniperWeaponBlueprint
+      - id: BackmanPistolWeaponBlueprint
+      - id: BackmanAmmoAdvBlueprint
+      - id: BackmanAmmoBlueprint
       - id: WeaponProtoKineticPistol
       - id: WeaponProtoKineticRepeater
       - id: WeaponProtoKineticRailgun
@@ -292,6 +302,7 @@
       weight: 0.5
     - id: OxygenTankFilled
     - id: WelderIndustrial
+    - id: BackmanAmmoBlueprint
     - id: WeaponGrapplingGun
     - !type:GroupSelector
       children:
@@ -334,6 +345,9 @@
   # Horizon start
     - !type:GroupSelector
       children:
+      - id: BackmanAmmoBlueprint
+      - id: BackmanPistolWeaponBlueprint
+      - id: BackmanShotgunWeaponBlueprint
       - id: WeaponProtoKineticPistol
       - id: WeaponProtoKineticRepeater
       - id: WeaponProtoKineticRailgun
@@ -363,32 +377,25 @@
       children:
       - id: JetpackBlueFilled
       - id: JetpackMiniFilled # Frontier JetpackBlackFilled<JetpackMiniFilled
-    # - !type:GroupSelector # Frontier
-    #   children: # Frontier
-    #   - id: PKAUpgradeDamage # Frontier
-    #   - id: PKAUpgradeRange # Frontier
-    #   - id: PKAUpgradeFireRate # Frontier
-    - id: PowerCellAntiqueProto # Frontier
-    - id: NFShovel # Frontier
+      - id: PowerCellAntiqueProto # Frontier
+      - id: NFShovel # Frontier
+      - id: BackmanShotgunWeaponBlueprint
+      - id: BackmanRifleWeaponBlueprint
+      - id: BackmanSmgWeaponBlueprint
+      - id: BackmanSniperWeaponBlueprint
+      - id: BackmanPistolWeaponBlueprint
+      - id: BackmanAmmoAdvBlueprint
+      - id: BackmanAmmoBlueprint
   # Horizon start
     - !type:GroupSelector
       children:
-      - id: BackmanAmmoBlueprint
-      - id: BackmanWeaponBlueprint
+      - id: BackmanShotgunWeaponBlueprint
+      - id: BackmanRifleWeaponBlueprint
+      - id: BackmanSmgWeaponBlueprint
+      - id: BackmanSniperWeaponBlueprint
+      - id: BackmanPistolWeaponBlueprint
       - id: BackmanAmmoAdvBlueprint
-      - id: WeaponProtoKineticPistol
-      - id: WeaponProtoKineticRepeater
-      - id: WeaponProtoKineticRailgun
-      - id: WeaponProtoKineticShotgun
-      - id: WeaponKineticSpear
-      - id: WeaponKineticHammer
-      - id: WeaponKineticClaws
-      - id: WeaponKineticMachete
-      - id: ClothingBackpackDuffelSyndicateFilledRailAttachments
-      - id: ClothingBackpackDuffelSyndicateFilledBarrelAttachments
-      - id: ClothingBackpackDuffelSyndicateFilledUnderAttachments
-      - id: ClothingBackpackDuffelSyndicateFilledLethalGrenades
-      - id: ClothingBackpackDuffelSyndicateFilledNonLethalGrenades
+      - id: BackmanAmmoBlueprint
   # Horizon end
 
 - type: entityTable

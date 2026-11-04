@@ -170,7 +170,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // End Frontier
 
         var mission = _entManager.System<SharedSalvageSystem>()
-            .GetMission(_missionParams.MissionType, difficultyProto, _missionParams.Seed); // Frontier: add MissionType
+            .GetMission(_missionParams.MissionType, difficultyProto, _missionParams.Seed, _missionParams.Biome); // Frontier: add MissionType; Horizon: planet biome
 
         var missionBiome = _prototypeManager.Index<SalvageBiomeModPrototype>(mission.Biome);
 

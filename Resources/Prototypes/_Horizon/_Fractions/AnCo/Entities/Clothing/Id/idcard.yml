@@ -214,3 +214,24 @@
     tags:
     - AccessAnCoWelcome
     - Maintenance
+
+- type: entity
+  parent: AnCoStandartID
+  id: AnCoContractorID
+  suffix: StarHorizon, AnCo
+  name: карта наемника АнКо
+  description: Карта с необходимыми для членов АнКо доступами.
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: contractor
+  - type: Item
+  - type: IdCard
+    jobTitle: Наемник АнКо
+    jobIcon: JobIconContractorAnCo
+  - type: Access
+    tags:
+    - AccessAnCoWelcome
+    - Maintenance
+    - AccessAnCoCadet

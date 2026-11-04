@@ -1,0 +1,39 @@
+- type: soundCollection
+  id: HorizonRadioMusic
+  files:
+    - /Audio/_Horizon/Music/regular/labour_of_love.ogg
+    - /Audio/_Horizon/Music/regular/suthern_gothic.ogg
+    - /Audio/_Horizon/Music/regular/the_traveler.ogg
+    - /Audio/_Horizon/Music/regular/project_l.ogg
+    - /Audio/_Horizon/Music/regular/roots_song.ogg
+    - /Audio/_Horizon/Music/regular/the_miners.ogg
+    - /Audio/_Horizon/Music/regular/gold_digger.ogg
+    - /Audio/_Horizon/Music/regular/roots_song_alt.ogg
+    - /Audio/_Horizon/Music/regular/red_sunset.ogg
+    - /Audio/_Horizon/Music/regular/one_day_longer.ogg
+    - /Audio/_Horizon/Music/regular/crows_feet.ogg
+    - /Audio/_Horizon/Music/regular/holding_on.ogg
+    - /Audio/_Horizon/Music/regular/long_road.ogg
+    - /Audio/_Horizon/Music/regular/hitched_high_rail.ogg
+    - /Audio/_Horizon/Music/regular/salvation.ogg
+    - /Audio/_Horizon/Music/regular/frontierbound.ogg
+
+- type: soundCollection
+  id: HorizonRadioMusicTension
+  files:
+    - /Audio/_Horizon/Music/tension/labour_of_love.ogg
+    - /Audio/_Horizon/Music/tension/suthern_gothic.ogg
+    - /Audio/_Horizon/Music/tension/the_traveler.ogg
+    - /Audio/_Horizon/Music/tension/project_l.ogg
+    - /Audio/_Horizon/Music/tension/roots_song.ogg
+    - /Audio/_Horizon/Music/tension/the_miners.ogg
+    - /Audio/_Horizon/Music/tension/gold_digger.ogg
+    - /Audio/_Horizon/Music/tension/roots_song_alt.ogg
+    - /Audio/_Horizon/Music/tension/red_sunset.ogg
+    - /Audio/_Horizon/Music/tension/one_day_longer.ogg
+    - /Audio/_Horizon/Music/tension/crows_feet.ogg
+    - /Audio/_Horizon/Music/tension/holding_on.ogg
+    - /Audio/_Horizon/Music/tension/long_road.ogg
+    - /Audio/_Horizon/Music/tension/hitched_high_rail.ogg
+    - /Audio/_Horizon/Music/tension/salvation.ogg
+    - /Audio/_Horizon/Music/tension/frontierbound.ogg

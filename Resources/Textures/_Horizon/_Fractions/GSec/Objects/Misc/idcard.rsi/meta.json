@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by TheDark_",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "default"
+        },
+        {
+            "name": "default_world"
+        },
+	{
+	    "name": "recruit"
+	},
+	{
+	    "name": "recruit_world"
+	},
+	{   
+	    "name": "agent"
+	},
+	{   
+	    "name": "agent_world"
+	},
+	{
+	    "name": "tech"
+	},
+	{
+	    "name": "tech_world"
+	},
+	{
+	    "name": "medic"
+	},
+	{
+	    "name": "medic_world"
+	},
+	{
+	    "name": "officer"
+	},
+	{
+	    "name": "officer_world"
+	}
+           ]
+}

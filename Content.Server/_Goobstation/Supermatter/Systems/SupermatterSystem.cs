@@ -36,7 +36,6 @@ namespace Content.Server.Supermatter.Systems
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly AmbientSoundSystem _ambient = default!;
-        [Dependency] private readonly TagSystem _tagSystem = default!;
         public new DelamType DelamType;
         public override void Initialize()
         {

@@ -103,6 +103,12 @@
 
 - type: entity
   parent: TechnologyDiscBase
+  id: TechnologyDiscGunsmith
+  name: technology disc [Gunsmith]
+  description: A disk containing data about Gunsmith.
+
+- type: entity
+  parent: TechnologyDiscBase
   id: TechnologyDiscHydroponicsDNAManip
   name: technology disc [DNA Manipulator]
   description: A disk containing data about Botannical DNA Manipulator.

@@ -255,3 +255,176 @@
         30
       AggroVisionRadius: !type:Single
         30
+
+- type: entity
+  parent: [AnCoMechPredatorDungeon, BaseAnCoIfterno]
+  id: AnCoMechPredatorInferno
+  name: АМЕ Охотник
+  suffix: Inferno
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
+#--------------- фауна ви файнали -------------
+
+- type: entity
+  parent: [AnCoFaunaSpiderDungeon, BaseAnCoIfterno]
+  id: AnCoFaunaSpiderInferno
+  suffix: Inferno
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
+- type: entity
+  parent: [AnCoFaunaTonkDungeon, BaseAnCoIfterno]
+  id: AnCoFaunaTonkInferno
+  suffix: Inferno
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
+- type: entity
+  parent: [AnCoFaunaSliceDungeon, BaseAnCoIfterno]
+  id: AnCoFaunaSliceInferno
+  suffix: Inferno
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
+- type: entity
+  parent: [AnCoFaunaPicaDungeon, BaseAnCoIfterno]
+  id: AnCoFaunaPicaInferno
+  suffix: Inferno
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
+- type: entity
+  parent: [AnCoFaunaMouseDungeon, BaseAnCoIfterno]
+  id: AnCoFaunaMouseInferno
+  suffix: Inferno
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
+- type: entity
+  parent: [AnCoFaunaFlyerDungeon, BaseAnCoIfterno]
+  id: AnCoFaunaFlyerInferno
+  suffix: Inferno
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
+- type: entity
+  name: спавнер фауны АнКо
+  id: SpawnAnCoFaunaRandom
+  parent: MarkerBasePlaceFree
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _Horizon/_Fractions/AnCo/Mobs/fauna.rsi
+        state: spider
+  - type: RandomSpawner
+    prototypes:
+      - AnCoFaunaSpiderInferno
+      - AnCoFaunaTonkInferno
+      - AnCoFaunaSliceInferno
+      - AnCoFaunaPicaInferno
+      - AnCoFaunaMouseInferno
+      - AnCoFaunaFlyerInferno
+    chance: 1
+    offset: 0.0

@@ -376,3 +376,274 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+
+#--------------- фауна ви файнали -------------
+
+- type: entity
+  id: AnCoFaunaSpiderDungeon
+  parent: BaseAnCoMob
+  name: ардоновый паук
+  description: боевой дрон прошедший через естественный процесс адаптации.
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Mobs/fauna.rsi
+    state: spider
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/sparks4.ogg
+    damage:
+      types:
+        Blunt: 10
+        Heat: 10
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          KazmieOre1:
+            min: 1
+            max: 3
+          ArdonOre1:
+            min: 0
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Item
+    size: Small
+
+- type: entity
+  id: AnCoFaunaTonkDungeon
+  parent: BaseAnCoMob
+  name: ардоновый танк
+  description: никогда не думали, что эволюция сможет дать щит бегающей груде камней?
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Mobs/fauna.rsi
+    state: tonk
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/sparks4.ogg
+    damage:
+      types:
+        Blunt: 20
+  - type: StaminaDamageOnHit
+    damage: 0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          KazmieOre1:
+            min: 1
+            max: 3
+          ArdonOre1:
+            min: 0
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+
+- type: entity
+  id: AnCoFaunaSliceDungeon
+  parent: BaseAnCoMob
+  name: ардоновый арахно.
+  description: огромный металлический комар, спасибо что не летает.
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Mobs/fauna.rsi
+    state: slice
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/sparks4.ogg
+    damage:
+      types:
+        Blunt: 20
+  - type: StaminaDamageOnHit
+    damage: 0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          KazmieOre1:
+            min: 1
+            max: 3
+          ArdonOre1:
+            min: 0
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 5
+
+- type: entity
+  id: AnCoFaunaPicaDungeon
+  parent: BaseAnCoMob
+  name: ардоновый черепах
+  description: огромный хвост, с неменее оргомный хвост.
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Mobs/fauna.rsi
+    state: pica
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/sparks4.ogg
+    damage:
+      types:
+        Slash: 25
+  - type: StaminaDamageOnHit
+    damage: 0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          KazmieOre1:
+            min: 1
+            max: 3
+          ArdonOre1:
+            min: 0
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+
+- type: entity
+  id: AnCoFaunaMouseDungeon
+  parent: BaseAnCoMob
+  name: ардоновый мышь
+  description: он прямо как ящерица, но это мышь.
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Mobs/fauna.rsi
+    state: mouse
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/sparks4.ogg
+    damage:
+      types:
+        Heat: 5
+  - type: StaminaDamageOnHit
+    damage: 35
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          KazmieOre1:
+            min: 1
+            max: 3
+          ArdonOre1:
+            min: 0
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+
+- type: entity
+  id: AnCoFaunaFlyerDungeon
+  parent: BaseAnCoMob
+  name: ардоновый летяга
+  description: он летает и схож на дракона фею.
+  suffix: StarHorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Mobs/fauna.rsi
+    state: flyer
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/sparks4.ogg
+    damage:
+      types:
+        Heat: 5
+  - type: StaminaDamageOnHit
+    damage: 35
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          KazmieOre1:
+            min: 1
+            max: 3
+          ArdonOre1:
+            min: 0
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
