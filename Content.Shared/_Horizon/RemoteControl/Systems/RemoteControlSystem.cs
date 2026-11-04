@@ -1,7 +1,6 @@
 using Content.Shared.Mech.Components;
 using Content.Shared._Horizon.RemoteControl.Components;
 using Content.Shared.Mind;
-using Content.Shared.DoAfter;
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Actions;
 using Content.Shared.Popups;
@@ -13,7 +12,6 @@ namespace Content.Shared._Horizon.RemoteControl.Systems;
 public sealed class RemoteControlSystem : EntitySystem
 {
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly SharedRemotePilotSystem _remotePilotSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -103,32 +101,25 @@ public sealed class RemoteControlSystem : EntitySystem
             ReturnToBody(ent);
     }
 
-    public void ReturnToBody(EntityUid controller)
+    /// <summary>
+    ///     Sends the mind back to its original body.
+    ///     Horizon: the remote pilot is cleaned up by the server once its mind leaves, see RemotePilotSystem.
+    /// </summary>
+    public bool ReturnToBody(EntityUid controller)
     {
         if (!TryComp<UnderControlComponent>(controller, out var underControlComp))
-            return;
+            return false;
 
-        // If someone took over the original body
-        if (_mindSystem.TryGetMind(underControlComp.OriginalBody, out _, out _))
-            return;
+        // If someone took over the original body, or it's gone
+        if (TerminatingOrDeleted(underControlComp.OriginalBody)
+            || _mindSystem.TryGetMind(underControlComp.OriginalBody, out _, out _))
+            return false;
 
-        if (_mindSystem.TryGetMind(controller, out var mindId, out var mind))
-        {
-            _mindSystem.TransferTo(mindId, underControlComp.OriginalBody, true, false, mind: mind);
+        if (!_mindSystem.TryGetMind(controller, out var mindId, out var mind))
+            return false;
 
-            RemComp<UnderControlComponent>(controller);
-
-            if (TryComp<MechPilotComponent>(controller, out var mechPilotComp) && underControlComp.HostIsRemotePilot)
-            {
-                // If you just delete it, the mech won't update its appearance, so it will remain closed
-                _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, controller, 0f, new MechExitEvent(), mechPilotComp.Mech, target: mechPilotComp.Mech)
-                {
-                    Broadcast = false,
-                    Hidden = true
-                });
-
-                PredictedDel(controller);
-            }
-        }
+        _mindSystem.TransferTo(mindId, underControlComp.OriginalBody, true, false, mind: mind);
+        RemComp<UnderControlComponent>(controller);
+        return true;
     }
 }

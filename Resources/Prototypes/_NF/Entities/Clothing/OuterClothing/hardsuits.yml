@@ -62,14 +62,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
         Radiation: 0.3
         Caustic: 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.8
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPilot
@@ -171,15 +167,14 @@
   - type: Armor #horizon
     modifiers:
      coefficients:
-        Blunt: 0.50
-        Slash: 0.55
-        Piercing: 0.55
-        Heat: 0.5
-        Radiation: 0.55
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.6
+        Radiation: 0.5
         Caustic: 0.75
   - type: ClothingSpeedModifier #horizon
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    sprintModifier: 0.9
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -208,7 +203,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdGold
 
 - type: entity
-  parent: ClothingOuterHardsuitNfsdBronze
+  parent: ClothingOuterHardsuitNfsdCommand
   id: ClothingOuterHardsuitNfsdSheriff
   name: NFSD sheriff patrol suit
   description: The standard-issue NFSD space proof suit for patrol duty. This gold variant has sheriff rank markings.
@@ -279,7 +274,7 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdCombat
   - type: ExplosionResistance
-    damageCoefficient: 0.4
+    damageCoefficient: 0.5
   - type: StaminaResistance
     damageCoefficient: 0.5
   - type: Armor #horizon
@@ -292,8 +287,7 @@
         Radiation: 0.5
         Caustic: 0.4
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    sprintModifier: 0.85
 
 #Security Command Hardsuit
 - type: entity
@@ -309,7 +303,7 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdCommand
   - type: ExplosionResistance
-    damageCoefficient: 0.4
+    damageCoefficient: 0.5
   - type: StaminaResistance
     damageCoefficient: 0.5
   - type: Armor #horizon
@@ -317,13 +311,12 @@
       coefficients:
         Blunt: 0.5
         Slash: 0.5
-        Piercing: 0.3
+        Piercing: 0.6
         Heat: 0.6
         Radiation: 0.25
-        Caustic: 0.4
+        Caustic: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    sprintModifier: 0.85
 
 # SCAF hardsuit
 - type: entity

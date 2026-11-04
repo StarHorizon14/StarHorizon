@@ -20,10 +20,15 @@ station-control-console-iff-color-set = Применить
 station-control-console-iff-color-invalid = Некорректный цвет.
 station-control-console-iff-color-success = Цвет IFF станции изменён.
 
+station-control-console-balance-label = Баланс: [color=limegreen]{ $balance }[/color]
+station-control-console-balance-label-none = Баланс: [color=gray]Нет банковского счёта![/color]
+
 station-control-console-upgrades-header = Улучшения станции
 station-control-console-upgrade-buy-button = Купить
-station-control-console-upgrade-level-req = Требуется уровень { $category } { $level }
-station-control-console-upgrade-price = Цена: { $price }
+station-control-console-upgrade-name-label = [color=white]{ $name }[/color]
+station-control-console-upgrade-level-req = Требуется [color=orange]уровень { $category } { $level }[/color]
+station-control-console-upgrade-price = Цена: [color=limegreen]{ $price }[/color]
+station-control-console-upgrade-description-label = [color=gray]{ $description }[/color]
 station-control-console-upgrade-locked = Требуемый уровень развития ещё не достигнут.
 station-control-console-upgrade-limit = Куплено: { $purchased }/{ $limit }
 station-control-console-upgrade-limit-reached = Станция уже купила максимальное количество этого оборудования.

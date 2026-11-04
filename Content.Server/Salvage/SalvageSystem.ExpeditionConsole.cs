@@ -1,10 +1,13 @@
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Procedural;
 using Content.Shared.Salvage.Expeditions;
+using Content.Shared.Salvage.Expeditions.Modifiers; // Horizon
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Server._NF.Salvage; // Frontier
+using Content.Server._Horizon.SpaceHazards; // Horizon
+using Content.Shared._Horizon.SpaceHazards; // Horizon
 using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
 using Content.Shared.NPC.Components; // Frontier
@@ -20,14 +23,16 @@ namespace Content.Server.Salvage;
 
 public sealed partial class SalvageSystem
 {
+    private TimeSpan _planetPoolNext; // Horizon: when all planet offer pools re-roll
+    private ushort _planetMissionIndex = 1; // Horizon: indices of planet offers
+
     public static readonly EntProtoId CoordinatesDisk = "CoordinatesDisk";
     public static readonly ProtoId<LocalizedDatasetPrototype> PlanetNames = "NamesBorer";
 
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!; // Frontier
     [Dependency] private readonly SalvageSystem _salvage = default!; // Frontier
+    [Dependency] private readonly ExpeditionPlanetSystem _expeditionPlanets = default!; // Horizon
 
-    private const float ShuttleFTLMassThreshold = 50f; // Frontier
-    private const float ShuttleFTLRange = 150f; // Frontier
 
     private void OnSalvageClaimMessage(EntityUid uid, SalvageExpeditionConsoleComponent component, ClaimSalvageMessage args)
     {
@@ -36,8 +41,32 @@ public sealed partial class SalvageSystem
         if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed)
             return;
 
-        if (!data.Missions.TryGetValue(args.Index, out var missionparams))
+        // Horizon: expeditions can only be started next to a planet; the planet has its own pool of offers and decides the biome.
+        SalvageMissionParams missionparams;
+        Entity<ExpeditionPlanetComponent>? claimedPlanet = null;
+        if (!component.Debug)
+        {
+            if (!_expeditionPlanets.TryGetPlanetNear(uid, out var planet))
+            {
+                PlayDenySound((uid, component));
+                _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-no-planet"), uid, PopupType.MediumCaution);
+                UpdateConsoles((station.Value, data));
+                return;
+            }
+
+            EnsurePlanetMissions(planet.Comp);
+            var found = planet.Comp.Missions.FindIndex(m => m.Index == args.Index);
+            if (found < 0)
+                return;
+
+            missionparams = planet.Comp.Missions[found] with { Biome = planet.Comp.BiomeId };
+            claimedPlanet = planet;
+        }
+        else if (!data.Missions.TryGetValue(args.Index, out missionparams!))
+        {
             return;
+        }
+        // End Horizon
 
         // Frontier: prevent expeditions if there are too many out already.
         var activeExpeditionCount = 0;
@@ -84,33 +113,22 @@ public sealed partial class SalvageSystem
                 UpdateConsoles((station.Value, data));
                 return;
             }
-
-            var xform = Transform(ourGrid);
-            var bounds = _transform.GetWorldMatrix(ourGrid).TransformBox(gridComp.LocalAABB).Enlarged(ShuttleFTLRange);
-            var bodyQuery = GetEntityQuery<PhysicsComponent>();
-            var otherGrids = new List<Entity<MapGridComponent>>();
-            _mapManager.FindGridsIntersecting(xform.MapID, bounds, ref otherGrids);
-            foreach (var otherGrid in otherGrids)
-            {
-                if (ourGrid == otherGrid.Owner ||
-                    !bodyQuery.TryGetComponent(otherGrid.Owner, out var body) ||
-                    body.Mass < ShuttleFTLMassThreshold && body.BodyType == BodyType.Dynamic)
-                {
-                    continue;
-                }
-
-                PlayDenySound((uid, component));
-                _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
-                UpdateConsoles((station.Value, data));
-                return;
-            }
+            // Horizon: the nearby-grid (FTL proximity) check moved to the regular FTL jump (ShuttleConsoleSystem.ConsoleFTL).
         }
         SpawnMission(missionparams, station.Value, null);
         #endregion Frontier FTL changes
         // End Frontier
 
+        // Horizon: the station's list now only holds the claimed mission; the planet's pool only re-rolls on the global timer
+        if (claimedPlanet != null)
+        {
+            data.Missions.Clear();
+            data.Missions[args.Index] = missionparams;
+        }
+        // End Horizon
+
         data.ActiveMission = args.Index;
-        var mission = GetMission(missionparams.MissionType, _prototypeManager.Index<SalvageDifficultyPrototype>(missionparams.Difficulty), missionparams.Seed); // Frontier: add MissionType
+        var mission = GetMission(missionparams.MissionType, _prototypeManager.Index<SalvageDifficultyPrototype>(missionparams.Difficulty), missionparams.Seed, missionparams.Biome); // Frontier: add MissionType; Horizon: planet biome
         // Frontier - TODO: move this to progression for secondary window timer
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
         data.CooldownTime = mission.Duration + TimeSpan.FromSeconds(1); // Frontier
@@ -205,16 +223,16 @@ public sealed partial class SalvageSystem
 
     private void UpdateConsoles(Entity<SalvageExpeditionDataComponent> component)
     {
-        var state = GetState(component);
-
         var query = AllEntityQuery<SalvageExpeditionConsoleComponent, UserInterfaceComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out _, out var uiComp, out var xform))
+        while (query.MoveNext(out var uid, out var consoleComp, out var uiComp, out var xform))
         {
             var station = _station.GetOwningStation(uid, xform);
 
             if (station != component.Owner)
                 continue;
 
+            var state = GetState(component); // Horizon: per-console state (planet proximity differs per console)
+            ApplyPlanetState(uid, consoleComp, state);
             _ui.SetUiState((uid, uiComp), SalvageConsoleUiKey.Expedition, state);
         }
     }
@@ -242,8 +260,75 @@ public sealed partial class SalvageSystem
         }
         // End Frontier
 
+        ApplyPlanetState(component.Owner, component.Comp, state); // Horizon
         _ui.SetUiState(component.Owner, SalvageConsoleUiKey.Expedition, state);
     }
+
+    // Horizon: a console only works next to an expedition planet
+    private void ApplyPlanetState(EntityUid console, SalvageExpeditionConsoleComponent comp, SalvageExpeditionConsoleState state)
+    {
+        if (comp.Debug || state.Claimed)
+            return;
+
+        if (_expeditionPlanets.TryGetPlanetNear(console, out var planet))
+        {
+            state.PlanetBiome = planet.Comp.BiomeId;
+            EnsurePlanetMissions(planet.Comp);
+            state.Missions = new List<SalvageMissionParams>(planet.Comp.Missions);
+            state.NextOffer = _planetPoolNext;
+            state.CooldownTime = TimeSpan.FromSeconds(_cooldown);
+        }
+        else
+        {
+            state.NoPlanet = true;
+            state.Missions = new List<SalvageMissionParams>(); // no planet, no offers
+            state.Cooldown = true;
+        }
+    }
+
+    /// <summary>Rolls the planet's offers if it has none yet. Every console near the planet sees this same list.</summary>
+    private void EnsurePlanetMissions(ExpeditionPlanetComponent planet)
+    {
+        if (planet.Missions.Count > 0)
+            return;
+
+        var scratch = new SalvageExpeditionDataComponent { NextIndex = _planetMissionIndex };
+        GenerateMissions(scratch, difficulty => BiomeFitsDifficulty(planet.BiomeId, difficulty));
+        _planetMissionIndex = scratch.NextIndex;
+        planet.Missions.AddRange(scratch.Missions.Values);
+    }
+
+    /// <summary>A biome with dedicated difficulties (Ardonium wastes: Inferno) only offers those, every other biome offers the rest.</summary>
+    private bool BiomeFitsDifficulty(string biomeId, string difficultyId)
+    {
+        if (_prototypeManager.TryIndex<SalvageBiomeModPrototype>(biomeId, out var biome) && biome.Difficulties is { Count: > 0 })
+            return biome.Difficulties.Contains(difficultyId);
+
+        foreach (var other in _prototypeManager.EnumeratePrototypes<SalvageBiomeModPrototype>())
+        {
+            if (other.Difficulties != null && other.Difficulties.Contains(difficultyId))
+                return false;
+        }
+
+        return true;
+    }
+
+    private void RefreshAllConsoles()
+    {
+        var query = AllEntityQuery<SalvageExpeditionConsoleComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            UpdateConsole((uid, comp));
+        }
+    }
+
+    /// <summary>Re-sends the UI state of a single console, e.g. after the ship moved relative to a planet.</summary>
+    public void RefreshConsole(EntityUid uid)
+    {
+        if (TryComp<SalvageExpeditionConsoleComponent>(uid, out var console))
+            UpdateConsole((uid, console));
+    }
+    // End Horizon
 
     // Frontier: deny sound
     private void PlayDenySound(Entity<SalvageExpeditionConsoleComponent> ent)

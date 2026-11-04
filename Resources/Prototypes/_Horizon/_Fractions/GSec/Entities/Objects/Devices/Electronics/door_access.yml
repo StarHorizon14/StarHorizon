@@ -1,0 +1,35 @@
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsGSec
+  name: микросхема шлюза
+  suffix: GSec, Locked
+  components:
+  - type: AccessReader
+    access: [["AccessGSec"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsGSecOfficer
+  name: микросхема шлюза
+  suffix: GSec, Officer, Locked
+  components:
+  - type: AccessReader
+    access: [["AccessGSecOfficer"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsGSecTech
+  name: микросхема шлюза
+  suffix: GSec, Tech, Locked
+  components:
+  - type: AccessReader
+    access: [["AccessGSecTech"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsGSecMedic
+  name: микросхема шлюза
+  suffix: GSec, Medic, Locked
+  components:
+  - type: AccessReader
+    access: [["AccessGSecMedic"]]

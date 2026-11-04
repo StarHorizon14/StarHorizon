@@ -7,6 +7,7 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using System.Linq;
 
 namespace Content.Server._Horizon.Cytology;
@@ -14,6 +15,7 @@ namespace Content.Server._Horizon.Cytology;
 public sealed class CytologySwabSystem : SharedCytologySwabSystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -39,6 +41,13 @@ public sealed class CytologySwabSystem : SharedCytologySwabSystem
             .Take(availableSpace)
             .Select(cell => cell.Clone())
             .ToList();
+
+        // Horizon: a dirty swab can bring a virus along
+        foreach (var cell in collectedCells)
+        {
+            if (_random.Prob(swabSampleContainerComp.VirusChance))
+                cell.Viruses++;
+        }
 
         swabSampleContainerComp.CellSamples.AddRange(collectedCells);
         dirtComp.CurrentCellSamples.RemoveAll(x => collectedCells.Contains(x));

@@ -224,6 +224,8 @@
         Caustic: 0.9 # Frontier
   - type: ExplosionResistance
     damageCoefficient: 0.9
+  - type: StaticPrice
+    price: 600 # Frontier: 0>600
 
 
 # Armor covering multiple body parts including limbs

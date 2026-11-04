@@ -133,6 +133,12 @@
         type: WiresBoundUserInterface
   - type: Airtight
     noAirWhenFullyAirBlocked: false
+  # Horizon: airlocks give way to very high pressure and creak before it
+  - type: DeltaPressure
+    minPressure: 20000
+    minPressureDelta: 15000
+    strainSound:
+      collection: PressureStrainDoor
   - type: RadiationBlocker
     resistance: 3
   - type: Occluder

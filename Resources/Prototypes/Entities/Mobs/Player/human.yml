@@ -136,12 +136,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-human-name
-    description: Вы человек, выращенный в цитологической ванне. Вы молоды и не знаете окружающий мир. Будьте осторожны и изучайте мир вокруг вас.
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

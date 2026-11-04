@@ -20,6 +20,27 @@
     vendPrise: 2500
 
 - type: entity
+  parent: [ClothingEyesBase, BaseAnCoContraband]
+  id: ClothingEyesGlassesAnCoAgent
+  name: очки АнКо
+  suffix: StarHorizon, AnCo
+  description: Улучшенные очки, обеспечивающие защиту от вспышек.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Eyes/glasses.rsi
+  - type: Tag
+    tags: [] # Выносим с ВЛа для хамелеонки
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Eyes/glasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: StaticPrice
+    price: 500
+    vendPrise: 2500
+
+- type: entity
   name: прибор ночного видения АнКо
   id: ClothingEyesVisionAnCo
   suffix: StarHorizon, AnCo

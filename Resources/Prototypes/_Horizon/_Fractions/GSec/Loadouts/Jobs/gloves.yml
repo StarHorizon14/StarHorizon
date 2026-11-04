@@ -1,0 +1,11 @@
+- type: loadout
+  id: LoadoutGlovesGSec
+  price: 200
+  equipment:
+    gloves: GSecGloves
+
+- type: loadout
+  id: LoadoutGlovesGSecMedic
+  price: 200
+  equipment:
+    gloves: GSecMedicGloves

@@ -1,0 +1,175 @@
+- type: entity # folded turret
+  id: GSecWeaponTurretPacked
+  name: упакованная турель Горлекс
+  description: Упакованая турель ЧВК «Gorlex Securities LLC».
+  suffix: GSec
+  parent: [BaseGSecContraband, BaseItem]
+  components:
+  - type: WeaponCaseInsertable
+  - type: MultiHandedItem
+  - type: SpawnAfterInteract
+    prototype: GSecWeaponTurret
+    doAfter: 5
+    removeOnInteract: true
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/magazinefed.rsi
+    state: packed
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,3,3
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/magazinefed.rsi
+  - type: StaticPrice
+    price: 20000
+
+- type: entity # deployed turret
+  id: GSecWeaponTurret
+  name: баллистическая турель Горлекс
+  description: Автономная Защитная Турель ЧВК «Gorlex Securities LLC». Не стойте рядом, пока она работает.
+  suffix: GSec
+  parent: [BaseGSecContraband, BaseWeaponTurretMagazineFed]
+  components:
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: NpcFactionMember
+    factions:
+    - GSec
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/magazinefed.rsi
+    drawdepth: Mobs
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineUniversalGSec
+  - type: Construction
+    deconstructionTarget: null
+    graph: GSecWeaponTurretPackingGraph
+    node: GSecWeaponTurretPacked
+
+- type: entity # deployed turret
+  id: GSecWeaponTurretFill30
+  name: баллистическая турель Горлекс
+  description: Автономная Защитная Турель ЧВК «Gorlex Securities LLC». Не стойте рядом, пока она работает.
+  suffix: GSec
+  parent: [GSecWeaponTurret]
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineUniversalGSec30
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineUniversalGSec
+
+- type: entity # deployed turret
+  id: GSecWeaponTurretFill60
+  name: баллистическая турель Горлекс
+  description: Автономная Защитная Турель ЧВК «Gorlex Securities LLC». Не стойте рядом, пока она работает.
+  suffix: GSec
+  parent: [GSecWeaponTurret]
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineUniversalGSec60
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineUniversalGSec
+
+- type: entity
+  parent: [BaseMagazinePistolHighCapacity, BaseGSecContraband]
+  id: MagazineUniversalGSecEmpty
+  name: универсальный короб боеприпасов Горлекс
+  description: Универсальный короб для боеприпасов разработанный по заказу ЧВК «Gorlex Securities LLC».
+  suffix: GSec, empty
+  components:
+  - type: Tag
+    tags:
+      - MagazineUniversalGSec
+  - type: Item
+    size: Normal
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/box_mag_universal.rsi
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - ShellShotgun
+        - NFCartridgePistol35
+        - NFCartridgePistol45
+        - NFCartridgeRifle20
+        - NFCartridgeRifle30
+        - NFCartridgeRifle60
+        - AnCoBulletSniper70
+    capacity: 120
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Ammo/Magazine/box_mag_universal.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 11
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: MagazineUniversalGSecEmpty
+  id: MagazineUniversalGSec20
+  name: универсальный короб боеприпасов
+  description: Универсальный короб для боеприпасов разработанный по заказу ЧВК «Gorlex Securities LLC».
+  suffix: GSec, 20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20
+
+- type: entity
+  parent: MagazineUniversalGSecEmpty
+  id: MagazineUniversalGSec30
+  name: универсальный короб боеприпасов
+  description: Универсальный короб для боеприпасов разработанный по заказу ЧВК «Gorlex Securities LLC».
+  suffix: GSec, 30
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30
+
+- type: entity
+  parent: MagazineUniversalGSecEmpty
+  id: MagazineUniversalGSec60
+  name: универсальный короб боеприпасов
+  description: Универсальный короб для боеприпасов разработанный по заказу ЧВК «Gorlex Securities LLC».
+  suffix: GSec, 60
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle60

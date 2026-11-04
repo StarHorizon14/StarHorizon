@@ -57,6 +57,22 @@
           Quantity: 100
 
 - type: entity
+  name: бронированный контейнер с ардоном
+  parent: ReliableContainerAnConanits
+  description: Сверхпрочный контейнер для хранения опасных веществ.
+  id: ReliableContainerAnCoArdon
+  suffix: StarHorizon, AnCo
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Ardon
+          Quantity: 100
+
+
+- type: entity
   parent: [BaseItem, BaseAnCoContraband]
   id: BaseAutomenderAnCo
   name: автомендер АнКо

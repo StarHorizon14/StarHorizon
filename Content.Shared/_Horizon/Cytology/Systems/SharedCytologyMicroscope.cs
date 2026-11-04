@@ -25,11 +25,13 @@ public sealed class CellSampleInfo
 
     public readonly float ViralSusceptibility;
 
+    public readonly int Viruses;
+
     public CellSampleInfo(string displayName,
                           List<ProtoId<ReagentPrototype>> requiredChemicals,
                           List<ProtoId<ReagentPrototype>> supplementaryChemicals,
                           List<ProtoId<ReagentPrototype>> suppressiveChemicals,
-                          float growthRateInSeconds, float viralSusceptibility)
+                          float growthRateInSeconds, float viralSusceptibility, int viruses = 0)
     {
         DisplayName = displayName;
         RequiredChemicals = requiredChemicals;
@@ -37,6 +39,7 @@ public sealed class CellSampleInfo
         SuppressiveChemicals = suppressiveChemicals;
         GrowthRateInSeconds = growthRateInSeconds;
         ViralSusceptibility = viralSusceptibility;
+        Viruses = viruses;
     }
 }
 

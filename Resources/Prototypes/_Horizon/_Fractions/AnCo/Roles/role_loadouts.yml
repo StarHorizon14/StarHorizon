@@ -1,0 +1,379 @@
+- type: roleLoadout
+  id: JobAnCoMercenary
+  groups:
+  - AnCoTop
+  - AnCoBottom
+  - AnCoSocks
+  - AnCoJumpsuit
+  - AnCoBack
+  - AnCoHead
+  - AnCoOuterClothing
+  - AnCoEars
+  - AnCoBoots
+  - AnCoGloves
+  - AnCoBackpackItems
+  # Contractor
+  - ContractorCartridge
+  - ContractorImplanter
+
+- type: loadoutGroup
+  id: AnCoBackpackItems
+  name: в рюкзаке
+  minLimit: 0
+  maxLimit: 3 # Caveat emptor - enjoy picking stuff up off the ground
+  loadouts:
+  - ReliableContainerAnCoArdon
+  - BoxRationAnCo
+  - CyclopPlushin
+  - TitanPlushin
+  - RipsiPlushin
+  - LumaPlushina
+  - EngiPlushin
+  - KnightPlushin
+
+- type: loadout
+  id: ReliableContainerAnCoArdon
+  price: 10000
+  storage:
+    back:
+    - ReliableContainerAnCoArdon
+
+- type: loadout
+  id: BoxRationAnCo
+  price: 5000
+  storage:
+    back:
+    - BoxRationAnCo
+
+- type: loadout
+  id: CyclopPlushin
+  price: 5000
+  storage:
+    back:
+    - CyclopPlushin
+
+- type: loadout
+  id: TitanPlushin
+  price: 5000
+  storage:
+    back:
+    - TitanPlushin
+
+- type: loadout
+  id: RipsiPlushin
+  price: 5000
+  storage:
+    back:
+    - RipsiPlushin
+
+- type: loadout
+  id: LumaPlushina
+  price: 5000
+  storage:
+    back:
+    - LumaPlushina
+
+- type: loadout
+  id: EngiPlushin
+  price: 5000
+  storage:
+    back:
+    - EngiPlushin
+
+- type: loadout
+  id: KnightPlushin
+  price: 5000
+  storage:
+    back:
+    - KnightPlushin
+
+- type: loadoutGroup
+  id: AnCoGloves
+  name: перчатки
+  minLimit: 0
+  maxnLimit: 1
+  loadouts:
+  - AnCoGloves
+  - AnCoGlovesKazmie
+  - AnCoGlovesIsolate
+
+- type: loadout
+  id: AnCoGloves
+  price: 5000
+  equipment:
+    gloves: AnCoGloves
+
+- type: loadout
+  id: AnCoGlovesKazmie
+  price: 5000
+  equipment:
+    gloves: AnCoGlovesKazmie
+
+- type: loadout
+  id: AnCoGlovesIsolate
+  price: 10000
+  equipment:
+    gloves: AnCoGlovesIsolate
+
+- type: loadoutGroup
+  id: AnCoBoots
+  name: ботинки
+  loadouts:
+  - AnCoBoots
+  - AnCoClothingShoesBootsMag
+
+- type: loadout
+  id: AnCoBoots
+  price: 0
+  equipment:
+    shoes: AnCoBoots
+
+- type: loadout
+  id: AnCoClothingShoesBootsMag
+  price: 10000
+  equipment:
+    shoes: AnCoClothingShoesBootsMag
+
+
+
+- type: loadoutGroup
+  id: AnCoEars
+  name: гарнитура
+  loadouts:
+  - ClothingHeadsetAnCo
+
+- type: loadout
+  id: ClothingHeadsetAnCo
+  price: 0
+  equipment:
+    ears: ClothingHeadsetAnCo
+
+- type: loadoutGroup
+  id: AnCoOuterClothing
+  name: верхняя одежда
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ArdonDressAnCo
+  - KazmieDressAnCo
+
+- type: loadout
+  id: ArdonDressAnCo
+  price: 10000
+  equipment:
+    outerClothing: ArdonDressAnCo
+
+- type: loadout
+  id: KazmieDressAnCo
+  price: 10000
+  equipment:
+    outerClothing: KazmieDressAnCo
+
+- type: loadoutGroup
+  id: AnCoHead
+  name: головной убор
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - AnCocap
+  - AnCoberet
+
+- type: loadout
+  id: AnCocap
+  price: 5000
+  equipment:
+    head: AnCocap
+
+- type: loadout
+  id: AnCoberet
+  price: 5000
+  equipment:
+    head: AnCoberet
+
+- type: loadoutGroup
+  id: AnCoBack
+  name: рюкзаки
+  loadouts:
+  - AnCosatchel
+  - AnCoBackpackDuffel
+  fallbacks:
+  - AnCosatchel
+
+- type: loadout
+  id: AnCosatchel
+  price: 0
+  equipment:
+    back: AnCosatchel
+
+- type: loadout
+  id: AnCoBackpackDuffel
+  price: 150000
+  equipment:
+    back: AnCoBackpackDuffel
+
+
+# ----------------------------
+- type: loadoutGroup
+  id: AnCoTop
+  name: нижнее белье (верх)
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingUnderwearSmallBraAnCo
+  - ClothingUnderwearMediumBraAnCo
+  - ClothingUnderwearBigBraAnCo
+
+- type: loadout
+  id: ClothingUnderwearSmallBraAnCo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    underweart: ClothingUnderwearSmallBraAnCo
+
+- type: loadout
+  id: ClothingUnderwearMediumBraAnCo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    underweart: ClothingUnderwearMediumBraAnCo
+
+- type: loadout
+  id: ClothingUnderwearBigBraAnCo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    underweart: ClothingUnderwearBigBraAnCo
+
+- type: loadoutGroup
+  id: AnCoBottom
+  name: нижнее белье (низ)
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingUnderwearBottomSmallPantiesAnCo
+  - ClothingUnderwearBottomMediumPantiesAnCo
+  - ClothingUnderwearBottomBigPantiesAnCo
+  fallbacks:
+  - ClothingUnderwearBottomBigPantiesAnCo
+
+- type: loadout
+  id: ClothingUnderwearBottomSmallPantiesAnCo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    underwearb: ClothingUnderwearBottomSmallPantiesAnCo
+
+- type: loadout
+  id: ClothingUnderwearBottomMediumPantiesAnCo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    underwearb: ClothingUnderwearBottomMediumPantiesAnCo
+
+- type: loadout
+  id: ClothingUnderwearBottomBigPantiesAnCo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    underwearb: ClothingUnderwearBottomBigPantiesAnCo
+
+- type: loadoutGroup
+  id: AnCoSocks
+  name: носки
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingUnderwearSocksAnCo
+  fallbacks:
+  - ClothingUnderwearSocksAnCo
+
+- type: loadout
+  id: ClothingUnderwearSocksAnCo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    socks: ClothingUnderwearSocksAnCo
+
+- type: loadoutGroup
+  id: AnCoJumpsuit
+  name: комбенизоны
+  loadouts:
+  - TurtleneckLessPocketAnCo
+  - TurtleneckLessAnCo
+  - TurtleneckAnCo
+  - TurtleneckPocketAnCo
+  - HydrosuitAnCo
+  - HydrosuitLessAnCo
+  - SkirtProtectiveAnCo
+  - SuitProtectiveAnCo
+  - SuitAnCo
+  - SkirtAnCo
+  fallbacks:
+  - SuitProtectiveAnCo
+
+- type: loadout
+  id: TurtleneckLessPocketAnCo
+  price: 0
+  equipment:
+    jumpsuit: TurtleneckLessPocketAnCo
+
+- type: loadout
+  id: TurtleneckLessAnCo
+  price: 0
+  equipment:
+    jumpsuit: TurtleneckLessAnCo
+
+- type: loadout
+  id: TurtleneckAnCo
+  price: 0
+  equipment:
+    jumpsuit: TurtleneckAnCo
+
+- type: loadout
+  id: TurtleneckPocketAnCo
+  price: 0
+  equipment:
+    jumpsuit: TurtleneckPocketAnCo
+
+- type: loadout
+  id: HydrosuitAnCo
+  price: 0
+  equipment:
+    jumpsuit: HydrosuitAnCo
+
+- type: loadout
+  id: HydrosuitLessAnCo
+  price: 0
+  equipment:
+    jumpsuit: HydrosuitLessAnCo
+
+- type: loadout
+  id: SkirtProtectiveAnCo
+  price: 0
+  equipment:
+    jumpsuit: SkirtProtectiveAnCo
+
+- type: loadout
+  id: SuitProtectiveAnCo
+  price: 0
+  equipment:
+    jumpsuit: SuitProtectiveAnCo
+
+- type: loadout
+  id: SuitAnCo
+  price: 0
+  equipment:
+    jumpsuit: SuitAnCo
+
+- type: loadout
+  id: SkirtAnCo
+  price: 0
+  equipment:
+    jumpsuit: SkirtAnCo

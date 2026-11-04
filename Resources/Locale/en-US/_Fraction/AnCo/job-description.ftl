@@ -1,0 +1,1 @@
+job-description-anco-mercenary = Use your quick draw and sharp wits to earn your pay. You work on contract without a ship of your own - purchasing or owning shuttles at the shipyard is off-limits to you.

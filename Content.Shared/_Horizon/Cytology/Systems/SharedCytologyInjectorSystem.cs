@@ -6,6 +6,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Preferences;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Network;
+using Robust.Shared.Random;
 using System.Linq;
 
 
@@ -18,6 +20,8 @@ public sealed class SharedCytologyInjectorSystem : EntitySystem
     [Dependency] private readonly SharedCytologyPetriDishSystem _petriDishSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
 
     public override void Initialize()
@@ -89,6 +93,16 @@ public sealed class SharedCytologyInjectorSystem : EntitySystem
             .ToList();
 
         collectedCells.ForEach(cell => SetHumanoidData(target, cell));
+
+        // Horizon: a virus can get in along with the sample. Random isn't predicted, so the server decides
+        if (_net.IsServer)
+        {
+            foreach (var cell in collectedCells)
+            {
+                if (_random.Prob(injectorSampleContainerComp.VirusChance))
+                    cell.Viruses++;
+            }
+        }
 
         injectorSampleContainerComp.CellSamples.AddRange(collectedCells);
 

@@ -8,7 +8,7 @@
   - type: Computer
     board: AdvancedRadarConsoleCircuitboard
   - type: RadarConsole
-    maxRange: 256 # Horizon
+    maxRange: 512 # Horizon: 256<512, the advanced radar should see further than the regular one
     maxIffRange: 1024 # Horizon
   - type: Sprite
     layers:

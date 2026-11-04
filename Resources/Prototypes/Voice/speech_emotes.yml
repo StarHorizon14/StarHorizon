@@ -25,6 +25,11 @@
     - yells
     - yelled
     - yelling
+    - кричит # Horizon
+    - вопит # Horizon
+    - орёт # Horizon
+    - орет # Horizon
+    - визжит # Horizon
 
 - type: emote
   id: Laugh
@@ -57,6 +62,11 @@
     - chortled # Frontier
     - смеётся # Horizon-Start
     - смеется # Horizon-End
+    - хихикает # Horizon
+    - хохочет # Horizon
+    - ржёт # Horizon
+    - ржет # Horizon
+    - посмеивается # Horizon
 
 - type: emote
   id: Honk
@@ -75,6 +85,7 @@
     - honks
     - honked
     - honking
+    - хонкает # Horizon
 
 - type: emote
   id: Sigh
@@ -94,6 +105,8 @@
     - sighed
     - sighing # Frontier
     - вздыхает # Horizon
+    - вздохнул # Horizon
+    - вздохнула # Horizon
 
 - type: emote
   id: Whistle
@@ -112,6 +125,8 @@
     - whistles
     - whistleblowing
     - whistled # Frontier
+    - свистит # Horizon
+    - насвистывает # Horizon
 
 - type: emote
   id: Crying
@@ -135,6 +150,8 @@
     - sobbed # Frontier
     - cried # Frontier
     - плачет # Horizon
+    - рыдает # Horizon
+    - всхлипывает # Horizon
 
 - type: emote
   id: Squish
@@ -154,6 +171,7 @@
     - squishing
     - squishes
     - squished # Frontier
+    - хлюпает # Horizon
 
 - type: emote
   id: Chitter
@@ -173,6 +191,8 @@
    - chitters
    - chittered
    - chittering # Frontier
+   - стрекочет # Horizon
+   - щебечет # Horizon
 
 - type: emote
   id: Squeak
@@ -192,6 +212,7 @@
    - squeaks
    - squeaked
    - squeaking # Frontier
+   - пищит # Horizon
 
 - type: emote
   id: Click
@@ -211,6 +232,7 @@
    - clicks
    - clicked # Frontier
    - clicking # Frontier
+   - клацает # Horizon
 
 # hand emotes
 - type: emote
@@ -229,6 +251,8 @@
     - claps
     - clapping
     - clapped
+    - хлопает # Horizon
+    - аплодирует # Horizon
 
 - type: emote
   id: ClapSingle
@@ -274,6 +298,8 @@
     - snaps its fingers
     - snapping fingers
     - snapped fingers
+    - щёлкает пальцами # Horizon
+    - щелкает пальцами # Horizon
 
 - type: emote
   id: Thump
@@ -299,6 +325,7 @@
     - thumps her tail
     - thumps his tail
     - thumps its tail
+    - стучит хвостом # Horizon
 
 - type: emote
   id: Salute
@@ -333,6 +360,8 @@
    - gasps
    - gasped
    - gasping # Frontier
+   - задыхается # Horizon
+   - ахает # Horizon
 
 - type: emote
   id: DefaultDeathgasp
@@ -374,6 +403,7 @@
     - buzz
     - buzzed
     - buzzes
+    - жужжит # Horizon
 
 - type: emote
   id: Weh
@@ -408,6 +438,8 @@
     - chirps
     - chirped
     - chirping
+    - чирикает # Horizon
+    - щебечет # Horizon
 
 # Machine Emotes
 - type: emote
@@ -427,6 +459,8 @@
     - beeps
     - beeped
     - beeping
+    - пищит # Horizon
+    - бипает # Horizon
 
 - type: emote
   id: Chime
@@ -445,6 +479,7 @@
     - chimes
     - chimed
     - chiming
+    - звенит # Horizon
 
 - type: emote
   id: Buzz-Two
@@ -488,3 +523,4 @@
     - pings
     - pinged
     - pinging
+    - пингует # Horizon

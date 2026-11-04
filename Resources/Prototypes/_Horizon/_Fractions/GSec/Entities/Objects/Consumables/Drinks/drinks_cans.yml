@@ -1,0 +1,66 @@
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkBeerGSecCan
+  name: пиво Горлекс
+  suffix: GSec, Drink
+  description: Часть рекламной компании ЧВК «Gorlex Securities LLC». Самое мужественное пиво в галактике!
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: ManlyDorf
+          Quantity: 50
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+
+  - type: Drink
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 10
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Food/beer_can.rsi
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Food/beer_can.rsi
+  - type: StaticPrice
+    price: 30
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkEnergyGSecCan
+  name: банка Блэк Раш
+  suffix: GSec, Drink
+  description: Часть рекламной компании ЧВК «Gorlex Securities LLC». На вкус как ракетное топливо.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: EnergyDrink
+          Quantity: 30
+        - ReagentId: AnConanits
+          Quantity: 20
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 10
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Food/energy_can.rsi
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Food/energy_can.rsi
+  - type: StaticPrice
+    price: 30

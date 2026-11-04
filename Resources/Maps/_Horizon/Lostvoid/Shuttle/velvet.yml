@@ -2638,9 +2638,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: SalvageMobRestrictionsGrid
-      mobsToKill:
-      - invalid
     - type: BecomesStation
       id: Velvet
 - proto: ActionStartFishing
@@ -15570,8 +15567,6 @@ entities:
       pos: -4.5,33.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 8
   - uid: 1933
@@ -15580,8 +15575,6 @@ entities:
       pos: -3.5,38.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 8
   - uid: 1934

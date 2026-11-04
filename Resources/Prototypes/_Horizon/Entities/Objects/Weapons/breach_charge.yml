@@ -1,0 +1,39 @@
+- type: entity
+  id: BreachCharge
+  parent: BaseItem
+  name: breaching charge
+  description: A shaped charge that cuts a line of seams in the floor along the edge it is hung on.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/c4.rsi
+    state: icon
+  - type: BreachCharge
+
+- type: entity
+  id: BreachChargeArmed
+  name: breaching charge
+  description: A shaped charge that is about to cut a line of seams in the floor.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/c4.rsi
+    state: primed
+    drawdepth: Mobs
+  - type: ArmedBreachCharge
+    keysIn: [ timer ]
+  - type: TimerTrigger
+    delay: 10
+    beepInterval: 1
+    initialBeepDelay: 0
+    popup: null
+    examinable: false
+    beepSound:
+      path: /Audio/Machines/Nuke/general_beep.ogg
+  - type: EmitSoundOnTrigger
+    positional: true
+    sound:
+      path: /Audio/Effects/explosion1.ogg

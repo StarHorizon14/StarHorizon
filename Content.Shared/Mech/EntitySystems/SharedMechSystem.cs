@@ -12,6 +12,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
@@ -62,6 +63,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechPilotComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
         SubscribeLocalEvent<MechPilotComponent, CanAttackFromContainerEvent>(OnCanAttackFromContainer);
         SubscribeLocalEvent<MechPilotComponent, AttackAttemptEvent>(OnAttackAttempt);
+        SubscribeLocalEvent<MechPilotComponent, UpdateCanMoveEvent>(OnPilotCanMoveEvent);
 
         // Horizon Mech start
         SubscribeNetworkEvent<SelectMechEquipmentEvent>(OnMechEquipSelected);
@@ -141,14 +143,16 @@ public abstract partial class SharedMechSystem : EntitySystem
             return;
 
         var rider = EnsureComp<MechPilotComponent>(pilot);
+        // Horizon Mech: set this before SetRelay, since that immediately recomputes the
+        // pilot's CanMove via OnPilotCanMoveEvent, which reads this field.
+        rider.Mech = mech;
+        Dirty(pilot, rider);
 
         // Warning: this bypasses most normal interaction blocking components on the user, like drone laws and the like.
         var irelay = EnsureComp<InteractionRelayComponent>(pilot);
 
         _mover.SetRelay(pilot, mech);
         _interaction.SetRelay(pilot, mech, irelay);
-        rider.Mech = mech;
-        Dirty(pilot, rider);
 
         if (_net.IsClient)
             return;
@@ -517,6 +521,40 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (args.Target == component.Mech)
             args.Cancel();
     }
+
+    // Horizon Mech start
+    /// <summary>
+    /// Blocks the pilot's own movement (and by relay, the mech's) whenever the mech
+    /// itself can't move, e.g. it's broken, has no integrity, or has no energy left.
+    /// This is necessary because the mover relay copies the pilot's CanMove onto the
+    /// mech every tick, which would otherwise overwrite any CanMove state set directly
+    /// on the mech (see OnMechCanMoveEvent).
+    /// </summary>
+    private void OnPilotCanMoveEvent(EntityUid uid, MechPilotComponent component, UpdateCanMoveEvent args)
+    {
+        if (!TryComp<MechComponent>(component.Mech, out var mech))
+            return;
+
+        if (mech.Broken || mech.Integrity <= 0 || mech.Energy <= 0)
+            args.Cancel();
+    }
+
+    /// <summary>
+    /// Refreshes the cached movement-blocking state for the mech and, if present, its pilot.
+    /// Must be called whenever something that affects <see cref="OnMechCanMoveEvent"/> or
+    /// <see cref="OnPilotCanMoveEvent"/> changes (energy, integrity, broken state, battery).
+    /// </summary>
+    public void UpdateMechMovement(EntityUid uid, MechComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        _actionBlocker.UpdateCanMove(uid);
+
+        if (component.PilotSlot.ContainedEntity is { } pilot)
+            _actionBlocker.UpdateCanMove(pilot);
+    }
+    // Horizon Mech end
 
     private void UpdateAppearance(EntityUid uid, MechComponent? component = null,
         AppearanceComponent? appearance = null)

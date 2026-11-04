@@ -24,12 +24,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-oni-name
-    description: Вы они, выращенный в цитологической ванне. Демонические рога и сверхъестественная сила - ваша природа. Исследуйте этот мир!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

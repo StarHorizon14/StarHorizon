@@ -598,3 +598,9 @@
   price: 5000
   equipment:
     head: ClothingHeadHatTophat
+
+- type: loadout
+  id: ContractorClothingHeadPerformerWig # Horizon
+  price: 500
+  equipment:
+    head: ClothingHeadPerformerWig

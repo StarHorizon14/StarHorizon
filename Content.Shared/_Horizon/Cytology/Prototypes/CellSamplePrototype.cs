@@ -24,7 +24,7 @@ public sealed partial class CellSamplePrototype : IPrototype, ICloneable
     [DataField] public float GrowthRateInSeconds = 1f;
 
     /// <summary>
-    ///     It has no use. It's on the wiki, but I haven't found what it's used for
+    ///     Horizon: how much each virus in the sample slows its growth down
     /// </summary>
     [DataField] public float ViralSusceptibility = 1f;
 

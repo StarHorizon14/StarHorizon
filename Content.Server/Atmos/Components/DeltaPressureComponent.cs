@@ -1,6 +1,7 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Atmos.Components;
 
@@ -102,6 +103,23 @@ public sealed partial class DeltaPressureComponent : Component
     /// </summary>
     [DataField]
     public float ScalingPower = 1;
+
+    /// <summary>
+    /// Horizon: played while the entity is under pressure it can not stand, the creaking of the structure.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? StrainSound;
+
+    /// <summary>
+    /// Horizon: how often <see cref="StrainSound"/> may play.
+    /// </summary>
+    [DataField]
+    public TimeSpan StrainSoundInterval = TimeSpan.FromSeconds(3);
+
+    /// <summary>
+    /// Horizon: when the next strain sound may play.
+    /// </summary>
+    public TimeSpan NextStrainSound;
 
     /// <summary>
     /// Defines the scaling behavior for the damage.

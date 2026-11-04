@@ -29,6 +29,21 @@
     - AnCoDroneCombatInferno
 
 - type: entity
+  name: спавнер АМЕ Охотник АнКо
+  id: SpawnAnCoMechPredatorInferno
+  parent: MarkerBase
+  suffix: Starhorizon, AnCo, Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
+        state: predator-icon
+  - type: ConditionalSpawner
+    prototypes:
+    - AnCoMechPredatorInferno
+
+- type: entity
   name: спавнер бота-бомбы АнКо
   id: SpawnAnCoDroneMineInferno
   parent: MarkerBase
@@ -157,6 +172,7 @@
     - AnCoFlyDroneSmallInferno
     # Редкие мобы (средний шанс)
     rarePrototypes:
+    - AnCoMechPredatorInferno
     - AnCoFlyDroneHugeInferno
     - AnCoMechTitanInferno
     - AnCoMechCyclopInferno
