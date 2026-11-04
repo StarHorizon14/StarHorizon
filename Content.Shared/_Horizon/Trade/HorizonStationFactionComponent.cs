@@ -50,5 +50,10 @@ public enum HorizonFaction : byte
     /// <summary>
     /// NanoTrasen faction stations.
     /// </summary>
-    NanoTrasen
+    NanoTrasen,
+
+    /// <summary>
+    /// Gorlex Securities stations.
+    /// </summary>
+    GSec
 }
