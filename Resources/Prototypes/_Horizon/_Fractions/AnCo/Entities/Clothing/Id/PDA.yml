@@ -94,7 +94,7 @@
   parent: PDAAnCo
   id: PDAContractorAnCo
   suffix: StarHorizon, AnCo
-  name: кпк Советника АнКо
+  name: кпк наемника АнКо
   components:
   - type: Pda
     id: AnCoContractorID

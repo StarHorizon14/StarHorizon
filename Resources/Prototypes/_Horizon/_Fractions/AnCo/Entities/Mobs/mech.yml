@@ -242,3 +242,73 @@
       Dead:
         Base: begemoth-death
 # боты для игры (переключение)
+
+- type: entity
+  id: AnCoMechPredatorDungeon
+  suffix: StarHorizon, AnCo, Dungeon
+  name: АМЕ Охотник
+  description: Быстрый, тонкий, поворотливый, все что нужно для эффективной охоты.
+  parent: [BaseAnCoMob]
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Mobs/bot.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: predator-bot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          KazmieSheet1:
+            min: 10
+            max: 1
+          ArdonSheet1:
+            min: 0
+            max: 5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Critical
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      210: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: predator-bot
+      Critical:
+        Base: predator-death
+      Dead:
+        Base: predator-death
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/sparks4.ogg
+    damage:
+      types:
+        Slash: 10
+        Heat: 5
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Stealth
+    minVisibility: 0.1
+    maxVisibility: 0.1
+    lastVisibility: 0.1
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 5

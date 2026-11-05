@@ -1,0 +1,82 @@
+- type: entity
+  parent: [BaseTKAnCoContraband, BaseItem]
+  id: StatueCorall
+  suffix: StarHorizon, AnCo
+  name: статуэтка коралл
+  description: Крутая статуэтка, стоп стоп стоп, не думая об этом.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/dildo.rsi
+    layers:
+    - state: corall
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+    vendPrise: 5000
+  - type: Clothing
+    slots: UNDERWEARB
+  - type: Tag
+    tags:
+      - UnderwearB
+
+- type: entity
+  parent: StatueCorall
+  id: StatueTentacle
+  suffix: StarHorizon, AnCo
+  name: статуэтка пламя
+  description: Крутая статуэтка, стоп стоп стоп, не думая об этом.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/dildo.rsi
+    layers:
+    - state: tentacle
+
+- type: entity
+  parent: StatueCorall
+  id: StatueBalls
+  suffix: StarHorizon, AnCo
+  name: статуэтка экспансия
+  description: Крутая статуэтка, стоп стоп стоп, не думая об этом.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/dildo.rsi
+    layers:
+    - state: balls
+
+- type: entity
+  parent: StatueCorall
+  id: StatueFalos
+  suffix: StarHorizon, AnCo
+  name: статуэтка шаттл
+  description: Крутая статуэтка, стоп стоп стоп, не думая об этом.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/dildo.rsi
+    layers:
+    - state: falos
+
+- type: entity
+  parent: StatueCorall
+  id: StatueProbkaA
+  suffix: StarHorizon, AnCo
+  name: винная ардоновая пробка
+  description: Крутая пробка для вин, стоп стоп стоп, не думая об этом.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/dildo.rsi
+    layers:
+    - state: probka-a
+
+- type: entity
+  parent: StatueCorall
+  id: StatueProbkaK
+  suffix: StarHorizon, AnCo
+  name: винная казмиевая пробка
+  description: Крутая пробка для вин, стоп стоп стоп, не думая об этом.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Misc/dildo.rsi
+    layers:
+    - state: probka-k

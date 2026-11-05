@@ -4,7 +4,7 @@
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
     state: reactor
   product: NuclearReactorFlatpack
-  cost: 3000000
+  cost: 3500000
   category: cargoproduct-category-name-engineering
   group: market
 
@@ -14,7 +14,7 @@
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
     state: reactor-small
   product: NuclearReactorSmallFlatpack
-  cost: 1500000
+  cost: 2000000
   category: cargoproduct-category-name-engineering
   group: market
 
@@ -24,7 +24,7 @@
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
     state: reactor-micro
   product: NuclearReactorMicroFlatpack
-  cost: 500000
+  cost: 1000000
   category: cargoproduct-category-name-engineering
   group: market
 
@@ -34,7 +34,7 @@
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
     state: turbine
   product: GasTurbineFlatpack
-  cost: 2000000
+  cost: 2500000
   category: cargoproduct-category-name-engineering
   group: market
 
@@ -44,7 +44,7 @@
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
     state: turbine-small
   product: GasTurbineSmallFlatpack
-  cost: 1000000
+  cost: 1500000
   category: cargoproduct-category-name-engineering
   group: market
 
