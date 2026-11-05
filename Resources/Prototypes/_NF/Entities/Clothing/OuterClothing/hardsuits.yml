@@ -155,16 +155,17 @@
   description: The standard-issue NFSD space proof suit for patrol duty. This bronze variant has cadet rank markings.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_bronze.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_bronze.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdBronze
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: StaminaResistance
     damageCoefficient: 0.5
-  - type: Armor #horizon
+# HORIZON EDIT
+  - type: Armor
     modifiers:
      coefficients:
         Blunt: 0.6
@@ -173,8 +174,10 @@
         Heat: 0.6
         Radiation: 0.5
         Caustic: 0.75
-  - type: ClothingSpeedModifier #horizon
-    sprintModifier: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.90
+    sprintModifier: 0.90
+#EDIT END
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -183,9 +186,9 @@
   description: The standard-issue NFSD space proof suit for patrol duty. This silver variant has officer rank markings.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_silver.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_silver.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdSilver
 
@@ -196,9 +199,9 @@
   description: The standard-issue NFSD space proof suit for patrol duty. This gold variant has supervisor rank markings.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_gold.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_gold.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdGold
 
@@ -209,9 +212,9 @@
   description: The standard-issue NFSD space proof suit for patrol duty. This gold variant has sheriff rank markings.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_sheriff.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_sheriff.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdSheriff
 
@@ -222,9 +225,9 @@
   description: The standard-issue NFSD space proof suit for patrol duty. This brighter variant has brigmedic rank markings.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_brigmed.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_brigmed.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdBrigmedic
 
@@ -268,9 +271,9 @@
   description: A heavily armored NFSD suit. Space proof, with thick armor plating at the expense of mobility.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_combat.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_combat.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdCombat
   - type: ExplosionResistance
@@ -297,9 +300,9 @@
   description: A heavily armored NFSD suit. Space proof, with thick armor plating at the expense of mobility. This variant has supervisor rank markings.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_command.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_command.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_command.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_command.rsi
+    sprite: _Horizon/Clothing/OuterClothing/Hardsuits/NFSDSuits/nfsd_command.rsi #_NF/Clothing/OuterClothing/Hardsuits/nfsd_command.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdCommand
   - type: ExplosionResistance

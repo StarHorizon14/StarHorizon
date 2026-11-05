@@ -102,9 +102,9 @@
   description: Lightly armored softsuit helmet for beat-cop needs.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd.rsi #_NF/Clothing/Head/Hardsuits/nfsd.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd.rsi #_NF/Clothing/Head/Hardsuits/nfsd.rsi
   - type: PointLight
     color: "#ffeead"
   - type: Armor
@@ -121,9 +121,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd.rsi #_NF/Clothing/Head/Hardsuits/nfsd.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd.rsi #_NF/Clothing/Head/Hardsuits/nfsd.rsi
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitNfsdBronze
@@ -131,9 +131,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd.rsi #_NF/Clothing/Head/Hardsuits/nfsd.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd.rsi #_NF/Clothing/Head/Hardsuits/nfsd.rsi
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitNfsdBronze
@@ -141,9 +141,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd.rsi #_NF/Clothing/Head/Hardsuits/nfsd.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd.rsi #_NF/Clothing/Head/Hardsuits/nfsd.rsi
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitNfsdBronze
@@ -151,9 +151,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_sheriff.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd_sheriff.rsi #_NF/Clothing/Head/Hardsuits/nfsd_sheriff.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_sheriff.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd_sheriff.rsi #_NF/Clothing/Head/Hardsuits/nfsd_sheriff.rsi
 
 - type: entity
   parent: NFClothingHeadHardsuitWithLightBaseNfsd
@@ -186,9 +186,9 @@
   description: Medium armored hardsuit helmet for NFSD raids.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_combat.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd_combat.rsi #_NF/Clothing/Head/Hardsuits/nfsd_combat.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_combat.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd_combat.rsi #_NF/Clothing/Head/Hardsuits/nfsd_combat.rsi
   - type: PointLight
     color: "#79bb66"
   - type: PressureProtection
@@ -211,9 +211,9 @@
   description: Medium armored hardsuit helmet for NFSD raids.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_command.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd_command.rsi #_NF/Clothing/Head/Hardsuits/nfsd_command.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_command.rsi
+    sprite: _Horizon/Clothing/Head/Hardsuits/NFSDSuits/nfsd_command.rsi #_NF/Clothing/Head/Hardsuits/nfsd_command.rsi
   - type: PointLight
     color: "#ffed7f"
   - type: PressureProtection
