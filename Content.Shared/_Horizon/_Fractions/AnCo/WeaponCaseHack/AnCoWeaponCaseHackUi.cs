@@ -8,46 +8,47 @@ public enum AnCoHackUiKey : byte
     Key
 }
 
-/// <summary>
-/// A dead end the hacker has already found: at node <see cref="Node"/> track B (or C) leads nowhere.
-/// </summary>
-[Serializable, NetSerializable]
-public readonly record struct AnCoHackDeadEnd(int Node, bool IsB);
-
 [Serializable, NetSerializable]
 public sealed class AnCoHackBoundUserInterfaceState : BoundUserInterfaceState
 {
     public readonly int Attempts;
     public readonly int MaxAttempts;
-    public readonly int NodeIndex;
-    public readonly int NodeCount;
 
     /// <summary>Localization key of the condition shown at the current node.</summary>
     public readonly string RuleLocId;
 
     public readonly string SerialB;
     public readonly string SerialC;
-    public readonly List<AnCoHackDeadEnd> DeadEnds;
+
+    /// <summary>Уже пройденные развилки: только они раскрывают геометрию карты.</summary>
+    public readonly List<AnCoHackPassedNode> Passed;
+
+    /// <summary>Выходы текущей развилки. Клиент рисует их обрезанными стабами, не зная, какой верный.</summary>
+    public readonly AnCoHackDir CurrentLeftExit;
+    public readonly AnCoHackDir CurrentRightExit;
 
     public AnCoHackBoundUserInterfaceState(
         int attempts,
         int maxAttempts,
-        int nodeIndex,
-        int nodeCount,
         string ruleLocId,
         string serialB,
         string serialC,
-        List<AnCoHackDeadEnd> deadEnds)
+        List<AnCoHackPassedNode> passed,
+        AnCoHackDir currentLeftExit,
+        AnCoHackDir currentRightExit)
     {
         Attempts = attempts;
         MaxAttempts = maxAttempts;
-        NodeIndex = nodeIndex;
-        NodeCount = nodeCount;
         RuleLocId = ruleLocId;
         SerialB = serialB;
         SerialC = serialC;
-        DeadEnds = deadEnds;
+        Passed = passed;
+        CurrentLeftExit = currentLeftExit;
+        CurrentRightExit = currentRightExit;
     }
+
+    /// <summary>Индекс текущего узла (= число пройденных).</summary>
+    public int NodeIndex => Passed.Count;
 }
 
 /// <summary>

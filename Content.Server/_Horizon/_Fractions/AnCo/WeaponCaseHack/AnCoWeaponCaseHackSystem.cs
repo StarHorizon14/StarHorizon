@@ -55,31 +55,9 @@ public sealed class AnCoWeaponCaseHackSystem : EntitySystem
 
     private void GenerateGraph(AnCoWeaponCaseHackComponent comp)
     {
-        // Условия не повторяются в пределах одного взлома.
-        var rules = new List<AnCoSerialRule>(AnCoSerialRules.All);
-        _random.Shuffle(rules);
-
-        comp.Nodes.Clear();
-        comp.DeadEnds.Clear();
+        comp.Nodes = AnCoHackGraph.Generate(_random, comp.NodeCount);
         comp.Attempts = comp.MaxAttempts;
         comp.NodeIndex = 0;
-
-        var count = Math.Min(comp.NodeCount, rules.Count);
-        for (var i = 0; i < count; i++)
-        {
-            var rule = rules[i];
-            var correctIsB = _random.Prob(0.5f);
-            var matching = AnCoSerialRules.GenerateSerial(_random, rule, true);
-            var other = AnCoSerialRules.GenerateSerial(_random, rule, false);
-
-            comp.Nodes.Add(new AnCoHackNode
-            {
-                RuleId = rule.LocId,
-                SerialB = correctIsB ? matching : other,
-                SerialC = correctIsB ? other : matching,
-                CorrectIsB = correctIsB,
-            });
-        }
     }
 
     private void OnChoose(EntityUid uid, AnCoWeaponCaseHackComponent comp, AnCoHackChooseMessage args)
@@ -113,11 +91,7 @@ public sealed class AnCoWeaponCaseHackSystem : EntitySystem
             return;
         }
 
-        // Тупик: -1 попытка, возвращаемся в самое начало (граф остаётся тем же).
-        var deadEnd = new AnCoHackDeadEnd(comp.NodeIndex, args.ChooseB);
-        if (!comp.DeadEnds.Contains(deadEnd))
-            comp.DeadEnds.Add(deadEnd);
-
+        // Тупик: -1 попытка, полный сброс карты и возврат в самое начало (граф остаётся тем же).
         comp.Attempts--;
         comp.NodeIndex = 0;
 
@@ -138,7 +112,6 @@ public sealed class AnCoWeaponCaseHackSystem : EntitySystem
 
         // Следующий взлом (если кейс закроют снова) получит новый граф.
         comp.Nodes.Clear();
-        comp.DeadEnds.Clear();
         comp.NodeIndex = 0;
 
         _ui.CloseUi(uid, AnCoHackUiKey.Key);
@@ -161,17 +134,22 @@ public sealed class AnCoWeaponCaseHackSystem : EntitySystem
         if (comp.Nodes.Count == 0 || comp.NodeIndex >= comp.Nodes.Count)
             return;
 
+        // Клиенту уходит только геометрия пройденных узлов и выходы текущей развилки;
+        // какой выход верный и что дальше - не раскрывается.
+        var passed = new List<AnCoHackPassedNode>(comp.NodeIndex);
+        for (var i = 0; i < comp.NodeIndex; i++)
+            passed.Add(comp.Nodes[i].ToPassed());
+
         var node = comp.Nodes[comp.NodeIndex];
-        // Правильная сторона клиенту не передаётся, только уже найденные тупики.
         var state = new AnCoHackBoundUserInterfaceState(
             comp.Attempts,
             comp.MaxAttempts,
-            comp.NodeIndex,
-            comp.Nodes.Count,
             node.RuleId,
             node.SerialB,
             node.SerialC,
-            new List<AnCoHackDeadEnd>(comp.DeadEnds));
+            passed,
+            node.LeftExit,
+            node.RightExit);
 
         _ui.SetUiState(uid, AnCoHackUiKey.Key, state);
     }

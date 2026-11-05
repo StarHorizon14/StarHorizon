@@ -39,12 +39,6 @@ public sealed partial class AnCoWeaponCaseHackComponent : Component
     public List<AnCoHackNode> Nodes = new();
 
     /// <summary>
-    /// Dead ends the hacker has already hit; these are shown on the map.
-    /// </summary>
-    [ViewVariables]
-    public List<AnCoHackDeadEnd> DeadEnds = new();
-
-    /// <summary>
     /// Explosion intensity (total energy).
     /// </summary>
     [DataField]
@@ -67,20 +61,4 @@ public sealed partial class AnCoWeaponCaseHackComponent : Component
     /// </summary>
     [DataField]
     public string ExplosionPrototype = "Default";
-}
-
-/// <summary>
-/// A fork of the track graph: the current track A splits into B and C.
-/// </summary>
-public sealed class AnCoHackNode
-{
-    public string RuleId = string.Empty;
-    public string SerialB = string.Empty;
-    public string SerialC = string.Empty;
-
-    /// <summary>
-    /// True if track B continues to the next node (its serial satisfies the rule), otherwise track C does.
-    /// The other track is a dead end.
-    /// </summary>
-    public bool CorrectIsB;
 }

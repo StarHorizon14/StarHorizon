@@ -79,8 +79,9 @@ public sealed class AnCoWeaponCaseHackWindow : DefaultWindow
 }
 
 /// <summary>
-/// Схема дорожек: зелёный старт внизу, красная магистраль вверх, синие узлы, жёлтые точки - найденные тупики,
-/// зелёный замок в конце. Какая из веток верная, клиент не знает.
+/// Схема дорожек: ломаная от зелёного старта. Видна только пройденная часть и текущая развилка,
+/// чьи выходы нарисованы одинаковыми обрезанными стабами (какой верный - неизвестно). Жёлтая точка - конец
+/// пройденного тупика. Карта подгоняется под размер окна и растёт по мере прохождения.
 /// </summary>
 public sealed class AnCoWeaponCaseHackMap : Control
 {
@@ -90,61 +91,102 @@ public sealed class AnCoWeaponCaseHackMap : Control
     private static readonly Color DeadEnd = Color.FromHex("#ffe600");
     private static readonly Color Goal = Color.FromHex("#7ed321");
 
-    private int _nodeIndex;
-    private int _nodeCount;
-    private List<AnCoHackDeadEnd> _deadEnds = new();
+    private const float Margin = 20f;
+    private const float MaxUnit = 26f;
+
+    // Геометрия в единицах сетки, y растёт вверх.
+    private readonly List<(Vector2 From, Vector2 To)> _segments = new();
+    private readonly List<Vector2> _nodes = new();
+    private readonly List<Vector2> _deadEnds = new();
+    private Vector2 _current;
 
     public void Update(AnCoHackBoundUserInterfaceState state)
     {
-        _nodeIndex = state.NodeIndex;
-        _nodeCount = state.NodeCount;
-        _deadEnds = state.DeadEnds;
+        _segments.Clear();
+        _nodes.Clear();
+        _deadEnds.Clear();
+
+        var pos = Vector2.Zero;
+        var next = new Vector2(0, AnCoHackGraph.FirstLeg);
+        _segments.Add((pos, next));
+        pos = next;
+
+        foreach (var node in state.Passed)
+        {
+            _nodes.Add(pos);
+
+            var dead = pos + AnCoHackGraph.Step(node.CorrectIsB ? node.RightExit : node.LeftExit) * node.DeadEndLength;
+            _segments.Add((pos, dead));
+            _deadEnds.Add(dead);
+
+            next = pos + AnCoHackGraph.Step(node.CorrectIsB ? node.LeftExit : node.RightExit) * node.LegLength;
+            _segments.Add((pos, next));
+            pos = next;
+        }
+
+        // Текущая развилка: оба выхода обрезаны на одинаковой длине.
+        _current = pos;
+        _segments.Add((pos, pos + AnCoHackGraph.Step(state.CurrentLeftExit) * AnCoHackGraph.StubLength));
+        _segments.Add((pos, pos + AnCoHackGraph.Step(state.CurrentRightExit) * AnCoHackGraph.StubLength));
     }
 
     protected override void Draw(DrawingHandleScreen handle)
     {
         base.Draw(handle);
 
-        if (_nodeCount <= 0)
+        if (_segments.Count == 0)
             return;
 
-        var w = PixelWidth;
-        var h = PixelHeight;
-        var cx = w / 2f;
-        var margin = 24f;
-        var bottom = h - margin;
-        var top = margin;
-        var step = (bottom - top) / (_nodeCount + 1);
-        var arm = MathF.Min(60f, w / 2f - margin);
-
-        // Магистраль: старт (внизу) -> узлы -> замок (сверху).
-        handle.DrawLine(new Vector2(cx, bottom), new Vector2(cx, top), Track);
-
-        // Старт.
-        handle.DrawRect(UIBox2.FromDimensions(cx - 7, bottom - 7, 14, 14), Goal);
-
-        for (var i = 0; i < _nodeCount; i++)
+        var min = new Vector2(float.MaxValue);
+        var max = new Vector2(float.MinValue);
+        foreach (var (from, to) in _segments)
         {
-            var y = bottom - step * (i + 1);
-            var active = i == _nodeIndex;
-
-            // Ветки B (влево) и C (вправо) от узла.
-            handle.DrawLine(new Vector2(cx, y), new Vector2(cx - arm, y - step / 2), Track);
-            handle.DrawLine(new Vector2(cx, y), new Vector2(cx + arm, y - step / 2), Track);
-
-            foreach (var dead in _deadEnds)
-            {
-                if (dead.Node != i)
-                    continue;
-
-                var x = dead.IsB ? cx - arm : cx + arm;
-                handle.DrawRect(UIBox2.FromDimensions(x - 5, y - step / 2 - 5, 10, 10), DeadEnd);
-            }
-
-            handle.DrawRect(UIBox2.FromDimensions(cx - 5, y - 5, 10, 10), active ? NodeActive : Node);
+            min = Vector2.Min(min, Vector2.Min(from, to));
+            max = Vector2.Max(max, Vector2.Max(from, to));
         }
 
-        // Замок.
-        handle.DrawRect(UIBox2.FromDimensions(cx - 9, top - 9, 18, 18), Goal);
+        var margin = Margin * UIScale;
+        var avail = new Vector2(PixelWidth - margin * 2, PixelHeight - margin * 2);
+        var size = Vector2.Max(max - min, new Vector2(1, 1));
+        var unit = MathF.Min(MathF.Min(avail.X / size.X, avail.Y / size.Y), MaxUnit * UIScale);
+
+        // Центрируем фрагмент в окне; y переворачиваем (на экране вверх = меньше y).
+        var origin = new Vector2(
+            (PixelWidth - size.X * unit) / 2f - min.X * unit,
+            (PixelHeight + size.Y * unit) / 2f + min.Y * unit);
+
+        Vector2 ToScreen(Vector2 p) => new(origin.X + p.X * unit, origin.Y - p.Y * unit);
+
+        foreach (var (from, to) in _segments)
+            DrawThick(handle, ToScreen(from), ToScreen(to), Track);
+
+        var nodeHalf = 5f * UIScale;
+        foreach (var node in _nodes)
+        {
+            var p = ToScreen(node);
+            handle.DrawRect(new UIBox2(p - new Vector2(nodeHalf), p + new Vector2(nodeHalf)), Node);
+        }
+
+        foreach (var dead in _deadEnds)
+        {
+            var p = ToScreen(dead);
+            handle.DrawRect(new UIBox2(p - new Vector2(nodeHalf), p + new Vector2(nodeHalf)), DeadEnd);
+        }
+
+        var start = ToScreen(Vector2.Zero);
+        var goalHalf = 7f * UIScale;
+        handle.DrawRect(new UIBox2(start - new Vector2(goalHalf), start + new Vector2(goalHalf)), Goal);
+
+        var cur = ToScreen(_current);
+        handle.DrawRect(new UIBox2(cur - new Vector2(nodeHalf), cur + new Vector2(nodeHalf)), NodeActive);
+    }
+
+    private void DrawThick(DrawingHandleScreen handle, Vector2 a, Vector2 b, Color color)
+    {
+        // DrawLine рисует линию в 1 пиксель; утолщаем смещёнными копиями.
+        var t = MathF.Max(1f, UIScale);
+        handle.DrawLine(a, b, color);
+        handle.DrawLine(a + new Vector2(t, 0), b + new Vector2(t, 0), color);
+        handle.DrawLine(a + new Vector2(0, t), b + new Vector2(0, t), color);
     }
 }
