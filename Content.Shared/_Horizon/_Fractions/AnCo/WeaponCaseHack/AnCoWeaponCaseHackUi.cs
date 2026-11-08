@@ -27,6 +27,9 @@ public sealed class AnCoHackBoundUserInterfaceState : BoundUserInterfaceState
     public readonly AnCoHackDir CurrentLeftExit;
     public readonly AnCoHackDir CurrentRightExit;
 
+    /// <summary>Игровое время взрыва кейса; null, пока не дан первый ответ.</summary>
+    public readonly TimeSpan? Deadline;
+
     public AnCoHackBoundUserInterfaceState(
         int attempts,
         int maxAttempts,
@@ -35,7 +38,8 @@ public sealed class AnCoHackBoundUserInterfaceState : BoundUserInterfaceState
         string serialC,
         List<AnCoHackPassedNode> passed,
         AnCoHackDir currentLeftExit,
-        AnCoHackDir currentRightExit)
+        AnCoHackDir currentRightExit,
+        TimeSpan? deadline)
     {
         Attempts = attempts;
         MaxAttempts = maxAttempts;
@@ -45,6 +49,7 @@ public sealed class AnCoHackBoundUserInterfaceState : BoundUserInterfaceState
         Passed = passed;
         CurrentLeftExit = currentLeftExit;
         CurrentRightExit = currentRightExit;
+        Deadline = deadline;
     }
 
     /// <summary>Индекс текущего узла (= число пройденных).</summary>
@@ -52,19 +57,19 @@ public sealed class AnCoHackBoundUserInterfaceState : BoundUserInterfaceState
 }
 
 /// <summary>
-/// The hacker chose track B or C at the given node.
+/// The hacker moved in the given direction at the given node.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class AnCoHackChooseMessage : BoundUserInterfaceMessage
 {
-    public readonly bool ChooseB;
+    public readonly AnCoHackDir Direction;
 
     /// <summary>Node the choice was made at; the server ignores stale messages.</summary>
     public readonly int NodeIndex;
 
-    public AnCoHackChooseMessage(bool chooseB, int nodeIndex)
+    public AnCoHackChooseMessage(AnCoHackDir direction, int nodeIndex)
     {
-        ChooseB = chooseB;
+        Direction = direction;
         NodeIndex = nodeIndex;
     }
 }

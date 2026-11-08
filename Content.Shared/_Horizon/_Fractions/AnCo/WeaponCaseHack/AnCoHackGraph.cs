@@ -5,7 +5,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Horizon._Fractions.AnCo.WeaponCaseHack;
 
 /// <summary>
-/// Направление дорожки (вид сверху, схема растёт вверх). Единица длины - один шаг сетки.
+/// Направление выхода (схема растёт вверх). Узлы стоят по диагонали, линии к ним - только горизонтали и вертикали.
 /// </summary>
 [Serializable, NetSerializable]
 public enum AnCoHackDir : byte
@@ -65,12 +65,12 @@ public static class AnCoHackGraph
     /// <summary>Длина обрезанных стабов текущей развилки, которые видит игрок.</summary>
     public const int StubLength = 1;
 
-    public const int MinLeg = 2;
-    public const int MaxLeg = 4;
+    public const int MinLeg = 1;
+    public const int MaxLeg = 2;
     public const int MinDeadEnd = 1;
-    public const int MaxDeadEnd = 3;
+    public const int MaxDeadEnd = 2;
 
-    private const int MaxLayoutTries = 200;
+    private const int MaxLayoutTries = 2000;
 
     // Пары выходов слева направо: влево+вверх, влево+вправо, вверх+вправо.
     private static readonly (AnCoHackDir Left, AnCoHackDir Right)[] ExitPairs =
@@ -81,7 +81,7 @@ public static class AnCoHackGraph
     };
 
     /// <summary>
-    /// Смещение за один шаг; y растёт вверх.
+    /// Смещение узла за один шаг: узлы стоят по диагонали (влево/вправо и на 1 вверх); y растёт вверх.
     /// </summary>
     public static Vector2 Step(AnCoHackDir dir)
     {
@@ -91,6 +91,28 @@ public static class AnCoHackGraph
             AnCoHackDir.Right => new Vector2(1, 1),
             _ => new Vector2(0, 1),
         };
+    }
+
+    /// <summary>
+    /// Вершины ломаной от <paramref name="from"/> на <paramref name="length"/> шагов. Линии идут только по горизонтали и
+    /// вертикали: сначала в сторону (угол), потом вверх (узел). Выход «вверх» - прямая вертикаль.
+    /// Первая вершина - сама <paramref name="from"/>; каждый второй элемент для Left/Right - угол, остальные - узлы.
+    /// </summary>
+    public static List<Vector2> PathPoints(Vector2 from, AnCoHackDir dir, int length)
+    {
+        var points = new List<Vector2> { from };
+        var step = Step(dir);
+        var pos = from;
+        for (var i = 0; i < length; i++)
+        {
+            if (step.X != 0)
+                points.Add(new Vector2(pos.X + step.X, pos.Y));
+
+            pos = new Vector2(pos.X + step.X, pos.Y + step.Y);
+            points.Add(pos);
+        }
+
+        return points;
     }
 
     public static List<AnCoHackNode> Generate(IRobustRandom random, int nodeCount)
@@ -139,38 +161,40 @@ public static class AnCoHackGraph
     /// </summary>
     private static bool IsLayoutClean(List<AnCoHackNode> nodes)
     {
+        // Все вершины (углы и узлы) и единичные отрезки должны быть уникальны: отрезки единичной длины
+        // пересекаются только в узлах сетки, поэтому этого достаточно, чтобы ветки не накладывались и не пересекались.
         var points = new HashSet<(int, int)>();
-        // Середины единичных шагов в удвоенных координатах: ловит наложения и X-пересечения диагоналей.
-        var mids = new HashSet<(int, int)>();
+        var segments = new HashSet<(int, int, int, int)>();
 
-        bool Walk(ref (int X, int Y) pos, AnCoHackDir dir, int length)
+        bool Walk(ref Vector2 pos, AnCoHackDir dir, int length)
         {
-            var step = Step(dir);
-            var dx = (int) step.X;
-            var dy = (int) step.Y;
-            for (var i = 0; i < length; i++)
+            var path = PathPoints(pos, dir, length);
+            for (var i = 1; i < path.Count; i++)
             {
-                var next = (pos.X + dx, pos.Y + dy);
-                if (!mids.Add((pos.X + next.Item1, pos.Y + next.Item2)))
+                var a = ((int) path[i - 1].X, (int) path[i - 1].Y);
+                var b = ((int) path[i].X, (int) path[i].Y);
+
+                // Отрезок без учёта направления.
+                var key = a.CompareTo(b) <= 0 ? (a.Item1, a.Item2, b.Item1, b.Item2) : (b.Item1, b.Item2, a.Item1, a.Item2);
+                if (!segments.Add(key))
                     return false;
 
-                // Точки магистрали и тупиков не должны совпадать, кроме узла, где ветка начинается.
-                if (!points.Add(next))
+                // Точка, где ветка начинается, уже занята самой магистралью - её не считаем.
+                if (!points.Add(b))
                     return false;
-
-                pos = next;
             }
 
+            pos = path[^1];
             return true;
         }
 
         // Магистраль: старт -> узлы -> замок. Запоминаем положение узлов.
-        var cursor = (X: 0, Y: 0);
-        points.Add(cursor);
+        var cursor = Vector2.Zero;
+        points.Add((0, 0));
         if (!Walk(ref cursor, AnCoHackDir.Up, FirstLeg))
             return false;
 
-        var nodePositions = new List<(int X, int Y)>();
+        var nodePositions = new List<Vector2>();
         foreach (var node in nodes)
         {
             nodePositions.Add(cursor);
@@ -178,7 +202,7 @@ public static class AnCoHackGraph
                 return false;
         }
 
-        // Тупики: ни одна их точка не должна лежать на уже занятых.
+        // Тупики: ни одна их точка и ни один отрезок не должны лежать на уже занятых.
         for (var i = 0; i < nodes.Count; i++)
         {
             var pos = nodePositions[i];

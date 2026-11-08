@@ -5,6 +5,7 @@ using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Horizon._Fractions.AnCo.WeaponCaseHack;
 
@@ -19,6 +20,7 @@ public sealed class AnCoWeaponCaseHackSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -26,6 +28,28 @@ public sealed class AnCoWeaponCaseHackSystem : EntitySystem
 
         SubscribeLocalEvent<AnCoWeaponCaseHackComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
         SubscribeLocalEvent<AnCoWeaponCaseHackComponent, AnCoHackChooseMessage>(OnChoose);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<AnCoWeaponCaseHackComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.Deadline is not { } deadline)
+                continue;
+
+            // Кейс уже вскрыт другим способом - таймер не нужен.
+            if (!TryComp<LockComponent>(uid, out var lockComp) || !lockComp.Locked)
+            {
+                comp.Deadline = null;
+                continue;
+            }
+
+            if (_timing.CurTime >= deadline)
+                Fail(uid, comp);
+        }
     }
 
     private void OnGetVerbs(EntityUid uid, AnCoWeaponCaseHackComponent comp, GetVerbsEvent<AlternativeVerb> args)
@@ -78,7 +102,23 @@ public sealed class AnCoWeaponCaseHackSystem : EntitySystem
         }
 
         var node = comp.Nodes[comp.NodeIndex];
-        if (args.ChooseB == node.CorrectIsB)
+
+        // Выбор направления: влево/вверх/вправо. Направление без выхода игнорируем (кнопка там неактивна).
+        bool chooseB;
+        if (args.Direction == node.LeftExit)
+            chooseB = true;
+        else if (args.Direction == node.RightExit)
+            chooseB = false;
+        else
+        {
+            UpdateUi(uid, comp);
+            return;
+        }
+
+        // Таймер стартует с первого ответа и идёт до вскрытия, даже если окно закрыть.
+        comp.Deadline ??= _timing.CurTime + TimeSpan.FromSeconds(comp.TimeLimit);
+
+        if (chooseB == node.CorrectIsB)
         {
             comp.NodeIndex++;
             if (comp.NodeIndex >= comp.Nodes.Count)
@@ -113,12 +153,15 @@ public sealed class AnCoWeaponCaseHackSystem : EntitySystem
         // Следующий взлом (если кейс закроют снова) получит новый граф.
         comp.Nodes.Clear();
         comp.NodeIndex = 0;
+        comp.Deadline = null;
 
         _ui.CloseUi(uid, AnCoHackUiKey.Key);
     }
 
     private void Fail(EntityUid uid, AnCoWeaponCaseHackComponent comp)
     {
+        comp.Deadline = null;
+
         _explosion.QueueExplosion(
             uid,
             comp.ExplosionPrototype,
@@ -149,7 +192,8 @@ public sealed class AnCoWeaponCaseHackSystem : EntitySystem
             node.SerialC,
             passed,
             node.LeftExit,
-            node.RightExit);
+            node.RightExit,
+            comp.Deadline);
 
         _ui.SetUiState(uid, AnCoHackUiKey.Key, state);
     }

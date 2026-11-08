@@ -18,7 +18,7 @@ public sealed class AnCoWeaponCaseHackBoundUserInterface : BoundUserInterface
 
         _window = new AnCoWeaponCaseHackWindow();
         _window.OnClose += Close;
-        _window.OnChoose += (chooseB, nodeIndex) => SendMessage(new AnCoHackChooseMessage(chooseB, nodeIndex));
+        _window.OnChoose += (dir, nodeIndex) => SendMessage(new AnCoHackChooseMessage(dir, nodeIndex));
         _window.OpenCentered();
     }
 

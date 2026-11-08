@@ -2,10 +2,15 @@ anco-weapon-case-hack-success = Замок разблокирован!
 anco-weapon-case-hack-verb = Взломать замок
 anco-weapon-case-hack-fail-attempt = Тупик! Осталось попыток: { $attempts }. Начните сначала.
 anco-weapon-case-hack-window-title = Взлом замка АнКо
+anco-weapon-case-hack-attempts-title = Попытки
+anco-weapon-case-hack-dir-left = ←
+anco-weapon-case-hack-dir-up = ↑
+anco-weapon-case-hack-dir-right = →
+anco-weapon-case-hack-timer-title = Таймер
+anco-weapon-case-hack-timer = { $seconds } с
+anco-weapon-case-hack-timer-idle = 30 с после первого ответа
 anco-weapon-case-hack-attempts = Попытки: { $attempts } / { $max }
 anco-weapon-case-hack-condition-header = Условие: серийный номер дорожки
-anco-weapon-case-hack-track-b = Дорожка B
-anco-weapon-case-hack-track-c = Дорожка C
 
 anco-hack-rule-letter-repeat = какая-либо буква повторяется
 anco-hack-rule-has-a = содержит букву A

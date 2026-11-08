@@ -15,6 +15,18 @@ public sealed partial class AnCoWeaponCaseHackComponent : Component
     public int MaxAttempts = 3;
 
     /// <summary>
+    /// Seconds from the first answer until the case explodes.
+    /// </summary>
+    [DataField]
+    public float TimeLimit = 30f;
+
+    /// <summary>
+    /// Moment (game time) when the case explodes; null until the first answer is given.
+    /// </summary>
+    [ViewVariables]
+    public TimeSpan? Deadline;
+
+    /// <summary>
     /// Number of nodes (forks) on the way to the lock.
     /// </summary>
     [DataField]

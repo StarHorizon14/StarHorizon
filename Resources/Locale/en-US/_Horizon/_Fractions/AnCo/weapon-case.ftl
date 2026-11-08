@@ -2,10 +2,15 @@ anco-weapon-case-hack-success = Lock unlocked!
 anco-weapon-case-hack-verb = Hack lock
 anco-weapon-case-hack-fail-attempt = Dead end! Attempts left: { $attempts }. Back to the start.
 anco-weapon-case-hack-window-title = AnCo lock hack
+anco-weapon-case-hack-attempts-title = Attempts
+anco-weapon-case-hack-dir-left = ←
+anco-weapon-case-hack-dir-up = ↑
+anco-weapon-case-hack-dir-right = →
+anco-weapon-case-hack-timer-title = Timer
+anco-weapon-case-hack-timer = { $seconds } s
+anco-weapon-case-hack-timer-idle = 30 s after the first answer
 anco-weapon-case-hack-attempts = Attempts: { $attempts } / { $max }
 anco-weapon-case-hack-condition-header = Condition: track serial number
-anco-weapon-case-hack-track-b = Track B
-anco-weapon-case-hack-track-c = Track C
 
 anco-hack-rule-letter-repeat = some letter repeats
 anco-hack-rule-has-a = contains the letter A
