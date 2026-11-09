@@ -285,9 +285,9 @@
   description: Elite armored hardsuit helmets for yo-hoers.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/pirate_elite.rsi
+    sprite: _Horizon/_Fractions/Pirate/Clothing/Head/Hardsuits/pirate_elite.rsi #_NF/Clothing/Head/Hardsuits/pirate_elite.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/pirate_elite.rsi
+    sprite: _Horizon/_Fractions/Pirate/Clothing/Head/Hardsuits/pirate_elite.rsi #_NF/Clothing/Head/Hardsuits/pirate_elite.rsi
   - type: PointLight
     color: "#ffed7f"
   - type: PressureProtection

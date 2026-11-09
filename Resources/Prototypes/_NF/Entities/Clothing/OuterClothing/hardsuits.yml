@@ -396,9 +396,9 @@
   description: An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi
+    sprite: _Horizon/_Fractions/Pirate/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi #_NF/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi
+    sprite: _Horizon/_Fractions/Pirate/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi #_NF/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateElite
   - type: ExplosionResistance

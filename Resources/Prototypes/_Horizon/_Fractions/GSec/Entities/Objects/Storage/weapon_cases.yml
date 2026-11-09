@@ -11,7 +11,7 @@
 
 - type: entity
   parent: [CrateBaseSecure, BaseGSecContraband]
-  id: CrateBaseGSecSecure
+  id: CrateSecureGSec
   name: защищённый ящик Горлекс
   description: Армированный ящик для хранения особо опасного оружия.
   suffix: Secure
@@ -22,8 +22,8 @@
     sprite: _Horizon/_Fractions/GSec/Structures/Storage/crate_secure.rsi
 
 - type: entity
-  parent: [CrateBaseGSecSecure]
-  id: CrateBaseGSecSecureRestricted
+  parent: [CrateSecureGSec]
+  id: CrateSecureGSecRestricted
   suffix: GSec, Secure
   components:
   - type: AccessReader

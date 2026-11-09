@@ -35,7 +35,7 @@
     - suitStorage
     - Back
   - type: Item
-    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-saiga.rsi
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-ump.rsi
     size: Normal
     shape:
     - 0,0,3,1
