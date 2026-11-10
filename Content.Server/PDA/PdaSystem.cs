@@ -27,6 +27,7 @@ using Content.Shared._NF.Shipyard.Components; // Frontier
 using Content.Server._NF.Shipyard.Systems; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Server.RoundEnd; // Frontier
+using Content.Server._Horizon; // Horizon
 
 namespace Content.Server.PDA
 {
@@ -44,6 +45,7 @@ namespace Content.Server.PDA
         [Dependency] private readonly IdCardSystem _idCard = default!;
         [Dependency] private readonly SectorServiceSystem _sectorService = default!;
         [Dependency] private readonly RoundEndSystem _roundEndSystem = default!; // Frontier
+        [Dependency] private readonly GameShutdownController _shutdownController = default!; // Horizon
 
         public override void Initialize()
         {
@@ -234,13 +236,31 @@ namespace Content.Server.PDA
                 },
                 balance, // Frontier
                 ownedShipName, // Frontier
-                _roundEndSystem.GetAutoCallTime(), // Frontier
+                GetRoundEndTime(), // Frontier
                 pda.StationName,
                 showUplink,
                 hasInstrument,
                 address);
 
             _ui.SetUiState(uid, PdaUiKey.Key, state);
+        }
+
+        /// <summary>
+        /// Время до конца смены для КПК: приоритет у вызванного эвакуационного шаттла,
+        /// иначе расчётное время (автовызов или плановый рестарт по длительности раунда) — что наступит раньше.
+        /// </summary>
+        private TimeSpan? GetRoundEndTime() // Horizon
+        {
+            var evacOrAutoCall = _roundEndSystem.GetAutoCallTime();
+            var restart = _shutdownController.GetRestartGameTime();
+
+            if (evacOrAutoCall == null)
+                return restart;
+
+            if (restart == null)
+                return evacOrAutoCall;
+
+            return restart < evacOrAutoCall ? restart : evacOrAutoCall;
         }
 
         private void OnPdaOpen(Entity<PdaComponent> ent, ref BoundUIOpenedEvent args)

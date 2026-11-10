@@ -20870,7 +20870,7 @@ entities:
     - type: Transform
       pos: -16.5,5.5
       parent: 1
-- proto: ComputerIFFSyndicate
+- proto: ComputerIFF
   entities:
   - uid: 2392
     components:

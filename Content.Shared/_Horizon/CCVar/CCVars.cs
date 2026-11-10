@@ -51,28 +51,16 @@ namespace Content.Shared._Horizon.CCVar
             CVarDef.Create("shutdown.enabled", false, CVar.SERVERONLY);
 
         /// <summary>
-        /// Время рестарта по МСК в формате "HH:mm" (например "12:00").
+        /// Длительность раунда в часах, по достижении которой (по таймеру раунда в лаунчере) происходит рестарт.
         /// </summary>
-        public static readonly CVarDef<string> ShutdownTime =
-            CVarDef.Create("shutdown.time", "12:00", CVar.SERVERONLY);
-
-        /// <summary>
-        /// Интервал рестарта в днях.
-        /// </summary>
-        public static readonly CVarDef<int> ShutdownIntervalDays =
-            CVarDef.Create("shutdown.interval_days", 3, CVar.SERVERONLY);
-
-        /// <summary>
-        /// Дополнительные часы к интервалу рестарта.
-        /// </summary>
-        public static readonly CVarDef<int> ShutdownIntervalHours =
-            CVarDef.Create("shutdown.interval_hours", 12, CVar.SERVERONLY);
+        public static readonly CVarDef<int> ShutdownRoundHours =
+            CVarDef.Create("shutdown.round_hours", 48, CVar.SERVERONLY);
 
         /// <summary>
         /// За сколько минут до рестарта вызывать шаттл эвакуации.
         /// </summary>
         public static readonly CVarDef<int> ShutdownShuttleTime =
-            CVarDef.Create("shutdown.shuttle_time", 10, CVar.SERVERONLY);
+            CVarDef.Create("shutdown.shuttle_time", 20, CVar.SERVERONLY);
 
         /// <summary>
         ///     Path to discord_sponsors.txt file
