@@ -1285,6 +1285,26 @@
   - GSecUplinkMags
 
 - type: listing
+  id: GSecMagazinePistol9x17
+  name: "Пистолетный магазин (Т1)"
+  description: "Калибр .9x17, вместимость - 17 патроонов."
+  productEntity: MagazinePistol9x17
+  cost:
+    Speso: 1700
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistols9x18
+  name: "Пистолетный магазин Макарова"
+  description: "Калибр .9x18, вместимость - 8 патроонов."
+  productEntity: MagazinePistols9x18
+  cost:
+    Speso: 1300
+  categories:
+  - GSecUplinkMags
+
+- type: listing
   id: GSecNFMagazineHighCapacityPistol35
   name: "Расширенный пистолетный магазин"
   description: "Калибр .35, вместимость - 16 патроонов."
@@ -1341,6 +1361,56 @@
   productEntity: MagazinePistol57x28Extd
   cost:
     Speso: 1670
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolSubMachineGun9x17
+  name: "Магазин для ПП (Т1)"
+  description: "Калибр .9x17, вместимость - 30 патроонов."
+  productEntity: MagazinePistolSubMachineGun9x17
+  cost:
+    Speso: 1460
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolBoxSubMachineGun
+  name: "Короб для ПП"
+  description: "Калибр .9x17, вместимость - 45 патроонов."
+  productEntity: MagazinePistolBoxSubMachineGun
+  cost:
+    Speso: 2100
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolDrumSubMachineGun
+  name: "Барабан для ПП"
+  description: "Калибр .9x17, вместимость - 71 патроонов."
+  productEntity: MagazinePistolDrumSubMachineGun
+  cost:
+    Speso: 5300
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolTopSubMachineGun
+  name: "магазин верхней подачи для ПП"
+  description: "Калибр .9x17, вместимость - 50 патроонов."
+  productEntity: MagazinePistolTopSubMachineGun
+  cost:
+    Speso: 5300
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolSubMachineGunScorpion9x17
+  name: "магазин Scorpion (Т1)"
+  description: "Калибр .9x17, вместимость - 20 патроонов."
+  productEntity: MagazinePistolSubMachineGunScorpion9x17
+  cost:
+    Speso: 2300
   categories:
   - GSecUplinkMags
 
