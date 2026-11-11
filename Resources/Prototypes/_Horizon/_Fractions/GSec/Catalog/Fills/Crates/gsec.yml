@@ -73,6 +73,20 @@
 - type: entity
   id: StorageEVAGSec
   suffix: GSec, EVA
+  parent: [ SuitStorageBase ]
+  name: хранилище скафандров
+  description: Высокотехнологичное хранилище, предназначенное для хранения космических скафандров..
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHeadHelmetGSec
+      - id: ClothingOuterEVASuitGSec
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: ClothingShoesBootsMagSecurityFilled
+
+- type: entity
+  id: StorageEVAGSecCombat
+  suffix: GSec, EVA, Контрабанда
   parent: [ SuitStorageBase, BaseGSecContraband ]
   name: хранилище скафандров
   description: Высокотехнологичное хранилище, предназначенное для хранения космических скафандров..
@@ -89,6 +103,8 @@
       - id: NFWeaponPistolViper
       - id: NFMagazinePistol35
         amount: 2
+  - type: AccessReader
+    access: [["AccessGSec"]]
 
 - type: entity
   id: DuffelGSecEVABundle
