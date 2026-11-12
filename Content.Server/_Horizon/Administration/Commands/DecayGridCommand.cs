@@ -538,7 +538,7 @@ public sealed class DecayGridCommand : IConsoleCommand
                 continue;
 
             var damage = _random.NextFloat(MinGlassDamage, MaxGlassDamage);
-            damageableSystem.TryChangeDamage(uid, new DamageSpecifier(bluntDamage, FixedPoint2.New(damage)), ignoreResistances: true, damageable: windowDamage);
+            damageableSystem.TryChangeDamage(uid, new DamageSpecifier(bluntDamage, FixedPoint2.New(damage)), ignoreResistances: 100f, damageable: windowDamage);
             windowsDamaged++;
         }
 

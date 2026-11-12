@@ -51,7 +51,7 @@
         - !type:OrganType
           type: Vox
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Poison:
@@ -100,7 +100,7 @@
         - !type:OrganType
           type: Vox
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Poison:
@@ -160,7 +160,7 @@
           type: OrganBio
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Poison:
@@ -217,7 +217,7 @@
           type: OrganBio
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Radiation:
@@ -261,7 +261,7 @@
           type: Vox
           shouldHave: false
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Poison:
@@ -299,7 +299,7 @@
         - !type:ReagentThreshold
           min: 0.5
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Poison:
@@ -445,7 +445,7 @@
         - !type:OrganType
           type: Slime
           shouldHave: false
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Poison: 0.25
@@ -464,7 +464,7 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Cellular: 1
@@ -500,7 +500,7 @@
           reagent: Frezon
           min: 0.5
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Cellular: 0.5
@@ -559,7 +559,7 @@
           reagent: BZ
           min: 0.5
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Cellular: 0.005
@@ -704,7 +704,7 @@
             reagent: Nitrium
             min: 9
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Poison: 0.05
@@ -736,7 +736,7 @@
           reagent: Healium
           min: 2
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           groups:
             Brute: -0.5
@@ -782,7 +782,7 @@
           min: 0.25
           max: 8
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Slash: 0.75
@@ -795,7 +795,7 @@
           reagent: Zauker
           min: 8
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Slash: 0.015

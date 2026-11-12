@@ -174,7 +174,7 @@
     sound: /Audio/Weapons/star_hit.ogg
   - type: LandAtCursor
   - type: DamageOtherOnHit
-    ignoreResistances: true
+    ignoreResistances: 100
     damage:
       types:
         Slash: 5

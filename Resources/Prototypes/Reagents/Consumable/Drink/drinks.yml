@@ -502,7 +502,7 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         conditions:
         - !type:OrganType
           type: Slime

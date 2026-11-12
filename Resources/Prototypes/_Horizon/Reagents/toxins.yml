@@ -1,4 +1,4 @@
-﻿- type: reagent
+- type: reagent
   id: XenoidAcidW
   name: reagent-name-xenoidw-acid
   group: Toxins
@@ -14,7 +14,7 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: false
+        ignoreResistances: 0
         damage:
           types:
             Caustic: 0.3
@@ -55,7 +55,7 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: false
+        ignoreResistances: 0
         damage:
           types:
             Caustic: 0.3
@@ -96,7 +96,7 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: false
+        ignoreResistances: 0
         damage:
           types:
             Caustic: 0.3

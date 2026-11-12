@@ -230,7 +230,7 @@
     damage:
       types:
         Piercing: 8
-    ignoreResistances: true
+    ignoreResistances: 70
   - type: Tracer
     color: "#666666FF"
     length: 5
@@ -251,7 +251,7 @@
     damage:
       types:
         Heat: 10
-    ignoreResistances: true
+    ignoreResistances: 70
   - type: Tracer
     color: "#666666FF"
     length: 5

@@ -11,7 +11,7 @@
     damage:
       types:
         Piercing: 7
-    ignoreResistances: true
+    ignoreResistances: 70
 
 - type: entity
   id: NFBulletPistol35Psycore
@@ -40,7 +40,7 @@
       types:
         Piercing: 17
         Blunt: 5
-    ignoreResistances: true
+    ignoreResistances: 70
 
 - type: entity
   id: NFBulletPistol45Psycore

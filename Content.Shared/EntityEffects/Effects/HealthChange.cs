@@ -32,7 +32,7 @@ namespace Content.Shared.EntityEffects.Effects
 
         [DataField]
         [JsonPropertyName("ignoreResistances")]
-        public bool IgnoreResistances = true;
+        public float IgnoreResistances = 100f;
 
         protected override string ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         {

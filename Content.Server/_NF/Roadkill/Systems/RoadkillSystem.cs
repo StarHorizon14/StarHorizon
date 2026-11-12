@@ -71,7 +71,7 @@ public sealed class RoadkillSystem : EntitySystem
             {
                 var damage = new DamageSpecifier();
                 damage.DamageDict[_bluntDamageType] = threshold.Value - damageableComponent.TotalDamage + _extraDamage;
-                _damageable.TryChangeDamage(ent, damage, ignoreResistances: true);
+                _damageable.TryChangeDamage(ent, damage, ignoreResistances: 100f);
             }
             _mobState.ChangeMobState(ent, MobState.Dead);
         }

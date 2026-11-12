@@ -38,5 +38,5 @@ public sealed partial class XAEDamageInAreaComponent : Component
     /// Whether or not this should ignore resistances for the damage
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool IgnoreResistances;
+    public float IgnoreResistances;
 }

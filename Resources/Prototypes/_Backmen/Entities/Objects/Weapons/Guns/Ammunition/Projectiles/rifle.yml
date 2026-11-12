@@ -22,7 +22,7 @@
       types:
         Piercing: 10
         Structural: 20
-    ignoreResistances: true
+    ignoreResistances: 70
     penetrationThreshold: 100
     penetrationDamageTypeRequirement:
     - Structural
@@ -86,7 +86,7 @@
       types:
         Piercing: 11
         Structural: 20
-    ignoreResistances: true
+    ignoreResistances: 70
     penetrationThreshold: 100
     penetrationDamageTypeRequirement:
     - Structural
@@ -150,7 +150,7 @@
       types:
         Piercing: 8
         Structural: 17
-    ignoreResistances: true
+    ignoreResistances: 70
     penetrationThreshold: 100
     penetrationDamageTypeRequirement:
     - Structural
@@ -214,7 +214,7 @@
       types:
         Piercing: 14
         Structural: 28
-    ignoreResistances: true
+    ignoreResistances: 70
     penetrationThreshold: 150
     penetrationDamageTypeRequirement:
     - Structural
@@ -278,7 +278,7 @@
       types:
         Piercing: 20
         Structural: 40
-    ignoreResistances: true
+    ignoreResistances: 70
     penetrationThreshold: 150
     penetrationDamageTypeRequirement:
     - Structural
@@ -311,7 +311,7 @@
       types:
         Piercing: 50
         Structural: 350
-    ignoreResistances: true
+    ignoreResistances: 70
     penetrationThreshold: 360
     penetrationDamageTypeRequirement:
     - Structural

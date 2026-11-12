@@ -1258,7 +1258,7 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: false
+        ignoreResistances: 0
         damage:
           types:
             Holy: 0.5

@@ -98,7 +98,7 @@ public sealed class MechDrillSystem : EntitySystem
             return;
         }
 
-        _damageable.TryChangeDamage(target, component.DamageToDrilled, ignoreResistances: true);
+        _damageable.TryChangeDamage(target, component.DamageToDrilled, ignoreResistances: 100f);
         _mech.UpdateUserInterface(owner);
         args.Repeat = Comp<MechComponent>(owner).Energy > 0;
     }

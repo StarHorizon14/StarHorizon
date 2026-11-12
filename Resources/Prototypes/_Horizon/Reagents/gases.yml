@@ -12,7 +12,7 @@
     Gas:
       effects:
         - !type:HealthChange
-          ignoreResistances: true
+          ignoreResistances: 100
           damage:
             types:
               Cold: 0.33

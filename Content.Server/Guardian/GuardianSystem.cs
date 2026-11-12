@@ -289,7 +289,7 @@ namespace Content.Server.Guardian
                 component.Host,
                 args.DamageDelta * component.DamageShare,
                 origin: args.Origin,
-                ignoreResistances: true,
+                ignoreResistances: 100f,
                 interruptsDoAfters: false);
             _popupSystem.PopupEntity(Loc.GetString("guardian-entity-taking-damage"), component.Host.Value, component.Host.Value);
 

@@ -55,7 +55,7 @@ public sealed partial class ProjectileComponent : Component
     ///     Ignore all damage resistances the target has.
     /// </summary>
     [DataField]
-    public bool IgnoreResistances = false;
+    public float IgnoreResistances = 0f;
 
     /// <summary>
     ///     Get that juicy FPS hit sound.

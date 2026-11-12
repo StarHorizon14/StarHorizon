@@ -159,7 +159,7 @@
         Piercing: 25
         Slash: 5
         Structural: 30
-    ignoreResistances: true
+    ignoreResistances: 70
 
 - type: entity
   id: BulletPistol50AEUranium
@@ -243,7 +243,7 @@
     damage:
       types:
         Piercing: 30
-    ignoreResistances: true
+    ignoreResistances: 70
 
 - type: entity
   id: BulletRevolver357MagnumAP
@@ -256,7 +256,7 @@
       types:
         Piercing: 25
         Slash: 5
-    ignoreResistances: true
+    ignoreResistances: 70
 
 - type: entity
   id: BulletRevolver44MagnumAP
@@ -269,4 +269,4 @@
       types:
         Piercing: 25
         Slash: 5
-    ignoreResistances: true
+    ignoreResistances: 70

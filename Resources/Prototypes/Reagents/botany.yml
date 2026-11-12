@@ -234,7 +234,7 @@
         - !type:ReagentThreshold
           reagent: Ammonia
           min: 1
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Poison: 0.25
@@ -267,7 +267,7 @@
           reagent: Ammonia
           min: 1
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           groups:
             Brute: -5

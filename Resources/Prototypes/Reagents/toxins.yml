@@ -153,7 +153,7 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: false
+        ignoreResistances: 0
         damage:
           types:
             Caustic: 0.5
@@ -193,7 +193,7 @@
         factor: -1.5
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: true
+        ignoreResistances: 100
         damage:
           types:
             Heat: 2.5
@@ -216,7 +216,7 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: false
+        ignoreResistances: 0
         damage:
           types:
             Caustic: 0.3
@@ -265,7 +265,7 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: false
+        ignoreResistances: 0
         damage:
           types:
             Caustic: 0.1

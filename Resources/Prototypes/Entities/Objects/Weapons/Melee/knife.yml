@@ -321,7 +321,7 @@
     offset: -0.15,0.0
   - type: LandAtCursor
   - type: DamageOtherOnHit
-    ignoreResistances: true
+    ignoreResistances: 100
     damage:
       types:
         Slash: 10

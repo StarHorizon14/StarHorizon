@@ -53,7 +53,7 @@ namespace Content.Server.Damage.Commands
             return CompletionResult.Empty;
         }
 
-        private delegate void Damage(EntityUid entity, bool ignoreResistances);
+        private delegate void Damage(EntityUid entity, float ignoreResistances);
 
         private bool TryParseDamageArgs(
             IConsoleShell shell,
@@ -127,18 +127,20 @@ namespace Content.Server.Damage.Commands
             if (!TryParseDamageArgs(shell, target.Value, args, out var damageFunc))
                 return;
 
-            bool ignoreResistances;
+            float ignoreResistances;
             if (args.Length == 3)
             {
-                if (!bool.TryParse(args[2], out ignoreResistances))
+                if (!bool.TryParse(args[2], out var ignoreResistBool))
                 {
                     shell.WriteLine(Loc.GetString("damage-command-error-bool", ("arg", args[2])));
                     return;
                 }
+                // Старое поведение: true = игнорировать полностью (100f), false = применять всё (0f)
+                ignoreResistances = ignoreResistBool ? 100f : 0f;
             }
             else
             {
-                ignoreResistances = false;
+                ignoreResistances = 0f;
             }
 
             damageFunc(target.Value, ignoreResistances);
