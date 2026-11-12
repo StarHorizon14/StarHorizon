@@ -8,6 +8,8 @@
   - spins
   - spins.
   - spins!
+  - крутится # Horizon
+  - кружится # Horizon
   event: !type:AnimationSpinEmoteEvent
 
 - type: emote
@@ -24,4 +26,6 @@
   - bounces
   - bounces.
   - bounces!
+  - прыгает # Horizon
+  - подпрыгивает # Horizon
   event: !type:AnimationJumpEmoteEvent

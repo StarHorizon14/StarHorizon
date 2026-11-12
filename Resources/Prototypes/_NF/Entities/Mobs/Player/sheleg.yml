@@ -24,12 +24,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-sheleg-name
-    description: Вы шелег, выращенный в цитологической ванне. Ледяная кожа и холодное сердце - ваша суть. Исследуйте это место!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

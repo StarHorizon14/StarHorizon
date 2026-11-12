@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Moddified by TheDark_, Taken from https://github.com/tgstation/tgstation at 0d9c9a8233dfc3fc55edc538955a761a6328bee0, generic taken from shiptest at https://github.com/shiptest-ss13/Shiptest/pull/1473, additional sprite created by EmoGarbage404",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "prom"
+    },
+    {
+      "name": "generic"
+    }
+  ]
+}

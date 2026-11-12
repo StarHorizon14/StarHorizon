@@ -5,6 +5,7 @@
   abstract: true
   components:
     - type: ContentEye
+    - type: NightVision # Horizon: needed for night vision goggles and the night vision eye implant
     - type: CameraRecoil
     - type: Reactive
       groups:

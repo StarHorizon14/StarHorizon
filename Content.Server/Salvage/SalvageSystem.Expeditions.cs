@@ -1,3 +1,4 @@
+using Content.Shared._Horizon.SpaceHazards; // Horizon
 using System.Linq;
 using System.Threading;
 using Content.Server.Salvage.Expeditions;
@@ -161,6 +162,19 @@ public sealed partial class SalvageSystem
             }
         }
 
+        // Horizon: one timer, the same for everybody, re-rolls the offers of every expedition planet
+        if (currentTime >= _planetPoolNext)
+        {
+            _planetPoolNext = currentTime + TimeSpan.FromSeconds(_cooldown);
+            var planetQuery = EntityQueryEnumerator<ExpeditionPlanetComponent>();
+            while (planetQuery.MoveNext(out _, out var planetComp))
+            {
+                planetComp.Missions.Clear();
+            }
+            RefreshAllConsoles();
+        }
+        // End Horizon
+
         var query = EntityQueryEnumerator<SalvageExpeditionDataComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -205,12 +219,17 @@ public sealed partial class SalvageSystem
         UpdateConsoles(expedition);
     }
 
-    private void GenerateMissions(SalvageExpeditionDataComponent component)
+    private void GenerateMissions(SalvageExpeditionDataComponent component, Func<string, bool>? difficultyFilter = null) // Horizon: difficultyFilter
     {
         component.Missions.Clear();
 
         // Frontier: generate missions from an arbitrary set of difficulties
-        if (_missionDifficulties.Count <= 0)
+        // Horizon: planets only offer the difficulties that fit their biome
+        var pickable = difficultyFilter == null
+            ? _missionDifficulties
+            : _missionDifficulties.Where(d => difficultyFilter(d.id)).ToList();
+
+        if (pickable.Count <= 0)
         {
             Log.Error("No expedition mission difficulties to pick from!");
             return;
@@ -218,15 +237,15 @@ public sealed partial class SalvageSystem
 
         // this doesn't support having more missions than types of ratings
         // but the previous system didn't do that either.
-        var allDifficulties = _missionDifficulties; // Frontier: Enum.GetValues<DifficultyRating>() < _missionDifficulties
+        var allDifficulties = pickable; // Frontier: Enum.GetValues<DifficultyRating>() < _missionDifficulties
         _random.Shuffle(allDifficulties);
         var difficulties = allDifficulties.Take(MissionLimit).ToList();
 
         // If we support more missions than there are accepted types, pick more until you're up to MissionLimit
         while (difficulties.Count < MissionLimit)
         {
-            var difficultyIndex = _random.Next(_missionDifficulties.Count);
-            difficulties.Add(_missionDifficulties[difficultyIndex]);
+            var difficultyIndex = _random.Next(pickable.Count);
+            difficulties.Add(pickable[difficultyIndex]);
         }
         difficulties.Sort((x, y) => { return Comparer<int>.Default.Compare(x.value, y.value); });
 

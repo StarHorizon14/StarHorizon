@@ -255,3 +255,30 @@
     sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/Modificate/blood.rsi
   - type: PointLight
     color: "#F05A5A"
+
+- type: entity
+  parent: [NFClothingHeadHardsuitWithLightBase, BaseAnCoContraband]
+  id: ClothingHeadHardsuitCerberus
+  categories: [ HideSpawnMenu ]
+  name: шлем Цербера
+  description: Шлем скафандра Паука с дополнительной бронёй.
+  suffix: StarHorizon
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/cerberus.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/AnCo/Clothing/Head/Hardsuits/cerberus.rsi
+  - type: PointLight
+    color: "#F05A5A"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.90
+        Heat: 0.90
+        Radiation: 0.80
+        Caustic: 0.90

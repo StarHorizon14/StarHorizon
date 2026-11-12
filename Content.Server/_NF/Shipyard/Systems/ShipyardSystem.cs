@@ -129,7 +129,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// <param name="stationUid">The ID of the station to dock the shuttle to</param>
     /// <param name="shuttlePath">The path to the shuttle file to load. Must be a grid file!</param>
     /// <param name="shuttleEntityUid">The EntityUid of the shuttle that was purchased</param>
-    public bool TryPurchaseShuttle(EntityUid stationUid, ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid)
+    public bool TryPurchaseShuttle(EntityUid stationUid, ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid, string? priorityTag = null) // Horizon: priorityTag
     {
         if (!TryComp<StationDataComponent>(stationUid, out var stationData)
             || !TryAddShuttle(shuttlePath, out var shuttleGrid)
@@ -152,7 +152,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         _sawmill.Info($"Shuttle {shuttlePath} was purchased at {ToPrettyString(stationUid)} for {price:f2}");
         //can do TryFTLDock later instead if we need to keep the shipyard map paused
-        _shuttle.TryFTLDock(shuttleGrid.Value, shuttleComponent, targetGrid.Value);
+        _shuttle.TryFTLDock(shuttleGrid.Value, shuttleComponent, targetGrid.Value, priorityTag); // Horizon: priorityTag
         shuttleEntityUid = shuttleGrid;
         return true;
     }

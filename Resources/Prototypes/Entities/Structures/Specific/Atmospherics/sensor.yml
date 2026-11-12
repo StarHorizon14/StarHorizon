@@ -38,6 +38,7 @@
       Halon: danger
       Helium: stationHe # Frontier
       AntiNoblium: danger
+      Water: unwanted
 # Horizon end
   - type: Tag
     tags:

@@ -49,6 +49,12 @@
         - WallLayer
         density: 1000
   - type: Airtight
+  # Horizon: walls give way to very high pressure and creak before it
+  - type: DeltaPressure
+    minPressure: 30000
+    minPressureDelta: 20000
+    strainSound:
+      collection: PressureStrainWall
   - type: StaticPrice
     price: 25 # Frontier 75<25
   - type: RadiationBlocker
@@ -606,6 +612,9 @@
   id: WallReinforced
   name: reinforced wall
   components:
+  - type: DeltaPressure # Horizon
+    minPressure: 60000
+    minPressureDelta: 40000
   - type: Sprite
     sprite: _NF/Structures/Walls/solid.rsi # Frontier
   - type: Icon

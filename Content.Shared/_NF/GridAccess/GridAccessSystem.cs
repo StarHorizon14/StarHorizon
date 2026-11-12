@@ -3,6 +3,7 @@ using Content.Shared.Interaction;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._Horizon.StationDeployment.Components;
 using Content.Shared.Access.Components;
+using Content.Shared.Station;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.StationRecords;
 
@@ -15,6 +16,8 @@ public sealed class GridAccessSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     [Dependency] private readonly SharedTransformSystem _sharedTransformSystem = default!;
+
+    [Dependency] private readonly SharedStationSystem _station = default!;
 
     public override void Initialize()
     {
@@ -80,7 +83,7 @@ public sealed class GridAccessSystem : EntitySystem
     /// Gets a tool's authorization for a given GridUid.
     /// Returns an incomplete, non-localized string for popups.
     /// </summary>
-    public static bool IsAuthorized(EntityUid? gridUid, GridAccessComponent comp, out string? popupMessage)
+    public bool IsAuthorized(EntityUid? gridUid, GridAccessComponent comp, out string? popupMessage)
     {
         popupMessage = null;
 
@@ -95,12 +98,20 @@ public sealed class GridAccessSystem : EntitySystem
             popupMessage = "no-id-swiped";
             return false;
         }
-        if (comp.LinkedShuttleUid != gridUid)
-        {
-            popupMessage = "unauthorized-ship";
-            return false;
-        }
 
-        return true;
+        if (comp.LinkedShuttleUid == gridUid)
+            return true;
+
+        // Horizon: a deployed station can end up spanning more than one grid (further
+        // deployments/expansions), but the linked grid is just whichever one existed at
+        // swipe time. Fall back to comparing the owning station instead of the exact grid,
+        // the same way structure-based station binding (StationUpgradeEquipmentSystem)
+        // already does, so a hand-held tool keeps working anywhere on the same station.
+        var linkedStation = _station.GetOwningStation(comp.LinkedShuttleUid.Value);
+        if (linkedStation != null && linkedStation == _station.GetOwningStation(gridUid.Value))
+            return true;
+
+        popupMessage = "unauthorized-ship";
+        return false;
     }
 }

@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 08/11/2026 01:01:54
-  entityCount: 2621
+  time: 10/29/2026 01:27:04
+  entityCount: 2628
 maps:
 - 1653
 grids:
@@ -15728,6 +15728,43 @@ entities:
     components:
     - type: Transform
       pos: 15.5,30.5
+      parent: 1653
+- proto: SpawnAnCoDildo
+  entities:
+  - uid: 2193
+    components:
+    - type: Transform
+      pos: 8.726849,27.168146
+      parent: 1653
+  - uid: 2197
+    components:
+    - type: Transform
+      pos: 9.538422,26.043146
+      parent: 1653
+  - uid: 2215
+    components:
+    - type: Transform
+      pos: 43.90938,31.362709
+      parent: 1653
+  - uid: 2281
+    components:
+    - type: Transform
+      pos: 45.175007,31.222084
+      parent: 1653
+  - uid: 2300
+    components:
+    - type: Transform
+      pos: 39.499935,3.8248575
+      parent: 1653
+  - uid: 2360
+    components:
+    - type: Transform
+      pos: 49.88722,3.677294
+      parent: 1653
+  - uid: 2404
+    components:
+    - type: Transform
+      pos: 33.269382,39.358032
       parent: 1653
 - proto: SpawnAnCoEndsRandom
   entities:

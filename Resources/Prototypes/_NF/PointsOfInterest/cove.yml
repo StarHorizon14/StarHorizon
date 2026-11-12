@@ -23,6 +23,8 @@
   addMapComponents:
   - type: FTLDestination
     requireCoordinateDisk: true
+  - type: SecretTunnelMap
+    id: pirate
   addComponents:
   - type: IFF
     color: "#C83737"

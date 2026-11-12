@@ -1,6 +1,6 @@
-ent-NFBaseNpcLootPackExplorer = explorer's bundle
+ent-NFBaseNpcLootPackExplorer = набор исследователя
     .desc = { ent-NFBaseNpcLootBackpack.desc }
-ent-NFBaseNpcLootWalletExplorer = explorer's wallet
+ent-NFBaseNpcLootWalletExplorer = кошелёк исследователя
     .desc = { ent-NFBaseNpcLootWallet.desc }
 ent-ClothingWalletExplorerT1 = { ent-NFBaseNpcLootWalletExplorer }
     .desc = { ent-NFBaseNpcLootWalletExplorer.desc }

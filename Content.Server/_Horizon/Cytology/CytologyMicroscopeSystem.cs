@@ -58,15 +58,15 @@ public sealed class CytologyMicroscopeSystem : EntitySystem
             if (!_prototypeManager.TryIndex<CellSamplePrototype>(cellSample.ProtoID, out var cellSamplePrototype))
                 continue;
 
-            cellSampleInfos.Add(BuildPetriDishInfo(cellSamplePrototype));
+            cellSampleInfos.Add(BuildPetriDishInfo(cellSamplePrototype, cellSample.Viruses));
         }
 
         return cellSampleInfos;
     }
 
-    private static CellSampleInfo BuildPetriDishInfo(CellSamplePrototype cellSamplePrototype)
+    private static CellSampleInfo BuildPetriDishInfo(CellSamplePrototype cellSamplePrototype, int viruses)
     {
         return new CellSampleInfo(cellSamplePrototype.Name, cellSamplePrototype.RequiredChemicals, cellSamplePrototype.SupplementaryChemicals.Keys.ToList(),
-                                  cellSamplePrototype.SuppressiveChemicals.Keys.ToList(), cellSamplePrototype.GrowthRateInSeconds, cellSamplePrototype.ViralSusceptibility);
+                                  cellSamplePrototype.SuppressiveChemicals.Keys.ToList(), cellSamplePrototype.GrowthRateInSeconds, cellSamplePrototype.ViralSusceptibility, viruses);
     }
 }

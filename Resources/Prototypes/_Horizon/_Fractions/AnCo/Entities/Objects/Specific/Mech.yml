@@ -1,0 +1,15 @@
+- type: entity
+  id: MechDurEshelon
+  parent: [BaseTKAnCoContraband, MechDurDollhouse]
+  name: Дюранд "Эшелон"
+  description: Невероятно мощная боевая машина, прямо со станка.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Specific/Mech
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: Eshelon
+  - type: Mech
+    baseState: Eshelon
+    openState: Eshelon-open
+    brokenState: Eshelon-broken

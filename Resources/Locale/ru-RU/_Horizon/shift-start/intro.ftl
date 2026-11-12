@@ -1,0 +1,12 @@
+shift-start-intro-unknown-station = Неизвестная станция
+shift-start-intro-company = Nanotrasen Corp.
+shift-start-intro-line-corp = NANOTRASEN CORP // СМЕНА { $round }
+shift-start-intro-line-pop = АКТИВНЫХ СЕССИЙ { $sessions }
+shift-start-intro-line-threat = УРОВЕНЬ УГРОЗЫ: { $level }
+shift-start-intro-line-manifest = СПИСОК ЭКИПАЖА
+shift-start-intro-department-other = ПРОЧИЕ
+shift-start-intro-more = + ЕЩЁ { $count }
+shift-start-intro-record = ПРОСМОТР ЗАПИСИ: { $id }
+shift-start-intro-subject = СУБЪЕКТ: { $name }
+shift-start-intro-time = ВРЕМЯ { $days }Д { $hours }Ч { $minutes }М { $seconds }С
+shift-start-intro-terminal = ТЕРМИНАЛ: { $id }

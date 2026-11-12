@@ -52,7 +52,33 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
         _window.NextOffer = current.NextOffer;
         _window.Claimed = current.Claimed;
         _window.SetFinishDisabled(!current.CanFinish); // Frontier
+        _window.Title = Loc.GetString("salvage-expedition-window-title");
         _window.ClearOptions();
+
+        // Horizon: nothing to offer away from a planet, say so in the middle of the window
+        if (current.NoPlanet)
+        {
+            var message = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Vertical,
+                HorizontalExpand = true,
+                VerticalExpand = true,
+                HorizontalAlignment = Control.HAlignment.Center,
+                VerticalAlignment = Control.VAlignment.Center,
+            };
+            message.AddChild(new Label
+            {
+                Text = Loc.GetString("salvage-expedition-no-planet-title"),
+                HorizontalAlignment = Control.HAlignment.Center,
+            });
+            message.AddChild(new Label
+            {
+                Text = Loc.GetString("salvage-expedition-no-planet-hint"),
+                HorizontalAlignment = Control.HAlignment.Center,
+                Modulate = Color.Gray,
+            });
+            _window.AddMessage(message);
+        }
         var salvage = _entManager.System<SalvageSystem>();
 
         for (var i = 0; i < current.Missions.Count; i++)
@@ -65,7 +91,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
             var difficultyId = missionParams.Difficulty; // Frontier: Moderate<missionParams.Difficulty
             var difficultyProto = _protoManager.Index<SalvageDifficultyPrototype>(difficultyId);
             // TODO: Selectable difficulty soon.
-            var mission = salvage.GetMission(missionParams.MissionType, difficultyProto, missionParams.Seed); // Frontier: add missionParams.MissionType
+            var mission = salvage.GetMission(missionParams.MissionType, difficultyProto, missionParams.Seed, current.PlanetBiome); // Frontier: add missionParams.MissionType; Horizon: planet biome
 
             // Difficulty
             // Details
@@ -187,7 +213,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
             };
 
             offering.Claimed = current.ActiveMission == missionParams.Index;
-            offering.Disabled = current.Claimed || current.Cooldown;
+            offering.Disabled = current.Claimed || current.Cooldown || current.NoPlanet; // Horizon: no planet in range
 
             _window.AddOption(offering);
         }

@@ -47,12 +47,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-harpy-name
-    description: Вы гарпия, выращенная в цитологической ванне. Крылья позволяют вам парить над окружающим миром. Исследуйте небеса!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

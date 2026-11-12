@@ -1769,11 +1769,6 @@ entities:
           hard: False
           restitution: 0
           friction: 0.4
-    - type: ThrownItem
-      playLandSound: True
-      landTime: 2646.6562373
-      thrownTime: 2646.4973535
-      thrower: invalid
   - uid: 237
     components:
     - type: Transform
@@ -1828,11 +1823,6 @@ entities:
           hard: False
           restitution: 0
           friction: 0.4
-    - type: ThrownItem
-      playLandSound: True
-      landTime: 2649.735004
-      thrownTime: 2649.6306837
-      thrower: invalid
   - uid: 288
     components:
     - type: Transform
@@ -1875,11 +1865,6 @@ entities:
           hard: False
           restitution: 0
           friction: 0.4
-    - type: ThrownItem
-      playLandSound: True
-      landTime: 2643.2428514
-      thrownTime: 2643.0973568
-      thrower: invalid
   - uid: 315
     components:
     - type: Transform
@@ -1922,11 +1907,6 @@ entities:
           hard: False
           restitution: 0
           friction: 0.4
-    - type: ThrownItem
-      playLandSound: True
-      landTime: 2637.5165434
-      thrownTime: 2637.2973627
-      thrower: invalid
   - uid: 405
     components:
     - type: Transform
@@ -3035,11 +3015,6 @@ entities:
           hard: False
           restitution: 0
           friction: 0.4
-    - type: ThrownItem
-      playLandSound: True
-      landTime: 3061.4356906
-      thrownTime: 3060.9636056
-      thrower: invalid
 - proto: SinkEmpty
   entities:
   - uid: 254

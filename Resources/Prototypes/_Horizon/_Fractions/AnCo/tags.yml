@@ -92,6 +92,9 @@
 - type: Tag
   id: AnCoUpgradeSyndie
 
+- type: Tag
+  id: AnCoUpgradeDurand
+
 # plant
 
 - type: Tag

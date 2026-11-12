@@ -1,5 +1,8 @@
+using System.Numerics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._Horizon.Shuttles.Components;
+using Content.Shared._Horizon.SpaceHazards;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Shuttles.Components;
@@ -11,6 +14,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Shuttles.Systems;
 
@@ -24,6 +28,7 @@ public abstract partial class SharedShuttleSystem : EntitySystem
     [Dependency] protected readonly SharedTransformSystem XformSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _powerReceiverSystem = default!;
+    [Dependency] private readonly IGameTiming _horizonTiming = default!; // Horizon
 
     public const float FTLRange = 256f;
     public const float FTLBufferRange = 8f;
@@ -69,6 +74,13 @@ public abstract partial class SharedShuttleSystem : EntitySystem
         if (!TryComp<FTLDestinationComponent>(mapUid, out var destination) || !destination.Enabled)
             return false;
 
+        // Horizon: a secret tunnel only opens next to its planet.
+        if (TryComp<SecretTunnelMapComponent>(mapUid, out var tunnel)
+            && !IsNearTunnelPlanet(tunnel, shuttleMap, XformSystem.GetWorldPosition(shuttleUid)))
+        {
+            return false;
+        }
+
         if (destination.RequireCoordinateDisk)
         {
             if (!TryComp<ItemSlotsComponent>(consoleUid, out var slot))
@@ -111,6 +123,20 @@ public abstract partial class SharedShuttleSystem : EntitySystem
             return false;
 
         return _whitelistSystem.IsWhitelistPassOrNull(destination.Whitelist, shuttleUid);
+    }
+
+    /// <summary>Horizon: whether <paramref name="position"/> on <paramref name="map"/> is inside the zone of the tunnel's planet.</summary>
+    private bool IsNearTunnelPlanet(SecretTunnelMapComponent tunnel, MapId map, Vector2 position)
+    {
+        if (tunnel.Planet is not { } planet
+            || !TryComp(planet, out ExpeditionPlanetComponent? planetComp)
+            || !_xformQuery.TryGetComponent(planet, out var planetXform)
+            || planetXform.MapID != map)
+        {
+            return false;
+        }
+
+        return (XformSystem.GetWorldPosition(planetXform) - position).Length() <= planetComp.Range;
     }
 
     /// <summary>
@@ -217,7 +243,13 @@ public abstract partial class SharedShuttleSystem : EntitySystem
         return HasComp<MapComponent>(coordinates.EntityId);
     }
 
-    public float GetFTLRange(EntityUid shuttleUid) => FTLRange;
+    public float GetFTLRange(EntityUid shuttleUid)
+    {
+        // Horizon: FTL concentration stretches the jump range.
+        return TryComp<FtlConcentrationComponent>(shuttleUid, out var concentration)
+            ? FTLRange * concentration.GetJumpRangeMultiplier(_horizonTiming.CurTime)
+            : FTLRange;
+    }
 
     public float GetFTLBufferRange(EntityUid shuttleUid, MapGridComponent? grid = null)
     {
@@ -257,6 +289,18 @@ public abstract partial class SharedShuttleSystem : EntitySystem
 
         // Check range even if it's cross-map.
         if (range <= 0 || (targetPosition - ourPos).Length() > range)
+        {
+            return false;
+        }
+
+        // Horizon: coming back from a secret tunnel base into the planet's map is only possible inside the planet's zone.
+        if (shuttleXform.MapUid is { } currentMapUid
+            && shuttleXform.MapID != mapCoordinates.MapId
+            && TryComp<SecretTunnelMapComponent>(currentMapUid, out var currentTunnel)
+            && currentTunnel.Planet is { } tunnelPlanet
+            && _xformQuery.TryGetComponent(tunnelPlanet, out var tunnelPlanetXform)
+            && tunnelPlanetXform.MapID == mapCoordinates.MapId
+            && !IsNearTunnelPlanet(currentTunnel, mapCoordinates.MapId, targetPosition))
         {
             return false;
         }

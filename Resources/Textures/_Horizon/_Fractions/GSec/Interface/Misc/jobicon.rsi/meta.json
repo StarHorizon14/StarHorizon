@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprited by TheDark_",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "recruit"
+        },
+        {
+            "name": "agent"
+        },
+        {
+            "name": "medic"
+        },
+        {
+            "name": "tech"
+        },
+        {
+            "name": "officer"
+        }
+    ]
+}

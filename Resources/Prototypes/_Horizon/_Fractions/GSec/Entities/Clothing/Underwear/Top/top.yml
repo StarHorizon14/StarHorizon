@@ -1,0 +1,19 @@
+- type: entity
+  parent: ClothingUnderwearTopBase
+  id: ClothingUnderwearTopGSec
+  name: спортивный топ Горлекс
+  suffix: GSec
+  description: Спортивный топ из дышащих материалов.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Underwear/Top/gsecbra.rsi
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  parent: ClothingUnderwearTopGSec
+  id: ClothingUnderwearTopMedicGSec
+  name: топ санитара Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Underwear/Top/gsecmedicbra.rsi

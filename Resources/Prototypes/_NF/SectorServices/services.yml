@@ -36,6 +36,10 @@
         balance: 8000
         increasePerSecond: 1 # A trickle - generate your own power to sell for stuff.
       # Horizon start
+      GSecBank:
+        !type:SectorBankAccountInfo
+        balance: 10000
+        increasePerSecond: 1 # A trickle - generate your own power to sell for stuff.
       # Trauma:
       #   !type:SectorBankAccountInfo
       #   balance: 8000

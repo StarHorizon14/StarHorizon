@@ -1,0 +1,22 @@
+- type: entity
+  parent: [BaseItem, RecyclableItemDeviceSmall]
+  id: PortableMusicRadio
+  name: portable radio
+  description: Plays music from random stations.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: old-radio
+  - type: ItemToggle
+    activated: true
+    soundActivate:
+      path: /Audio/Machines/button.ogg
+    soundDeactivate:
+      path: /Audio/Machines/button.ogg
+  - type: MusicRadio
+    collection: HorizonRadioMusic
+    tensionCollection: HorizonRadioMusicTension

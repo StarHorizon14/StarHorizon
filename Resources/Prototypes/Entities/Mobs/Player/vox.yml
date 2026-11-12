@@ -24,12 +24,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-vox-name
-    description: Вы вокс, выращенный в цитологической ванне. Ядовитые железы и острый ум - ваша сила. Исследуйте это странное место!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

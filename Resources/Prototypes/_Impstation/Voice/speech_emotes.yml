@@ -20,6 +20,7 @@
     - bubbling
     - bubbled
     # End Frontier: emote consistency
+    - булькает # Horizon
 
 - type: emote
   id: Pop
@@ -63,6 +64,7 @@
     - hissing
     - hissed
     # End Frontier: emote consistency
+    - шипит # Horizon
 
 # hand emotes
 - type: emote
@@ -86,3 +88,5 @@
     - cracks her knuckles
     - cracks his knuckles
     - cracks its knuckles
+    - хрустит костяшками # Horizon
+    - хрустит пальцами # Horizon

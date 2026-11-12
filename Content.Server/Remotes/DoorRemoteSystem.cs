@@ -53,7 +53,7 @@ namespace Content.Shared.Remotes
                 string? popupMessage = null;
                 if (!TryComp(args.Target.Value, out TransformComponent? xform)
                     || xform.GridUid == null
-                    || !GridAccessSystem.IsAuthorized(xform.GridUid, gridAccessComponent, out popupMessage))
+                    || !_gridAccessSystem.IsAuthorized(xform.GridUid, gridAccessComponent, out popupMessage))
                 {
                     if (popupMessage != null)
                     {

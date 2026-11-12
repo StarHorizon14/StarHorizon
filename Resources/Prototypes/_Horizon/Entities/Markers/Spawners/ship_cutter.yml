@@ -1,0 +1,11 @@
+- type: entity
+  id: SpawnPointShipCutter
+  parent: SpawnPointJobBase
+  name: ship cutter
+  components:
+  - type: SpawnPoint
+    job_id: ShipCutter
+  - type: Sprite
+    layers:
+      - state: green
+      - state: salvagespecialist

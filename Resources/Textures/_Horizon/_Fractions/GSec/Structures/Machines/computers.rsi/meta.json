@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Moddified by TheDark_ (GitHub). Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894. based on comm, generic_panel_open made by Errant, commit https://github.com/space-wizards/space-station-14/pull/32273.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+    "states": [
+        {
+            "name": "computer",
+            "directions": 4
+        },
+	{
+            "name": "generic_keyboard",
+            "directions": 4
+	},
+        {
+            "name": "generic",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.4,
+                    0.2,
+                    0.2,
+                    0.3,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.3,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.4
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.4,
+                    0.2,
+                    0.2,
+                    0.3,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.3,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.4
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.8,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.8,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "id",
+            "directions": 4,
+            "delays": [
+                [
+                    0.3,
+                    0.3
+                ],
+                [
+                    0.3,
+                    0.3
+                ],
+                [
+                    0.3,
+                    0.3
+                ],
+                [
+                    0.3,
+                    0.3
+                ]
+            ]
+        },
+        {
+            "name": "generic_keys",
+            "directions": 4
+        }
+
+]
+}

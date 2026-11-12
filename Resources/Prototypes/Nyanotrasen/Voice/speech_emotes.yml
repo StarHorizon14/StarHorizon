@@ -22,6 +22,7 @@
     - hissed
     - hissing.
     - hissed.
+    - шипит # Horizon
 
 - type: emote
   id: Meow
@@ -64,6 +65,8 @@
     - mraows.
     - mraows!
     - mraows~
+    - мяукает # Horizon
+    - мяу # Horizon
 
 - type: emote
   id: Mew
@@ -83,6 +86,7 @@
     - mews
     - mewing
     - mewed
+    - мявкает # Horizon
 
 - type: emote
   id: Growl
@@ -102,6 +106,7 @@
     - growls
     - growling
     - growled
+    - рычит # Horizon
 
 - type: emote
   id: Purr
@@ -121,3 +126,5 @@
     - purrs
     - purring
     - purred
+    - мурчит # Horizon
+    - мурлычет # Horizon

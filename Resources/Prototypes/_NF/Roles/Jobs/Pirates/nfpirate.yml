@@ -47,6 +47,7 @@
     back:
     - AppraisalTool
     - CoordinatesDiskPirate
+    - SecretTunnelNotePirate
 
 - type: chameleonOutfit
   id: NFPirateChameleonOutfit

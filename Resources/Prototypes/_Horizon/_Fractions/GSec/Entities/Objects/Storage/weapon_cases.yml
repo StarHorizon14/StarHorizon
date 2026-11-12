@@ -1,0 +1,107 @@
+- type: entity
+  parent: [CrateBaseSecure, BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseGSecContraband]
+  id: CrateWeaponGSecSecure
+  name: ящик Горлекс
+  description: Армированный ящик для хранения особо опасного оружия.
+  suffix: GSec, Secure
+  components:
+  - type: Icon
+    sprite: _Horizon/_Fractions/GSec/Structures/Storage/crate.rsi
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Storage/crate.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25000
+  - type: AccessReader
+    access: [[ "AccessGSec" ]]
+
+- type: entity
+  name: оружейный кейс Горлекс
+  description: Армированный ящик для хранения особо опасного оружия.
+  parent: [AnCoWeaponCaseBase, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseGSecContraband]
+  id: WeaponCaseGSecLong
+  suffix: GSec, Long
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/guncaselong.rsi
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/guncaselong.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,4,3
+    - 6,0,7,3
+    whitelist:
+      components:
+      - Gun
+      - BallisticAmmoProvider
+      - Projectile
+      - CartridgeAmmo
+      - PowerCell
+      - MeleeWeapon
+      - Blocking
+      - WeaponCaseInsertable
+      tags:
+      - Cartridge
+  - type: Lock
+    locked: true
+  - type: LockedStorage
+  - type: AccessReader
+    access: [[ "AccessGSecAgent" ]]
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+
+- type: entity
+  name: оружейный кейс Горлекс
+  parent: [WeaponCaseGSecLong, BaseGSecContraband]
+  id: WeaponCaseGSecShort
+  suffix: GSec, Short
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/guncaseshort.rsi
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/guncaseshort.rsi
+    size: Normal
+    shape:
+    - 0,0,3,1
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,3,1
+    whitelist:
+      components:
+      - Gun
+      - BallisticAmmoProvider
+      - Projectile
+      - CartridgeAmmo
+      - PowerCell
+      - MeleeWeapon
+      - Blocking
+      - WeaponCaseInsertable
+      tags:
+      - Cartridge
+
+- type: entity
+  name: оружейный кейс Горлекс
+  parent: [WeaponCaseGSecLong, BaseGSecContraband]
+  id: WeaponCaseGSecHeavy
+  suffix: GSec, Heavy
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/guncaseheavy.rsi
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/guncaseheavy.rsi
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,7,5
+    whitelist:
+      components:
+      - Item

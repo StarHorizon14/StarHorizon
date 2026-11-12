@@ -584,6 +584,7 @@
   - ContractorClothingHeadHatCone
   - ContractorClothingHeadBandGold
   - ContractorClothingHeadHatTophat
+  - ContractorClothingHeadPerformerWig # Horizon
 
 - type: loadoutGroup
   id: ContractorEars

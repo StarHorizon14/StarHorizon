@@ -1,0 +1,16 @@
+- type: playTimeTracker
+  id: JobMercenaryStationInterview
+
+- type: job
+  id: MercenaryStation
+  name: Работник станции
+  description: Попробуйте выставить свою кандидатуру на станцию что бы служить ей!
+  playTimeTracker: JobMercenaryStationInterview
+  setPreference: false
+  startingGear: MercenaryHologramGear
+  icon: "JobIconMercenary"
+  supervisors: job-supervisors-hire
+  accessGroups:
+  - GeneralAccess
+  jobEntity: InterviewHologramMercenary
+  newPlayerMessage: false

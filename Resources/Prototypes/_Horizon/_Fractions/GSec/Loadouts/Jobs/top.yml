@@ -1,0 +1,15 @@
+- type: loadout
+  id: LoadoutTopGSec
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    underweart: ClothingUnderwearTopGSec
+
+- type: loadout
+  id: LoadoutTopGSecMedic
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: UnderwearSpeciesRestrictions
+  equipment:
+    underweart: ClothingUnderwearTopMedicGSec
