@@ -20,7 +20,7 @@
 
 - type: entity
   id: CrateGSecSurplusBundle
-  parent: [ CrateWeaponGSecSecure, BaseGSecWeaponContraband, StorePresetGSecUplink ]
+  parent: [ CrateSecureGSecRestricted, BaseGSecWeaponContraband, StorePresetGSecUplink ]
   name: ящик припасов Горлекс
   suffix: GSec, Surplus, 40
   description: Содержит случайное снаряжение на 40 тысяч кредитов. «Всё, что не пригодилось нам».
@@ -30,7 +30,7 @@
 
 - type: entity
   id: CrateGSecSuperSurplusBundle
-  parent: [ CrateWeaponGSecSecure, BaseGSecWeaponContraband, StorePresetGSecUplink ]
+  parent: [ CrateSecureGSecRestricted, BaseGSecWeaponContraband, StorePresetGSecUplink ]
   name: ящик суперприпасов Горлекс
   suffix: GSec, Surplus, 80
   description: Содержит случайное снаряжение на 80 тысяч кредитов. «Всё, что не пригодилось нам».
@@ -41,7 +41,7 @@
 - type: entity
   id: CrateGSecIDBundle
   suffix: GSec, Filled
-  parent: [ CrateWeaponGSecSecure, BaseGSecContraband ]
+  parent: [ CrateSecureGSecRestricted, BaseGSecContraband ]
   name: ящик ID карт Горлекс
   description: Содержит набор ID карт ЧВК «Gorlex Securities LLC».
   components:
@@ -54,7 +54,7 @@
 - type: entity
   id: CrateGSecCaseBundle
   suffix: GSec, Filled
-  parent: [ CrateWeaponGSecSecure, BaseGSecContraband ]
+  parent: [ CrateBaseGSec, BaseGSecContraband ]
   name: набор кейсов Горлекс
   description: Содержит оружейные кейсы от ЧВК «Gorlex Securities LLC».
   components:
@@ -73,6 +73,20 @@
 - type: entity
   id: StorageEVAGSec
   suffix: GSec, EVA
+  parent: [ SuitStorageBase ]
+  name: хранилище скафандров
+  description: Высокотехнологичное хранилище, предназначенное для хранения космических скафандров..
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHeadHelmetGSec
+      - id: ClothingOuterEVASuitGSec
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: ClothingShoesBootsMagSecurityFilled
+
+- type: entity
+  id: StorageEVAGSecCombat
+  suffix: GSec, EVA, Контрабанда
   parent: [ SuitStorageBase, BaseGSecContraband ]
   name: хранилище скафандров
   description: Высокотехнологичное хранилище, предназначенное для хранения космических скафандров..
@@ -89,6 +103,8 @@
       - id: NFWeaponPistolViper
       - id: NFMagazinePistol35
         amount: 2
+  - type: AccessReader
+    access: [["AccessGSec"]]
 
 - type: entity
   id: DuffelGSecEVABundle
@@ -109,7 +125,7 @@
 - type: entity
   id: CrateGSecPouchBundle
   suffix: GSec, Filled
-  parent: [ CrateWeaponGSecSecure, BaseGSecContraband ]
+  parent: [ CrateBaseGSec, BaseGSecContraband ]
   name: набор подсумков Горлекс
   description: Набор подсумков разного назначения для ЧВК «Gorlex Securities LLC».
   components:
@@ -123,7 +139,7 @@
 - type: entity
   id: CrateGSecClothingBundle
   suffix: GSec, Filled
-  parent: [ CrateWeaponGSecSecure, BaseGSecContraband ]
+  parent: [ CrateBaseGSec, BaseGSecContraband ]
   name: набор неортодоксального снаряжения Горлекс
   description: Набор новаторских решений для сотрудников ЧВК «Gorlex Securities LLC».
   components:
@@ -142,7 +158,7 @@
 - type: entity
   id: CrateGSecHeavyWeaponBundle
   suffix: GSec, Filled
-  parent: [ CrateWeaponGSecSecure, BaseGSecWeaponContraband ]
+  parent: [ CrateSecureGSecRestricted, BaseGSecWeaponContraband ]
   name: набор тяжелого оружия Горлекс
   description: Набор тяжелого оружия ЧВК «Gorlex Securities LLC» по скидке.
   components:
@@ -174,7 +190,7 @@
     sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/saiga-case.rsi
   - type: StorageFill
     contents:
-      - id: WeaponSubMechineGunGSecSaiga
+      - id: WeaponShotgunGSecSaiga
       - id: MagazineShotgunGSec
         amount: 2
       - id: NFAmmunitionBoxShellShotgunBuckshot

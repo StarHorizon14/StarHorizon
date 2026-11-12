@@ -96,7 +96,7 @@
   name: GXR Отбойник
   parent: [BaseWeaponPistol, NFBaseGunMeleeAttackMedium, BaseAttachableHolder, BaseGSecWeaponContraband]
   id: WeaponRifleGSecBluntstriker
-  suffix: GSec, Снайперская винтовка
+  suffix: GSec, Боевая винтовка
   description: Штурмовая винтовка, способная проглотить любой винтовочный калибр и даже боеприпасы для дробовика. Легается как пиздец и убивает любое желание использовать её повторно.
   components:
   - type: Sprite
