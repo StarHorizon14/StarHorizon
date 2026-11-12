@@ -138,19 +138,57 @@ namespace Content.Shared.Damage
             RaiseLocalEvent(uid, new DamageChangedEvent(component, damageDelta, interruptsDoAfters, origin));
         }
 
+        // ИЗМЕНЕНО: при t > 1 (ignoreResistances < 0) не даём промежуточному
+        // шагу уйти в минус и ограничиваем снижение 95% от входного значения шага.
         private static DamageSpecifier BlendDamage(DamageSpecifier from, DamageSpecifier to, float t)
         {
             var result = new DamageSpecifier();
             var types = new HashSet<string>(from.DamageDict.Keys);
             types.UnionWith(to.DamageDict.Keys);
 
+            var clampLower = t > 1f;
+
             foreach (var type in types)
             {
                 var f = from.DamageDict.TryGetValue(type, out var fv) ? (float)fv : 0f;
                 var d = to.DamageDict.TryGetValue(type, out var tv) ? (float)tv : 0f;
                 var blended = f + (d - f) * t;
+
+                if (clampLower && f > 0f)
+                {
+                    var minValue = f * 0.05f;   // не более 95% снижения на шаге
+                    if (float.IsNaN(blended) || blended < minValue)
+                        blended = minValue;
+                }
+
                 if (blended != 0f)
                     result.DamageDict[type] = blended;
+            }
+            return result;
+        }
+
+        // ИЗМЕНЕНО: новый метод — финальный clamp по исходному урону.
+        // Применяется только при ignoreResistances < 0.
+        private static DamageSpecifier ClampNegativeIgnoreReduction(DamageSpecifier original, DamageSpecifier current)
+        {
+            var result = new DamageSpecifier();
+            var types = new HashSet<string>(original.DamageDict.Keys);
+            types.UnionWith(current.DamageDict.Keys);
+
+            foreach (var type in types)
+            {
+                var orig = original.DamageDict.TryGetValue(type, out var ov) ? (float)ov : 0f;
+                var cur = current.DamageDict.TryGetValue(type, out var cv) ? (float)cv : 0f;
+
+                if (orig > 0f)
+                {
+                    var minValue = orig * 0.05f;   // итоговое снижение не более 95%
+                    if (float.IsNaN(cur) || cur < minValue)
+                        cur = minValue;
+                }
+
+                if (cur != 0f)
+                    result.DamageDict[type] = cur;
             }
             return result;
         }
@@ -168,11 +206,22 @@ namespace Content.Shared.Damage
                 return damage;
             }
 
+            // ИЗМЕНЕНО: защита от NaN / ±infinity.
+            // NaN без этого тихо пропустил бы блок как при 100 (полный игнор),
+            // а ±infinity дал бы NaN внутри BlendDamage.
+            if (float.IsNaN(ignoreResistances) || float.IsInfinity(ignoreResistances))
+                ignoreResistances = 0f;
+
             var before = new BeforeDamageChangedEvent(damage, origin);
             RaiseLocalEvent(uid.Value, ref before);
 
             if (before.Cancelled)
                 return null;
+
+            // ИЗМЕНЕНО: копия исходного урона для финального clamp.
+            // Копия (new Dictionary), а не ссылка — иначе ApplyModifierSet/BlendDamage
+            // могут мутировать DamageDict и «испортить» базу для сравнения.
+            var originalDamage = new DamageSpecifier { DamageDict = new(damage.DamageDict) };
 
             if (ignoreResistances < 100f)
             {
@@ -191,6 +240,11 @@ namespace Content.Shared.Damage
                 RaiseLocalEvent(uid.Value, ev);
 
                 damage = BlendDamage(preEventDamage, ev.Damage, resistScale);
+
+                // ИЗМЕНЕНО: при отрицательном ignoreResistances — финальный clamp
+                // по исходному урону: не в минус, не более 95% снижения суммарно.
+                if (ignoreResistances < 0f)
+                    damage = ClampNegativeIgnoreReduction(originalDamage, damage);
 
                 if (damage.Empty)
                 {
@@ -233,9 +287,7 @@ namespace Content.Shared.Damage
             return delta;
         }
 
-        // ИЗМЕНЕНО: добавлена bool-перегрузка для обратной совместимости со старыми вызовами.
-        // true  → 100f (игнорировать сопротивления полностью)
-        // false → 0f   (применять сопротивления полностью)
+        // bool-перегрузка — без изменений.
         [Obsolete("Используйте float-версию: 0 = применять сопротивления, 100 = игнорировать.")]
         public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, bool ignoreResistances,
             bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null, EntityUid? tool = null)

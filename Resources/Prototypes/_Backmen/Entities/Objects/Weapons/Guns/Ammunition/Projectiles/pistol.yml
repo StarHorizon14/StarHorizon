@@ -162,6 +162,20 @@
     ignoreResistances: 70
 
 - type: entity
+  id: BulletPistol50AERIP
+  name: bullet (.50 AE RIP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30
+        Slash: 30
+        Structural: 30
+    ignoreResistances: -50
+
+- type: entity
   id: BulletPistol50AEUranium
   parent: BaseBulletUranium
   name: bullet (.50 AE uranium)

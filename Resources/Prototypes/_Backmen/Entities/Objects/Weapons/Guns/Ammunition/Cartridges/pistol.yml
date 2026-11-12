@@ -146,6 +146,14 @@
     proto: BulletPistol50AEAP
 
 - type: entity
+  id: CartridgePistol50AERIP
+  name: cartridge (.50 AE RIP)
+  parent: CartridgePistol50AE
+  components:
+  - type: CartridgeAmmo
+    proto: BulletPistol50AERIP
+
+- type: entity
   id: CartridgePistol50AEIncendiary
   name: cartridge incendiary (.50 AE)
   parent: CartridgePistol50AE

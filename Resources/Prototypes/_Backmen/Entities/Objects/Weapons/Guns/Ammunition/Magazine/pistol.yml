@@ -179,6 +179,14 @@
     proto: CartridgePistol50AEAP
 
 - type: entity
+  id: MagazinePistol50AERIP
+  name: pistol magazine (.50 AE RIP)
+  parent: MagazinePistol50AE
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol50AERIP
+
+- type: entity
   id: MagazinePistol9x17
   name: pistol magazine (9x17 mm)
   parent: BaseMagazinePistol
