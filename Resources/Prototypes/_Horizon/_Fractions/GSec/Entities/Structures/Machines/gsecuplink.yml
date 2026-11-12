@@ -1711,7 +1711,7 @@
   description: "Подходит под большинство калибров, вместимость - 120 патроонов."
   productEntity: MagazineUniversalGSecEmpty
   cost:
-    Speso: 4870
+    Speso: 14870
   categories:
   - GSecUplinkMags
 
@@ -1721,7 +1721,7 @@
   description: "Наполнен патроном .20, вместимость - 120 патроонов."
   productEntity: MagazineUniversalGSec20
   cost:
-    Speso: 6870
+    Speso: 26870
   categories:
   - GSecUplinkMags
 
@@ -1731,7 +1731,7 @@
   description: "Наполнен патроном .30, вместимость - 120 патроонов."
   productEntity: MagazineUniversalGSec30
   cost:
-    Speso: 8000
+    Speso: 28000
   categories:
   - GSecUplinkMags
 
@@ -1741,7 +1741,7 @@
   description: "Наполнен патроном .60, вместимость - 120 патроонов."
   productEntity: MagazineUniversalGSec60
   cost:
-    Speso: 10270
+    Speso: 30270
   categories:
   - GSecUplinkMags
 
@@ -1804,7 +1804,7 @@
   description: "Короб на 150 винтовочных патронов калибра .20 от «AnroxComputer's»"
   productEntity: AnCoMagazineBox20
   cost:
-    Speso: 450
+    Speso: 2450
   categories:
   - GSecUplinkAmmo
 
@@ -1864,7 +1864,7 @@
   description: "Короб на 150 винтовочных патронов калибра .30 от «AnroxComputer's»"
   productEntity: AnCoMagazineBox30
   cost:
-    Speso: 450
+    Speso: 2750
   categories:
   - GSecUplinkAmmo
 
@@ -1894,7 +1894,7 @@
   description: "Короб на 200 пистолетных патронов калибра .35 от «AnroxComputer's»"
   productEntity: AnCoMagazineBox35
   cost:
-    Speso: 600
+    Speso: 2600
   categories:
   - GSecUplinkAmmo
 
@@ -1974,7 +1974,7 @@
   description: "Короб на 75 патронов для дробовика калибра .50 дробь «AnroxComputer's»"
   productEntity: AnCoMagazineBox50
   cost:
-    Speso: 1350
+    Speso: 7350
   categories:
   - GSecUplinkAmmo
 
@@ -2015,16 +2015,6 @@
   productEntity: NFAmmunitionBoxBigRifle60
   cost:
     Speso: 2400
-  categories:
-  - GSecUplinkAmmo
-
-- type: listing
-  id: GSecAnCoMagazineBox
-  name: "коробка патронов .70 АнКо"
-  description: "Короб на 75 винтовочных патронов калибра .70 «AnroxComputer's»"
-  productEntity: AnCoMagazineBox
-  cost:
-    Speso: 1875
   categories:
   - GSecUplinkAmmo
 
