@@ -188,7 +188,7 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: false
+        ignoreResistances: 0
         damage:
           types:
             Slash: 0.5
@@ -237,7 +237,7 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: false
+        ignoreResistances: 0
         damage:
           types:
             Cold: 0.05

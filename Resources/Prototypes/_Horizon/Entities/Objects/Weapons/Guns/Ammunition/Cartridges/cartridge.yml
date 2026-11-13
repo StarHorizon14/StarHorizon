@@ -84,7 +84,7 @@
         Slash: 16
         Piercing: 24
         Structural: 300
-    ignoreResistances: true
+    ignoreResistances: 70
     penetrationThreshold: 360
     penetrationDamageTypeRequirement:
     - Structural

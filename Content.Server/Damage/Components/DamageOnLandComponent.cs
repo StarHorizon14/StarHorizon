@@ -10,7 +10,7 @@ namespace Content.Server.Damage.Components
         /// </summary>
         [DataField("ignoreResistances")]
         [ViewVariables(VVAccess.ReadWrite)]
-        public bool IgnoreResistances = false;
+        public float IgnoreResistances = 0f;
 
         /// <summary>
         /// How much damage.

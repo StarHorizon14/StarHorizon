@@ -19,7 +19,7 @@ public sealed partial class GridCollisionOnTriggerComponent : BaseXOnTriggerComp
     public TimeSpan KnockdownTime = TimeSpan.FromSeconds(2);
 
     [DataField, AutoNetworkedField]
-    public bool IgnoreResistances;
+    public float IgnoreResistances;
 
     [DataField, AutoNetworkedField]
     public bool AffectMobs = true;

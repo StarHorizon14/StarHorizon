@@ -10,7 +10,7 @@
     damage:
       types:
         Piercing: 10
-    ignoreResistances: true
+    ignoreResistances: 70
 
 - type: entity
   id: NFBulletRifle20Psycore
@@ -38,7 +38,7 @@
     damage:
       types:
         Piercing: 14
-    ignoreResistances: true
+    ignoreResistances: 70
 
 - type: entity
   id: NFBulletRifle30Psycore

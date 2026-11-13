@@ -99,7 +99,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
                 var amt = bloodstream.BloodlossDamage / (0.1f + bloodPercentage);
 
                 _damageableSystem.TryChangeDamage(uid, amt,
-                    ignoreResistances: false, interruptsDoAfters: false);
+                    ignoreResistances: 0f, interruptsDoAfters: false);
 
                 // Apply dizziness as a symptom of bloodloss.
                 // The effect is applied in a way that it will never be cleared without being healthy.
@@ -112,7 +112,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
                 _damageableSystem.TryChangeDamage(
                     uid,
                     bloodstream.BloodlossHealDamage * bloodPercentage,
-                    ignoreResistances: true, interruptsDoAfters: false);
+                    ignoreResistances: 100f, interruptsDoAfters: false);
 
                 _status.TryRemoveStatusEffect(uid, Bloodloss);
             }

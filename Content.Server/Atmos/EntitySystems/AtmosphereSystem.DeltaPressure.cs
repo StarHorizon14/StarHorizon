@@ -232,7 +232,7 @@ public sealed partial class AtmosphereSystem
         var maxPressure = Math.Max(pressure - ent.Comp.MinPressure, deltaPressure - ent.Comp.MinPressureDelta);
         var appliedDamage = ScaleDamage(ent, ent.Comp.BaseDamage, maxPressure);
 
-        _damage.TryChangeDamage(ent, appliedDamage, ignoreResistances: true, interruptsDoAfters: false);
+        _damage.TryChangeDamage(ent, appliedDamage, ignoreResistances: 100f, interruptsDoAfters: false);
         ent.Comp.IsTakingDamage = true;
         PlayStrainSound(ent.Owner, ent.Comp); // Horizon
     }

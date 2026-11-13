@@ -287,7 +287,7 @@ public abstract class SharedImplanterSystem : EntitySystem
 
     private void DrawCatastrophicFailure(EntityUid implanter, ImplanterComponent component, EntityUid user)
     {
-        _damageableSystem.TryChangeDamage(user, component.DeimplantFailureDamage, ignoreResistances: true, origin: implanter);
+        _damageableSystem.TryChangeDamage(user, component.DeimplantFailureDamage, ignoreResistances: 100f, origin: implanter);
         var userName = Identity.Entity(user, EntityManager);
         var failedCatastrophicallyMessage = Loc.GetString("implanter-draw-failed-catastrophically", ("user", userName));
         _popup.PopupEntity(failedCatastrophicallyMessage, user, PopupType.MediumCaution);

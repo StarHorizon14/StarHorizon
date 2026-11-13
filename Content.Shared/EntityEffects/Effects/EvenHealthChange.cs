@@ -31,7 +31,7 @@ public sealed partial class EvenHealthChange : EntityEffect
     /// Should this effect ignore damage modifiers?
     /// </summary>
     [DataField]
-    public bool IgnoreResistances = true;
+    public float IgnoreResistances = 100f;
 
     protected override string ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {

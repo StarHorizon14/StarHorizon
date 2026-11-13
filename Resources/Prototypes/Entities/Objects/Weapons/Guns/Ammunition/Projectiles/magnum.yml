@@ -55,7 +55,7 @@
     damage:
       types:
         Piercing: 26 # 20% decrease
-    ignoreResistances: true
+    ignoreResistances: 100
 
 - type: entity
   id: BulletMagnumUranium

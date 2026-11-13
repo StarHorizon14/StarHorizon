@@ -108,7 +108,7 @@
         Heat: 90
         Piercing: 60
         Structural: 250
-    ignoreResistances: true
+    ignoreResistances: 100
   - type: Tracer
     color: "#f05a5a"
     length: 5

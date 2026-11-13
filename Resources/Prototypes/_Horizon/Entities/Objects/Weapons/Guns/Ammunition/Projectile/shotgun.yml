@@ -10,7 +10,7 @@
     damage:
       types:
         Piercing: 7
-    ignoreResistances: true
+    ignoreResistances: 70
 
 - type: entity
   categories: [ HideSpawnMenu ]

@@ -14,7 +14,7 @@ public sealed partial class DamageOnTriggerComponent : BaseXOnTriggerComponent
     /// Should the damage ignore resistances?
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool IgnoreResistances;
+    public float IgnoreResistances;
 
     /// <summary>
     /// The base damage amount that is dealt.

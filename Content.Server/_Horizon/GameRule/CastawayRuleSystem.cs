@@ -550,7 +550,7 @@ public sealed class CastawayRuleSystem : GameRuleSystem<CastawayRuleComponent>
             return;
 
         var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Asphyxiation"), FixedPoint2.New(amount));
-        _damageable.TryChangeDamage(mob, damage, ignoreResistances: true);
+        _damageable.TryChangeDamage(mob, damage, ignoreResistances: 100f);
     }
 
     private EntityUid? SpawnWreck(CastawayRuleComponent castaway, MapId mapId, Vector2 playerPos)
