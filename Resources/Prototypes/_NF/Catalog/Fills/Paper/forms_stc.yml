@@ -207,3 +207,46 @@
 
         # Horizon
         [color=#AAAAAA]Форма недействительна без подписи и печати Командования Фронтира (Шерифа или Представителя Станции)[/color]
+
+- type: entity #Creator: Renieken / verbiage borrowed from DmitriTheDemon
+  id: PaperWrittenStcTrafficWarning
+  name: traffic warning
+  categories: [ HideSpawnMenu ]
+  parent: Paper
+  components:
+  - type: Paper
+    content: >+
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Traffic Department[/bold][/color]
+
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+
+      [head=2]Traffic Warning[/head]
+
+
+      [head=2]Time of Offense:[/head][form]
+
+      [head=2]Vessel Callsign:[/head][form]
+
+      [head=2]Infraction:[/head]
+
+      [check]: Dock Loitering
+
+      [check]: Reckless Operation
+
+      [check]: Unauthorized Docking Maneuver
+
+      [check]: Failure to Broadcast IFF
+
+
+      [bold]Notes:[/bold]
+
+      [form]
+
+
+      This a formal warning from the Station Traffic Controller to notify the crew of the vessel of a violation of Space Law §6.4, governing the traffic guidelines in and around Frontier Station and the Trade Outpost.
+
+
+      If further infractions occur, traffic citations will be issued, with punishments that can include fines, forceful undocking, and/or declaration of your vessel as legal salvage.
+
+
+      [color=#AAAAAA]This warning is only valid when stamped and signed by the Station Traffic Controller, or authorized Station Representative.[/color]
