@@ -1,4 +1,4 @@
 [submodule "RobustToolbox"]
 	path = RobustToolbox
-	url = https://github.com/StarHorizon14/RobustToolbox.git
+	url = https://github.com/StarHorizon14/HorizonToolbox.git
 	branch = Horizon/master
