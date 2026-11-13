@@ -84,6 +84,9 @@
     modifiers:
       coefficients:
         Heat: 0.90 # Frontier 0.80<0.90
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskGasAtmos # Frontier: removed BaseCommandContraband
@@ -128,6 +131,9 @@
         Slash: 0.95 # Frontier 0.90<0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -147,6 +153,7 @@
     tags:
     - PetWearable
     - WhitelistChameleon
+    # Horizon
     - BreathMask  # Goobstation - For survial boxes
   - type: PhysicalComposition
     materialComposition:
@@ -320,6 +327,9 @@
       Plastic: 25
   - type: StaticPrice
     price: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskBase
@@ -362,6 +372,9 @@
     slots:
     - Snout
     hideOnToggle: true
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: ClothingMaskClownBase
@@ -423,8 +436,6 @@
         Slash: 0.95 # Frontier 0.90<0.95
         Piercing: 0.95
         Heat: 0.95
-  - type: PirateBountyItem # Frontier
-    id: ClothingMaskGasMercenary # Frontier
 
 - type: entity
   parent: [ ClothingMaskGas, BaseCentcommContraband ]
@@ -662,6 +673,9 @@
     sprite: Clothing/Mask/scaredmime.rsi
   - type: Clothing
     sprite: Clothing/Mask/scaredmime.rsi
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 - type: entity
   parent: [ClothingMaskMime, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
@@ -698,7 +712,7 @@
     replacement: italian
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: [ ClothingMaskBase, BaseC3Contraband ] #Frontier: C3 Contraband
   id: ClothingMaskNinja
   name: ninja mask
   description: A close-fitting nano-enhanced mask that acts both as an air filter and a post-modern fashion statement.
@@ -735,6 +749,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - HamsterWearable
 
 # Entity tables
 - type: entityTable

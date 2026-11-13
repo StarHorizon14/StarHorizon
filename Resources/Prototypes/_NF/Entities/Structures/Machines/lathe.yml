@@ -97,6 +97,7 @@
     - NFServiceToolsStatic
     - NFServiceEvaPackStatic
     - NFServiceKitchenStatic
+    - NFServiceToysStatic
     - NFServiceStatic
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
@@ -367,6 +368,7 @@
     - NFTopicalsStatic
     - NFMercenaryArchetypeStatic
     - NFMercenaryArchetypeMeleeStatic
+    # Horizon
     dynamicPacks:
     - NightVisionSecPack # Horizon
     - WeaponModulesPack # Horizon
@@ -710,12 +712,12 @@
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
     - state: pirate
-    - state: unlit
+    - state: unlit-p
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
     - state: inserting
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
+    - state: panel-p
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: PirateTechFabCircuitboardNF

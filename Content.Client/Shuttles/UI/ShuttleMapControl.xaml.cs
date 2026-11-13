@@ -28,6 +28,7 @@ namespace Content.Client.Shuttles.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ShuttleMapControl : BaseShuttleControl
 {
+    // Horizon
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IInputManager _inputs = default!;
     [Dependency] private readonly IEntityManager _entManager = default!; // Frontier
@@ -144,6 +145,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
         _physicsQuery = EntManager.GetEntityQuery<PhysicsComponent>();
 
+        // Horizon
         _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 9);
     }
 
@@ -870,7 +872,9 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         }
 
         // Draw the coordinates
-        var mapOffset = MidPointVector;
+        // Frontier
+        var mapOffset = new Vector2(MidPoint.X, MidPoint.Y);
+        // End Frontier
 
         if (mousePos.Window != WindowId.Invalid &&
             controlLocalBounds.Contains(mouseLocalPos.Floored()))

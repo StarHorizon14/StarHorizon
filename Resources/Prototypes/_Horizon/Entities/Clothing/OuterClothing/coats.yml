@@ -119,7 +119,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -197,7 +197,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -225,7 +225,7 @@
     modifiers:
       coefficients:
         Slash: 0.95
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:

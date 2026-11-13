@@ -664,7 +664,7 @@
     - type: FlavorProfile
       flavors:
         - sweet
-    - type: Food
+    - type: Edible # Horizon: Food -> Edible (Ingestion)
       delay: 2
     - type: SolutionContainerManager
       solutions:

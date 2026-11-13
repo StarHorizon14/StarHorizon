@@ -23,6 +23,7 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleSystem
 {
+    // Horizon
     [Dependency] private readonly RadarConsoleSystem _radarConsole = default!;
     [Dependency] private readonly Content.Server._Horizon.Shuttles.Systems.FtlConcentrationSystem _ftlConcentration = default!; // Horizon
     private const float SpaceFrictionStrength = 0.0015f;

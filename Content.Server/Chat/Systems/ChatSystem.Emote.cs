@@ -16,6 +16,7 @@ namespace Content.Server.Chat.Systems;
 // emotes using emote prototype
 public partial class ChatSystem
 {
+    // Horizon
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!; // Horizon
     private FrozenDictionary<string, ImmutableList<EmotePrototype>> _wordEmoteDict = FrozenDictionary<string, ImmutableList<EmotePrototype>>.Empty; // DeltaV - Multiple emotes

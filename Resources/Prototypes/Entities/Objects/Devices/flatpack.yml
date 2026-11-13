@@ -36,6 +36,7 @@
   - type: StaticPrice
     price: 250
   - type: Rotatable # Frontier
+  # Horizon
   - type: BindToStation # Horizon
     enabled: false # Horizon - should be draggable between stations
 
@@ -180,6 +181,8 @@
   - type: Sprite
     layers:
     - state: grounding-rod
+  - type: StaticPrice # Frontier
+    price: 40 # Frontier
   - type: GuideHelp
     guides:
     - TeslaEngine

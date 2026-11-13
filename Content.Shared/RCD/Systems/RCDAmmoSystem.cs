@@ -9,8 +9,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.RCD.Systems;
 
-public sealed class RCDAmmoSystem : EntitySystem
+public sealed partial class RCDAmmoSystem : EntitySystem
 {
+    // Horizon
     [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;

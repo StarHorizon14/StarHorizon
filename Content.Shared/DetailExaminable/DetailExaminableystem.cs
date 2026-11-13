@@ -6,8 +6,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.DetailExaminable;
 
-public sealed class DetailExaminableSystem : EntitySystem
+public sealed partial class DetailExaminableSystem : EntitySystem
 {
+    // Horizon
     [Dependency] private readonly ExamineSystemShared _examine = default!;
     [Dependency] private readonly SharedHorizonFlavorTextSystem _horizonFlavor = default!;
 

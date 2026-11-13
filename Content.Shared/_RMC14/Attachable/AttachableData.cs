@@ -11,7 +11,7 @@ namespace Content.Shared._RMC14.Attachable;
 public record struct AttachableSlot(
     bool Locked,
     EntityWhitelist Whitelist,
-    ProtoId<EntityPrototype>? StartingAttachable
+    EntProtoId? StartingAttachable
 );
 
 [DataRecord, Serializable, NetSerializable]

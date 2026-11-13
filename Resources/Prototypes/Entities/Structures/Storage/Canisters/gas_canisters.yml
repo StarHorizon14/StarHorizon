@@ -119,6 +119,8 @@
       - GasCanisters
     - type: Paintable
       group: Canisters
+    - type: PirateBountyItem # Frontier
+      id: GasCanister # Frontier
 
 - type: entity
   parent: GasCanister
@@ -500,8 +502,6 @@
         - !type:DumpCanisterBehavior
 #    - type: Lock # Frontier
 #      locked: true # Frontier
-    - type: PirateBountyItem # Frontier
-      id: PlasmaCanister # Frontier
 
 - type: entity
   parent: GasCanister

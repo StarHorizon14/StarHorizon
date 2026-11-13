@@ -3,14 +3,15 @@
 # Discord: dustylens
 
 # Maintainer Info
-# GitHub: dustylens
-# Discord: dustylens
+# GitHub:
+# Discord:
 
 # Notes:
 # Deep player interest point POI.
 - type: pointOfInterest
   id: BarrierGate
   parent: BasePOI
+  # Horizon
   name: 'Перевалочный пункт'
   minimumDistance: 11000
   maximumDistance: 12000
@@ -21,6 +22,13 @@
   - type: SolarPoweredGrid
     trackOnInit: true
     doNotCull: true
+  - type: SpawningModifier
+    id: 'vgroid'
+    minimumDistance: 1000
+    maximumDistance: 3500
+    minimumAngle: 90 # spawn in a semi-annulus oriented towards the centre of the sector
+    maximumAngle: 270
+
 
 - type: gameMap
   id: BarrierGate

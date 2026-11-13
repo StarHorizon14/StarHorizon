@@ -920,7 +920,7 @@
   - type: Sprite
     sprite: _Horizon/error.rsi
     state: blat
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
   - type: SolutionContainerManager
     solutions:
       food:
@@ -965,7 +965,7 @@
   - type: Sprite
     sprite: _Horizon/error.rsi
     state: bbat
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
   - type: SolutionContainerManager
     solutions:
       food:

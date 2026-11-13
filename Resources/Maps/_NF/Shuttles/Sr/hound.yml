@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 02/26/2026 11:45:29
+  time: 03/04/2026 14:43:03
   entityCount: 323
 maps: []
 grids:
@@ -1013,18 +1013,13 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 172
-- proto: GasMixerOn
+- proto: GasMixerDistroSideOxygen
   entities:
   - uid: 101
     components:
     - type: Transform
       pos: -5.5,4.5
       parent: 1
-    - type: GasMixer
-      inletTwoConcentration: 0.20999998
-      inletOneConcentration: 0.79
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
 - proto: GasPassiveVent
   entities:
   - uid: 102
@@ -1455,14 +1450,6 @@ entities:
       pipeLayer: Secondary
     - type: AtmosPipeColor
       color: '#990000FF'
-- proto: GhostWarpPoint
-  entities:
-  - uid: 150
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,5.5
-      parent: 1
 - proto: GravityGeneratorMini
   entities:
   - uid: 93
@@ -2574,6 +2561,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,10.5
+      parent: 1
+- proto: WarpPoint
+  entities:
+  - uid: 150
+    components:
+    - type: Transform
+      pos: -2.5,5.5
       parent: 1
 - proto: WindoorSecureSecurityLocked
   entities:

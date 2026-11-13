@@ -16,10 +16,12 @@ namespace Content.Client.Shuttles.UI;
 [GenerateTypedNameReferences]
 public sealed partial class NavScreen : BoxContainer
 {
+    // Horizon
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     private SharedTransformSystem _xformSystem;
 
+    private EntityUid? _consoleEntity; // Entity of controlling console
     private EntityUid? _shuttleEntity;
 
     private double _hudUpdateAccum;
@@ -83,6 +85,7 @@ public sealed partial class NavScreen : BoxContainer
 
     public void SetConsole(EntityUid? console)
     {
+// Horizon
         NavRadar.SetConsole(console);
     }
 
@@ -107,6 +110,7 @@ public sealed partial class NavScreen : BoxContainer
     public void UpdateState(NavInterfaceState scc)
     {
         NavRadar.UpdateState(scc);
+        // Horizon
 
         NfUpdateState(scc); // Frontier Update State
     }
@@ -284,6 +288,7 @@ public sealed partial class NavScreen : BoxContainer
     {
         base.FrameUpdate(args);
 
+        // Horizon
         _hudUpdateAccum += args.DeltaSeconds;
         if (_hudUpdateAccum < HudUpdateInterval) return;
         _hudUpdateAccum = 0;
@@ -294,6 +299,7 @@ public sealed partial class NavScreen : BoxContainer
         var worldPos = Vector2.Transform(gridBody.LocalCenter, worldMatrix);
         var displayRot = (float)(-worldRot.Reduced()).Degrees;
         var gridVelocity = gridBody.LinearVelocity;
+        // Horizon
         gridVelocity = (-worldRot.Reduced()).RotateVec(gridVelocity);
         var angularVelDeg = -MathHelper.RadiansToDegrees(gridBody.AngularVelocity);
         bool posChanged = !_lastWorldPos.HasValue || MathF.Abs(worldPos.X - _lastWorldPos.Value.X) > 0.1f || MathF.Abs(worldPos.Y - _lastWorldPos.Value.Y) > 0.1f;

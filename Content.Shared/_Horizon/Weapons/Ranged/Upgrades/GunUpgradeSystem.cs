@@ -14,8 +14,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Horizon.Weapons.Ranged.Upgrades;
 
-public sealed class GunUpgradeSystem : EntitySystem
+public sealed partial class GunUpgradeSystem : EntitySystem
 {
+    // Horizon
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedGunSystem _gun = default!;

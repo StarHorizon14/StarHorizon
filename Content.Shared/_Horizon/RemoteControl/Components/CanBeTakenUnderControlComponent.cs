@@ -16,5 +16,5 @@ public sealed partial class CanBeTakenUnderControlComponent : Component
     ///     If a mech is controlled, a remote pilot is created
     /// </summary>
     [DataField]
-    public ProtoId<EntityPrototype>? RemotePilot;
+    public EntProtoId? RemotePilot;
 }

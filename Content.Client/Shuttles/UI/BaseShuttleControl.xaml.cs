@@ -20,7 +20,7 @@ namespace Content.Client.Shuttles.UI;
 [Virtual]
 public partial class BaseShuttleControl : MapGridControl
 {
-    [Dependency] private readonly IParallelManager _parallel = default!;
+    [Dependency] private IParallelManager _parallel = default!;
     protected readonly SharedMapSystem Maps;
 
     protected readonly Font Font;
@@ -71,7 +71,11 @@ public partial class BaseShuttleControl : MapGridControl
 
         var minDistance = MathF.Pow(EquatorialMultiplier, EquatorialMultiplier * 1.5f);
         var maxDistance = MathF.Pow(2f, EquatorialMultiplier * 6f);
-        var cornerDistance = MathF.Sqrt(WorldRange * WorldRange + WorldRange * WorldRange);
+
+        // Frontier
+        // Distance from center of the map to the corner. We don't want to draw circles bigger than this.
+        float cornerDistance = ScaledWorldRange.Length();
+        // End Frontier
 
         var origin = MidPointVector; // Mono - stay with azimuth HUD when panning
 
@@ -95,6 +99,7 @@ public partial class BaseShuttleControl : MapGridControl
         {
             Angle angle = (Math.PI / gridLinesRadial) * i;
             // TODO: Handle distance properly.
+            // Horizon
             var aExtent = angle.ToVec() * ScaledMinimapRadius * 1.42f;
             var lineColor = RadarRadialLineColor.WithAlpha(0.02f); // Lua
             handle.DrawLine(origin - aExtent, origin + aExtent, lineColor);
@@ -104,6 +109,7 @@ public partial class BaseShuttleControl : MapGridControl
     // Frontier Corvax: north line drawing
     protected void DrawNorthLine(DrawingHandleScreen handle, Angle angle)
     {
+        // Horizon
         var origin = MidPointVector; // Mono - stay with azimuth HUD when panning
         var aExtent = (angle - Math.Tau / 4).ToVec() * ScaledMinimapRadius * 1.42f;
         var lineColor = Color.Red.WithAlpha(0.1f);

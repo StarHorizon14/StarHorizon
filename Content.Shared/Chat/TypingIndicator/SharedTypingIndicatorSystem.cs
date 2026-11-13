@@ -10,11 +10,11 @@ namespace Content.Shared.Chat.TypingIndicator;
 /// <summary>
 ///     Supports typing indicators on entities.
 /// </summary>
-public abstract class SharedTypingIndicatorSystem : EntitySystem
+public abstract partial class SharedTypingIndicatorSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     /// <summary>
     ///     Default ID of <see cref="TypingIndicatorPrototype"/>
@@ -80,7 +80,9 @@ public abstract class SharedTypingIndicatorSystem : EntitySystem
             return;
         }
 
-        SetTypingOverride(uid.Value, ev.OverrideIndicator); // DeltaV
+        if(ev.State != TypingIndicatorState.Idle) // DeltaV - don't remove override when transitioning to idle
+            SetTypingOverride(uid.Value, ev.OverrideIndicator); // DeltaV
+
         SetTypingIndicatorState(uid.Value, ev.State);
     }
 

@@ -23,7 +23,7 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     trash:
     - FoodAnCoTinTrash
 

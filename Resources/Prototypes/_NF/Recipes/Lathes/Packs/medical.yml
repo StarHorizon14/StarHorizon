@@ -53,6 +53,8 @@
   - CheapRollerBedSpawnFolded
   - EmergencyRollerBedSpawnFolded
   - WhiteCane
+  - OffsetCane
+  - OffsetCaneWood
 
 - type: latheRecipePack
   id: NFSurgeryBasicStatic
@@ -94,7 +96,9 @@
   - DefibrillatorCompact
   - ReinforcedJug
   - BorgModuleAdvancedParamedic
+  - BorgModulePill
   - MedicalPouch
+  - PlantAnalyzer
 
 - type: latheRecipePack
   id: NFMedical

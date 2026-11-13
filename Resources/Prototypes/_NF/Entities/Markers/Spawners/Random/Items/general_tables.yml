@@ -533,6 +533,7 @@
       - id: VendingMachineRoboDrobe
       - id: VendingMachineGeneDrobe
       - id: VendingMachineViroDrobe
+      - id: VendingMachineMNKDrobe
     - !type:NestedSelector
       tableId: TableDungeonLootGeneralVendomatsContraband
       weight: 0.05
@@ -569,6 +570,9 @@
       - id: VendingMachineAutoTuneVend
       - id: VendingMachinePottedPlantVend
       - id: WaterCooler
+      - id: VendingMachinePosterPrinter
+      - id: VendingMachinePosterPrinterNanotrasen
+      - id: VendingMachinePaintingPrinter
       # No food vendomats in expeds - buy from food ships or die
 #      - id: VendingMachineChang
 #      - id: VendingMachineDonut
@@ -595,7 +599,9 @@
       - id: AnCoVending # AnCo-Horizon
       - id: VendingMachineClothingPunk
       - id: VendingMachineBountyVendPunk
-      - id: VendingMachineSyndieContraband
+      - id: VendingMachinePosterPrinterSyndicate
+      #  ContraVends now only appear on syndicate expeds as a part of SpawnDungeonVendomatsSyndie
+      #- id: VendingMachineSyndieContraband
 
 # region Flatpacks
 - type: entityTable

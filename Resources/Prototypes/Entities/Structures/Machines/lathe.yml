@@ -378,11 +378,13 @@
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
+    - NFBorgChip # Frontier
     dynamicPacks:
     - Robotics
     - BorgModules
     - MechParts
     - MechEquipment
+    # Horizon
     - HorizonMechs # Horizon Mech
     - StarlightSurgeryLimbs # Starlight
   - type: MaterialStorage
@@ -704,7 +706,7 @@
     runningState: building
     staticPacks:
     - BioGenIngredientsStatic
-    - BioGenMaterialsStatic
+    # - BioGenMaterialsStatic Frontier
     - FriendlyCubesStatic # Frontier
     - NFBioGenIngredientsStatic # Frontier
     - NFBioGenMaterialsStatic # Frontier
@@ -718,6 +720,7 @@
     emagStaticPacks:
     - HostileCubesStatic
     - NFBioGenIngredientsDangerous
+    - NFBioGenIngredientsContraband
   - type: ItemMapper
     mapLayers:
       beaker:

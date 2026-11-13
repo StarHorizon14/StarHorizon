@@ -1,7 +1,17 @@
+# Author Info
+# GitHub:
+# Discord:
+
+# Maintainer Info
+# GitHub: Mace70903
+# Discord: mace_70903
+
+# Shuttle Notes:
 - type: vessel
   id: Prowler
   parent: BaseVessel
   name: NSF Prowler
+  # Horizon
   description: Средний патрульный шаттл с ЭМИ генератором предназначенный для охраны защищенных обьектов.
   price: 42000 #Appraises on purchase at ~35000. 20% markup applied due to the presence of the radar.
   category: Medium

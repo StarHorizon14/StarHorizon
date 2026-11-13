@@ -29,6 +29,7 @@ public sealed partial class SalvageSystem
     public static readonly EntProtoId CoordinatesDisk = "CoordinatesDisk";
     public static readonly ProtoId<LocalizedDatasetPrototype> PlanetNames = "NamesBorer";
 
+    // Horizon
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!; // Frontier
     [Dependency] private readonly SalvageSystem _salvage = default!; // Frontier
     [Dependency] private readonly ExpeditionPlanetSystem _expeditionPlanets = default!; // Horizon
@@ -93,18 +94,19 @@ public sealed partial class SalvageSystem
         #region Frontier FTL changes
         // until FTL changes for us in some way.
 
+
+        if (Transform(uid).GridUid is not { Valid: true } ourGrid
+            || !TryComp<MapGridComponent>(ourGrid, out var gridComp))
+        {
+            PlayDenySound((uid, component));
+            _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-invalid"), uid, PopupType.MediumCaution);
+            UpdateConsoles((station.Value, data));
+            return;
+        }
+
         // Run a proximity check (unless using a debug console)
         if (_salvage.ProximityCheck && !component.Debug)
         {
-            if (!TryComp<StationDataComponent>(station, out var stationData)
-                || _station.GetLargestGrid((station.Value, stationData)) is not { Valid: true } ourGrid
-                || !TryComp<MapGridComponent>(ourGrid, out var gridComp))
-            {
-                PlayDenySound((uid, component));
-                _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-invalid"), uid, PopupType.MediumCaution);
-                UpdateConsoles((station.Value, data));
-                return;
-            }
 
             if (HasComp<FTLComponent>(ourGrid))
             {
@@ -115,7 +117,7 @@ public sealed partial class SalvageSystem
             }
             // Horizon: the nearby-grid (FTL proximity) check moved to the regular FTL jump (ShuttleConsoleSystem.ConsoleFTL).
         }
-        SpawnMission(missionparams, station.Value, null);
+        SpawnMission(missionparams, station.Value, ourGrid, null);
         #endregion Frontier FTL changes
         // End Frontier
 
@@ -252,9 +254,7 @@ public sealed partial class SalvageSystem
         }
 
         // Frontier: if we have a lingering FTL component, we cannot start a new mission
-        if (!TryComp<StationDataComponent>(station, out var stationData) ||
-                _station.GetLargestGrid((station.Value, stationData)) is not { Valid: true } grid ||
-                HasComp<FTLComponent>(grid))
+        if (HasComp<FTLComponent>(Transform(component.Owner).GridUid))
         {
             state.Cooldown = true; //Hack: disable buttons
         }

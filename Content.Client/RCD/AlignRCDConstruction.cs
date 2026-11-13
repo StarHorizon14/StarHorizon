@@ -14,13 +14,14 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Client.RCD;
 
-public sealed class AlignRCDConstruction : PlacementMode
+public sealed partial class AlignRCDConstruction : PlacementMode
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IMapManager _mapManager = default!;
     private readonly SharedMapSystem _mapSystem;
     private readonly RCDSystem _rcdSystem;
     private readonly SharedTransformSystem _transformSystem;
+    // Horizon
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IStateManager _stateManager = default!;
     private readonly HandsSystem _hands;

@@ -1,10 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Cargo.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Server._NF.Station.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Components;
@@ -28,6 +30,7 @@ namespace Content.Server._NF.Shipyard.Systems;
 
 public sealed partial class ShipyardSystem : SharedShipyardSystem
 {
+    // Horizon
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly DockingSystem _docking = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
@@ -39,6 +42,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Horizon: cash slot
     [Dependency] private readonly StackSystem _stack = default!; // Horizon: cash slot
+    [Dependency] private readonly AtmosphereSystem _atmosphere = default!; // Frontier: custom atmos
 
     public MapId? ShipyardMap { get; private set; }
     private float _shuttleIndex;
@@ -129,7 +133,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// <param name="stationUid">The ID of the station to dock the shuttle to</param>
     /// <param name="shuttlePath">The path to the shuttle file to load. Must be a grid file!</param>
     /// <param name="shuttleEntityUid">The EntityUid of the shuttle that was purchased</param>
-    public bool TryPurchaseShuttle(EntityUid stationUid, ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid, string? priorityTag = null) // Horizon: priorityTag
+    /// <param name="atmos">
+    ///     An atmosphere prototype to fill the shuttle with. Will use the grid-defined atmosphere if <c>null</c>.
+    ///     Ignored unless <see cref="NFCCVars.ShipyardCustomAtmos"/> is <c>true</c>.
+    /// </param>
+    // Horizon: priorityTag добавлен после atmos
+    public bool TryPurchaseShuttle(EntityUid stationUid, ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid, ShuttleAtmospherePrototype? atmos = null, string? priorityTag = null) // Horizon: priorityTag
     {
         if (!TryComp<StationDataComponent>(stationUid, out var stationData)
             || !TryAddShuttle(shuttlePath, out var shuttleGrid)
@@ -148,6 +157,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             QueueDel(shuttleGrid);
             shuttleEntityUid = null;
             return false;
+        }
+
+        if (_configManager.GetCVar(NFCCVars.ShipyardCustomAtmos) && atmos != null)
+        {
+            SetShuttleAtmosphere(shuttleGrid.Value, atmos);
         }
 
         _sawmill.Info($"Shuttle {shuttlePath} was purchased at {ToPrettyString(stationUid)} for {price:f2}");

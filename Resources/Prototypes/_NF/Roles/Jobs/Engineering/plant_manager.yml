@@ -38,6 +38,7 @@
     back:
     - RubberStampPlantManager
     - HandheldSecurityMonitor
+    - DoorRemoteEngineering
 
 - type: chameleonOutfit
   id: PlantManagerChameleonOutfit

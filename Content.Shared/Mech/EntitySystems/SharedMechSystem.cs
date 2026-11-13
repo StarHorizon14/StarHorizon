@@ -35,6 +35,7 @@ namespace Content.Shared.Mech.EntitySystems;
 /// </summary>
 public abstract partial class SharedMechSystem : EntitySystem
 {
+    // Horizon
     [Dependency] private readonly IRobustRandom _random = default!; // Horizon Mech
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;

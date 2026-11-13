@@ -163,6 +163,9 @@ public sealed partial class NFCargoSystem
         toSell = new HashSet<EntityUid>();
         additionalCurrency = new();
 
+        TryComp<WhitelistedMarketModifierComponent>(consoleUid, out var modComp); // Frontier
+
+        // Horizon
         // Horizon: Получаем станцию для применения насыщения рынка
         var owningStation = _station.GetOwningStation(gridUid);
         MarketSaturationComponent? saturationComp = null;
@@ -264,7 +267,23 @@ public sealed partial class NFCargoSystem
                 if (HasComp<IgnoreMarketModifierComponent>(ent))
                     noMultiplierAmount += price;
                 else
+                {
+                    // Check if this item passes the conditions for a special modifier
+                    if (modComp != null &&
+                        _whitelist.IsWhitelistPass(modComp.Whitelist, ent) &&
+                        !_whitelist.IsWhitelistPass(modComp.Blacklist, ent))
+                    {
+                        price *= modComp.Mod;
+                        if (modComp.OverwriteMarketModifiers)
+                        {
+                            noMultiplierAmount += price;
+                            price = 0; // Overwrite adding the price to amount if it's already been added to noMultiplierAmount
+                        }
+                    }
+
                     amount += price;
+                }
+// Horizon
 
                 // Check for any additional currency payouts
                 if (TryComp(ent, out AdditionalPalletCurrencyComponent? currencyComponent))

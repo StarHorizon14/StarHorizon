@@ -203,6 +203,7 @@
     graph: PKASawn
     node: pkasawn
     deconstructionTarget: null
+  # Horizon
   # Horizon start
   - type: UpgradeableGun
     maxUpgradeCount: 2

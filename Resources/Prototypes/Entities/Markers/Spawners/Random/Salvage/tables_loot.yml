@@ -190,6 +190,7 @@
       weight: 0.25 # Frontier
     - id: ScrapGenericMachineAncient # Frontier
       weight: 0.1 # Frontier
+    # Horizon
     # Horizon start
     - id: ClothingBeltCursedKatanaSheathFilled
       weight: 0.005 # Horizon - 5 in 1000

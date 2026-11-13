@@ -1,3 +1,13 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
 - type: vessel
   id: Paladin
   parent: BaseVessel
@@ -8,6 +18,7 @@
   group: Security
   access: Security
   mapchecker_group_override: Security  # Treat this as a security vessel for mapchecker purposes
+  # Horizon
   shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/paladin.yml # Horizon
   guidebookPage: Null
   class:

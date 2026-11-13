@@ -31,7 +31,8 @@
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
         addComponents: &dungeonComponents
         - type: Gravity
           enabled: true
@@ -59,7 +60,8 @@
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
         addComponents: *dungeonComponents
         protos:
         - NFVGRoidSnow
@@ -74,7 +76,8 @@
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
         addComponents: *dungeonComponents
         protos:
         - NFVGRoidCave
@@ -89,7 +92,8 @@
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
         addComponents: *dungeonComponents
         protos:
         - NFVGRoidChromite
@@ -104,7 +108,8 @@
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
         addComponents: *dungeonComponents
         protos:
         - NFVGRoidScrap
@@ -119,7 +124,8 @@
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
+        spawnBiasTarget: 'vgroid'
         addComponents: *dungeonComponents
         protos:
         - NFVGRoidCaveZombie

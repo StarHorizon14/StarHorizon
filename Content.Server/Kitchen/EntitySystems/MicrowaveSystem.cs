@@ -24,11 +24,14 @@ using Content.Shared.Interaction.Events;
 using Robust.Shared.Random;
 using Robust.Shared.Audio;
 using Content.Server.Lightning;
+using Content.Shared.DoAfter; //Frontier
 using Content.Shared.Item;
 using Content.Shared.Kitchen;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Popups;
 using Content.Shared.Power;
+using Content.Shared.Storage; // Frontier
+using Content.Shared.Storage.Components; // Frontier
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -43,14 +46,18 @@ using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Robust.Shared.Utility;
 using Content.Shared._NF.Kitchen.Components; // Frontier
+using Content.Shared._NF.Kitchen;
 using Content.Shared.Construction.Components; // Frontier
+// Horizon
 using Content.Server._Horizon.FoodBoost; // Horizon
 
 namespace Content.Server.Kitchen.EntitySystems
 {
     public sealed partial class MicrowaveSystem : EntitySystem // Frontier: add partial
     {
+        // Horizon
         [Dependency] private readonly BodySystem _bodySystem = default!;
+        [Dependency] private SharedDoAfterSystem _doAfter = default!; // Frontier: dump container in microwave
         [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
         [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
         [Dependency] private readonly PowerReceiverSystem _power = default!;
@@ -117,6 +124,7 @@ namespace Content.Server.Kitchen.EntitySystems
             SubscribeLocalEvent<MicrowaveComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier
 
             SubscribeLocalEvent<MicrowaveComponent, AssemblerStartCookMessage>(TryStartAssembly); // Frontier
+            SubscribeLocalEvent<MicrowaveComponent, MicrowaveInsertDoAfterEvent>(OnDumpContainerInMicrowave);// Frontier: dump container in microwave
         }
 
         private void OnCookStart(Entity<ActiveMicrowaveComponent> ent, ref ComponentStartup args)
@@ -418,6 +426,19 @@ namespace Content.Server.Kitchen.EntitySystems
 
             if (TryComp<ItemComponent>(args.Used, out var item))
             {
+                //Frontier: bag dump to microwave start
+                //if the inserted item is a storage holder, attempt to dump the container in the microwave instead of inserting it as-is
+                if (TryComp<StorageComponent>(args.Used, out var storage) && storage.StoredItems.Count > 0)
+                {
+                    //Create a doAfter, time is based on the amount of items to process
+                    _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, System.TimeSpan.FromSeconds(0.5 * storage.StoredItems.Count), new MicrowaveInsertDoAfterEvent(), ent, target: ent, used: args.Used)
+                    {
+                        BreakOnMove = true
+                    });
+                    return; //do not attempt to insert the container itself
+                }
+                //End Frontier
+
                 // check if size of an item you're trying to put in is too big
                 if (_item.GetSizePrototype(item.Size) > _item.GetSizePrototype(ent.Comp.MaxItemSize))
                 {
@@ -441,6 +462,31 @@ namespace Content.Server.Kitchen.EntitySystems
             args.Handled = true;
             _handsSystem.TryDropIntoContainer(args.User, args.Used, ent.Comp.Storage);
             UpdateUserInterfaceState(ent, ent.Comp);
+        }
+
+        //Frontier: dump container in microwave
+        protected void OnDumpContainerInMicrowave(Entity<MicrowaveComponent> ent, ref MicrowaveInsertDoAfterEvent args)
+        {
+            if (TryComp<StorageComponent>(args.Used, out var storage))
+            {
+                foreach (var (bagObject, location) in storage.StoredItems)
+                    if (TryComp<ItemComponent>(bagObject, out var bagItem))// check if thing you're trying to put in isn't an item
+                    {
+                        if (_item.GetSizePrototype(bagItem.Size) > _item.GetSizePrototype(ent.Comp.MaxItemSize)// item from bag too big to insert
+                        || TryComp<StorageComponent>(bagObject, out var nestedStorage)) //item is a nested container
+                        {
+                            continue; //skip item to big or nested container, attempt next item
+                        }
+                        else
+                        {
+                            if (ent.Comp.Storage.Count >= ent.Comp.Capacity // container is full
+                            || !_container.Insert(bagObject, ent.Comp.Storage)) //fail to insert
+                            {
+                                break; //stop attempting to insert further items from the same container
+                            }
+                        }
+                    }
+            }
         }
 
         private void OnBreak(Entity<MicrowaveComponent> ent, ref BreakageEventArgs args)
@@ -718,7 +764,7 @@ namespace Content.Server.Kitchen.EntitySystems
             }
 
             //cook only as many of those portions as time allows
-            return (recipe, (int) Math.Min(portions, component.CurrentCookTimerTime / recipe.CookTime));
+            return (recipe, (int)Math.Min(portions, component.CurrentCookTimerTime / recipe.CookTime));
         }
 
         public override void Update(float frameTime)

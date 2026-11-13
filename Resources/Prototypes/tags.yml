@@ -561,6 +561,9 @@
   id: Enzyme
 
 - type: Tag
+  id: ExCable
+
+- type: Tag
   id: ExplosivePassable
 
 - type: Tag
@@ -641,6 +644,9 @@
 # Used for warps
 - type: Tag
   id: GhostOnlyWarp
+
+- type: Tag
+  id: GenderPin
 
 - type: Tag
   id: GlassAirlock
@@ -1362,6 +1368,9 @@
 
 - type: Tag
   id: StationAi
+
+- type: Tag
+  id: StationAiCoreElectronics
 
 - type: Tag
   id: StationMapElectronics

@@ -734,6 +734,7 @@
           conditions:
           - !type:ReagentThreshold
             min: 5
+
         # Frontier end
   pricePerUnit: 50 # Horizon
 
@@ -875,12 +876,19 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:TotalDamage
-          max: 50
+        - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
+          mobstate: Alive
         damage:
           groups:
             Brute: -1
+            Burn: -1
+      - !type:HealthChange
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Alive
+        damage:
           types:
+            # Horizon
             Poison: -0.5 ##Should be about what it was when it healed the toxin group
             Heat: -0.33
             Shock: -0.33
@@ -916,6 +924,11 @@
     Medicine:
       effects:
       - !type:EvenHealthChange
+        # Frontier start
+        conditions:
+        - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
+          mobstate: Alive
+        # Frontier end
         damage:
           Burn: -2
           Toxin: -2
@@ -1141,7 +1154,7 @@
         damage:
           types:
             Slash: -2 # 8 per u
-            Heat: 0.2 # 0.8 per u
+            #Heat: 0.2 # 0.8 per u # Frontier
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1167,7 +1180,7 @@
         damage:
           types:
             Piercing: -2.5 # 10 per u
-            Radiation: 0.05 # 0.2 per u, 3 for 15u
+            #Radiation: 0.05 # 0.2 per u, 3 for 15u # Frontier
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -1219,7 +1232,9 @@
       - !type:SatiateThirst
         factor: 3
       - !type:HealthChange
+        # Frontier start
         conditions:
+        # Horizon
         - !type:TotalDamage
           max: 50
         - !type:OrganType
@@ -1237,9 +1252,11 @@
       - !type:SatiateThirst
         factor: 3
       - !type:HealthChange
+        # Frontier start
         conditions:
-        - !type:TotalDamage
-          max: 50
+        - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
+          mobstate: Alive
+        # Frontier end
         damage:
           types:
             Blunt: -0.2

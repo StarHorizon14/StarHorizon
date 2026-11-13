@@ -17,6 +17,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+// Horizon
 using Content.Shared._Horizon.Language;
 using Content.Server._Horizon.Language;
 
@@ -25,8 +26,9 @@ namespace Content.Server.Radio.EntitySystems;
 /// <summary>
 ///     This system handles intrinsic radios and the general process of converting radio messages into chat messages.
 /// </summary>
-public sealed class RadioSystem : EntitySystem
+public sealed partial class RadioSystem : EntitySystem
 {
+    // Horizon
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
@@ -53,6 +55,7 @@ public sealed class RadioSystem : EntitySystem
     {
         if (args.Channel != null && component.Channels.Contains(args.Channel.ID))
         {
+            // Horizon
             SendRadioMessage(uid, args.Message, args.Channel, uid, languageOverride: args.Language);
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
@@ -67,18 +70,21 @@ public sealed class RadioSystem : EntitySystem
         if (TryComp<RadioMicrophoneComponent>(source, out var radioMicrophone))
             return radioMicrophone.Frequency;
 
+// Horizon
         return channel.Frequency;
     }
 
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
         if (TryComp(uid, out ActorComponent? actor))
+            // Horizon
             _netMan.ServerSendMessage(_language.CanUnderstand(uid, args.Language) ? args.ChatMsg : args.UnknownLanguageChatMsg, actor.PlayerSession.Channel);   // Horizon languages
     }
 
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
+    // Horizon
     public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true, LanguagePrototype? languageOverride = null) // Frontier: added frequency; Horizon - add language
     {
         SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, frequency: frequency, escapeMarkup: escapeMarkup, languageOverride: languageOverride); // Frontier: added frequency; Horizon - add language
@@ -89,12 +95,14 @@ public sealed class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
+    // Horizon
     public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true, LanguagePrototype? languageOverride = null) // Nuclear-14: add frequency; Horizon - add language
     {
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
             return;
 
+        // Horizon
         // Horizon: always release the original text, even on early returns or when the message was transformed.
         // Otherwise it stays in the set and that exact message can never be sent over radio again.
         var originalMessage = message;
@@ -272,6 +280,7 @@ public sealed class RadioSystem : EntitySystem
         }
     }
 
+    // Horizon
     /// <inheritdoc cref="TelecomServerComponent"/>
     private bool HasActiveServer(MapId mapId, string channelId)
     {

@@ -18,6 +18,7 @@
         Glass: 230
       chemicalComposition:
         Silicon: 20
+    # Horizon
     - type: BindToStation # Horizon
       enabled: false # Horizon - should be draggable between stations
     - type: Circuitboard

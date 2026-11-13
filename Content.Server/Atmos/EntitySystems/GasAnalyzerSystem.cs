@@ -1,13 +1,11 @@
 using System.Linq;
 using Content.Server.Atmos.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
 using Content.Shared._NF.Atmos.Components; // Horizon
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
 using Content.Shared.NodeContainer;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
@@ -16,13 +14,13 @@ using static Content.Shared.Atmos.Components.GasAnalyzerComponent;
 namespace Content.Server.Atmos.EntitySystems;
 
 [UsedImplicitly]
-public sealed class GasAnalyzerSystem : EntitySystem
+public sealed partial class GasAnalyzerSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly AtmosphereSystem _atmo = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private AtmosphereSystem _atmo = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
 
     /// <summary>
     /// Minimum moles of a gas to be sent to the client.
@@ -164,16 +162,8 @@ public sealed class GasAnalyzerSystem : EntitySystem
 
         // Fetch the environmental atmosphere around the scanner. This must be the first entry
         var tileMixture = _atmo.GetContainingMixture(uid, true);
-        if (tileMixture != null)
-        {
-            gasMixList.Add(new GasMixEntry(Loc.GetString("gas-analyzer-window-environment-tab-label"), tileMixture.Volume, tileMixture.Pressure, tileMixture.Temperature,
-                GenerateGasEntryArray(tileMixture)));
-        }
-        else
-        {
-            // No gases were found
-            gasMixList.Add(new GasMixEntry(Loc.GetString("gas-analyzer-window-environment-tab-label"), 0f, 0f, 0f));
-        }
+        var tileMixtureName = Loc.GetString("gas-analyzer-window-environment-tab-label");
+        gasMixList.Add(GenerateGasMixEntry(tileMixtureName, tileMixture));
 
         var deviceFlipped = false;
         if (component.Target != null)
@@ -197,7 +187,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
                 {
                     if (mixes.Item2 != null)
                     {
-                        gasMixList.Add(new GasMixEntry(mixes.Item1, mixes.Item2.Volume, mixes.Item2.Pressure, mixes.Item2.Temperature, GenerateGasEntryArray(mixes.Item2)));
+                        gasMixList.Add(GenerateGasMixEntry(mixes.Item1, mixes.Item2));
                         validTarget = true;
                     }
                 }
@@ -220,7 +210,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
                             var pipeAir = pipeNode.Air.Clone();
                             pipeAir.Multiply(pipeNode.Volume / pipeNode.Air.Volume);
                             pipeAir.Volume = pipeNode.Volume;
-                            gasMixList.Add(new GasMixEntry(pair.Key, pipeAir.Volume, pipeAir.Pressure, pipeAir.Temperature, GenerateGasEntryArray(pipeAir)));
+                            gasMixList.Add(GenerateGasMixEntry(pair.Key, pipeAir));
                             validTarget = true;
                         }
                     }
@@ -245,6 +235,23 @@ public sealed class GasAnalyzerSystem : EntitySystem
                 GetNetEntity(component.Target) ?? NetEntity.Invalid,
                 deviceFlipped));
         return true;
+    }
+
+    /// <summary>
+    /// Generates a GasMixEntry for a given GasMixture
+    /// </summary>
+    public GasMixEntry GenerateGasMixEntry(string name, GasMixture? mixture)
+    {
+        if (mixture == null)
+            return new GasMixEntry(name, 0, 0, 0);
+
+        return new GasMixEntry(
+            name,
+            mixture.Volume,
+            mixture.Pressure,
+            mixture.Temperature,
+            GenerateGasEntryArray(mixture)
+        );
     }
 
     /// <summary>

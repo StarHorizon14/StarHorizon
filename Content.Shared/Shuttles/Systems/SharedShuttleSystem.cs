@@ -20,6 +20,7 @@ namespace Content.Shared.Shuttles.Systems;
 
 public abstract partial class SharedShuttleSystem : EntitySystem
 {
+    // Horizon
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] protected readonly FixtureSystem Fixtures = default!;
@@ -285,6 +286,7 @@ public abstract partial class SharedShuttleSystem : EntitySystem
         // This is the already adjusted position
         var targetPosition = mapCoordinates.Position;
 
+        // Horizon
         var range = GetFTLRange(shuttleUid);
 
         // Check range even if it's cross-map.

@@ -161,7 +161,7 @@ public sealed class DerelictYardSystem : EntitySystem
             return;
         }
 
-        if (!_shipyard.TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttle, DerelictDockTag))
+        if (!_shipyard.TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttle, priorityTag: DerelictDockTag))
         {
             _bank.TrySectorDeposit(SectorBankAccount.Frontier, vessel.Price, LedgerEntryType.StationDepositOther);
             _popup.PopupEntity(Loc.GetString("derelict-yard-failed"), ent, args.Actor);

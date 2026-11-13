@@ -25,6 +25,7 @@ namespace Content.Shared._NF.Power.EntitySystems;
 /// </summary>
 public sealed partial class PowerTransmissionSystem : EntitySystem
 {
+    // Horizon
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;

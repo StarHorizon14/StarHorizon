@@ -65,6 +65,11 @@ public sealed partial class PinpointerComponent : Component
     [DataField("canRetarget"), ViewVariables(VVAccess.ReadWrite)]
     public bool CanRetarget;
 
+    // Frontier: Frontier-specific fields
+    // If greater than 0, the pinpointer stops pointing to its target when it's further away than this many meters.
+    [DataField]
+    public float MaxRange = -1;
+
     /// <summary>
     ///     Goob edit: if true, this pinpointer will automatically track ANY nearest entity of a specified type.
     ///     Doesn't work with retargeting, it will always left only one entity in target list.

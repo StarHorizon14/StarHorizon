@@ -21,6 +21,18 @@
     {
       "name": "inhand-right",
       "directions": 4
+    },
+    {
+      "name": "equipped-EYES-arachnid",
+      "directions": 4
+    },
+    {
+      "name": "equipped-EYES-moth",
+      "directions": 4
+    },
+    {
+      "name": "equipped-EYES-vox",
+      "directions": 4
     }
   ]
 }

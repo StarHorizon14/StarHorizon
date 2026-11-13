@@ -55,10 +55,10 @@ public sealed class AdvancedRCDMenuBoundUserInterface : BoundUserInterface
         _menu.OpenOverMouseScreenPosition();
     }
 
-    private IEnumerable<RadialMenuOption> BuildMenuOptions(AdvancedRCDComponent advRcd)
+    private IEnumerable<RadialMenuOptionBase> BuildMenuOptions(AdvancedRCDComponent advRcd)
     {
-        Dictionary<string, List<RadialMenuActionOption>> buttonsByCategory = new();
-        List<RadialMenuActionOption> topLevelActions = new();
+        Dictionary<string, List<RadialMenuActionOptionBase>> buttonsByCategory = new();
+        List<RadialMenuActionOptionBase> topLevelActions = new();
 
         // Add base RCD prototypes
         foreach (var protoId in advRcd.AvailablePrototypes)
@@ -70,7 +70,7 @@ public sealed class AdvancedRCDMenuBoundUserInterface : BoundUserInterface
             {
                 var topLevelActionOption = new RadialMenuActionOption<AdvancedRCDPrototype>(HandleRcdProtoClick, prototype)
                 {
-                    Sprite = prototype.Sprite,
+                    IconSpecifier = RadialMenuIconSpecifier.With(prototype.Sprite),
                     ToolTip = GetRcdTooltip(prototype)
                 };
                 topLevelActions.Add(topLevelActionOption);
@@ -82,13 +82,13 @@ public sealed class AdvancedRCDMenuBoundUserInterface : BoundUserInterface
 
             if (!buttonsByCategory.TryGetValue(prototype.Category, out var list))
             {
-                list = new List<RadialMenuActionOption>();
+                list = new List<RadialMenuActionOptionBase>();
                 buttonsByCategory.Add(prototype.Category, list);
             }
 
             var actionOption = new RadialMenuActionOption<AdvancedRCDPrototype>(HandleRcdProtoClick, prototype)
             {
-                Sprite = prototype.Sprite,
+                IconSpecifier = RadialMenuIconSpecifier.With(prototype.Sprite),
                 ToolTip = GetRcdTooltip(prototype)
             };
             list.Add(actionOption);
@@ -97,7 +97,7 @@ public sealed class AdvancedRCDMenuBoundUserInterface : BoundUserInterface
         // Add inserted entity prototypes from machine boards
         if (advRcd.InsertedEntities.Count > 0)
         {
-            var allBoardButtons = new List<RadialMenuActionOption>();
+            var allBoardButtons = new List<RadialMenuActionOptionBase>();
 
             foreach (var (entityProtoId, boardData) in advRcd.InsertedEntities)
             {
@@ -109,7 +109,7 @@ public sealed class AdvancedRCDMenuBoundUserInterface : BoundUserInterface
 
                 var actionOption = new RadialMenuActionOption<string>(HandleEntityProtoClick, entityProtoId.Id)
                 {
-                    Sprite = new SpriteSpecifier.EntityPrototype(entityProtoId.Id),
+                    IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.EntityPrototype(entityProtoId.Id)),
                     ToolTip = GetEntityTooltip(entProto, boardData.MaterialCost)
                 };
                 allBoardButtons.Add(actionOption);
@@ -136,7 +136,7 @@ public sealed class AdvancedRCDMenuBoundUserInterface : BoundUserInterface
             }
         }
 
-        var models = new RadialMenuOption[buttonsByCategory.Count + topLevelActions.Count];
+        var models = new RadialMenuOptionBase[buttonsByCategory.Count + topLevelActions.Count];
         var i = 0;
         foreach (var (key, list) in buttonsByCategory)
         {
@@ -144,7 +144,7 @@ public sealed class AdvancedRCDMenuBoundUserInterface : BoundUserInterface
             {
                 models[i] = new RadialMenuNestedLayerOption(list)
                 {
-                    Sprite = groupInfo.Sprite,
+                    IconSpecifier = RadialMenuIconSpecifier.With(groupInfo.Sprite),
                     ToolTip = Loc.GetString(groupInfo.Tooltip)
                 };
             }
@@ -154,7 +154,7 @@ public sealed class AdvancedRCDMenuBoundUserInterface : BoundUserInterface
                 var pageNum = key.Substring(BoardsCategory.Length);
                 models[i] = new RadialMenuNestedLayerOption(list)
                 {
-                    Sprite = boardsInfo.Sprite,
+                    IconSpecifier = RadialMenuIconSpecifier.With(boardsInfo.Sprite),
                     ToolTip = $"{Loc.GetString(boardsInfo.Tooltip)} {pageNum}"
                 };
             }

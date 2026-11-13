@@ -16,7 +16,7 @@
     spawned:
     - id: MaterialCloth1
       amount: 1
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:

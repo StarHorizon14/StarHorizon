@@ -150,6 +150,7 @@ public enum VesselEngine : byte
     Supermatter,
     Tesla,
     Singularity,
+    Thermoelectric,
     Solar,
     RTG,
     APU,

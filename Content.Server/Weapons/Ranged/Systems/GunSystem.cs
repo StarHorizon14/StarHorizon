@@ -33,6 +33,7 @@ namespace Content.Server.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem : SharedGunSystem
 {
+    // Horizon
     [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
@@ -233,7 +234,17 @@ public sealed partial class GunSystem : SharedGunSystem
                             _stamina.TakeStaminaDamage(hitEntity, hitscan.StaminaDamage, source: user);
 
                         var dmg = hitscan.Damage;
-
+                        // Frontier - raise event on shooter too, when available
+                        if (user is { } shooter)
+                        {
+                            if (dmg != null)
+                            {
+                                var ev = new ApplyClothingDamageModifierEvent(shooter, DamageContext.Hitscan, dmg);
+                                RaiseLocalEvent(shooter, ref ev);
+                                dmg = ev.Damage;
+                            }
+                        }
+                        // Frontier end
                         var hitName = ToPrettyString(hitEntity);
                         if (dmg != null)
                             dmg = Damageable.TryChangeDamage(hitEntity, dmg * Damageable.UniversalHitscanDamageModifier, origin: user);

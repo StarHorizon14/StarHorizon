@@ -115,6 +115,7 @@
     sprite: Structures/Power/Generation/Tesla/coil.rsi
     state: grounding_rod
   product: CrateEngineeringTeslaGroundingRod
+  # Horizon
   cost: 5000 # Horizon
   category: cargoproduct-category-name-engineering
   group: market

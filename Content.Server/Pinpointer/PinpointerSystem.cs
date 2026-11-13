@@ -12,8 +12,9 @@ using Content.Shared.Whitelist;
 
 namespace Content.Server.Pinpointer;
 
-public sealed class PinpointerSystem : SharedPinpointerSystem
+public sealed partial class PinpointerSystem : SharedPinpointerSystem
 {
+    // Horizon
     [Dependency] private readonly AlertsSystem _alerts = default!; // WD EDIT
     [Dependency] private readonly PinpointerTargetLinkSystem _pinpointerTargetLinks = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -277,6 +278,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         if (!pinpointer.IsActive)
             return;
 
+        // Horizon
         var target = GetNearestTarget((uid, pinpointer)); // Goob edit
         if (target == null || !Exists(target.Value))
         {
@@ -286,7 +288,18 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         }
 
         var dirVec = CalculateDirection(uid, target.Value);
-        var oldDist = pinpointer.DistanceToTarget;
+        var oldDist = pinpointer.DistanceToTarget; // Frontier: moved up
+
+        // Frontier: if the pinpointer has a max range and the distance to target is greater than the max range, set the distance to unknown
+        if (pinpointer.MaxRange > 0 && dirVec != null && dirVec.Value.LengthSquared() > pinpointer.MaxRange * pinpointer.MaxRange)
+        {
+            SetDistance(uid, Distance.Unknown, pinpointer);
+            TrySetArrowAngle(uid, Angle.Zero, pinpointer);
+            if (oldDist != pinpointer.DistanceToTarget) // Frontier
+                UpdateAppearance(uid, pinpointer); // Frontier
+            return;
+        }
+
         if (dirVec != null)
         {
             var angle = dirVec.Value.ToWorldAngle();
@@ -297,6 +310,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         else
         {
             SetDistance(uid, Distance.Unknown, pinpointer);
+            TrySetArrowAngle(uid, Angle.Zero, pinpointer); // Frontier
         }
         if (oldDist != pinpointer.DistanceToTarget)
             UpdateAppearance(uid, pinpointer);
@@ -364,6 +378,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         if (!Resolve(uid, ref pinpointer))
             return;
 
+        // Horizon
         var previousTargets = new HashSet<EntityUid>(pinpointer.Targets);
         pinpointer.Targets.Clear();
 

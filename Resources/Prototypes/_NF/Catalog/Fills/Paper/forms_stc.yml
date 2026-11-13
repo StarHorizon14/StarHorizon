@@ -3,12 +3,13 @@
 #          https://discord.com/channels/1123826877245694004/1298995036435910698/1298995036435910698
 #          https://discord.com/channels/1123826877245694004/1182366744266932224/1182366744266932224
 #          https://docs.google.com/document/d/1jDX9numj-VHKBJ2FiiEo1GIlHESffOUIHIIXaqhEnls/edit?pli=1#heading=h.ru93r8n0fb7m
+#          https://discord.com/channels/1123826877245694004/1555969490280251472/1555969490280251472
 
 # Filled Folder
 - type: entity
   id: BoxFolderStc
   parent: BoxFolderBase
-  name: stc folder
+  name: STC form folder
   description: A folder filled with station traffic control paperwork templates.
   suffix: Forms
   components:
@@ -24,6 +25,7 @@
     - id: PaperWrittenStcFormProsecutionRequest
     - id: PaperWrittenStcFormTrafficLog
     - id: PaperWrittenStcFormWellnessCheck
+    - id: PaperWrittenStcTrafficWarning
     - id: Paper
       prob: 0.5
     - id: Paper
@@ -33,8 +35,8 @@
     - id: Paper
       prob: 0.5
   - type: StaticPrice
-    price: 100
-    vendPrice: 500
+    price: 50
+    vendPrice: 50
 
 # forms
 - type: entity # Based on form made by DmitriTheDemon (Dustin)
@@ -98,6 +100,7 @@
 
         [head=2]Название судна:[/head]
 
+        # Horizon
         [head=2]Позывной судна:[/head]
 
         [head=2]Нарушение:[/head] Неосторожное управление
@@ -105,6 +108,7 @@
         [head=2]Сумма штрафа:[/head] 2,500 кредитов
 
 
+        # Horizon
         [bold]Примечания:[/bold]
 
         Не объявил о вылете
@@ -201,4 +205,5 @@
 
 
 
+        # Horizon
         [color=#AAAAAA]Форма недействительна без подписи и печати Командования Фронтира (Шерифа или Представителя Станции)[/color]

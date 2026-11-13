@@ -14,13 +14,13 @@
       "name": "equipped-MASK",
       "directions": 4
     },
-	{
+    {
       "name": "equipped-MASK-vox",
       "directions": 4
     },
     {
-       "name": "equipped-MASK-vulpkanin",
-       "directions": 4
+      "name": "equipped-MASK-vulpkanin",
+      "directions": 4
     },
     {
       "name": "up-equipped-MASK-vox",
@@ -40,6 +40,14 @@
     },
     {
       "name": "equipped-MASK-cat",
+      "directions": 4
+    },
+    {
+      "name": "up-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "equipped-MASK-hamster",
       "directions": 4
     }
   ]

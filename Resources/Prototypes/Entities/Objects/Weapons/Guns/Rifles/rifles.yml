@@ -250,6 +250,7 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
+  # Horizon
   # Horizon Attachments start
   - type: AttachableHolder
     slots:
@@ -279,7 +280,6 @@
   # Horizon Attachments end
 
 - type: entity
-  categories: [ HideSpawnMenu ] # Frontier
   name: Estoc DMR
   parent: [BaseWeaponRifle, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponRifleEstoc

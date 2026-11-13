@@ -340,6 +340,19 @@
 
 - type: entity
   parent: [WeaponCaseLong, RareWeaponCase]
+  id: WeaponCaseLongRomulanExpedition
+  suffix: Dungeon, Romulan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponRifleAssaultRomulanExpedition
+      amount: 1
+    - id: NFMagazineRifle20
+      amount: 2
+
+- type: entity
+  parent: [WeaponCaseLong, RareWeaponCase]
   id: WeaponCaseLongSm
   suffix: Dungeon, Soland-Moss AR
   categories: [ HideSpawnMenu ]
@@ -403,6 +416,19 @@
     - id: NFMagazineRifle20
       amount: 2
 
+- type: entity
+  parent: [WeaponCaseLong, RareWeaponCase]
+  id: WeaponCaseLongEstoc
+  suffix: Dungeon, Estoc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponRifleAssaultEstocExpedition
+      amount: 1
+    - id: NFMagazineRifle20
+      amount: 2
+
 #region Energy
 - type: entity
   parent: [WeaponCaseShort, RareWeaponCase]
@@ -427,6 +453,17 @@
       amount: 1
     - id: PowerCellHigh
       amount: 2
+
+- type: entity
+  parent: [WeaponCaseLong, RareWeaponCase]
+  id: WeaponCaseLongLaserRepeaterExpedition
+  suffix: Dungeon, Laser Repeater
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponEnergyRifleAssaultLaserRepeater
+      amount: 1
 
 - type: entity
   parent: [WeaponCaseLong, RareWeaponCase]
@@ -503,6 +540,17 @@
   - type: StorageFill
     contents:
     - id: NFWeaponEnergyRifleTemperatureExpedition
+      amount: 1
+      
+- type: entity
+  parent: [WeaponCaseLong, RareWeaponCase]
+  id: WeaponCaseLongEnergyShotgunExpedition
+  suffix: Dungeon, Energy Shotgun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponEnergyShotgunEnergyShotgunExpedition
       amount: 1
 
 #region Sniper
@@ -768,12 +816,12 @@
   id: WeaponCaseShortAmmoBoxBigRubber20
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - WeaponCaseShortAmmo
-  - StorageFillAmmoBoxPractice20
-  id: WeaponCaseShortAmmoBoxPractice20
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - WeaponCaseShortAmmo
+#   - StorageFillAmmoBoxPractice20
+#   id: WeaponCaseShortAmmoBoxPractice20
+#   categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
@@ -811,12 +859,12 @@
   id: WeaponCaseShortAmmoBoxRubber30
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - WeaponCaseShortAmmo
-  - StorageFillAmmoBoxPractice30
-  id: WeaponCaseShortAmmoBoxPractice30
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - WeaponCaseShortAmmo
+#   - StorageFillAmmoBoxPractice30
+#   id: WeaponCaseShortAmmoBoxPractice30
+#   categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
@@ -847,12 +895,12 @@
   id: WeaponCaseShortAmmoBoxRubber35
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - WeaponCaseShortAmmo
-  - StorageFillAmmoBoxPractice35
-  id: WeaponCaseShortAmmoBoxPractice35
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - WeaponCaseShortAmmo
+#   - StorageFillAmmoBoxPractice35
+#   id: WeaponCaseShortAmmoBoxPractice35
+#   categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
@@ -873,6 +921,13 @@
   - WeaponCaseShortAmmo
   - StorageFillAmmoBoxEmp35
   id: WeaponCaseShortAmmoBoxEmp35
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent:
+  - WeaponCaseShortAmmo
+  - StorageFillAmmoBoxBigLethal35
+  id: WeaponCaseShortAmmoBoxBigLethal35
   categories: [ HideSpawnMenu ]
 
 ## .25 caseless
@@ -904,12 +959,12 @@
   id: WeaponCaseShortAmmoBoxBigRubber25
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - WeaponCaseShortAmmo
-  - StorageFillAmmoBoxPractice25
-  id: WeaponCaseShortAmmoBoxPractice25
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - WeaponCaseShortAmmo
+#   - StorageFillAmmoBoxPractice25
+#   id: WeaponCaseShortAmmoBoxPractice25
+#   categories: [ HideSpawnMenu ]
 
 ## Shotgun
 - type: entity
@@ -926,12 +981,12 @@
   id: WeaponCaseShortAmmoBoxRubberShotgun
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - WeaponCaseShortAmmo
-  - StorageFillAmmoBoxPracticeShotgun
-  id: WeaponCaseShortAmmoBoxPracticeShotgun
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - WeaponCaseShortAmmo
+#   - StorageFillAmmoBoxPracticeShotgun
+#   id: WeaponCaseShortAmmoBoxPracticeShotgun
+#   categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
@@ -961,6 +1016,13 @@
   id: WeaponCaseShortAmmoBoxFlareShotgun
   categories: [ HideSpawnMenu ]
 
+- type: entity
+  parent:
+  - WeaponCaseShortAmmo
+  - StorageFillAmmoBoxBigLethalShotgun
+  id: WeaponCaseShortAmmoBoxBigLethalShotgun
+  categories: [ HideSpawnMenu ]
+
 ## .45 ammo
 - type: entity
   parent:
@@ -976,12 +1038,12 @@
   id: WeaponCaseShortAmmoBoxRubber45
   categories: [ HideSpawnMenu ]
 
-- type: entity
-  parent:
-  - WeaponCaseShortAmmo
-  - StorageFillAmmoBoxPractice45
-  id: WeaponCaseShortAmmoBoxPractice45
-  categories: [ HideSpawnMenu ]
+# - type: entity
+#   parent:
+#   - WeaponCaseShortAmmo
+#   - StorageFillAmmoBoxPractice45
+#   id: WeaponCaseShortAmmoBoxPractice45
+#   categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
@@ -995,4 +1057,11 @@
   - WeaponCaseShortAmmo
   - StorageFillAmmoBoxUranium45
   id: WeaponCaseShortAmmoBoxUranium45
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent:
+  - WeaponCaseShortAmmo
+  - StorageFillAmmoBoxBigLethal45
+  id: WeaponCaseShortAmmoBoxBigLethal45
   categories: [ HideSpawnMenu ]
