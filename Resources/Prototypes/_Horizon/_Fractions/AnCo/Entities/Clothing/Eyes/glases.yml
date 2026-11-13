@@ -17,7 +17,7 @@
     coverage: EYES
   - type: StaticPrice
     price: 500
-    vendPrise: 2500
+    vendPrice: 2500
 
 - type: entity
   parent: [ClothingEyesBase, BaseAnCoContraband]
@@ -38,7 +38,7 @@
     coverage: EYES
   - type: StaticPrice
     price: 500
-    vendPrise: 2500
+    vendPrice: 2500
 
 - type: entity
   name: прибор ночного видения АнКо

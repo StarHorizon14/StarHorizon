@@ -22,7 +22,7 @@
     damageCoefficient: 0.7
   - type: StaticPrice
     price: 500
-    vendPrise: 1000
+    vendPrice: 1000
 
 - type: entity
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseMaxAnCoContraband, ClothingOuterCoatHoSTrench]
@@ -72,4 +72,4 @@
     damageCoefficient: 0.5
   - type: StaticPrice
     price: 500
-    vendPrise: 1000
+    vendPrice: 1000

@@ -17,7 +17,7 @@
     damageCoefficient: 0.1
   - type: StaticPrice
     price: 500
-    vendPrise: 2500
+    vendPrice: 2500
 
 - type: entity
   parent: [ClothingBackpack, BaseAnCoContraband]
@@ -38,7 +38,7 @@
     damageCoefficient: 0.1
   - type: StaticPrice
     price: 500
-    vendPrise: 5000
+    vendPrice: 5000
 
 - type: entity
   parent: [ClothingBackpack, BaseAnCoContraband]

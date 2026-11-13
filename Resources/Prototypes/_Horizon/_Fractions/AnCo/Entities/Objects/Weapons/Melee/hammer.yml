@@ -33,4 +33,4 @@
     distance: 5
   - type: StaticPrice
     price: 500
-    vendPrise: 8000
+    vendPrice: 8000

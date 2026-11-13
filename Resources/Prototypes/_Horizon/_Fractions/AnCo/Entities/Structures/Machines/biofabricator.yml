@@ -71,7 +71,7 @@
           Idle: { state: pod_0 }
   - type: StaticPrice
     price: 500
-    vendPrise: 5000
+    vendPrice: 5000
 
 - type: entity
   parent: BaseMachine

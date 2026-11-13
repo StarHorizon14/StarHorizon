@@ -111,6 +111,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         Classes.OnItemSelected += OnClassItemSelected;
         Engines.OnItemSelected += OnEngineItemSelected;
         SortBy.OnItemSelected += OnSortByItemSelected;
+        Atmosphere.OnItemSelected += OnAtmosphereItemSelected; // Frontier (#4209)
         SellShipButton.OnPressed += (args) => { OnSellShip?.Invoke(args); };
         UnassignDeedButton.OnPressed += (args) => { OnUnassignDeed?.Invoke(args); };
         RenameButton.OnPressed += OnRenameButtonPressed;
@@ -204,6 +205,54 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         SetClassText(args.Id);
         PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
     }
+
+    // Frontier (#4209): выбор атмосферы шаттла
+    private void OnAtmosphereItemSelected(OptionButton.ItemSelectedEventArgs args)
+    {
+        Atmosphere.SelectId(args.Id);
+    }
+
+    /// <summary>
+    ///     Атмосфера, выбранная в списке, или null - атмосфера по умолчанию (из карты шаттла).
+    /// </summary>
+    public ProtoId<ShuttleAtmospherePrototype>? SelectedAtmosphere =>
+        Atmosphere.SelectedMetadata is AtmosButtonMetadata metadata ? new ProtoId<ShuttleAtmospherePrototype>(metadata.Proto.ID) : (ProtoId<ShuttleAtmospherePrototype>?) null;
+
+    /// <summary>
+    ///     Сбрасывает выбор на атмосферу по умолчанию (после покупки).
+    /// </summary>
+    public void ResetAtmosphere()
+    {
+        Atmosphere.Select(0);
+    }
+
+    /// <summary>
+    ///     Adds available shuttle atmospheres to the selection box, or hides the box if no custom atmospheres are available.
+    /// </summary>
+    public void PopulateAtmos(List<ProtoId<ShuttleAtmospherePrototype>>? atmospheres)
+    {
+        var previous = SelectedAtmosphere;
+        CustomAtmosContainer.Visible = atmospheres != null;
+        Atmosphere.Clear();
+        if (atmospheres == null)
+            return;
+
+        Atmosphere.AddItem(Loc.GetString("shipyard-console-menu-atmos-default"));
+
+        var i = 1;
+        foreach (var protoId in atmospheres)
+        {
+            if (!_protoManager.Resolve(protoId, out var atmosphere))
+                continue;
+            Atmosphere.AddItem(atmosphere.Name, i);
+            Atmosphere.SetItemMetadata(i, new AtmosButtonMetadata(atmosphere));
+            if (previous != null && previous.Value.Id == protoId.Id)
+                Atmosphere.Select(i);
+            i++;
+        }
+    }
+
+    private record AtmosButtonMetadata(ShuttleAtmospherePrototype Proto);
 
     private void OnEngineItemSelected(OptionButton.ItemSelectedEventArgs args)
     {

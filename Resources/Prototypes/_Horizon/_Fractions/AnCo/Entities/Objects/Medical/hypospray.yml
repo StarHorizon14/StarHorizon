@@ -180,7 +180,7 @@
     injectOnly: true
   - type: StaticPrice
     price: 500
-    vendPrise: 500
+    vendPrice: 500
   - type: Tag
     tags: []
 
@@ -214,7 +214,7 @@
     injectOnly: true
   - type: StaticPrice
     price: 500
-    vendPrise: 500
+    vendPrice: 500
   - type: Tag
     tags: []
 

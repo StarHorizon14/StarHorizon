@@ -58,7 +58,7 @@
     maxAngle: -20
   - type: StaticPrice
     price: 500
-    vendPrise: 15000
+    vendPrice: 15000
 
 - type: entity
   name: Жароплюй
@@ -180,7 +180,7 @@
     maxAngle: -20
   - type: StaticPrice
     price: 500
-    vendPrise: 30000
+    vendPrice: 30000
 
 - type: entity
   name: Шторм
@@ -244,7 +244,7 @@
     maxAngle: -20
   - type: StaticPrice
     price: 500
-    vendPrise: 30000
+    vendPrice: 30000
 
 - type: entity
   name: Омикрон
