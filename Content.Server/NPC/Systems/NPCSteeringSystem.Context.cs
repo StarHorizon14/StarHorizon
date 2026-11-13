@@ -12,6 +12,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using ClimbingComponent = Content.Shared.Climbing.Components.ClimbingComponent;
+// Horizon-Start
+using Robust.Shared.Random;
+// Horizon-End
 
 namespace Content.Server.NPC.Systems;
 
@@ -700,7 +703,9 @@ public sealed partial class NPCSteeringSystem
                 // Welp
                 if (obstacleDirection == Vector2.Zero)
                 {
-                    obstacleDirection = _random.NextAngle().ToVec();
+                    // Horizon-Start
+                    obstacleDirection = System.Random.Shared.NextAngle().ToVec();
+                    // Horizon-End
                 }
             }
             else

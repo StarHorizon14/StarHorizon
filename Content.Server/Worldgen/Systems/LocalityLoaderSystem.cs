@@ -22,8 +22,20 @@ public sealed partial class LocalityLoaderSystem : BaseWorldSystem
     // End Frontier: space debris destruction
 
     /// <inheritdoc />
+    // Horizon-Start
+    private const float HorizonUpdateInterval = 0.2f;
+    private float _horizonAccumulator;
+    // Horizon-End
+
     public override void Update(float frameTime)
     {
+        // Horizon-Start
+        _horizonAccumulator += frameTime;
+        if (_horizonAccumulator < HorizonUpdateInterval)
+            return;
+        _horizonAccumulator = 0f;
+        // Horizon-End
+
         var e = EntityQueryEnumerator<LocalityLoaderComponent, TransformComponent>();
         var loadedQuery = GetEntityQuery<LoadedChunkComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();

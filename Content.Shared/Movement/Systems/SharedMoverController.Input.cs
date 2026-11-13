@@ -210,8 +210,10 @@ namespace Content.Shared.Movement.Systems
             // 2. If we go from grid -> grid then (after lerp time) snap to nearest cardinal (probably imperceptible)
             // 3. If we go from map -> grid then (after lerp time) snap to nearest cardinal
 
-            if (mover.RelativeEntity.Equals(relative))
+            // Horizon-Start
+            if (mover.RelativeEntity == relative)
                 return false;
+            // Horizon-End
 
             // Okay need to get our old relative rotation with respect to our new relative rotation
             // e.g. if we were right side up on our current grid need to get what that is on our new grid.

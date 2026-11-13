@@ -82,8 +82,20 @@ public sealed partial class WorldControllerSystem : EntitySystem
     }
 
     /// <inheritdoc />
+    // Horizon-Start
+    private const float HorizonUpdateInterval = 0.2f;
+    private float _horizonAccumulator;
+    // Horizon-End
+
     public override void Update(float frameTime)
     {
+        // Horizon-Start
+        _horizonAccumulator += frameTime;
+        if (_horizonAccumulator < HorizonUpdateInterval)
+            return;
+        _horizonAccumulator = 0f;
+        // Horizon-End
+
         //there was a to-do here about every frame alloc but it turns out it's a nothing burger here.
         var chunksToLoad = new Dictionary<EntityUid, Dictionary<Vector2i, List<EntityUid>>>();
 
