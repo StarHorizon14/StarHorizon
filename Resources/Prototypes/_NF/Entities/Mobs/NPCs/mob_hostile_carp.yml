@@ -24,6 +24,7 @@
     speedModifierThresholds:
       19: 0.7
       26: 0.5
+  # Horizon
   - type: StaticPrice
     price: 2400
 
@@ -48,6 +49,7 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: mouth
       shader: unshaded
+  # Horizon
   # Horizon
   - type: CanBeTakenUnderControl
   - type: StaticPrice
@@ -75,6 +77,7 @@
       state: mouth
       shader: unshaded
   # Horizon
+  # Horizon
   - type: CanBeTakenUnderControl
   - type: StaticPrice
     price: 2000
@@ -92,6 +95,7 @@
     speedModifierThresholds:
       28: 0.7
       38: 0.5
+  # Horizon
   # Horizon
   - type: CanBeTakenUnderControl
   - type: StaticPrice
@@ -119,8 +123,12 @@
     price: 1800
   - type: Butcherable
     spawned:
-    - id: SpawnDungeonLootNpcCarpsWyvern
+    - id: SpawnDungeonLootNpcCarpsShark
       amount: 1
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+    - Dragon
 
 #region Snakes
 - type: entity
@@ -148,7 +156,7 @@
           radius: 0.35
         density: 25
         mask:
-        - SmallMobMask
+        - MobMask
         layer:
         - SmallMobLayer # Allows small snakes to pass under the tables
   - type: Sprite
@@ -310,7 +318,7 @@
         Base: dead
         BaseUnshaded: dead-unshaded
   - type: BasicEntityAmmoProvider
-    proto: BulletFireBolt
+    proto: NFBulletMagicFireBoltMob
     capacity: 1
     count: 1
   # Horizon

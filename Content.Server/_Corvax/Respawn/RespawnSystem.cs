@@ -19,8 +19,9 @@ using Content.Shared._NF.Roles.Components; // Frontier
 
 namespace Content.Server._Corvax.Respawn;
 
-public sealed class RespawnSystem : EntitySystem
+public sealed partial class RespawnSystem : EntitySystem
 {
+    // Horizon
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -74,6 +75,11 @@ public sealed class RespawnSystem : EntitySystem
 
         if (!_player.TryGetSessionByEntity(entity, out var session))
             return;
+
+        // Frontier: Don't penalize user for dying as a ghost role
+        if (HasComp<GhostRoleComponent>(entity))
+            return;
+        // End Frontier
 
         var respawnData = GetRespawnData(session.UserId);
         SetRespawnTime(session.UserId, ref respawnData, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));

@@ -9,10 +9,10 @@ namespace Content.Server.Worldgen.Systems;
 /// <summary>
 ///     This handles loading in objects based on distance from player, using some metadata on chunks.
 /// </summary>
-public sealed class LocalityLoaderSystem : BaseWorldSystem
+public sealed partial class LocalityLoaderSystem : BaseWorldSystem
 {
-    [Dependency] private readonly TransformSystem _xformSys = default!;
-    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!; // Frontier
+    [Dependency] private TransformSystem _xformSys = default!;
+    [Dependency] private LinkedLifecycleGridSystem _linkedLifecycleGrid = default!; // Frontier
 
     // Frontier: space debris destruction
     public override void Initialize()
@@ -22,8 +22,20 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     // End Frontier: space debris destruction
 
     /// <inheritdoc />
+    // Horizon-Start
+    private const float HorizonUpdateInterval = 0.2f;
+    private float _horizonAccumulator;
+    // Horizon-End
+
     public override void Update(float frameTime)
     {
+        // Horizon-Start
+        _horizonAccumulator += frameTime;
+        if (_horizonAccumulator < HorizonUpdateInterval)
+            return;
+        _horizonAccumulator = 0f;
+        // Horizon-End
+
         var e = EntityQueryEnumerator<LocalityLoaderComponent, TransformComponent>();
         var loadedQuery = GetEntityQuery<LoadedChunkComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();

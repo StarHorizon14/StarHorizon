@@ -79,6 +79,7 @@
   - type: Sprite
     state: respiron-1
 
+# Horizon
 # - type: entity
 #   parent: GasCanister
 #   id: HeliumCanister

@@ -260,7 +260,7 @@
   - type: Appearance
   - type: StaticPrice
     price: 1000
-    vendPrise: 2500
+    vendPrice: 2500
 
 - type: entity
   parent: BaseSeedAnCo
@@ -354,7 +354,7 @@
   - type: Pullable
   - type: StaticPrice
     price: 50
-    vendPrise: 500
+    vendPrice: 500
   - type: ContainerContainer
     containers:
       stash: !type:ContainerSlot {}

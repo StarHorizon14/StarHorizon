@@ -131,9 +131,10 @@
   name: P.A.C.M.A.N. portable generator # Frontier: no -type
   description: |-
     A flexible backup generator for powering a variety of equipment.
-    Runs off solid plasma sheets and is rated for up to 25 kW.
+    Runs off solid plasma sheets and is rated for up to 30 kW.
   parent: PortableGeneratorSwitchableBase
   id: PortableGeneratorPacman
+  # Horizon
   suffix: Plasma, 20 kW #Fronter 20>15
   components:
     - type: Sprite
@@ -158,6 +159,7 @@
       board: PortableGeneratorPacmanMachineCircuitboard
     - type: FuelGenerator
       minTargetPower: 1000
+      # Horizon
       maxTargetPower: 25000
       targetPower: 15000
       optimalPower: 15000
@@ -169,6 +171,7 @@
       fuelMaterial: FuelGradeUnstablePlasma # Horizon # Frontier: Plasma<FuelGradePlasma
       multiplier: 0.01
     - type: MaterialStorage
+      # Horizon
       storageLimit: 3000
       materialWhiteList: [RawPlasma, Skrungle, Plasma, FuelGradePlasma, FuelGradeUnstablePlasma, FuelGradePurePlasma] # Horizon # Frontier: add FuelGradePlasma, RawPlasma, Skrungle
     - type: PortableGenerator
@@ -255,6 +258,7 @@
       fuelMaterial: FuelGradeUnstableUranium # Horizon # Frontier: Uranium<FuelGradeUranium
       multiplier: 0.01
     - type: MaterialStorage
+      # Horizon
       storageLimit: 3000
       materialWhiteList: [RawUranium, Skrungle, Uranium, FuelGradeUranium, FuelGradeUnstableUranium, FuelGradePureUranium] # Horizon # Frontier: add FuelGradeUranium, RawUranium, Skrungle
     - type: PortableGenerator
@@ -296,13 +300,13 @@
 
 - type: entity
   name: J.R.P.A.C.M.A.N. portable generator # Frontier: no -type
-  description: |-
+  description: |- # This is a small generator that can be used to power a single room. It runs on welding fuel and has a maximum output of 15 kW. It is suitable for ages 3 and up. < A small generator capable of powering individual rooms, in case of emergencies. Runs off welding fuel or ethanol and is rated for up to 15 kW. Rated ages 3 and up.
     A small generator capable of powering individual rooms, in case of emergencies.
-    Runs off welding fuel and is rated for up to 15 kW.
+    Runs off welding fuel or ethanol and is rated for up to 15 kW.
     Rated ages 3 and up.
   parent: PortableGeneratorBase
   id: PortableGeneratorJrPacman
-  suffix: Welding Fuel, 5 kW
+  suffix: Welding Fuel, 6 kW # Frontier: 5 kW<6 kW
   components:
     - type: AmbientSound
       range: 4
@@ -341,9 +345,9 @@
     - type: Machine
       board: PortableGeneratorJrPacmanMachineCircuitboard
     - type: FuelGenerator
-      targetPower: 6000 # Frontier - 2000<6000
+      targetPower: 6000 # Frontier: 2000<6000
       minTargetPower: 1000
-      optimalPower: 6000 # Frontier - 2000<6000
+      optimalPower: 6000 # Frontier: 2000<6000
       maxTargetPower: 15000
       # 30~ minutes at full tank.
       optimalBurnRate: 0.11111111
@@ -353,10 +357,11 @@
       solution: tank
       reagents:
         WeldingFuel: 1
+        Ethanol: 0.8 # Frontier: Addition of Ethanol to the fuel list. 0.8 is the burn rate multiplier for ethanol.
     - type: SolutionContainerManager
       solutions:
         tank:
-          maxVol: 200 # Frontier - 50<200
+          maxVol: 1000 # Frontier: 50<200<1000
     - type: RefillableSolution
       solution: tank
     - type: PortableGenerator
@@ -413,4 +418,4 @@
             - !type:SolutionExplosionBehavior
               solution: tank
     - type: BindToStation # Frontier
-      enabled: false # Frontier - should be draggable between stations
+      enabled: false # Frontier: should be draggable between stations

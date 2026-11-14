@@ -11,7 +11,7 @@
   - type: Item
   - type: StaticPrice
     price: 300
-    vendPrise: 500
+    vendPrice: 500
   - type: Tag
     tags:
       - CryptominerDisk

@@ -96,7 +96,7 @@ public sealed class SharedTailLashSystem : EntitySystem
 
         _interaction.DoContactInteraction(uid, uid);
 
-        var hitEntities = results.Where(result => _interaction.InRangeUnobstructed(uid, result, range: range)).ToList();
+        var hitEntities = results.Where(result => _interaction.InRangeUnobstructed(uid, result, range: range)).ToHashSet(); // Horizon: MeleeHitEvent принимает HashSet
         _sawmill.Debug($"OnTailLashActionEvent: found {hitEntities.Count} hit entities");
         var hitEvent = new MeleeHitEvent(hitEntities, uid, uid, component.TailDamage, null);
         RaiseLocalEvent(uid, hitEvent);

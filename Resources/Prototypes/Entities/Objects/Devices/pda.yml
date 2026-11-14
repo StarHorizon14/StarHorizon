@@ -139,8 +139,6 @@
   - type: StaticPrice # Frontier
     price: 20 # Frontier: The card need to cost less then the PDA that comes with a card and a pen in it.
   - type: CargoSellBlacklist # Frontier: Liltenhead moment
-  - type: PirateBountyItem
-    id: Pda
   - type: ToggleableGhostRole # Frontier: Literally only for the wipe verb and nothing else.
     wipeVerbText: pda-wipe-device-verb-text # Frontier
     wipeVerbPopup: pda-wiped-device # Frontier
@@ -520,6 +518,7 @@
     - NotekeeperCartridge
     - NanoTaskCartridge
     - NewsReaderCartridge
+    - BountyContractsCartridge # Frontier
     - AstroNavCartridge
 
 - type: entity
@@ -990,6 +989,7 @@
       - MedTekCartridge
       - WantedListCartridge
       - LogProbeCartridge
+      - BountyContractsCartridge # Frontier
       - AstroNavCartridge
 
 - type: entity
@@ -1137,6 +1137,8 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - NewsReaderCartridge # Frontier
+      - BountyContractsCartridge # Frontier
       - AstroNavCartridge # Frontier
 
 - type: entity
@@ -1489,6 +1491,8 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-pirate
+  - type: PdaBorderColor # Frontier
+    borderColor: "#333333" # Frontier
   - type: Icon
     state: pda-pirate
   # Horiozn
@@ -1525,6 +1529,7 @@
       - MedTekCartridge
 
 - type: entity
+  # Horizon
   parent: [BasePDA, SelectableLock]
   id: ChameleonPDA
   name: contractor PDA # Frontier passenger<contractor

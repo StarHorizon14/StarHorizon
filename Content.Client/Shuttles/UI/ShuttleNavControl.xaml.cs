@@ -30,6 +30,7 @@ namespace Content.Client.Shuttles.UI;
 [Virtual]
 public partial class ShuttleNavControl : BaseShuttleControl // Mono
 {
+    // Horizon
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     protected override bool AllowResize => true; // Lua
@@ -451,6 +452,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             return;
         }
 
+        // Horizon
         var coordEnt = _coordinates.Value.EntityId;
         var coordEntRot = _transform.GetWorldRotation(coordEnt);
         if (_angleFollow && EntManager.TryGetComponent<TransformComponent>(coordEnt, out _))
@@ -554,7 +556,9 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
         }
 
-        var viewBounds = new Box2Rotated(new Box2(-WorldRange, -WorldRange, WorldRange, WorldRange).Translated(mapPos.Position), rot, mapPos.Position);
+        // Frontier: Use ScaledWorldRange for culling. WorldRange doesnt account for the viewport resizing
+        var viewBounds = new Box2Rotated(new Box2(-ScaledWorldRange.X, -ScaledWorldRange.Y, ScaledWorldRange.X, ScaledWorldRange.Y).Translated(mapPos.Position), rot, mapPos.Position);
+        // End Frontier
         var viewAABB = viewBounds.CalcBoundingBox();
 
         _grids.Clear();
@@ -641,6 +645,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var isOutsideRadarCircle = uiDistance > Math.Abs(uiX) && uiDistance > Math.Abs(uiY);
             if (isOutsideRadarCircle)
             {
+                // Horizon
                 // 0.95f for offsetting the icons slightly away from edge of radar so it doesnt clip.
                 uiX = uiXCentre * uiXOffset / uiDistance * 0.95f;
                 uiY = uiYCentre * uiYOffset / uiDistance * 0.95f;
@@ -943,6 +948,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     continue;
                 }
 
+                // Horizon
                 //var color = Color.ToSrgb(Color.Magenta); // Frontier
                 var color = Color.ToSrgb(state.HighlightedRadarColor); // Frontier
                 GetDockColorOverride(ref color, state); // Lua
@@ -992,6 +998,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     // Mono
     protected EntityCoordinates GetMouseEntityCoordinates(Vector2 relativePosition)
     {
+        // Horizon
         if (_coordinates is not { } cord || _rotation is not { } rot)
             return EntityCoordinates.Invalid;
 

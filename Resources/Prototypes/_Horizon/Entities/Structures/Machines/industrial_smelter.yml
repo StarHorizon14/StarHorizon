@@ -226,3 +226,8 @@
       components:
       - FloorTile
       - MobState
+      - ShipCutter
+      - SeamWelder
+      - BreachCharge
+      - GridDragGun
+      - TetherGun

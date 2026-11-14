@@ -5,6 +5,8 @@ using Content.Shared._Lua.Shipyard.Events;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard.Events;
+using Content.Shared._NF.Shipyard.Prototypes; // Frontier (#4209)
+using Robust.Shared.Prototypes; // Frontier (#4209)
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using Robust.Client.UserInterface;
 
@@ -50,7 +52,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         }
     }
 
-    private void Populate(List<string> availablePrototypes, List<string> unavailablePrototypes, bool freeListings, bool validId)
+    private void Populate(List<string> availablePrototypes, List<string> unavailablePrototypes, bool freeListings, bool validId, List<ProtoId<ShuttleAtmospherePrototype>>? atmospheres)
     {
         if (_menu == null)
             return;
@@ -59,6 +61,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         _menu.PopulateCategories(availablePrototypes, unavailablePrototypes);
         _menu.PopulateClasses(availablePrototypes, unavailablePrototypes);
         _menu.PopulateEngines(availablePrototypes, unavailablePrototypes);
+        _menu.PopulateAtmos(atmospheres); // Frontier (#4209)
         _menu.PopulateSortByTypes();
     }
 
@@ -79,7 +82,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
 
         Balance = baseState.Balance;
         ShipSellValue = baseState.ShipSellValue;
-        Populate(baseState.ShipyardPrototypes.available, baseState.ShipyardPrototypes.unavailable, baseState.FreeListings, baseState.IsTargetIdPresent);
+        Populate(baseState.ShipyardPrototypes.available, baseState.ShipyardPrototypes.unavailable, baseState.FreeListings, baseState.IsTargetIdPresent, baseState.AtmosPrototypes);
         _menu?.UpdateState(baseState);
         if (dockState != null) _menu?.UpdateDockSelect(dockState.DockNavState, dockState.SelectedDockPort);
         else _menu?.UpdateDockSelect(null, null);
@@ -93,7 +96,9 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         }
 
         var vesselId = row.Vessel.ID;
-        SendMessage(new ShipyardConsolePurchaseMessage(vesselId));
+        // Frontier (#4209): выбранная атмосфера шаттла, null - по умолчанию
+        SendMessage(new ShipyardConsolePurchaseMessage(vesselId, _menu?.SelectedAtmosphere));
+        _menu?.ResetAtmosphere();
     }
     private void SellShip(ButtonEventArgs args)
     {

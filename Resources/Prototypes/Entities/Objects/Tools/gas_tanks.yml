@@ -270,3 +270,4 @@
     slots:
     - Belt
     - suitStorage
+  - type: NFFuel #Frontier

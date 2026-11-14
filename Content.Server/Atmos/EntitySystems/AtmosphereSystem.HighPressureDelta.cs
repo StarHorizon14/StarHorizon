@@ -150,7 +150,12 @@ namespace Content.Server.Atmos.EntitySystems
                     tile.PressureSpecificTarget = curTile;
             }
 
-            _entSet.Clear();
+            // Horizon-Start
+            if (_entSet.Capacity > 256)
+                _entSet = new HashSet<EntityUid>();
+            else
+                _entSet.Clear();
+            // Horizon-End
             _lookup.GetLocalEntitiesIntersecting(tile.GridIndex, tile.GridIndices, _entSet, 0f);
 
             foreach (var entity in _entSet)

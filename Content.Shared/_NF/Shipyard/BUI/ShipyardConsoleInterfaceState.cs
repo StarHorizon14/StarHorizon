@@ -1,3 +1,5 @@
+using Content.Shared._NF.Shipyard.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.Shipyard.BUI;
@@ -11,6 +13,7 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
     public int ShipSellValue;
     public readonly bool IsTargetIdPresent;
     public readonly byte UiKey;
+    public readonly List<ProtoId<ShuttleAtmospherePrototype>>? AtmosPrototypes;
 
     public readonly (List<string> available, List<string> unavailable) ShipyardPrototypes;
     public readonly string ShipyardName;
@@ -32,6 +35,7 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         string shipyardName,
         bool freeListings,
         float sellRate,
+        // Horizon
         bool cashOnly = false,
         bool hasCashSlot = false,
         int cashSlotBalance = 0,
@@ -47,6 +51,7 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         ShipyardName = shipyardName;
         FreeListings = freeListings;
         SellRate = sellRate;
+        // Horizon
         CashOnly = cashOnly;
         HasCashSlot = hasCashSlot;
         CashSlotBalance = cashSlotBalance;

@@ -31,7 +31,7 @@
   - type: AnCoSabre
   - type: StaticPrice
     price: 500
-    vendPrise: 6000
+    vendPrice: 6000
   - type: Tag
     tags:
       - AnCoSheathable

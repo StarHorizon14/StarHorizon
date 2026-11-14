@@ -221,6 +221,7 @@
     accent: OwOAccent
   - type: StaticPrice
     price: 15000
+  - type: CatWearable # Frontier
 
 # Horizon start
 
@@ -339,6 +340,7 @@
     solution: drink
     delay: 0.5
     forceFeedDelay: 1.5
+    utensil: Spoon
   - type: FlavorProfile
     flavors:
       - water
