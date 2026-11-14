@@ -182,7 +182,7 @@ namespace Content.Server.Atmos.EntitySystems
                 var contentDef = (ContentTileDefinition) _tileDefinitionManager[gTile.TypeId];
                 mapAtmosphere = contentDef.MapAtmosphere;
                 // Horizon: a tile next to a cut leaks to space (shipbreaking, see GridCutsComponent)
-                if (!mapAtmosphere && TryComp<GridCutsComponent>(ent.Owner, out var gridCuts) && gridCuts.Cuts.ContainsKey(idx))
+                if (!mapAtmosphere && TryComp<GridCutsComponent>(ent.Owner, out var gridCuts) && gridCuts.Leaks(idx))
                     mapAtmosphere = true;
                 // End Horizon
                 tile.ThermalConductivity = contentDef.ThermalConductivity;

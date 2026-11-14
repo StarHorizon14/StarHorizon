@@ -1,7 +1,10 @@
 using System.Numerics;
 using Content.Shared._Horizon.GravityGun;
 using Content.Shared.Hands.EntitySystems;
+using Content.Server.PowerCell;
+using Content.Shared.Item.ItemToggle;
 using Content.Shared.Maps;
+using Content.Shared.PowerCell;
 using Content.Shared.Weapons.Misc;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -18,6 +21,8 @@ public sealed class GridDragGunSystem : SharedGridDragGunSystem
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly ItemToggleSystem _toggle = default!;
+    [Dependency] private readonly PowerCellSystem _cell = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -28,6 +33,7 @@ public sealed class GridDragGunSystem : SharedGridDragGunSystem
         SubscribeNetworkEvent<GridDragRequestPosition>(OnRequestDrag);
         SubscribeNetworkEvent<GridDragVelocityRequest>(OnRequestVelocity);
         SubscribeLocalEvent<GridDraggedComponent, ComponentShutdown>(OnDraggedShutdown);
+        SubscribeLocalEvent<GridDragGunComponent, PowerCellSlotEmptyEvent>(OnGunEmpty);
     }
 
     private bool CanDrag(EntitySessionEventArgs args, EntityUid grid, Vector2 point, out Entity<GridDragGunComponent> gun)
@@ -38,6 +44,10 @@ public sealed class GridDragGunSystem : SharedGridDragGunSystem
             !_hands.TryGetActiveItem(user, out var item) ||
             !TryComp<GridDragGunComponent>(item, out var comp) ||
             !HasComp<PhysicsComponent>(grid) || !CanGrab(user, comp, grid))
+            return false;
+
+        // Like the tether of the gun: no charge, no hold.
+        if (!_cell.HasDrawCharge(item.Value, user: user))
             return false;
 
         var reach = comp.MaxDistance;
@@ -153,6 +163,9 @@ public sealed class GridDragGunSystem : SharedGridDragGunSystem
             dragged.Gun = gun.Owner;
             Dirty(grid, dragged);
 
+            // Switched on while a grid is held, so the cell is drawn from.
+            _toggle.TryActivate(gun.Owner);
+
             _audio.Stop(dragged.Stream);
             if (TryComp<TetherGunComponent>(gun.Owner, out var force))
                 dragged.Stream = _audio.PlayPvs(force.Sound, gun.Owner)?.Entity;
@@ -164,6 +177,25 @@ public sealed class GridDragGunSystem : SharedGridDragGunSystem
     private void OnDraggedShutdown(Entity<GridDraggedComponent> ent, ref ComponentShutdown args)
     {
         _audio.Stop(ent.Comp.Stream);
+
+        if (Exists(ent.Comp.Gun))
+            _toggle.TryDeactivate(ent.Comp.Gun);
+    }
+
+    private void OnGunEmpty(Entity<GridDragGunComponent> ent, ref PowerCellSlotEmptyEvent args)
+    {
+        var dragged = EntityQueryEnumerator<GridDraggedComponent>();
+        var held = new List<EntityUid>();
+        while (dragged.MoveNext(out var grid, out var comp))
+        {
+            if (comp.Gun == ent.Owner)
+                held.Add(grid);
+        }
+
+        foreach (var grid in held)
+        {
+            LetGo(grid);
+        }
     }
 
     private bool IsDragged(EntityUid grid) => HasComp<GridDraggedComponent>(grid);

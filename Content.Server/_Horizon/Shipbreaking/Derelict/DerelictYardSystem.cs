@@ -1,18 +1,18 @@
 using Content.Server.Cargo.Systems;
 using Content.Server.Radio.EntitySystems;
 using System.Linq;
+using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Server.StationEvents.Events;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Shipyard.Systems;
 using Content.Shared._Horizon.Shipbreaking.Derelict;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared.GameTicking;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
-using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -29,6 +29,7 @@ public sealed class DerelictYardSystem : EntitySystem
     private static readonly TimeSpan LastWarning = TimeSpan.FromMinutes(1);
 
     [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly LinkedLifecycleGridSystem _lifecycle = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -36,9 +37,8 @@ public sealed class DerelictYardSystem : EntitySystem
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly DockingSystem _docking = default!;
     [Dependency] private readonly ShipyardSystem _shipyard = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefs = default!;
@@ -168,11 +168,16 @@ public sealed class DerelictYardSystem : EntitySystem
             return;
         }
 
-        EnsureComp<DerelictLeaseComponent>(shuttle.Value).Group = shuttle.Value;
-        EnsureComp<ShuttleUtilizationComponent>(shuttle.Value);
-        MarkOrigin(shuttle.Value);
+        // It is brought to the nearest port and then let go of every port, so it is easier to take apart.
+        _docking.UndockDocks(shuttle.Value);
 
-        _jobs[shuttle.Value] = new Job
+        // The job is kept under an entity of its own, so it can be closed out even when every grid of the wreck is gone.
+        var group = Spawn(null, MapCoordinates.Nullspace);
+        EnsureComp<DerelictLeaseComponent>(shuttle.Value).Group = group;
+        EnsureComp<ShuttleUtilizationComponent>(shuttle.Value);
+        MarkOrigin(shuttle.Value, group);
+
+        _jobs[group] = new Job
         {
             Station = station,
             Name = Loc.GetString(vessel.Name),
@@ -203,7 +208,7 @@ public sealed class DerelictYardSystem : EntitySystem
         }
     }
 
-    private void MarkOrigin(EntityUid shuttle)
+    private void MarkOrigin(EntityUid shuttle, EntityUid group)
     {
         if (!TryComp<MapGridComponent>(shuttle, out var grid))
             return;
@@ -215,7 +220,7 @@ public sealed class DerelictYardSystem : EntitySystem
         foreach (var uid in found)
         {
             if (uid != shuttle)
-                EnsureComp<DerelictScrapOriginComponent>(uid).Group = shuttle;
+                EnsureComp<DerelictScrapOriginComponent>(uid).Group = group;
         }
     }
 
@@ -322,28 +327,13 @@ public sealed class DerelictYardSystem : EntitySystem
                 grids.Add(uid);
         }
 
-        var mobs = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
-        var rescued = new List<EntityUid>();
-        while (mobs.MoveNext(out var mob, out _, out var xform))
-        {
-            if (xform.GridUid is { } grid && grids.Contains(grid))
-                rescued.Add(mob);
-        }
-
-        foreach (var mob in rescued)
-        {
-            if (_container.TryGetContainingContainer((mob, null, null), out var container))
-                _container.Remove(mob, container, force: true);
-
-            var xform = Transform(mob);
-            if (xform.MapUid is { } map)
-                _transform.SetParent(mob, xform, map);
-        }
-
+        // The standard way to delete a grid with people on it: they are taken off first, so they are not deleted with it.
         foreach (var grid in grids)
         {
-            QueueDel(grid);
+            _lifecycle.UnparentPlayersFromGrid(grid, true);
         }
+
+        Del(group);
     }
 
     private void Settle(Job job)

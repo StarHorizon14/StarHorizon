@@ -1,5 +1,8 @@
 using System.Linq;
+using Content.Server.Atmos.EntitySystems;
+using Content.Server.Atmos.Components;
 using Content.Server.PowerCell;
+using Content.Server.Shuttles.Systems;
 using Content.Shared._Horizon.Shipbreaking;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
@@ -21,6 +24,8 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly GridCutsSystem _cuts = default!;
     [Dependency] private readonly PowerCellSystem _cell = default!;
+    [Dependency] private readonly AirtightSystem _airtight = default!;
+    [Dependency] private readonly DockingSystem _docking = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -73,7 +78,11 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
 
     private void OnAfterInteract(Entity<ShipCutterComponent> ent, ref AfterInteractEvent args)
     {
-        if (args.Handled || !args.CanReach || ent.Comp.Mode != ShipToolMode.Cut)
+        if (args.Handled || ent.Comp.Mode != ShipToolMode.Cut)
+            return;
+
+        // The tool reaches further than a hand: a click within its range counts, whatever the size of the user.
+        if (!args.CanReach && !TransformSystem.InRange(Transform(args.User).Coordinates, args.ClickLocation, ent.Comp.Range))
             return;
 
         var pick = Pick(TransformSystem.ToMapCoordinates(args.ClickLocation), ent.Comp);
@@ -109,6 +118,7 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
             BreakOnDamage = true,
             BreakOnMove = true,
             NeedHand = true,
+            DistanceThreshold = ent.Comp.Range,
         };
 
         if (_doAfter.TryStartDoAfter(doAfter))
@@ -165,12 +175,55 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
             return;
         }
 
-        if (args.Cut.IsWall)
-            CutWall(ent.Comp, entity, args.Cut.Edge);
-        else
-            CutSeam(entity, args.Cut.Tile, args.Cut.Edge);
+        ApplyCut(ent.Comp, args.Cut, entity);
 
         _audio.PlayPvs(ent.Comp.DoneSound, ent);
+    }
+
+    /// <summary>
+    /// One cut separates everything at that edge: the seam between the floor tiles and the wall edge held by walls on
+    /// both sides of it, whichever of the two was aimed at. Otherwise the same edge would have to be cut twice, and which
+    /// of them a click picks would be a matter of where exactly the cursor is.
+    /// </summary>
+    public void ApplyCut(ShipCutterComponent cutter, ShipCutterTarget cut, EntityUid entity)
+    {
+        if (cut.IsWall)
+        {
+            // The edge before the wall is let go: where it comes loose (None) there is no seam to speak of.
+            var seam = TryGetWallTile(entity, out var gridUid, out var grid, out var tile) && cut.Edge != CutEdges.None &&
+                       CanCut(gridUid, grid, tile, cut.Edge)
+                ? (Grid: gridUid, Tile: tile)
+                : ((EntityUid Grid, Vector2i Tile)?) null;
+
+            CutWall(cutter, entity, cut.Edge);
+
+            if (seam is { } found)
+                CutSeam(found.Grid, found.Tile, cut.Edge);
+
+            return;
+        }
+
+        if (!TryComp<MapGridComponent>(entity, out var seamGrid))
+            return;
+
+        // The walls first: the grid may split when the seam is cut, and that moves them.
+        var other = cut.Tile + cut.Edge.Offset();
+        CutWallsAtEdge(cutter, entity, seamGrid, cut.Tile, cut.Edge);
+        CutWallsAtEdge(cutter, entity, seamGrid, other, cut.Edge.Opposite());
+
+        CutSeam(entity, cut.Tile, cut.Edge);
+    }
+
+    private void CutWallsAtEdge(ShipCutterComponent cutter, EntityUid gridUid, MapGridComponent grid, Vector2i tile, CutEdges edge)
+    {
+        foreach (var wall in MapSystem.GetAnchoredEntities((gridUid, grid), tile).ToList())
+        {
+            if (!Whitelist.IsWhitelistPass(cutter.WallWhitelist, wall) ||
+                !WallHeldEdges(cutter, gridUid, grid, tile, wall).HasFlag(edge))
+                continue;
+
+            CutWall(cutter, wall, edge);
+        }
     }
 
     private bool TryGetWallTile(EntityUid wall, out EntityUid gridUid, out MapGridComponent grid, out Vector2i tile)
@@ -195,6 +248,10 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
         {
             EnsureComp<WallCutsComponent>(wall).Cuts |= edge;
             Dirty(wall, Comp<WallCutsComponent>(wall));
+            OpenToVacuum(wall);
+
+            // A cut in a wall lets the air out: the tile leaks to space like a cut seam of the floor.
+            _cuts.AddCut(gridUid, tile, edge);
 
             foreach (var other in MapSystem.GetAnchoredEntities((gridUid, grid), tile + edge.Offset()).ToList())
             {
@@ -204,12 +261,48 @@ public sealed partial class ShipCutterSystem : SharedShipCutterSystem
                 var otherCuts = EnsureComp<WallCutsComponent>(other);
                 otherCuts.Cuts |= edge.Opposite();
                 Dirty(other, otherCuts);
+                OpenToVacuum(other);
             }
 
             return;
         }
 
         CutLoose(wall);
+    }
+
+    /// <summary>
+    /// Welds the walls at an edge shut: the cut edge of both is gone, and a wall with no cut edge left holds air again.
+    /// </summary>
+    public void SealWallsAtEdge(EntityUid gridUid, MapGridComponent grid, Vector2i tile, CutEdges edge)
+    {
+        SealWalls(gridUid, grid, tile, edge);
+        SealWalls(gridUid, grid, tile + edge.Offset(), edge.Opposite());
+    }
+
+    private void SealWalls(EntityUid gridUid, MapGridComponent grid, Vector2i tile, CutEdges edge)
+    {
+        foreach (var wall in MapSystem.GetAnchoredEntities((gridUid, grid), tile).ToList())
+        {
+            if (!TryComp<WallCutsComponent>(wall, out var cuts) || !cuts.Cuts.HasFlag(edge))
+                continue;
+
+            cuts.Cuts &= ~edge;
+            if (cuts.Cuts != CutEdges.None)
+            {
+                Dirty(wall, cuts);
+                continue;
+            }
+
+            RemComp<WallCutsComponent>(wall);
+            if (TryComp<AirtightComponent>(wall, out var airtight))
+                _airtight.SetAirblocked((wall, airtight), true);
+        }
+    }
+
+    private void OpenToVacuum(EntityUid wall)
+    {
+        if (TryComp<AirtightComponent>(wall, out var airtight))
+            _airtight.SetAirblocked((wall, airtight), false);
     }
 
     private void CutLoose(EntityUid wall)

@@ -19,6 +19,7 @@ public sealed partial class GridWeldingSystem
         HashSet<Vector2i> originalAFootprint,
         List<TileRef> originalBTiles,
         Dictionary<Vector2i, CutEdges>? originalBCuts,
+        Dictionary<Vector2i, CutEdges>? originalBSealed,
         Vector2i offset,
         Angle rotation,
         Vector2i tileA,
@@ -40,7 +41,8 @@ public sealed partial class GridWeldingSystem
                 if (transformed == weldedTransformedB && neighbor == tileA)
                     continue;
 
-                _cuts.AddCut(gridAUid, transformed, CutEdgesExtensions.FromOffset(dir));
+                // The seam between the two welded parts is a gap, but the air does not escape through it.
+                _cuts.AddCut(gridAUid, transformed, CutEdgesExtensions.FromOffset(dir), sealedSeam: true);
             }
         }
 
@@ -52,11 +54,12 @@ public sealed partial class GridWeldingSystem
         {
             var transformed = SharedGridWeldingSystem.TransformTile(tile, half, offset, rotation);
             var rotated = edges.Rotate(quarterTurns);
+            var rotatedSealed = (originalBSealed?.GetValueOrDefault(tile) ?? CutEdges.None).Rotate(quarterTurns);
 
             foreach (var edge in CutEdgesExtensions.All)
             {
                 if (rotated.HasFlag(edge))
-                    _cuts.AddCut(gridAUid, transformed, edge);
+                    _cuts.AddCut(gridAUid, transformed, edge, rotatedSealed.HasFlag(edge));
             }
         }
     }
