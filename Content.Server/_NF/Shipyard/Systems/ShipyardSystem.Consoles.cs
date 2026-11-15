@@ -1010,7 +1010,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             cashOnly,
             hasCashSlot,
             cashSlotBalance,
-            isCashPresent);
+            isCashPresent,
+            atmosPrototypes: GetAvailableAtmospheres());
 
         BoundUserInterfaceState state = newState; // Lua
         ExtendUiStateLua(uid, ref state); // Lua
