@@ -2,13 +2,14 @@ using System.Numerics;
 using Content.Shared._Horizon._Fractions.AnCo.WeaponCaseHack;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Horizon._Fractions.AnCo.WeaponCaseHack;
 
 /// <summary>
 /// Схема дорожек: узлы по диагонали, линии к ним только горизонтальные и вертикальные, старт - зелёный. Видна только пройденная часть и текущая развилка,
 /// чьи выходы нарисованы одинаковыми обрезанными стабами (какой верный - неизвестно). Янтарная точка - конец
-/// пройденного тупика. Карта подгоняется под размер окна и растёт по мере прохождения.
+/// пройденного тупика. Карта подгоняется под размер окна и растёт по мере прохождения. Все точки пульсируют волной.
 /// </summary>
 public sealed class AnCoWeaponCaseHackMap : Control
 {
@@ -20,6 +21,18 @@ public sealed class AnCoWeaponCaseHackMap : Control
 
     private const float Margin = 20f;
     private const float MaxUnit = 26f;
+
+    // Пульс: от точки расходится контурный квадрат и гаснет, период общий для всех точек.
+    private const float PulsePeriod = 1.6f;
+    private const float PulseSpread = 14f;
+
+    private float _time;
+
+    public AnCoWeaponCaseHackMap()
+    {
+        // Волна не должна вылезать за панель.
+        RectClipContent = true;
+    }
 
     // Геометрия в единицах сетки, y растёт вверх.
     private readonly List<(Vector2 From, Vector2 To)> _segments = new();
@@ -63,6 +76,14 @@ public sealed class AnCoWeaponCaseHackMap : Control
         return points[^1];
     }
 
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        // Draw вызывается каждый кадр, так что достаточно двигать фазу пульса.
+        _time += args.DeltaSeconds;
+    }
+
     protected override void Draw(DrawingHandleScreen handle)
     {
         base.Draw(handle);
@@ -93,25 +114,51 @@ public sealed class AnCoWeaponCaseHackMap : Control
         foreach (var (from, to) in _segments)
             DrawThick(handle, ToScreen(from), ToScreen(to), Track);
 
+        var phase = _time % PulsePeriod / PulsePeriod;
         var nodeHalf = 5f * UIScale;
+        var goalHalf = 7f * UIScale;
+
+        // Волны рисуем под точками, чтобы сплошной квадрат оставался чистым.
         foreach (var node in _nodes)
-        {
-            var p = ToScreen(node);
-            handle.DrawRect(new UIBox2(p - new Vector2(nodeHalf), p + new Vector2(nodeHalf)), Node);
-        }
+            DrawPulse(handle, ToScreen(node), nodeHalf, Node, phase);
 
         foreach (var dead in _deadEnds)
-        {
-            var p = ToScreen(dead);
-            handle.DrawRect(new UIBox2(p - new Vector2(nodeHalf), p + new Vector2(nodeHalf)), DeadEnd);
-        }
+            DrawPulse(handle, ToScreen(dead), nodeHalf, DeadEnd, phase);
 
         var start = ToScreen(Vector2.Zero);
-        var goalHalf = 7f * UIScale;
-        handle.DrawRect(new UIBox2(start - new Vector2(goalHalf), start + new Vector2(goalHalf)), Goal);
+        DrawPulse(handle, start, goalHalf, Goal, phase);
 
         var cur = ToScreen(_current);
-        handle.DrawRect(new UIBox2(cur - new Vector2(nodeHalf), cur + new Vector2(nodeHalf)), NodeActive);
+        DrawPulse(handle, cur, nodeHalf, NodeActive, phase);
+
+        foreach (var node in _nodes)
+            DrawDot(handle, ToScreen(node), nodeHalf, Node);
+
+        foreach (var dead in _deadEnds)
+            DrawDot(handle, ToScreen(dead), nodeHalf, DeadEnd);
+
+        DrawDot(handle, start, goalHalf, Goal);
+        DrawDot(handle, cur, nodeHalf, NodeActive);
+    }
+
+    private static void DrawDot(DrawingHandleScreen handle, Vector2 center, float half, Color color)
+    {
+        handle.DrawRect(new UIBox2(center - new Vector2(half), center + new Vector2(half)), color);
+    }
+
+    /// <summary>
+    /// Волна от точки: контурный квадрат растёт от размера точки и гаснет (яркий вплотную, быстро тускнеет).
+    /// </summary>
+    private void DrawPulse(DrawingHandleScreen handle, Vector2 center, float half, Color color, float phase)
+    {
+        var alpha = (1f - phase) * (1f - phase);
+        var wave = color.WithAlpha(alpha);
+        var size = half + phase * PulseSpread * UIScale;
+
+        // Контур в два пикселя: два вложенных незаполненных квадрата.
+        var t = MathF.Max(1f, UIScale);
+        handle.DrawRect(new UIBox2(center - new Vector2(size), center + new Vector2(size)), wave, filled: false);
+        handle.DrawRect(new UIBox2(center - new Vector2(size - t), center + new Vector2(size - t)), wave, filled: false);
     }
 
     private void DrawThick(DrawingHandleScreen handle, Vector2 a, Vector2 b, Color color)
