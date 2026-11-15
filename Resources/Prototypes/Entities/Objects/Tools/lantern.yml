@@ -4,6 +4,7 @@
   id: Lantern
   description: The holy light guides the way.
   components:
+    # Horizon
     - type: WorldItem
       continue: true
     - type: HandheldLight

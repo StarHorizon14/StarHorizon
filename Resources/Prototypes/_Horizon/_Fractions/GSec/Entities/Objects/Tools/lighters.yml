@@ -1,0 +1,69 @@
+- type: entity
+  name: флиппо Горлекс
+  parent: FlippoLighter
+  id: FlippoGSecLighter
+  suffix: GSec
+  description: "Трофейная зажигалка сделанная по заказу ЧВК «Gorlex Securities LLC»."
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Tools/Lighters/gsec-lighter.rsi
+    layers:
+    - state: icon
+      map: ["base"]
+    - state: top
+      map: ["top"]
+      visible: false
+    - state: open
+      map: ["open"]
+      visible: false
+    - state: flame
+      map: ["flame"]
+      visible: false
+      shader: unshaded
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+        types:
+            Heat: 3
+  - type: Welder
+    fuelConsumption: 0.005
+    fuelLitCost: 0.01
+    tankSafe: true
+  - type: StealTarget
+    stealGroup: FlippoGSecLighter
+  - type: StaticPrice
+    price: 700
+
+- type: entity
+  name: флиппо Мародёров Горлекса
+  parent: FlippoLighter
+  id: FlippoGXMLighter
+  suffix: Syndicate, GSec
+  description: "Карманная газовая гарелка, от неё буквально веет жестокостью. Не содержит меди."
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Tools/Lighters/marauders-lighter.rsi
+    layers:
+    - state: icon
+      map: ["base"]
+    - state: top
+      map: ["top"]
+      visible: false
+    - state: open
+      map: ["open"]
+      visible: false
+    - state: flame
+      map: ["flame"]
+      visible: false
+      shader: unshaded
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+        types:
+            Heat: 5
+  - type: Welder
+    fuelConsumption: 0.005
+    fuelLitCost: 0.01
+    tankSafe: true
+  - type: StealTarget
+    stealGroup: FlippoGSecLighter
+  - type: StaticPrice
+    price: 900

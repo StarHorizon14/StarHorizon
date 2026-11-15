@@ -1,0 +1,34 @@
+- type: pointOfInterest
+  id: GSecDeport
+  parent: BasePOI
+  name: Торговый аутпост Горлекс
+  minimumDistance: 6000
+  maximumDistance: 8000
+  spawnGroup: Required
+  gridPath: /Maps/_Horizon/_Fraction/GSec/POI/gsec-deport.yml
+  addComponents:
+  - type: IFF
+    color: "#e58806"
+  - type: ProtectedGrid
+    preventArtifactTriggers: true
+  - type: WorldGenDistanceCarver
+    distanceThresholds:
+      # Dead zone
+      - maxDistance: 500
+        prob: 0.0
+      - maxDistance: 1000
+        prob: 0.3
+
+- type: gameMap
+  id: GSecDeport
+  mapName: 'Торговый аутпост Горлекс' # Has a letter appended in PointOfInterestSystem
+  mapPath: /Maps/_Horizon/_Fraction/GSec/POI/gsec-deport.yml
+  minPlayers: 0
+  stations:
+    GSecDeport:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Торговый аутпост Горлекс' # Has a letter appended in PointOfInterestSystemh
+        - type: HorizonStationFaction
+          faction: GSec

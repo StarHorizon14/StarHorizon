@@ -1,0 +1,36 @@
+# Colours of the shuttle preview of the derelict yard, in the format of starhorizon-map-render.
+- type: shuttleMinimap
+  id: Default
+
+  tiles:
+    - color: "#22b14c"
+    - color: "#847e87"
+      match:
+      - "Lattice"
+      - "Plating"
+
+  entities:
+    - color: "#595652"
+      match:
+      - "*Wall"
+    - color: "#08862d"
+      match:
+      - "Firelock"
+      - "FirelockGlass"
+    - color: "#df7126"
+      match:
+      - "Shutters*"
+      - "BlastDoor*"
+    - color: "#639bff"
+      match:
+      - "*Window*"
+      exclude:
+      - "Shutters*"
+    - color: "#df7126"
+      match:
+      - "Airlock*"
+      - "Windoor*"
+      - "Gaslock"
+    - color: "#fbf236"
+      match:
+      - "Thruster*"

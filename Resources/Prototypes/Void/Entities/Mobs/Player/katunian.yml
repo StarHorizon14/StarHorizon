@@ -24,12 +24,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-katunian-name
-    description: Вы катунианец, выращенный в цитологической ванне. Чужеродное существо из неизведанных миров. Осторожно исследуйте окружающую реальность!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

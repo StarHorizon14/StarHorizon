@@ -3,8 +3,8 @@
 # Discord: Tych0
 
 # Maintainer Info
-# GitHub: Tych0theSynth
-# Discord: Tych0
+# GitHub: arimah
+# Discord: arimah
 
 # Shuttle Notes:
 #
@@ -17,6 +17,7 @@
   category: Medium
   group: Security
   access: Detective
+  # Horizon
   shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/broadhead.yml # Horizon
   guidebookPage: Null
   class:

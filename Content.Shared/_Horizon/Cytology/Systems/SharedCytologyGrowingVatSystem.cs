@@ -151,7 +151,10 @@ public abstract class SharedCytologyGrowingVatSystem : EntitySystem
             if (!hasAllRequired)
                 continue;
 
-            SetCellGrowProgress(proto, cell, reagentLookup);
+            if (TryCureViruses(growingVat, solutionEntity, cell, reagentLookup))
+                DirtyField(petriDish, petriDishSampleContainerComp, nameof(CytologySampleContainerComponent.CellSamples));
+
+            SetCellGrowProgress(growingVat, proto, cell, reagentLookup);
 
             ConsumeChemicals(solutionEntity, proto.RequiredChemicals);
             ConsumeChemicals(solutionEntity, proto.SupplementaryChemicals.Keys);
@@ -195,12 +198,36 @@ public abstract class SharedCytologyGrowingVatSystem : EntitySystem
         }
     }
 
-    private void SetCellGrowProgress(CellSamplePrototype proto, CellSample cell, Dictionary<string, FixedPoint2> reagentLookup)
+    /// <summary>
+    /// Horizon: antivirals in the beaker kill the viruses in the sample, 1u per virus
+    /// </summary>
+    private bool TryCureViruses(Entity<CytologyGrowingVatComponent> growingVat, Entity<SolutionComponent> beakerEnt, CellSample cell, Dictionary<string, FixedPoint2> reagentLookup)
+    {
+        var cured = false;
+
+        foreach (var antiviral in growingVat.Comp.Antivirals)
+        {
+            while (cell.Viruses > 0 && reagentLookup.TryGetValue(antiviral, out var qty) && qty >= FixedPoint2.New(1))
+            {
+                _solutionContainerSystem.RemoveReagent(beakerEnt, antiviral, FixedPoint2.New(1));
+                reagentLookup[antiviral] = qty - FixedPoint2.New(1);
+                cell.Viruses--;
+                cured = true;
+            }
+        }
+
+        return cured;
+    }
+
+    private void SetCellGrowProgress(Entity<CytologyGrowingVatComponent> growingVat, CellSamplePrototype proto, CellSample cell, Dictionary<string, FixedPoint2> reagentLookup)
     {
         var modifier = 1f;
 
         modifier = ApplyModifiers(modifier, proto.SupplementaryChemicals, reagentLookup);
-        modifier = ApplyModifiers(modifier, proto.SupplementaryChemicals, reagentLookup);
+        modifier = ApplyModifiers(modifier, proto.SuppressiveChemicals, reagentLookup);
+
+        // Horizon: each virus left in the sample slows the growth down
+        modifier -= cell.Viruses * proto.ViralSusceptibility * growingVat.Comp.VirusGrowthPenalty;
 
         if (modifier < 0.1f)
             modifier = 0.1f;

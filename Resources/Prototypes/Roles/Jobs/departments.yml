@@ -100,6 +100,7 @@
   # - TechnicalAssistant # Frontier
   - PlantManager # Frontier
   - PlantTechnician # Frontier
+  - ShipCutter # Horizon
 
 - type: department
   id: Medical

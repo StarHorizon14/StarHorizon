@@ -1,3 +1,4 @@
+using Content.Shared._Horizon.SpaceHazards; // Horizon
 using System.Linq;
 using System.Threading;
 using Content.Server.Salvage.Expeditions;
@@ -34,7 +35,7 @@ public sealed partial class SalvageSystem
     private const double SalvageJobTime = 0.002;
     private readonly List<(ProtoId<SalvageDifficultyPrototype> id, int value)> _missionDifficulties = [("NFModerate", 0), ("NFHazardous", 1), ("NFExtreme", 2), ("Inferno", 3)]; // Frontier: mission difficulties with order, Anco: Inferno
 
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!; // Frontier
+    [Dependency] private IConfigurationManager _configurationManager = default!; // Frontier
 
     private float _cooldown;
     private float _failedCooldown; // Frontier
@@ -161,16 +162,39 @@ public sealed partial class SalvageSystem
             }
         }
 
-        var query = EntityQueryEnumerator<SalvageExpeditionDataComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        // Horizon
+        // Horizon: one timer, the same for everybody, re-rolls the offers of every expedition planet
+        if (currentTime >= _planetPoolNext)
         {
+            _planetPoolNext = currentTime + TimeSpan.FromSeconds(_cooldown);
+            var planetQuery = EntityQueryEnumerator<ExpeditionPlanetComponent>();
+            while (planetQuery.MoveNext(out _, out var planetComp))
+            {
+                planetComp.Missions.Clear();
+            }
+            RefreshAllConsoles();
+        }
+        // End Horizon
+
+        // Frontier: exped console oriented query
+        var query = EntityQueryEnumerator<SalvageExpeditionConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out _))
+        {
+            var uid = _station.GetOwningStation(consoleUid);
+            if (uid is not { Valid: true })
+                continue;
+
+            if (!TryComp<SalvageExpeditionDataComponent>(uid, out var comp))
+                continue;
+            // End Frontier: exped console oriented query
+
             // Update offers
             if (comp.NextOffer > currentTime || comp.Claimed)
                 continue;
 
             // Frontier: disable cooldown when still in FTL
-            if (!TryComp<StationDataComponent>(uid, out var stationData)
-                || !HasComp<FTLComponent>(_station.GetLargestGrid((uid, stationData))))
+            if (!HasComp<FTLComponent>(Transform(consoleUid).GridUid))
+
             {
                 comp.Cooldown = false;
             }
@@ -179,7 +203,7 @@ public sealed partial class SalvageSystem
             comp.NextOffer = currentTime + TimeSpan.FromSeconds(_cooldown); // Frontier
             comp.CooldownTime = TimeSpan.FromSeconds(_cooldown); // Frontier
             GenerateMissions(comp);
-            UpdateConsoles((uid, comp));
+            UpdateConsoles((uid.Value, comp));
         }
     }
 
@@ -205,12 +229,17 @@ public sealed partial class SalvageSystem
         UpdateConsoles(expedition);
     }
 
-    private void GenerateMissions(SalvageExpeditionDataComponent component)
+    private void GenerateMissions(SalvageExpeditionDataComponent component, Func<string, bool>? difficultyFilter = null) // Horizon: difficultyFilter
     {
         component.Missions.Clear();
 
         // Frontier: generate missions from an arbitrary set of difficulties
-        if (_missionDifficulties.Count <= 0)
+        // Horizon: planets only offer the difficulties that fit their biome
+        var pickable = difficultyFilter == null
+            ? _missionDifficulties
+            : _missionDifficulties.Where(d => difficultyFilter(d.id)).ToList();
+
+        if (pickable.Count <= 0)
         {
             Log.Error("No expedition mission difficulties to pick from!");
             return;
@@ -218,15 +247,15 @@ public sealed partial class SalvageSystem
 
         // this doesn't support having more missions than types of ratings
         // but the previous system didn't do that either.
-        var allDifficulties = _missionDifficulties; // Frontier: Enum.GetValues<DifficultyRating>() < _missionDifficulties
+        var allDifficulties = pickable; // Frontier: Enum.GetValues<DifficultyRating>() < _missionDifficulties
         _random.Shuffle(allDifficulties);
         var difficulties = allDifficulties.Take(MissionLimit).ToList();
 
         // If we support more missions than there are accepted types, pick more until you're up to MissionLimit
         while (difficulties.Count < MissionLimit)
         {
-            var difficultyIndex = _random.Next(_missionDifficulties.Count);
-            difficulties.Add(_missionDifficulties[difficultyIndex]);
+            var difficultyIndex = _random.Next(pickable.Count);
+            difficulties.Add(pickable[difficultyIndex]);
         }
         difficulties.Sort((x, y) => { return Comparer<int>.Default.Compare(x.value, y.value); });
 
@@ -256,7 +285,7 @@ public sealed partial class SalvageSystem
         return new SalvageExpeditionConsoleState(component.NextOffer, component.Claimed, component.Cooldown, component.ActiveMission, missions, component.CanFinish, component.CooldownTime); // Frontier: add CanFinish, CooldownTime
     }
 
-    private void SpawnMission(SalvageMissionParams missionParams, EntityUid station, EntityUid? coordinatesDisk)
+    private void SpawnMission(SalvageMissionParams missionParams, EntityUid station, EntityUid shuttle, EntityUid? coordinatesDisk) // Frontier: add shuttle
     {
         var cancelToken = new CancellationTokenSource();
         var job = new SpawnSalvageMissionJob(
@@ -274,6 +303,7 @@ public sealed partial class SalvageSystem
             _shuttle, // Frontier
             this, // Frontier
             station,
+            shuttle,
             coordinatesDisk,
             missionParams,
             cancelToken.Token);

@@ -4,20 +4,22 @@
 
 # Maintainer Info
 # GitHub: ThatOneGoblin25
+# Horizon
 # Discord: thedaarkgoblin
 
 # Shuttle Notes:
-#
+# Pure science ship
 - type: vessel
   id: Spectre
   parent: BaseVessel
   name: NR Spectre
+  # Horizon
   description: A large, attractive but dated vessel with a pure focus on research and development. It is capable of generating anomalies.
   price: 230000 # StarHorizon-RND-debuff
   category: Large
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/spectre.yml
-  guidebookPage: Null
+  guidebookPage: ShipyardSpectre
   class:
   - Science
   engine:

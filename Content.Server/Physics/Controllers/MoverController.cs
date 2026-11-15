@@ -1,3 +1,4 @@
+using Content.Shared._Horizon.Shuttles.Components;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Content.Server.Physics.Components; // Mono
@@ -19,14 +20,14 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server.Physics.Controllers;
 
-public sealed class MoverController : SharedMoverController
+public sealed partial class MoverController : SharedMoverController
 {
     private static readonly Gauge ActiveMoverGauge = Metrics.CreateGauge(
         "physics_active_mover_count",
         "Active amount of InputMovers being processed by MoverController");
 
-    [Dependency] private readonly ThrusterSystem _thruster = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
+    [Dependency] private ThrusterSystem _thruster = default!;
+    [Dependency] private SharedTransformSystem _xformSystem = default!;
 
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
 
@@ -376,6 +377,14 @@ public sealed class MoverController : SharedMoverController
                 newPilots[aiUid] = (aiShuttle, new List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>());
         }
 
+        // Horizon: FTL concentration brakes a shuttle with the engines even if nobody is at the helm
+        var concentrationQuery = EntityQueryEnumerator<FtlConcentrationComponent, ShuttleComponent>();
+        while (concentrationQuery.MoveNext(out var concentrationUid, out _, out var concentrationShuttle))
+        {
+            if (concentrationShuttle.Enabled && !newPilots.ContainsKey(concentrationUid))
+                newPilots[concentrationUid] = (concentrationShuttle, new List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>());
+        }
+
         // Reset inputs for non-piloted shuttles.
         foreach (var (shuttleUid, (shuttle, _)) in _shuttlePilots)
         {
@@ -485,6 +494,13 @@ public sealed class MoverController : SharedMoverController
                 piloted.ActiveSources = activeSources;
             }
             // End Mono
+
+            // Horizon: FTL concentration holds the brakes like a pilot holding space
+            if (HasComp<FtlConcentrationComponent>(shuttleUid))
+            {
+                brakeInput += 1f;
+                brakeCount++;
+            }
 
             // Don't slow down the shuttle if there's someone just looking at the console
             linearInput /= Math.Max(1, linearCount);

@@ -9,7 +9,7 @@
       sprite: _Horizon/Objects/Specific/Hydroponics/lifeweed.rsi
     - type: Produce
       seedId: lifeweed
-    - type: Food
+    - type: Edible # Horizon: Food -> Edible (Ingestion)
     - type: StaticPrice
       price: 150
     - type: SolutionContainerManager
@@ -30,7 +30,7 @@
       sprite: _Horizon/Objects/Specific/Hydroponics/deathweed.rsi
     - type: Produce
       seedId: deathweed
-    - type: Food
+    - type: Edible # Horizon: Food -> Edible (Ingestion)
     - type: StaticPrice
       price: 130
     - type: RadiationSource

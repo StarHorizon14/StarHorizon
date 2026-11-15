@@ -1,4 +1,4 @@
-using System.Linq;
+using Content.Shared._NF.Salvage.Expeditions.Modifiers;
 using Content.Shared.CCVar;
 using Content.Shared.Dataset;
 using Content.Shared.Procedural;
@@ -12,13 +12,14 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Shared.Salvage;
 
 public abstract partial class SharedSalvageSystem : EntitySystem
 {
-    [Dependency] protected readonly IConfigurationManager CfgManager = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] protected IConfigurationManager CfgManager = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     /// <summary>
     /// Main loot table for salvage expeditions.
@@ -32,7 +33,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         return $"{Loc.GetString(dataset.Values[random.Next(dataset.Values.Count)])}-{random.Next(10, 100)}-{(char) (65 + random.Next(26))}";
     }
 
-    public SalvageMission GetMission(SalvageMissionType config, SalvageDifficultyPrototype difficulty, int seed) // Frontier: add config
+    public SalvageMission GetMission(SalvageMissionType config, SalvageDifficultyPrototype difficulty, int seed, string? biomeOverride = null) // Frontier: add config; Horizon: biomeOverride
     {
         // This is on shared to ensure the client display for missions and what the server generates are consistent
         var modifierBudget = difficulty.ModifierBudget;
@@ -43,11 +44,24 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         // - Lighting
         // - Atmos
         // Frontier: filter biomes by difficulty
-        var biome = GetBiomeModForDifficulty(difficulty.ID, rand, ref modifierBudget);
+        // Horizon: an expedition planet forces its own biome
+        SalvageBiomeModPrototype biome;
+        if (biomeOverride != null && _proto.TryIndex<SalvageBiomeModPrototype>(biomeOverride, out var forcedBiome))
+        {
+            modifierBudget = MathF.Max(0f, modifierBudget - forcedBiome.Cost);
+            biome = forcedBiome;
+        }
+        else
+        {
+            biome = GetBiomeModForDifficulty(difficulty.ID, rand, ref modifierBudget);
+        }
+        // End Horizon
         var light = GetBiomeMod<SalvageLightMod>(biome.ID, rand, ref modifierBudget);
         var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref modifierBudget);
         var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget);
-        var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget);
+        // Frontier - Moved so faction gets priority over dungeon
+        // var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget);
+
         // Frontier: restrict factions per difficulty
         // var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
         var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>()
@@ -61,6 +75,8 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         // End Frontier: difficulties per faction
         factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         var faction = factionProtos[rand.Next(factionProtos.Count)];
+        // Frontier - Moved so faction gets priority over dungeon. GetBiomeMod -> GetFactionMod
+        var dungeon = GetDungeonMod<SalvageDungeonModPrototype>(biome.ID, faction.ID, rand, ref modifierBudget);
 
         var mods = new List<string>();
 
@@ -112,6 +128,48 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
         throw new InvalidOperationException();
     }
+
+    // Frontier - Faction specific dungeons
+    public T GetDungeonMod<T>(string biome, string faction, System.Random rand, ref float rating) where T : class, IPrototype, IFactionSpecificMod
+    {
+        var mods = _proto.EnumeratePrototypes<T>().ToList();
+        mods.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
+        rand.Shuffle(mods);
+
+        // Separate dungeon mods which include the current faction into a primary list.
+        var matchingMods = mods.Where(x => x.Factions != null && x.Factions.Contains(faction));
+
+        // Separate dungeon mods with no specified factions into a secondary list.
+        // Anything else (i.e. dungeons with a faction list that did not include this faction) is discarded.
+        var otherMods = mods.Where(x => x.Factions == null);
+
+        // Pick from the list of matching factions first
+        foreach (var mod in matchingMods)
+        {
+            // Still have to check for cost and biome. If a dungeon has the correct faction but is not allowed to generate in this biome,
+            // it will fall back onto faction-unspecified selection to find a dungeon that is.
+            if (mod.Cost > rating || mod.Biomes != null && !mod.Biomes.Contains(biome))
+                continue;
+
+            rating -= mod.Cost;
+
+            return mod;
+        }
+
+        foreach (var mod in otherMods)
+        {
+            if (mod.Cost > rating ||
+                mod.Biomes != null && !mod.Biomes.Contains(biome))
+                continue;
+
+            rating -= mod.Cost;
+
+            return mod;
+        }
+
+        throw new InvalidOperationException();
+    }
+    // Frontier end
 
     public T GetMod<T>(System.Random rand, ref float rating) where T : class, IPrototype, ISalvageMod
     {

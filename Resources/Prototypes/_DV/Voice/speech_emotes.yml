@@ -16,6 +16,7 @@
     - honks
     - honking
     - honked
+    - хонкает # Horizon
 
 - type: emote
   id: HarpyRing
@@ -35,6 +36,7 @@
     - ringing
     - ringed
     - rang
+    - звенит # Horizon
 
 - type: emote
   id: HarpyPew
@@ -124,6 +126,7 @@
     - caws
     - cawing
     - cawed
+    - каркает # Horizon
 
 #Vulpkanin
 - type: emote
@@ -143,6 +146,10 @@
     - barks
     - barked
     - barking
+    - лает # Horizon
+    - гавкает # Horizon
+    - тявкает # Horizon
+    - гав # Horizon
 
 - type: emote
   id: Snarl
@@ -161,6 +168,8 @@
     - snarls
     - snarled
     - snarling
+    - рычит # Horizon
+    - огрызается # Horizon
 
 - type: emote
   id: Whine
@@ -179,6 +188,7 @@
     - whines
     - whined
     - whining
+    - скулит # Horizon
 
 - type: emote
   id: Howl
@@ -197,6 +207,7 @@
     - howls
     - howling
     - howled
+    - воет # Horizon
 
 - type: emote
   id: Awoo
@@ -215,3 +226,5 @@
     - awoos
     - awooing
     - awooed
+    - ауууу # Horizon
+    - аууу # Horizon

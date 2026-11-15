@@ -10,7 +10,7 @@
     - Wall
   components:
   - type: Anchorable
-    flags: 
+    flags:
     - Anchorable
   - type: Rotatable
   - type: RangedDamageSound
@@ -49,6 +49,12 @@
         - WallLayer
         density: 1000
   - type: Airtight
+  # Horizon: walls give way to very high pressure and creak before it
+  - type: DeltaPressure
+    minPressure: 30000
+    minPressureDelta: 20000
+    strainSound:
+      collection: PressureStrainWall
   - type: StaticPrice
     price: 25 # Frontier 75<25
   - type: RadiationBlocker
@@ -606,6 +612,9 @@
   id: WallReinforced
   name: reinforced wall
   components:
+  - type: DeltaPressure # Horizon
+    minPressure: 60000
+    minPressureDelta: 40000
   - type: Sprite
     sprite: _NF/Structures/Walls/solid.rsi # Frontier
   - type: Icon
@@ -767,6 +776,13 @@
         acts: ["Destruction"]
   - type: RadiationBlocker
     resistance: 5
+    # Frontier
+  - type: Construction
+    graph: Girder
+    node: diagonalReinforcedWall
+  - type: StaticPrice
+    price: 100
+    # End Frontier
 
 # Riveting
 - type: entity
@@ -1100,6 +1116,11 @@
           collection: MetalSlam
       - !type:DoActsBehavior
         acts: ["Destruction"]
+    # Frontier
+  - type: Construction
+    graph: Girder
+    node: diagonalWall
+    # End Frontier
 
 - type: entity
   parent: WallSolid
@@ -1648,13 +1669,23 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 250 # Frontier: 100<250
       behaviors:
       - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+        acts: ["Destruction"]
+    - trigger: # Frontier
+        !type:DamageTrigger # Frontier
+        damage: 150 # Frontier
+      behaviors: # Frontier
+      - !type:ChangeConstructionNodeBehavior # Frontier
+        node: girder # Frontier
+      - !type:DoActsBehavior # Frontier
+        acts: ["Destruction"] # Frontier
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+  - type: StaticPrice # Frontier
+    price: 115 # Frontier
 
 - type: entity
   parent: WallCobblebrick
@@ -1695,6 +1726,9 @@
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+  - type: Construction # Frontier
+    graph: Girder # Frontier
+    node: asteroidcobblebrick # Frontier
 
 - type: entity
   parent: WallCobblebrick

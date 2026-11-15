@@ -1,0 +1,127 @@
+- type: entity
+  parent: [IDCardStandard, BaseAnCoContraband]
+  id: GSecIDCard
+  name: GSecID
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Misc/idcard.rsi
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _Horizon/_Fractions/GSec/Objects/Misc/idcard.rsi
+  - type: Item
+    size: Small
+
+# РЕКРУТ
+
+- type: entity
+  parent: GSecIDCard
+  id: GSecRecruitID
+  suffix: GSec
+  name: ID карта рекрут Горлекс
+  description: Удостоверение личности сотрудника «Gorlex Securities LLC».
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: recruit
+  - type: Item
+  - type: IdCard
+    jobTitle: Пекрут Горлекс
+    jobIcon: JobIconRecruitGSec
+  - type: Access
+    tags:
+    - AccessGSec
+
+# АГЕНТ
+
+- type: entity
+  parent: GSecIDCard
+  id: GSecAgentID
+  suffix: GSec
+  name: ID карта агента Горлекс
+  description: Удостоверение личности сотрудника «Gorlex Securities LLC».
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: agent
+  - type: Item
+  - type: IdCard
+    jobTitle: Агент Горлекс
+    jobIcon: JobIconAgentGSec
+  - type: Access
+    tags:
+    - AccessGSec
+    - AccessGSecAgent
+
+# ТЕХНИК
+
+- type: entity
+  parent: GSecIDCard
+  id: GSecTechID
+  suffix: GSec
+  name: ID карта техника Горлекс
+  description: Удостоверение личности сотрудника «Gorlex Securities LLC».
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: tech
+  - type: Item
+  - type: IdCard
+    jobTitle: Техник Горлекс
+    jobIcon: JobIconTechGSec
+  - type: Access
+    tags:
+    - AccessGSec
+    - AccessGSecAgent
+    - AccessGSecTech
+
+# САНИТАР
+
+- type: entity
+  parent: GSecIDCard
+  id: GSecMedicID
+  suffix: GSec
+  name: ID карта санитара Горлекс
+  description: Удостоверение личности сотрудника «Gorlex Securities LLC».
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: medic
+  - type: Item
+  - type: IdCard
+    jobTitle: Санитар Горлекс
+    jobIcon: JobIconMedicGSec
+  - type: Access
+    tags:
+    - AccessGSec
+    - AccessGSecAgent
+    - AccessGSecMedic
+
+# ОФИЦЕР
+
+- type: entity
+  parent: GSecIDCard
+  id: GSecOfficerID
+  suffix: GSec
+  name: ID карта офицера Горлекс
+  description: Удостоверение личности сотрудника «Gorlex Securities LLC».
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: officer
+  - type: Item
+  - type: IdCard
+    jobTitle: Офицер Горлекс
+    jobIcon: JobIconOfficerGSec
+  - type: Access
+    tags:
+    - AccessGSec
+    - AccessGSecAgent
+    - AccessGSecTech
+    - AccessGSecOfficer

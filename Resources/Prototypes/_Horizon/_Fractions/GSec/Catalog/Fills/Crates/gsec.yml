@@ -1,0 +1,267 @@
+- type: entity
+  id: CrateGSecOldBundle
+  suffix: GSec, Filled
+  parent: CrateAmmoGeneric
+  name: ящик списанного снаряжения Горлекс
+  description: Содержит комплект устаревшей экиперовки ЧВК «Gorlex Securities LLC».
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHeadHelmetOld
+      - id: ClothingHeadHatBeretGSecOld
+      - id: ClothingEyesHudGSecBallisticOld
+      - id: ClothingMaskBalaclavaTactical
+      - id: ClothingBandGSec
+      - id: ClothingBeltWebbingOld
+      - id: ClothingOuterVestWebOld
+      - id: SuitGSecOld
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingShoesBootsCombat
+
+- type: entity
+  id: CrateGSecSurplusBundle
+  parent: [ CrateWeaponGSecSecure, BaseGSecWeaponContraband, StorePresetGSecUplink ]
+  name: ящик припасов Горлекс
+  suffix: GSec, Surplus, 40
+  description: Содержит случайное снаряжение на 40 тысяч кредитов. «Всё, что не пригодилось нам».
+  components:
+    - type: SurplusBundle
+      totalPrice: 40000
+
+- type: entity
+  id: CrateGSecSuperSurplusBundle
+  parent: [ CrateWeaponGSecSecure, BaseGSecWeaponContraband, StorePresetGSecUplink ]
+  name: ящик суперприпасов Горлекс
+  suffix: GSec, Surplus, 80
+  description: Содержит случайное снаряжение на 80 тысяч кредитов. «Всё, что не пригодилось нам».
+  components:
+    - type: SurplusBundle
+      totalPrice: 80000
+
+- type: entity
+  id: CrateGSecIDBundle
+  suffix: GSec, Filled
+  parent: [ CrateWeaponGSecSecure, BaseGSecContraband ]
+  name: ящик ID карт Горлекс
+  description: Содержит набор ID карт ЧВК «Gorlex Securities LLC».
+  components:
+  - type: StorageFill
+    contents:
+      - id: GSecRecruitID
+        amount: 4
+
+
+- type: entity
+  id: CrateGSecCaseBundle
+  suffix: GSec, Filled
+  parent: [ CrateWeaponGSecSecure, BaseGSecContraband ]
+  name: набор кейсов Горлекс
+  description: Содержит оружейные кейсы от ЧВК «Gorlex Securities LLC».
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponCaseGSecShort
+        amount: 2
+      - id: WeaponCaseGSecLong
+        amount: 2
+      - id: WeaponCaseGSecHeavy
+        amount: 2
+
+# ОДЕЖДА
+#==============================================================================================================
+
+- type: entity
+  id: StorageEVAGSec
+  suffix: GSec, EVA
+  parent: [ SuitStorageBase, BaseGSecContraband ]
+  name: хранилище скафандров
+  description: Высокотехнологичное хранилище, предназначенное для хранения космических скафандров..
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHeadHelmetGSec
+      - id: ClothingMaskGasSecurity
+      - id: ClothingOuterEVASuitGSec
+      - id: ClothingHandsGlovesCombat
+      - id: JetpackMiniFilled
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: ClothingShoesBootsMagSecurityFilled
+      - id: NFWeaponPistolViper
+      - id: NFMagazinePistol35
+        amount: 2
+
+- type: entity
+  id: DuffelGSecEVABundle
+  suffix: GSec, EVA
+  parent: [ ClothingBackpackDuffelGSec, BaseC2Contraband ]
+  name: набор EVA Горлекс
+  description: Бюджетный вариант для обеспечения личной безопасности.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHeadHelmetGSec
+      - id: ClothingOuterEVASuitGSec
+      - id: ClothingHandsGlovesCombat
+      - id: JetpackMiniFilled
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: ClothingShoesBootsMagSecurityFilled
+
+- type: entity
+  id: CrateGSecPouchBundle
+  suffix: GSec, Filled
+  parent: [ CrateWeaponGSecSecure, BaseGSecContraband ]
+  name: набор подсумков Горлекс
+  description: Набор подсумков разного назначения для ЧВК «Gorlex Securities LLC».
+  components:
+  - type: StorageFill
+    contents:
+      - id: SuitGSecSleevless
+        amount: 2
+      - id: SuitGSecTopless
+        amount: 2
+
+- type: entity
+  id: CrateGSecClothingBundle
+  suffix: GSec, Filled
+  parent: [ CrateWeaponGSecSecure, BaseGSecContraband ]
+  name: набор неортодоксального снаряжения Горлекс
+  description: Набор новаторских решений для сотрудников ЧВК «Gorlex Securities LLC».
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFPouchMercenary
+        amount: 2
+      - id: NFPouchUtility
+        amount: 2
+      - id: PouchGSecMedical
+        amount: 2
+
+# ОРУЖИЕ
+#==============================================================================================================
+
+- type: entity
+  id: CrateGSecHeavyWeaponBundle
+  suffix: GSec, Filled
+  parent: [ CrateWeaponGSecSecure, BaseGSecWeaponContraband ]
+  name: набор тяжелого оружия Горлекс
+  description: Набор тяжелого оружия ЧВК «Gorlex Securities LLC» по скидке.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleGSecDepredator
+        amount: 2
+      - id: WeaponRifleGSecBluntstriker
+        amount: 2
+      - id: WeaponSubMechineGunGSecUMP
+        amount: 2
+      - id: MagazineSniperGSec
+        amount: 4
+      - id: MagazineRifleGSec
+        amount: 4
+      - id: MagazineMPGSec
+        amount: 4
+
+- type: entity
+  id: CrateGSecSaigaBundle
+  suffix: GSec, Filled
+  parent: [ WeaponCaseGSecLong, BaseGSecWeaponContraband]
+  name: кейс Сайги Горлекс
+  description: Набор автоматического дробовика ЧВК «Gorlex Securities LLC», собранного по вашему заказу. Покажите несокрушимую мощь.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/saiga-case.rsi
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/saiga-case.rsi
+  - type: StorageFill
+    contents:
+      - id: WeaponSubMechineGunGSecSaiga
+      - id: MagazineShotgunGSec
+        amount: 2
+      - id: NFAmmunitionBoxShellShotgunBuckshot
+      - id: NFAmmunitionBoxRifle60
+
+- type: entity
+  id: CrateGSecNorthStarBundle
+  suffix: GSec, Filled
+  parent: [ WeaponCaseGSecLong, BaseC2Contraband]
+  name: кейс НордСтар Горлекс
+  description: Набор тяжелого пистолета ЧВК «Gorlex Securities LLC». Сияй Самурай, ты это заслужил!
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/northstar-cace.rsi
+  - type: Item
+    sprite: _Horizon/_Fractions/GSec/Objects/Storage/Cases/northstar-cace.rsi
+  - type: StorageFill
+    contents:
+      - id: WeaponPistolGSecNorthStar
+      - id: MagazineNorthStarGSec
+        amount: 2
+      - id: MagazineBoxHeavyRifle
+  - type: Contraband
+    severity: Class2Expedition
+  - type: AccessReader
+    access: [[  ]]
+
+- type: entity
+  id: CrateGSecBlackWaterBundle
+  suffix: GSec, Filled
+  parent: [ WeaponCaseGSecShort, BaseC3Contraband]
+  name: кейс Блэкуотер
+  description: Набор Blackwater от «AnCo - MiliGalax», патроны в комплект не входят. «Это не военное приступление, если тебя не поймали».
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Storage/Cases/miligalax-case-short.rsi
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Objects/Storage/Cases/miligalax-case-short.rsi
+  - type: StorageFill
+    contents:
+      - id: WeaponPistolGSecBlackWater
+      - id: MagazineGSecPistol35
+        amount: 2
+  - type: Contraband
+    severity: Class3General
+  - type: AccessReader
+    access: [[ AccessGSec], [AccessAnCoKnight ]]
+
+- type: entity
+  id: CrateGSecPraetorBundle
+  suffix: GSec, Filled
+  parent: [ WeaponCaseGSecLong, BaseC3Contraband]
+  name: кейс Преторианца
+  description: Набор Praetor от «AnCo - MiliGalax». «Это не военное приступление, если тебя не поймали».
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/AnCo/Objects/Storage/Cases/miligalax-case-long.rsi
+  - type: Item
+    sprite: _Horizon/_Fractions/AnCo/Objects/Storage/Cases/miligalax-case-long.rsi
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleGSecPraetor
+      - id: MagazineRifleGSecPraetor
+        amount: 2
+      - id: AnCoMagazineBox30
+      - id: AnCoMagazineBox20
+  - type: Contraband
+    severity: Class3General
+  - type: AccessReader
+    access: [[ AccessGSec], [AccessAnCoKnight ]]
+
+- type: entity
+  id: CrateGSecFoodBundle
+  suffix: GSec, Filled
+  parent: CrateFreezer
+  name: набор снеков Горлекс
+  description: Содержит несколько банок пива и консерв от коммерческой акции ЧВК «Gorlex Securities LLC».
+  components:
+  - type: StorageFill
+    contents:
+      - id: DrinkBeerGSecCan
+        amount: 6
+      - id: DrinkEnergyGSecCan
+        amount: 3
+      - id: FoodGSecMeatTin
+        amount: 3
+      - id: CigPackGSec
+        amount: 2
+      - id: FoodSnackNutribrick
+        amount: 4

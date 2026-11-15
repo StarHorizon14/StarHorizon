@@ -1,0 +1,12 @@
+shift-start-intro-unknown-station = Unknown station
+shift-start-intro-company = Nanotrasen Corp.
+shift-start-intro-line-corp = NANOTRASEN CORP // SHIFT { $round }
+shift-start-intro-line-pop = ACTIVE SESSIONS { $sessions }
+shift-start-intro-line-threat = THREAT LEVEL: { $level }
+shift-start-intro-line-manifest = STATION CREW MANIFEST // ACTIVE SHIFT
+shift-start-intro-department-other = OTHER
+shift-start-intro-more = + { $count } MORE
+shift-start-intro-record = RECORD PLAYBACK: { $id }
+shift-start-intro-subject = SUBJECT: { $name }
+shift-start-intro-time = TIME { $days }D { $hours }H { $minutes }M { $seconds }S
+shift-start-intro-terminal = TERMINAL: { $id }

@@ -3,6 +3,7 @@
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
                       xmlns:luaShipyard="clr-namespace:Content.Client._Lua.Shipyard.UI"
+                      xmlns:shipyard="clr-namespace:Content.Client._NF.Shipyard.UI"
                       MinSize="1210 675">
     <BoxContainer Orientation="Vertical">
         <BoxContainer Orientation="Horizontal" Margin="3 0" HorizontalExpand="True" VerticalExpand="True">
@@ -96,6 +97,12 @@
                     <OptionButton Name="SortBy"
                                   Prefix="{Loc 'shipyard-console-menu-sortby-label'}"
                                   HorizontalExpand="True"/>
+                </BoxContainer>
+                <!-- Frontier (#4209): выбор атмосферы шаттла, возвращён в раскладку Horizon -->
+                <BoxContainer Orientation="Horizontal" Margin="0 2 0 0" Name="CustomAtmosContainer" Visible="False">
+                    <shipyard:AtmosOptionButton Name="Atmosphere"
+                                                Prefix="{Loc 'shipyard-console-menu-atmos-label'}"
+                                                HorizontalExpand="True"/>
                 </BoxContainer>
                 <PanelContainer HorizontalExpand="True" VerticalExpand="True" Margin="0 2 2 3">
                     <PanelContainer.PanelOverride>

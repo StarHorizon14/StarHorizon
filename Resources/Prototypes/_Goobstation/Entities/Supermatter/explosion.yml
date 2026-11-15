@@ -14,5 +14,5 @@
   texturePath: /Textures/Effects/fire_greyscale.rsi
   fireStates: 3
 
-  - type: Tag
+- type: Tag
   id: SnapPop

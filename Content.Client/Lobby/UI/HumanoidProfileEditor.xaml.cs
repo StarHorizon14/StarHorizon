@@ -1520,6 +1520,7 @@ namespace Content.Client.Lobby.UI
             if (_flavorTextEdit != null)
             {
                 _flavorTextEdit.TextRope = new Rope.Leaf(Profile?.FlavorText ?? "");
+                _flavorText?.UpdateFlavorTextCounter(); // Horizon
             }
 
             // Horizon start
@@ -2052,7 +2053,7 @@ namespace Content.Client.Lobby.UI
                 return;
 
             StartExport();
-            await using var file = await _dialogManager.OpenFile(new FileDialogFilters(new FileDialogFilters.Group("yml")));
+            await using var file = await _dialogManager.OpenFile(new FileDialogFilters(new FileDialogFilters.Group("yml")), FileAccess.Read);
 
             if (file == null)
             {

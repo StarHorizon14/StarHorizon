@@ -23,7 +23,9 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleSystem
 {
+    // Horizon
     [Dependency] private readonly RadarConsoleSystem _radarConsole = default!;
+    [Dependency] private readonly Content.Server._Horizon.Shuttles.Systems.FtlConcentrationSystem _ftlConcentration = default!; // Horizon
     private const float SpaceFrictionStrength = 0.0015f;
     private const float DampenDampingStrength = 0.05f; // FRONTIER MERGE: this should be valuable
     private const float AnchorDampingStrength = 0.5f;
@@ -81,7 +83,10 @@ public sealed partial class ShuttleSystem
         }
 
         if (SetInertiaDampening(uid, physicsComponent, shuttleComponent, transform, args.Mode) && args.Mode != InertiaDampeningMode.Query)
+        {
             component.DampeningMode = args.Mode;
+            _ftlConcentration.OnInertiaModeChosen(transform.GridUid.Value, args.Mode); // Horizon: another inertia mode ends FTL concentration
+        }
     }
 
     public InertiaDampeningMode NfGetInertiaDampeningMode(EntityUid entity)

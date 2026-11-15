@@ -31,12 +31,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-arachnid-name
-    description: Вы арахнид, выращенный в цитологической ванне. Множество конечностей и глаз откроют новые возможности. Изучайте этот мир вокруг вас!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

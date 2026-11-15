@@ -1372,7 +1372,7 @@
 
 - type: entity
   id: ClothingBackpackDuffelSyndicateSniperBundleFilled
-  name: коричневый чемодан
+  name: вещмешок
   description: Пригодится для переноски предметов в руках.
   parent: ClothingBackpackDuffelSyndicate
   suffix: SniperBundle
@@ -1382,34 +1382,6 @@
       - id: WeaponRifleSR127
       - id: MagazineAntiMaterielRifleSR
         amount: 4
-
-- type: entity
-  parent: ClothingBackpackDuffelSyndicateAmmo
-  id: ClothingBackpackDuffelSyndicateAmmoBackmenFilled
-  name: набор боеприпасов
-  suffix: Backmen
-  description: "Перезаряжаюсь! Содержит магазины для большинства современного вооружения синдиката."
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazinePistolDrumSubMachineGun # For PPSH
-        amount: 2
-      - id: MagazinePistolTopSubMachineGun # For P90
-        amount: 2
-      - id: MagazineLightMachineGun762x39 # For RPD
-        amount: 2
-      - id: MagazinePistolSubMachineGun57x28
-        amount: 4
-      - id: MagazinePistolSubMachineGunVector45ACPExt
-        amount: 2
-      - id: MagazineRifleLight762x39Ext # For AKMS, AKSU and STG44
-        amount: 3
-      - id: MagazineRifleLightSniper # For Dragunov
-        amount: 1
-      - id: MagazineHeavyRifleBR64 # For BR64
-        amount: 1
-      - id: MagazineShotgun # For Zauer and SPAS12
-        amount: 3
 
 - type: listing
   id: UplinkBackmanAmmoBlueprint
@@ -1421,6 +1393,14 @@
     Telecrystal: 20
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - TelecomOfficerUplink
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 
 - type: listing
   id: UplinkHardsuitSyndieCommander
@@ -1440,6 +1420,10 @@
     whitelist:
       tags:
       - TelecomOfficerUplink
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

@@ -27,6 +27,7 @@ namespace Content.Server._NF.Cargo.Systems;
 
 public sealed partial class NFCargoSystem : SharedNFCargoSystem
 {
+    // Horizon
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;

@@ -1,0 +1,59 @@
+- type: entity
+  id: SpawnGSecOfficer
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: GSecOfficer
+  - type: Sprite
+    layers:
+     - state: green
+     - sprite: _Horizon/_Fractions/GSec/Markers/Jobs/gsec.rsi
+       state: officer
+
+- type: entity
+  id: SpawnGSecAgent
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: GSecAgent
+  - type: Sprite
+    layers:
+     - state: green
+     - sprite: _Horizon/_Fractions/GSec/Markers/Jobs/gsec.rsi
+       state: agent
+
+- type: entity
+  id: SpawnGSecTech
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: GSecTech
+  - type: Sprite
+    layers:
+     - state: green
+     - sprite: _Horizon/_Fractions/GSec/Markers/Jobs/gsec.rsi
+       state: tech
+
+- type: entity
+  id: SpawnGSecMedic
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: GSecMedic
+  - type: Sprite
+    layers:
+     - state: green
+     - sprite: _Horizon/_Fractions/GSec/Markers/Jobs/gsec.rsi
+       state: medic
+
+- type: entity
+  id: SpawnGSecRecruit
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: GSecRecruit
+  - type: Sprite
+    layers:
+     - state: green
+     - sprite: _Horizon/_Fractions/GSec/Markers/Jobs/gsec.rsi
+       state: recruit

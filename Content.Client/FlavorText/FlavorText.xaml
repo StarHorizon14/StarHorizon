@@ -1,7 +1,8 @@
 <Control Name="CFlavorText" xmlns="https://spacestation14.io"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls">   <!-- Horizon - cc added -->
     <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-        <TextEdit Name="CFlavorTextInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
+        <TextEdit Name="CFlavorTextInput" Access="Public" MinSize="220 100" Margin="10 10 10 2" HorizontalExpand="True" VerticalExpand="True" />
+        <Label Name="CFlavorTextCounter" HorizontalAlignment="Right" Margin="10 0 10 6" /> <!-- Horizon: characters left -->
         <!-- Horizon start -->
         <cc:HSeparator Margin="8 4"/>
         <TextEdit Name="OOCFlavorTextInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />

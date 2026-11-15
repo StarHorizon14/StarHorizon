@@ -22,3 +22,8 @@
   id: PixelBlackHole
   kind: source
   path: "/Textures/_Horizon/Shaders/pixel_blackhole.swsl"
+
+- type: shader
+  id: ShiftStartBackground
+  kind: source
+  path: "/Textures/_Horizon/Shaders/shift_start_bg.swsl"

@@ -137,7 +137,7 @@
             max: 5
   - type: StaticPrice
     price: 500
-    vendPrise: 6000
+    vendPrice: 6000
 
 - type: entity
   name: казмиевая лопата АнКо

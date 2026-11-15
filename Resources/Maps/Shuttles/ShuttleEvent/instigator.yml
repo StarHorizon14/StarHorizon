@@ -1682,7 +1682,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ComputerIFFSyndicate
+- proto: ComputerIFF
   entities:
   - uid: 154
     components:

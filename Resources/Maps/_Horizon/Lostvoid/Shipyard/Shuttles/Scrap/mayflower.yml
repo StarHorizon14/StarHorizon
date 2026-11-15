@@ -3018,13 +3018,6 @@ entities:
     - pos: 0.5,-11.5
       parent: 1
       type: Transform
-- proto: GunSafeShuttleT2Spawner
-  entities:
-  - uid: 607
-    components:
-    - pos: -5.5,-1.5
-      parent: 1
-      type: Transform
 - proto: Gyroscope
   entities:
   - uid: 581
@@ -3984,7 +3977,6 @@ entities:
         68:
         - Pressed: Toggle
       type: DeviceLinkSource
-    - type: ItemCooldown
 - proto: SignArmory
   entities:
   - uid: 686

@@ -1,0 +1,14 @@
+- type: playTimeTracker
+  id: JobGSecOfficerOld
+
+- type: playTimeTracker
+  id: JobGSecTechOld
+
+- type: playTimeTracker
+  id: JobGSecMedicOld
+
+- type: playTimeTracker
+  id: JobGSecAgentOld
+
+- type: playTimeTracker
+  id: JobGSecRecruitOld

@@ -13,3 +13,20 @@
         - HRZNWhite
         - HRZNVoid
 # Horizon end
+# Horizon start: ported sector celestial bodies and background planets
+    - type: SectorCelestialPlacerController
+      blackHoleCount: 2
+      starCount: 1
+      minDistance: 8000
+      maxDistance: 14000
+      blackHoleSeparation: 18000
+      bodySeparation: 8000
+# Horizon end
+# Horizon start: expedition planets (one per biome) scattered around the sector
+    - type: ExpeditionPlanetPlacerController
+      biomes: [ Caves, Grasslands, Snow, Lava, Shadow, ArdoniumWastes ]
+      countPerBiome: 1
+      minDistance: 1500
+      maxDistance: 6500
+      minSeparation: 1200
+# Horizon end

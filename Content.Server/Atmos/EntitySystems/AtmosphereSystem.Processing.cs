@@ -1,5 +1,6 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.Piping.Components;
+using Content.Shared._Horizon.Shipbreaking; // Horizon
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Maps;
@@ -13,7 +14,7 @@ namespace Content.Server.Atmos.EntitySystems
 {
     public sealed partial class AtmosphereSystem
     {
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
 
         private readonly Stopwatch _simulationStopwatch = new();
 
@@ -180,6 +181,10 @@ namespace Content.Server.Atmos.EntitySystems
             {
                 var contentDef = (ContentTileDefinition) _tileDefinitionManager[gTile.TypeId];
                 mapAtmosphere = contentDef.MapAtmosphere;
+                // Horizon: a tile next to a cut leaks to space (shipbreaking, see GridCutsComponent)
+                if (!mapAtmosphere && TryComp<GridCutsComponent>(ent.Owner, out var gridCuts) && gridCuts.Leaks(idx))
+                    mapAtmosphere = true;
+                // End Horizon
                 tile.ThermalConductivity = contentDef.ThermalConductivity;
                 tile.HeatCapacity = contentDef.HeatCapacity;
                 tile.NoGridTile = false;

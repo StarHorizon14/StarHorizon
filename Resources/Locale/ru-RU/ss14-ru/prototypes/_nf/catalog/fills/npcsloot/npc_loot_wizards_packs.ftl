@@ -1,10 +1,10 @@
-ent-NFBaseNpcLootPackWizard = blue wizard bundle
+ent-NFBaseNpcLootPackWizard = набор синего волшебника
     .desc = { ent-NFBaseNpcLootBackpack.desc }
 ent-NFBlueWizardGiftBox = синий пакет волшебника
     .desc = { ent-PunkMessengerGiftBox.desc }
 ent-NFRedWizardGiftBox = красный пакет волшебника
     .desc = { ent-NFBlueWizardGiftBox.desc }
-ent-NFBaseNpcLootWalletWizard = wizard's wallet
+ent-NFBaseNpcLootWalletWizard = кошелёк волшебника
     .desc = { ent-NFBaseNpcLootWallet.desc }
 ent-ClothingWalletWizardT1 = { ent-NFBaseNpcLootWalletWizard }
     .desc = { ent-NFBaseNpcLootWalletWizard.desc }

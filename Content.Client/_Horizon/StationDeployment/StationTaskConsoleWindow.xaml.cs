@@ -88,7 +88,8 @@ public sealed partial class StationTaskConsoleWindow : FancyWindow
             if (!_prototype.TryIndex(order.Order, out var prototype))
                 continue;
 
-            var card = new StationOrderCardControl(prototype, _prototype, _sprite);
+            var currentLevel = state.Levels.GetValueOrDefault(prototype.Category, 0);
+            var card = new StationOrderCardControl(prototype, currentLevel, _prototype, _sprite);
             card.OnCancelPressed += () => OnOrderCancelPressed?.Invoke(order.Id);
             OrdersContainer.AddChild(card);
         }

@@ -6,7 +6,7 @@ namespace Content.Server.Atmos.EntitySystems
 {
     public sealed partial class AtmosphereSystem
     {
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
 
         public bool SpaceWind { get; private set; }
         public float SpaceWindPressureForceDivisorThrow { get; private set; }
@@ -16,6 +16,9 @@ namespace Content.Server.Atmos.EntitySystems
         public bool MonstermosEqualization { get; private set; }
         public bool MonstermosDepressurization { get; private set; }
         public bool MonstermosRipTiles { get; private set; }
+        public float MonstermosRipStrength { get; private set; } // Horizon
+        public float WindDamageThreshold { get; private set; } // Horizon
+        public float WindDamageScale { get; private set; } // Horizon
         public bool GridImpulse { get; private set; }
         public float SpacingEscapeRatio { get; private set; }
         public float SpacingMinGas { get; private set; }
@@ -49,6 +52,9 @@ namespace Content.Server.Atmos.EntitySystems
             Subs.CVar(_cfg, CCVars.MonstermosEqualization, value => MonstermosEqualization = value, true);
             Subs.CVar(_cfg, CCVars.MonstermosDepressurization, value => MonstermosDepressurization = value, true);
             Subs.CVar(_cfg, CCVars.MonstermosRipTiles, value => MonstermosRipTiles = value, true);
+            Subs.CVar(_cfg, CCVars.MonstermosRipStrength, value => MonstermosRipStrength = value, true); // Horizon
+            Subs.CVar(_cfg, CCVars.AtmosWindDamageThreshold, value => WindDamageThreshold = value, true); // Horizon
+            Subs.CVar(_cfg, CCVars.AtmosWindDamageScale, value => WindDamageScale = value, true); // Horizon
             Subs.CVar(_cfg, CCVars.AtmosGridImpulse, value => GridImpulse = value, true);
             Subs.CVar(_cfg, CCVars.AtmosSpacingEscapeRatio, value => SpacingEscapeRatio = value, true);
             Subs.CVar(_cfg, CCVars.AtmosSpacingMinGas, value => SpacingMinGas = value, true);

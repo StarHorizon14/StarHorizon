@@ -7,7 +7,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 20
+        Piercing: 16
   - type: StaminaDamageOnCollide
     damage: 3
 
@@ -23,6 +23,9 @@
         Piercing: 10
         Structural: 20
     ignoreResistances: true
+    penetrationThreshold: 100
+    penetrationDamageTypeRequirement:
+    - Structural
 
 - type: entity
   id: BulletRifle762x39Uranium
@@ -33,7 +36,7 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 10
+        Radiation: 6
         Piercing: 10
 
 - type: entity
@@ -57,7 +60,7 @@
     damage:
       types:
         Piercing: 5
-        Heat: 15
+        Heat: 11
 
 - type: entity
   id: BulletRifle762UEG
@@ -68,7 +71,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 21
+        Piercing: 17
   - type: StaminaDamageOnCollide
     damage: 4
 
@@ -84,6 +87,9 @@
         Piercing: 11
         Structural: 20
     ignoreResistances: true
+    penetrationThreshold: 100
+    penetrationDamageTypeRequirement:
+    - Structural
 
 - type: entity
   id: BulletRifle762UEGUranium
@@ -94,7 +100,7 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 11
+        Radiation: 7
         Piercing: 10
 
 - type: entity
@@ -117,7 +123,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 11
+        Piercing: 7
         Heat: 10
 
 - type: entity
@@ -129,7 +135,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 17
+        Piercing: 15
   - type: StaminaDamageOnCollide
     damage: 3
 
@@ -145,6 +151,9 @@
         Piercing: 8
         Structural: 17
     ignoreResistances: true
+    penetrationThreshold: 100
+    penetrationDamageTypeRequirement:
+    - Structural
 
 - type: entity
   id: BulletRifle556UEGUranium
@@ -155,8 +164,8 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 12
-        Piercing: 5
+        Radiation: 5
+        Piercing: 10
 
 - type: entity
   id: BulletRifle556UEGPractice
@@ -178,8 +187,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 2
-        Heat: 15
+        Piercing: 5
+        Heat: 10
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -190,7 +199,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 30
+        Piercing: 34
   - type: StaminaDamageOnCollide
     damage: 30
 
@@ -206,6 +215,9 @@
         Piercing: 14
         Structural: 28
     ignoreResistances: true
+    penetrationThreshold: 150
+    penetrationDamageTypeRequirement:
+    - Structural
 
 - type: entity
   id: Bullet308winUranium
@@ -216,8 +228,8 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 20
-        Piercing: 10
+        Radiation: 10
+        Piercing: 24
 
 - type: entity
   id: Bullet308winPractice
@@ -239,7 +251,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
+        Piercing: 14
         Heat: 20
 
 - type: entity
@@ -267,6 +279,9 @@
         Piercing: 20
         Structural: 40
     ignoreResistances: true
+    penetrationThreshold: 150
+    penetrationDamageTypeRequirement:
+    - Structural
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -281,6 +296,9 @@
         Structural: 80
   - type: StaminaDamageOnCollide
     damage: 50
+    penetrationThreshold: 260
+    penetrationDamageTypeRequirement:
+    - Structural
 
 - type: entity
   id: Bullet50BMGAP
@@ -294,3 +312,6 @@
         Piercing: 50
         Structural: 350
     ignoreResistances: true
+    penetrationThreshold: 360
+    penetrationDamageTypeRequirement:
+    - Structural

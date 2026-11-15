@@ -17,6 +17,7 @@
   category: Small
   group: Security
   access: Detective
+  # Horizon
   shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/heimdall.yml # Horizon
   guidebookPage: Null
   class:

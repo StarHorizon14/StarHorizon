@@ -167,7 +167,9 @@ public sealed partial class NPCSteeringSystem
                     var destructibleQuery = GetEntityQuery<DestructibleComponent>();
 
                     // TODO: This is a hack around grilles and windows.
-                    _random.Shuffle(obstacleEnts);
+                    // Horizon-Start
+                    System.Random.Shared.Shuffle(System.Runtime.InteropServices.CollectionsMarshal.AsSpan(obstacleEnts));
+                    // Horizon-End
                     var attackResult = false;
 
                     foreach (var ent in obstacleEnts)

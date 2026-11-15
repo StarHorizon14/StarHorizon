@@ -18,6 +18,8 @@ public sealed class SalvageExpeditionConsoleState : BoundUserInterfaceState
     public List<SalvageMissionParams> Missions;
     public bool CanFinish; // Frontier
     public TimeSpan CooldownTime; // Frontier: separate fail vs. success time
+    public bool NoPlanet; // Horizon: console is not near an expedition planet, so expeditions cannot be started
+    public string? PlanetBiome; // Horizon: biome of the nearby expedition planet; missions use it
 
     public SalvageExpeditionConsoleState(TimeSpan nextOffer, bool claimed, bool cooldown, ushort activeMission, List<SalvageMissionParams> missions, bool canFinish, TimeSpan cooldownTime) // Frontier: add canFinish, cooldownTime
     {
@@ -131,6 +133,10 @@ public sealed record SalvageMissionParams
 
     [ViewVariables(VVAccess.ReadWrite)] // Frontier
     public SalvageMissionType MissionType; // Frontier
+
+    /// <summary>Horizon: biome forced by the expedition planet the console is next to (null = chosen by seed).</summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public string? Biome;
 }
 
 /// <summary>

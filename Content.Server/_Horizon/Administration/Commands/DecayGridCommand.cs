@@ -94,7 +94,7 @@ public sealed class DecayGridCommand : IConsoleCommand
     private const float MinGlassDamage = 10f;
     private const float MaxGlassDamage = 100f;
 
-    private static readonly ProtoId<EntityPrototype>[] OreRocks =
+    private static readonly EntProtoId[] OreRocks =
     [
         "WallRock",
         "WallRockCoal",
@@ -107,7 +107,7 @@ public sealed class DecayGridCommand : IConsoleCommand
         "WallRockUranium",
     ];
 
-    private static readonly ProtoId<EntityPrototype>[] JunkSpawners =
+    private static readonly EntProtoId[] JunkSpawners =
     [
         "SalvageSpawnerScrapCommon75",
         "RandomSpawner100",

@@ -1,0 +1,281 @@
+- type: entity
+  parent: [VendingMachine, BaseGSecContraband]
+  suffix: GSec, Structure
+  categories: [HideSpawnMenu]
+  id: GSecVending
+  abstract: true
+  components:
+  - type: VendingMachine
+    pack: null
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: DatasetVocalizer
+    dataset: GSecClothesMateAds
+  - type: MarketModifier
+    mod: 5
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Speech
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Machines/VendingMachines/clothing.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.8
+    energy: 1.6
+    color: "#2C5799"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:SpawnEntitiesBehavior
+            spawn:
+              SheetSteel1:
+                min: 1
+                max: 5
+              ShardGlass:
+                min: 1
+                max: 3
+  - type: StaticPrice
+    price: 6000
+
+- type: entity
+  parent: [GSecVending]
+  id: GSecVendingClothing
+  name: ОдеждоМат Горлекс
+  description: Вендор с одеждой ЧВК «Gorlex Securities LLC». Содержит всё, для комфорта в суровых условиях.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Machines/VendingMachines/clothing.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: VendingMachineClothingGSec
+
+- type: entity
+  parent: [GSecVending]
+  id: GSecVendingGear
+  name: УниВенд Горлекс
+  description: Вендор со снаряжением ЧВК «Gorlex Securities LLC». Стиль и надёжность в одном флаконе!.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Machines/VendingMachines/gear.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: VendingMachineGearGSec
+
+- type: entity
+  parent: [GSecVending]
+  id: GSecVendingSupply
+  name: Расход-О-Мат Горлекс
+  description: Вендор с закусками, напитками и другими расходниками ЧВК «Gorlex Securities LLC». Сытно и питательно!.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Machines/VendingMachines/supply.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: VendingMachineSupplyGSec
+
+- type: entity
+  parent: BaseVendingMachineRestock
+  id: GSecVendingMachineClothingRestock
+  suffix: GSec, Restock
+  name: коробка пополнения Горлекс
+  description: Пришло время повысить свои стиль и комфорт. Поместите в слот пополнения запасов любого торгомата Горлекс, чтобы начать."
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - VendingMachineClothingGSec
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_clothes
+
+- type: entity
+  parent: BaseVendingMachineRestock
+  id: GSecVendingMachineGearRestock
+  suffix: GSec, Restock
+  name: коробка пополнения Горлекс
+  description: Пришло время повысить свои безопасность и стиль. Поместите в слот пополнения запасов любого торгомата Горлекс, чтобы начать."
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - VendingMachineGearGSec
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_gear
+
+- type: entity
+  parent: BaseVendingMachineRestock
+  id: GSecVendingMachineSupplyRestock
+  suffix: GSec, Restock
+  name: коробка пополнения Горлекс
+  description: Пришло время заправиться! Поместите в слот пополнения запасов любого торгомата Горлекс, чтобы начать."
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - VendingMachineSupplyGSec
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_supply
+
+- type: vendingMachineInventory
+  id: VendingMachineClothingGSec
+  startingInventory:
+   ClothingShoesBootsCombatFilled: 6
+
+   ClothingHandsGlovesCombat: 3
+   GSecGloves: 4
+   GSecMedicGloves: 2
+
+   ClothingCloakGSec: 3
+   ClothingMantleGSec: 5
+   ClothingMantleMedicGSec: 2
+
+   SuitGSec: 5
+
+   ClothingBackpackGSec: 2
+   ClothingBackpackDuffelGSec: 2
+   ClothingMessengerGsec: 2
+
+   ClothingHeadHatBeretGSec: 1
+   ClothingHeadHatBeretMedicGSec: 1
+   ClothingHeadHatBeretBlackGSec: 1
+   ClothingHeadHatCorpsoft: 3
+
+   ClothingUnderwearTopBraSportsBlack: 2
+   ClothingUnderwearBottomBoxersGSec: 2
+   ClothingUnderwearBottomPantiesGSec: 2
+   ClothingUnderwearSocksNormGSec: 2
+   ClothingUnderwearSocksTighGSec: 2
+
+  emaggedInventory:
+   ClothingNeckScarfStripedSyndieRed: 2
+   ClothingNeckScarfStripedSyndieGreen: 2
+
+   SuitGSecOfficer: 1
+   SuitGSecTech: 3
+   SuitGSecMedic: 2
+   SuitGSecRecruit: 3
+
+   ClothingHeadHatSyndie: 2
+   ClothingHeadHatSyndieMAA: 2
+
+   NFWeaponPistolViper: 2
+
+- type: vendingMachineInventory
+  id: VendingMachineGearGSec
+  startingInventory:
+   PDAGSec: 3
+
+   MysteryLighterBox: 3
+   FlippoGSecLighter: 1
+
+   ClothingMaskGasAgent: 4
+
+   ClothingEyesHudGSecBallistic: 5
+   ClothingEyesHudGSec: 2
+
+   ClothingOuterVestWebMercenary: 3
+   ClothingOuterVestWebMercenaryBlack: 3
+   ClothingBeltMercenaryWebbing: 7
+   ClothingBeltGSecWebbing: 3
+   ClothingBeltWebbingMedic: 3
+
+  emaggedInventory:
+   UplinkLighterBox: 3
+   FlippoGSecLighter: 1
+   ClothingOuterVestWeb: 3
+
+   ClothingBeltMilitaryWebbing: 4
+
+   ClothingEyesHudGSecSpecial: 2
+
+   ClothingHeadsetGSec: 5
+   ClothingHeadsetAltGSec: 3
+
+   NFWeaponPistolViper: 2
+
+- type: vendingMachineInventory
+  id: VendingMachineSupplyGSec
+  startingInventory:
+   CigPackGSec: 4
+   CigPackBlack: 3
+   CigPackMcCargo: 3
+   DrinkEnergyGSecCan: 3
+   DrinkBeerGSecCan: 3
+   DrinkRootBeerCan: 3
+   DrinkColaCan: 3
+   DrinkDrGibbCan: 3
+   DrinkAzJuice: 3
+   DrinkWaterBottleFull: 3
+
+   FoodGSecMeatTin: 4
+   FoodSnackNutribrick: 3
+   FoodSnackMREBrownie: 3
+   FoodSnackChocolate: 3
+   FoodSnackEnergy: 3
+   FoodSnackCnDs: 3
+   FoodSnackCheesie: 3
+   FoodBoxDonkpocket: 2
+   FoodBoxDonkpocketSpicy: 2
+   FoodBoxDonkpocketTeriyaki: 2
+
+  emaggedInventory:
+   CigPackSyndicate: 2
+   DrinkNukieCan: 3
+   FoodSnackSyndi: 3
+   FoodSnackSus: 3
+   ChemistryBottleOmnizine: 2
+   CombatMedipen: 4
+   NanitMedipenAnCo: 2
+   SpawnDungeonClutterMedipens: 6

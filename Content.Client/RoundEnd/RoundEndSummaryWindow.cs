@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Message;
+using Content.Shared._Horizon.ShiftTime;
 using Content.Shared.GameTicking;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
@@ -70,10 +71,13 @@ namespace Content.Client.RoundEnd
 
             //Duration
             var roundTimeLabel = new RichTextLabel();
-            roundTimeLabel.SetMarkup(Loc.GetString("round-end-summary-window-duration-label",
-                                                   ("hours", roundDuration.Hours),
-                                                   ("minutes", roundDuration.Minutes),
-                                                   ("seconds", roundDuration.Seconds)));
+            var roundDays = ShiftTimeFormatter.Days(roundDuration);
+            roundTimeLabel.SetMarkup(Loc.GetString(
+                roundDays > 0 ? "round-end-summary-window-duration-label-days" : "round-end-summary-window-duration-label",
+                ("days", roundDays),
+                ("hours", roundDuration.Hours),
+                ("minutes", roundDuration.Minutes),
+                ("seconds", roundDuration.Seconds)));
             roundEndSummaryContainer.AddChild(roundTimeLabel);
 
             //Round end text

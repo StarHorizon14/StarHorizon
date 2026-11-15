@@ -1,0 +1,86 @@
+- type: entity
+  parent: [ClothingEyesBase, ContrabandClothing]
+  id: ClothingEyesHudGSecBallistic
+  suffix: GSec
+  name: баллистические очки Горлекс
+  description: Стильные очки с защитой от осколков.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Eyes/Hud/ballistic.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Eyes/Hud/ballistic.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.97
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: StaticPrice
+    price: 150
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingEyesHudGSecBallistic]
+  id: ClothingEyesHudGSecBallisticOld
+  name: архаичные очки Горлекс
+  description: Стильные очки старой закалки.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Eyes/Hud/ballisticold.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Eyes/Hud/ballisticold.rsi
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseGSecContraband, ContrabandClothing]
+  id: ClothingEyesHudGSec
+  suffix: GSec
+  name: военный визор Горлекс
+  description: Продвинутая система обнаружения, помещённая в баллистические очки.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Eyes/Hud/gsec.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Eyes/Hud/gsec.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.99
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: StaticPrice
+    price: 2200
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingEyesHudGSec]
+  id: ClothingEyesHudGSecMedical
+  name: медицинский визор Горлекс
+  suffix: GSec
+  description: Продвинутая система обнаружения, теперь со сканером здоровья!
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Eyes/Hud/gsecmedic.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Eyes/Hud/gsecmedic.rsi
+  - type: ShowHealthBars
+  - type: StaticPrice
+    price: 3300
+
+
+- type: entity
+  parent: [ClothingEyesHudGSec]
+  id: ClothingEyesHudGSecSpecial
+  suffix: StarHorizon, Syndicate, GSec
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.97
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowSyndicateIcons
+  - type: StaticPrice
+    price: 3300

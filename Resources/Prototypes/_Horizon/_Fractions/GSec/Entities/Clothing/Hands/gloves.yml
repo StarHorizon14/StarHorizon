@@ -1,0 +1,23 @@
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: GSecGloves
+  suffix: GSec
+  name: перчатки Горлекс
+  description: Надёжные перчатки, созданные по заказу не менее надёжной ЧВК.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Hands/Gloves/combat.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Hands/Gloves/combat.rsi
+  - type: StaticPrice
+  price: 120
+
+- type: entity
+  parent: GSecGloves
+  id: GSecMedicGloves
+  name: перчатки санитара Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Hands/Gloves/medic.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Hands/Gloves/medic.rsi

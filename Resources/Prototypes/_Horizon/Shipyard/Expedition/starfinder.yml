@@ -1,0 +1,45 @@
+# Информация об авторе шаттла
+# GitHub/Gitea: ???
+# Discord: maximilian_leonhard
+
+# Информация о сопровождающем
+# GitHub/Gitea: https://git.starhorizon.ru/Astrolaris
+# Discord: astr0laris
+
+# Прототип шаттла:
+#
+- type: vessel
+  id: Starfinder
+  parent: BaseVessel
+  name: M&L Starfinder
+  description: Исследовательский шаттл, перестроенный из списанного истребителя-разведчика. Быстрый, тесный и требует бережного обращения.
+  price: 50000 # 31547, наценка верфи 30% = 41011,1
+  category: Micro
+  group: Expedition
+  shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Expedition/starfinder.yml
+  class:
+  - Expedition
+  - Mercenary
+  engine:
+  - Uranium
+
+
+- type: gameMap
+  id: Starfinder
+  mapName: 'M&L Starfinder'
+  mapPath: /Maps/_Horizon/Shuttles/Shipyard/Expedition/starfinder.yml
+  minPlayers: 0
+  stations:
+    Starfinder:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Starfinder {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

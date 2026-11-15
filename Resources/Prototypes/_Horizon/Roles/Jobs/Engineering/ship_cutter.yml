@@ -1,0 +1,41 @@
+- type: job
+  id: ShipCutter
+  name: job-name-ship-cutter
+  description: job-description-ship-cutter
+  playTimeTracker: JobShipCutter
+  setPreference: false
+  forceFaction: FactionEdison
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 9000
+  icon: "JobIconShaftMiner"
+  startingGear: ShipCutterGear
+  alwaysUseSpawner: true
+  supervisors: job-supervisors-hire
+  access:
+  - Engineering
+  accessGroups:
+  - GeneralAccess
+
+- type: startingGear
+  id: ShipCutterGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    id: ShipCutterPDA
+    ears: ClothingHeadsetCargo
+
+- type: entity
+  parent: SalvageIDCard
+  id: ShipCutterIDCard
+  name: ship cutter ID card
+  components:
+  - type: PresetIdCard
+    job: ShipCutter
+
+- type: entity
+  parent: SalvagePDA
+  id: ShipCutterPDA
+  name: ship cutter PDA
+  components:
+  - type: Pda
+    id: ShipCutterIDCard

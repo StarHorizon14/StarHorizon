@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by TheDark_",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "poster1_enlist"
+    },
+    {
+      "name": "poster2_buy"
+    },
+    {
+      "name": "poster3_defend"
+    },
+    {
+      "name": "poster4_edge"
+    },
+    {
+      "name": "poster5_musculine"
+    }
+  ]
+}

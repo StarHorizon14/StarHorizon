@@ -1,0 +1,29 @@
+- type: loadout
+  id: LoadoutPDAGSecOfficer
+  price: 0
+  equipment:
+    id: PDAOfficerGSec
+
+- type: loadout
+  id: LoadoutPDAGSecMedic
+  price: 0
+  equipment:
+    id: PDAMedicGSec
+
+- type: loadout
+  id: LoadoutPDAGSecTech
+  price: 0
+  equipment:
+    id: PDATechGSec
+
+- type: loadout
+  id: LoadoutPDAGSecAgent
+  price: 0
+  equipment:
+    id: PDAAgentGSec
+
+- type: loadout
+  id: LoadoutPDAGSecRecruit
+  price: 0
+  equipment:
+    id: PDARecruitGSec

@@ -46,7 +46,7 @@
           path: /Audio/Weapons/Guns/Empty/empty.ogg
         swap: false
         disableEject: true
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     trash:
     - FoodPlate
 
@@ -85,7 +85,7 @@
           path: /Audio/Weapons/Guns/Empty/empty.ogg
         swap: false
         disableEject: true
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     trash:
     - FoodPlateSmall
 

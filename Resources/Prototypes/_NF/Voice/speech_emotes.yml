@@ -16,6 +16,7 @@
     - mutters
     - muttered
     - muttering
+    - бормочет # Horizon
 
 - type: emote
   id: GoblinThroatSinging
@@ -56,3 +57,4 @@
     - belchs
     - burps
     - belches
+    - рыгает # Horizon

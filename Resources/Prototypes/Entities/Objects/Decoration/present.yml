@@ -104,6 +104,8 @@
         orGroup: GiftPool
       - id: ClothingNeckCloakMoth
         orGroup: GiftPool
+      - id: TennisBall
+        orGroup: GiftPool
       - id: ToyMouse
         orGroup: GiftPool
       - id: ToyAi
@@ -479,6 +481,8 @@
       - id: TechnologyDiscArsenalAmmoModules
         orGroup: TechDiskPool
       - id: TechnologyDiscArsenalAmmunition
+        orGroup: TechDiskPool
+      - id: TechnologyDiscGunsmith
         orGroup: TechDiskPool
       # - id: TechnologyDiscArsenalDome
       #   orGroup: TechDiskPool

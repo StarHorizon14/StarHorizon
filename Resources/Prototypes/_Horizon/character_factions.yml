@@ -104,6 +104,14 @@
   outpostSpawnListProto: FactionPirate
 
 - type: characterFaction
+  id: FactionGSec
+  name: faction-gsec-name
+  desc: faction-gsec-desc
+  color: "#586429"
+  roundstart: false
+  outpostSpawnListProto: FactionGSec
+
+- type: characterFaction
   id: FactionSyndicate
   name: faction-syndicate-name
   desc: faction-syndicate-desc

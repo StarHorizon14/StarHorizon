@@ -51,28 +51,16 @@ namespace Content.Shared._Horizon.CCVar
             CVarDef.Create("shutdown.enabled", false, CVar.SERVERONLY);
 
         /// <summary>
-        /// Время рестарта по МСК в формате "HH:mm" (например "12:00").
+        /// Длительность раунда в часах, по достижении которой (по таймеру раунда в лаунчере) происходит рестарт.
         /// </summary>
-        public static readonly CVarDef<string> ShutdownTime =
-            CVarDef.Create("shutdown.time", "12:00", CVar.SERVERONLY);
-
-        /// <summary>
-        /// Интервал рестарта в днях.
-        /// </summary>
-        public static readonly CVarDef<int> ShutdownIntervalDays =
-            CVarDef.Create("shutdown.interval_days", 3, CVar.SERVERONLY);
-
-        /// <summary>
-        /// Дополнительные часы к интервалу рестарта.
-        /// </summary>
-        public static readonly CVarDef<int> ShutdownIntervalHours =
-            CVarDef.Create("shutdown.interval_hours", 12, CVar.SERVERONLY);
+        public static readonly CVarDef<int> ShutdownRoundHours =
+            CVarDef.Create("shutdown.round_hours", 48, CVar.SERVERONLY);
 
         /// <summary>
         /// За сколько минут до рестарта вызывать шаттл эвакуации.
         /// </summary>
         public static readonly CVarDef<int> ShutdownShuttleTime =
-            CVarDef.Create("shutdown.shuttle_time", 10, CVar.SERVERONLY);
+            CVarDef.Create("shutdown.shuttle_time", 20, CVar.SERVERONLY);
 
         /// <summary>
         ///     Path to discord_sponsors.txt file
@@ -113,6 +101,36 @@ namespace Content.Shared._Horizon.CCVar
         /// </summary>
         public static readonly CVarDef<float> TrashCleanupStartDelay =
             CVarDef.Create("trash.cleanup_start_delay", 600f, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Удалять ли периодически дешёвые предметы, дрейфующие в открытом космосе вне гридов.
+        /// </summary>
+        public static readonly CVarDef<bool> SpaceLitterCleanupEnabled =
+            CVarDef.Create("trash.space_cleanup_enabled", true, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Интервал в секундах между очистками космоса от дешёвых предметов.
+        /// </summary>
+        public static readonly CVarDef<float> SpaceLitterCleanupInterval =
+            CVarDef.Create("trash.space_cleanup_interval", 1800f, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Предметы (или стопки) дороже этой цены очистка космоса не трогает.
+        /// </summary>
+        public static readonly CVarDef<float> SpaceLitterCleanupMaxPrice =
+            CVarDef.Create("trash.space_cleanup_max_price", 100f, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Усыплять ли NPC, рядом с которыми нет живых игроков.
+        /// </summary>
+        public static readonly CVarDef<bool> NpcPauseWhenNoPlayersInRange =
+            CVarDef.Create("npc.pause_when_no_players_in_range", true, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Расстояние (в метрах) до ближайшего живого игрока, дальше которого NPC засыпает.
+        /// </summary>
+        public static readonly CVarDef<float> NpcPlayerPauseDistance =
+            CVarDef.Create("npc.player_pause_distance", 1000f, CVar.SERVERONLY);
 
         /// <summary>
         /// Включение/отключение автоматического удаления мелких гридов.

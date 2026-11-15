@@ -26,12 +26,3 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-goblin-name
-    description: Вы гоблин, выращенный в цитологической ванне. Озорной и быстрый! Исследуйте это место и устраивайте шалости!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable

@@ -1,0 +1,51 @@
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltGSec
+  suffix: GSec
+  name: активные наушники Горлекс
+  description: Надёжные наушники, связь и защита слуха в одном флаконе!
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyGSec
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Ears/Headsets/activeheadset.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Ears/Headsets/activeheadset.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.99
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetGSec
+  suffix: GSec
+  name: гарнитура Горлекс
+  description: Надёжное устройство связи.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyGSec
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Ears/Headsets/basic.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Ears/Headsets/basic.rsi
+
+- type: entity
+  parent: ClothingHeadsetGSec
+  id: ClothingHeadsetMedicGSec
+  name: гарнитура санитара Горлекс
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyGSec
+      - EncryptionKeyCommon
+      - EncryptionKeyMedical
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Ears/Headsets/medic.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Ears/Headsets/medic.rsi

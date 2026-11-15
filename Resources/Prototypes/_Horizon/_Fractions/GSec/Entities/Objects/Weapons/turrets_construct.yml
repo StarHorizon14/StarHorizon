@@ -1,0 +1,17 @@
+- type: constructionGraph # deconstruction graph
+  id: GSecWeaponTurretGuardianPackingGraph
+  start: GSecWeaponTurretPacked
+  graph:
+  - node: GSecWeaponTurretPacked
+    entity: GSecWeaponTurret
+    edges:
+    - to: GSecWeaponTurretPacked
+      completed:
+      - !type:SpawnPrototype
+            prototype: GSecWeaponTurretPacked
+            amount: 1
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity {}
+      steps:
+        - tool: Screwing
+          doAfter: 14

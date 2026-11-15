@@ -65,3 +65,10 @@ shuttle-console-docks-label = Docks
 
 shuttle-console-undock-fail = Undocking Failed
 shuttle-console-dock-fail = Docking Failed
+shuttle-console-map-planet-view = Planet view
+shuttle-console-map-planet-relief = Relief
+shuttle-console-map-planet-camera = Camera
+shuttle-console-map-ftl-concentrate = FTL focus
+shuttle-console-ftl-concentration-label = FTL focus
+shuttle-console-ftl-concentration-jump-radius = FTL radius: { $range } m
+shuttle-console-ftl-concentration-clear = Clear: { $range } m

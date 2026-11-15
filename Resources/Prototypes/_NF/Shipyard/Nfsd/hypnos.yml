@@ -17,6 +17,7 @@
   category: Medium
   group: Security
   access: Sergeant
+  # Horizon
   shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/hypnos.yml # Horizon
   class:
   - Pursuit

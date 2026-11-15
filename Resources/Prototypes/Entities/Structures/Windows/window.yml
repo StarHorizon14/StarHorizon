@@ -80,6 +80,8 @@
     minPressureDelta: 750
     scalingType: Linear
     scalingPower: 0.0005
+    strainSound: # Horizon
+      collection: PressureStrainGlass
   - type: IconSmooth
     key: walls
     base: window

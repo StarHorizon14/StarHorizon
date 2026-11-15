@@ -53,7 +53,7 @@
     scalingType: Threshold
   - type: StaticPrice
     price: 100
-    vendPrise: 500
+    vendPrice: 500
   - type: Construction
     graph: WindowArdon
     node: ardonwindowdirectional

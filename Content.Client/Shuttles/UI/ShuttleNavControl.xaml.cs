@@ -1,3 +1,6 @@
+using Content.Client._Horizon.Shuttles; // Horizon
+using Content.Shared._Horizon.Shuttles;
+using Content.Shared._Horizon.Shuttles.Components;
 using Content.Client._Mono.Radar;
 using Content.Client.Shuttles.Systems;
 using Content.Client.Station; // Frontier
@@ -27,12 +30,67 @@ namespace Content.Client.Shuttles.UI;
 [Virtual]
 public partial class ShuttleNavControl : BaseShuttleControl // Mono
 {
+    // Horizon
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     protected override bool AllowResize => true; // Lua
     protected override bool ScaleWithControlSize => true; // Lua
+    private const float LabelHoverSeconds = 0.18f;
+    private readonly Dictionary<EntityUid, float> _labelHover = new(); // Horizon: per-marker hover progress, 0..1
+
+    /// <summary>Moves a marker's hover progress towards hovered/not hovered and returns it eased.</summary>
+    private float UpdateLabelHover(EntityUid key, bool hovered)
+    {
+        _labelHover.TryGetValue(key, out var progress);
+        progress = Math.Clamp(progress + (hovered ? 1f : -1f) * (float) Timing.FrameTime.TotalSeconds / LabelHoverSeconds, 0f, 1f);
+
+        if (progress <= 0f)
+            _labelHover.Remove(key);
+        else
+            _labelHover[key] = progress;
+
+        return progress * progress * (3f - 2f * progress);
+    }
+
+    /// <summary>
+    /// Horizon: while the shuttle concentrates for an FTL jump, draws the circle that has to be free of other grids. It
+    /// starts at the normal size and shrinks to half over the concentration.
+    /// </summary>
+    private void DrawFtlConcentration(DrawingHandleScreen handle, TransformComponent consoleXform, Matrix3x2 worldToShuttle, Matrix3x2 shuttleToView)
+    {
+        if (_coordinates == null)
+            return;
+
+        var coordEnt = _coordinates.Value.EntityId;
+        var shuttle = EntManager.HasComponent<MapGridComponent>(coordEnt) ? coordEnt : consoleXform.GridUid;
+        if (shuttle == null
+            || !EntManager.TryGetComponent(shuttle.Value, out FtlConcentrationComponent? concentration)
+            || !EntManager.TryGetComponent(shuttle.Value, out MapGridComponent? grid))
+        {
+            return;
+        }
+
+        var aabb = grid.LocalAABB;
+        var worldCenter = Vector2.Transform(aabb.Center, _transform.GetWorldMatrix(shuttle.Value));
+        var range = FtlProximity.Range * concentration.GetRangeFactor(Timing.CurTime);
+
+        // The server grows the shuttle's bounds by the range; a circle around the hull's centre stands for that.
+        var radiusMeters = aabb.Size.Length() / 2f + range;
+        var screenCenter = Vector2.Transform(Vector2.Transform(worldCenter, worldToShuttle), shuttleToView);
+        var progress = concentration.GetProgress(Timing.CurTime);
+        var color = Color.InterpolateBetween(Color.FromHex("#FFB020"), Color.FromHex("#5BD27A"), progress);
+
+        handle.DrawCircle(screenCenter, radiusMeters * MinimapScale, color.WithAlpha(0.08f));
+        handle.DrawCircle(screenCenter, radiusMeters * MinimapScale, color.WithAlpha(0.8f), filled: false);
+
+        var label = Loc.GetString("shuttle-console-ftl-concentration-clear", ("range", range.ToString("0")));
+        var dims = handle.GetDimensions(Font, label, 1f);
+        handle.DrawString(Font, screenCenter + new Vector2(-dims.X / 2f, -radiusMeters * MinimapScale - dims.Y - 4f) * UIScale / UIScale, label, UIScale, color);
+    }
+
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _transform;
+    private readonly SectorMapIcons _sectorIcons = new(); // Horizon: planet discs
 
     /// <summary>
     /// Used to transform all of the radar objects. Typically is a shuttle console parented to a grid.
@@ -394,6 +452,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             return;
         }
 
+        // Horizon
         var coordEnt = _coordinates.Value.EntityId;
         var coordEntRot = _transform.GetWorldRotation(coordEnt);
         if (_angleFollow && EntManager.TryGetComponent<TransformComponent>(coordEnt, out _))
@@ -410,6 +469,37 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 
         // Draw shields
         DrawShields(handle, xform, worldToShuttle);
+
+        // Horizon: the radius that must be clear around the shuttle while FTL concentration shrinks it
+        DrawFtlConcentration(handle, xform, worldToShuttle, shuttleToView);
+
+        // Horizon: stars and black holes at their real size, and expedition planets as discs
+        _sectorIcons.DrawNavBodies(
+            handle,
+            EntManager,
+            _transform,
+            xform.MapID,
+            worldPoint => Vector2.Transform(Vector2.Transform(worldPoint, worldToShuttle), shuttleToView),
+            MinimapScale,
+            PixelRect);
+        _sectorIcons.DrawNavPlanets(
+            handle,
+            EntManager,
+            _transform,
+            xform.MapID,
+            worldPoint => Vector2.Transform(Vector2.Transform(worldPoint, worldToShuttle), shuttleToView),
+            MinimapScale,
+            PixelRect);
+
+        // Horizon: border rings of stars (solar boost zone) and black holes (pull / hazard / event horizon)
+        SectorBodyRings.Draw(
+            handle,
+            EntManager,
+            _transform,
+            xform.MapID,
+            worldPoint => Vector2.Transform(Vector2.Transform(worldPoint, worldToShuttle), shuttleToView),
+            MinimapScale,
+            PixelRect);
 
         // Frontier Corvax: north line drawing
         DrawNorthLine(handle, worldRot);
@@ -466,7 +556,9 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
         }
 
-        var viewBounds = new Box2Rotated(new Box2(-WorldRange, -WorldRange, WorldRange, WorldRange).Translated(mapPos.Position), rot, mapPos.Position);
+        // Frontier: Use ScaledWorldRange for culling. WorldRange doesnt account for the viewport resizing
+        var viewBounds = new Box2Rotated(new Box2(-ScaledWorldRange.X, -ScaledWorldRange.Y, ScaledWorldRange.X, ScaledWorldRange.Y).Translated(mapPos.Position), rot, mapPos.Position);
+        // End Frontier
         var viewAABB = viewBounds.CalcBoundingBox();
 
         _grids.Clear();
@@ -553,6 +645,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var isOutsideRadarCircle = uiDistance > Math.Abs(uiX) && uiDistance > Math.Abs(uiY);
             if (isOutsideRadarCircle)
             {
+                // Horizon
                 // 0.95f for offsetting the icons slightly away from edge of radar so it doesnt clip.
                 uiX = uiXCentre * uiXOffset / uiDistance * 0.95f;
                 uiY = uiYCentre * uiYOffset / uiDistance * 0.95f;
@@ -595,9 +688,11 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 
                     // Calculate unscaled offsets.
                     var mainLabel = labelText;
-                    var dimScale = 0.9f * distanceScale;
+                    // Horizon: hovering a marker smoothly grows its label from the distance-shrunk size to the normal one.
+                    var hoverScale = MathHelper.Lerp(distanceScale, 1f, UpdateLabelHover(grid.Owner, isMouseOver));
+                    var dimScale = 0.9f * hoverScale;
                     var labelDimensions = handle.GetDimensions(Font, mainLabel, dimScale);
-                    var blipSize = RadarBlipSize * 0.7f * distanceScale;
+                    var blipSize = RadarBlipSize * 0.7f * hoverScale;
                     var labelOffset = new Vector2()
                     {
                         X = uiPosition.X > Width / 2f
@@ -607,7 +702,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     };
                     var displayColor = labelColor;
 
-                    var textScale = UIScale * 0.9f * distanceScale;
+                    var textScale = UIScale * 0.9f * hoverScale;
                     handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, mainLabel, textScale, displayColor);
 
                     if (isMouseOver && !HideCoords)
@@ -853,6 +948,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     continue;
                 }
 
+                // Horizon
                 //var color = Color.ToSrgb(Color.Magenta); // Frontier
                 var color = Color.ToSrgb(state.HighlightedRadarColor); // Frontier
                 GetDockColorOverride(ref color, state); // Lua
@@ -902,6 +998,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     // Mono
     protected EntityCoordinates GetMouseEntityCoordinates(Vector2 relativePosition)
     {
+        // Horizon
         if (_coordinates is not { } cord || _rotation is not { } rot)
             return EntityCoordinates.Invalid;
 

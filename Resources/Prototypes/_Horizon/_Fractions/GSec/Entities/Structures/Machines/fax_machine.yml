@@ -1,0 +1,28 @@
+- type: entity
+  parent: [FaxMachineBase, BaseGSecWeaponContraband]
+  id: FaxMachineGSec
+  name: факс дальнего действия Горлекс
+  suffix: GSec, НЕ МАППИТЬ
+  categories: [DoNotMap]
+  components:
+  - type: Sprite
+    layers:
+      - state: icon
+        map: [ "base" ]
+        color: "#a3a3a3"
+  - type: FaxMachine
+    name: "Департамент Горлекс"
+    responsePings: false
+    notifyAdmins: true
+  - type: Emagged
+    emagType: Interaction
+
+- type: entity
+  parent: [FaxMachineGSec]
+  id: FaxMachineGSecShuttle
+  suffix: GSec, Шаттл, НЕ МАППИТЬ
+  components:
+  - type: FaxMachine
+    name: "Шаттл Горлекс"
+    responsePings: false
+    notifyAdmins: true

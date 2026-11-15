@@ -1,0 +1,38 @@
+- type: entity
+  parent: [NFClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseGSecContraband]
+  id: ClothingBeltGSecWebbing
+  name: РПС Горлекс
+  suffix: GSec
+  description: Надёжный, как и сама ЧВК «Gorlex Securities LLC», РПС. Удобно сидит на теле, да и пошит на советь.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Belt/gsecwebbing.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Belt/gsecwebbing.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: StaticPrice
+    price: 600
+
+- type: entity
+  parent: [ClothingBeltGSecWebbing, BaseC1Contraband]
+  id: ClothingBeltWebbingOld
+  name: архаичный РПС
+  description: Разгрузочная система, собранная под эшелонирование комично старых стандартов.
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Belt/webbingold.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Belt/webbingold.rsi
+  - type: Contraband
+    severity: Class1
+
+- type: entity
+  parent: [ClothingBeltGSecWebbing]
+  id: ClothingBeltWebbingMedic
+  name: РПС медика Горлекс
+  components:
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Clothing/Belt/webbingmedic.rsi
+  - type: Clothing
+    sprite: _Horizon/_Fractions/GSec/Clothing/Belt/webbingmedic.rsi

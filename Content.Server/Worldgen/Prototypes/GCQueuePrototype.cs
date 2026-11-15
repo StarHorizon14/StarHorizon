@@ -25,6 +25,15 @@ public sealed class GCQueuePrototype : IPrototype
     [DataField("maximumTickTime")]
     public TimeSpan MaximumTickTime { get; } = TimeSpan.FromMilliseconds(1);
 
+    // Horizon-Start
+    /// <summary>
+    ///     Сколько миллисекунд за тик добавлять на каждый объект очереди сверх
+    ///     <see cref="MinDepthToProcess"/>. Длинная очередь разбирается быстрее и не копится в памяти.
+    /// </summary>
+    [DataField]
+    public double TimeDeletePerObject { get; } = 0.1;
+    // Horizon-End
+
     /// <summary>
     ///     The minimum depth before entities in the queue actually get processed for deletion.
     /// </summary>

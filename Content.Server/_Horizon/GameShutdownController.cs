@@ -1,78 +1,58 @@
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
-using Robust.Server;
 using Content.Shared._Horizon.CCVar;
 using Robust.Shared.Configuration;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Horizon;
 
+/// <summary>
+/// Автоматическая смена экипажа: раунд завершается, когда таймер раунда
+/// в лаунчере (UTC now - round_start_time) достигает <see cref="HorizonCCVars.ShutdownRoundHours"/> часов.
+/// </summary>
 public sealed class GameShutdownController
 {
     [Dependency] private readonly IEntityManager _entityManager = null!;
     [Dependency] private readonly IConfigurationManager _cfg = null!;
-    [Dependency] private readonly IBaseServer _server = null!;
+    [Dependency] private readonly IGameTiming _timing = null!;
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("ShutdownController");
-    private DateTime? _nextRestartTimeMsk;
     private bool _shuttleCalled;
     private bool _enabled;
 
-    // Московское время (UTC+3)
-    private static readonly TimeZoneInfo MskTimeZone = TimeZoneInfo.CreateCustomTimeZone(
-        "MSK", TimeSpan.FromHours(3), "Moscow Standard Time", "MSK");
+    /// <summary>
+    /// Время старта раунда (UTC), для которого последний раз сбрасывалось состояние.
+    /// </summary>
+    private DateTime? _trackedRoundStartUtc;
 
     public void Init()
     {
         _enabled = _cfg.GetCVar(HorizonCCVars.ShutdownEnabled);
-        if (!_enabled)
-            return;
-
-        CalculateNextRestartTime();
     }
 
-    /// <summary>
-    /// Получает текущее время по МСК (UTC+3).
-    /// </summary>
-    private static DateTime GetCurrentMskTime()
+    private TimeSpan GetRoundDuration()
     {
-        return TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, MskTimeZone);
+        var hours = _cfg.GetCVar(HorizonCCVars.ShutdownRoundHours);
+        return TimeSpan.FromHours(hours > 0 ? hours : 48);
     }
 
-    /// <summary>
-    /// Рассчитывает время следующего рестарта по МСК на основе CVars.
-    /// </summary>
-    private void CalculateNextRestartTime()
+    private bool TryGetRoundStart(out GameTicker ticker, out DateTime roundStartUtc)
     {
-        var timeStr = _cfg.GetCVar(HorizonCCVars.ShutdownTime);
-        var intervalDays = _cfg.GetCVar(HorizonCCVars.ShutdownIntervalDays);
-        var intervalHours = _cfg.GetCVar(HorizonCCVars.ShutdownIntervalHours);
+        roundStartUtc = default;
 
-        if (!TimeSpan.TryParse(timeStr, out var timeOfDay))
+        if (!_entityManager.EntitySysManager.TryGetEntitySystem(out GameTicker? t))
         {
-            _sawmill.Error($"Invalid shutdown.time format: '{timeStr}'. Expected 'HH:mm' (e.g. '12:00')");
-            _enabled = false;
-            return;
+            ticker = null!;
+            return false;
         }
 
-        var nowMsk = GetCurrentMskTime();
-        var totalInterval = TimeSpan.FromDays(intervalDays) + TimeSpan.FromHours(intervalHours);
+        ticker = t;
 
-        // Если интервал не задан, используем 24 часа
-        if (totalInterval <= TimeSpan.Zero)
-            totalInterval = TimeSpan.FromDays(1);
+        if (ticker.RunLevel != GameRunLevel.InRound)
+            return false;
 
-        // Находим базовое время сегодня
-        var todayAtTime = nowMsk.Date + timeOfDay;
-
-        // Если это время уже прошло сегодня, добавляем интервал
-        if (todayAtTime <= nowMsk)
-            todayAtTime += totalInterval;
-
-        _nextRestartTimeMsk = todayAtTime;
-        _shuttleCalled = false;
-
-        _sawmill.Info($"Следующий рестарт запланирован на {todayAtTime:dd.MM.yyyy HH:mm:ss} МСК " +
-                      $"(интервал: {intervalDays}д {intervalHours}ч)");
+        roundStartUtc = ticker.RoundStartDateTimeUtc;
+        return true;
     }
 
     /// <summary>
@@ -80,26 +60,40 @@ public sealed class GameShutdownController
     /// </summary>
     public ShutdownStatus GetStatus()
     {
-        if (!_enabled || _nextRestartTimeMsk == null)
-            return new ShutdownStatus(false, null, null, null, false);
+        if (!_enabled || !TryGetRoundStart(out _, out var roundStart))
+            return new ShutdownStatus(_enabled, null, null, null, null, _shuttleCalled);
 
-        var nowMsk = GetCurrentMskTime();
-        var shuttleTime = TimeSpan.FromMinutes(_cfg.GetCVar(HorizonCCVars.ShutdownShuttleTime));
-        var shuttleCallTime = _nextRestartTimeMsk.Value - shuttleTime;
+        var restart = roundStart + GetRoundDuration();
+        var shuttleCall = restart - TimeSpan.FromMinutes(_cfg.GetCVar(HorizonCCVars.ShutdownShuttleTime));
 
-        return new ShutdownStatus(
-            true,
-            nowMsk,
-            _nextRestartTimeMsk.Value,
-            shuttleCallTime,
-            _shuttleCalled);
+        return new ShutdownStatus(true, DateTime.UtcNow, roundStart, restart, shuttleCall, _shuttleCalled);
     }
 
+    /// <summary>
+    /// Момент принудительного рестарта в игровом времени (<see cref="IGameTiming.CurTime"/>),
+    /// в той же шкале, что и <c>RoundEndSystem.ExpectedCountdownEnd</c>. Null, если таймер выключен,
+    /// раунд не идёт или лимит уже достигнут.
+    /// </summary>
+    public TimeSpan? GetRestartGameTime()
+    {
+        if (!_enabled || !TryGetRoundStart(out _, out var roundStart))
+            return null;
+
+        var remaining = roundStart + GetRoundDuration() - DateTime.UtcNow;
+        return remaining > TimeSpan.Zero ? _timing.CurTime + remaining : null;
+    }
+
+    /// <param name="Enabled">Включён ли таймер.</param>
+    /// <param name="NowUtc">Текущее время (UTC), null если раунд не идёт.</param>
+    /// <param name="RoundStartUtc">round_start_time, как его видит лаунчер.</param>
+    /// <param name="RestartUtc">Момент, когда таймер раунда в лаунчере покажет лимит.</param>
+    /// <param name="ShuttleCallUtc">Момент вызова шаттла.</param>
     public record ShutdownStatus(
         bool Enabled,
-        DateTime? CurrentTimeMsk,
-        DateTime? RestartTimeMsk,
-        DateTime? ShuttleCallTimeMsk,
+        DateTime? NowUtc,
+        DateTime? RoundStartUtc,
+        DateTime? RestartUtc,
+        DateTime? ShuttleCallUtc,
         bool ShuttleCalled);
 
     /// <summary>
@@ -108,7 +102,7 @@ public sealed class GameShutdownController
     public void Enable()
     {
         _enabled = true;
-        CalculateNextRestartTime();
+        _trackedRoundStartUtc = null;
         _sawmill.Info("Таймер рестарта включен.");
     }
 
@@ -118,46 +112,57 @@ public sealed class GameShutdownController
     public void Disable()
     {
         _enabled = false;
-        _nextRestartTimeMsk = null;
+        _trackedRoundStartUtc = null;
         _shuttleCalled = false;
         _sawmill.Info("Таймер рестарта выключен.");
     }
 
     public void Update()
     {
-        if (!_enabled || _nextRestartTimeMsk == null)
+        if (!_enabled)
             return;
 
-        var nowMsk = GetCurrentMskTime();
-        var timeUntilRestart = _nextRestartTimeMsk.Value - nowMsk;
+        // Раунд не идёт (лобби/пост-раунд) — ждём новый.
+        if (!TryGetRoundStart(out _, out var roundStart))
+            return;
+
+        // Начался новый раунд — сбрасываем состояние шаттла.
+        if (_trackedRoundStartUtc != roundStart)
+        {
+            _trackedRoundStartUtc = roundStart;
+            _shuttleCalled = false;
+
+            _sawmill.Info($"Новый раунд (старт {roundStart:dd.MM.yyyy HH:mm:ss} UTC). " +
+                          $"Рестарт при {GetRoundDuration().TotalHours:0.##}ч раунда: " +
+                          $"{roundStart + GetRoundDuration():dd.MM.yyyy HH:mm:ss} UTC");
+        }
+
+        var nowUtc = DateTime.UtcNow;
+        var restartUtc = roundStart + GetRoundDuration();
+        var timeUntilRestart = restartUtc - nowUtc;
         var shuttleTime = TimeSpan.FromMinutes(_cfg.GetCVar(HorizonCCVars.ShutdownShuttleTime));
+
+        if (!_entityManager.EntitySysManager.TryGetEntitySystem(out RoundEndSystem? roundEndSystem))
+            return;
 
         // Вызываем шаттл эвакуации за shuttleTime до рестарта
         if (timeUntilRestart <= shuttleTime &&
             timeUntilRestart > TimeSpan.Zero &&
             !_shuttleCalled)
         {
-            if (_entityManager.EntitySysManager.TryGetEntitySystem(out RoundEndSystem? roundEndSystem))
-            {
-                roundEndSystem.RequestRoundEnd(timeUntilRestart, null, false,
-                    "shutdown-shuttle-called-announcement",
-                    "shutdown-shuttle-sender");
+            roundEndSystem.RequestRoundEnd(timeUntilRestart, null, false,
+                "shutdown-shuttle-called-announcement",
+                "shutdown-shuttle-sender");
 
-                _shuttleCalled = true;
-                _sawmill.Info($"Шаттл эвакуации вызван. Рестарт в {_nextRestartTimeMsk.Value:HH:mm:ss} МСК");
-            }
+            _shuttleCalled = true;
+            _sawmill.Info($"Шаттл эвакуации вызван. Рестарт в {restartUtc:HH:mm:ss} UTC");
         }
 
-        // Если время рестарта наступило
-        if (nowMsk >= _nextRestartTimeMsk.Value)
+        // Таймер раунда в лаунчере достиг лимита
+        if (timeUntilRestart <= TimeSpan.Zero)
         {
-            if (_entityManager.EntitySysManager.TryGetEntitySystem(out RoundEndSystem? roundEndSystem))
-                roundEndSystem.EndRound();
-
-            _sawmill.Info($"Рестарт выполнен в {nowMsk:HH:mm:ss} МСК");
-
-            // Рассчитываем следующий рестарт
-            CalculateNextRestartTime();
+            roundEndSystem.EndRound();
+            _sawmill.Info($"Рестарт выполнен в {nowUtc:HH:mm:ss} UTC (раунд длился {nowUtc - roundStart:hh\\:mm\\:ss})");
         }
     }
 }

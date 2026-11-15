@@ -1,17 +1,18 @@
+using System.Linq; // Horizon
+using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Serialization; // Frontier
 
 namespace Content.Shared.Audio.Jukebox;
 
-public abstract class SharedJukeboxSystem : EntitySystem
+public abstract partial class SharedJukeboxSystem : EntitySystem
 {
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-}
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] protected IPrototypeManager _protoManager = default!; // wizden#42210
 
-// Frontier: Shuffle & Repeat
-[Serializable, NetSerializable]
-public sealed class JukeboxInterfaceState(JukeboxPlaybackMode playbackMode) : BoundUserInterfaceState
-{
-    public JukeboxPlaybackMode PlaybackMode { get; set; } = playbackMode;
+    // wizden#42210
+    public IEnumerable<JukeboxPrototype> GetAvailableTracks(Entity<JukeboxComponent> entity)
+    {
+        return _protoManager.EnumeratePrototypes<JukeboxPrototype>().ToList();
+    }
+    // End wizden#42210
 }
-// End Frontier: Shuffle & Repeat

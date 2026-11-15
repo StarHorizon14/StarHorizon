@@ -592,3 +592,6 @@
 
 - type: Tag
   id: Telecrystal # Horizon: lets telecrystals go in wallets
+
+- type: Tag
+  id: DerelictDock

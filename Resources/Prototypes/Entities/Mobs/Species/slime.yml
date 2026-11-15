@@ -16,6 +16,9 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
+      enum.SlimeAppearanceUiKey.Key: # Horizon
+        type: SlimeAppearanceBoundUserInterface
+  - type: SlimeAppearanceChange # Horizon
   - type: Hunger
   - type: Thirst
   - type: Icon

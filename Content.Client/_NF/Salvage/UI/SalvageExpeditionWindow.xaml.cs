@@ -17,7 +17,7 @@ namespace Content.Client._NF.Salvage.UI;
 public sealed partial class SalvageExpeditionWindow : FancyWindow,
     IComputerWindow<EmergencyConsoleBoundUserInterfaceState>
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public Action? OnFinishPressed;
 
@@ -71,6 +71,12 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
     public void AddOption(OfferingWindowOption option)
     {
         Container.AddChild(option);
+    }
+
+    /// <summary>Horizon: puts a plain control (e.g. a centered message) into the offer area.</summary>
+    public void AddMessage(Robust.Client.UserInterface.Control control)
+    {
+        Container.AddChild(control);
     }
 
     public void ClearOptions()

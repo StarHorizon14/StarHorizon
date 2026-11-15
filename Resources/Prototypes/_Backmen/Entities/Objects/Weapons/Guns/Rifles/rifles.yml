@@ -781,15 +781,3 @@
     delay: 0.2
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-nanotrasen-munitions
-
-- type: entity
-  parent: [WeaponAKMSRifle, BaseC3Contraband]
-  id: WeaponRifleInteQAKM
-  name: AKM
-  suffix: Rifle
-  description: Iconic weapon of war. Uses 7.62x39 ammo. It is painted in the InteQ brand color.
-  components:
-  - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Rifles/inteq_akm.rsi
-  - type: Clothing
-    sprite: Backmen/Objects/Weapons/Guns/Rifles/inteq_akm.rsi

@@ -561,6 +561,9 @@
   id: Enzyme
 
 - type: Tag
+  id: ExCable
+
+- type: Tag
   id: ExplosivePassable
 
 - type: Tag
@@ -641,6 +644,9 @@
 # Used for warps
 - type: Tag
   id: GhostOnlyWarp
+
+- type: Tag
+  id: GenderPin
 
 - type: Tag
   id: GlassAirlock
@@ -1184,6 +1190,11 @@
 - type: Tag
   id: Recyclable
 
+# Horizon: ported from space-wizards/space-station-14#43651
+- type: Tag
+  id: SmeltingImmune
+# End Horizon
+
 - type: Tag
   id: ReinforcedGlassShard
 
@@ -1357,6 +1368,9 @@
 
 - type: Tag
   id: StationAi
+
+- type: Tag
+  id: StationAiCoreElectronics
 
 - type: Tag
   id: StationMapElectronics

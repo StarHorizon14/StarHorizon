@@ -51,13 +51,4 @@
       - NamesLast
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-grown-demon-name
-    description: Вы демон, выращенный в цитологической ванне. Адское пламя и тёмная магия текут в ваших жилах. Исследуйте этот мир с демонической хитростью!
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable
 #Weh

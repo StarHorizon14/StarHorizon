@@ -33,8 +33,10 @@
   - DawInstrumentMachineCircuitboard
   - MassMediaCircuitboard
   - JukeboxCircuitBoard
+  - SuperHarmonicaInstrument
   # RoboticCleanliness
   - BorgModuleAdvancedCleaning
+  - BorgModuleAdvancedSprayNozzle
   - PortablePumpMachineCircuitBoard
   # IndustrialCutter
   - CutterMachineCircuitboard
@@ -116,6 +118,7 @@
   - JawsOfLife
   - ClothingBeltChiefEngineer
   - BorgModuleAdvancedTool
+  - NFClothingEyesGlassesMesonScanner
   # PortableFission
   - PortableGeneratorDKJrMachineCircuitboard
   # RapidConstruction
@@ -156,6 +159,7 @@
   # MechanizedTreatment
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedParamedic
+  - BorgModulePill
   # RoboticCleanliness
   - PortablePumpMachineCircuitBoard
   # AdvancedCleaning
@@ -358,6 +362,7 @@
   - HydroponicsTrayMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
   - PlantAnalyzer
+  - BorgModuleMutation
   # AudioVisualCommunication
   - SurveillanceWirelessCameraMovableCircuitboard
   - SurveillanceWirelessCameraAnchoredCircuitboard
@@ -365,8 +370,11 @@
   - ComputerTelevisionCircuitboard
   - SynthesizerInstrument
   - DawInstrumentMachineCircuitboard
+  - AdvancedBorgModuleMusique
   - MassMediaCircuitboard
   - JukeboxCircuitBoard
+  - SuperHarmonicaInstrument
+  - HandheldTelevision
   # RoboticCleanliness
   - BorgModuleAdvancedCleaning
   - PortablePumpMachineCircuitBoard
@@ -428,8 +436,11 @@
   - ServiceSelectiveDropper
   - KitchenAssemblerMachineCircuitboard
   - ElectricRangeMachineCircuitboard
+  - NFServiceDrinkShakerBluespace
   # MobileSanitation
+  # MobileLogisticsAndSanitation
   - JanicartFlatpack
+  - MailTrolleyFlatpack
   # MagnetsTech
   - NFClothingShoesBootsMoon
   # HardsuitsSpecialized
@@ -493,11 +504,17 @@
   - NFMagazineDrumRifle20Empty
   - NFMagazineShotgunDrumEmpty
   - MagazineAsmgtUniversalEmpty
-  # BulkRifleAmmo
+  # BulkAmmo
+  - NFAmmunitionBoxBigPistol35
+  - NFAmmunitionBoxBigPistol35Overpressure
+  - NFAmmunitionBoxBigPistol45
+  - NFAmmunitionBoxBigPistol45Overpressure
   - NFAmmunitionBoxBigRifle20
   - NFAmmunitionBoxBigRifle20Overpressure
   - NFAmmunitionBoxBigRifle30
   - NFAmmunitionBoxBigRifle30Overpressure
+  - NFAmmunitionBoxBigShellShotgunBuckshot
+  - NFAmmunitionBoxBigShellShotgunOverpressure
   # NFAdvancedRiotControl
   - NFTelescopicShield
   # NFExplosiveTechnology

@@ -422,7 +422,7 @@
   - type: FlavorProfile
     flavors:
       - pyrotton
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -456,7 +456,7 @@
     state: produceraw
   - type: Produce
     seedId: coffeearabica
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
   - type: SolutionContainerManager
     solutions:
       food:
@@ -481,7 +481,7 @@
     state: produceraw
   - type: Produce
     seedId: coffeeliberica
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
   - type: SolutionContainerManager
     solutions:
       food:
@@ -506,7 +506,7 @@
     state: produceraw
   - type: Produce
     seedId: coffeerobusta
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
   - type: SolutionContainerManager
     solutions:
       food:
@@ -532,7 +532,7 @@
         reagents:
         - ReagentId: CoffeearabicaPowder
           Quantity: 10
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
   - type: Sprite
     sprite: _Horizon/Objects/Specific/Hydroponics/coffeearabica.rsi
     state: produceroasted
@@ -550,7 +550,7 @@
         reagents:
         - ReagentId: CoffeelibericaPowder
           Quantity: 10
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
   - type: Sprite
     sprite: _Horizon/Objects/Specific/Hydroponics/coffeeliberica.rsi
     state: produceroasted
@@ -568,7 +568,7 @@
         reagents:
         - ReagentId: CoffeerobustaPowder
           Quantity: 10
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
   - type: Sprite
     sprite: _Horizon/Objects/Specific/Hydroponics/coffeerobusta.rsi
     state: produceroasted
@@ -1410,7 +1410,7 @@
   description: Juicy sugarly red cherry with a pit inside.
   suffix: Horizon
   components:
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     trash:
     - TrashCherryBulbPit
   - type: SolutionContainerManager
@@ -1445,7 +1445,7 @@
   description: Juicy bombardic cherry with a pit inside.
   suffix: Horizon
   components:
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     trash:
     - TrashCherryBombPit
   - type: SolutionContainerManager
@@ -1498,7 +1498,7 @@
   description: Juicy sugarly blue cherry with a pit inside.
   suffix: Horizon
   components:
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     trash:
     - TrashCherryBluePit
   - type: SolutionContainerManager
@@ -1608,7 +1608,7 @@
     flavors:
     - sweet
     - funny
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
   - type: SolutionContainerManager
     solutions:
       food:

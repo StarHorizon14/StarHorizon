@@ -14,7 +14,7 @@
     - HamsterWearable
   - type: StaticPrice
     price: 500
-    vendPrise: 500
+    vendPrice: 500
 
 - type: entity
   parent: [ClothingHeadBase, BaseAnCoContraband]
@@ -32,4 +32,4 @@
     - HamsterWearable
   - type: StaticPrice
     price: 500
-    vendPrise: 500
+    vendPrice: 500

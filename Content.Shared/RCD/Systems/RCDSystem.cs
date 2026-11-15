@@ -30,8 +30,9 @@ using Content.Shared._Horizon.RCD;
 
 namespace Content.Shared.RCD.Systems;
 
-public sealed class RCDSystem : EntitySystem
+public sealed partial class RCDSystem : EntitySystem
 {
+    // Horizon
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefMan = default!;
@@ -48,6 +49,7 @@ public sealed class RCDSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private readonly GridAccessSystem _gridAccess = default!;
 
     private readonly int _instantConstructionDelay = 0;
     private readonly EntProtoId _instantConstructionFx = "EffectRCDConstruct0";
@@ -120,7 +122,7 @@ public sealed class RCDSystem : EntitySystem
             var name = Loc.GetString(prototype.SetName);
 
             if (prototype.Prototype != null &&
-                _protoManager.TryIndex(prototype.Prototype, out var proto))
+                _protoManager.TryIndex(prototype.Prototype, out var proto)) // don't use Resolve because this can be a tile
                 name = proto.Name;
 
             msg = Loc.GetString("rcd-component-examine-build-details", ("name", name));
@@ -188,7 +190,7 @@ public sealed class RCDSystem : EntitySystem
         // Frontier - Grid access restriction
         if (TryComp<GridAccessComponent>(GetResourceEntity(uid), out var gridAccessComponent)) // Horizon: resource entity
         {
-            if (!GridAccessSystem.IsAuthorized(gridUid.Value, gridAccessComponent, out var popupMessage))
+            if (!_gridAccess.IsAuthorized(gridUid.Value, gridAccessComponent, out var popupMessage))
             {
                 if (popupMessage != null)
                 {
