@@ -1,26 +1,54 @@
-using Robust.Shared.Serialization;
-
 namespace Content.Shared._Horizon._Fractions.AnCo.WeaponCaseHack;
 
 /// <summary>
-/// Component for AnCo weapon cases that can be hacked via wires.
-/// The correct wire is determined by the serial number.
-/// Uses LockComponent for actual locking.
+/// Component for AnCo weapon cases that can be hacked via the "tracks" minigame.
+/// At every node the player chooses between track B and track C; the serial number of
+/// exactly one of them satisfies the shown condition. Uses LockComponent for actual locking.
 /// </summary>
 [RegisterComponent]
 public sealed partial class AnCoWeaponCaseHackComponent : Component
 {
     /// <summary>
-    /// Whether the correct wire has been cut.
+    /// Number of attempts the hacker has.
     /// </summary>
     [DataField]
-    public bool CutCompleted;
+    public int MaxAttempts = 3;
 
     /// <summary>
-    /// Whether the correct wire has been pulsed.
+    /// Seconds from the first answer until the case explodes.
     /// </summary>
     [DataField]
-    public bool PulseCompleted;
+    public float TimeLimit = 30f;
+
+    /// <summary>
+    /// Moment (game time) when the case explodes; null until the first answer is given.
+    /// </summary>
+    [ViewVariables]
+    public TimeSpan? Deadline;
+
+    /// <summary>
+    /// Number of nodes (forks) on the way to the lock.
+    /// </summary>
+    [DataField]
+    public int NodeCount = 6;
+
+    /// <summary>
+    /// Remaining attempts. Server-side state, not networked.
+    /// </summary>
+    [ViewVariables]
+    public int Attempts;
+
+    /// <summary>
+    /// Index of the node the hacker currently stands at (0 = right after the start).
+    /// </summary>
+    [ViewVariables]
+    public int NodeIndex;
+
+    /// <summary>
+    /// Generated track graph. Empty until the first hack attempt.
+    /// </summary>
+    [ViewVariables]
+    public List<AnCoHackNode> Nodes = new();
 
     /// <summary>
     /// Explosion intensity (total energy).
@@ -45,10 +73,4 @@ public sealed partial class AnCoWeaponCaseHackComponent : Component
     /// </summary>
     [DataField]
     public string ExplosionPrototype = "Default";
-}
-
-[Serializable, NetSerializable]
-public enum AnCoWeaponCaseHackWireActionKey : byte
-{
-    Status
 }
