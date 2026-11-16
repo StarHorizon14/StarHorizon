@@ -215,15 +215,34 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     /// <summary>
     ///     Атмосфера, выбранная в списке, или null - атмосфера по умолчанию (из карты шаттла).
     /// </summary>
-    public ProtoId<ShuttleAtmospherePrototype>? SelectedAtmosphere =>
-        Atmosphere.SelectedMetadata is AtmosButtonMetadata metadata ? new ProtoId<ShuttleAtmospherePrototype>(metadata.Proto.ID) : (ProtoId<ShuttleAtmospherePrototype>?) null;
+    public ProtoId<ShuttleAtmospherePrototype>? SelectedAtmosphere
+    {
+        get
+        {
+            // OptionButton.SelectedMetadata бросает KeyNotFoundException, пока список пуст (до PopulateAtmos
+            // и сразу после Clear), поэтому метаданные берём через индекс и только при наличии пунктов.
+            if (Atmosphere.ItemCount == 0)
+                return null;
+
+            var idx = Atmosphere.GetIdx(Atmosphere.SelectedId);
+            if (idx < 0 || idx >= Atmosphere.ItemCount)
+                return null;
+
+            // У пункта «по умолчанию» метаданных нет.
+            if (Atmosphere.GetItemMetadata(idx) is AtmosButtonMetadata metadata)
+                return new ProtoId<ShuttleAtmospherePrototype>(metadata.Proto.ID);
+
+            return null;
+        }
+    }
 
     /// <summary>
     ///     Сбрасывает выбор на атмосферу по умолчанию (после покупки).
     /// </summary>
     public void ResetAtmosphere()
     {
-        Atmosphere.Select(0);
+        if (Atmosphere.ItemCount > 0)
+            Atmosphere.Select(0);
     }
 
     /// <summary>

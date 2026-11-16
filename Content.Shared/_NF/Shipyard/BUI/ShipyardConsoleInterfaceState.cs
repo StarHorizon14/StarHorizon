@@ -39,7 +39,8 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         bool cashOnly = false,
         bool hasCashSlot = false,
         int cashSlotBalance = 0,
-        bool isCashPresent = false)
+        bool isCashPresent = false,
+        List<ProtoId<ShuttleAtmospherePrototype>>? atmosPrototypes = null)
     {
         Balance = balance;
         AccessGranted = accessGranted;
@@ -56,5 +57,6 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         HasCashSlot = hasCashSlot;
         CashSlotBalance = cashSlotBalance;
         IsCashPresent = isCashPresent;
+        AtmosPrototypes = atmosPrototypes; // Frontier (#4209)
     }
 }
