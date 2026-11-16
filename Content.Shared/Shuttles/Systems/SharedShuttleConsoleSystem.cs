@@ -8,8 +8,9 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Shuttles.Systems
 {
-    public abstract class SharedShuttleConsoleSystem : EntitySystem
+    public abstract partial class SharedShuttleConsoleSystem : EntitySystem
     {
+        // Horizon
         [Dependency] protected readonly ActionBlockerSystem ActionBlockerSystem = default!;
         [Dependency] private readonly SharedMoverController _mover = default!;
 

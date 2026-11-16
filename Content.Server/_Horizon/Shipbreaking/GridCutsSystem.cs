@@ -17,13 +17,18 @@ public sealed class GridCutsSystem : EntitySystem
         SubscribeLocalEvent<GridCutsComponent, TileChangedEvent>(OnTileChanged);
     }
 
-    public void AddCut(EntityUid gridUid, Vector2i tile, CutEdges edge)
+    /// <param name="sealedSeam">The cut does not leak air (the seam between two welded grids).</param>
+    public void AddCut(EntityUid gridUid, Vector2i tile, CutEdges edge, bool sealedSeam = false)
     {
         var cuts = EnsureComp<GridCutsComponent>(gridUid);
         var other = tile + edge.Offset();
 
         cuts.Cuts[tile] = cuts.Cuts.GetValueOrDefault(tile) | edge;
         cuts.Cuts[other] = cuts.Cuts.GetValueOrDefault(other) | edge.Opposite();
+
+        // A real cut over a sealed seam leaks again.
+        SetSealed(cuts, tile, edge, sealedSeam);
+        SetSealed(cuts, other, edge.Opposite(), sealedSeam);
         Dirty(gridUid, cuts);
 
         _atmos.InvalidateTile(gridUid, tile);
@@ -63,6 +68,7 @@ public sealed class GridCutsSystem : EntitySystem
                 continue;
 
             var tile = change.GridIndices;
+            ent.Comp.Sealed.Remove(tile);
             if (!ent.Comp.Cuts.Remove(tile, out var flags))
                 continue;
 
@@ -92,8 +98,20 @@ public sealed class GridCutsSystem : EntitySystem
         return TryComp<GridCutsComponent>(gridUid, out var cuts) && cuts.Cuts.Count > 0;
     }
 
+    private static void SetSealed(GridCutsComponent cuts, Vector2i tile, CutEdges edge, bool sealedSeam)
+    {
+        var flags = cuts.Sealed.GetValueOrDefault(tile);
+        flags = sealedSeam ? flags | edge : flags & ~edge;
+        if (flags == CutEdges.None)
+            cuts.Sealed.Remove(tile);
+        else
+            cuts.Sealed[tile] = flags;
+    }
+
     private static void ClearEdge(GridCutsComponent cuts, Vector2i tile, CutEdges edge)
     {
+        SetSealed(cuts, tile, edge, false);
+
         if (!cuts.Cuts.TryGetValue(tile, out var flags))
             return;
 
@@ -112,6 +130,9 @@ public sealed class GridCutsSystem : EntitySystem
         {
             if (oldCuts.Cuts.Remove(indices, out var flags))
                 newCuts.Cuts[indices] = flags;
+
+            if (oldCuts.Sealed.Remove(indices, out var sealedFlags))
+                newCuts.Sealed[indices] = sealedFlags;
         }
 
         foreach (var tile in newCuts.Cuts.Keys)

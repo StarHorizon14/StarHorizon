@@ -29,7 +29,7 @@
           Quantity: 30
         - ReagentId: Protein
           Quantity: 20
-  - type: Food
+  - type: Edible # Horizon: Food -> Edible (Ingestion)
     trash:
     - FoodGSecTinTrash
   - type: StaticPrice

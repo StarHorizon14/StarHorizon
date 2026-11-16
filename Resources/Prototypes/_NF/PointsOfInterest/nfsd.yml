@@ -44,6 +44,7 @@
             Sheriff: [ 1, 1 ]
             Bailiff: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]
+            # Horizon
             Brigmedic: [ 1, 1 ] # Horizon
             NFDetective: [ 1, 1 ] # Horizon
             Deputy: [ 3, 3 ]

@@ -29,6 +29,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         _window.RequestAutopilot += OnAutopilotRequest; // Mono
         _window.DockRequest += OnDockRequest;
         _window.UndockRequest += OnUndockRequest;
+        // Horizon
         _window.UndockAllRequest += OnUndockAllRequest;
         // Lua: fire control
         _window.NavContainer.NavRadar.OnRadarClick += (coords) =>
@@ -68,6 +69,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
     {
         SendMessage(new UndockAllRequestMessage(dockEntities));
     }
+// Horizon
 
     private void OnUndockRequest(NetEntity entity)
     {

@@ -223,7 +223,7 @@
     - id: AnCoopenbox
   - type: StaticPrice
     price: 500
-    vendPrise: 5000
+    vendPrice: 5000
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -325,7 +325,7 @@
       Kazmie: 300
   - type: StaticPrice
     price: 10
-    vendPrise: 10
+    vendPrice: 10
   - type: Tag
     tags:
     - BoxCardboard

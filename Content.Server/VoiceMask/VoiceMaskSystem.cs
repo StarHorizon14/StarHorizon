@@ -18,6 +18,7 @@ namespace Content.Server.VoiceMask;
 
 public sealed partial class VoiceMaskSystem : EntitySystem
 {
+    // Horizon
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;

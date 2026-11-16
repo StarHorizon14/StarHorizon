@@ -15,6 +15,7 @@ namespace Content.Client.Chemistry.Visualizers;
 
 public sealed class SolutionContainerVisualsSystem : VisualizerSystem<SolutionContainerVisualsComponent>
 {
+    // Horizon
     [Dependency] private readonly WorldItemSystem _worldItemSystem = null!; // Horizon
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly ItemSystem _itemSystem = default!;

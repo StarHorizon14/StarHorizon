@@ -48,6 +48,13 @@ public sealed partial class ShipCutterComponent : Component
     [DataField]
     public EntityWhitelist? WallWhitelist;
 
+    /// <summary>
+    /// How far from the user the tool works, in metres. More than the usual reach of a hand, so a short character
+    /// is not at a disadvantage.
+    /// </summary>
+    [DataField]
+    public float Range = 3f;
+
     [DataField]
     public float WallDelay = 4f;
 

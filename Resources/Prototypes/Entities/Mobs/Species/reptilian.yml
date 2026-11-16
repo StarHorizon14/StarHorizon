@@ -11,6 +11,7 @@
     - Snout
 #    - HeadTop # WWDP - Because visible horns its cool
     - HeadSide
+    - Tail
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Hunger
   - type: Puller
@@ -76,6 +77,7 @@
       jumpsuit:
         sizeMaps:
           32:
+            # Horizon
             sprite: _White/Mobs/Species/displacement.rsi
             state: jumpsuit-female
       shoes:
@@ -124,6 +126,7 @@
       jumpsuit:
         sizeMaps:
           32:
+            # Horizon
             sprite: _White/Mobs/Species/displacement.rsi
             state: jumpsuit-female
       shoes:

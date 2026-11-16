@@ -116,7 +116,7 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
-    vendPrise: 4000
+    vendPrice: 4000
 
 - type: entity
   id: BaseNewMagazinePistolBig35
@@ -235,7 +235,7 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
-    vendPrise: 4000
+    vendPrice: 4000
 
 - type: entity
   id: MagazineRifle20

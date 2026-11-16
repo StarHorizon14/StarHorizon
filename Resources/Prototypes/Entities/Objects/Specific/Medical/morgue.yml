@@ -139,6 +139,7 @@
     solution: food
   - type: Extractable
     grindableSolutionName: food
+  - type: SupermatterImmune #Horizon fix
 
 - type: entity
   parent: Ash

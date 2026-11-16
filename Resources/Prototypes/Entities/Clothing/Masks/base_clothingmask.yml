@@ -18,6 +18,8 @@
   id: ClothingMaskPullableBase
   components:
   - type: Mask
+  - type: PirateBountyItem # Frontier
+    id: ClothingMaskGas # Frontier
 
 - type: entity
   parent: BaseAction
@@ -44,7 +46,7 @@
   - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
     materialComposition:
       Cloth: 50
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:

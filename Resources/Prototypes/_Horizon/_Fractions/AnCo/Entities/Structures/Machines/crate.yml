@@ -47,7 +47,7 @@
     stateDoorClosed: ancocrate_door
   - type: StaticPrice
     price: 100
-    vendPrise: 500
+    vendPrice: 500
 
 
 

@@ -47,13 +47,21 @@ public sealed class ScrapProcessorSystem : EntitySystem
         if (!this.IsPowered(ent, EntityManager))
             return;
 
+        // What came out of a gibbed body (organs, limbs, clothes) is left lying, it is not scrap.
+        if (HasComp<ScrapImmuneComponent>(other))
+            return;
+
         if (HasComp<MobStateComponent>(other))
         {
             if (ent.Comp.GibLiving && HasComp<BodyComponent>(other))
             {
                 var impact = HasComp<HumanoidAppearanceComponent>(other) ? LogImpact.Extreme : LogImpact.Medium;
                 _adminLogger.Add(LogType.Gib, impact, $"{ToPrettyString(other):victim} was gibbed by {ToPrettyString(ent):entity}");
-                _body.GibBody(other, true);
+                foreach (var gib in _body.GibBody(other, true))
+                {
+                    EnsureComp<ScrapImmuneComponent>(gib);
+                }
+
                 _audio.PlayPvs(ent.Comp.Sound, ent);
                 QueueDel(other);
             }

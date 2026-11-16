@@ -1,3 +1,13 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
 - type: vessel
   id: Templar
   parent: BaseVessel
@@ -7,6 +17,7 @@
   category: Small
   group: Security
   access: Security
+  # Horizon
   shuttlePath: /Maps/_Horizon/Shuttles/Shipyard/Nfsd/templar.yml # Horizon
   guidebookPage: Null
   class:

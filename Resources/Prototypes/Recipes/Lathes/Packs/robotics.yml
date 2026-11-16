@@ -37,12 +37,15 @@
   id: BorgModules
   recipes:
   - BorgModuleAdvancedCleaning
+  - BorgModuleAdvancedSprayNozzle #Frontier
   - BorgModuleAdvancedTool
   - BorgModuleAdvancedClowning
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedMining
   - BorgModuleAdvancedParamedic # Frontier
+  - BorgModulePill # Frontier
   - BorgModuleRCD # Frontier
+  # Horizon
   - CyborgCombatEndoskeleton
   - BorgModuleCombatPKA
   - BorgModuleCombatEchis

@@ -254,6 +254,7 @@
       shader: unshaded
       visible: false
 
+# Horizon
 # Есть в Horizon
 # - type: entity
 #   id: RustedThruster
