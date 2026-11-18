@@ -42,7 +42,8 @@
     interfaces:
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
-  - type: Drink
+  - type: Edible # Horizon: Drink -> Edible (Ingestion)
+    edible: Drink
     solution: beaker
   - type: Appearance
   - type: SolutionContainerVisuals

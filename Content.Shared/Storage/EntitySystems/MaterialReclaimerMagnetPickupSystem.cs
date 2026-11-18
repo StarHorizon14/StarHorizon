@@ -12,11 +12,11 @@ namespace Content.Shared.Storage.EntitySystems;
 /// <summary>
 /// <see cref="MaterialReclaimerMagnetPickupComponent"/>
 /// </summary>
-public sealed class MaterialReclaimerMagnetPickupSystem : EntitySystem
+public sealed partial class MaterialReclaimerMagnetPickupSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedMaterialReclaimerSystem _storage = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedMaterialReclaimerSystem _storage = default!;
 
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
 
@@ -91,10 +91,12 @@ public sealed class MaterialReclaimerMagnetPickupSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var comp, out var storage, out var xform))
         {
-            if (comp.NextScan < currentTime)
+            // Horizon-Start
+            if (comp.NextScan > currentTime)
                 continue;
 
-            comp.NextScan += ScanDelay;
+            comp.NextScan = currentTime + ScanDelay;
+            // Horizon-End
 
             // Frontier - magnet disabled
             if (!comp.MagnetEnabled)

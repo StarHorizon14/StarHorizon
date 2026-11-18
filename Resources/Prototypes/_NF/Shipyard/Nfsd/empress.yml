@@ -1,14 +1,25 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: Mace70903
+# Discord: mace_70903
+
+# Shuttle Notes:
+#
 - type: vessel
   id: Empress
   parent: BaseVessel
   name: NSF Empress
+  # Horizon
   description: Большой патрульный материнский флагман, способный вмещать до четырех скоростных боевых единиц в своих стыковочных портах.
   price: 170000 #Appraisal value is 150000
   category: Large
   group: Security
   access: Bailiff
   shuttlePath: /Maps/_NF/Shuttles/Nfsd/empress.yml
-  guidebookPage: Null
+  guidebookPage: ShipyardEmpress
   class:
   - Capital
   engine:
@@ -41,4 +52,13 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          availableJobs: {} # Removed the chef since we dont have a real loadout for it
+          availableJobs:
+            Bailiff: [ 0, 0 ]
+            SeniorOfficer: [ 0, 0 ]
+            Brigmedic: [ 0, 0 ]
+            NFDetective: [ 0, 0 ]
+            Deputy: [ 0, 0 ]
+            Cadet: [ 0, 0 ]
+            # Others:
+            PublicAffairsLiaison: [ 0, 0 ]
+            Prisoner: [ 0, 0 ]

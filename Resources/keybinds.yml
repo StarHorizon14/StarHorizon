@@ -636,6 +636,7 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
+# Horizon
 # region Frontier
 - function: SwapHandsPrevious
   type: State

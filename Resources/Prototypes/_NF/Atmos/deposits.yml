@@ -11,6 +11,7 @@
   -     0,   500  # ammonia
   -     0,   200  # nitrous oxide
   -     0,     0  # frezon
+  # Horizon
   -     0,     0  # bz 9
   -     0,     0  # pluoxium 10
   -     0,     0  # hydrogen 11
@@ -34,6 +35,7 @@
   -     0,   500  # ammonia
   -     0,   200  # nitrous oxide
   -     0,     0  # frezon
+  # Horizon
   -     0,     0  # bz 9
   -     0,     0  # pluoxium 10
   -     0,     0  # hydrogen 11
@@ -57,6 +59,7 @@
   -     0,   500  # ammonia
   -     0,   200  # nitrous oxide
   -     0,     0  # frezon
+  # Horizon
   -     0,     0  # bz 9
   -     0,     0  # pluoxium 10
   -     0,     0  # hydrogen 11
@@ -80,6 +83,7 @@
   -     0,   500  # ammonia
   -     0,   200  # nitrous oxide
   -     0,     0  # frezon
+  # Horizon
   -     0,     0  # bz 9
   -     0,     0  # pluoxium 10
   -     0,     0  # hydrogen 11
@@ -103,6 +107,7 @@
   -     0,   500  # ammonia
   - 20000, 25000  # n2o
   -     0,     0  # frezon
+  # Horizon
   -     0,     0  # bz 9
   -     0,     0  # pluoxium 10
   -     0,     0  # hydrogen 11
@@ -126,6 +131,7 @@
   - 20000, 25000  # ammonia
   -     0,   500  # n2o
   -     0,     0  # frezon
+  # Horizon
   -     0,     0  # bz 9
   -     0,     0  # pluoxium 10
   -     0,     0  # hydrogen 11
@@ -149,6 +155,7 @@
   -     0,   500  # ammonia
   -     0,   500  # n2o
   -     0,     0  # frezon
+  # Horizon
   -     0,     0  # bz 9
   -     0,     0  # pluoxium 10
   -     0,     0  # hydrogen 11
@@ -171,6 +178,7 @@
   -     0,  3000  # water vapor
   -     0,  2000  # ammonia
   -     0,  1000  # n2o
+  # Horizon
   -     0,     0  # frezon 8
   -     0,     0  # bz 9
   -     0,     0  # pluoxium 10
@@ -194,6 +202,7 @@
   -  2000,  4000  # water vapor
   -  2000,  4000  # ammonia
   -  2000,  4000  # n2o
+  # Horizon
   -     0,     0  # frezon 8
   -     0,     0  # bz 9
   -     0,     0  # pluoxium 10
@@ -209,6 +218,7 @@
 - type: gasDeposit
   id: MuddlePlasma
   gases:
+  # Horizon
   -  2000,  4000  # oxygen 0
   -  2000,  4000  # nitrogen 1
   -  2000,  4000  # carbon dioxide 2
@@ -349,6 +359,7 @@
 - type: gasDeposit
   id: MostlyHelium
   gases:
+  # Horizon
   -     0,  1000  # oxygen 0
   -     0,  2000  # nitrogen 1
   -     0,   200  # carbon dioxide 2

@@ -19,7 +19,9 @@
         - ReagentId: Iron
           Quantity: 1
 
-  - type: Drink
+  - type: Edible # Horizon: Drink -> Edible (Ingestion)
+
+    edible: Drink
   - type: DamageOtherOnHit
     damage:
       types:
@@ -53,7 +55,8 @@
           Quantity: 4
         - ReagentId: Iron
           Quantity: 1
-  - type: Drink
+  - type: Edible # Horizon: Drink -> Edible (Ingestion)
+    edible: Drink
   - type: DamageOtherOnHit
     damage:
       types:

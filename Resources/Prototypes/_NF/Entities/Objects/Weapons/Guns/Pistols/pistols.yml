@@ -10,6 +10,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
   - type: NFWeaponDetails
+  # Horizon
   - type: PirateBountyItem
     id: WeaponPistolMk58
   # Horizon Attachmens start

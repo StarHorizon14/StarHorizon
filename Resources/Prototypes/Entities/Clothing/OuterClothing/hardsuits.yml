@@ -413,6 +413,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  # Horizon
   - type: ClothingGrantComponent # Goobstation - Make sure the CE doesn't get cooked by supermatter
     component:
     - type: SupermatterImmune

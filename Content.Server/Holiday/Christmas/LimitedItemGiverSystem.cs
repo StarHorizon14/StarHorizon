@@ -10,8 +10,9 @@ namespace Content.Server.Holiday.Christmas;
 /// <summary>
 /// This handles handing out items from item givers.
 /// </summary>
-public sealed class LimitedItemGiverSystem : EntitySystem
+public sealed partial class LimitedItemGiverSystem : EntitySystem
 {
+    // Horizon
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly HolidaySystem _holiday = default!;
     [Dependency] private readonly PopupSystem _popup = default!;

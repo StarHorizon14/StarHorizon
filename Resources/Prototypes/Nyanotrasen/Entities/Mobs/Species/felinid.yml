@@ -94,6 +94,7 @@
         emote: Scream
         probability: 0.2
   - type: NoShoesSilentFootsteps
+  # Horizon
   # Horizon: Height traits (felinid base scale 0.8, 0.8 - small)
   - type: TallWhitelist
     scale: 1  # Closer to human size

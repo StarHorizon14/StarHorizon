@@ -1,9 +1,11 @@
 using System.Reflection;
 using Content.Server.Shuttles.Components;
+using Content.Shared.Shuttles.Components;
 using Content.Shared._Horizon.Shipbreaking;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Horizon.Shipbreaking;
 
@@ -85,6 +87,18 @@ public sealed partial class ShipCutterSystem
                 LookupFlags.All | ~LookupFlags.Uncontained | LookupFlags.Approximate);
         }
 
+        // A docked port that moves to the new grid would drop and make its joint in the same tick, and the client takes
+        // that for a second joint between the same bodies. It is let go first and docked again a moment later.
+        var redock = new List<(EntityUid A, EntityUid B)>();
+        foreach (var (uid, _) in anchoredEntities)
+        {
+            if (TryComp<DockingComponent>(uid, out var dock) && dock.Docked && dock.DockedWith is { } other)
+            {
+                redock.Add((uid, other));
+                _docking.Undock((uid, dock));
+            }
+        }
+
         foreach (var (uid, indices) in anchoredEntities)
         {
             var xform = Transform(uid);
@@ -123,6 +137,22 @@ public sealed partial class ShipCutterSystem
 
         var ev = new GridSplitEvent(new[] { newGrid.Owner }, oldUid);
         RaiseLocalEvent(oldUid, ref ev, true);
+
+        if (redock.Count > 0)
+            Timer.Spawn(TimeSpan.FromMilliseconds(250), () => ReDock(redock));
+    }
+
+    private void ReDock(List<(EntityUid A, EntityUid B)> pairs)
+    {
+        foreach (var (a, b) in pairs)
+        {
+            if (TerminatingOrDeleted(a) || TerminatingOrDeleted(b) ||
+                !TryComp<DockingComponent>(a, out var dockA) || !TryComp<DockingComponent>(b, out var dockB) ||
+                dockA.Docked || dockB.Docked || !Transform(a).Anchored || !Transform(b).Anchored)
+                continue;
+
+            _docking.Dock((a, dockA), (b, dockB));
+        }
     }
 
     private void ReAnchor(

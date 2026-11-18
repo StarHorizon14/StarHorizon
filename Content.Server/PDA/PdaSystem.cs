@@ -31,8 +31,9 @@ using Content.Server._Horizon; // Horizon
 
 namespace Content.Server.PDA
 {
-    public sealed class PdaSystem : SharedPdaSystem
+    public sealed partial class PdaSystem : SharedPdaSystem
     {
+        // Horizon
         [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
         [Dependency] private readonly InstrumentSystem _instrument = default!;
         [Dependency] private readonly RingerSystem _ringer = default!;

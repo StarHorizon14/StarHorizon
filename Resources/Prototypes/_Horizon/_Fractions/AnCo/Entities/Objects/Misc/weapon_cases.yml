@@ -59,16 +59,12 @@
   - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoOfficer" ]]
-  - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-weapon-case
-    layoutId: AnCoWeaponCaseHack
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+      enum.AnCoHackUiKey.Key:
+        type: AnCoWeaponCaseHackBoundUserInterface
 
 - type: entity
   name: оружейный кейс АнКо
@@ -91,16 +87,12 @@
   - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoCadet" ]]
-  - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-weapon-case
-    layoutId: AnCoWeaponCaseHack
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+      enum.AnCoHackUiKey.Key:
+        type: AnCoWeaponCaseHackBoundUserInterface
 
 - type: entity
   name: кейс для патронов АнКо
@@ -123,16 +115,12 @@
   - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoCadet" ]]
-  - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-weapon-case
-    layoutId: AnCoWeaponCaseHack
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+      enum.AnCoHackUiKey.Key:
+        type: AnCoWeaponCaseHackBoundUserInterface
   - type: Storage
     maxItemSize: Small
     grid:
@@ -159,16 +147,12 @@
   - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoOfficer" ]]
-  - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-weapon-case
-    layoutId: AnCoWeaponCaseHack
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+      enum.AnCoHackUiKey.Key:
+        type: AnCoWeaponCaseHackBoundUserInterface
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: Storage
@@ -197,16 +181,12 @@
   - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoKnight" ]]
-  - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-weapon-case
-    layoutId: AnCoWeaponCaseHack
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+      enum.AnCoHackUiKey.Key:
+        type: AnCoWeaponCaseHackBoundUserInterface
   - type: Storage
     maxItemSize: Ginormous
     grid:
@@ -236,16 +216,12 @@
   - type: LockedStorage
   - type: AccessReader
     access: [[ "AccessAnCoOfficer" ]]
-  - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-weapon-case
-    layoutId: AnCoWeaponCaseHack
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
+      enum.AnCoHackUiKey.Key:
+        type: AnCoWeaponCaseHackBoundUserInterface
 
 # Заполненные кейсы с оружием
 

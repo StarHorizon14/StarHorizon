@@ -57,5 +57,5 @@
     autoRechargeRate: 25
   - type: StaticPrice
     price: 500
-    vendPrise: 10000
+    vendPrice: 10000
 

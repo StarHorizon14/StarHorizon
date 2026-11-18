@@ -8,7 +8,22 @@ public sealed partial class GridCutsComponent : Component
     [DataField, AutoNetworkedField]
     public Dictionary<Vector2i, CutEdges> Cuts = new();
 
+    /// <summary>
+    /// The cut edges that do not leak: the seams between two grids that were welded together. They stay a gap that the
+    /// two parts hang together by only at the weld, but the air does not escape through them.
+    /// </summary>
+    [DataField]
+    public Dictionary<Vector2i, CutEdges> Sealed = new();
+
     public const float CutWidthPixels = 3f;
+
+    /// <summary>
+    /// Whether the tile has a cut edge that lets the air out.
+    /// </summary>
+    public bool Leaks(Vector2i tile)
+    {
+        return Cuts.TryGetValue(tile, out var edges) && (edges & ~Sealed.GetValueOrDefault(tile)) != CutEdges.None;
+    }
 
     public bool IsCut(Vector2i tile, CutEdges edge)
     {

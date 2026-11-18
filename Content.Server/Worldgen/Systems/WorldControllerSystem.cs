@@ -12,12 +12,12 @@ namespace Content.Server.Worldgen.Systems;
 /// <summary>
 ///     This handles putting together chunk entities and notifying them about important changes.
 /// </summary>
-public sealed class WorldControllerSystem : EntitySystem
+public sealed partial class WorldControllerSystem : EntitySystem
 {
-    [Dependency] private readonly TransformSystem _xformSys = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private TransformSystem _xformSys = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
 
     private const float PlayerLoadRadius = 192f; // Horizon
 
@@ -82,8 +82,20 @@ public sealed class WorldControllerSystem : EntitySystem
     }
 
     /// <inheritdoc />
+    // Horizon-Start
+    private const float HorizonUpdateInterval = 0.2f;
+    private float _horizonAccumulator;
+    // Horizon-End
+
     public override void Update(float frameTime)
     {
+        // Horizon-Start
+        _horizonAccumulator += frameTime;
+        if (_horizonAccumulator < HorizonUpdateInterval)
+            return;
+        _horizonAccumulator = 0f;
+        // Horizon-End
+
         //there was a to-do here about every frame alloc but it turns out it's a nothing burger here.
         var chunksToLoad = new Dictionary<EntityUid, Dictionary<Vector2i, List<EntityUid>>>();
 
