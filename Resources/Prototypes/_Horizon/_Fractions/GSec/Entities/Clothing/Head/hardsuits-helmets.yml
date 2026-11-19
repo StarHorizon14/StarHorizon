@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingHeadEVAHelmetBase, BaseC2Contraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [ClothingHeadEVAHelmetBase, BaseC1Contraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
   id: ClothingHeadHelmetGSec
   name: шлем EVA Горлекс
   description: Простой, стильный шлем EVA. Предназначен для максимального скромного космо-засранца.

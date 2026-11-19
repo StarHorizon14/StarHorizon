@@ -1285,6 +1285,26 @@
   - GSecUplinkMags
 
 - type: listing
+  id: GSecMagazinePistol9x17
+  name: "Пистолетный магазин (Т1)"
+  description: "Калибр .9x17, вместимость - 17 патроонов."
+  productEntity: MagazinePistol9x17
+  cost:
+    Speso: 1700
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistols9x18
+  name: "Пистолетный магазин Макарова"
+  description: "Калибр .9x18, вместимость - 8 патроонов."
+  productEntity: MagazinePistols9x18
+  cost:
+    Speso: 1300
+  categories:
+  - GSecUplinkMags
+
+- type: listing
   id: GSecNFMagazineHighCapacityPistol35
   name: "Расширенный пистолетный магазин"
   description: "Калибр .35, вместимость - 16 патроонов."
@@ -1341,6 +1361,56 @@
   productEntity: MagazinePistol57x28Extd
   cost:
     Speso: 1670
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolSubMachineGun9x17
+  name: "Магазин для ПП (Т1)"
+  description: "Калибр .9x17, вместимость - 30 патроонов."
+  productEntity: MagazinePistolSubMachineGun9x17
+  cost:
+    Speso: 1460
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolBoxSubMachineGun
+  name: "Короб для ПП"
+  description: "Калибр .9x17, вместимость - 45 патроонов."
+  productEntity: MagazinePistolBoxSubMachineGun
+  cost:
+    Speso: 2100
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolDrumSubMachineGun
+  name: "Барабан для ПП"
+  description: "Калибр .9x17, вместимость - 71 патроонов."
+  productEntity: MagazinePistolDrumSubMachineGun
+  cost:
+    Speso: 5300
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolTopSubMachineGun
+  name: "магазин верхней подачи для ПП"
+  description: "Калибр .9x17, вместимость - 50 патроонов."
+  productEntity: MagazinePistolTopSubMachineGun
+  cost:
+    Speso: 5300
+  categories:
+  - GSecUplinkMags
+
+- type: listing
+  id: GSecMagazinePistolSubMachineGunScorpion9x17
+  name: "магазин Scorpion (Т1)"
+  description: "Калибр .9x17, вместимость - 20 патроонов."
+  productEntity: MagazinePistolSubMachineGunScorpion9x17
+  cost:
+    Speso: 2300
   categories:
   - GSecUplinkMags
 
@@ -1641,7 +1711,7 @@
   description: "Подходит под большинство калибров, вместимость - 120 патроонов."
   productEntity: MagazineUniversalGSecEmpty
   cost:
-    Speso: 4870
+    Speso: 14870
   categories:
   - GSecUplinkMags
 
@@ -1651,7 +1721,7 @@
   description: "Наполнен патроном .20, вместимость - 120 патроонов."
   productEntity: MagazineUniversalGSec20
   cost:
-    Speso: 6870
+    Speso: 26870
   categories:
   - GSecUplinkMags
 
@@ -1661,7 +1731,7 @@
   description: "Наполнен патроном .30, вместимость - 120 патроонов."
   productEntity: MagazineUniversalGSec30
   cost:
-    Speso: 8000
+    Speso: 28000
   categories:
   - GSecUplinkMags
 
@@ -1671,7 +1741,7 @@
   description: "Наполнен патроном .60, вместимость - 120 патроонов."
   productEntity: MagazineUniversalGSec60
   cost:
-    Speso: 10270
+    Speso: 30270
   categories:
   - GSecUplinkMags
 
@@ -1734,7 +1804,7 @@
   description: "Короб на 150 винтовочных патронов калибра .20 от «AnroxComputer's»"
   productEntity: AnCoMagazineBox20
   cost:
-    Speso: 450
+    Speso: 2450
   categories:
   - GSecUplinkAmmo
 
@@ -1794,7 +1864,7 @@
   description: "Короб на 150 винтовочных патронов калибра .30 от «AnroxComputer's»"
   productEntity: AnCoMagazineBox30
   cost:
-    Speso: 450
+    Speso: 2750
   categories:
   - GSecUplinkAmmo
 
@@ -1824,7 +1894,7 @@
   description: "Короб на 200 пистолетных патронов калибра .35 от «AnroxComputer's»"
   productEntity: AnCoMagazineBox35
   cost:
-    Speso: 600
+    Speso: 2600
   categories:
   - GSecUplinkAmmo
 
@@ -1904,7 +1974,7 @@
   description: "Короб на 75 патронов для дробовика калибра .50 дробь «AnroxComputer's»"
   productEntity: AnCoMagazineBox50
   cost:
-    Speso: 1350
+    Speso: 7350
   categories:
   - GSecUplinkAmmo
 
@@ -1945,16 +2015,6 @@
   productEntity: NFAmmunitionBoxBigRifle60
   cost:
     Speso: 2400
-  categories:
-  - GSecUplinkAmmo
-
-- type: listing
-  id: GSecAnCoMagazineBox
-  name: "коробка патронов .70 АнКо"
-  description: "Короб на 75 винтовочных патронов калибра .70 «AnroxComputer's»"
-  productEntity: AnCoMagazineBox
-  cost:
-    Speso: 1875
   categories:
   - GSecUplinkAmmo
 
@@ -2318,7 +2378,7 @@
   id: GSecCrateGSecPraetorBundle
   name: "Набор Перторианца (Т3)"
   description: "Набор Praetor от «AnCo - MiliGalax». «Это не военное приступление, если тебя не поймали»."
-  productEntity: CrateGSecBlackWaterBundle
+  productEntity: CrateGSecPraetorBundle
   cost:
     Speso: 200000
   categories:
