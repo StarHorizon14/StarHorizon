@@ -133,6 +133,23 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     private BoxContainer? _radarModeButtons;
     private RadarModeButton? _radarAzimuthButton;
     private RadarAzimuthMode _azimuthMode;
+    private bool _rotationLocked = true;
+
+    /// <summary>
+    /// True while the radar rotation is locked to north. Controlled from the window UI.
+    /// </summary>
+    public bool RotationLocked => _rotationLocked;
+
+    /// <summary>
+    /// Locks the view to north and disables rotation with the entity. Controlled from the window UI.
+    /// </summary>
+    public void SetFixedNorth(bool fixedNorth)
+    {
+        SetRotationLocked(fixedNorth);
+    }
+
+    // Panning is only possible when the radar explicitly allows it (see the lock button).
+    protected override bool Draggable { get; set; } = false;
     #endregion
 
     /// <summary>
@@ -220,6 +237,15 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         LayoutContainer.SetAnchorAndMarginPreset(_radarModeButtons, LayoutContainer.LayoutPreset.BottomLeft, margin: 10);
     }
 
+    /// <summary>
+    /// Locked: the radar always points north. Unlocked: the radar rotates together with the entity.
+    /// </summary>
+    public void SetRotationLocked(bool locked)
+    {
+        _rotationLocked = locked;
+        _angleFollow = !locked;
+    }
+
     private void ApplyRadarModeDefaults()
     {
         if (_radarModeDefaultsApplied)
@@ -228,7 +254,9 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         if (!EntManager.TryGetComponent<RadarConsoleComponent>(_consoleEntity, out var radar))
             return;
 
-        // Lua: RadarConsoleComponent has no Pannable/NoRotate/RelativePanning fields here; keep prior defaults.
+        if (radar.FixedNorth)
+            SetFixedNorth(true);
+
         _radarModeDefaultsApplied = true;
     }
 
@@ -250,6 +278,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     {
         None,
         Azimuth,
+        Lock,
         Rotation,
         Anchor,
         Reset
@@ -258,6 +287,9 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     public sealed class RadarModeButton : BaseButton
     {
         private readonly RadarModeButtonIcon _icon;
+
+        /// <summary>Used by the lock icon: true draws a closed padlock.</summary>
+        public bool Toggled;
 
         internal RadarModeButton(RadarModeButtonIcon icon)
         {
@@ -304,6 +336,35 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     handle.DrawLine(bottomLeft, topRight, iconColor);
                     handle.DrawLine(left, right, iconColor);
                     handle.DrawLine(bottom, top, iconColor);
+                    break;
+                }
+                case RadarModeButtonIcon.Lock:
+                {
+                    var iconColor = Color.Black.WithAlpha(0.95f);
+                    var w = radius * 0.9f;
+                    var bodyTop = center.Y;
+                    var bodyBottom = center.Y + radius * 0.8f;
+                    handle.DrawRect(new UIBox2(center.X - w * 0.5f, bodyTop, center.X + w * 0.5f, bodyBottom), iconColor);
+
+                    var shackleTop = center.Y - radius * 0.7f;
+                    var left2 = new Vector2(center.X - w * 0.3f, bodyTop);
+                    var right2 = new Vector2(center.X + w * 0.3f, bodyTop);
+                    var leftTop = new Vector2(left2.X, shackleTop);
+                    var rightTop = new Vector2(right2.X, shackleTop);
+                    if (Toggled)
+                    {
+                        handle.DrawLine(left2, leftTop, iconColor);
+                        handle.DrawLine(right2, rightTop, iconColor);
+                        handle.DrawLine(leftTop, rightTop, iconColor);
+                    }
+                    else
+                    {
+                        // Open: right side of the shackle is lifted off the body.
+                        var rightLifted = new Vector2(right2.X, bodyTop - radius * 0.25f);
+                        handle.DrawLine(left2, leftTop, iconColor);
+                        handle.DrawLine(leftTop, rightTop, iconColor);
+                        handle.DrawLine(rightTop, rightLifted, iconColor);
+                    }
                     break;
                 }
                 case RadarModeButtonIcon.Rotation:
@@ -515,10 +576,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 break;
         }
 
-        if (worldRot != Angle.Zero)
-        {
-            DrawCompassOverlay(handle, coordEntRot);
-        }
+        // Always draw the compass, also when the view is locked to north (worldRot == 0).
+        DrawCompassOverlay(handle, worldRot);
 
         // Draw our grid in detail
         // Lua mod start

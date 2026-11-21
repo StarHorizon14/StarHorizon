@@ -18,6 +18,7 @@
   - type: RadarConsole
     maxRange: 256
     followEntity: true
+    fixedNorth: true
   - type: Appearance
   - type: GenericVisualizer
     visuals:

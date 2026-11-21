@@ -41,6 +41,7 @@ shuttle-console-maximum-angular-speed-tooltip = Максимальная ско�
 shuttle-console-network-connect-tooltip = Подключиться к устройству по сетевому порту.
 
 shuttle-console-button-azimuth = Переключить отображение азимута
+shuttle-console-button-lock = Заблокировать/разблокировать поворот радара
 shuttle-console-button-rotation = Следовать за курсом корабля
 shuttle-console-button-anchor = Закрепить/открепить вид
 shuttle-console-button-reset = Сбросить вид радара
