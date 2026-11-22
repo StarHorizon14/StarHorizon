@@ -88,7 +88,7 @@ public sealed class ChunkMonitorEui : BaseEui
             case ChunkMonitorEuiMsg.RequestMapData req:
                 if (!_entMan.TryGetEntity(req.MapUid, out EntityUid? mapUidNullable) ||
                     mapUidNullable is not { } mapUid ||
-                    !_controllerQuery.HasComponent(mapUid))
+                    !_entMan.HasComponent<MapComponent>(mapUid))
                     return;
                 _selectedMap = req.MapUid;
                 RefreshMapData(mapUid);
