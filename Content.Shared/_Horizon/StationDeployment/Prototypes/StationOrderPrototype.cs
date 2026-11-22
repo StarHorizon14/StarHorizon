@@ -1,4 +1,5 @@
 using Content.Shared.Research.Prototypes;
+using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
@@ -46,8 +47,24 @@ public sealed partial class StationOrderPrototype : IPrototype
 [DataDefinition, Serializable, NetSerializable]
 public readonly partial record struct StationOrderItemEntry()
 {
+    /// <summary>
+    /// Prototype shown in the console (icon + name). Also the exact match when neither
+    /// <see cref="Tag"/> nor <see cref="Component"/> is set.
+    /// </summary>
     [DataField(required: true)]
     public EntProtoId Item { get; init; } = default!;
+
+    /// <summary>
+    /// If set, any entity with this tag counts toward the order instead of an exact prototype match.
+    /// </summary>
+    [DataField]
+    public ProtoId<TagPrototype>? Tag { get; init; }
+
+    /// <summary>
+    /// If set, any entity with this component (registered name, e.g. "CablePlacer") counts toward the order.
+    /// </summary>
+    [DataField]
+    public string? Component { get; init; }
 
     [DataField]
     public int Amount { get; init; } = 1;
