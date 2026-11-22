@@ -36,6 +36,7 @@
   category: NFEngineering
   entries:
   - item: CableApcStack
+    tag: CableCoil
     amount: 8
 
 - type: stationOrder
@@ -82,6 +83,7 @@
   - item: LightBulb
     amount: 20
   - item: CableApcStack
+    tag: CableCoil
     amount: 10
 
 - type: stationOrder
@@ -90,12 +92,16 @@
   category: NFEngineering
   entries:
   - item: Wrench
+    tag: Wrench
     amount: 4
   - item: Screwdriver
+    tag: Screwdriver
     amount: 4
   - item: Crowbar
+    tag: Crowbar
     amount: 4
   - item: Wirecutter
+    tag: Wirecutter
     amount: 4
 
 - type: stationOrder
@@ -114,8 +120,10 @@
   category: NFEngineering
   entries:
   - item: Multitool
+    tag: Multitool
     amount: 6
   - item: Wirecutter
+    tag: Wirecutter
     amount: 6
 
 - type: stationOrder
@@ -126,6 +134,7 @@
   - item: ToolboxElectricalFilled
     amount: 6
   - item: CableApcStack
+    tag: CableCoil
     amount: 15
   - item: LightBulb
     amount: 10
@@ -138,8 +147,10 @@
   category: NFArsenalMercenary
   entries:
   - item: NFMagazinePistol35
+    tag: NFMagazinePistol35
     amount: 8
   - item: NFMagazinePistol45
+    tag: NFMagazinePistol45
     amount: 6
 
 - type: stationOrder
@@ -148,8 +159,10 @@
   category: NFArsenalMercenary
   entries:
   - item: NFMagazineRifle20
+    tag: NFMagazineRifle20
     amount: 6
   - item: NFMagazineRifle30
+    tag: NFMagazineRifle30
     amount: 6
 
 - type: stationOrder
@@ -190,8 +203,10 @@
   category: NFArsenalMercenary
   entries:
   - item: NFMagazineSubMachineGun35
+    tag: NFMagazineSubMachineGunPistol35
     amount: 6
   - item: NFMagazineSubMachineGun45
+    tag: NFMagazineSubMachineGunPistol45
     amount: 4
 
 # Science - bulk/varied orders
@@ -232,7 +247,7 @@
   category: NFScience
   entries:
   - item: AnomalyCoreBluespace
-    amount: 8
+    amount: 4 
 
 - type: stationOrder
   id: StationOrderSyringeGunAmmo
@@ -300,10 +315,13 @@
   category: NFService
   entries:
   - item: Brutepack
+    tag: Brutepack
     amount: 8
   - item: Ointment
+    tag: Ointment
     amount: 8
   - item: Gauze
+    tag: Gauze
     amount: 10
 
 - type: stationOrder
@@ -378,6 +396,7 @@
   category: NFEngineering
   entries:
   - item: MaterialBluespace1
+    tag: BluespaceCrystal
     amount: 1
 
 - type: stationOrder
@@ -428,6 +447,7 @@
   category: NFArsenalMercenary
   entries:
   - item: NFMagazineDrumRifle20Empty
+    tag: NFMagazineDrumRifle20
     amount: 10
 
 - type: stationOrder
