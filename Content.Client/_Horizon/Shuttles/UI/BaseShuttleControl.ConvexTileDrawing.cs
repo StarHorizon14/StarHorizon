@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Mono.GridEdgeMarker;
 using Content.Shared.Maps;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.GameObjects;
@@ -23,6 +24,7 @@ public partial class BaseShuttleControl
     // Horizon: landing pad tiles and their triangles, drawn after the rest of the floor.
     private readonly HashSet<Vector2i> _padTiles = new();
     private readonly List<Vector2> _padVertices = new();
+    private readonly HashSet<Entity<GridEdgeMarkerComponent>> _edgeMarkers = new();
 
     private void RebuildGridData(Entity<MapGridComponent> grid, GridDrawData gridData)
     {
@@ -132,6 +134,24 @@ public partial class BaseShuttleControl
                 _edges.Add((bl + prev * tileSize, bl + vert * tileSize));
                 prev = vert;
             }
+        }
+
+        // Grid edge markers: extra edges drawn on radar even inside grids.
+        _edgeMarkers.Clear();
+        var lookup = EntManager.System<EntityLookupSystem>();
+        var xformQuery = EntManager.GetEntityQuery<TransformComponent>();
+        lookup.GetLocalEntitiesIntersecting(grid, grid.Comp.LocalAABB, _edgeMarkers);
+
+        foreach (var edge in _edgeMarkers)
+        {
+            if (!xformQuery.TryComp(edge, out var xform))
+                continue;
+
+            var coord = xform.Coordinates.Position;
+            var rotation = xform.LocalRotation;
+            var begin = rotation.RotateVec(edge.Comp.Begin);
+            var end = rotation.RotateVec(edge.Comp.End);
+            _edges.Add((coord + begin * tileSize, coord + end * tileSize));
         }
 
         // Decompose the edges into longer lines to save data.

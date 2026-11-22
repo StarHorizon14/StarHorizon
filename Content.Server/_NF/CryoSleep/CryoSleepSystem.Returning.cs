@@ -119,6 +119,8 @@ public sealed partial class CryoSleepSystem
         }
     }
 
+    public int GetCryosleepingCount() => _storedBodies.Count;
+
     public bool HasCryosleepingBody(NetUserId id)
     {
         return _storedBodies.ContainsKey(id);
