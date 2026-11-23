@@ -145,6 +145,23 @@ namespace Content.Shared._Horizon.CCVar
             CVarDef.Create("shuttle.autodelete_enabled", false, CVar.SERVERONLY | CVar.ARCHIVE,
                 "Отключить или включить автоудаление шаттлов.");
         /*
+         * Посадочные площадки
+         */
+
+        /// <summary>
+        /// Какая доля тайлов шаттла должна быть над тайлами посадочной площадки, чтобы он мог сесть.
+        /// Если после посадки доля стала меньше (тайлы площадки убрали), шаттл взлетает сам.
+        /// </summary>
+        public static readonly CVarDef<float> ShuttleLandingMinCoverage =
+            CVarDef.Create("shuttle.landing_min_coverage", 1f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        /// <summary>
+        /// Максимальная скорость шаттла относительно площадки, при которой он может сесть.
+        /// </summary>
+        public static readonly CVarDef<float> ShuttleLandingMaxSpeed =
+            CVarDef.Create("shuttle.landing_max_speed", 5f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        /*
          * Планетки
          */
         public static readonly CVarDef<bool> SpawnPlanets =

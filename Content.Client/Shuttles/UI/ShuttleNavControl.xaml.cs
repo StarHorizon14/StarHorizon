@@ -584,36 +584,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         EntityUid? ourGridIdNullable = xform.GridUid;
         EntityUid ourGridId = default;
         if (ourGridIdNullable != null)
-        {
             ourGridId = ourGridIdNullable.Value;
-            if (EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) && fixturesQuery.HasComponent(ourGridId))
-            {
-                var ourGridToWorld = _transform.GetWorldMatrix(ourGridId);
-                var ourGridToShuttle = Matrix3x2.Multiply(ourGridToWorld, worldToShuttle);
-                var ourGridToView = ourGridToShuttle * shuttleToView;
-                var color = _shuttles.GetIFFColor(ourGridId, self: true);
-                var fill = color; // Lua
-                var edge = color; // Lua
-                var alpha = 0.01f; // Lua
-                ModifyGridPalette(ref fill, ref edge, ref alpha, ourGridId, self: true); // Lua
-                DrawGrid(handle, ourGridToView, (ourGridId, ourGrid), fill, edge, alpha); // Lua
-                DrawDocks(handle, ourGridId, ourGridToView);
-            }
-        }
         // Lua mod end
-        if (ShowRadarPositionMarker) // Lua
-        {
-            const float radarVertRadius = 2f;
-            var radarPosVerts = new Vector2[]
-            {
-                ScalePosition(new Vector2(0f, -radarVertRadius)),
-                ScalePosition(new Vector2(radarVertRadius / 2f, 0f)),
-                ScalePosition(new Vector2(0f, radarVertRadius)),
-                ScalePosition(new Vector2(radarVertRadius / -2f, 0f)),
-            };
-
-            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
-        }
 
         // Frontier: Use ScaledWorldRange for culling. WorldRange doesnt account for the viewport resizing
         var viewBounds = new Box2Rotated(new Box2(-ScaledWorldRange.X, -ScaledWorldRange.Y, ScaledWorldRange.X, ScaledWorldRange.Y).Translated(mapPos.Position), rot, mapPos.Position);
@@ -623,6 +595,62 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         _grids.Clear();
         _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);
 
+        // Horizon: landing pads. Grids are drawn in a fixed order, so a shuttle sitting on another grid's
+        // landing pad is drawn on top of that grid, and our own grid takes its place in that order
+        // instead of always being drawn first.
+        var ourGridInList = false;
+        foreach (var grid in _grids)
+        {
+            ourGridInList |= ourGridIdNullable != null && grid.Owner == ourGridId;
+
+            if (_transform.GetWorldMatrix(grid.Owner).TransformBox(grid.Comp.LocalAABB).Intersects(viewAABB))
+                EnsureGridData(grid);
+        }
+
+        SortGridsForDrawing(_grids);
+        ResetGridOverlap();
+
+        void DrawOurGrid()
+        {
+            // Lua mod start
+            if (ourGridIdNullable != null &&
+                EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) &&
+                fixturesQuery.HasComponent(ourGridId))
+            {
+                var ourGridToWorld = _transform.GetWorldMatrix(ourGridId);
+                var ourGridToShuttle = Matrix3x2.Multiply(ourGridToWorld, worldToShuttle);
+                var ourGridToView = ourGridToShuttle * shuttleToView;
+                var color = _shuttles.GetIFFColor(ourGridId, self: true);
+                var fill = color; // Lua
+                var edge = color; // Lua
+                var alpha = 0.01f; // Lua
+                ModifyGridPalette(ref fill, ref edge, ref alpha, ourGridId, self: true); // Lua
+                Color? mask = TrackGridOverlap((ourGridId, ourGrid), ourGridToWorld) ? BackingColor : null; // Horizon
+                DrawGrid(handle, ourGridToView, (ourGridId, ourGrid), fill, edge, alpha, mask); // Lua
+                DrawDocks(handle, ourGridId, ourGridToView);
+            }
+            // Lua mod end
+
+            if (ShowRadarPositionMarker) // Lua
+            {
+                const float radarVertRadius = 2f;
+                var radarPosVerts = new Vector2[]
+                {
+                    ScalePosition(new Vector2(0f, -radarVertRadius)),
+                    ScalePosition(new Vector2(radarVertRadius / 2f, 0f)),
+                    ScalePosition(new Vector2(0f, radarVertRadius)),
+                    ScalePosition(new Vector2(radarVertRadius / -2f, 0f)),
+                };
+
+                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
+            }
+        }
+
+        // Our grid is not among the grids around us (no grid at all, or it has no fixtures): draw it first, as before.
+        if (!ourGridInList)
+            DrawOurGrid();
+        // End Horizon
+
         // Frontier - collect blip location data outside foreach - more changes ahead
         var blipDataList = new List<BlipData>();
 
@@ -630,7 +658,16 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         foreach (var grid in _grids)
         {
             var gUid = grid.Owner;
-            if ((ourGridIdNullable != null && gUid == ourGridId) || !fixturesQuery.HasComponent(gUid)) // Lua Decrypt mod
+
+            // Horizon: our grid is drawn at its place in the draw order
+            if (ourGridIdNullable != null && gUid == ourGridId)
+            {
+                DrawOurGrid();
+                continue;
+            }
+            // End Horizon
+
+            if (!fixturesQuery.HasComponent(gUid)) // Lua Decrypt mod
                 continue;
 
             var gridBody = bodyQuery.GetComponent(gUid);
@@ -796,7 +833,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 var edge = labelColor; // Lua
                 var alpha = 0.01f; // Lua
                 ModifyGridPalette(ref fill, ref edge, ref alpha, gUid, self: false); // Lua
-                DrawGrid(handle, curGridToView, grid, fill, edge, alpha); // Lua
+                Color? mask = TrackGridOverlap(grid, curGridToWorld) ? BackingColor : null; // Horizon: landing pads
+                DrawGrid(handle, curGridToView, grid, fill, edge, alpha, mask); // Lua
                 DrawDocks(handle, gUid, curGridToView);
             }
         }

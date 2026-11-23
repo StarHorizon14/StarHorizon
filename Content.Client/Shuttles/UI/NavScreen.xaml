@@ -192,6 +192,13 @@
                     </controls:BoxContainer>
                     <!-- End Frontier - Inertia dampener controls-->
 
+                    <!-- Horizon: landing pads -->
+                    <controls:Button Name="LandingToggle"
+                                     Text="{controls:Loc 'shuttle-console-landing-land'}"
+                                     ToolTip="{controls:Loc 'shuttle-console-landing-tooltip'}"
+                                     TextAlign="Center"/>
+                    <!-- End Horizon -->
+
                     <!-- Frontier - settable target -->
                     <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="TargetCoordsBox">
                         <controls:Label Text="{controls:Loc 'shuttle-console-target'}"/>
