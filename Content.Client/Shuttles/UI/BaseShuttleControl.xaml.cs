@@ -410,20 +410,7 @@ public partial class BaseShuttleControl : MapGridControl
 
     protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color color, float alpha = 0.01f)
     { DrawGrid(handle, gridToView, grid, color, color, alpha); } // Lua
-    // Horizon: landing pads
-    private void DrawPadTriangles(DrawingHandleScreen handle, GridDrawData gridData, Color? maskColor)
-    {
-        const int batchSize = 3 * 4096;
-        var padColor = (maskColor ?? BackingColor).WithAlpha(1f);
-
-        for (var start = gridData.PadIndex; start < gridData.EdgeIndex; start += batchSize)
-        {
-            var count = Math.Min(batchSize, gridData.EdgeIndex - start);
-            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(_allVertices, start, count), padColor);
-        }
-    }
-
-    protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color fillColor, Color edgeColor, float fillAlpha = 0.01f, Color? maskColor = null)
+    protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color fillColor, Color edgeColor, float fillAlpha = 0.01f)
     {
         // Check if we even have data
         // TODO: Need to prune old grid-data if we don't draw it.
@@ -436,7 +423,7 @@ public partial class BaseShuttleControl : MapGridControl
         }
 
         var totalData = gridData.Vertices.Count;
-        var triCount = gridData.PadIndex; // Horizon: landing pad triangles follow, drawn separately
+        var triCount = gridData.EdgeIndex;
         var edgeCount = totalData - gridData.EdgeIndex;
         Extensions.EnsureLength(ref _allVertices, totalData);
 
@@ -455,9 +442,6 @@ public partial class BaseShuttleControl : MapGridControl
             var count = end - start;
             handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(_allVertices, start, count), fillColor.WithAlpha(fillAlpha)); // Lua
         }
-        // Horizon: landing pads are drawn dark, like empty space, so the pilot can see where to land.
-        DrawPadTriangles(handle, gridData, maskColor);
-
         handle.DrawPrimitives(DrawPrimitiveTopology.LineList, new Span<Vector2>(_allVertices, gridData.EdgeIndex, edgeCount), edgeColor); // Lua
         DrawGridCuts(handle, gridToView, grid); // Horizon: cuts of the shipbreaking cutter show on the radar
     }
@@ -490,11 +474,6 @@ public sealed class GridDrawData
     /// Vertices index from when edges start.
     /// </summary>
     public int EdgeIndex;
-
-    /// <summary>
-    /// Horizon: vertices index from where landing pad triangles start (they end at <see cref="EdgeIndex"/>).
-    /// </summary>
-    public int PadIndex;
 
     public GameTick LastBuild;
 }

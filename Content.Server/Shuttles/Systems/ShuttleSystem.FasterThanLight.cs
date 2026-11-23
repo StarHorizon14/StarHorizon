@@ -1,4 +1,3 @@
-using Content.Server._Horizon.Shuttles; // Horizon
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
@@ -27,7 +26,6 @@ using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
@@ -84,8 +82,6 @@ public sealed partial class ShuttleSystem
     /// </summary>
     private const float CoordRollover = 40000f;
     // End Frontier: coordinate rollover
-
-    [Dependency] private readonly ITileDefinitionManager _tileDefs = default!; // Horizon
 
     private readonly HashSet<EntityUid> _lookupEnts = new();
     private readonly HashSet<EntityUid> _immuneEnts = new();
@@ -1085,33 +1081,15 @@ public sealed partial class ShuttleSystem
         var aabbs = new List<Box2>(manager.Fixtures.Count);
         var tileSet = new List<(Vector2i, Tile)>();
 
-        // Horizon: landing pad tiles have no fixtures, flatten under them too.
-        var shapes = new List<IPhysShape>(manager.Fixtures.Count);
-
         foreach (var fixture in manager.Fixtures.Values)
-        {
-            if (fixture.Hard)
-                shapes.Add(fixture.Shape);
-        }
-
-        var padBoxes = new List<Box2>();
-        if (LandingPadTiles.GetPadBoxes((uid, grid), _mapSystem, _tileDefs, padBoxes))
-        {
-            foreach (var box in padBoxes)
-            {
-                var poly = new PolygonShape();
-                poly.SetAsBox(box);
-                shapes.Add(poly);
-            }
-        }
-        // End Horizon
-
-        foreach (var shape in shapes) // Horizon: fixtures<shapes
         {
             if (xform.MapID == _ticker.DefaultMap)
                 break; //Frontier - FTL is too buggy to let it just fucking gib people wtf - so we disable for frontier's z-level
 
-            var aabb = shape.ComputeAABB(transform, 0);
+            if (!fixture.Hard)
+                continue;
+
+            var aabb = fixture.Shape.ComputeAABB(transform, 0);
 
             // Shift it slightly
             // Create a small border around it.
@@ -1124,7 +1102,7 @@ public sealed partial class ShuttleSystem
             _lookupEnts.Clear();
             _immuneEnts.Clear();
             // TODO: Ideally we'd query first BEFORE moving grid but needs adjustments above.
-            _lookup.GetLocalEntitiesIntersecting(xform.MapUid.Value, shape, transform, _lookupEnts, flags: LookupFlags.Uncontained, lookup: lookup);
+            _lookup.GetLocalEntitiesIntersecting(xform.MapUid.Value, fixture.Shape, transform, _lookupEnts, flags: LookupFlags.Uncontained, lookup: lookup);
 
             foreach (var ent in _lookupEnts)
             {
