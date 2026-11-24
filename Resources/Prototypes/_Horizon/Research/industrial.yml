@@ -12,7 +12,20 @@
   technologyPrerequisites:
   - NFShuttlecraft
   position: 2, 72
-
+#horizon
+- type: technology
+  id: LandingPad
+  name: research-technology-landing-pad
+  entityIcon: FloorTilePlateLandingPad
+  discipline: NFEngineering
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - FloorTilePlateLandingPad
+  technologyPrerequisites:
+  - AdvancedShuttlecraft
+  position: 3, 72
+#horizon End
 - type: technology
   id: OreDrilling
   name: research-technology-ore-drilling
