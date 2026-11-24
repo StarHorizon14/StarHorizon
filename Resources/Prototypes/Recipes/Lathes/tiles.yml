@@ -338,4 +338,9 @@
   id: FloorTileItemSteelPlateDarkGray
   result: FloorTileItemSteelPlateDarkGray
 
+- type: latheRecipe
+  parent: BaseShipTileRecipe
+  id: FloorTilePlateLandingPad
+  result: FloorTilePlateLandingPad
+
 # Horizon end
