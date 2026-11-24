@@ -203,9 +203,40 @@ public static class PixelPlanetBiomeLooks
                 ["octaves"] = 4.184f,
                 ["size"] = 7.5625f,
             }),
+            // Anko planet: the Snow (IceWorld) pattern recolored to the Anko palette. Gray crust, bright red lava
+            // lakes, dark red clouds. Same noise setup as Snow, fewer lakes (higher lake_cutoff).
+            ["Anko"] = new(PixelPlanetKind.IceWorld,
+            [
+                H("#42464b"),
+                H("#2b2f35"),
+                H("#1e2124"),
+                H("#d21e1e"),
+                H("#d21e1e"),
+                H("#d21e1e"),
+                H("#620505"),
+                H("#4a0404"),
+                H("#3d0303"),
+                H("#2a0202"),
+            ],
+            new Dictionary<string, float>
+            {
+                ["cloud_cover"] = 0.6476f,
+                ["cloud_octaves"] = 4.535f,
+                ["cloud_size"] = 7.9219f,
+                ["dither_size"] = 1.7386f,
+                ["lake_border_1"] = 0.0701f,
+                ["lake_border_2"] = 0.0293f,
+                ["lake_cutoff"] = 0.585f,
+                ["lake_size"] = 7.0413f,
+                ["light_border_1"] = 0.5258f,
+                ["light_border_2"] = 0.6138f,
+                ["octaves"] = 7f,
+                ["size"] = 8.8021f,
+                ["stretch"] = 2.7274f,
+            }),
         };
         presets["Lavalight"] = presets["Lava"];
-        presets["ArdoniumWastes"] = presets["GateInferno"];
+        presets["ArdoniumWastes"] = presets["Anko"];
         presets["Caves"] = presets["LowDesert"];
         return presets;
     }

@@ -42,8 +42,11 @@ public sealed partial class ChunkMonitorWindow : DefaultWindow
                 return;
             if (args.Id < 0 || args.Id >= _maps.Length)
                 return;
+            MapDropdown.SelectId(args.Id);
             var map = _maps[args.Id].MapUid;
             _selectedMap = map;
+            MapControl.SetChunks([]);
+            SetCounts(0, 0, 0);
             _selectedChunk = null;
             _autoRefreshTimer = 0f;
             MapControl.SetSelectedMap(map);
@@ -59,6 +62,7 @@ public sealed partial class ChunkMonitorWindow : DefaultWindow
         HeatmapDropdown.SelectId((int) ChunkMonitorHeatmapMode.Off);
         HeatmapDropdown.OnItemSelected += args =>
         {
+            HeatmapDropdown.SelectId(args.Id);
             _heatmapMode = (ChunkMonitorHeatmapMode) args.Id;
             MapControl.SetHeatmapMode(_heatmapMode);
         };

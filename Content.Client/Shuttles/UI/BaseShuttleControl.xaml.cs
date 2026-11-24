@@ -410,9 +410,24 @@ public partial class BaseShuttleControl : MapGridControl
 
     protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color color, float alpha = 0.01f)
     { DrawGrid(handle, gridToView, grid, color, color, alpha); } // Lua
-    protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color fillColor, Color edgeColor, float fillAlpha = 0.01f)
+    // Horizon: landing pads
+    private void DrawPadTriangles(DrawingHandleScreen handle, GridDrawData gridData, Color? maskColor)
     {
-        // Check if we even have data
+        const int batchSize = 3 * 4096;
+        var padColor = (maskColor ?? BackingColor).WithAlpha(1f);
+
+        for (var start = gridData.PadIndex; start < gridData.EdgeIndex; start += batchSize)
+        {
+            var count = Math.Min(batchSize, gridData.EdgeIndex - start);
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(_allVertices, start, count), padColor);
+        }
+    }
+
+    /// <summary>
+    /// Returns the cached drawing data of the grid, rebuilding it if the grid's tiles have changed.
+    /// </summary>
+    protected GridDrawData EnsureGridData(Entity<MapGridComponent> grid)
+    {
         // TODO: Need to prune old grid-data if we don't draw it.
         var gridData = GridData.GetOrNew(grid.Owner);
 
@@ -422,8 +437,84 @@ public partial class BaseShuttleControl : MapGridControl
             RebuildGridData(grid, gridData);
         }
 
+        return gridData;
+    }
+
+    /// <summary>
+    /// Puts grids in the order they should be drawn, so a grid sitting on another grid's landing pad
+    /// ends up on top of it: grids with landing pad tiles first, then larger grids before smaller ones.
+    /// The game world is drawn by the same rule.
+    /// Call <see cref="EnsureGridData"/> first for the grids that will be drawn: a grid with no drawing data yet
+    /// counts as having no landing pads.
+    /// </summary>
+    protected void SortGridsForDrawing(List<Entity<MapGridComponent>> grids)
+    {
+        if (grids.Count < 2)
+            return;
+
+        _gridDrawOrder ??= CompareGridDrawOrder;
+        grids.Sort(_gridDrawOrder);
+    }
+
+    private int CompareGridDrawOrder(Entity<MapGridComponent> a, Entity<MapGridComponent> b)
+    {
+        var aUnderlay = GridData.TryGetValue(a.Owner, out var aData) && aData.HasUnderlay;
+        var bUnderlay = GridData.TryGetValue(b.Owner, out var bData) && bData.HasUnderlay;
+
+        if (aUnderlay != bUnderlay)
+            return aUnderlay ? -1 : 1;
+
+        var aArea = a.Comp.LocalAABB.Width * a.Comp.LocalAABB.Height;
+        var bArea = b.Comp.LocalAABB.Width * b.Comp.LocalAABB.Height;
+
+        if (!aArea.Equals(bArea))
+            return bArea.CompareTo(aArea);
+
+        return a.Owner.Id.CompareTo(b.Owner.Id);
+    }
+
+    /// <summary>
+    /// Tracks the grids with landing pads drawn so far this frame and tells whether the next grid lies over one of them.
+    /// A grid that does should be drawn with a mask, so the grid under it does not show through.
+    /// Call <see cref="ResetGridOverlap"/> before drawing the grids, then this for each grid in draw order.
+    /// </summary>
+    protected bool TrackGridOverlap(Entity<MapGridComponent> grid, Matrix3x2 gridToWorld)
+    {
+        var worldAABB = gridToWorld.TransformBox(grid.Comp.LocalAABB);
+        var overlaps = false;
+
+        foreach (var drawn in _drawnUnderlayBounds)
+        {
+            if (!drawn.Intersects(worldAABB))
+                continue;
+
+            overlaps = true;
+            break;
+        }
+
+        if (GridData.TryGetValue(grid.Owner, out var data) && data.HasUnderlay)
+            _drawnUnderlayBounds.Add(worldAABB);
+
+        return overlaps;
+    }
+
+    protected void ResetGridOverlap()
+    {
+        _drawnUnderlayBounds.Clear();
+    }
+
+    private Comparison<Entity<MapGridComponent>>? _gridDrawOrder;
+    private readonly List<Box2> _drawnUnderlayBounds = new();
+    // End Horizon
+
+    /// <param name="maskColor">Horizon: if set, the grid's tiles are first painted with this opaque color to hide what is under them.</param>
+    protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color fillColor, Color edgeColor, float fillAlpha = 0.01f, Color? maskColor = null)
+    {
+        // Check if we even have data
+        var gridData = EnsureGridData(grid); // Horizon: moved to EnsureGridData
+
         var totalData = gridData.Vertices.Count;
-        var triCount = gridData.EdgeIndex;
+        var triCount = gridData.PadIndex; // Horizon: landing pad triangles follow, drawn separately
         var edgeCount = totalData - gridData.EdgeIndex;
         Extensions.EnsureLength(ref _allVertices, totalData);
 
@@ -440,8 +531,16 @@ public partial class BaseShuttleControl : MapGridControl
             var start = (int) (i * BatchSize);
             var end = (int) Math.Min(triCount, start + BatchSize);
             var count = end - start;
+
+            // Horizon: hide whatever is under this grid
+            if (maskColor != null)
+                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(_allVertices, start, count), maskColor.Value.WithAlpha(1f));
+
             handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(_allVertices, start, count), fillColor.WithAlpha(fillAlpha)); // Lua
         }
+        // Horizon: landing pads are drawn dark, like empty space, so the pilot can see where to land.
+        DrawPadTriangles(handle, gridData, maskColor);
+
         handle.DrawPrimitives(DrawPrimitiveTopology.LineList, new Span<Vector2>(_allVertices, gridData.EdgeIndex, edgeCount), edgeColor); // Lua
         DrawGridCuts(handle, gridToView, grid); // Horizon: cuts of the shipbreaking cutter show on the radar
     }
@@ -475,5 +574,15 @@ public sealed class GridDrawData
     /// </summary>
     public int EdgeIndex;
 
+    /// <summary>
+    /// Horizon: vertices index from where landing pad triangles start (they end at <see cref="EdgeIndex"/>).
+    /// </summary>
+    public int PadIndex;
+
     public GameTick LastBuild;
+
+    /// <summary>
+    /// Horizon: the grid has landing pad tiles, so other grids may be sitting on top of it.
+    /// </summary>
+    public bool HasUnderlay;
 }

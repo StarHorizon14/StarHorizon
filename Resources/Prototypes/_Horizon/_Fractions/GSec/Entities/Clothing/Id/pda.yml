@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BasePDA, BaseGSecContraband]
+  parent: [BasePDA]
   id: PDAGSec
   suffix: GSec
   name: КПК Горлекс
@@ -25,7 +25,7 @@
 # КПК Рекрута
 
 - type: entity
-  parent: PDAGSec
+  parent: [PDAGSec, BaseGSecContraband]
   id: PDARecruitGSec
   suffix: GSec
   name: КПК рекрута Горлекс
@@ -40,7 +40,7 @@
 # КПК Агента
 
 - type: entity
-  parent: PDAGSec
+  parent: [PDAGSec, BaseGSecContraband]
   id: PDAAgentGSec
   suffix: GSec
   name: КПК агента Горлекс
@@ -53,7 +53,7 @@
 # КПК Техника
 
 - type: entity
-  parent: PDAGSec
+  parent: [PDAGSec, BaseGSecContraband]
   id: PDATechGSec
   suffix: GSec
   name: КПК техника Горлекс
@@ -68,7 +68,7 @@
 # КПК Санитара
 
 - type: entity
-  parent: PDAGSec
+  parent: [PDAGSec, BaseGSecContraband]
   id: PDAMedicGSec
   suffix: GSec
   name: КПК санитара Горлекс
@@ -83,7 +83,7 @@
 # Офицер
 
 - type: entity
-  parent: PDAGSec
+  parent: [PDAGSec, BaseGSecContraband]
   id: PDAOfficerGSec
   suffix: GSec
   name: КПК офицера Горлекс

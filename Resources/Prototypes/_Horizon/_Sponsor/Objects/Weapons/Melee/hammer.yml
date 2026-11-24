@@ -23,7 +23,7 @@
         Blunt: 15
         Structural: 20
   - type: Item
-    size: Ginormous
+    size: Huge
     sprite: _Horizon/_Sponsor/Objects/Weapons/Melee/hammer.rsi
   - type: Clothing
     quickEquip: false

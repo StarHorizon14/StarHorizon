@@ -48,6 +48,7 @@ shuttle-console-maximum-angular-speed = Maximum Angular Speed
 shuttle-console-maximum-angular-speed-tooltip = The maximum rotational speed of the shuttle.
 
 shuttle-console-button-azimuth = Toggle azimuth display
+shuttle-console-button-lock = Lock/unlock radar rotation
 shuttle-console-button-rotation = Follow ship heading
 shuttle-console-button-anchor = Anchor/unanchor view
 shuttle-console-button-reset = Reset radar view
