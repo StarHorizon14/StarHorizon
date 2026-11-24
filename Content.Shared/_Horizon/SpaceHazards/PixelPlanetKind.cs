@@ -14,7 +14,4 @@ public enum PixelPlanetKind : byte
     GasPlanetLayers = 5,
     IceWorld = 6,
     LavaWorld = 7,
-
-    /// <summary>Anko planet look only, never picked for random background planets.</summary>
-    AnkoWorld = 8,
 }

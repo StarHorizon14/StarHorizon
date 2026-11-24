@@ -77,7 +77,6 @@ public sealed partial class NPCSystem
         while (active.MoveNext(out var uid, out _, out _, out var xform))
         {
             if (HasComp<ActorComponent>(uid)
-                || HasComp<Content.Server._Horizon.Administration.RtsControl.RtsMoveOrderComponent>(uid) // Executing an admin RTS order
                 || TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind)
                 continue;
 

@@ -267,18 +267,6 @@ binds:
   type: State
   key: V
   mod1: Shift
-- function: OpenOuterClothing
-  type: State
-  key: Q
-  mod1: Shift
-- function: OpenPocket1
-  type: State
-  key: Num1
-  mod1: Shift
-- function: OpenPocket2
-  type: State
-  key: Num2
-  mod1: Shift
 - function: ShowDebugConsole
   type: State
   key: Tilde
@@ -582,6 +570,14 @@ binds:
   type: State
   key: Num0
   mod1: Shift
+- function: HotbarShift1
+  type: State
+  key: Num1
+  mod1: Shift
+- function: HotbarShift2
+  type: State
+  key: Num2
+  mod1: Shift
 - function: HotbarShift3
   type: State
   key: Num3
@@ -652,14 +648,4 @@ binds:
   type: State
   key: L
 
-- function: AdminRtsSelect
-  type: State
-  key: MouseLeft
-  canFocus: true
-  mod1: Control
-- function: AdminRtsOrder
-  type: State
-  key: MouseRight
-  canFocus: true
-  mod1: Control
 # endregion Horizon

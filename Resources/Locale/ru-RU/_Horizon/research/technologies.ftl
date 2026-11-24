@@ -71,7 +71,6 @@ research-technology-universal-150mm-ammo = 150мм снаряды
 research-technology-universal-light-fighter-ordinance = Легкие артиллерийские снаряды
 research-technology-universal-advanced-light-fighter-ordinance = Улучшенные артиллерийские снаряды
 research-technology-advanced-shuttlecraft = Продвинутое шаттлостроение
-research-technology-landing-pad = Площадки для преземления
 research-technology-universal-translator = Универсальный переводчик [диск]
 research-technology-rare-translator = Продвинутый переводчик
 research-technology-translator-implants = Языковые импланты

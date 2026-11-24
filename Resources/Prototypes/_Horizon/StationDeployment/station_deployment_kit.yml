@@ -17,6 +17,6 @@
     sprite: Objects/Storage/boxes.rsi
     state: box
   product: StationDeploymentKit
-  cost: 300000 # Horizon
+  cost: 500000 # Horizon
   category: cargoproduct-category-name-shuttle
   group: market

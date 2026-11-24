@@ -223,6 +223,7 @@
    ClothingMaskGasAgent: 4
 
    ClothingEyesHudGSecBallistic: 5
+   ClothingEyesHudGSec: 2
 
    ClothingOuterVestWebMercenary: 3
    ClothingOuterVestWebMercenaryBlack: 3

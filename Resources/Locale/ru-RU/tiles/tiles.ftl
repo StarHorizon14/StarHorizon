@@ -153,7 +153,6 @@ tiles-dark-squiggly = тёмный волнистый пол
 tiles-turret-place = корабельная орудийная разметка
 tiles-steel-floor-darkgray = корабельная бронеплита
 tiles-steelplate-floor-darkgray = корабельная бронированная моноплита
-tiles-landing-pad = посадочная площадка
 
 # Horizon end
 

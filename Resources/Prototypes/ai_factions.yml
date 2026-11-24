@@ -14,7 +14,6 @@
     - BloodCultNF # Frontier
     - NFSyndicate # Frontier
     - NFPirate # Frontier
-    - GSec # StarHorizon
     - ExplorersExpeditionNF # Frontier
     - ArtifactConstruct # Frontier
     - StreetGangNF # Frontier
@@ -42,7 +41,6 @@
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
   - NFSyndicate # Frontier
-  - GSec # StarHorizon
   - NFPirate # Frontier
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
@@ -95,7 +93,6 @@
   - BloodCultNF # Frontier
   - NFSyndicate # Frontier
   - NFPirate # Frontier
-  - GSec # Frontier
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
   - StreetGangNF # Frontier
@@ -114,7 +111,6 @@
   friendly: # Frontier
   - Crawford # Horizon
   - NFSyndicate # Frontier
-  - GSec # StarHorizon
   hostile:
   - NanoTrasen
   - SimpleHostile
@@ -183,7 +179,6 @@
   - BloodCultNF # Frontier
   - NFSyndicate # Frontier
   - NFPirate # Frontier
-  - GSec # StarHorizon
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
   - StreetGangNF # Frontier
@@ -214,7 +209,6 @@
   - BloodCultNF # Frontier
   - NFSyndicate # Frontier
   - NFPirate # Frontier
-  - GSec # StarHorizon
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
   - StreetGangNF # Frontier
@@ -290,7 +284,6 @@
   # - WizFedFaction # Frontier
   - BloodCultNF # Frontier
   - NFSyndicate # Frontier
-  - GSec # StarHorizon
   - NFPirate # Frontier
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
@@ -322,7 +315,6 @@
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
   - NFPirate # Frontier
-  - GSec # StarHorizon
   - ExplorersExpeditionNF # Frontier
   - ArtifactConstruct # Frontier
   - StreetGangNF # Frontier

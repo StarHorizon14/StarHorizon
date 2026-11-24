@@ -85,7 +85,6 @@
   - type: RadarConsole
     maxRange: 1024 # Frontier: increase admin radar range
     followEntity: true
-    fixedNorth: true
     hideCoords: false # Frontier
     maxIffRange: null # Frontier
   - type: NFCargoOrderConsole

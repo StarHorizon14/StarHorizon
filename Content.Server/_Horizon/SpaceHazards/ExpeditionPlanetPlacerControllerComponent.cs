@@ -35,7 +35,6 @@ public sealed partial class ExpeditionPlanetPlacerControllerComponent : Componen
         ["Lava"] = 8.2f,
         ["Snow"] = 4.1f,
         ["Shadow"] = 7.7f,
-        ["ArdoniumWastes"] = 4.1f,
     };
 
     /// <summary>Keep this far from stars, black holes and other planets.</summary>

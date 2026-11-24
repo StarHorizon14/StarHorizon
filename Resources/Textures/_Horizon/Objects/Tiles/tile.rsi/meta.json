@@ -14,9 +14,6 @@
             "name": "darkgrayplate"
         },
         {
-            "name": "landing"
-        },
-        {
             "name": "darkgray-inhand-left",
             "directions": 4
         },
@@ -30,14 +27,6 @@
         },
         {
             "name": "darkgrayplate-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "landing-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "landing-inhand-right",
             "directions": 4
         }
     ]

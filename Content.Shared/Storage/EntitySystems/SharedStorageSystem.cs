@@ -173,9 +173,6 @@ public abstract partial class SharedStorageSystem : EntitySystem
             .Bind(ContentKeyFunctions.OpenBackpack, InputCmdHandler.FromDelegate(HandleOpenBackpack, handle: false))
             .Bind(ContentKeyFunctions.OpenBelt, InputCmdHandler.FromDelegate(HandleOpenBelt, handle: false))
             .Bind(ContentKeyFunctions.OpenWallet, InputCmdHandler.FromDelegate(HandleOpenWallet, handle: false)) // Frontier
-            .Bind(ContentKeyFunctions.OpenOuterClothing, InputCmdHandler.FromDelegate(session => HandleToggleSlotUI(session, "outerClothing"), handle: false))
-            .Bind(ContentKeyFunctions.OpenPocket1, InputCmdHandler.FromDelegate(session => HandleSlotItemOrStorage(session, "pocket1"), handle: false))
-            .Bind(ContentKeyFunctions.OpenPocket2, InputCmdHandler.FromDelegate(session => HandleSlotItemOrStorage(session, "pocket2"), handle: false))
             .Register<SharedStorageSystem>();
 
         Subs.CVar(_cfg, CCVars.NestedStorage, OnNestedStorageCvar, true);
@@ -1986,29 +1983,6 @@ public abstract partial class SharedStorageSystem : EntitySystem
         HandleToggleSlotUI(session, "wallet");
     }
     // End Frontier: open wallet
-    /// <summary>
-    /// If the slot holds a storage, toggles its UI; otherwise takes the item into a free hand.
-    /// </summary>
-    private void HandleSlotItemOrStorage(ICommonSession? session, string slot)
-    {
-        if (session?.AttachedEntity is not { Valid: true } playerEnt || !Exists(playerEnt))
-            return;
-
-        if (!_inventory.TryGetSlotEntity(playerEnt, slot, out var item))
-            return;
-
-        if (HasComp<StorageComponent>(item))
-        {
-            HandleToggleSlotUI(session, slot);
-            return;
-        }
-
-        if (!ActionBlocker.CanInteract(playerEnt, item))
-            return;
-
-        _sharedHandsSystem.TryPickupAnyHand(playerEnt, item.Value);
-    }
-
     private void HandleToggleSlotUI(ICommonSession? session, string slot)
     {
         if (session is not { } playerSession)

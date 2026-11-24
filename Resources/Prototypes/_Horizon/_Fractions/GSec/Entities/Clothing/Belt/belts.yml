@@ -1,5 +1,5 @@
 - type: entity
-  parent: [NFClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC1Contraband]
+  parent: [NFClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseGSecContraband]
   id: ClothingBeltGSecWebbing
   name: РПС Горлекс
   suffix: GSec

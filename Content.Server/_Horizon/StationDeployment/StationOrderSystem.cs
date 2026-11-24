@@ -16,7 +16,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Research.Prototypes;
 using Content.Shared.Stacks;
-using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
@@ -44,7 +43,6 @@ public sealed class StationOrderSystem : EntitySystem
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly ShipyardSystem _shipyard = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
 
     private EntityQuery<StackComponent> _stackQuery;
 
@@ -347,8 +345,8 @@ public sealed class StationOrderSystem : EntitySystem
     }
 
     /// <summary>
-    /// Checks whether <paramref name="entities"/> contains enough of each item
-    /// an order's entries require (matched by tag, component, or exact prototype). Matched entities are removed from <paramref name="entities"/>
+    /// Checks whether <paramref name="entities"/> contains enough of each exact item prototype
+    /// an order's entries require. Matched entities are removed from <paramref name="entities"/>
     /// so they can't also satisfy a later order in the same evaluation pass.
     /// </summary>
     private bool IsOrderComplete(HashSet<EntityUid> entities, IReadOnlyList<StationOrderItemEntry> entries, out HashSet<EntityUid> usedEntities)
@@ -360,30 +358,10 @@ public sealed class StationOrderSystem : EntitySystem
             var count = 0;
             var temp = new HashSet<EntityUid>();
 
-            // Match by tag, else by component, else by exact prototype ID.
-            ComponentRegistration? requiredComp = null;
-            if (entry.Component != null && !EntityManager.ComponentFactory.TryGetRegistration(entry.Component, out requiredComp))
-            {
-                Log.Error($"Station order entry references unknown component '{entry.Component}'");
-                return false;
-            }
-
             foreach (var entity in entities)
             {
-                if (entry.Tag != null)
-                {
-                    if (!_tag.HasTag(entity, entry.Tag.Value))
-                        continue;
-                }
-                else if (requiredComp != null)
-                {
-                    if (!HasComp(entity, requiredComp.Type))
-                        continue;
-                }
-                else if (MetaData(entity).EntityPrototype?.ID != entry.Item.Id)
-                {
+                if (MetaData(entity).EntityPrototype?.ID != entry.Item.Id)
                     continue;
-                }
 
                 count += _stackQuery.CompOrNull(entity)?.Count ?? 1;
                 temp.Add(entity);

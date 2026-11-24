@@ -56,8 +56,4 @@
   - FloorTileItemSteelDarkGray
   - FloorTileItemSteelPlateDarkGray
 
-- type: latheRecipePack
-  id: FloorTilesLanding
-  recipes:
-  - FloorTilePlateLandingPad
   # Horizon end

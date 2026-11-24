@@ -1,5 +1,4 @@
 using Content.Client.Shuttles.UI;
-using Content.Shared._Horizon.Shuttles.Events; // Horizon
 using Content.Shared._Mono.Shuttles;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;
@@ -54,12 +53,6 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         { SendMessage(new ShuttleConsoleRefreshFireControlMessage()); };
         // End Lua
         NfOpen(); // Frontier
-        // Horizon: landing pads
-        _window.NavContainer.OnLandingRequest += land =>
-        {
-            SendMessage(new ShuttleConsoleLandingRequest { Land = land });
-        };
-        // End Horizon
     }
 
     // Mono

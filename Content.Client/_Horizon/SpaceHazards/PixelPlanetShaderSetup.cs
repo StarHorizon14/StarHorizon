@@ -29,7 +29,6 @@ public static class PixelPlanetShaderSetup
             PixelPlanetKind.GasPlanetLayers => "PixelGasPlanetLayers",
             PixelPlanetKind.IceWorld => "PixelIceWorld",
             PixelPlanetKind.LavaWorld => "PixelLavaWorld",
-            PixelPlanetKind.AnkoWorld => "PixelAnkoWorld",
             _ => "PixelLandRivers",
         };
     }
@@ -189,32 +188,6 @@ public static class PixelPlanetShaderSetup
                 s.SetParameter("lava_border_1", 0.019f);
                 s.SetParameter("lava_border_2", 0.036f);
                 s.SetParameter("lava_detail", 1f);
-                break;
-            }
-            case PixelPlanetKind.AnkoWorld:
-            {
-                SetCommonPlanet(s, time, pixels, seed, rotation, 0.1f * AnimSpeedScale, light);
-                s.SetParameter("light_x", light.X);
-                s.SetParameter("light_y", light.Y);
-                s.SetParameter("size", 6f);
-                s.SetParameter("octaves", 4f);
-                s.SetParameter("shadow_noise", 0.3f);
-                s.SetParameter("light_border_1", 0.6f);
-                s.SetParameter("light_border_2", 0.75f);
-                s.SetParameter("land_cutoff", 0.5f);
-                s.SetParameter("land_size", 5f);
-                s.SetParameter("land_octaves", 5f);
-                s.SetParameter("land_seed", seed + 2f);
-                s.SetParameter("land_time_speed", 0.1f * AnimSpeedScale);
-                s.SetParameter("lava_cutoff", 0.57f);
-                s.SetParameter("lava_size", 8f);
-                s.SetParameter("lava_octaves", 6f);
-                s.SetParameter("lava_seed", seed + 5f);
-                s.SetParameter("lava_time_speed", 0.1f * AnimSpeedScale);
-                s.SetParameter("lava_border", 0.06f);
-                s.SetParameter("lava_detail", 6f);
-                s.SetParameter("lava_shadow_border", 0.6f);
-                s.SetParameter("lava_width", 0f);
                 break;
             }
         }

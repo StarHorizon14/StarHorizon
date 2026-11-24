@@ -1837,23 +1837,4 @@
     size: Normal
     heldPrefix: darkgrayplate
 
-- type: entity
-  name: tiles-landing-pad
-  parent: FloorTileItemSteel
-  id: FloorTilePlateLandingPad
-  components:
-  - type: Sprite
-    sprite: /Textures/_Horizon/Objects/Tiles/tile.rsi
-    state: landing
-  - type: FloorTile
-    outputs:
-      - Plating
-      - FloorLandingPad
-  - type: Stack
-    stackType: FloorTileItemLandingPad
-  - type: Item
-    sprite: /Textures/_Horizon/Objects/Tiles/tile.rsi
-    size: Normal
-    heldPrefix: landing pad
-
 # Horizon end

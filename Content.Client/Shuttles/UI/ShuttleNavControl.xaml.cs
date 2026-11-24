@@ -133,23 +133,6 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     private BoxContainer? _radarModeButtons;
     private RadarModeButton? _radarAzimuthButton;
     private RadarAzimuthMode _azimuthMode;
-    private bool _rotationLocked = true;
-
-    /// <summary>
-    /// True while the radar rotation is locked to north. Controlled from the window UI.
-    /// </summary>
-    public bool RotationLocked => _rotationLocked;
-
-    /// <summary>
-    /// Locks the view to north and disables rotation with the entity. Controlled from the window UI.
-    /// </summary>
-    public void SetFixedNorth(bool fixedNorth)
-    {
-        SetRotationLocked(fixedNorth);
-    }
-
-    // Panning is only possible when the radar explicitly allows it (see the lock button).
-    protected override bool Draggable { get; set; } = false;
     #endregion
 
     /// <summary>
@@ -237,15 +220,6 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         LayoutContainer.SetAnchorAndMarginPreset(_radarModeButtons, LayoutContainer.LayoutPreset.BottomLeft, margin: 10);
     }
 
-    /// <summary>
-    /// Locked: the radar always points north. Unlocked: the radar rotates together with the entity.
-    /// </summary>
-    public void SetRotationLocked(bool locked)
-    {
-        _rotationLocked = locked;
-        _angleFollow = !locked;
-    }
-
     private void ApplyRadarModeDefaults()
     {
         if (_radarModeDefaultsApplied)
@@ -254,9 +228,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         if (!EntManager.TryGetComponent<RadarConsoleComponent>(_consoleEntity, out var radar))
             return;
 
-        if (radar.FixedNorth)
-            SetFixedNorth(true);
-
+        // Lua: RadarConsoleComponent has no Pannable/NoRotate/RelativePanning fields here; keep prior defaults.
         _radarModeDefaultsApplied = true;
     }
 
@@ -278,7 +250,6 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     {
         None,
         Azimuth,
-        Lock,
         Rotation,
         Anchor,
         Reset
@@ -287,9 +258,6 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     public sealed class RadarModeButton : BaseButton
     {
         private readonly RadarModeButtonIcon _icon;
-
-        /// <summary>Used by the lock icon: true draws a closed padlock.</summary>
-        public bool Toggled;
 
         internal RadarModeButton(RadarModeButtonIcon icon)
         {
@@ -336,35 +304,6 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     handle.DrawLine(bottomLeft, topRight, iconColor);
                     handle.DrawLine(left, right, iconColor);
                     handle.DrawLine(bottom, top, iconColor);
-                    break;
-                }
-                case RadarModeButtonIcon.Lock:
-                {
-                    var iconColor = Color.Black.WithAlpha(0.95f);
-                    var w = radius * 0.9f;
-                    var bodyTop = center.Y;
-                    var bodyBottom = center.Y + radius * 0.8f;
-                    handle.DrawRect(new UIBox2(center.X - w * 0.5f, bodyTop, center.X + w * 0.5f, bodyBottom), iconColor);
-
-                    var shackleTop = center.Y - radius * 0.7f;
-                    var left2 = new Vector2(center.X - w * 0.3f, bodyTop);
-                    var right2 = new Vector2(center.X + w * 0.3f, bodyTop);
-                    var leftTop = new Vector2(left2.X, shackleTop);
-                    var rightTop = new Vector2(right2.X, shackleTop);
-                    if (Toggled)
-                    {
-                        handle.DrawLine(left2, leftTop, iconColor);
-                        handle.DrawLine(right2, rightTop, iconColor);
-                        handle.DrawLine(leftTop, rightTop, iconColor);
-                    }
-                    else
-                    {
-                        // Open: right side of the shackle is lifted off the body.
-                        var rightLifted = new Vector2(right2.X, bodyTop - radius * 0.25f);
-                        handle.DrawLine(left2, leftTop, iconColor);
-                        handle.DrawLine(leftTop, rightTop, iconColor);
-                        handle.DrawLine(rightTop, rightLifted, iconColor);
-                    }
                     break;
                 }
                 case RadarModeButtonIcon.Rotation:
@@ -576,46 +515,19 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 break;
         }
 
-        // Always draw the compass, also when the view is locked to north (worldRot == 0).
-        DrawCompassOverlay(handle, worldRot);
+        if (worldRot != Angle.Zero)
+        {
+            DrawCompassOverlay(handle, coordEntRot);
+        }
 
         // Draw our grid in detail
         // Lua mod start
         EntityUid? ourGridIdNullable = xform.GridUid;
         EntityUid ourGridId = default;
         if (ourGridIdNullable != null)
+        {
             ourGridId = ourGridIdNullable.Value;
-        // Lua mod end
-
-        // Frontier: Use ScaledWorldRange for culling. WorldRange doesnt account for the viewport resizing
-        var viewBounds = new Box2Rotated(new Box2(-ScaledWorldRange.X, -ScaledWorldRange.Y, ScaledWorldRange.X, ScaledWorldRange.Y).Translated(mapPos.Position), rot, mapPos.Position);
-        // End Frontier
-        var viewAABB = viewBounds.CalcBoundingBox();
-
-        _grids.Clear();
-        _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);
-
-        // Horizon: landing pads. Grids are drawn in a fixed order, so a shuttle sitting on another grid's
-        // landing pad is drawn on top of that grid, and our own grid takes its place in that order
-        // instead of always being drawn first.
-        var ourGridInList = false;
-        foreach (var grid in _grids)
-        {
-            ourGridInList |= ourGridIdNullable != null && grid.Owner == ourGridId;
-
-            if (_transform.GetWorldMatrix(grid.Owner).TransformBox(grid.Comp.LocalAABB).Intersects(viewAABB))
-                EnsureGridData(grid);
-        }
-
-        SortGridsForDrawing(_grids);
-        ResetGridOverlap();
-
-        void DrawOurGrid()
-        {
-            // Lua mod start
-            if (ourGridIdNullable != null &&
-                EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) &&
-                fixturesQuery.HasComponent(ourGridId))
+            if (EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) && fixturesQuery.HasComponent(ourGridId))
             {
                 var ourGridToWorld = _transform.GetWorldMatrix(ourGridId);
                 var ourGridToShuttle = Matrix3x2.Multiply(ourGridToWorld, worldToShuttle);
@@ -625,31 +537,32 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 var edge = color; // Lua
                 var alpha = 0.01f; // Lua
                 ModifyGridPalette(ref fill, ref edge, ref alpha, ourGridId, self: true); // Lua
-                Color? mask = TrackGridOverlap((ourGridId, ourGrid), ourGridToWorld) ? BackingColor : null; // Horizon
-                DrawGrid(handle, ourGridToView, (ourGridId, ourGrid), fill, edge, alpha, mask); // Lua
+                DrawGrid(handle, ourGridToView, (ourGridId, ourGrid), fill, edge, alpha); // Lua
                 DrawDocks(handle, ourGridId, ourGridToView);
             }
-            // Lua mod end
-
-            if (ShowRadarPositionMarker) // Lua
+        }
+        // Lua mod end
+        if (ShowRadarPositionMarker) // Lua
+        {
+            const float radarVertRadius = 2f;
+            var radarPosVerts = new Vector2[]
             {
-                const float radarVertRadius = 2f;
-                var radarPosVerts = new Vector2[]
-                {
-                    ScalePosition(new Vector2(0f, -radarVertRadius)),
-                    ScalePosition(new Vector2(radarVertRadius / 2f, 0f)),
-                    ScalePosition(new Vector2(0f, radarVertRadius)),
-                    ScalePosition(new Vector2(radarVertRadius / -2f, 0f)),
-                };
+                ScalePosition(new Vector2(0f, -radarVertRadius)),
+                ScalePosition(new Vector2(radarVertRadius / 2f, 0f)),
+                ScalePosition(new Vector2(0f, radarVertRadius)),
+                ScalePosition(new Vector2(radarVertRadius / -2f, 0f)),
+            };
 
-                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
-            }
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
         }
 
-        // Our grid is not among the grids around us (no grid at all, or it has no fixtures): draw it first, as before.
-        if (!ourGridInList)
-            DrawOurGrid();
-        // End Horizon
+        // Frontier: Use ScaledWorldRange for culling. WorldRange doesnt account for the viewport resizing
+        var viewBounds = new Box2Rotated(new Box2(-ScaledWorldRange.X, -ScaledWorldRange.Y, ScaledWorldRange.X, ScaledWorldRange.Y).Translated(mapPos.Position), rot, mapPos.Position);
+        // End Frontier
+        var viewAABB = viewBounds.CalcBoundingBox();
+
+        _grids.Clear();
+        _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);
 
         // Frontier - collect blip location data outside foreach - more changes ahead
         var blipDataList = new List<BlipData>();
@@ -658,16 +571,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         foreach (var grid in _grids)
         {
             var gUid = grid.Owner;
-
-            // Horizon: our grid is drawn at its place in the draw order
-            if (ourGridIdNullable != null && gUid == ourGridId)
-            {
-                DrawOurGrid();
-                continue;
-            }
-            // End Horizon
-
-            if (!fixturesQuery.HasComponent(gUid)) // Lua Decrypt mod
+            if ((ourGridIdNullable != null && gUid == ourGridId) || !fixturesQuery.HasComponent(gUid)) // Lua Decrypt mod
                 continue;
 
             var gridBody = bodyQuery.GetComponent(gUid);
@@ -833,8 +737,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 var edge = labelColor; // Lua
                 var alpha = 0.01f; // Lua
                 ModifyGridPalette(ref fill, ref edge, ref alpha, gUid, self: false); // Lua
-                Color? mask = TrackGridOverlap(grid, curGridToWorld) ? BackingColor : null; // Horizon: landing pads
-                DrawGrid(handle, curGridToView, grid, fill, edge, alpha, mask); // Lua
+                DrawGrid(handle, curGridToView, grid, fill, edge, alpha); // Lua
                 DrawDocks(handle, gUid, curGridToView);
             }
         }

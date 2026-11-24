@@ -1,5 +1,3 @@
-using Content.Server._Horizon.Shuttles.Components; // Horizon
-using Content.Server._Horizon.Shuttles.Systems; // Horizon
 using Content.Server._Mono.FireControl; // Lua
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -490,10 +488,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             _shuttle.NfGetServiceFlags(entity), // Frontier
             entity.Comp1.Target, // Frontier
             targetNetEntity, // Frontier
-            entity.Comp1.HideTarget) // Frontier
-        {
-            LandingState = ShuttleLandingSystem.GetState(CompOrNull<LandedShuttleComponent>(entity.Comp2.GridUid)), // Horizon
-        };
+            entity.Comp1.HideTarget); // Frontier
     }
 
     /// <summary>

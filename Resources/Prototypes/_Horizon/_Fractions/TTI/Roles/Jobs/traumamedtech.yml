@@ -4,7 +4,7 @@
   description: job-description-traumamedtech
   playTimeTracker: JobTraumaMedTech
   whitelisted: true
-  startingGear: TraumaMedTechGear
+  startingGear: ParamedicGear
   alwaysUseSpawner: true
   icon: "JobIconDoc"
   supervisors: job-supervisors-trauma-repr

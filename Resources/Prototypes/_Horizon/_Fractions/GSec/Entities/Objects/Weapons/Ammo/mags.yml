@@ -59,7 +59,7 @@
       - MagazineRifleGSec
   - type: BallisticAmmoProvider
     mayTransfer: true
-    capacity: 27
+    capacity: 17
     proto: NFCartridgeRifle20
     whitelist:
       tags:

@@ -275,7 +275,6 @@ public static class PixelPlanetPalettes
             PixelPlanetKind.GasPlanetLayers => GasPlanet[i],
             PixelPlanetKind.IceWorld => IceWorld[i],
             PixelPlanetKind.LavaWorld => LavaWorld[i],
-            PixelPlanetKind.AnkoWorld => AnkoWorld,
             _ => LandRivers[i],
         };
     }
@@ -382,23 +381,8 @@ public static class PixelPlanetPalettes
                     shader.SetParameter("lava_color2", c[7]);
                     break;
                 }
-            case PixelPlanetKind.AnkoWorld:
-                {
-                    shader.SetParameter("land_color", c[0]);
-                    shader.SetParameter("ground_color", c[1]);
-                    shader.SetParameter("shadow_color1", c[2]);
-                    shader.SetParameter("shadow_color2", c[3]);
-                    shader.SetParameter("lava_color0", c[4]);
-                    shader.SetParameter("lava_color1", c[5]);
-                    break;
-                }
         }
     }
-
-    /// <summary>Land, ground, shadow 1, shadow 2, lava (day side), lava (night side / thin veins); Anko uses bright red for both.</summary>
-    private static readonly Vector3[] AnkoWorld = V(
-        0.259f, 0.275f, 0.294f, 0.169f, 0.184f, 0.208f, 0.118f, 0.129f, 0.141f,
-        0.051f, 0.051f, 0.051f, 0.824f, 0.118f, 0.118f, 0.824f, 0.118f, 0.118f);
 
     private static Vector3[][] Build9(params Vector3[][] rows) => rows;
 

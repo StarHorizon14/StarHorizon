@@ -59,16 +59,3 @@
     collection: FootstepHeavy
   itemDrop: FloorTileItemSteelPlateDarkGray
   heatCapacity: 10000
-
-# Посадочная площадка: поверх этих тайлов может залететь и сесть другой грид (шаттл).
-- type: tile
-  id: FloorLandingPad
-  name: tiles-landing-pad
-  sprite: /Textures/_Horizon/Tiles/landing_pad.png
-  baseTurf: Plating
-  isSubfloor: false
-  footstepSounds:
-    collection: FootstepHeavy
-  heatCapacity: 10000
-  indestructible: true
-  gridUnderlay: true

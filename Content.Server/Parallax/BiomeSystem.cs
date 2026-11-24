@@ -1,4 +1,3 @@
-using Content.Server._Horizon.Shuttles; // Horizon
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -157,20 +156,6 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                         ReserveTiles(uid, aabb, setTiles);
                     }
                 }
-
-                // Horizon: landing pad tiles have no fixtures, keep the biome off them too.
-                var padBoxes = new List<Box2>();
-                if (LandingPadTiles.GetPadBoxes(grid, _mapSystem, TileDefManager, padBoxes))
-                {
-                    var gridMatrix = _transform.GetWorldMatrix(grid.Owner);
-
-                    foreach (var box in padBoxes)
-                    {
-                        setTiles.Clear();
-                        ReserveTiles(uid, gridMatrix.TransformBox(box), setTiles);
-                    }
-                }
-                // End Horizon
             }
         }
     }
