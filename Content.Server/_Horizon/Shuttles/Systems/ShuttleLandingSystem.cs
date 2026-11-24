@@ -142,6 +142,7 @@ public sealed class ShuttleLandingSystem : EntitySystem
         UpdateTakeOffs();
         UpdatePushing(frameTime);
         UpdateChangedHosts();
+        UpdateDrift();
 
         _checkAccumulator += frameTime;
         if (_checkAccumulator < CheckInterval)
@@ -283,6 +284,61 @@ public sealed class ShuttleLandingSystem : EntitySystem
     {
         // The weld is removed and the engines switched off when the component shuts down.
         return RemComp<LandedShuttleComponent>(shuttle);
+    }
+
+    /// <summary>
+    /// How far a landed shuttle may drift from its place on the host before it is put back, in world units and radians.
+    /// </summary>
+    private const float DriftDistance = 0.05f;
+    private static readonly double DriftAngle = Angle.FromDegrees(0.5).Theta;
+
+    /// <summary>
+    /// The weld holds the shuttle rigidly, but the physics solver can still let it creep, e.g. when a heavy host turns fast.
+    /// A landed shuttle that has moved away from its place on the host is put back.
+    /// </summary>
+    private void UpdateDrift()
+    {
+        _lookupEnts.Clear();
+        var query = EntityQueryEnumerator<LandedShuttleComponent, TransformComponent>();
+
+        while (query.MoveNext(out var uid, out var landed, out var xform))
+        {
+            if (TerminatingOrDeleted(landed.Host) || HasComp<FTLComponent>(uid) || HasComp<FTLComponent>(landed.Host))
+                continue;
+
+            var hostXform = Transform(landed.Host);
+
+            if (hostXform.MapUid != xform.MapUid)
+                continue;
+
+            var (_, hostRot, hostMatrix, _) = _transform.GetWorldPositionRotationMatrixWithInv(hostXform);
+            var (pos, rot) = _transform.GetWorldPositionRotation(xform);
+            var expectedPos = Vector2.Transform(landed.LocalPosition, hostMatrix);
+            var angleError = Math.Abs(Math.IEEERemainder((rot - hostRot - landed.LocalRotation).Theta, 2 * Math.PI));
+
+            if ((pos - expectedPos).LengthSquared() > DriftDistance * DriftDistance || angleError > DriftAngle)
+                _lookupEnts.Add(uid);
+        }
+
+        foreach (var uid in _lookupEnts)
+        {
+            if (TryComp<LandedShuttleComponent>(uid, out var landed))
+                SnapToHost((uid, landed));
+        }
+
+        _lookupEnts.Clear();
+    }
+
+    /// <summary>
+    /// Puts a landed shuttle exactly where it landed on its host, moving with it.
+    /// </summary>
+    private void SnapToHost(Entity<LandedShuttleComponent> shuttle)
+    {
+        var (hostRot, hostMatrix) = (_transform.GetWorldRotation(shuttle.Comp.Host), _transform.GetWorldMatrix(shuttle.Comp.Host));
+        var position = Vector2.Transform(shuttle.Comp.LocalPosition, hostMatrix);
+
+        _transform.SetWorldPositionRotation(shuttle, position, hostRot + shuttle.Comp.LocalRotation);
+        MatchHostVelocity(shuttle, shuttle.Comp.Host);
     }
 
     private void UpdateChangedHosts()
@@ -543,21 +599,12 @@ public sealed class ShuttleLandingSystem : EntitySystem
     {
         var host = shuttle.Comp.Host;
 
-        if (!TryComp<PhysicsComponent>(host, out var hostBody) ||
-            !TryComp<PhysicsComponent>(shuttle, out var shuttleBody) ||
+        if (!HasComp<PhysicsComponent>(host) ||
+            !HasComp<PhysicsComponent>(shuttle) ||
             Transform(host).MapID != Transform(shuttle).MapID)
         {
             return;
         }
-
-        // Same spring as docking uses.
-        SharedJointSystem.LinearStiffness(
-            2f,
-            0.7f,
-            hostBody.Mass,
-            shuttleBody.Mass,
-            out var stiffness,
-            out var damping);
 
         var anchorWorld = _transform.GetWorldPosition(shuttle);
         var joint = _joints.GetOrCreateWeldJoint(host, shuttle, shuttle.Comp.JointId);
@@ -566,8 +613,11 @@ public sealed class ShuttleLandingSystem : EntitySystem
         joint.LocalAnchorB = Vector2.Zero;
         joint.ReferenceAngle = (float) (_transform.GetWorldRotation(shuttle) - _transform.GetWorldRotation(host));
         joint.CollideConnected = false;
-        joint.Stiffness = stiffness;
-        joint.Damping = damping;
+
+        // Rigid, unlike docking: a spring lets the shuttle swing around its anchor like on a bearing,
+        // because its stiffness is computed from masses while turning is resisted by the much larger inertia.
+        joint.Stiffness = 0f;
+        joint.Damping = 0f;
     }
 
     private void RemoveWeld(Entity<LandedShuttleComponent> shuttle)
