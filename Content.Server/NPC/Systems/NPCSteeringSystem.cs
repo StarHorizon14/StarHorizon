@@ -456,7 +456,8 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 
         steering.PathfindToken = new CancellationTokenSource();
 
-        var flags = _pathfindingSystem.GetFlags(uid);
+        // Horizon: steering.Flags may carry extra flags (e.g. admin RTS orders allow opening doors).
+        var flags = _pathfindingSystem.GetFlags(uid) | steering.Flags;
 
         var result = await _pathfindingSystem.GetPathSafe(
             uid,
