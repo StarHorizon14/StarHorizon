@@ -4,7 +4,7 @@
 - type: entity
   id: NFBulletPistol35Piercing
   name: bullet (.35 pistol, piercing)
-  parent: NFBaseBullet
+  parent: BaseBulletAP
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
@@ -15,9 +15,9 @@
 - type: entity
   id: NFBulletPistol35Psycore
   name: bullet (.35 pistol, psycore)
-  parent: BaseBulletAP
+  parent: 
   categories: [ HideSpawnMenu ]
-  components:
+  components: NFBaseBulletIncendiary
   - type: Projectile
     damage:
       types:
@@ -42,7 +42,7 @@
 
 - type: entity
   id: NFBulletPistol45Psycore
-  parent: NFBaseBullet
+  parent: NFBaseBulletIncendiary
   name: bullet (.45 pistol, psycore)
   categories: [ HideSpawnMenu ]
   components:
