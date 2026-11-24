@@ -855,6 +855,7 @@
     - NFFloorTilesCarpet # Frontier
     dynamicPacks: # Frontier
     - FauxTiles # Frontier
+    - FloorTilesLanding #  horizon
   - type: EmagLatheRecipes # Frontier
     emagStaticPacks: # Frontier
     - NFFloorTilesStrange # Frontier

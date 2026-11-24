@@ -2,6 +2,7 @@ using Content.Shared._Horizon.Shuttles.Components;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Content.Server.Physics.Components; // Mono
+using Content.Server._Horizon.Shuttles.Components; // Horizon
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Friction;
@@ -731,7 +732,8 @@ public sealed partial class MoverController : SharedMoverController
     {
         return TryComp<FTLComponent>(shuttleUid, out var ftl)
         && (ftl.State & (FTLState.Starting | FTLState.Travelling | FTLState.Arriving)) != 0x0
-            || HasComp<PreventPilotComponent>(shuttleUid);
+            || HasComp<PreventPilotComponent>(shuttleUid)
+            || HasComp<LandedShuttleComponent>(shuttleUid); // Horizon: landed on a landing pad
     }
 
 }

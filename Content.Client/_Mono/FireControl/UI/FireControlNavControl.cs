@@ -223,16 +223,43 @@ public sealed class FireControlNavControl : BaseShuttleControl
         Matrix3x2.Invert(worldToView, out var viewToWorld);
 
         var ourGridId = xform.GridUid;
-        if (EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) &&
-            fixturesQuery.HasComponent(ourGridId.Value))
+
+        // Horizon: landing pads. Grids are drawn in a fixed order so a shuttle on a landing pad is drawn on top
+        // of the grid under it; our own grid takes its place in that order instead of always being drawn first.
+        _grids.Clear();
+        var maxRange = new Vector2(WorldRange, WorldRange);
+        _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - maxRange, mapPos.Position + maxRange), ref _grids, approx: true, includeMap: false);
+
+        var ourGridInList = false;
+        foreach (var grid in _grids)
         {
+            ourGridInList |= grid.Owner == ourGridId;
+            EnsureGridData(grid);
+        }
+
+        SortGridsForDrawing(_grids);
+        ResetGridOverlap();
+
+        void DrawOurGrid()
+        {
+            if (!EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) ||
+                !fixturesQuery.HasComponent(ourGridId.Value))
+            {
+                return;
+            }
+
             var ourGridToWorld = _transform.GetWorldMatrix(ourGridId.Value);
             var ourGridToShuttle = Matrix3x2.Multiply(ourGridToWorld, worldToShuttle);
             var ourGridToView = ourGridToShuttle * shuttleToView;
             var color = _shuttles.GetIFFColor(ourGridId.Value, self: true);
+            Color? mask = TrackGridOverlap((ourGridId.Value, ourGrid), ourGridToWorld) ? BackingColor : null;
 
-            DrawGrid(handle, ourGridToView, (ourGridId.Value, ourGrid), color);
+            DrawGrid(handle, ourGridToView, (ourGridId.Value, ourGrid), color, color, maskColor: mask);
         }
+
+        if (!ourGridInList)
+            DrawOurGrid();
+        // End Horizon
 
         const float radarVertRadius = 2f;
         var radarPosVerts = new Vector2[]
@@ -248,14 +275,19 @@ public sealed class FireControlNavControl : BaseShuttleControl
         // Draw shields
         DrawShields(handle, xform, worldToShuttle);
 
-        _grids.Clear();
-        var maxRange = new Vector2(WorldRange, WorldRange);
-        _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - maxRange, mapPos.Position + maxRange), ref _grids, approx: true, includeMap: false);
-
         foreach (var grid in _grids)
         {
             var gUid = grid.Owner;
-            if (gUid == ourGridId || !fixturesQuery.HasComponent(gUid))
+
+            // Horizon: our grid is drawn at its place in the draw order
+            if (gUid == ourGridId)
+            {
+                DrawOurGrid();
+                continue;
+            }
+            // End Horizon
+
+            if (!fixturesQuery.HasComponent(gUid))
                 continue;
 
             var gridBody = bodyQuery.GetComponent(gUid);
@@ -270,7 +302,8 @@ public sealed class FireControlNavControl : BaseShuttleControl
             var labelColor = _shuttles.GetIFFColor(grid, self: false, iff);
             var coordColor = new Color(labelColor.R * 0.8f, labelColor.G * 0.8f, labelColor.B * 0.8f, 0.5f);
 
-            DrawGrid(handle, curGridToView, grid, labelColor);
+            Color? mask = TrackGridOverlap(grid, curGridToWorld) ? BackingColor : null; // Horizon: landing pads
+            DrawGrid(handle, curGridToView, grid, labelColor, labelColor, maskColor: mask);
 
             if (ShowIFF)
             {

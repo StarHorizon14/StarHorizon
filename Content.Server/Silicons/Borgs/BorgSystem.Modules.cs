@@ -22,6 +22,8 @@ public sealed partial class BorgSystem
         SubscribeLocalEvent<ItemBorgModuleComponent, ComponentStartup>(OnProvideItemStartup);
         SubscribeLocalEvent<ItemBorgModuleComponent, BorgModuleSelectedEvent>(OnItemModuleSelected);
         SubscribeLocalEvent<ItemBorgModuleComponent, BorgModuleUnselectedEvent>(OnItemModuleUnselected);
+
+        SubscribeLocalEvent<BorgChassisComponent, ContainerIsInsertingAttemptEvent>(OnChassisInsertAttempt); // Horizon
     }
 
     private void OnModuleGotInserted(EntityUid uid, BorgModuleComponent component, EntGotInsertedIntoContainerMessage args)
@@ -179,6 +181,30 @@ public sealed partial class BorgSystem
         RemoveProvidedItems(args.Chassis, uid, component: component);
     }
 
+    // Horizon start: a hand made for a module tool only takes that tool back
+    private bool _providingItems;
+
+    private void OnChassisInsertAttempt(Entity<BorgChassisComponent> chassis, ref ContainerIsInsertingAttemptEvent args)
+    {
+        if (_providingItems || args.Cancelled)
+            return;
+
+        if (chassis.Comp.SelectedModule is not { } module || !TryComp<ItemBorgModuleComponent>(module, out var component))
+            return;
+
+        for (var i = 0; i < component.Hands.Count; i++)
+        {
+            var hand = component.Hands[i];
+            if (hand.Item == null || hand.ForceRemovable || args.Container.ID != $"{module}-hand-{i}")
+                continue;
+
+            // Otherwise the borg could pick up a random item into it, and the module would turn it into its own unremovable tool
+            args.Cancel();
+            return;
+        }
+    }
+    // Horizon end
+
     private void ProvideItems(EntityUid chassis, EntityUid uid, BorgChassisComponent? chassisComponent = null, ItemBorgModuleComponent? component = null)
     {
         if (!Resolve(chassis, ref chassisComponent) || !Resolve(uid, ref component))
@@ -215,7 +241,17 @@ public sealed partial class BorgSystem
 
             if (item is { } pickUp)
             {
+                _providingItems = true; // Horizon
                 _hands.DoPickup(chassis, handId, pickUp, hands);
+                _providingItems = false; // Horizon
+
+                // Horizon: only lock the item if it really is in the hand, otherwise it stays on the floor unremovable for anyone who picks it up
+                if (!_hands.TryGetHeldItem(chassis, handId, out var held) || held != pickUp)
+                {
+                    RemComp<UnremoveableComponent>(pickUp);
+                    continue;
+                }
+
                 if (!hand.ForceRemovable && hand.Hand.Whitelist == null && hand.Hand.Blacklist == null)
                 {
                     EnsureComp<UnremoveableComponent>(pickUp);
