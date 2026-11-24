@@ -652,4 +652,14 @@ binds:
   type: State
   key: L
 
+- function: AdminRtsSelect
+  type: State
+  key: MouseLeft
+  canFocus: true
+  mod1: Control
+- function: AdminRtsOrder
+  type: State
+  key: MouseRight
+  canFocus: true
+  mod1: Control
 # endregion Horizon
