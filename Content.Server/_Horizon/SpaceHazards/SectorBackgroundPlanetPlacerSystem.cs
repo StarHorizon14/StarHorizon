@@ -2,6 +2,7 @@
 // Copyright (c) 2026 LuaWorld Contributors
 // See AGPLv3.txt for details.
 
+using System.Linq;
 using System.Numerics;
 using Content.Shared.Station.Components;
 using Content.Shared._Horizon.SpaceHazards;
@@ -15,7 +16,10 @@ namespace Content.Server._Horizon.SpaceHazards;
 public sealed class SectorBackgroundPlanetPlacerSystem : EntitySystem
 {
     public const int PaletteCount = 9;
-    private static readonly PixelPlanetKind[] PlanetKinds = Enum.GetValues<PixelPlanetKind>();
+    // AnkoWorld is reserved for the Anko expedition planet look.
+    private static readonly PixelPlanetKind[] PlanetKinds = Enum.GetValues<PixelPlanetKind>()
+        .Where(k => k != PixelPlanetKind.AnkoWorld)
+        .ToArray();
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
