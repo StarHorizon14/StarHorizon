@@ -6,8 +6,7 @@
   id: BaseGSecOfficerGear
   equipment:
     outerClothing: ClothingOuterHardsuitGSecOfficer
-    pocket2: CigPackGSec
-    pocket: CoordinatesDiskGSec
+    pocket2: CoordinatesDiskGSec
     eyes: ClothingEyesHudGSecSpecial
 
 
@@ -161,7 +160,7 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - ClothingHeadHatHardhatOrange
+  - LoadoutHardhatGSec
   - ContractorClothingHeadHatCorpsoft
 
 - type: loadoutGroup

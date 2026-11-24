@@ -255,7 +255,7 @@
   - NFAmmunitionBoxPistol45Incendiary
   - NFAmmunitionBoxShellShotgunIncendiary
   technologyPrerequisites:
-  - NFBulkRifleAmmo
+  - NFBulkAmmo
   position: 4, 64 # Horizon
 
 - type: technology
@@ -272,7 +272,7 @@
   - NFAmmunitionBoxPistol45Uranium
   - NFAmmunitionBoxShellShotgunUranium
   technologyPrerequisites:
-  - NFBulkRifleAmmo
+  - NFBulkAmmo
   position: 4, 65 # Horizon
 
 - type: technology
@@ -289,7 +289,7 @@
   - NFAmmunitionBoxPistol45Piercing
   - NFAmmunitionBoxShellShotgunPiercing
   technologyPrerequisites:
-  - NFBulkRifleAmmo
+  - NFBulkAmmo
   position: 4, 66 # Horizon
 
 - type: technology
@@ -306,5 +306,5 @@
   - NFAmmunitionBoxPistol45Psycore
   - NFAmmunitionBoxShellShotgunPsycore
   technologyPrerequisites:
-  - NFBulkRifleAmmo
+  - NFBulkAmmo
   position: 4, 67 # Horizon

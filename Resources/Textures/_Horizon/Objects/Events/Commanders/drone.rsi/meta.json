@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made with love by Misha",
+  "size": {
+    "x": 48,
+    "y": 48
+  },
+  "states": [
+    {
+      "name": "item"
+    },
+    {
+      "name": "disabled"
+    },
+    {
+      "name": "deploy",
+      "delays": [
+        [
+          0.2, 0.2, 0.2, 0.2, 10
+        ]
+      ]
+    },
+    {
+      "name": "base",
+      "directions": 4
+    },
+    {
+      "name": "transparent",
+      "directions": 4,
+      "delays": [
+        [
+          0.1, 0.1, 0.1, 0.1
+        ],
+        [
+          0.1, 0.1, 0.1, 0.1
+        ],
+        [
+          0.1, 0.1, 0.1, 0.1
+        ],
+        [
+          0.1, 0.1, 0.1, 0.1
+        ]
+      ]
+    },
+    {
+      "name": "unshaded",
+      "directions": 4,
+      "delays": [
+        [
+          0.1, 0.1, 0.1, 0.1
+        ],
+        [
+          0.1, 0.1, 0.1, 0.1
+        ],
+        [
+          0.1, 0.1, 0.1, 0.1
+        ],
+        [
+          0.1, 0.1, 0.1, 0.1
+        ]
+      ]
+    }
+  ]
+}

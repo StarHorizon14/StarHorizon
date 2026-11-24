@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "license": "CLA",
-  "copyright": "Moddified by TheDark_, Sprites by TheGypsyBaron DS:701266770429739008",
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Resprite by TheDark_",
   "size": {
     "x": 32,
     "y": 32
@@ -34,12 +34,6 @@
           0.1
         ]
       ]
-    },
-    {
-      "name": "locked"
-    },
-    {
-      "name": "unlocked"
     }
   ]
 }

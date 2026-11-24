@@ -1,4 +1,4 @@
-﻿- type: stack
+- type: stack
   id: FloorTileDark
   name: stack-dark-tile
   spawn: FloorTileItemDark
@@ -714,6 +714,12 @@
   id: FloorTileSteelPlateDarkGray
   name: stack-darkgray-plate-floor
   spawn: FloorTileItemSteelPlateDarkGray
+  maxCount: 30
+
+- type: stack
+  id: FloorTileItemLandingPad
+  name: stack-darkgray-plate-floor
+  spawn: FloorTilePlateLandingPad
   maxCount: 30
 
   # Horizon end

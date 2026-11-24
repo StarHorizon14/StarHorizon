@@ -80,6 +80,9 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.OpenBackpack);
             human.AddFunction(ContentKeyFunctions.OpenBelt);
             human.AddFunction(ContentKeyFunctions.OpenWallet); // Frontier
+            human.AddFunction(ContentKeyFunctions.OpenOuterClothing);
+            human.AddFunction(ContentKeyFunctions.OpenPocket1);
+            human.AddFunction(ContentKeyFunctions.OpenPocket2);
             human.AddFunction(ContentKeyFunctions.MouseMiddle);
             human.AddFunction(ContentKeyFunctions.RotateObjectClockwise);
             human.AddFunction(ContentKeyFunctions.RotateObjectCounterclockwise);
@@ -130,6 +133,8 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.OpenTileSpawnWindow);
             common.AddFunction(ContentKeyFunctions.OpenDecalSpawnWindow);
             common.AddFunction(ContentKeyFunctions.OpenAdminMenu);
+            common.AddFunction(ContentKeyFunctions.AdminRtsSelect); // Horizon
+            common.AddFunction(ContentKeyFunctions.AdminRtsOrder); // Horizon
             common.AddFunction(ContentKeyFunctions.OpenGuidebook);
 
             CMFunctions(contexts); // Horizon Attachments

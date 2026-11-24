@@ -85,6 +85,7 @@
       - map: ["jumpsuit"]
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: [ "socks" ] # Horizon: otherwise socks are drawn over everything
       - map: ["enum.HumanoidVisualLayers.LHand"]
       - map: ["enum.HumanoidVisualLayers.RHand"]
       - map: [ "gloves" ]
