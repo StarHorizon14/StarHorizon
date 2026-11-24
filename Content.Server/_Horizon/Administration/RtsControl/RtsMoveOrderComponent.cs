@@ -1,6 +1,4 @@
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Serialization.Manager.Attributes;
 
 namespace Content.Server._Horizon.Administration.RtsControl;
 
@@ -13,6 +11,15 @@ public sealed partial class RtsMoveOrderComponent : Component
 {
     [DataField]
     public EntityCoordinates Target;
+
+    /// <summary>
+    ///     The point the player clicked, used as a fallback when this creature's formation slot is unreachable.
+    /// </summary>
+    [DataField]
+    public EntityCoordinates CenterTarget;
+
+    [DataField]
+    public bool FellBack;
 
     /// <summary>
     ///     When to next check that the creature is actually making progress.

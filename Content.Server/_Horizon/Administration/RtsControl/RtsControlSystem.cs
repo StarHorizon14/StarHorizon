@@ -33,6 +33,7 @@ public sealed class RtsControlSystem : EntitySystem
     private const int MaxUnits = 100;
     private const float Spacing = 1f;
     private const float ArriveRange = 0.5f;
+    private const float FallbackRange = 2f;
     // Orders have no total time limit. Instead we give up when a creature stops making progress.
     private static readonly TimeSpan ProgressInterval = TimeSpan.FromSeconds(8);
     private const float MinProgress = 0.5f;
@@ -51,34 +52,57 @@ public sealed class RtsControlSystem : EntitySystem
             return;
 
         var target = GetCoordinates(ev.Target);
-        if (!target.IsValid(EntityManager))
+        var units = new List<EntityUid>(ev.Units.Count);
+        foreach (var netUnit in ev.Units)
+        {
+            if (TryGetEntity(netUnit, out var uid))
+                units.Add(uid.Value);
+        }
+
+        var count = OrderMove(units, target);
+        if (count == 0)
             return;
+
+        _adminLog.Add(LogType.AdminCommands,
+            LogImpact.Low,
+            $"{ToPrettyString(args.SenderSession.AttachedEntity):player} ordered {count} creatures to move to {target}");
+    }
+
+    /// <summary>
+    ///     Orders the given creatures to move to <paramref name="target"/>, spread in a formation around it.
+    ///     No permission checks here, the caller is responsible for them.
+    /// </summary>
+    /// <returns>How many creatures accepted the order.</returns>
+    public int OrderMove(IEnumerable<EntityUid> requested, EntityCoordinates target)
+    {
+        if (!target.IsValid(EntityManager))
+            return 0;
 
         // Collect valid units first so the formation is dense.
         var units = new List<(EntityUid Uid, HTNComponent Htn)>();
-        foreach (var netUnit in ev.Units)
+        foreach (var uid in requested)
         {
             if (units.Count >= MaxUnits)
                 break;
 
-            if (!TryGetEntity(netUnit, out var uid) || TerminatingOrDeleted(uid.Value))
+            if (TerminatingOrDeleted(uid))
                 continue;
 
             if (!TryComp<HTNComponent>(uid, out var htn) || !HasComp<MobStateComponent>(uid))
                 continue;
 
-            if (_mobState.IsIncapacitated(uid.Value))
+            if (_mobState.IsIncapacitated(uid))
                 continue;
 
             // Never take control away from a player.
             if (TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind)
                 continue;
 
-            units.Add((uid.Value, htn));
+            units.Add((uid, htn));
         }
 
         if (units.Count == 0)
-            return;
+            return 0;
 
         var columns = (int) MathF.Ceiling(MathF.Sqrt(units.Count));
         var rows = (int) MathF.Ceiling(units.Count / (float) columns);
@@ -95,6 +119,8 @@ public sealed class RtsControlSystem : EntitySystem
 
             var order = EnsureComp<RtsMoveOrderComponent>(uid);
             order.Target = coords;
+            order.CenterTarget = target;
+            order.FellBack = false;
             order.NextProgressCheck = _timing.CurTime + ProgressInterval;
             order.LastCheckPosition = Transform(uid).Coordinates;
 
@@ -109,9 +135,7 @@ public sealed class RtsControlSystem : EntitySystem
             steering.Flags |= PathFlags.Interact | PathFlags.Prying | PathFlags.Climbing;
         }
 
-        _adminLog.Add(LogType.AdminCommands,
-            LogImpact.Low,
-            $"{ToPrettyString(args.SenderSession.AttachedEntity):player} ordered {units.Count} creatures to move to {target}");
+        return units.Count;
     }
 
     public override void Update(float frameTime)
@@ -123,8 +147,29 @@ public sealed class RtsControlSystem : EntitySystem
         while (query.MoveNext(out var uid, out var order, out var xform))
         {
             if (_mobState.IsIncapacitated(uid) ||
-                !TryComp<NPCSteeringComponent>(uid, out var steering) ||
-                steering.Status != SteeringStatus.Moving)
+                !TryComp<NPCSteeringComponent>(uid, out var steering))
+            {
+                toFinish.Add(uid);
+                continue;
+            }
+
+            // The formation slot may be inside a wall or otherwise unreachable:
+            // retry once towards the exact clicked point instead of giving up.
+            if (steering.Status == SteeringStatus.NoPath && !order.FellBack)
+            {
+                order.FellBack = true;
+                order.Target = order.CenterTarget;
+                steering.Status = SteeringStatus.Moving;
+                steering.FailedPathCount = 0;
+                steering.CurrentPath.Clear();
+                steering.Coordinates = order.CenterTarget;
+                steering.Range = FallbackRange;
+                order.NextProgressCheck = _timing.CurTime + ProgressInterval;
+                order.LastCheckPosition = xform.Coordinates;
+                continue;
+            }
+
+            if (steering.Status != SteeringStatus.Moving)
             {
                 toFinish.Add(uid);
                 continue;
