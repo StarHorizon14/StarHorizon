@@ -11,12 +11,11 @@
     damage:
       types:
         Piercing: 7
-    ignoreResistances: true
 
 - type: entity
   id: NFBulletPistol35Psycore
   name: bullet (.35 pistol, psycore)
-  parent: NFBaseBullet
+  parent: BaseBulletAP
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
@@ -32,7 +31,7 @@
 - type: entity
   id: NFBulletPistol45Piercing
   name: bullet (.45 pistol, piercing)
-  parent: NFBaseBullet
+  parent: BaseBulletAP
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
@@ -40,7 +39,6 @@
       types:
         Piercing: 17
         Blunt: 5
-    ignoreResistances: true
 
 - type: entity
   id: NFBulletPistol45Psycore

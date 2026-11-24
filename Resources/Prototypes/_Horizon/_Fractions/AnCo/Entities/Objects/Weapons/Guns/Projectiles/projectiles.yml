@@ -94,7 +94,7 @@
 - type: entity
   name: AnCo Bullet
   id: StandartBallisticAnCoSuperPower
-  parent: BaseBullet
+  parent: BaseBulletAP
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -108,7 +108,6 @@
         Heat: 90
         Piercing: 60
         Structural: 250
-    ignoreResistances: true
   - type: Tracer
     color: "#f05a5a"
     length: 5

@@ -3,14 +3,13 @@
 - type: entity
   id: NFBulletRifle20Piercing
   name: bullet (.20 rifle, piercing)
-  parent: NFBaseBullet
+  parent: BaseBulletAP
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
       types:
         Piercing: 10
-    ignoreResistances: true
 
 - type: entity
   id: NFBulletRifle20Psycore
@@ -31,14 +30,13 @@
 - type: entity
   id: NFBulletRifle30Piercing
   name: bullet (.30 rifle, piercing)
-  parent: NFBaseBullet
+  parent: BaseBulletAP
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
       types:
         Piercing: 14
-    ignoreResistances: true
 
 - type: entity
   id: NFBulletRifle30Psycore

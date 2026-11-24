@@ -1,4 +1,4 @@
-﻿# Base
+# Base
 - type: entity
   id: BaseBoltLiquidInjector
   abstract: true
@@ -370,7 +370,7 @@
     damage:
       types:
         Piercing: 18
-    ignoreResistances: true
+    armorPenetrarion: 0.8
   - type: Construction
     graph: CraftCrossbowBoltPlasteel
     node: CraftCrossbowBoltPlasteel

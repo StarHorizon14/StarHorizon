@@ -4,13 +4,12 @@
   categories: [ HideSpawnMenu ]
   id: NFPelletShotgunPiercing
   name: pellet (.50, piercing)
-  parent: NFBasePellet
+  parent: BaseBulletAP
   components:
   - type: Projectile
     damage:
       types:
         Piercing: 7
-    ignoreResistances: true
 
 - type: entity
   categories: [ HideSpawnMenu ]
