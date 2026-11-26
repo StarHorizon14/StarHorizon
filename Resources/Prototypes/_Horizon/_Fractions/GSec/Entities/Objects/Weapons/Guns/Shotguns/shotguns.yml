@@ -1,5 +1,5 @@
 - type: entity
-  id: WeaponSubMechineGunGSecSaiga
+  id: WeaponShotgunGSecSaiga
   parent: [BaseWeaponPistol, NFBaseGunMeleeAttackMedium, BaseAttachableHolder, BaseGSecWeaponContraband]
   name: GX-12 Сайга
   description: "Экземпляр реликтового вооружения, адаптированный мастерами из «Gorlex Steel Works» и названный в честь позывного его бывшего владельца."
@@ -13,16 +13,16 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-saiga.rsi
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/Saiga/gsec-saiga.rsi
     quickEquip: false
     slots:
     - suitStorage
     - Back
   - type: Item
-    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/gsec-saiga.rsi
+    sprite: _Horizon/_Fractions/GSec/Objects/Weapons/Guns/Saiga/gsec-saiga.rsi
     size: Large
     shape:
-    - 0,0,5,2
+    - 0,0,4,2
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg

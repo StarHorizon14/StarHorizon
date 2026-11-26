@@ -44,7 +44,7 @@
 
 - type: entity
   id: LockerGSecOfficer
-  parent: [LockerGSec, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, BaseGSecContraband]
+  parent: [LockerGSec, BaseStructureAccessReaderImmuneToEmag, BaseGSecContraband]
   name: шкафчик офицера Горлекс
   suffix: GSec, Locked
   components:
@@ -57,8 +57,8 @@
   id: GunSafeBaseGSec
   name: оружейный сейф
   description: Стандартное хранилище «Gorlex Securities LLC».
-  parent: [GunSafe, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag]
+  parent: [GunSafe, BaseStructureAccessReaderImmuneToEmag]
   suffix: GSec, Locked
   components:
   - type: AccessReader
-    access: [["AccessGSecAgent"]]
+    access: [["AccessGSec"]]

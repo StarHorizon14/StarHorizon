@@ -21,3 +21,9 @@
   price: 300
   equipment:
     head: ClothingHeadHatBeretGSecOld
+
+- type: loadout
+  id: LoadoutHardhatGSec
+  price: 300
+  equipment:
+    head: ClothingHeadHatHardhatOrange

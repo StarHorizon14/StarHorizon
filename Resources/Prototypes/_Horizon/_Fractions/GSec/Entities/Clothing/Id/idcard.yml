@@ -1,5 +1,5 @@
 - type: entity
-  parent: [IDCardStandard, BaseAnCoContraband]
+  parent: [IDCardStandard, BaseGSecContraband]
   id: GSecIDCard
   name: GSecID
   abstract: true

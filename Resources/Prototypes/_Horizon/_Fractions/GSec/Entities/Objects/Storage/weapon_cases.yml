@@ -1,29 +1,38 @@
 - type: entity
-  parent: [CrateBaseSecure, BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseGSecContraband]
-  id: CrateWeaponGSecSecure
+  parent: [ BaseC1Contraband, CrateGenericSteel ]
+  id: CrateBaseGSec
   name: ящик Горлекс
-  description: Армированный ящик для хранения особо опасного оружия.
-  suffix: GSec, Secure
+  description: Ящик из тёмной стали с зелёной маркировкой и эмблемой «Gorlex Securities LLC».
   components:
   - type: Icon
     sprite: _Horizon/_Fractions/GSec/Structures/Storage/crate.rsi
   - type: Sprite
     sprite: _Horizon/_Fractions/GSec/Structures/Storage/crate.rsi
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 25000
+
+- type: entity
+  parent: [CrateBaseSecure, BaseGSecContraband]
+  id: CrateSecureGSec
+  name: защищённый ящик Горлекс
+  description: Армированный ящик для хранения особо опасного оружия.
+  suffix: Secure
+  components:
+  - type: Icon
+    sprite: _Horizon/_Fractions/GSec/Structures/Storage/crate_secure.rsi
+  - type: Sprite
+    sprite: _Horizon/_Fractions/GSec/Structures/Storage/crate_secure.rsi
+
+- type: entity
+  parent: [CrateSecureGSec]
+  id: CrateSecureGSecRestricted
+  suffix: GSec, Secure
+  components:
   - type: AccessReader
     access: [[ "AccessGSec" ]]
 
 - type: entity
   name: оружейный кейс Горлекс
   description: Армированный ящик для хранения особо опасного оружия.
-  parent: [AnCoWeaponCaseBase, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseGSecContraband]
+  parent: [AnCoWeaponCaseBase, BaseGSecContraband]
   id: WeaponCaseGSecLong
   suffix: GSec, Long
   components:
