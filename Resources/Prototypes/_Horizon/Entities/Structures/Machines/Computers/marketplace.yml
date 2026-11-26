@@ -1,0 +1,127 @@
+- type: entity
+  id: ComputerMarketplace
+  parent: BaseComputer
+  name: StarOZON pickup point
+  description: A StarOZON marketplace terminal. List your goods, buy from other spacers and pick up your orders. Returns cost your own credits and your own oxygen.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: MarketplaceConsole
+    taxRate: 0.1
+    taxAccount: Frontier
+    itemSlot:
+      name: marketplace-item-slot-name
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      ejectOnBreak: true
+      ejectOnDeconstruct: true
+      swap: false
+      whitelist:
+        components:
+        - Item
+    blacklist:
+      components:
+      - Cash
+      - MobState
+      - MindContainer
+      - NukeDisk
+  - type: ActivatableUI
+    key: enum.MarketplaceConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.MarketplaceConsoleUiKey.Key:
+        type: MarketplaceConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      marketplace-item: !type:ContainerSlot
+  - type: Computer
+    board: MarketplaceComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#3c9be0"
+
+- type: entity
+  id: MarketplaceComputerCircuitboard
+  parent: BaseComputerCircuitboard
+  name: StarOZON pickup point board
+  description: A computer printed circuit board for a StarOZON pickup point.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerMarketplace
+
+- type: entity
+  id: ComputerMarketplaceBlackMarket
+  parent: ComputerMarketplace
+  name: StarBerries terminal
+  description: An encrypted StarBerries terminal. No names, no questions, no refunds - only goods and credits.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: contraband
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: MarketplaceConsole
+    network: BlackMarket
+    anonymous: true
+    blackMarket: true
+    taxRate: 0.3
+    taxAccount: Invalid # Like other black market fees, the cut leaves the economy.
+    forbiddenContraband: [] # Class 3 contraband is fine here.
+    itemSlot:
+      name: marketplace-item-slot-name
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      ejectOnBreak: true
+      ejectOnDeconstruct: true
+      swap: false
+      whitelist:
+        components:
+        - Item
+    blacklist:
+      components:
+      - Cash
+      - MobState
+      - MindContainer
+      - NukeDisk
+  - type: Computer
+    board: MarketplaceBlackMarketComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#d12a2a"
+
+- type: entity
+  id: MarketplaceBlackMarketComputerCircuitboard
+  parent: BaseComputerCircuitboard
+  name: StarBerries terminal board
+  description: A computer printed circuit board for a StarBerries terminal. The traces are deliberately scratched off.
+  components:
+  - type: Sprite
+    state: cpu_syndicate
+  - type: ComputerBoard
+    prototype: ComputerMarketplaceBlackMarket

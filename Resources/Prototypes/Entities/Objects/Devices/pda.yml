@@ -55,6 +55,17 @@
       whitelist:
         components:
         - IdCard
+  # Horizon-Start: bluespace crystals that pay for StarOZON teleport deliveries
+  - type: MarketplaceCrystalSlot
+    crystalSlot:
+      name: marketplace-crystal-slot-name
+      priority: -4
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+      whitelist:
+        tags:
+        - BluespaceCrystal
+  # Horizon-End
   - type: PdaVisuals
   - type: Item
     size: Small
@@ -64,6 +75,7 @@
       PDA-pen: !type:ContainerSlot {}
       PDA-pai: !type:ContainerSlot {}
       PDA-book: !type:ContainerSlot {} # Frontier
+      PDA-bluespace: !type:ContainerSlot {} # Horizon
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
   - type: ItemSlots

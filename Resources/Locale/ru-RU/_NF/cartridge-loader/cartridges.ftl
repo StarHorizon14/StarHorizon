@@ -32,6 +32,7 @@ ledger-entry-type-StationDepositFines = Начисленные штрафы
 ledger-entry-type-StationDepositDonation = Пожертвования
 ledger-entry-type-StationDepositAssetsSold = Проданные активы
 ledger-entry-type-StationDepositOther = Прочие депозиты
+ledger-entry-type-MarketplaceTax = Налог StarOZON
 ledger-entry-type-MailPenalty = Почтовые штрафы
 ledger-entry-type-ShuttleRecordFees = Оплата проезда
 ledger-entry-type-StationWithdrawalPayroll = Выплаты зарплат

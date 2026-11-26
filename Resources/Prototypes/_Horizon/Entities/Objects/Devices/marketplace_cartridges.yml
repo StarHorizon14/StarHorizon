@@ -1,0 +1,50 @@
+- type: entity
+  parent: NFBasePDACartridge
+  id: MarketplaceViewerCartridge
+  name: StarOZON cartridge
+  description: The StarOZON PDA app. Browse goods and post requests without leaving the pilot's seat.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-q
+  - type: Icon
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-q
+  - type: UIFragment
+    ui: !type:MarketplaceCartridgeUi
+  - type: Cartridge
+    programName: marketplace-pda-program-name
+    icon:
+      sprite: Objects/Economy/cash.rsi
+      state: cash_1000
+    readonly: true
+  - type: MarketplaceCartridge
+    network: Sector
+    taxRate: 0.1
+
+- type: entity
+  parent: NFBasePDACartridge
+  id: BlackMarketViewerCartridge
+  name: StarBerries cartridge
+  description: An unlabelled PDA program with an encrypted connection to StarBerries.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-tear
+  - type: Icon
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-tear
+  - type: UIFragment
+    ui: !type:MarketplaceCartridgeUi
+  - type: Cartridge
+    programName: marketplace-black-pda-program-name
+    icon:
+      sprite: Objects/Specific/Syndicate/telecrystal.rsi
+      state: telecrystal
+    readonly: true
+  - type: MarketplaceCartridge
+    network: BlackMarket
+    anonymous: true
+    blackMarket: true
+    taxRate: 0.3
+    taxAccount: Invalid
