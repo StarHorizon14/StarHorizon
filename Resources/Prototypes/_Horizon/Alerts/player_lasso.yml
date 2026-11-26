@@ -1,0 +1,13 @@
+- type: alert
+  id: Lassoed
+  icons: [ /Textures/Interface/Alerts/Pull/pulled.png ]
+  clickEvent: !type:ToggleLassoBraceAlertEvent
+  name: player-lasso-alert-name
+  description: player-lasso-alert-desc
+
+- type: alert
+  id: LassoBraced
+  icons: [ /Textures/Interface/Alerts/Pull/pulling.png ]
+  clickEvent: !type:ToggleLassoBraceAlertEvent
+  name: player-lasso-braced-alert-name
+  description: player-lasso-braced-alert-desc
