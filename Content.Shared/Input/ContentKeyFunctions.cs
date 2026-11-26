@@ -64,6 +64,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction OpenAdminMenu = "OpenAdminMenu";
         public static readonly BoundKeyFunction AdminRtsSelect = "AdminRtsSelect"; // Horizon
         public static readonly BoundKeyFunction AdminRtsOrder = "AdminRtsOrder"; // Horizon
+        public static readonly BoundKeyFunction AdminRtsAttack = "AdminRtsAttack"; // Horizon
         public static readonly BoundKeyFunction TakeScreenshot = "TakeScreenshot";
         public static readonly BoundKeyFunction TakeScreenshotNoUI = "TakeScreenshotNoUI";
         public static readonly BoundKeyFunction ToggleFullscreen = "ToggleFullscreen";

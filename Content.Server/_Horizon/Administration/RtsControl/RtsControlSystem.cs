@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.Administration.Logs;
+using Content.Server.Chat.Managers;
 using Content.Server.NPC.Components;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
@@ -11,8 +12,11 @@ using Content.Shared.Administration.Managers;
 using Content.Shared.Database;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Map;
+using Robust.Server.Player;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Horizon.Administration.RtsControl;
@@ -20,9 +24,19 @@ namespace Content.Server._Horizon.Administration.RtsControl;
 /// <summary>
 ///     Lets admins order many NPCs to move to a point at once.
 /// </summary>
+/// <summary>
+///     Outcome of an RTS move order: how many creatures took it and why the others were skipped.
+/// </summary>
+public record struct RtsOrderResult(int Requested, int Accepted, int NoAi, int Incapacitated, int PlayerControlled, int OverLimit, bool InvalidTarget)
+{
+    public int Skipped => Requested - Accepted;
+}
+
 public sealed class RtsControlSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminManager _admin = default!;
+    [Dependency] private readonly IChatManager _chat = default!;
+    [Dependency] private readonly NpcFactionSystem _faction = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly HTNSystem _htn = default!;
@@ -37,6 +51,11 @@ public sealed class RtsControlSystem : EntitySystem
     // Orders have no total time limit. Instead we give up when a creature stops making progress.
     private static readonly TimeSpan ProgressInterval = TimeSpan.FromSeconds(8);
     private const float MinProgress = 0.5f;
+    private const int MaxStuckStrikes = 3;
+
+    // Within this distance of an attack target the normal AI is trusted to take over (its vision is ~10 tiles).
+    private const float HandOffRange = 6f;
+    private static readonly TimeSpan RetargetInterval = TimeSpan.FromSeconds(1);
 
     public override void Initialize()
     {
@@ -59,50 +78,59 @@ public sealed class RtsControlSystem : EntitySystem
                 units.Add(uid.Value);
         }
 
-        var count = OrderMove(units, target);
-        if (count == 0)
+        RtsOrderResult result;
+        if (ev.AttackTarget is { } netTarget &&
+            TryGetEntity(netTarget, out var attackTarget) &&
+            HasComp<MobStateComponent>(attackTarget))
+        {
+            result = OrderAttack(units, attackTarget.Value);
+        }
+        else
+        {
+            result = OrderMove(units, target);
+        }
+
+        if (result.InvalidTarget)
+        {
+            _chat.DispatchServerMessage(args.SenderSession, Loc.GetString("rts-control-invalid-target"));
+            return;
+        }
+
+        _chat.DispatchServerMessage(args.SenderSession, Loc.GetString("rts-control-result",
+            ("accepted", result.Accepted),
+            ("requested", result.Requested),
+            ("noAi", result.NoAi),
+            ("incapacitated", result.Incapacitated),
+            ("player", result.PlayerControlled),
+            ("limit", result.OverLimit)));
+
+        if (result.Accepted == 0)
             return;
 
         _adminLog.Add(LogType.AdminCommands,
             LogImpact.Low,
-            $"{ToPrettyString(args.SenderSession.AttachedEntity):player} ordered {count} creatures to move to {target}");
+            $"{ToPrettyString(args.SenderSession.AttachedEntity):player} ordered {result.Accepted} creatures to move to {target}");
     }
 
     /// <summary>
     ///     Orders the given creatures to move to <paramref name="target"/>, spread in a formation around it.
     ///     No permission checks here, the caller is responsible for them.
     /// </summary>
-    /// <returns>How many creatures accepted the order.</returns>
-    public int OrderMove(IEnumerable<EntityUid> requested, EntityCoordinates target)
+    /// <returns>How many creatures accepted the order and why the others did not.</returns>
+    public RtsOrderResult OrderMove(IEnumerable<EntityUid> requested, EntityCoordinates target)
     {
+        var result = new RtsOrderResult();
+
         if (!target.IsValid(EntityManager))
-            return 0;
-
-        // Collect valid units first so the formation is dense.
-        var units = new List<(EntityUid Uid, HTNComponent Htn)>();
-        foreach (var uid in requested)
         {
-            if (units.Count >= MaxUnits)
-                break;
-
-            if (TerminatingOrDeleted(uid))
-                continue;
-
-            if (!TryComp<HTNComponent>(uid, out var htn) || !HasComp<MobStateComponent>(uid))
-                continue;
-
-            if (_mobState.IsIncapacitated(uid))
-                continue;
-
-            // Never take control away from a player.
-            if (TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind)
-                continue;
-
-            units.Add((uid, htn));
+            result.InvalidTarget = true;
+            return result;
         }
 
+        var units = CollectUnits(requested, ref result);
+        result.Accepted = units.Count;
         if (units.Count == 0)
-            return 0;
+            return result;
 
         var columns = (int) MathF.Ceiling(MathF.Sqrt(units.Count));
         var rows = (int) MathF.Ceiling(units.Count / (float) columns);
@@ -118,6 +146,7 @@ public sealed class RtsControlSystem : EntitySystem
             var coords = target.Offset(offset);
 
             var order = EnsureComp<RtsMoveOrderComponent>(uid);
+            ClearAttack(uid, order);
             order.Target = coords;
             order.CenterTarget = target;
             order.FellBack = false;
@@ -135,7 +164,105 @@ public sealed class RtsControlSystem : EntitySystem
             steering.Flags |= PathFlags.Interact | PathFlags.Prying | PathFlags.Climbing;
         }
 
-        return units.Count;
+        return result;
+    }
+
+    /// <summary>
+    ///     Orders the given creatures to attack <paramref name="target"/>. They walk towards it and, once it is in
+    ///     sight, their normal AI (melee, guns) takes over and fights it.
+    ///     No permission checks here, the caller is responsible for them.
+    /// </summary>
+    public RtsOrderResult OrderAttack(IEnumerable<EntityUid> requested, EntityUid target)
+    {
+        var result = new RtsOrderResult();
+
+        if (TerminatingOrDeleted(target) || !HasComp<MobStateComponent>(target))
+        {
+            result.InvalidTarget = true;
+            return result;
+        }
+
+        var units = CollectUnits(requested, ref result);
+        result.Accepted = units.Count;
+        var targetCoords = Transform(target).Coordinates;
+
+        foreach (var (uid, htn) in units)
+        {
+            if (uid == target)
+            {
+                result.Accepted--;
+                continue;
+            }
+
+            var order = EnsureComp<RtsMoveOrderComponent>(uid);
+            ClearAttack(uid, order);
+            order.AttackTarget = target;
+            order.Target = targetCoords;
+            order.CenterTarget = targetCoords;
+            order.FellBack = true; // No formation slots when attacking, nothing to fall back to.
+            order.NextRetarget = TimeSpan.Zero;
+            order.StuckStrikes = 0;
+            order.NextProgressCheck = _timing.CurTime + ProgressInterval;
+            order.LastCheckPosition = Transform(uid).Coordinates;
+
+            // The target is now an enemy no matter what faction it belongs to.
+            _faction.AggroEntity(uid, target);
+
+            // Update() decides every tick whether to walk (far) or leave the fight to the AI (close).
+            _htn.SetHTNEnabled((uid, htn), false);
+            _npc.WakeNPC(uid, htn);
+        }
+
+        return result;
+    }
+
+    private void ClearAttack(EntityUid uid, RtsMoveOrderComponent order)
+    {
+        if (order.AttackTarget is { } old && !TerminatingOrDeleted(old))
+            _faction.DeAggroEntity(uid, old);
+
+        order.AttackTarget = null;
+    }
+
+    private List<(EntityUid Uid, HTNComponent Htn)> CollectUnits(IEnumerable<EntityUid> requested, ref RtsOrderResult result)
+    {
+        var units = new List<(EntityUid Uid, HTNComponent Htn)>();
+        foreach (var uid in requested)
+        {
+            result.Requested++;
+
+            if (units.Count >= MaxUnits)
+            {
+                result.OverLimit++;
+                continue;
+            }
+
+            if (TerminatingOrDeleted(uid))
+                continue;
+
+            if (!TryComp<HTNComponent>(uid, out var htn) || !HasComp<MobStateComponent>(uid))
+            {
+                result.NoAi++;
+                continue;
+            }
+
+            if (_mobState.IsIncapacitated(uid))
+            {
+                result.Incapacitated++;
+                continue;
+            }
+
+            // Never take control away from a player.
+            if (HasComp<ActorComponent>(uid) || TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind)
+            {
+                result.PlayerControlled++;
+                continue;
+            }
+
+            units.Add((uid, htn));
+        }
+
+        return units;
     }
 
     public override void Update(float frameTime)
@@ -146,8 +273,24 @@ public sealed class RtsControlSystem : EntitySystem
         var query = EntityQueryEnumerator<RtsMoveOrderComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var order, out var xform))
         {
-            if (_mobState.IsIncapacitated(uid) ||
-                !TryComp<NPCSteeringComponent>(uid, out var steering))
+            if (_mobState.IsIncapacitated(uid))
+            {
+                toFinish.Add(uid);
+                continue;
+            }
+
+            if (order.AttackTarget is { } attackTarget)
+            {
+                var state = UpdateAttack(uid, order, xform, attackTarget);
+                if (state == AttackState.Finished)
+                    toFinish.Add(uid);
+
+                // Close enough: the normal AI is in charge (and its own steering is none of our business).
+                if (state != AttackState.Walking)
+                    continue;
+            }
+
+            if (!TryComp<NPCSteeringComponent>(uid, out var steering))
             {
                 toFinish.Add(uid);
                 continue;
@@ -182,10 +325,23 @@ public sealed class RtsControlSystem : EntitySystem
             if (!order.LastCheckPosition.TryDistance(EntityManager, xform.Coordinates, out var moved) ||
                 moved < MinProgress)
             {
-                toFinish.Add(uid);
+                // Crowded doorways and jams are common with many units: retry the path a few times before giving up.
+                if (++order.StuckStrikes >= MaxStuckStrikes)
+                {
+                    toFinish.Add(uid);
+                    continue;
+                }
+
+                steering.FailedPathCount = 0;
+                steering.CurrentPath.Clear();
+                steering.Coordinates = EntityCoordinates.Invalid;
+                _steering.Register(uid, order.Target, steering);
+                order.NextProgressCheck = _timing.CurTime + ProgressInterval;
+                order.LastCheckPosition = xform.Coordinates;
                 continue;
             }
 
+            order.StuckStrikes = 0;
             order.LastCheckPosition = xform.Coordinates;
             order.NextProgressCheck = _timing.CurTime + ProgressInterval;
         }
@@ -196,10 +352,80 @@ public sealed class RtsControlSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    ///     Walks towards the attack target while it is far away, hands over to the normal AI when it is close.
+    /// </summary>
+    private enum AttackState
+    {
+        /// <summary>The target is gone or dead, the order is over.</summary>
+        Finished,
+
+        /// <summary>The target is close, the normal AI is fighting it.</summary>
+        HandedOver,
+
+        /// <summary>The target is far, we are steering the creature towards it.</summary>
+        Walking,
+    }
+
+    private AttackState UpdateAttack(EntityUid uid, RtsMoveOrderComponent order, TransformComponent xform, EntityUid target)
+    {
+        if (TerminatingOrDeleted(target) ||
+            !TryComp<MobStateComponent>(target, out var targetState) ||
+            _mobState.IsDead(target, targetState))
+        {
+            return AttackState.Finished;
+        }
+
+        var targetXform = Transform(target);
+        if (targetXform.MapID != xform.MapID || !TryComp<HTNComponent>(uid, out var htn))
+            return AttackState.Finished;
+
+        var distance = (targetXform.WorldPosition - xform.WorldPosition).Length();
+
+        if (distance <= HandOffRange)
+        {
+            // Close enough for the AI to see the target: let it fight.
+            if (!htn.Enabled)
+            {
+                _steering.Unregister(uid);
+                _htn.SetHTNEnabled((uid, htn), true);
+            }
+
+            order.NextProgressCheck = _timing.CurTime + ProgressInterval;
+            order.LastCheckPosition = xform.Coordinates;
+            order.StuckStrikes = 0;
+            return AttackState.HandedOver;
+        }
+
+        // Too far: take control back and keep walking towards the (possibly moving) target.
+        if (htn.Enabled)
+        {
+            _htn.SetHTNEnabled((uid, htn), false);
+            _npc.WakeNPC(uid, htn);
+            order.NextRetarget = TimeSpan.Zero;
+        }
+
+        if (_timing.CurTime >= order.NextRetarget)
+        {
+            order.NextRetarget = _timing.CurTime + RetargetInterval;
+            order.Target = targetXform.Coordinates;
+
+            var steering = _steering.Register(uid, order.Target);
+            steering.Range = HandOffRange - 1f;
+            steering.ArriveOnLineOfSight = false;
+            steering.Flags |= PathFlags.Interact | PathFlags.Prying | PathFlags.Climbing;
+        }
+
+        return AttackState.Walking;
+    }
+
     private void OnOrderShutdown(Entity<RtsMoveOrderComponent> ent, ref ComponentShutdown args)
     {
         if (TerminatingOrDeleted(ent))
             return;
+
+        if (ent.Comp.AttackTarget is { } attackTarget && !TerminatingOrDeleted(attackTarget))
+            _faction.DeAggroEntity(ent.Owner, attackTarget);
 
         _steering.Unregister(ent);
 

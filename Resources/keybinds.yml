@@ -662,4 +662,10 @@ binds:
   key: MouseRight
   canFocus: true
   mod1: Control
+- function: AdminRtsAttack
+  type: State
+  key: MouseRight
+  canFocus: true
+  mod1: Control
+  mod2: Alt
 # endregion Horizon
