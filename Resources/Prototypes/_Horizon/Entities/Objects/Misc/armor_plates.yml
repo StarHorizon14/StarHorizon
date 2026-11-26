@@ -1,0 +1,190 @@
+# Бронепластины.
+# Замедляют того, кто их несёт (в любом месте инвентаря, включая рюкзак): множители перемножаются.
+# Работают только когда лежат в контейнере (хранилище/слоте) одежды,
+# надетой в слот комбинезона, РПС (пояса) или верхней одежды.
+# По умолчанию в одной вещи работает одна пластина (см. ArmorPlateHolder).
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseArmorPlate
+  name: armor plate
+  description: A protective plate. Works only when carried in the container of a jumpsuit, webbing or outer clothing.
+  components:
+  - type: Sprite
+    sprite: _Horizon/Objects/Misc/armorplate.rsi
+    layers:
+    - state: metal-icon
+  - type: Item
+    sprite: _Horizon/Objects/Misc/armorplate.rsi
+    size: Normal
+  - type: Appearance
+  - type: Tag
+    tags:
+    - ArmorPlate
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  parent: BaseArmorPlate
+  id: ArmorPlateMetal
+  name: metal armor plate
+  description: A simple steel plate. Decent protection against bullets and blades.
+  components:
+  - type: Sprite
+    layers:
+    - state: metal-icon
+  - type: ArmorPlate
+    spritePrefix: metal
+    walkSpeedModifier: 0.97
+    sprintSpeedModifier: 0.97
+    maxDurability: 100
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.95
+
+- type: entity
+  parent: BaseArmorPlate
+  id: ArmorPlateCeramic
+  name: ceramic armor plate
+  description: A light ceramic plate. Great against bullets, but brittle.
+  components:
+  - type: Sprite
+    layers:
+    - state: ceramic-icon
+  - type: ArmorPlate
+    spritePrefix: ceramic
+    walkSpeedModifier: 0.98
+    sprintSpeedModifier: 0.98
+    maxDurability: 70
+    wearMultiplier: 1.2
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.8
+        Piercing: 0.6
+        Heat: 0.85
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 500
+  - type: StaticPrice
+    price: 200
+
+- type: entity
+  parent: BaseArmorPlate
+  id: ArmorPlateLead
+  name: lead armor plate
+  description: A heavy lead plate. Protects mostly against radiation.
+  components:
+  - type: Sprite
+    layers:
+    - state: lead-icon
+  - type: ArmorPlate
+    spritePrefix: lead
+    walkSpeedModifier: 0.95
+    sprintSpeedModifier: 0.95
+    maxDurability: 100
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Piercing: 0.9
+        Radiation: 0.5
+  - type: StaticPrice
+    price: 175
+
+- type: entity
+  parent: BaseArmorPlate
+  id: ArmorPlateMetalSyndicate
+  name: syndicate armor plate
+  description: A reinforced plate of suspicious origin.
+  components:
+  - type: Sprite
+    layers:
+    - state: metalsyndi-icon
+  - type: ArmorPlate
+    spritePrefix: metalsyndi
+    walkSpeedModifier: 0.97
+    sprintSpeedModifier: 0.97
+    maxDurability: 150
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.65
+        Heat: 0.85
+  - type: StaticPrice
+    price: 400
+
+- type: entity
+  parent: BaseArmorPlate
+  id: ArmorPlateHeavySyndicate
+  name: heavy syndicate armor plate
+  description: A thick composite plate of suspicious origin. Holds a lot of punishment.
+  components:
+  - type: Sprite
+    layers:
+    - state: heavysyndi-icon
+  - type: ArmorPlate
+    spritePrefix: heavysyndi
+    walkSpeedModifier: 0.95
+    sprintSpeedModifier: 0.95
+    maxDurability: 220
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.55
+        Heat: 0.8
+        Shock: 0.9
+  - type: StaticPrice
+    price: 650
+
+- type: entity
+  parent: BaseArmorPlate
+  id: ArmorPlateJuggernaut
+  name: juggernaut armor plate
+  description: A massive plate from juggernaut armor. Almost impenetrable.
+  components:
+  - type: Sprite
+    layers:
+    - state: jaggernaut-icon
+  - type: ArmorPlate
+    spritePrefix: jaggernaut
+    walkSpeedModifier: 0.92
+    sprintSpeedModifier: 0.92
+    maxDurability: 350
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.45
+        Heat: 0.7
+        Shock: 0.8
+        Caustic: 0.85
+  - type: StaticPrice
+    price: 1000
+
+# Слот под бронепластину для одежды (комбинезон, РПС, верхняя одежда).
+# Подключается дополнительным родителем: parent: [ClothingOuterVest..., ArmorPlateSlotBase]
+# Пластина в слоте имеет приоритет над пластинами в хранилище вещи.
+- type: entity
+  abstract: true
+  id: ArmorPlateSlotBase
+  components:
+  - type: ItemSlots
+    slots:
+      armor_plate:
+        name: armor-plate-slot-name
+        priority: 3
+        whitelist:
+          tags:
+          - ArmorPlate
+  - type: ContainerContainer
+    containers:
+      armor_plate: !type:ContainerSlot
