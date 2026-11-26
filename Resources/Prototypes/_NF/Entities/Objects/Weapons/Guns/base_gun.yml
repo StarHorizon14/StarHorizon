@@ -5,6 +5,9 @@
   suffix: Frontier
   abstract: true
   components:
+  # Horizon Durability start
+  - type: WeaponWear
+  # Horizon Durability end
   - type: Sprite
     layers:
       - state: base

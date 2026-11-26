@@ -40,6 +40,26 @@ public sealed partial class ArmorPlateComponent : Component
     public float WearMultiplier = 1f;
 
     /// <summary>
+    /// Доля оставшейся прочности, ниже которой пластина начинает защищать хуже.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float DegradeBelow = 0.5f;
+
+    /// <summary>
+    /// Какая доля защиты остаётся у пластины на последних единицах прочности.
+    /// Между <see cref="DegradeBelow"/> и нулём защита плавно падает до этого значения.
+    /// 1 — пластина не деградирует.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float WornEfficiency = 0.6f;
+
+    /// <summary>
+    /// Доля цены, которая остаётся у полностью изношенной (сломанной) пластины при продаже.
+    /// </summary>
+    [DataField]
+    public float BrokenPriceFraction = 0.2f;
+
+    /// <summary>
     /// Сломана ли пластина. Сломанная пластина не даёт никакой защиты.
     /// </summary>
     [DataField, AutoNetworkedField]

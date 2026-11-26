@@ -1,9 +1,13 @@
+using Content.Shared._Horizon.Durability;
+using Content.Shared.Cargo;
+using Content.Shared.Cargo.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
+using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -26,6 +30,7 @@ public sealed partial class ArmorPlateSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly NameModifierSystem _nameModifier = default!;
 
     /// <summary>
     /// Слоты, в которых одежда с пластинами даёт защиту: комбинезон, РПС/пояс, верхняя одежда.
@@ -42,8 +47,11 @@ public sealed partial class ArmorPlateSystem : EntitySystem
         SubscribeLocalEvent<ClothingComponent, InventoryRelayedEvent<DamageModifyEvent>>(OnClothingDamageModify);
         SubscribeLocalEvent<ArmorPlateComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ArmorPlateComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<ArmorPlateComponent, RefreshNameModifiersEvent>(OnRefreshName);
+        SubscribeLocalEvent<ArmorPlateComponent, PriceCalculationEvent>(OnPriceCalculation);
 
         InitializeWeight();
+        InitializeRarity();
     }
 
     private void OnMapInit(Entity<ArmorPlateComponent> ent, ref MapInitEvent args)
@@ -52,6 +60,24 @@ public sealed partial class ArmorPlateSystem : EntitySystem
             ent.Comp.Broken = true;
 
         _appearance.SetData(ent, ArmorPlateVisuals.Broken, ent.Comp.Broken);
+
+        if (ent.Comp.Broken)
+            _nameModifier.RefreshNameModifiers(ent.Owner);
+    }
+
+    private void OnRefreshName(Entity<ArmorPlateComponent> ent, ref RefreshNameModifiersEvent args)
+    {
+        if (ent.Comp.Broken)
+            args.AddModifier("armor-plate-broken-name");
+    }
+
+    private void OnPriceCalculation(Entity<ArmorPlateComponent> ent, ref PriceCalculationEvent args)
+    {
+        if (!TryComp<StaticPriceComponent>(ent, out var price))
+            return;
+
+        var fraction = DurabilityFormat.Fraction(ent.Comp.Durability, ent.Comp.MaxDurability);
+        DurabilityFormat.ApplyWearToPrice(ref args, price.Price, fraction, ent.Comp.BrokenPriceFraction);
     }
 
     private void OnClothingDamageModify(EntityUid uid, ClothingComponent clothing, InventoryRelayedEvent<DamageModifyEvent> args)
@@ -165,7 +191,7 @@ public sealed partial class ArmorPlateSystem : EntitySystem
         if (plate.Comp.Broken)
             return damage;
 
-        var modifiers = DamageSpecifier.PenetrateArmor(plate.Comp.Modifiers, armorPenetration);
+        var modifiers = DamageSpecifier.PenetrateArmor(GetEffectiveModifiers(plate), armorPenetration);
         var reduced = DamageSpecifier.ApplyModifierSet(damage, modifiers);
         var absorbed = DamageSpecifier.GetPositive(damage - reduced);
         var absorbedTotal = absorbed.GetTotal().Float();
@@ -201,6 +227,87 @@ public sealed partial class ArmorPlateSystem : EntitySystem
         return reduced;
     }
 
+    /// <summary>
+    /// Насколько хорошо пластина защищает при текущей прочности: 1 — полностью,
+    /// ниже <see cref="ArmorPlateComponent.DegradeBelow"/> линейно падает до <see cref="ArmorPlateComponent.WornEfficiency"/>.
+    /// </summary>
+    public static float GetEfficiency(ArmorPlateComponent plate)
+    {
+        if (plate.Broken)
+            return 0f;
+
+        if (plate.WornEfficiency >= 1f || plate.DegradeBelow <= 0f || plate.MaxDurability <= 0f)
+            return 1f;
+
+        var left = DurabilityFormat.Fraction(plate.Durability, plate.MaxDurability);
+        if (left >= plate.DegradeBelow)
+            return 1f;
+
+        var worn = Math.Clamp(plate.WornEfficiency, 0f, 1f);
+        return worn + (1f - worn) * (left / plate.DegradeBelow);
+    }
+
+    /// <summary>
+    /// Множитель силы резистов: износ и бонус редкости складываются.
+    /// Например, редкость +30% и износ −20% дают ×1.1.
+    /// </summary>
+    public static float GetProtectionFactor(ArmorPlateComponent plate, RareArmorPlateComponent? rare)
+    {
+        if (plate.Broken)
+            return 0f;
+
+        return MathF.Max(0f, GetEfficiency(plate) + (rare?.ProtectionBonus ?? 0f));
+    }
+
+    /// <summary>
+    /// Резисты пластины с учётом износа и редкости.
+    /// </summary>
+    public DamageModifierSet GetEffectiveModifiers(Entity<ArmorPlateComponent> plate)
+    {
+        TryComp<RareArmorPlateComponent>(plate, out var rare);
+        return GetEffectiveModifiers(plate.Comp, GetProtectionFactor(plate.Comp, rare));
+    }
+
+    /// <summary>
+    /// Резисты пластины, каждый из которых усилен или ослаблен в <paramref name="factor"/> раз.
+    /// </summary>
+    /// <summary>
+    /// Максимальное снижение урона, до которого бонус редкости может поднять резист.
+    /// </summary>
+    public const float MaxReduction = 0.95f;
+
+    public static DamageModifierSet GetEffectiveModifiers(ArmorPlateComponent plate, float factor)
+    {
+        if (MathF.Abs(factor - 1f) < 0.0001f)
+            return plate.Modifiers;
+
+        var result = new DamageModifierSet
+        {
+            IgnoreArmorPierceFlags = plate.Modifiers.IgnoreArmorPierceFlags,
+        };
+
+        // Снижение урона (1 - коэффициент) масштабируем, уязвимости (> 1) не трогаем.
+        // Бонус редкости не может сделать пластину неуязвимой: не больше MaxReduction, если база не выше.
+        foreach (var (type, coefficient) in plate.Modifiers.Coefficients)
+        {
+            if (coefficient >= 1f)
+            {
+                result.Coefficients[type] = coefficient;
+                continue;
+            }
+
+            var scaled = 1f - (1f - coefficient) * factor;
+            result.Coefficients[type] = MathF.Max(scaled, MathF.Min(coefficient, 1f - MaxReduction));
+        }
+
+        foreach (var (type, flat) in plate.Modifiers.FlatReduction)
+        {
+            result.FlatReduction[type] = flat > 0f ? flat * factor : flat;
+        }
+
+        return result;
+    }
+
     public void BreakPlate(Entity<ArmorPlateComponent> plate, EntityUid? wearer = null)
     {
         if (plate.Comp.Broken)
@@ -211,6 +318,7 @@ public sealed partial class ArmorPlateSystem : EntitySystem
         Dirty(plate);
 
         _appearance.SetData(plate, ArmorPlateVisuals.Broken, true);
+        _nameModifier.RefreshNameModifiers(plate.Owner);
 
         var target = wearer ?? plate.Owner;
         _audio.PlayPvs(plate.Comp.BreakSound, target);
@@ -232,6 +340,7 @@ public sealed partial class ArmorPlateSystem : EntitySystem
         {
             plate.Comp.Broken = false;
             _appearance.SetData(plate, ArmorPlateVisuals.Broken, false);
+            _nameModifier.RefreshNameModifiers(plate.Owner);
         }
 
         Dirty(plate);
@@ -254,34 +363,64 @@ public sealed partial class ArmorPlateSystem : EntitySystem
             }
 
             var durability = ent.Comp.Durability;
-            var percent = ent.Comp.MaxDurability > 0 ? durability / ent.Comp.MaxDurability : 0f;
-            var color = percent > 0.66f ? "lime" : percent > 0.33f ? "yellow" : "red";
+            var fraction = DurabilityFormat.Fraction(durability, ent.Comp.MaxDurability);
 
             args.PushMarkup(Loc.GetString("armor-plate-examine-durability",
-                ("color", color),
+                ("color", DurabilityFormat.Color(fraction)),
+                ("bar", DurabilityFormat.Bar(fraction)),
                 ("current", MathF.Ceiling(durability)),
                 ("max", ent.Comp.MaxDurability)));
+
+            var efficiency = GetEfficiency(ent.Comp);
+            if (efficiency < 1f)
+            {
+                args.PushMarkup(Loc.GetString("armor-plate-examine-worn",
+                    ("value", MathF.Round((1f - efficiency) * 100, 1))));
+            }
 
             if (!args.IsInDetailsRange)
                 return;
 
             args.PushMarkup(Loc.GetString("armor-plate-examine-resists"));
 
-            foreach (var (type, coefficient) in ent.Comp.Modifiers.Coefficients)
+            // Показываем резисты уже с учётом износа, а рядом — итоговое изменение,
+            // как у характеристик оружия: зелёным если лучше базы, красным если хуже.
+            var modifiers = GetEffectiveModifiers(ent);
+            foreach (var (type, coefficient) in modifiers.Coefficients)
             {
+                var value = MathF.Round((1f - coefficient) * 100, 1);
+                var baseValue = MathF.Round((1f - ent.Comp.Modifiers.Coefficients[type]) * 100, 1);
+
                 args.PushMarkup(Loc.GetString("armor-coefficient-value",
                     ("type", Loc.GetString("armor-damage-type-" + type.ToLower())),
-                    ("value", MathF.Round((1f - coefficient) * 100, 1))));
+                    ("value", value)) + FormatChange(value - baseValue, "armor-plate-examine-change-percent"));
             }
 
-            foreach (var (type, flat) in ent.Comp.Modifiers.FlatReduction)
+            foreach (var (type, flat) in modifiers.FlatReduction)
             {
+                var baseFlat = ent.Comp.Modifiers.FlatReduction[type];
+
                 args.PushMarkup(Loc.GetString("armor-reduction-value",
                     ("type", Loc.GetString("armor-damage-type-" + type.ToLower())),
-                    ("value", flat)));
+                    ("value", MathF.Round(flat, 1))) + FormatChange(MathF.Round(flat - baseFlat, 1), "armor-plate-examine-change-flat"));
             }
 
             args.PushMarkup(Loc.GetString("armor-plate-examine-hint"));
         }
+    }
+
+    /// <summary>
+    /// Текст изменения резиста относительно базы пластины: « (+5%)» зелёным или « (−5%)» красным.
+    /// Пустая строка, если изменения нет.
+    /// </summary>
+    private string FormatChange(float change, string locId)
+    {
+        if (MathF.Abs(change) < 0.05f)
+            return string.Empty;
+
+        return " " + Loc.GetString(locId,
+            ("color", change > 0 ? "lime" : "red"),
+            ("plus", change > 0 ? "+" : ""),
+            ("value", change));
     }
 }

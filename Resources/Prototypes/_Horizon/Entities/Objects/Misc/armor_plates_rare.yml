@@ -1,0 +1,151 @@
+# Редкие бронепластины. Пока нигде не выдаются — только для спавна админами.
+# Улучшения (защита, прочность, меньшее замедление) выпадают случайно при появлении пластины,
+# по одному за уровень редкости. См. RareArmorPlateComponent.
+
+- type: entity
+  abstract: true
+  id: BaseArmorPlateUncommon
+  components:
+  - type: RareArmorPlate
+    rarity: Uncommon
+
+- type: entity
+  abstract: true
+  id: BaseArmorPlateRare
+  components:
+  - type: RareArmorPlate
+    rarity: Rare
+
+- type: entity
+  abstract: true
+  id: BaseArmorPlateEpic
+  components:
+  - type: RareArmorPlate
+    rarity: Epic
+
+- type: entity
+  abstract: true
+  id: BaseArmorPlateLegendary
+  components:
+  - type: RareArmorPlate
+    rarity: Legendary
+
+- type: entity
+  parent: [ ArmorPlateMetal, BaseArmorPlateUncommon ]
+  id: ArmorPlateMetalUncommon
+  suffix: Uncommon
+
+- type: entity
+  parent: [ ArmorPlateMetal, BaseArmorPlateRare ]
+  id: ArmorPlateMetalRare
+  suffix: Rare
+
+- type: entity
+  parent: [ ArmorPlateMetal, BaseArmorPlateEpic ]
+  id: ArmorPlateMetalEpic
+  suffix: Epic
+
+- type: entity
+  parent: [ ArmorPlateMetal, BaseArmorPlateLegendary ]
+  id: ArmorPlateMetalLegendary
+  suffix: Legendary
+
+- type: entity
+  parent: [ ArmorPlateCeramic, BaseArmorPlateUncommon ]
+  id: ArmorPlateCeramicUncommon
+  suffix: Uncommon
+
+- type: entity
+  parent: [ ArmorPlateCeramic, BaseArmorPlateRare ]
+  id: ArmorPlateCeramicRare
+  suffix: Rare
+
+- type: entity
+  parent: [ ArmorPlateCeramic, BaseArmorPlateEpic ]
+  id: ArmorPlateCeramicEpic
+  suffix: Epic
+
+- type: entity
+  parent: [ ArmorPlateCeramic, BaseArmorPlateLegendary ]
+  id: ArmorPlateCeramicLegendary
+  suffix: Legendary
+
+- type: entity
+  parent: [ ArmorPlateLead, BaseArmorPlateUncommon ]
+  id: ArmorPlateLeadUncommon
+  suffix: Uncommon
+
+- type: entity
+  parent: [ ArmorPlateLead, BaseArmorPlateRare ]
+  id: ArmorPlateLeadRare
+  suffix: Rare
+
+- type: entity
+  parent: [ ArmorPlateLead, BaseArmorPlateEpic ]
+  id: ArmorPlateLeadEpic
+  suffix: Epic
+
+- type: entity
+  parent: [ ArmorPlateLead, BaseArmorPlateLegendary ]
+  id: ArmorPlateLeadLegendary
+  suffix: Legendary
+
+- type: entity
+  parent: [ ArmorPlateMetalSyndicate, BaseArmorPlateUncommon ]
+  id: ArmorPlateMetalSyndicateUncommon
+  suffix: Uncommon
+
+- type: entity
+  parent: [ ArmorPlateMetalSyndicate, BaseArmorPlateRare ]
+  id: ArmorPlateMetalSyndicateRare
+  suffix: Rare
+
+- type: entity
+  parent: [ ArmorPlateMetalSyndicate, BaseArmorPlateEpic ]
+  id: ArmorPlateMetalSyndicateEpic
+  suffix: Epic
+
+- type: entity
+  parent: [ ArmorPlateMetalSyndicate, BaseArmorPlateLegendary ]
+  id: ArmorPlateMetalSyndicateLegendary
+  suffix: Legendary
+
+- type: entity
+  parent: [ ArmorPlateHeavySyndicate, BaseArmorPlateUncommon ]
+  id: ArmorPlateHeavySyndicateUncommon
+  suffix: Uncommon
+
+- type: entity
+  parent: [ ArmorPlateHeavySyndicate, BaseArmorPlateRare ]
+  id: ArmorPlateHeavySyndicateRare
+  suffix: Rare
+
+- type: entity
+  parent: [ ArmorPlateHeavySyndicate, BaseArmorPlateEpic ]
+  id: ArmorPlateHeavySyndicateEpic
+  suffix: Epic
+
+- type: entity
+  parent: [ ArmorPlateHeavySyndicate, BaseArmorPlateLegendary ]
+  id: ArmorPlateHeavySyndicateLegendary
+  suffix: Legendary
+
+- type: entity
+  parent: [ ArmorPlateJuggernaut, BaseArmorPlateUncommon ]
+  id: ArmorPlateJuggernautUncommon
+  suffix: Uncommon
+
+- type: entity
+  parent: [ ArmorPlateJuggernaut, BaseArmorPlateRare ]
+  id: ArmorPlateJuggernautRare
+  suffix: Rare
+
+- type: entity
+  parent: [ ArmorPlateJuggernaut, BaseArmorPlateEpic ]
+  id: ArmorPlateJuggernautEpic
+  suffix: Epic
+
+- type: entity
+  parent: [ ArmorPlateJuggernaut, BaseArmorPlateLegendary ]
+  id: ArmorPlateJuggernautLegendary
+  suffix: Legendary

@@ -4,6 +4,11 @@
   id: Spear
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  # Horizon Durability start
+  - type: WeaponWear
+    maxDurability: 300
+    wearChance: 0.3
+  # Horizon Durability end
   - type: EmbeddableProjectile
     offset: -0.15,0.0
   - type: ThrowingAngle

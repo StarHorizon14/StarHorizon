@@ -159,6 +159,70 @@ public sealed class ArmorPlateTest
     }
 
     [Test]
+    public async Task WornPlateProtectsLess()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+        var ent = server.EntMan;
+
+        await server.WaitAssertion(() =>
+        {
+            var inv = ent.System<InventorySystem>();
+            var storage = ent.System<SharedStorageSystem>();
+            var damageable = ent.System<DamageableSystem>();
+            var piercing = server.ProtoMan.Index<DamageTypePrototype>("Piercing");
+
+            var mob = ent.SpawnEntity("ArmorPlateTestDummy", map.GridCoords);
+            var belt = ent.SpawnEntity("ArmorPlateTestBelt", map.GridCoords);
+            var plate = ent.SpawnEntity("ArmorPlateMetal", map.GridCoords);
+
+            Assert.That(inv.TryEquip(mob, belt, "belt", force: true));
+            Assert.That(storage.Insert(belt, plate, out _, playSound: false));
+
+            var plateComp = ent.GetComponent<ArmorPlateComponent>(plate);
+
+            // Целая пластина защищает полностью: 300 * 0.25 = 75 в пластину, остаётся 25 из 100.
+            var dealt = damageable.TryChangeDamage(mob, new DamageSpecifier(piercing, 300));
+            Assert.That(dealt!.GetTotal(), Is.EqualTo(FixedPoint2.New(225)));
+            Assert.That(plateComp.Damage, Is.EqualTo(75f).Within(0.01f));
+
+            // 25% прочности: эффективность 0.6 + 0.4 * (0.25 / 0.5) = 0.8,
+            // пробивной коэффициент 1 - 0.25 * 0.8 = 0.8 => из 20 урона проходит 16.
+            Assert.That(ArmorPlateSystem.GetEfficiency(plateComp), Is.EqualTo(0.8f).Within(0.001f));
+            dealt = damageable.TryChangeDamage(mob, new DamageSpecifier(piercing, 20));
+            Assert.That(dealt!.GetTotal(), Is.EqualTo(FixedPoint2.New(16)));
+            Assert.That(plateComp.Damage, Is.EqualTo(79f).Within(0.01f));
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task RarePlateRollsUpgrades()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+        var ent = server.EntMan;
+
+        await server.WaitAssertion(() =>
+        {
+            var plate = ent.SpawnEntity("ArmorPlateMetalLegendary", map.GridCoords);
+            var plateComp = ent.GetComponent<ArmorPlateComponent>(plate);
+            var rare = ent.GetComponent<RareArmorPlateComponent>(plate);
+
+            // Легендарная: 4 улучшения, каждое > 0.
+            Assert.That(rare.Rolled, Is.True);
+            Assert.That(rare.ProtectionBonus + rare.DurabilityBonus + rare.SlowdownReduction, Is.GreaterThan(0.25f));
+            Assert.That(plateComp.MaxDurability, Is.EqualTo(100f * (1f + rare.DurabilityBonus)).Within(0.01f));
+            Assert.That(ArmorPlateSystem.GetProtectionFactor(plateComp, rare), Is.EqualTo(1f + rare.ProtectionBonus).Within(0.0001f));
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
     public async Task PlateSlowsCarrierAnywhere()
     {
         await using var pair = await PoolManager.GetServerClient();
