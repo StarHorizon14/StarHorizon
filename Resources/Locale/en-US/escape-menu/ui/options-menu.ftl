@@ -210,6 +210,7 @@ ui-options-function-open-decal-spawn-window = Open decal spawn menu
 ui-options-function-open-admin-menu = Open admin menu
 ui-options-function-admin-rts-select = RTS: select creatures (hold and drag)
 ui-options-function-admin-rts-order = RTS: order selected creatures to move
+ui-options-function-admin-rts-attack = RTS: order selected creatures to attack the creature under the cursor
 ui-options-function-open-guidebook = Open guidebook
 ui-options-function-window-close-all = Close all windows
 ui-options-function-window-close-recent = Close recent window

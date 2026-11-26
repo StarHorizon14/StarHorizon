@@ -1,0 +1,136 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BasePlayerLasso
+  components:
+  - type: Item
+    size: Small
+    heldPrefix: rope
+    storedRotation: -90
+  - type: Clothing
+    slots: [ belt ]
+    equippedPrefix: rope
+    quickEquip: false
+  - type: PlayerLasso
+  - type: UseDelay
+    delay: 1
+
+- type: entity
+  name: short lasso
+  description: A short length of sturdy rope for tethering another person to you. They can walk freely within its length before it pulls taut.
+  id: PlayerLassoShort
+  parent: BasePlayerLasso
+  components:
+  - type: Sprite
+    sprite: _Horizon/Objects/Tools/rope.rsi
+    state: rope-1
+  - type: PlayerLasso
+    maxDistance: 3
+    spriteSteps: 1
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  name: lasso
+  description: A length of sturdy rope for tethering another person to you. They can walk freely within its length before it pulls taut.
+  id: PlayerLasso
+  parent: BasePlayerLasso
+  components:
+  - type: Sprite
+    sprite: _Horizon/Objects/Tools/rope.rsi
+    state: rope-2
+  - type: PlayerLasso
+    maxDistance: 6
+    spriteSteps: 2
+  - type: StaticPrice
+    price: 15
+
+- type: entity
+  name: long lasso
+  description: A long length of sturdy rope for tethering another person to you. They can walk freely within its length before it pulls taut.
+  id: PlayerLassoLong
+  parent: BasePlayerLasso
+  components:
+  - type: Sprite
+    sprite: _Horizon/Objects/Tools/rope.rsi
+    state: rope-3
+  - type: PlayerLasso
+    maxDistance: 12
+    spriteSteps: 3
+  - type: StaticPrice
+    price: 25
+
+- type: entity
+  name: lasso gun
+  description: Shoots out a rope that ties itself to the first person it touches. They can walk freely within its length before it pulls taut. Use it in hand to drop the rope.
+  parent: BaseItem
+  id: PlayerLassoGun
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: 0,-6
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
+    layers:
+    - state: base
+    - state: base-unshaded
+      map: [ "unshaded" ]
+      visible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TetherVisualsStatus.Key:
+        unshaded:
+          True: { state: base-unshaded }
+          False: { state: base-unshaded-off }
+  - type: Gun
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
+    fireRate: 1
+    projectileSpeed: 40
+    clumsyProof: true
+  - type: BasicEntityAmmoProvider
+    proto: PlayerLassoHook
+  - type: PlayerLasso
+    maxDistance: 10
+    tieByHand: false
+  - type: PlayerLassoGun
+  - type: PacifismAllowedGun
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  id: PlayerLassoHook
+  name: lasso rope end
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Horizon/Objects/Tools/rope.rsi
+    state: rope-4
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 0
+    angularDamping: 0
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: false
+        mask:
+        - Impassable
+        - HighImpassable
+        - BulletImpassable
+  - type: PlayerLassoProjectile
+  - type: TimedDespawn
+    lifetime: 3

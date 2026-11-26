@@ -38,6 +38,7 @@ public enum LedgerEntryType : byte
     StationDepositDonation,
     StationDepositAssetsSold,
     StationDepositOther,
+    MarketplaceTax, // Horizon
     // Expense entries
     MailPenalty,
     ShuttleRecordFees,

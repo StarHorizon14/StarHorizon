@@ -34,6 +34,7 @@ ledger-entry-type-StationDepositFines = Fines Deposited
 ledger-entry-type-StationDepositDonation = Donations
 ledger-entry-type-StationDepositAssetsSold = Sold Assets
 ledger-entry-type-StationDepositOther = Misc. Deposits
+ledger-entry-type-MarketplaceTax = StarOZON Tax
 ledger-entry-type-MailPenalty = Mail Penalties
 ledger-entry-type-ShuttleRecordFees = Shuttle Record Fees
 ledger-entry-type-StationWithdrawalPayroll = Payroll

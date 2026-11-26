@@ -1,0 +1,145 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'marketplace-window-title'}"
+                      MinSize="900 560"
+                      SetSize="1140 720">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="8">
+
+        <!-- Header -->
+        <PanelContainer Name="HeaderPanel" HorizontalExpand="True">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="10">
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center">
+                    <RichTextLabel Name="HeaderTitle"/>
+                    <RichTextLabel Name="HeaderTerminal"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Vertical" SeparationOverride="4" VerticalAlignment="Center">
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="6" HorizontalAlignment="Right">
+                        <PanelContainer Name="BalanceChip">
+                            <RichTextLabel Name="BalanceLabel" Margin="10 3 10 3"/>
+                        </PanelContainer>
+                        <PanelContainer Name="TaxChip">
+                            <RichTextLabel Name="TaxLabel" Margin="10 3 10 3"/>
+                        </PanelContainer>
+                        <PanelContainer Name="CountChip">
+                            <RichTextLabel Name="CountLabel" Margin="10 3 10 3"/>
+                        </PanelContainer>
+                    </BoxContainer>
+                    <PanelContainer Name="PendingChip" HorizontalAlignment="Right" Visible="False">
+                        <RichTextLabel Name="PendingLabel" Margin="10 3 10 3"/>
+                    </PanelContainer>
+                </BoxContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <TabContainer Name="Tabs" HorizontalExpand="True" VerticalExpand="True">
+
+            <!-- Market -->
+            <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="6">
+                <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                    <LineEdit Name="SearchBar" HorizontalExpand="True" PlaceHolder="{Loc 'marketplace-search-placeholder'}"/>
+                    <Label Text="{Loc 'marketplace-sort-label'}" VerticalAlignment="Center" StyleClasses="LabelSubText"/>
+                    <OptionButton Name="SortButton" MinWidth="180"/>
+                </BoxContainer>
+                <ScrollContainer HScrollEnabled="False" VerticalExpand="True" HorizontalExpand="True">
+                    <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                        <GridContainer Name="ListingsGrid" Columns="3" HorizontalExpand="True"/>
+                        <Label Name="ListingsEmpty" Text="{Loc 'marketplace-empty'}" HorizontalAlignment="Center"
+                               Margin="0 40 0 40" StyleClasses="LabelSubText" Visible="False"/>
+                    </BoxContainer>
+                </ScrollContainer>
+            </BoxContainer>
+
+            <!-- Requests -->
+            <BoxContainer Orientation="Horizontal" Margin="6" SeparationOverride="8">
+                <PanelContainer Name="CreateRequestPanel" SetWidth="340" VerticalExpand="True">
+                    <BoxContainer Name="RequestFormBox" Orientation="Vertical" Margin="12"/>
+                </PanelContainer>
+
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="6">
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                        <LineEdit Name="RequestSearch" HorizontalExpand="True" PlaceHolder="{Loc 'marketplace-request-search-placeholder'}"/>
+                        <CheckBox Name="OnlyMyRequests" Text="{Loc 'marketplace-request-only-mine'}"/>
+                    </BoxContainer>
+                    <ScrollContainer HScrollEnabled="False" VerticalExpand="True" HorizontalExpand="True">
+                        <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="0 0 6 0">
+                            <BoxContainer Name="RequestsList" Orientation="Vertical" HorizontalExpand="True"/>
+                            <Label Name="RequestsEmpty" Text="{Loc 'marketplace-request-empty'}" HorizontalAlignment="Center"
+                                   Margin="0 40 0 40" StyleClasses="LabelSubText" Visible="False"/>
+                        </BoxContainer>
+                    </ScrollContainer>
+                </BoxContainer>
+            </BoxContainer>
+
+            <!-- Sell -->
+            <BoxContainer Orientation="Horizontal" Margin="6" SeparationOverride="8">
+                <PanelContainer Name="SlotPanel" SetWidth="340" VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="8">
+                        <Label Text="{Loc 'marketplace-sell-slot-title'}" StyleClasses="LabelHeading"/>
+                        <BoxContainer Name="SlotIconBox" HorizontalAlignment="Center" Margin="0 8 0 8"/>
+                        <RichTextLabel Name="SlotNameLabel" HorizontalAlignment="Center"/>
+                        <RichTextLabel Name="SlotCountLabel" HorizontalAlignment="Center"/>
+                        <RichTextLabel Name="SlotDenyLabel" HorizontalAlignment="Center" Visible="False"/>
+                        <Control VerticalExpand="True"/>
+                        <Button Name="EjectButton" Text="{Loc 'marketplace-sell-eject'}" HorizontalExpand="True"/>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <PanelContainer Name="SellPanel" HorizontalExpand="True" VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="10">
+                        <Label Text="{Loc 'marketplace-sell-title'}" StyleClasses="LabelHeading"/>
+
+                        <BoxContainer Name="AmountRow" Orientation="Horizontal" SeparationOverride="8">
+                            <Label Text="{Loc 'marketplace-sell-amount'}" MinWidth="150" VerticalAlignment="Center"/>
+                            <BoxContainer Name="AmountSpinBox" HorizontalExpand="True"/>
+                            <Button Name="AmountAllButton" Text="{Loc 'marketplace-sell-all'}"/>
+                        </BoxContainer>
+
+                        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                            <Label Name="PriceLabel" Text="{Loc 'marketplace-sell-price-unit'}" MinWidth="150" VerticalAlignment="Center"/>
+                            <LineEdit Name="PriceEdit" HorizontalExpand="True" PlaceHolder="0"/>
+                        </BoxContainer>
+
+                        <PanelContainer Name="SummaryPanel">
+                            <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="4">
+                                <BoxContainer Orientation="Horizontal">
+                                    <Label Text="{Loc 'marketplace-sell-sum'}" HorizontalExpand="True" StyleClasses="LabelSubText"/>
+                                    <RichTextLabel Name="SumLabel"/>
+                                </BoxContainer>
+                                <BoxContainer Orientation="Horizontal">
+                                    <Label Name="TaxRowLabel" HorizontalExpand="True" StyleClasses="LabelSubText"/>
+                                    <RichTextLabel Name="TaxAmountLabel"/>
+                                </BoxContainer>
+                                <PanelContainer Name="SummaryDivider" MinHeight="1" HorizontalExpand="True"/>
+                                <BoxContainer Orientation="Horizontal">
+                                    <Label Text="{Loc 'marketplace-sell-receive'}" HorizontalExpand="True"/>
+                                    <RichTextLabel Name="ReceiveLabel"/>
+                                </BoxContainer>
+                            </BoxContainer>
+                        </PanelContainer>
+
+                        <RichTextLabel Name="MergeLabel" Visible="False"/>
+                        <Control VerticalExpand="True"/>
+                        <Button Name="ListButton" Text="{Loc 'marketplace-sell-button'}" MinHeight="40"
+                                StyleClasses="ButtonColorGreen" HorizontalExpand="True"/>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+
+            <!-- My listings -->
+            <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="6">
+                <ScrollContainer HScrollEnabled="False" VerticalExpand="True" HorizontalExpand="True">
+                    <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                        <GridContainer Name="OwnGrid" Columns="3" HorizontalExpand="True"/>
+                        <Label Name="OwnEmpty" Text="{Loc 'marketplace-mine-empty'}" HorizontalAlignment="Center"
+                               Margin="0 20 0 20" StyleClasses="LabelSubText" Visible="False"/>
+                        <Label Text="{Loc 'marketplace-my-offers-title'}" StyleClasses="LabelHeading" Margin="4 12 4 4"/>
+                        <BoxContainer Name="MyOffersList" Orientation="Vertical" HorizontalExpand="True" SeparationOverride="4" Margin="4 0 4 0"/>
+                        <Label Name="MyOffersEmpty" Text="{Loc 'marketplace-my-offers-empty'}" HorizontalAlignment="Center"
+                               Margin="0 20 0 20" StyleClasses="LabelSubText" Visible="False"/>
+                    </BoxContainer>
+                </ScrollContainer>
+            </BoxContainer>
+        </TabContainer>
+    </BoxContainer>
+</controls:FancyWindow>

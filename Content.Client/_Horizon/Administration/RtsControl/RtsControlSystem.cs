@@ -89,6 +89,8 @@ public sealed class RtsControlSystem : EntitySystem
                 new PointerStateInputCmdHandler(OnSelectDown, OnSelectUp, outsidePrediction: true))
             .Bind(ContentKeyFunctions.AdminRtsOrder,
                 new PointerInputCmdHandler(OnOrder, outsidePrediction: true))
+            .Bind(ContentKeyFunctions.AdminRtsAttack,
+                new PointerInputCmdHandler(OnAttack, outsidePrediction: true))
             // Ctrl+click is also bound to pulling, so swallow those while RTS mode is on.
             .BindBefore(ContentKeyFunctions.TryPullObject,
                 new PointerInputCmdHandler((_, _, _) => true, outsidePrediction: true),
@@ -156,7 +158,19 @@ public sealed class RtsControlSystem : EntitySystem
         return true;
     }
 
+    private bool OnAttack(ICommonSession? session, EntityCoordinates coords, EntityUid uid)
+    {
+        // Attack the creature under the cursor, or just move there if there is none.
+        var target = uid.IsValid() && HasComp<MobStateComponent>(uid) ? uid : (EntityUid?) null;
+        return SendOrder(coords, target);
+    }
+
     private bool OnOrder(ICommonSession? session, EntityCoordinates coords, EntityUid uid)
+    {
+        return SendOrder(coords, null);
+    }
+
+    private bool SendOrder(EntityCoordinates coords, EntityUid? attackTarget)
     {
         Selected.RemoveWhere(e => !Exists(e) || Terminating(e));
         if (Selected.Count == 0)
@@ -168,7 +182,8 @@ public sealed class RtsControlSystem : EntitySystem
             units.Add(GetNetEntity(unit));
         }
 
-        RaiseNetworkEvent(new RtsMoveOrderEvent(units, GetNetCoordinates(coords)));
+        RaiseNetworkEvent(new RtsMoveOrderEvent(units, GetNetCoordinates(coords),
+            attackTarget == null ? null : GetNetEntity(attackTarget.Value)));
 
         OrderMarker = _xform.ToMapCoordinates(coords);
         OrderMarkerExpires = _timing.CurTime + MarkerDuration;

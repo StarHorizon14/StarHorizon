@@ -595,3 +595,6 @@
 
 - type: Tag
   id: DerelictDock
+
+- type: Tag
+  id: ArmorPlate

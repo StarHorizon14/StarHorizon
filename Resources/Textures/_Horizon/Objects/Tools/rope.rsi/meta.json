@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CLA with hosting restrictions",
+  "copyright": "Sprited by Xigovir DS:623559319543349268",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "rope-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "rope-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "rope-0"
+    },
+    {
+      "name": "rope-1"
+    },
+    {
+      "name": "rope-2"
+    },
+    {
+      "name": "rope-3"
+    },
+    {
+      "name": "rope-4"
+    },
+    {
+      "name": "rope-equipped-BELT",
+      "directions": 4
+    }
+  ]
+}

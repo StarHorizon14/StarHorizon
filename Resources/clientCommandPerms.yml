@@ -92,3 +92,8 @@
   Commands:
     - achatwindow
     - achatwindowpopout
+
+# Horizon
+- Flags: FUN
+  Commands:
+    - rtscontrol

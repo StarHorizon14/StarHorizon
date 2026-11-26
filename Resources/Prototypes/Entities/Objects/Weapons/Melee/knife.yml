@@ -3,6 +3,11 @@
   id: BaseKnife
   abstract: true
   components:
+  # Horizon Durability start
+  - type: WeaponWear
+    maxDurability: 300
+    wearChance: 0.3
+  # Horizon Durability end
   - type: Tag
     tags:
     - Knife

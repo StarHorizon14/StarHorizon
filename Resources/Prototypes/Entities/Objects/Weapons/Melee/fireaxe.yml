@@ -4,6 +4,11 @@
   id: FireAxe
   description: Truly, the weapon of a madman. Who would think to fight fire with an axe?
   components:
+  # Horizon Durability start
+  - type: WeaponWear
+    maxDurability: 300
+    wearChance: 0.3
+  # Horizon Durability end
   - type: Tag
     tags:
     - FireAxe

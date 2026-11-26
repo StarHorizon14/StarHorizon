@@ -246,6 +246,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.OpenAdminMenu);
             AddButton(ContentKeyFunctions.AdminRtsSelect); // Horizon
             AddButton(ContentKeyFunctions.AdminRtsOrder); // Horizon
+            AddButton(ContentKeyFunctions.AdminRtsAttack); // Horizon
             AddButton(EngineKeyFunctions.WindowCloseAll);
             AddButton(EngineKeyFunctions.WindowCloseRecent);
             AddButton(EngineKeyFunctions.EscapeMenu);

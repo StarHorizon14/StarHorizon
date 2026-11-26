@@ -73,6 +73,21 @@ public abstract partial class SharedArmorSystem : EntitySystem
             Loc.GetString("armor-examinable-verb-message"));
     }
 
+    /// <summary>
+    /// Horizon: armor resist text as shown by the detailed examine verb, for callers that cannot use verbs
+    /// (e.g. items inside the marketplace storage). Null if the item hides its armor values.
+    /// </summary>
+    public FormattedMessage? GetArmorExamineText(EntityUid uid, ArmorComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false) || !component.ShowArmorOnExamine)
+            return null;
+
+        var examineMarkup = GetArmorExamine(component.Modifiers);
+        var ev = new ArmorExamineEvent(examineMarkup);
+        RaiseLocalEvent(uid, ref ev);
+        return examineMarkup;
+    }
+
     private FormattedMessage GetArmorExamine(DamageModifierSet armorModifiers)
     {
         var msg = new FormattedMessage();

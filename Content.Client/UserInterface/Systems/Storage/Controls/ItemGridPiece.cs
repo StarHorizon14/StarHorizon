@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client.Items.Systems;
+using Content.Shared._Horizon.ArmorPlates; // Horizon
 using Content.Shared.Item;
 using Content.Shared.Storage;
 using Robust.Client.GameObjects;
@@ -46,6 +47,9 @@ public sealed class ItemGridPiece : Control, IEntityControl
     private Texture? _markedFirstTexture;
     private readonly string _markedSecondTexturePath = "Storage/marked_second";
     private Texture? _markedSecondTexture;
+    // Horizon: мини-иконка активной бронепластины
+    private readonly string _armorPlateActiveTexturePath = "Storage/armor_plate_active";
+    private Texture? _armorPlateActiveTexture;
     #endregion
 
     public ItemGridPiece(Entity<ItemComponent> entity, ItemStorageLocation location,  IEntityManager entityManager)
@@ -92,6 +96,7 @@ public sealed class ItemGridPiece : Control, IEntityControl
         _bottomRightTexture = Theme.ResolveTextureOrNull(_bottomRightTexturePath)?.Texture;
         _markedFirstTexture = Theme.ResolveTextureOrNull(_markedFirstTexturePath)?.Texture;
         _markedSecondTexture = Theme.ResolveTextureOrNull(_markedSecondTexturePath)?.Texture;
+        _armorPlateActiveTexture = Theme.ResolveTextureOrNull(_armorPlateActiveTexturePath)?.Texture; // Horizon
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -121,6 +126,10 @@ public sealed class ItemGridPiece : Control, IEntityControl
 
         var marked = Marked != null;
         Vector2i? maybeMarkedPos = null;
+        // Horizon: активная бронепластина помечается иконкой в правом верхнем углу
+        var plateActive = _entityManager.HasComponent<ArmorPlateComponent>(Entity)
+                          && _entityManager.System<ArmorPlateSystem>().IsPlateActive(Entity);
+        Vector2i? maybePlatePos = null;
 
         _texturesPositions.Clear();
         for (var y = boundingGrid.Bottom; y <= boundingGrid.Top; y++)
@@ -137,6 +146,13 @@ public sealed class ItemGridPiece : Control, IEntityControl
                 {
                     var neOffset = new Vector2(size.X, 0);
                     handle.DrawTextureRect(neTexture, new UIBox2(topLeft + neOffset, topLeft + neOffset + size), colorModulate);
+
+                    // Horizon
+                    if (plateActive && neTexture == _topRightTexture)
+                    {
+                        maybePlatePos = topLeft + new Vector2i((int) neOffset.X, 0);
+                        plateActive = false;
+                    }
                 }
                 if (GetTexture(adjustedShape, new Vector2i(x, y), Direction.NorthWest) is {} nwTexture)
                 {
@@ -213,6 +229,17 @@ public sealed class ItemGridPiece : Control, IEntityControl
                 handle.DrawTextureRect(markedTexture, new UIBox2(markedPos, markedPos + size));
             }
         }
+
+        DrawArmorPlateMark(handle, maybePlatePos, size); // Horizon
+    }
+
+    // Horizon
+    private void DrawArmorPlateMark(DrawingHandleScreen handle, Vector2i? pos, Vector2 size)
+    {
+        if (pos is not { } platePos || _armorPlateActiveTexture == null)
+            return;
+
+        handle.DrawTextureRect(_armorPlateActiveTexture, new UIBox2(platePos, platePos + size));
     }
 
     protected override bool HasPoint(Vector2 point)

@@ -135,6 +135,7 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.OpenAdminMenu);
             common.AddFunction(ContentKeyFunctions.AdminRtsSelect); // Horizon
             common.AddFunction(ContentKeyFunctions.AdminRtsOrder); // Horizon
+            common.AddFunction(ContentKeyFunctions.AdminRtsAttack); // Horizon
             common.AddFunction(ContentKeyFunctions.OpenGuidebook);
 
             CMFunctions(contexts); // Horizon Attachments

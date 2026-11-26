@@ -22,6 +22,25 @@ public sealed partial class RtsMoveOrderComponent : Component
     public bool FellBack;
 
     /// <summary>
+    ///     If set, this is an attack order: walk towards the target until it is close enough
+    ///     for the normal AI to see it, then let the AI fight.
+    /// </summary>
+    [DataField]
+    public EntityUid? AttackTarget;
+
+    /// <summary>
+    ///     When to next refresh the path towards a moving attack target.
+    /// </summary>
+    [DataField]
+    public TimeSpan NextRetarget;
+
+    /// <summary>
+    ///     How many progress checks in a row found the creature not moving.
+    /// </summary>
+    [DataField]
+    public int StuckStrikes;
+
+    /// <summary>
     ///     When to next check that the creature is actually making progress.
     /// </summary>
     [DataField]

@@ -4,6 +4,9 @@
   parent: BaseItem
   abstract: true
   components:
+  # Horizon Durability start
+  - type: WeaponWear
+  # Horizon Durability end
   - type: Sprite
   - type: Item
     size: Huge

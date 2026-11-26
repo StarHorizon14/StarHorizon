@@ -3,6 +3,11 @@
   parent: BaseItem
   abstract: true
   components:
+  # Horizon Durability start
+  - type: WeaponWear
+    maxDurability: 600
+    wearChance: 0.3
+  # Horizon Durability end
   - type: WeaponCaseInsertable # Frontier
   - type: EnergySword
   - type: ItemToggle

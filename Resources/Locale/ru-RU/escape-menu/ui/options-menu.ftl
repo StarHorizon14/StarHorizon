@@ -208,6 +208,7 @@ ui-options-function-open-decal-spawn-window = Открыть меню спавн
 ui-options-function-open-admin-menu = Открыть админ меню
 ui-options-function-admin-rts-select = RTS: выделить существ (зажать и тянуть)
 ui-options-function-admin-rts-order = RTS: приказать выбранным существам идти
+ui-options-function-admin-rts-attack = RTS: приказать выбранным существам атаковать существо под курсором
 ui-options-function-open-guidebook = Открыть руководство
 ui-options-function-window-close-all = Закрыть все окна
 ui-options-function-window-close-recent = Закрыть текущее окно

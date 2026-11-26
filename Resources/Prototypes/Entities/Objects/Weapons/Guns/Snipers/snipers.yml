@@ -5,6 +5,10 @@
   description: A rooty tooty point and shooty.
   abstract: true
   components:
+  # Horizon Durability start
+  - type: WeaponWear
+    maxDurability: 500
+  # Horizon Durability end
   - type: Sprite
     layers:
     - state: base

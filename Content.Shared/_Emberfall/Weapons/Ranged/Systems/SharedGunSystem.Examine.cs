@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Horizon.Durability; // Horizon Durability
 using Content.Shared._NF.Weapons.Rarity; // Frontier
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
@@ -29,6 +30,12 @@ public abstract partial class SharedGunSystem
     private FormattedMessage GetGunExamine(Entity<GunComponent> ent)
     {
         TryComp(ent.Owner, out RareWeaponComponent? rareComp); // Frontier: rare weapons
+        // Horizon Durability start: бонусы редкости и штрафы износа показываются одним итоговым числом
+        TryComp(ent.Owner, out WeaponWearComponent? wearComp);
+        WeaponStatModifiers? mods = rareComp != null || wearComp != null
+            ? WeaponWearSystem.GetCombinedModifiers(rareComp, wearComp)
+            : null;
+        // Horizon Durability end
 
         var msg = new FormattedMessage();
         msg.AddMarkupOrThrow(Loc.GetString("gun-examine"));
@@ -40,7 +47,7 @@ public abstract partial class SharedGunSystem
             ("color", FireRateExamineColor),
             ("value", Math.Round(ent.Comp.AngleIncreaseModified.Degrees, 2))
         ));
-        PushStatModifier(msg, rareComp?.AccuracyModifier);
+        PushStatModifier(msg, mods?.Accuracy, lowerIsBetter: true); // Horizon Durability
 
         // Stability (AngleDecay)
         msg.PushNewline();
@@ -48,7 +55,7 @@ public abstract partial class SharedGunSystem
             ("color", FireRateExamineColor),
             ("value", Math.Round(ent.Comp.AngleDecayModified.Degrees,2))
         ));
-        PushStatModifier(msg, rareComp != null ? 1 / rareComp?.AccuracyModifier : null);
+        PushStatModifier(msg, mods != null ? 1 / mods.Value.Accuracy : null); // Horizon Durability
 
         // Max Angle
         msg.PushNewline();
@@ -56,7 +63,7 @@ public abstract partial class SharedGunSystem
             ("color", FireRateExamineColor),
             ("value", Math.Round(ent.Comp.MaxAngleModified.Degrees, 2))
         ));
-        PushStatModifier(msg, rareComp?.AccuracyModifier);
+        PushStatModifier(msg, mods?.Accuracy, lowerIsBetter: true); // Horizon Durability
 
         // Min Angle
         msg.PushNewline();
@@ -64,7 +71,7 @@ public abstract partial class SharedGunSystem
             ("color", FireRateExamineColor),
             ("value", Math.Round(ent.Comp.MinAngleModified.Degrees, 2))
         ));
-        PushStatModifier(msg, rareComp?.AccuracyModifier);
+        PushStatModifier(msg, mods?.Accuracy, lowerIsBetter: true); // Horizon Durability
 
         // Frontier: separate burst fire calculation
         // Fire Rate (converted from RPS to RPM)
@@ -75,7 +82,7 @@ public abstract partial class SharedGunSystem
                 ("color", FireRateExamineColor),
                 ("value", ent.Comp.FireRateModified)
             ));
-            PushStatModifier(msg, rareComp?.FireRateModifier);
+            PushStatModifier(msg, mods?.FireRate); // Horizon Durability
         }
         else
         {
@@ -96,23 +103,24 @@ public abstract partial class SharedGunSystem
             ("color", FireRateExamineColor),
             ("value", ent.Comp.ProjectileSpeedModified)
         ));
-        PushStatModifier(msg, rareComp?.ProjectileSpeedModifier);
+        PushStatModifier(msg, mods?.ProjectileSpeed); // Horizon Durability
         // End Frontier: use nf-prefixed loc strings, no rounding on values
 
         return msg;
     }
 
     // Frontier: show stat modifications
-    private void PushStatModifier(FormattedMessage msg, float? maybeModifier)
+    private void PushStatModifier(FormattedMessage msg, float? maybeModifier, bool lowerIsBetter = false) // Horizon Durability: lowerIsBetter
     {
-        // Assumption: The modification will be different *enough* from the base value
-        // that we don't need to worry about floating-point precision nonsense.
-        if (maybeModifier is { } modifier && modifier != 1.0f)
+        // Horizon Durability: итог < 0.05% не показываем, цвет зависит от того, стала ли характеристика лучше
+        if (maybeModifier is { } modifier && MathF.Abs(modifier - 1.0f) >= 0.0005f)
         {
+            var better = lowerIsBetter ? modifier < 1f : modifier > 1f;
             msg.AddText(" ");
             msg.AddMarkupOrThrow(Loc.GetString("gun-examine-nf-stat-modifier",
                 ("difference", modifier - 1),
-                ("plus", modifier > 1 ? "+" : "")
+                ("plus", modifier > 1 ? "+" : ""),
+                ("color", better ? "lime" : "red")
             ));
         }
     }

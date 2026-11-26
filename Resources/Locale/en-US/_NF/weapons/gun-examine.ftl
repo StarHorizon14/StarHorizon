@@ -5,7 +5,7 @@ gun-examine-nf-min-angle = - [color={$color}]Minimum spread[/color]: [color=ligh
 gun-examine-nf-fire-rate = - [color={$color}]Fire rate[/color]: [color=lightblue]{NATURALFIXED($value, 1)} RPS[/color]
 gun-examine-nf-fire-rate-burst = - [color={$color}]Fire rate[/color]: [color=lightblue]{NATURALFIXED($value, 1)} RPS[/color] (burst of [color=lightblue]{$burstsize}[/color] at [color=lightblue]{NATURALFIXED($burstrate, 1)} RPS[/color])
 gun-examine-nf-muzzle-velocity = - [color={$color}]Muzzle velocity[/color]: [color=lightblue]{NATURALFIXED($value, 1)} m/s[/color]
-gun-examine-nf-stat-modifier = [bold]([color=lime]{$plus}{NATURALPERCENT($difference, 1)}[/color])[/bold]
+gun-examine-nf-stat-modifier = [bold]([color={ $color }]{$plus}{NATURALPERCENT($difference, 1)}[/color])[/bold]
 gun-examine-nf-class = - [color={$color}]Class[/color]: [color=lightblue]{$value}[/color]
 gun-examine-nf-manufacturer = - [color={$color}]Manufacturer[/color]: [color=lightblue]{$value}[/color]
 

@@ -15,6 +15,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Maps;
 using Content.Shared.Parallax;
 using Content.Server._Horizon.SpaceHazards; // Horizon
+using Content.Server._Horizon.Shuttles.Events; // Horizon
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.StatusEffect;
@@ -458,6 +459,10 @@ public sealed partial class ShuttleSystem
         // Setting the entity to map directly may run grid traversal (at least at time of writing this).
         var oldMapUid = xform.MapUid;
         var oldGridMatrix = _transform.GetWorldMatrix(xform);
+        // Horizon start
+        var changingEv = new FTLGridMapChangingEvent(uid);
+        RaiseLocalEvent(uid, ref changingEv, true);
+        // Horizon end
         _transform.SetCoordinates(entity.Owner, ftlStart);
         LeaveNoFTLBehind((entity.Owner, xform), oldGridMatrix, oldMapUid);
 
@@ -537,6 +542,11 @@ public sealed partial class ShuttleSystem
 
         QueueDel(comp.VisualizerEntity);
         comp.VisualizerEntity = null;
+
+        // Horizon start
+        var changingEv = new FTLGridMapChangingEvent(uid);
+        RaiseLocalEvent(uid, ref changingEv, true);
+        // Horizon end
 
         if (!Exists(comp.TargetCoordinates.EntityId))
         {

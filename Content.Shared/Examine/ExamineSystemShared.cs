@@ -55,6 +55,11 @@ namespace Content.Shared.Examine
             if (IsClientSide(entity))
                 return true;
 
+            // Horizon-Start: marketplace listings are examined remotely through the console UI
+            if (CanBypassExamineRange(examiner, entity))
+                return true;
+            // Horizon-End
+
             // Ghosts can see everything.
             if (_ghostQuery.HasComp(examiner))
                 return true;
@@ -83,9 +88,29 @@ namespace Content.Shared.Examine
             if (IsClientSide(examined))
                 return true;
 
+            // Horizon-Start: marketplace listings are examined remotely through the console UI
+            if (CanBypassExamineRange(examiner, examined))
+                return true;
+            // Horizon-End
+
             return !Deleted(examined) && CanExamine(examiner, _transform.GetMapCoordinates(examined),
                 entity => entity == examiner || entity == examined, examined);
         }
+
+        // Horizon-Start
+        /// <summary>
+        /// Lets systems allow examining an entity regardless of range, e.g. an item listed on the marketplace.
+        /// </summary>
+        private bool CanBypassExamineRange(EntityUid examiner, EntityUid examined)
+        {
+            if (Deleted(examined))
+                return false;
+
+            var ev = new Content.Shared._Horizon.Marketplace.ExamineRangeBypassEvent(examiner);
+            RaiseLocalEvent(examined, ref ev);
+            return ev.Allowed;
+        }
+        // Horizon-End
 
         [Pure]
         public virtual bool CanExamine(EntityUid examiner, MapCoordinates target, Ignored? predicate = null, EntityUid? examined = null, ExaminerComponent? examinerComp = null)
