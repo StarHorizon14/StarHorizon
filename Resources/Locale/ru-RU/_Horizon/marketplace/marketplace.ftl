@@ -3,7 +3,7 @@ marketplace-item-slot-name = Лоток пункта выдачи
 ## Окно
 
 marketplace-window-title = Пункт выдачи StarOZON
-marketplace-header-title = [font size=16][bold][color=#7CC4FF]Star[/color][color=#E8EEF7]OZON[/color][/bold][/font]  [color=#8391A5]· пункт выдачи · возврат за ваш кислород[/color]
+marketplace-header-title = [font size=16][bold][color=#7CC4FF]Star[/color][color=#E8EEF7]OZON[/color][/bold][/font]  [color=#8391A5]· пункт выдачи · ВОЗРАТУ НЕ ПОДЛЕЖИТ[/color]
 marketplace-header-terminal = [color={$mutedColor}]Терминал:[/color] [color={$accentColor}]{$grid}[/color]
 
 marketplace-stat-balance = [color={$mutedColor}]Баланс[/color]  [bold][color={$priceColor}]{$balance}[/color][/bold]
@@ -27,7 +27,7 @@ marketplace-empty = На рынке пока нет ни одного лота.
 marketplace-empty-search = Ничего не найдено.
 marketplace-mine-empty = У вас нет выставленных лотов.
 
-marketplace-examine-hint = ПКМ или Shift+ЛКМ — осмотреть предмет
+marketplace-examine-hint = Shift+ЛКМ — осмотреть предмет
 
 ## Карточка лота
 
@@ -186,7 +186,7 @@ ent-MarketplaceViewerCartridge = картридж «StarOZON»
     .desc = Приложение StarOZON для КПК: смотрите товары и оставляйте заявки, не вставая с кресла пилота.
 ent-BlackMarketViewerCartridge = картридж «StarBerries»
     .desc = Картридж без маркировки с зашифрованным подключением к StarBerries.
-marketplace-examine-more = ПКМ или Shift+ЛКМ — полный осмотр с действиями
+marketplace-examine-more = ПКМ или Shift+ЛКМ осмотреть предмет
 
 ## Доставка телепортом
 

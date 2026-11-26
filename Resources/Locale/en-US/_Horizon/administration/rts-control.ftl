@@ -6,4 +6,3 @@ cmd-rtscontrol-enabled = RTS mode enabled.
 cmd-rtscontrol-disabled = RTS mode disabled.
 cmd-rtscontrol-no-permission = You need the Fun admin flag to use RTS mode.
 rts-control-invalid-target = RTS: invalid target point.
-rts-control-result = RTS: { $accepted } of { $requested } creatures accepted the order. Skipped: no AI/not a mob { $noAi }, dead or incapacitated { $incapacitated }, player-controlled { $player }, over the limit { $limit }.

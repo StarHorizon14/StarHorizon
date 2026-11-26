@@ -6,4 +6,3 @@ cmd-rtscontrol-enabled = RTS-режим включён.
 cmd-rtscontrol-disabled = RTS-режим выключен.
 cmd-rtscontrol-no-permission = Для RTS-режима нужен админ-флаг Fun.
 rts-control-invalid-target = RTS: неверная точка назначения.
-rts-control-result = RTS: приказ принят { $accepted } из { $requested } существ. Пропущено: без ИИ/не моб { $noAi }, мертвы или без сознания { $incapacitated }, управляются игроком { $player }, сверх лимита { $limit }.

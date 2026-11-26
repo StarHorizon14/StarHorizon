@@ -5,7 +5,12 @@
   components:
   - type: Item
     size: Small
+    heldPrefix: rope
     storedRotation: -90
+  - type: Clothing
+    slots: [ belt ]
+    equippedPrefix: rope
+    quickEquip: false
   - type: PlayerLasso
   - type: UseDelay
     delay: 1
@@ -17,10 +22,11 @@
   parent: BasePlayerLasso
   components:
   - type: Sprite
-    sprite: Objects/Tools/cable-coils.rsi
-    state: coil-10
+    sprite: _Horizon/Objects/Tools/rope.rsi
+    state: rope-1
   - type: PlayerLasso
-    maxDistance: 5
+    maxDistance: 3
+    spriteSteps: 1
   - type: StaticPrice
     price: 10
 
@@ -31,10 +37,11 @@
   parent: BasePlayerLasso
   components:
   - type: Sprite
-    sprite: Objects/Tools/cable-coils.rsi
-    state: coil-20
+    sprite: _Horizon/Objects/Tools/rope.rsi
+    state: rope-2
   - type: PlayerLasso
-    maxDistance: 10
+    maxDistance: 6
+    spriteSteps: 2
   - type: StaticPrice
     price: 15
 
@@ -45,10 +52,11 @@
   parent: BasePlayerLasso
   components:
   - type: Sprite
-    sprite: Objects/Tools/cable-coils.rsi
-    state: coil-30
+    sprite: _Horizon/Objects/Tools/rope.rsi
+    state: rope-3
   - type: PlayerLasso
-    maxDistance: 20
+    maxDistance: 12
+    spriteSteps: 3
   - type: StaticPrice
     price: 25
 
@@ -102,10 +110,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    noRot: false
-    sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
-    layers:
-    - state: hook
+    sprite: _Horizon/Objects/Tools/rope.rsi
+    state: rope-4
   - type: Physics
     bodyType: Dynamic
     linearDamping: 0
@@ -127,4 +133,4 @@
         - BulletImpassable
   - type: PlayerLassoProjectile
   - type: TimedDespawn
-    lifetime: 2
+    lifetime: 3

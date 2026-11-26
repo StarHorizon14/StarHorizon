@@ -6,6 +6,8 @@ using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Preferences.Managers;
 using Content.Server.Stack;
+using Content.Shared._Horizon.ArmorPlates;
+using Content.Shared.Clothing;
 using Content.Shared._Horizon.Marketplace;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Bank.Components;
@@ -48,6 +50,9 @@ public sealed partial class MarketplaceSystem : SharedMarketplaceSystem
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private readonly Content.Shared.Armor.SharedArmorSystem _armor = default!;
+    [Dependency] private readonly Content.Shared.Clothing.ClothingSpeedModifierSystem _clothingSpeed = default!;
+    [Dependency] private readonly Content.Shared._Horizon.ArmorPlates.ArmorPlateSystem _plates = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
@@ -499,6 +504,32 @@ public sealed partial class MarketplaceSystem : SharedMarketplaceSystem
             return;
 
         var text = _examine.GetExamineText(item.Value, args.Actor);
+
+        // The armor verb needs physical access to the item, which items inside the market storage never have.
+        if (_armor.GetArmorExamineText(item.Value) is { } armorText)
+        {
+            text.PushNewline();
+            text.AddMessage(armorText);
+        }
+
+        if (TryComp<ClothingSpeedModifierComponent>(item, out var speed) && _clothingSpeed.GetSpeedExamineText(speed) is { } speedText)
+        {
+            text.PushNewline();
+            text.AddMessage(speedText);
+        }
+
+        if (TryComp<ArmorPlateComponent>(item, out var plate))
+        {
+            foreach (var details in new[] { _plates.GetArmorExamine((item.Value, plate)), _plates.GetSpeedExamine((item.Value, plate)) })
+            {
+                if (details == null)
+                    continue;
+
+                text.PushNewline();
+                text.AddMessage(details);
+            }
+        }
+
         _ui.ServerSendUiMessage(ent.Owner, MarketplaceConsoleUiKey.Key, new MarketplaceExamineResponseMessage(args.Item, text), args.Actor);
     }
 

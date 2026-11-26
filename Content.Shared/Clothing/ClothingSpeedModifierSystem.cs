@@ -70,11 +70,23 @@ public sealed partial class ClothingSpeedModifierSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
+        if (GetSpeedExamineText(component) is not { } msg)
+            return;
+
+        _examine.AddDetailedExamineVerb(args, component, msg, Loc.GetString("clothing-speed-examinable-verb-text"), "/Textures/Interface/VerbIcons/outfit.svg.192dpi.png", Loc.GetString("clothing-speed-examinable-verb-message"));
+    }
+
+    /// <summary>
+    /// Horizon: speed text of the detailed examine verb, for callers that cannot use verbs
+    /// (e.g. items inside the marketplace storage). Null if the item does not change speed.
+    /// </summary>
+    public FormattedMessage? GetSpeedExamineText(ClothingSpeedModifierComponent component)
+    {
         var walkModifierPercentage = MathF.Round((1.0f - component.WalkModifier) * 100f, 1);
         var sprintModifierPercentage = MathF.Round((1.0f - component.SprintModifier) * 100f, 1);
 
         if (walkModifierPercentage == 0.0f && sprintModifierPercentage == 0.0f)
-            return;
+            return null;
 
         var msg = new FormattedMessage();
 
@@ -109,7 +121,7 @@ public sealed partial class ClothingSpeedModifierSystem : EntitySystem
             }
         }
 
-        _examine.AddDetailedExamineVerb(args, component, msg, Loc.GetString("clothing-speed-examinable-verb-text"), "/Textures/Interface/VerbIcons/outfit.svg.192dpi.png", Loc.GetString("clothing-speed-examinable-verb-message"));
+        return msg;
     }
 
     private void OnToggled(Entity<ClothingSpeedModifierComponent> ent, ref ItemToggledEvent args)

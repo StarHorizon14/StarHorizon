@@ -27,7 +27,7 @@ marketplace-empty = There are no listings on the market yet.
 marketplace-empty-search = Nothing found.
 marketplace-mine-empty = You have no active listings.
 
-marketplace-examine-hint = Right click or Shift+click to examine
+marketplace-examine-hint = Shift+click to examine
 
 ## Listing card
 

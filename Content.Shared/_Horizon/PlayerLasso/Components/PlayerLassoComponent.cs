@@ -33,6 +33,13 @@ public sealed partial class PlayerLassoComponent : Component
     public float MaxDistance = 10f;
 
     /// <summary>
+    /// Index of the largest coil sprite (rope-N) shown while the rope is untied.
+    /// The sprite shrinks down to rope-0 as the rope pulls taut.
+    /// </summary>
+    [DataField]
+    public int SpriteSteps = 4;
+
+    /// <summary>
     /// How fast the rope reels in or lets out per second while the holder is pulling on it.
     /// </summary>
     [DataField, AutoNetworkedField]

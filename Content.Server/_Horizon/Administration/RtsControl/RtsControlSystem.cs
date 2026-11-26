@@ -96,14 +96,6 @@ public sealed class RtsControlSystem : EntitySystem
             return;
         }
 
-        _chat.DispatchServerMessage(args.SenderSession, Loc.GetString("rts-control-result",
-            ("accepted", result.Accepted),
-            ("requested", result.Requested),
-            ("noAi", result.NoAi),
-            ("incapacitated", result.Incapacitated),
-            ("player", result.PlayerControlled),
-            ("limit", result.OverLimit)));
-
         if (result.Accepted == 0)
             return;
 

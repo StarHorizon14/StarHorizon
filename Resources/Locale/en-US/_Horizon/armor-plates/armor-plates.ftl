@@ -3,7 +3,6 @@ armor-plate-examine-broken = [color=red]The plate is broken and no longer protec
 armor-plate-examine-durability = Durability: [color={ $color }]{ $bar }[/color] { $current }/{ $max }
 armor-plate-examine-worn = [color=orange]The plate is worn: protection reduced by { $value }%.[/color]
 armor-plate-examine-resists = Plate resistances:
-armor-plate-examine-hint = [color=gray]Works only when carried in the container of a jumpsuit, webbing or outer clothing.[/color]
 armor-plate-slot-name = Armor plate
 armor-plate-examine-slowdown = Slows the carrier by [color=orange]{ $value }%[/color].
 armor-plate-broken-name = broken { $baseName }

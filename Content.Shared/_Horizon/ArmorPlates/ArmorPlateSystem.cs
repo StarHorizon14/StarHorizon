@@ -9,9 +9,11 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
+using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Horizon.ArmorPlates;
 
@@ -31,6 +33,7 @@ public sealed partial class ArmorPlateSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly NameModifierSystem _nameModifier = default!;
+    [Dependency] private readonly ExamineSystemShared _examine = default!;
 
     /// <summary>
     /// Слоты, в которых одежда с пластинами даёт защиту: комбинезон, РПС/пояс, верхняя одежда.
@@ -47,6 +50,7 @@ public sealed partial class ArmorPlateSystem : EntitySystem
         SubscribeLocalEvent<ClothingComponent, InventoryRelayedEvent<DamageModifyEvent>>(OnClothingDamageModify);
         SubscribeLocalEvent<ArmorPlateComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ArmorPlateComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<ArmorPlateComponent, GetVerbsEvent<ExamineVerb>>(OnVerbExamine);
         SubscribeLocalEvent<ArmorPlateComponent, RefreshNameModifiersEvent>(OnRefreshName);
         SubscribeLocalEvent<ArmorPlateComponent, PriceCalculationEvent>(OnPriceCalculation);
 
@@ -350,12 +354,6 @@ public sealed partial class ArmorPlateSystem : EntitySystem
     {
         using (args.PushGroup(nameof(ArmorPlateComponent)))
         {
-            if (ent.Comp.WalkSpeedModifier < 1f || ent.Comp.SprintSpeedModifier < 1f)
-            {
-                args.PushMarkup(Loc.GetString("armor-plate-examine-slowdown",
-                    ("value", MathF.Round((1f - MathF.Min(ent.Comp.WalkSpeedModifier, ent.Comp.SprintSpeedModifier)) * 100, 1))));
-            }
-
             if (ent.Comp.Broken)
             {
                 args.PushMarkup(Loc.GetString("armor-plate-examine-broken"));
@@ -377,36 +375,104 @@ public sealed partial class ArmorPlateSystem : EntitySystem
                 args.PushMarkup(Loc.GetString("armor-plate-examine-worn",
                     ("value", MathF.Round((1f - efficiency) * 100, 1))));
             }
-
-            if (!args.IsInDetailsRange)
-                return;
-
-            args.PushMarkup(Loc.GetString("armor-plate-examine-resists"));
-
-            // Показываем резисты уже с учётом износа, а рядом — итоговое изменение,
-            // как у характеристик оружия: зелёным если лучше базы, красным если хуже.
-            var modifiers = GetEffectiveModifiers(ent);
-            foreach (var (type, coefficient) in modifiers.Coefficients)
-            {
-                var value = MathF.Round((1f - coefficient) * 100, 1);
-                var baseValue = MathF.Round((1f - ent.Comp.Modifiers.Coefficients[type]) * 100, 1);
-
-                args.PushMarkup(Loc.GetString("armor-coefficient-value",
-                    ("type", Loc.GetString("armor-damage-type-" + type.ToLower())),
-                    ("value", value)) + FormatChange(value - baseValue, "armor-plate-examine-change-percent"));
-            }
-
-            foreach (var (type, flat) in modifiers.FlatReduction)
-            {
-                var baseFlat = ent.Comp.Modifiers.FlatReduction[type];
-
-                args.PushMarkup(Loc.GetString("armor-reduction-value",
-                    ("type", Loc.GetString("armor-damage-type-" + type.ToLower())),
-                    ("value", MathF.Round(flat, 1))) + FormatChange(MathF.Round(flat - baseFlat, 1), "armor-plate-examine-change-flat"));
-            }
-
-            args.PushMarkup(Loc.GetString("armor-plate-examine-hint"));
         }
+    }
+
+    private void OnVerbExamine(Entity<ArmorPlateComponent> ent, ref GetVerbsEvent<ExamineVerb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        // Две отдельные кнопки, как у одежды: броня (SharedArmorSystem) и скорость (ClothingSpeedModifierSystem).
+        if (GetArmorExamine(ent) is { } armor)
+        {
+            _examine.AddDetailedExamineVerb(args, ent.Comp, armor,
+                Loc.GetString("armor-examinable-verb-text"), "/Textures/Interface/VerbIcons/dot.svg.192dpi.png",
+                Loc.GetString("armor-examinable-verb-message"));
+        }
+
+        if (GetSpeedExamine(ent) is { } speed)
+        {
+            _examine.AddDetailedExamineVerb(args, ent.Comp, speed,
+                Loc.GetString("clothing-speed-examinable-verb-text"), "/Textures/Interface/VerbIcons/outfit.svg.192dpi.png",
+                Loc.GetString("clothing-speed-examinable-verb-message"));
+        }
+    }
+
+    /// <summary>
+    /// Резисты пластины с учётом износа; null у сломанной пластины.
+    /// </summary>
+    public FormattedMessage? GetArmorExamine(Entity<ArmorPlateComponent> ent)
+    {
+        if (ent.Comp.Broken)
+            return null;
+
+        var msg = new FormattedMessage();
+        msg.AddMarkupOrThrow(Loc.GetString("armor-plate-examine-resists"));
+
+        // Показываем резисты уже с учётом износа, а рядом — итоговое изменение,
+        // как у характеристик оружия: зелёным если лучше базы, красным если хуже.
+        var modifiers = GetEffectiveModifiers(ent);
+        foreach (var (type, coefficient) in modifiers.Coefficients)
+        {
+            var value = MathF.Round((1f - coefficient) * 100, 1);
+            var baseValue = MathF.Round((1f - ent.Comp.Modifiers.Coefficients[type]) * 100, 1);
+
+            msg.PushNewline();
+            msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
+                ("type", Loc.GetString("armor-damage-type-" + type.ToLower())),
+                ("value", value)) + FormatChange(value - baseValue, "armor-plate-examine-change-percent"));
+        }
+
+        foreach (var (type, flat) in modifiers.FlatReduction)
+        {
+            var baseFlat = ent.Comp.Modifiers.FlatReduction[type];
+
+            msg.PushNewline();
+            msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
+                ("type", Loc.GetString("armor-damage-type-" + type.ToLower())),
+                ("value", MathF.Round(flat, 1))) + FormatChange(MathF.Round(flat - baseFlat, 1), "armor-plate-examine-change-flat"));
+        }
+
+        return msg;
+    }
+
+    /// <summary>
+    /// Замедление от пластины в том же формате, что и у ClothingSpeedModifier; null если замедления нет.
+    /// </summary>
+    public FormattedMessage? GetSpeedExamine(Entity<ArmorPlateComponent> ent)
+    {
+        var walk = MathF.Round((1f - ent.Comp.WalkSpeedModifier) * 100f, 1);
+        var sprint = MathF.Round((1f - ent.Comp.SprintSpeedModifier) * 100f, 1);
+
+        if (walk == 0f && sprint == 0f)
+            return null;
+
+        var msg = new FormattedMessage();
+
+        if (MathHelper.CloseTo(walk, sprint, 0.5f))
+        {
+            msg.AddMarkupOrThrow(Loc.GetString(walk < 0f ? "clothing-speed-increase-equal-examine" : "clothing-speed-decrease-equal-examine",
+                ("walkSpeed", (int) MathF.Abs(walk)), ("runSpeed", (int) MathF.Abs(sprint))));
+            return msg;
+        }
+
+        if (sprint != 0f)
+        {
+            msg.AddMarkupOrThrow(Loc.GetString(sprint < 0f ? "clothing-speed-increase-run-examine" : "clothing-speed-decrease-run-examine",
+                ("runSpeed", (int) MathF.Abs(sprint))));
+        }
+
+        if (walk != 0f && sprint != 0f)
+            msg.PushNewline();
+
+        if (walk != 0f)
+        {
+            msg.AddMarkupOrThrow(Loc.GetString(walk < 0f ? "clothing-speed-increase-walk-examine" : "clothing-speed-decrease-walk-examine",
+                ("walkSpeed", (int) MathF.Abs(walk))));
+        }
+
+        return msg;
     }
 
     /// <summary>

@@ -8,7 +8,7 @@ player-lasso-brace-on = Вы упираетесь, сопротивляясь в
 player-lasso-brace-off = Вы расслабляетесь и перестаёте упираться.
 player-lasso-brace-cant = Здесь нельзя упереться!
 player-lasso-examine-length = Длина верёвки: {$length} м.
-player-lasso-examine-length-tied = Длина верёвки: {$length} м. Осталось {$remaining} м до полного натяжения.
+player-lasso-examine-length-tied = Длина верёвки {$length} м. Осталось {$remaining} м
 
 player-lasso-alert-name = Привязан
 player-lasso-alert-desc = Вы привязаны верёвкой к другому игроку. Нажмите, чтобы упереться и сопротивляться подтягиванию.

@@ -13,14 +13,12 @@ using Robust.Shared.Utility;
 namespace Content.Client._Horizon.Marketplace;
 
 /// <summary>
-/// Framed picture of a real item. Hovering shows its examine text; right click or the examine key opens the full
-/// examine popup with verbs.
+/// Framed picture of a real item. Hovering shows a hint; Shift+click (the examine key) opens the full examine popup.
 /// Falls back to the prototype's icon until the entity itself reaches the client.
 /// </summary>
 public sealed class MarketplaceItemIcon : PanelContainer
 {
     [Dependency] private readonly IEntityManager _entMan = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly Robust.Client.Player.IPlayerManager _player = default!;
 
     private readonly Color _border;
@@ -37,9 +35,9 @@ public sealed class MarketplaceItemIcon : PanelContainer
     private string? _protoId;
 
     /// <summary>
-    /// Examine text label of the tooltip currently shown, so the server's answer can replace it.
+    /// Set while waiting for the server's examine text after the examine key was pressed.
     /// </summary>
-    private RichTextLabel? _tooltipText;
+    private bool _examinePending;
 
     public MarketplaceItemIcon(float size, MarketplaceTheme? theme = null)
     {
@@ -113,86 +111,49 @@ public sealed class MarketplaceItemIcon : PanelContainer
 
     private void OnExamineReceived(NetEntity item, FormattedMessage text)
     {
-        if (item == _netEntity && _tooltipText != null)
-            _tooltipText.SetMessage(text);
+        if (!_examinePending || item != _netEntity)
+            return;
+
+        _examinePending = false;
+        FillExamine(text);
     }
 
     /// <summary>
-    /// Builds the hover tooltip in the same style as the regular examine popup.
+    /// Opens the popup right now, under the cursor. The text may arrive later from the server, and by then
+    /// the cursor could have moved, so the position must not wait for it.
+    /// </summary>
+    private void OpenExamine()
+    {
+        if (_entity is not { } uid || !_entMan.EntityExists(uid) || _player.LocalEntity is not { } player)
+            return;
+
+        _entMan.System<ExamineSystem>().OpenTooltip(player, uid, centeredOnCursor: true, openAtOldTooltip: false);
+    }
+
+    private void FillExamine(FormattedMessage text)
+    {
+        if (_entity is not { } uid || !_entMan.EntityExists(uid) || _player.LocalEntity is not { } player)
+            return;
+
+        _entMan.System<ExamineSystem>().UpdateTooltipInfo(player, uid, text, getVerbs: false);
+    }
+
+    /// <summary>
+    /// Hover tooltip: just a small plate telling how to examine the item.
     /// </summary>
     private Control? BuildTooltip()
     {
-        _tooltipText = null;
-
-        string name;
-        FormattedMessage text;
-        var canExamine = false;
-
-        if (_entity is { } uid && _entMan.EntityExists(uid))
-        {
-            name = _entMan.GetComponent<MetaDataComponent>(uid).EntityName;
-            canExamine = true;
-
-            if (_netEntity is { } net && MarketplaceExamineHub.TryGetCached(net, out var cached))
-            {
-                text = cached;
-            }
-            else
-            {
-                // Show what the client knows right away; the server fills in the rest.
-                text = _entMan.System<ExamineSystemShared>().GetExamineText(uid, _player.LocalEntity);
-                if (_netEntity is { } request)
-                    MarketplaceExamineHub.Request(request);
-            }
-        }
-        else if (_protoId != null && _proto.TryIndex<EntityPrototype>(_protoId, out var proto))
-        {
-            name = proto.Name;
-            text = FormattedMessage.FromUnformatted(proto.Description);
-        }
-        else
-        {
+        if (_entity is not { } uid || !_entMan.EntityExists(uid))
             return null;
-        }
 
-        var panel = new PanelContainer { MaxWidth = 400 };
+        var panel = new PanelContainer();
         panel.AddStyleClass(ExamineSystem.StyleClassEntityTooltip);
         panel.ModulateSelfOverride = Color.LightGray.WithAlpha(0.95f);
 
-        var box = new BoxContainer
-        {
-            Orientation = BoxContainer.LayoutOrientation.Vertical,
-            Margin = new Thickness(6, 2, 6, 4),
-            SeparationOverride = 2,
-        };
-        panel.AddChild(box);
-
-        var header = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, SeparationOverride = 5 };
-        if (canExamine)
-        {
-            var sprite = new SpriteView { OverrideDirection = Direction.South, SetSize = new Vector2(32, 32) };
-            sprite.SetEntity(_entity);
-            header.AddChild(sprite);
-        }
-
-        var title = new RichTextLabel { VerticalAlignment = VAlignment.Center };
-        title.SetMessage(FormattedMessage.FromMarkupPermissive($"[bold]{FormattedMessage.EscapeText(name)}[/bold]"));
-        header.AddChild(title);
-        box.AddChild(header);
-
-        var body = new RichTextLabel { MaxWidth = 385 };
-        body.SetMessage(text);
-        box.AddChild(body);
-
-        if (canExamine)
-        {
-            _tooltipText = body;
-            var more = new RichTextLabel();
-            more.SetMessage(FormattedMessage.FromMarkupPermissive(
-                $"[color=#8391A5][font size=9]{Loc.GetString("marketplace-examine-more")}[/font][/color]"));
-            box.AddChild(more);
-        }
-
+        var label = new RichTextLabel { Margin = new Thickness(6, 3, 6, 3) };
+        label.SetMessage(FormattedMessage.FromMarkupPermissive(
+            $"[color=#8391A5]{FormattedMessage.EscapeText(Loc.GetString("marketplace-examine-hint"))}[/color]"));
+        panel.AddChild(label);
         return panel;
     }
 
@@ -255,13 +216,25 @@ public sealed class MarketplaceItemIcon : PanelContainer
 
     private void HandleKeyBind(GUIBoundKeyEventArgs args)
     {
-        if (args.Function != ContentKeyFunctions.ExamineEntity && args.Function != EngineKeyFunctions.UseSecondary)
+        if (args.Function != ContentKeyFunctions.ExamineEntity)
             return;
 
-        if (_entity is not { } uid || !_entMan.EntityExists(uid))
+        if (_netEntity is not { } net || _entity is not { } uid || !_entMan.EntityExists(uid))
             return;
 
-        _entMan.System<ExamineSystem>().DoExamine(uid);
+        // Items sit in the market storage, so the full text (incl. armor resists) has to come from the server.
+        HideTooltip();
+        OpenExamine();
+        if (MarketplaceExamineHub.TryGetCached(net, out var cached))
+        {
+            FillExamine(cached);
+        }
+        else
+        {
+            _examinePending = true;
+            MarketplaceExamineHub.Request(net);
+        }
+
         args.Handle();
     }
 }

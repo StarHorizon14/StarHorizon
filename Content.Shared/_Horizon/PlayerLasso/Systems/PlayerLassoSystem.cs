@@ -240,7 +240,7 @@ public sealed class PlayerLassoSystem : EntitySystem
 
         if (lasso.Anchor is not { } anchor)
         {
-            args.PushMarkup(Loc.GetString("player-lasso-examine-length", ("length", lasso.MaxDistance)));
+            args.PushMarkup(Loc.GetString("player-lasso-examine-length", ("length", lasso.MaxDistance.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture))));
             return;
         }
 
@@ -250,8 +250,8 @@ public sealed class PlayerLassoSystem : EntitySystem
         var remaining = MathF.Max(0f, lasso.MaxDistance - used);
 
         args.PushMarkup(Loc.GetString("player-lasso-examine-length-tied",
-            ("length", lasso.MaxDistance),
-            ("remaining", MathF.Round(remaining, 1))));
+            ("length", lasso.MaxDistance.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture)),
+            ("remaining", remaining.ToString("0.#", System.Globalization.CultureInfo.InvariantCulture))));
     }
 
     private void AddUntieStructureVerb(Entity<LassoAnchoredComponent> ent, ref GetVerbsEvent<Verb> args)

@@ -3,7 +3,6 @@ armor-plate-examine-broken = [color=red]Пластина сломана и бо�
 armor-plate-examine-durability = Прочность: [color={ $color }]{ $bar }[/color] { $current }/{ $max }
 armor-plate-examine-worn = [color=orange]Пластина изношена: защита снижена на { $value }%.[/color]
 armor-plate-examine-resists = Резисты пластины:
-armor-plate-examine-hint = [color=gray]Работает, только если лежит в контейнере комбинезона, РПС или верхней одежды.[/color]
 armor-plate-slot-name = Бронепластина
 armor-plate-examine-slowdown = Замедляет носящего на [color=orange]{ $value }%[/color].
 armor-plate-broken-name = сломанная { $baseName }
